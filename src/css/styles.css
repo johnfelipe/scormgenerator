@@ -2,4 +2,28 @@ html body #root .App .App-header p {
   color: red;
 }
 
+html body #root .features-container {
+  background: lightgrey;
+  display: flex;
+  padding: 8px;
+  overflow: auto;
+}
+html body #root .features-container .feature-item {
+  user-select: none;
+  padding: 16px;
+  margin: 0px 8px 0px 0px;
+  background: grey;
+}
+
+html body #root .region-container {
+  background: lightgrey;
+  padding: 8px;
+}
+html body #root .region-container .region-item {
+  user-select: none;
+  padding: 16px;
+  margin: 0px 0px 8px 0px;
+  background: grey;
+}
+
 /*# sourceMappingURL=styles.css.map */

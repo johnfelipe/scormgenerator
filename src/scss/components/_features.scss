@@ -1,0 +1,21 @@
+@mixin features {
+    html {
+        body {
+            #root {
+                .features-container {
+                    background: lightgrey; 
+                    display: flex; 
+                    padding: 8px; 
+                    overflow: auto;
+
+                    .feature-item {
+                        user-select: none; 
+                        padding: 16px; 
+                        margin: 0px 8px 0px 0px; 
+                        background: grey;
+                    }
+                }
+            }
+        }
+    }
+}

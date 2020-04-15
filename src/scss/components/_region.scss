@@ -1,0 +1,19 @@
+@mixin region {
+    html {
+        body {
+            #root {
+                .region-container {
+                    background: lightgrey; 
+                    padding: 8px;
+
+                    .region-item {
+                        user-select: none; 
+                        padding: 16px; 
+                        margin: 0px 0px 8px 0px; 
+                        background: grey;
+                    }
+                }
+            }
+        }
+    }
+}
