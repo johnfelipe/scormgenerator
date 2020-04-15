@@ -17,6 +17,7 @@ class Generator extends Component {
             region_items: []
         };
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
     componentDidMount = () => {
@@ -65,27 +66,27 @@ class Generator extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
-        console.log(destination.regions);
+
         // dropped outside the list
         if (!destination) {
             return;
         }
 
         if (source.droppableId === destination.droppableId) {
-            const items = this.reorder(
+            const feature_items = this.reorder(
                 this.getList(source.droppableId),
                 source.index,
                 destination.index
             );
-            let state = { items };
+            let state = { feature_items };
 
             if (source.droppableId === 'regions') {
-                state = { region_items: items };
+                state = { region_items: feature_items };
             }
 
             this.setState(state);
         } else {
-            // if (source.droppableId === "features" && this.state.regions) {
+            if (source.droppableId === "features" && this.state.region_items.length !== 3) {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
@@ -97,8 +98,36 @@ class Generator extends Component {
                     feature_items: result.features,
                     region_items: result.regions
                 });
-            // }
+            } else if (source.droppableId === "regions") {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
+
+                this.setState({
+                    feature_items: result.features,
+                    region_items: result.regions
+                });
+            }
         }
+    };
+
+    onSave = () => {
+        let regionDiv = document.getElementsByClassName('region-container')[0].childNodes;
+        regionDiv.forEach(element => {
+
+            let i;
+
+            for (i = 0; i < element.attributes.length; i++) {
+                if (element.attributes[i].name === 'feature-type' || element.attributes[i].name === 'feature-text-style' || element.attributes[i].name === 'feature-video-type' || element.attributes[i].name === 'region-id') {
+                    console.log(element.attributes[i].name + ': ' + element.attributes[i].value);
+                }
+            }
+            
+        });
+        console.log('Clicked!');
     };
 
     render() {  
@@ -152,7 +181,12 @@ class Generator extends Component {
                                         {(provided) => (
                                             <div
                                                 className="region-item"
+                                                
+                                                feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
+                                                feature-text-style={item.style}
+                                                feature-video-type={item.type}
                                                 region-id={data.layout.region[index].region}
+
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
@@ -176,7 +210,7 @@ class Generator extends Component {
                     </Droppable>
                 </DragDropContext>
 
-                <button type="submit" className="btn btn-primary mt-2" >Save</button>
+                <button onClick={this.onSave} type="submit" className="btn btn-primary mt-2" >Save</button>
             </div>
         );
     }
