@@ -8,7 +8,7 @@ import '../assets/bootstrap/css/bootstrap.min.css';
 // data
 import data from '../slide.json';
 
-class Features extends Component {
+class Generator extends Component {
 
     constructor(props) {
         super(props);
@@ -181,4 +181,4 @@ class Features extends Component {
     }
 }
 
-export default Features;
+export default Generator;

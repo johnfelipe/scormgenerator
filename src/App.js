@@ -6,13 +6,13 @@ import './css/styles.css';
 import './assets/bootstrap/css/bootstrap.min.css';
 
 // containers
-import FeatureContainer from './components/Features';
+import Generator from './components/Generator';
 
 class App extends Component {
   render() {  
     return (
       <div className="container-fluid">
-        <FeatureContainer />
+        <Generator />
       </div>
     );
   }
