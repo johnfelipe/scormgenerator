@@ -110,76 +110,80 @@ class Features extends Component {
 
     render() {  
         return (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                <Droppable droppableId="droppable" direction="horizontal">
-                    {(provided, snapshot) => (
-                        <div
-                            className="features-container"
-                            ref={provided.innerRef}>
-                            {this.state.items.map((item, index) => (
-                                <Draggable
-                                    key={item.id}
-                                    draggableId={'' + item.id}
-                                    index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            className="feature-item"
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                        >
-                                            {item.style ?
-                                                <>
-                                                    {item.style}
-                                                </>
-                                                :
-                                                <>
-                                                    {item.type}
-                                                </>
-                                            }
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                <Droppable droppableId="droppable2">
-                    {(provided, snapshot) => (
-                        <div
-                            className="region-container mt-3"
-                            ref={provided.innerRef}>
-                            {this.state.selected.map((item, index) => (
-                                <Draggable
-                                    key={item.id}
-                                    draggableId={'' + item.id}
-                                    index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            className="region-item"
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                        >
-                                            {item.style ?
-                                                <>
-                                                    {item.style}
-                                                </>
-                                                :
-                                                <>
-                                                    {item.type}
-                                                </>
-                                            }
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
+            <div className="drag-drop-container">
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId="droppable" direction="horizontal">
+                        {(provided, snapshot) => (
+                            <div
+                                className="features-container"
+                                ref={provided.innerRef}>
+                                {this.state.items.map((item, index) => (
+                                    <Draggable
+                                        key={item.id}
+                                        draggableId={'' + item.id}
+                                        index={index}>
+                                        {(provided, snapshot) => (
+                                            <div
+                                                className="feature-item"
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                {item.style ?
+                                                    <>
+                                                        {item.style}
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {item.type}
+                                                    </>
+                                                }
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                    <Droppable droppableId="droppable2">
+                        {(provided, snapshot) => (
+                            <div
+                                className="region-container mt-3"
+                                ref={provided.innerRef}>
+                                {this.state.selected.map((item, index) => (
+                                    <Draggable
+                                        key={item.id}
+                                        draggableId={'' + item.id}
+                                        index={index}>
+                                        {(provided, snapshot) => (
+                                            <div
+                                                className="region-item"
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                {item.style ?
+                                                    <>
+                                                        {item.style}
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {item.type}
+                                                    </>
+                                                }
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+
+                <button type="submit" className="btn btn-primary mt-2" >Save</button>
+            </div>
         );
     }
 }
