@@ -21,8 +21,7 @@ class Features extends Component {
 
     componentDidMount = () => {
         
-        console.log(data.feature);
-        console.log(this.getItems(10));
+        console.log(data.layout.region);
 
     }
 
@@ -32,18 +31,11 @@ class Features extends Component {
      * source arrays stored in the state.
      */
     id2List = {
-        droppable: 'items',
-        droppable2: 'selected'
+        features: 'items',
+        regions: 'selected'
     };
 
     getList = id => this.state[this.id2List[id]];
-
-    // fake data generator
-    getItems = (count, offset = 0) =>
-        Array.from({ length: count }, (v, k) => k).map(k => ({
-            id: `item-${k + offset}`,
-            content: `item ${k + offset}`
-        }));
 
     // a little function to help us with reordering the result
     reorder = (list, startIndex, endIndex) => {
@@ -73,7 +65,7 @@ class Features extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
-
+        console.log(destination.regions);
         // dropped outside the list
         if (!destination) {
             return;
@@ -85,15 +77,15 @@ class Features extends Component {
                 source.index,
                 destination.index
             );
-
             let state = { items };
 
-            if (source.droppableId === 'droppable2') {
+            if (source.droppableId === 'regions') {
                 state = { selected: items };
             }
 
             this.setState(state);
         } else {
+            
             const result = this.move(
                 this.getList(source.droppableId),
                 this.getList(destination.droppableId),
@@ -102,8 +94,8 @@ class Features extends Component {
             );
 
             this.setState({
-                items: result.droppable,
-                selected: result.droppable2
+                items: result.features,
+                selected: result.regions
             });
         }
     };
@@ -112,7 +104,7 @@ class Features extends Component {
         return (
             <div className="drag-drop-container">
                 <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId="droppable" direction="horizontal">
+                    <Droppable droppableId="features" direction="horizontal">
                         {(provided, snapshot) => (
                             <div
                                 className="features-container"
@@ -146,7 +138,7 @@ class Features extends Component {
                             </div>
                         )}
                     </Droppable>
-                    <Droppable droppableId="droppable2">
+                    <Droppable droppableId="regions">
                         {(provided, snapshot) => (
                             <div
                                 className="region-container mt-3"
@@ -159,6 +151,7 @@ class Features extends Component {
                                         {(provided, snapshot) => (
                                             <div
                                                 className="region-item"
+                                                region-id={data.layout.region[index].region}
                                                 ref={provided.innerRef}
                                                 {...provided.draggableProps}
                                                 {...provided.dragHandleProps}
