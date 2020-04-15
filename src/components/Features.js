@@ -114,7 +114,7 @@ class Features extends Component {
                                         key={item.id}
                                         draggableId={'' + item.id}
                                         index={index}>
-                                        {(provided, snapshot) => (
+                                        {(provided) => (
                                             <div
                                                 className="feature-item"
                                                 ref={provided.innerRef}
@@ -148,7 +148,7 @@ class Features extends Component {
                                         key={item.id}
                                         draggableId={'' + item.id}
                                         index={index}>
-                                        {(provided, snapshot) => (
+                                        {(provided) => (
                                             <div
                                                 className="region-item"
                                                 region-id={data.layout.region[index].region}
