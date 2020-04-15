@@ -7,6 +7,7 @@ html body #root .features-container {
   display: flex;
   padding: 8px;
   overflow: auto;
+  height: 72px;
 }
 html body #root .features-container .feature-item {
   user-select: none;
