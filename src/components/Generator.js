@@ -13,8 +13,8 @@ class Generator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [...data.feature.text, ...data.feature.video],
-            selected: []
+            feature_items: [...data.feature.text, ...data.feature.video],
+            region_items: []
         };
         this.onDragEnd = this.onDragEnd.bind(this);
     }
@@ -31,8 +31,8 @@ class Generator extends Component {
      * source arrays stored in the state.
      */
     id2List = {
-        features: 'items',
-        regions: 'selected'
+        features: 'feature_items',
+        regions: 'region_items'
     };
 
     getList = id => this.state[this.id2List[id]];
@@ -80,23 +80,24 @@ class Generator extends Component {
             let state = { items };
 
             if (source.droppableId === 'regions') {
-                state = { selected: items };
+                state = { region_items: items };
             }
 
             this.setState(state);
         } else {
-            
-            const result = this.move(
-                this.getList(source.droppableId),
-                this.getList(destination.droppableId),
-                source,
-                destination
-            );
+            // if (source.droppableId === "features" && this.state.regions) {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
 
-            this.setState({
-                items: result.features,
-                selected: result.regions
-            });
+                this.setState({
+                    feature_items: result.features,
+                    region_items: result.regions
+                });
+            // }
         }
     };
 
@@ -109,7 +110,7 @@ class Generator extends Component {
                             <div
                                 className="features-container"
                                 ref={provided.innerRef}>
-                                {this.state.items.map((item, index) => (
+                                {this.state.feature_items.map((item, index) => (
                                     <Draggable
                                         key={item.id}
                                         draggableId={'' + item.id}
@@ -143,7 +144,7 @@ class Generator extends Component {
                             <div
                                 className="region-container mt-3"
                                 ref={provided.innerRef}>
-                                {this.state.selected.map((item, index) => (
+                                {this.state.region_items.map((item, index) => (
                                     <Draggable
                                         key={item.id}
                                         draggableId={'' + item.id}
