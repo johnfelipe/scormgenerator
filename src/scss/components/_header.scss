@@ -1,0 +1,15 @@
+@mixin header {
+    html {
+        body {
+            #root {
+                .App {
+                    .App-header {
+                        p {
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
