@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as fs from 'browserify-fs';
 
 // styling
 import '../css/styles.css';
