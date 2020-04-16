@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import * as fs from 'browserify-fs';
 
 // styling
 import '../css/styles.css';
@@ -134,13 +135,29 @@ class Generator extends Component {
 
             if (featureTextStyle) {
                 let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "region": region }
-                jsonData.slide.content.push(JSON.stringify(obj));
+                jsonData.slide.content.push(obj);
             } else if (featureVideoType) {
                 let obj = { "id":counter,"feature": feature, "feature.video.type": featureVideoType, "region": region }
-                jsonData.slide.content.push(JSON.stringify(obj));
+                jsonData.slide.content.push(obj);
             }
             
         });
+
+        let filename = "course.json";
+        let contentType = "application/json;charset=utf-8;";
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+            let blob = new Blob([decodeURIComponent(encodeURI(JSON.stringify(jsonData)))], { type: contentType });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            var a = document.createElement('a');
+            a.download = filename;
+            a.href = 'data:' + contentType + ',' + encodeURIComponent(JSON.stringify(jsonData));
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        
         console.log(jsonData);
     };
 
