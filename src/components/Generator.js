@@ -20,12 +20,6 @@ class Generator extends Component {
         this.onSave = this.onSave.bind(this);
     }
 
-    componentDidMount = () => {
-        
-        console.log(data.layout.region);
-
-    }
-
     /**
      * A semi-generic way to handle multiple lists. Matches
      * the IDs of the droppable container to the names of the
@@ -86,7 +80,7 @@ class Generator extends Component {
 
             this.setState(state);
         } else {
-            if (source.droppableId === "features" && this.state.region_items.length !== 3) {
+            if (source.droppableId === "features" && this.state.region_items.length !== data.layout.region.length) {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
@@ -115,19 +109,39 @@ class Generator extends Component {
     };
 
     onSave = () => {
+        let jsonData = {
+            slide: {
+                content: []
+            }
+        }
         let regionDiv = document.getElementsByClassName('region-container')[0].childNodes;
-        regionDiv.forEach(element => {
+        regionDiv.forEach(function (element, counter) {
+            counter++;
 
-            let i;
+            let i, feature, featureTextStyle, featureVideoType, region;
 
             for (i = 0; i < element.attributes.length; i++) {
-                if (element.attributes[i].name === 'feature-type' || element.attributes[i].name === 'feature-text-style' || element.attributes[i].name === 'feature-video-type' || element.attributes[i].name === 'region-id') {
-                    console.log(element.attributes[i].name + ': ' + element.attributes[i].value);
+                if (element.attributes[i].name === 'feature-type') {
+                    feature = element.attributes[i].value;
+                } else if (element.attributes[i].name === 'feature-text-style') {
+                    featureTextStyle = element.attributes[i].value;
+                } else if (element.attributes[i].name === 'feature-video-type') {
+                    featureVideoType = element.attributes[i].value;
+                } else if (element.attributes[i].name === 'region-id') {
+                    region = element.attributes[i].value;
                 }
+            }
+
+            if (featureTextStyle) {
+                let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "region": region }
+                jsonData.slide.content.push(JSON.stringify(obj));
+            } else if (featureVideoType) {
+                let obj = { "id":counter,"feature": feature, "feature.video.type": featureVideoType, "region": region }
+                jsonData.slide.content.push(JSON.stringify(obj));
             }
             
         });
-        console.log('Clicked!');
+        console.log(jsonData);
     };
 
     render() {  
