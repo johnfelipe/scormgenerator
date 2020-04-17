@@ -274,7 +274,7 @@ class Generator extends Component {
 
     render() {  
         return (
-            <div className="drag-drop-container">
+            <div className="drag-drop-container mt-3">
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="features" direction="horizontal">
                         {(provided, snapshot) => (
