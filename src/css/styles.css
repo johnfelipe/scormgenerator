@@ -19,7 +19,7 @@ html body #root .features-container .feature-item {
 html body #root .region-container {
   background: lightgrey;
   padding: 8px;
-  height: 500px;
+  height: 300px;
 }
 html body #root .region-container .region-item {
   user-select: none;
