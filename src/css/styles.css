@@ -23,9 +23,14 @@ html body #root .region-container {
 }
 html body #root .region-container .region-item {
   user-select: none;
-  padding: 16px;
+  padding: 16px 16px 16px 16px;
   margin: 0px 0px 8px 0px;
   background: grey;
+}
+html body #root .region-container .region-item .region-item-close-btn {
+  padding: 0px 0px 0px 0px;
+  height: 25px;
+  width: 25px;
 }
 
 /*# sourceMappingURL=styles.css.map */

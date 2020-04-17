@@ -9,9 +9,15 @@
 
                     .region-item {
                         user-select: none; 
-                        padding: 16px; 
+                        padding: 16px 16px 16px 16px; 
                         margin: 0px 0px 8px 0px; 
                         background: grey;
+
+                        .region-item-close-btn {
+                            padding: 0px 0px 0px 0px;
+                            height: 25px;
+                            width: 25px;
+                        }
                     }
                 }
             }

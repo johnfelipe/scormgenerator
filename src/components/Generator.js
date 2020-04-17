@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 // styling
 import '../css/styles.css';
@@ -93,7 +95,7 @@ class Generator extends Component {
                     source,
                     destination
                 );
-                console.log('Region 1');
+
                 this.setState({
                     feature_items: result.features,
                     first_region_items: result.firstRegion,
@@ -105,7 +107,7 @@ class Generator extends Component {
                     source,
                     destination
                 );
-                console.log('Region 2');
+
                 this.setState({
                     feature_items: result.features,
                     second_region_items: result.secondRegion,
@@ -220,6 +222,56 @@ class Generator extends Component {
         console.log(jsonData);
     };
 
+    removeItem = (regionId, index) => {
+        console.log('Clicked!');
+        console.log(regionId);
+        console.log(index);
+
+        if (regionId === "firstRegion") {
+            let source = {
+                index: index,
+                droppableId: regionId,
+            }
+
+            let destination = {
+                index: 0,
+                droppableId: "features",
+            }
+            const result = this.move(
+                this.getList(regionId),
+                this.getList("features"),
+                source,
+                destination
+            );
+
+            this.setState({
+                feature_items: result.features,
+                first_region_items: result.firstRegion,
+            });
+        } else if (regionId === "secondRegion") {
+            let source = {
+                index: index,
+                droppableId: regionId,
+            }
+
+            let destination = {
+                index: 0,
+                droppableId: "features",
+            }
+            const result = this.move(
+                this.getList(regionId),
+                this.getList("features"),
+                source,
+                destination
+            );
+
+            this.setState({
+                feature_items: result.features,
+                second_region_items: result.secondRegion,
+            });
+        }
+    }
+
     render() {  
         return (
             <div className="drag-drop-container">
@@ -290,6 +342,7 @@ class Generator extends Component {
                                                         {item.type}
                                                     </>
                                                 }
+                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("firstRegion", index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                             </div>
                                         )}
                                     </Draggable>
@@ -330,6 +383,7 @@ class Generator extends Component {
                                                         {item.type}
                                                     </>
                                                 }
+                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("secondRegion", index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                             </div>
                                         )}
                                     </Draggable>
