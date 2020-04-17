@@ -14,7 +14,8 @@ class Generator extends Component {
         super(props);
         this.state = {
             feature_items: [...data.feature.text, ...data.feature.video],
-            region_items: []
+            first_region_items: [],
+            second_region_items: [],
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -27,7 +28,8 @@ class Generator extends Component {
      */
     id2List = {
         features: 'feature_items',
-        regions: 'region_items'
+        firstRegion: 'first_region_items',
+        secondRegion: 'second_region_items',
     };
 
     getList = id => this.state[this.id2List[id]];
@@ -74,25 +76,41 @@ class Generator extends Component {
             );
             let state = { feature_items };
 
-            if (source.droppableId === 'regions') {
-                state = { region_items: feature_items };
+            if (source.droppableId === 'firstRegion') {
+                state = { first_region_items: feature_items };
+            }
+
+            if (source.droppableId === 'secondRegion') {
+                state = { second_region_items: feature_items };
             }
 
             this.setState(state);
         } else {
-            if (source.droppableId === "features" && this.state.region_items.length !== data.layout.region.length) {
+            if (source.droppableId === "features" && this.state.first_region_items.length !== data.layout.region.length && destination.droppableId === "firstRegion") {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
                     source,
                     destination
                 );
-
+                console.log('Region 1');
                 this.setState({
                     feature_items: result.features,
-                    region_items: result.regions
+                    first_region_items: result.firstRegion,
                 });
-            } else if (source.droppableId === "regions") {
+            } else if (source.droppableId === "features" && this.state.second_region_items.length !== data.layout.region.length && destination.droppableId === "secondRegion") {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
+                console.log('Region 2');
+                this.setState({
+                    feature_items: result.features,
+                    second_region_items: result.secondRegion,
+                });
+            } else if (source.droppableId === "firstRegion" && destination.droppableId === "features") {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
@@ -102,7 +120,43 @@ class Generator extends Component {
 
                 this.setState({
                     feature_items: result.features,
-                    region_items: result.regions
+                    first_region_items: result.firstRegion,
+                });
+            } else if (source.droppableId === "secondRegion" && destination.droppableId === "features") {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
+
+                this.setState({
+                    feature_items: result.features,
+                    second_region_items: result.secondRegion,
+                });
+            } else if (source.droppableId === "firstRegion" && destination.droppableId === "secondRegion") {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
+
+                this.setState({
+                    first_region_items: result.firstRegion,
+                    second_region_items: result.secondRegion,
+                });
+            } else if (source.droppableId === "secondRegion" && destination.droppableId === "firstRegion") {
+                const result = this.move(
+                    this.getList(source.droppableId),
+                    this.getList(destination.droppableId),
+                    source,
+                    destination
+                );
+
+                this.setState({
+                    first_region_items: result.firstRegion,
+                    second_region_items: result.secondRegion,
                 });
             }
         }
@@ -198,12 +252,52 @@ class Generator extends Component {
                             </div>
                         )}
                     </Droppable>
-                    <Droppable droppableId="regions">
+                    <Droppable droppableId="firstRegion">
                         {(provided, snapshot) => (
                             <div
                                 className="region-container mt-3"
                                 ref={provided.innerRef}>
-                                {this.state.region_items.map((item, index) => (
+                                {this.state.first_region_items.map((item, index) => (
+                                    <Draggable
+                                        key={item.id}
+                                        draggableId={'' + item.id}
+                                        index={index}>
+                                        {(provided) => (
+                                            <div
+                                                className="region-item"
+                                                
+                                                feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
+                                                feature-text-style={item.style}
+                                                feature-video-type={item.type}
+                                                region-id={data.layout.region[index].region}
+
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                {item.style ?
+                                                    <>
+                                                        {item.style}
+                                                    </>
+                                                    :
+                                                    <>
+                                                        {item.type}
+                                                    </>
+                                                }
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                    <Droppable droppableId="secondRegion">
+                        {(provided, snapshot) => (
+                            <div
+                                className="region-container mt-3"
+                                ref={provided.innerRef}>
+                                {this.state.second_region_items.map((item, index) => (
                                     <Draggable
                                         key={item.id}
                                         draggableId={'' + item.id}
