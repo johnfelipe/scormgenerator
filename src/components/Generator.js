@@ -342,7 +342,7 @@ class Generator extends Component {
                                                         {item.type}
                                                     </>
                                                 }
-                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("firstRegion", index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("firstRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
                                             </div>
                                         )}
                                     </Draggable>
@@ -383,7 +383,7 @@ class Generator extends Component {
                                                         {item.type}
                                                     </>
                                                 }
-                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("secondRegion", index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("secondRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
                                             </div>
                                         )}
                                     </Draggable>
