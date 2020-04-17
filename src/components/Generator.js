@@ -277,7 +277,7 @@ class Generator extends Component {
             <div className="drag-drop-container mt-3">
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="features" direction="horizontal">
-                        {(provided, snapshot) => (
+                        {(provided) => (
                             <div
                                 className="features-container"
                                 ref={provided.innerRef}>
@@ -311,7 +311,7 @@ class Generator extends Component {
                         )}
                     </Droppable>
                     <Droppable droppableId="firstRegion">
-                        {(provided, snapshot) => (
+                        {(provided) => (
                             <div
                                 className="region-container mt-3"
                                 ref={provided.innerRef}>
