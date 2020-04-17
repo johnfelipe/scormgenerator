@@ -168,33 +168,39 @@ class Generator extends Component {
                 content: []
             }
         }
-        let regionDiv = document.getElementsByClassName('region-container')[0].childNodes;
-        regionDiv.forEach(function (element, counter) {
-            counter++;
+        console.log(document.getElementsByClassName('region-container'));
+        let regionDiv = document.getElementsByClassName('region-container');
+        for (let child of regionDiv) {
+            console.log(child.childNodes);
 
-            let i, feature, featureTextStyle, featureVideoType, region;
+            let items = child.childNodes;
+            items.forEach(function (element, counter) {
+                counter++;
 
-            for (i = 0; i < element.attributes.length; i++) {
-                if (element.attributes[i].name === 'feature-type') {
-                    feature = element.attributes[i].value;
-                } else if (element.attributes[i].name === 'feature-text-style') {
-                    featureTextStyle = element.attributes[i].value;
-                } else if (element.attributes[i].name === 'feature-video-type') {
-                    featureVideoType = element.attributes[i].value;
-                } else if (element.attributes[i].name === 'region-id') {
-                    region = element.attributes[i].value;
+                let i, feature, featureTextStyle, featureVideoType, region;
+
+                for (i = 0; i < element.attributes.length; i++) {
+                    if (element.attributes[i].name === 'feature-type') {
+                        feature = element.attributes[i].value;
+                    } else if (element.attributes[i].name === 'feature-text-style') {
+                        featureTextStyle = element.attributes[i].value;
+                    } else if (element.attributes[i].name === 'feature-video-type') {
+                        featureVideoType = element.attributes[i].value;
+                    } else if (element.attributes[i].name === 'region-id') {
+                        region = element.attributes[i].value;
+                    }
                 }
-            }
 
-            if (featureTextStyle) {
-                let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "region": region }
-                jsonData.slide.content.push(obj);
-            } else if (featureVideoType) {
-                let obj = { "id":counter,"feature": feature, "feature.video.type": featureVideoType, "region": region }
-                jsonData.slide.content.push(obj);
-            }
-            
-        });
+                if (featureTextStyle) {
+                    let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "region": region }
+                    jsonData.slide.content.push(obj);
+                } else if (featureVideoType) {
+                    let obj = { "id":counter,"feature": feature, "feature.video.type": featureVideoType, "region": region }
+                    jsonData.slide.content.push(obj);
+                }
+                
+            });
+        }
 
         let filename = "course.json";
         let contentType = "application/json;charset=utf-8;";
