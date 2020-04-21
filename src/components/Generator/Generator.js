@@ -136,7 +136,7 @@ class Generator extends Component {
                     feature_items: result.features,
                     second_region_items: result.secondRegion,
                 });
-            } else if (source.droppableId === "firstRegion" && destination.droppableId === "secondRegion") {
+            } else if (source.droppableId === "firstRegion" && this.state.second_region_items.length !== data.layout.region.length && destination.droppableId === "secondRegion") {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
@@ -148,7 +148,7 @@ class Generator extends Component {
                     first_region_items: result.firstRegion,
                     second_region_items: result.secondRegion,
                 });
-            } else if (source.droppableId === "secondRegion" && destination.droppableId === "firstRegion") {
+            } else if (source.droppableId === "secondRegion" && this.state.first_region_items.length !== data.layout.region.length && destination.droppableId === "firstRegion") {
                 const result = this.move(
                     this.getList(source.droppableId),
                     this.getList(destination.droppableId),
