@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
+import Routes from "./Routes";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // styling
 import './App.css';
 import './css/styles.css';
 import './assets/bootstrap/css/bootstrap.min.css';
 
-// containers
-import Generator from './components/Generator';
+//components
+import Header from './components/Navigation/NavigationHeader';
 
 class App extends Component {
   render() {  
     return (
-      <div className="container-fluid">
-        <Generator />
-      </div>
+      <Router>
+        <Header />
+
+        <Routes />
+      </Router>
     );
   }
 }
