@@ -21,6 +21,7 @@ class Generator extends Component {
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.clearAll = this.clearAll.bind(this);
     }
 
     /**
@@ -272,6 +273,10 @@ class Generator extends Component {
         }
     }
 
+    clearAll = () => {
+        console.log('Clear All');
+    };
+
     render() {  
         return (
             <div className="container-fluid">
@@ -396,6 +401,7 @@ class Generator extends Component {
                     </DragDropContext>
 
                     <button onClick={this.onSave} type="submit" className="btn btn-primary mt-2" >Save</button>
+                    <button onClick={this.clearAll} type="submit" className="btn btn-outline-primary mt-2 ml-2" >Clear</button>
                 </div>
             </div>
         );
