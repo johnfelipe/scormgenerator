@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 // styling
-import '../css/styles.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
+import '../../css/styles.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
 
 // data
-import data from '../slide.json';
+import data from '../../slide.json';
 
 class Generator extends Component {
 
@@ -274,127 +274,129 @@ class Generator extends Component {
 
     render() {  
         return (
-            <div className="drag-drop-container mt-3">
-                <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId="features" direction="horizontal">
-                        {(provided) => (
-                            <div
-                                className="features-container"
-                                ref={provided.innerRef}>
-                                {this.state.feature_items.map((item, index) => (
-                                    <Draggable
-                                        key={item.id}
-                                        draggableId={'' + item.id}
-                                        index={index}>
-                                        {(provided) => (
-                                            <div
-                                                className="feature-item"
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                            >
-                                                {item.style ?
-                                                    <>
-                                                        {item.style}
-                                                    </>
-                                                    :
-                                                    <>
-                                                        {item.type}
-                                                    </>
-                                                }
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                    <Droppable droppableId="firstRegion">
-                        {(provided) => (
-                            <div
-                                className="region-container mt-3"
-                                ref={provided.innerRef}>
-                                {this.state.first_region_items.map((item, index) => (
-                                    <Draggable
-                                        key={item.id}
-                                        draggableId={'' + item.id}
-                                        index={index}>
-                                        {(provided) => (
-                                            <div
-                                                className="region-item"
-                                                
-                                                feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
-                                                feature-text-style={item.style}
-                                                feature-video-type={item.type}
-                                                region-id={data.layout.region[index].region}
+            <div className="container-fluid">
+                <div className="drag-drop-container mt-3">
+                    <DragDropContext onDragEnd={this.onDragEnd}>
+                        <Droppable droppableId="features" direction="horizontal">
+                            {(provided) => (
+                                <div
+                                    className="features-container"
+                                    ref={provided.innerRef}>
+                                    {this.state.feature_items.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={'' + item.id}
+                                            index={index}>
+                                            {(provided) => (
+                                                <div
+                                                    className="feature-item"
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                >
+                                                    {item.style ?
+                                                        <>
+                                                            {item.style}
+                                                        </>
+                                                        :
+                                                        <>
+                                                            {item.type}
+                                                        </>
+                                                    }
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                        <Droppable droppableId="firstRegion">
+                            {(provided) => (
+                                <div
+                                    className="region-container mt-3"
+                                    ref={provided.innerRef}>
+                                    {this.state.first_region_items.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={'' + item.id}
+                                            index={index}>
+                                            {(provided) => (
+                                                <div
+                                                    className="region-item"
+                                                    
+                                                    feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
+                                                    feature-text-style={item.style}
+                                                    feature-video-type={item.type}
+                                                    region-id={data.layout.region[index].region}
 
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                            >
-                                                {item.style ?
-                                                    <>
-                                                        {item.style}
-                                                    </>
-                                                    :
-                                                    <>
-                                                        {item.type}
-                                                    </>
-                                                }
-                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("firstRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                    <Droppable droppableId="secondRegion">
-                        {(provided, snapshot) => (
-                            <div
-                                className="region-container mt-3"
-                                ref={provided.innerRef}>
-                                {this.state.second_region_items.map((item, index) => (
-                                    <Draggable
-                                        key={item.id}
-                                        draggableId={'' + item.id}
-                                        index={index}>
-                                        {(provided) => (
-                                            <div
-                                                className="region-item"
-                                                
-                                                feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
-                                                feature-text-style={item.style}
-                                                feature-video-type={item.type}
-                                                region-id={data.layout.region[index].region}
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                >
+                                                    {item.style ?
+                                                        <>
+                                                            {item.style}
+                                                        </>
+                                                        :
+                                                        <>
+                                                            {item.type}
+                                                        </>
+                                                    }
+                                                    <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("firstRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                        <Droppable droppableId="secondRegion">
+                            {(provided, snapshot) => (
+                                <div
+                                    className="region-container mt-3"
+                                    ref={provided.innerRef}>
+                                    {this.state.second_region_items.map((item, index) => (
+                                        <Draggable
+                                            key={item.id}
+                                            draggableId={'' + item.id}
+                                            index={index}>
+                                            {(provided) => (
+                                                <div
+                                                    className="region-item"
+                                                    
+                                                    feature-type={item.style ? "feature.text" : item.type ? "feature.video" : ""}
+                                                    feature-text-style={item.style}
+                                                    feature-video-type={item.type}
+                                                    region-id={data.layout.region[index].region}
 
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                            >
-                                                {item.style ?
-                                                    <>
-                                                        {item.style}
-                                                    </>
-                                                    :
-                                                    <>
-                                                        {item.type}
-                                                    </>
-                                                }
-                                                <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("secondRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                >
+                                                    {item.style ?
+                                                        <>
+                                                            {item.style}
+                                                        </>
+                                                        :
+                                                        <>
+                                                            {item.type}
+                                                        </>
+                                                    }
+                                                    <button className="btn btn-danger float-right region-item-close-btn" onClick={() => this.removeItem("secondRegion", index)} title="Remove"><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
 
-                <button onClick={this.onSave} type="submit" className="btn btn-primary mt-2" >Save</button>
+                    <button onClick={this.onSave} type="submit" className="btn btn-primary mt-2" >Save</button>
+                </div>
             </div>
         );
     }
