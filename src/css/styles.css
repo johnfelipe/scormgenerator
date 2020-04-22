@@ -8,6 +8,7 @@ html body #root .features-container {
   padding: 8px;
   overflow: auto;
   height: 72px;
+  border-radius: 5px;
 }
 html body #root .features-container .feature-item {
   user-select: none;
@@ -21,6 +22,7 @@ html body #root .region-container {
   background: lightgrey;
   padding: 8px;
   height: 300px;
+  border-radius: 5px;
 }
 html body #root .region-container .region-item {
   user-select: none;
