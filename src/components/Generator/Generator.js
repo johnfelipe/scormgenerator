@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { Button, Modal } from 'react-bootstrap';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 // styling
 import '../../css/styles.css';
@@ -18,10 +21,14 @@ class Generator extends Component {
             feature_items: [...data.feature.text, ...data.feature.video],
             first_region_items: [],
             second_region_items: [],
+            modalShow: false,
+            index: 0,
+            clickedRegion: '',
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.onSave = this.onSave.bind(this);
         this.clearAll = this.clearAll.bind(this);
+        this.setModalShow = this.setModalShow.bind(this);
     }
 
     /**
@@ -281,6 +288,14 @@ class Generator extends Component {
             second_region_items: [],
         });
     };
+    
+    setModalShow = (value, index, clickedRegion) => {
+        this.setState({
+            modalShow: value,
+            index: index,
+            clickedRegion: clickedRegion,
+        });
+    }
 
     render() {  
         return (
@@ -339,6 +354,9 @@ class Generator extends Component {
                                                     feature-text-style={item.style}
                                                     feature-video-type={item.type}
                                                     region-id={data.layout.region[index].region}
+                                                    text={item.text ? item.text : 'none'}
+
+                                                    onClick={() => this.setModalShow(true, index, 'firstRegion')}
 
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
@@ -346,7 +364,12 @@ class Generator extends Component {
                                                 >
                                                     {item.style ?
                                                         <>
-                                                            {item.style}
+                                                            <span>{item.style}</span>
+                                                            {item.text ? 
+                                                                <span className="ml-4">text: {item.text}</span>
+                                                                :
+                                                                <span className="ml-4">text: </span>
+                                                            }
                                                         </>
                                                         :
                                                         <>
@@ -363,7 +386,7 @@ class Generator extends Component {
                             )}
                         </Droppable>
                         <Droppable droppableId="secondRegion">
-                            {(provided, snapshot) => (
+                            {(provided) => (
                                 <div
                                     className="region-container mt-3"
                                     ref={provided.innerRef}>
@@ -380,6 +403,9 @@ class Generator extends Component {
                                                     feature-text-style={item.style}
                                                     feature-video-type={item.type}
                                                     region-id={data.layout.region[index].region}
+                                                    text={item.text ? item.text : 'none'}
+
+                                                    onClick={() => this.setModalShow(true, index, 'secondRegion')}
 
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
@@ -387,7 +413,12 @@ class Generator extends Component {
                                                 >
                                                     {item.style ?
                                                         <>
-                                                            {item.style}
+                                                            <span>{item.style}</span>
+                                                            {item.text ? 
+                                                                <span className="ml-4">text: {item.text}</span>
+                                                                :
+                                                                <span className="ml-4">text: </span>
+                                                            }
                                                         </>
                                                         :
                                                         <>
@@ -408,6 +439,45 @@ class Generator extends Component {
                     <button onClick={this.onSave} type="submit" className="btn btn-primary mt-2" >Save</button>
                     <button onClick={this.clearAll} className="btn btn-outline-primary mt-2 ml-2" >Clear</button>
                 </div>
+
+                {/* Text Editor Modal */}
+                <Modal
+                    show={this.state.modalShow}
+                    onHide={() => this.setModalShow(false)}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Add Text
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data=""
+                            onInit={ editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log( 'Editor is ready to use!' );
+                                editor.editing.view.focus();
+                            } }
+                            onChange={ ( event, editor ) => {
+                                if (this.state.clickedRegion === 'firstRegion') {
+                                    let obj = this.state.first_region_items[this.state.index];
+                                    obj.text = editor.getData();
+                                } else if (this.state.clickedRegion === 'secondRegion') {
+                                    let obj = this.state.second_region_items[this.state.index];
+                                    obj.text = editor.getData();
+                                }
+                                
+                            } }
+                        />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => this.setModalShow(false)}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }
