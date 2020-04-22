@@ -187,7 +187,7 @@ class Generator extends Component {
             items.forEach(function (element, counter) {
                 counter++;
 
-                let i, feature, featureTextStyle, featureVideoType, region;
+                let i, feature, featureTextStyle, featureVideoType, region, text;
 
                 for (i = 0; i < element.attributes.length; i++) {
                     if (element.attributes[i].name === 'feature-type') {
@@ -198,11 +198,13 @@ class Generator extends Component {
                         featureVideoType = element.attributes[i].value;
                     } else if (element.attributes[i].name === 'region-id') {
                         region = element.attributes[i].value;
+                    } else if (element.attributes[i].name === 'text') {
+                        text = element.attributes[i].value;
                     }
                 }
 
                 if (featureTextStyle) {
-                    let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "region": region }
+                    let obj = { "id":counter,"feature": feature, "feature.text.style": featureTextStyle, "text": text, "region": region }
                     jsonData.slide.content.push(obj);
                 } else if (featureVideoType) {
                     let obj = { "id":counter,"feature": feature, "feature.video.type": featureVideoType, "region": region }
