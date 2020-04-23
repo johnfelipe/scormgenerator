@@ -214,7 +214,7 @@ class Generator extends Component {
             });
         }
 
-        let filename = "course.json";
+        let filename = "slide.json";
         let contentType = "application/json;charset=utf-8;";
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
             let blob = new Blob([decodeURIComponent(encodeURI(JSON.stringify(jsonData)))], { type: contentType });
