@@ -10,6 +10,7 @@ class Main extends Component {
         super(props);
         this.state = {
             courseTitle: '',
+            courseLogo: '',
         };
     }
 
@@ -34,8 +35,8 @@ class Main extends Component {
                         </div>
                         <div className="col-md-3">
                             <input
-                                id="myfile"
-                                name="myfile"
+                                id="courseLogo"
+                                name="courseLogo"
                                 type="file"
                                 className="form-control"
                             />
