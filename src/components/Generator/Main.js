@@ -8,6 +8,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 import TextInput from './TextInput';
 import FileInput from './FileInput';
 import SelectInput from './SelectInput';
+import CheckBoxInput from './CheckBoxInput';
 
 class Main extends Component {
 
@@ -44,12 +45,7 @@ class Main extends Component {
                         </div>
                         <div className="col-md-4 mt-2">
                             <div className="float-right mt-2">
-                                <input
-                                    id="showProgressbar"
-                                    name="showProgressbar"
-                                    type="checkbox"
-                                    value="true"/>
-                                <label for="showProgressbar" className="ml-1"> Show/Hide Progress Bar</label>
+                                <CheckBoxInput />
                             </div>
                         </div>
                     </div>
