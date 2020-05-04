@@ -9,6 +9,7 @@ import TextInput from './TextInput';
 import FileInput from './FileInput';
 import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
+import Resources from './Resources';
 
 class Main extends Component {
 
@@ -51,20 +52,24 @@ class Main extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-4 mt-2">
-                            <label for="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
-                            <button type="button" className="btn btn-primary">Resources</button>
+                            <Resources />
                         </div>
                         <div className="col-md-4 mt-2">
                             <div className="text-center">
                                 <label for="transcriptBtn" className="mr-2">Upload Transcript (Optional):</label>
-                                <button type="button" className="btn btn-primary">Transcript</button>
+                                <button type="button" className="btn btn-outline-dark">Transcript</button>
                             </div>
                         </div>
                         <div className="col-md-4 mt-2">
                             <div className="float-right">
                                 <label for="glossaryBtn" className="mr-2">Add Glossary (Optional):</label>
-                                <button type="button" className="btn btn-primary">Glossary</button>
+                                <button type="button" className="btn btn-outline-dark">Glossary</button>
                             </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 mt-2">
+                            <div id="lesson-container"></div>
                         </div>
                     </div>
                 </div>
