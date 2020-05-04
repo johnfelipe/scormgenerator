@@ -18,18 +18,21 @@ class TextInput extends Component {
         return (
             <Formik
                 initialValues={{ textInput: "" }}
-                onSubmit={async values => {
+                onSubmit={async (values, { setSubmitting }) => {
                     await new Promise(resolve => setTimeout(resolve, 500));
                     alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false)
                 }}
             >
                 {props => {
                     const {
                     values,
+                    isSubmitting,
                     handleChange,
                     handleBlur,
                     handleSubmit,
                     } = props;
+
                     return (
                     <form onSubmit={handleSubmit}>
                         <input
@@ -42,6 +45,7 @@ class TextInput extends Component {
                             onBlur={handleBlur}
                             placeholder={this.props.placeholder}
                         />
+                        <button type="submit" disabled={isSubmitting}>Submit</button>
                     </form>
                     );
                 }}
