@@ -37,4 +37,11 @@ html body #root .region-container .region-item .region-item-close-btn {
   width: 25px;
 }
 
+html body #root #generator-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 /*# sourceMappingURL=styles.css.map */
