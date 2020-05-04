@@ -6,6 +6,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 
 // components
 import TextInput from './TextInput';
+import FileInput from './FileInput';
 
 class Main extends Component {
 
@@ -33,13 +34,7 @@ class Main extends Component {
                             <TextInput />
                         </div>
                         <div className="col-md-3">
-                            <input
-                                id="courseLogo"
-                                name="courseLogo"
-                                type="file"
-                                className="form-control"
-                                accept="image/x-png,image/gif,image/jpeg"
-                            />
+                            <FileInput />
                         </div>
                     </div>
                     <div className="row">
