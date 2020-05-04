@@ -39,6 +39,7 @@ class Main extends Component {
                                 name="courseLogo"
                                 type="file"
                                 className="form-control"
+                                accept="image/x-png,image/gif,image/jpeg"
                             />
                         </div>
                     </div>
