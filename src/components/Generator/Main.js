@@ -3,7 +3,6 @@ import { Accordion, Card } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import { Button, Modal } from 'react-bootstrap';
 
 // styling
 import '../../css/styles.css';
