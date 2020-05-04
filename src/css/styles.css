@@ -38,10 +38,13 @@ html body #root .region-container .region-item .region-item-close-btn {
 }
 
 html body #root #generator-container {
-  max-width: 800px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+}
+html body #root .container-fluid {
+  background-color: #70707021;
 }
 
 /*# sourceMappingURL=styles.css.map */

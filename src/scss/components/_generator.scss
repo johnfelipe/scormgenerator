@@ -3,10 +3,14 @@
         body {
             #root {
                 #generator-container {
-                    max-width: 800px;
+                    max-width: 1180px;
                     width: 100%;
                     margin: 0 auto;
                     padding: 20px;
+                }
+
+                .container-fluid {
+                    background-color: #70707021;
                 }
             }
         }
