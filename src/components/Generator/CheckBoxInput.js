@@ -40,7 +40,7 @@ class CheckBoxInput extends Component {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        <label for="cbInput" className="ml-1"> Show/Hide Progress Bar</label>
+                        <label htmlFor="cbInput" className="ml-1"> Show/Hide Progress Bar</label>
                     </form>
                     );
                 }}

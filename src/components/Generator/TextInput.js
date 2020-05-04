@@ -40,7 +40,7 @@ class TextInput extends Component {
                             value={values.textInput}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            placeholder="Type course name here . . ."
+                            placeholder={this.props.placeholder}
                         />
                     </form>
                     );

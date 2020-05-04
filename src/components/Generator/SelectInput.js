@@ -32,7 +32,7 @@ class SelectInput extends Component {
                     } = props;
                     return (
                     <form onSubmit={handleSubmit}>
-                        <label for="selectInput" className="mr-1">Choose Navigation Type:</label>
+                        <label htmlFor="selectInput" className="mr-1">Choose Navigation Type:</label>
                         <select id="selectInput" className="form-control d-inline w-25" value={values.selectInput} onChange={handleChange} onBlur={handleBlur}>
                             <option value="sidebar">Sidebar</option>
                             <option value="dropdownSelect">Dropdown Select</option>

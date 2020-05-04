@@ -9,7 +9,7 @@ class ResourcesUpload extends Component {
     render() {
         return (
             <div id="resources-btn-container">
-                <label for="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
+                <label htmlFor="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
                 <button type="button" className="btn btn-outline-dark">Resources</button>
             </div>
         )
