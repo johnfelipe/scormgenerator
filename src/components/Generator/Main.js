@@ -7,6 +7,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 // components
 import TextInput from './TextInput';
 import FileInput from './FileInput';
+import SelectInput from './SelectInput';
 
 class Main extends Component {
 
@@ -39,12 +40,7 @@ class Main extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-8 mt-2">
-                            <label for="navigationType" className="mr-1">Choose Navigation Type:</label>
-                            <select id="navigationType" className="form-control d-inline w-25">
-                                <option value="sidebar">Sidebar</option>
-                                <option value="dropdownSelect">Dropdown Select</option>
-                                <option value="hamburgerMenu">Hamburger Menu</option>
-                            </select>
+                            <SelectInput />
                         </div>
                         <div className="col-md-4 mt-2">
                             <div className="float-right mt-2">
