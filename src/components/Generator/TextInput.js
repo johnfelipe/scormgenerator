@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
-class Main extends Component {
+class TextInput extends Component {
 
     constructor(props) {
         super(props);
@@ -50,4 +50,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default TextInput;
