@@ -11,6 +11,7 @@ import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
 import ResourcesUpload from './ResourcesUpload';
 import TranscriptUpload from './TranscriptUpload';
+import AddGlossary from './AddGlossary';
 
 class Main extends Component {
 
@@ -59,10 +60,7 @@ class Main extends Component {
                             <TranscriptUpload />
                         </div>
                         <div className="col-md-4 mt-2">
-                            <div className="float-right">
-                                <label for="glossaryBtn" className="mr-2">Add Glossary (Optional):</label>
-                                <button type="button" className="btn btn-outline-dark">Glossary</button>
-                            </div>
+                            <AddGlossary />
                         </div>
                     </div>
                     <div className="row">
