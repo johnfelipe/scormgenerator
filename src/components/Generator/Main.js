@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
@@ -146,46 +146,52 @@ class Main extends Component {
                     <div className="row">
                         <div className="col-md-12 mt-2">
                             <div id="lesson-container">
-                                <DragDropContext onDragEnd={this.onDragEnd}>
+                                {/* <DragDropContext onDragEnd={this.onDragEnd}>
                                     <Droppable droppableId="lesson">
-                                        {(provided) => (
+                                        {(provided) => ( */}
                                             <div
                                                 className="lesson-draggable-container"
-                                                ref={provided.innerRef}>
+                                                // ref={provided.innerRef}
+                                            >
                                                 {this.state.lesson.map((item, index) => (
-                                                    <Draggable
-                                                        key={index}
-                                                        draggableId={'' + index}
-                                                        index={index}>
-                                                        {(provided) => (
+                                                    // <Draggable
+                                                    //     key={index}
+                                                    //     draggableId={'' + index}
+                                                    //     index={index}>
+                                                    //     {(provided) => (
                                                             <Accordion
-                                                                ref={provided.innerRef}
-                                                                {...provided.draggableProps}
-                                                                {...provided.dragHandleProps}
+                                                                key={index}
+                                                                // ref={provided.innerRef}
+                                                                // {...provided.draggableProps}
+                                                                // {...provided.dragHandleProps}
                                                             >
                                                                 <Card>
-                                                                    <Accordion.Toggle as={Card.Header} eventKey="0">
-                                                                        {item.lesson_name}
-                                                                    </Accordion.Toggle>
+                                                                    <Card.Header>
+                                                                        <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
+                                                                            <span>{item.lesson_name}</span>
+                                                                        </Accordion.Toggle>
+                                                                        {/* <button className="btn btn-link pl-0">| Edit</button> */}
+                                                                        {/* <AddLesson addLessonNameChange={this.addLessonNameHandler} action="edit" currentLessonName={item.lesson_name}/> */}
+                                                                    </Card.Header>
                                                                     <Accordion.Collapse eventKey="0">
                                                                         <Card.Body>Slides will be here</Card.Body>
                                                                     </Accordion.Collapse>
                                                                 </Card>
                                                             </Accordion>
-                                                        )}
-                                                    </Draggable>
+                                                        // )}
+                                                    // </Draggable>
                                                 ))}
-                                                {provided.placeholder}
+                                                {/* {provided.placeholder} */}
                                             </div>
-                                        )}
-                                    </Droppable>
-                                </DragDropContext>
+                                        {/* )} */}
+                                    {/* </Droppable> */}
+                                {/* </DragDropContext> */}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6 mt-2">
-                            <AddLesson addLessonNameChange={this.addLessonNameHandler}/>
+                            <AddLesson addLessonNameChange={this.addLessonNameHandler} action="add"/>
                         </div>
                         <div className="col-md-6 mt-2">
                             <div id="save-btn-container" className="float-right">

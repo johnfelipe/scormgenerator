@@ -35,7 +35,7 @@ class AddLesson extends Component {
     }
 
     render() {
-        const addLessonModal = (
+        const lessonModal = (
             <Modal
                 show={this.state.modalShow}
                 onHide={() => this.setModalShow(false)}
@@ -55,6 +55,7 @@ class AddLesson extends Component {
                         type="text"
                         className="form-control"
                         onChange={(event) => this.handleChange(event)}
+                        value={this.props.currentLessonName}
                         placeholder="Type lesson name here . . ."
                     />
                 </Modal.Body>
@@ -66,8 +67,12 @@ class AddLesson extends Component {
 
         return (
             <div id="add-lesson-container" className="float-left">
-                <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Lesson</button>
-                {addLessonModal}
+                {this.props.action === "add" ?
+                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Lesson</button>
+                :
+                    <button type="button" className="btn btn-link" onClick={() => this.setModalShow(true)}>| Edit</button>
+                }
+                {lessonModal}
             </div>
         )
     }
