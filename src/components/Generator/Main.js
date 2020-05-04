@@ -11,6 +11,8 @@ class Main extends Component {
         this.state = {
             courseTitle: '',
             courseLogo: '',
+            navigationType: '',
+            showProgressbar: '',
         };
     }
 
@@ -41,6 +43,26 @@ class Main extends Component {
                                 className="form-control"
                                 accept="image/x-png,image/gif,image/jpeg"
                             />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-8 mt-2">
+                            <label for="navigationType" className="mr-1">Choose Navigation Type:</label>
+                            <select id="navigationType" className="form-control d-inline w-25">
+                                <option value="sidebar">Sidebar</option>
+                                <option value="dropdownSelect">Dropdown Select</option>
+                                <option value="hamburgerMenu">Hamburger Menu</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4 mt-2">
+                            <div className="float-right mt-2">
+                                <input
+                                    id="showProgressbar"
+                                    name="showProgressbar"
+                                    type="checkbox"
+                                    value="true"/>
+                                <label for="showProgressbar" className="ml-1"> Show/Hide Progress Bar</label>
+                            </div>
                         </div>
                     </div>
                 </div>
