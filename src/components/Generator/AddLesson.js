@@ -5,18 +5,16 @@ import { Button, Modal } from 'react-bootstrap';
 import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
-// components
-import TextInput from './TextInput';
-
 class AddLesson extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             modalShow: false,
-            lessonList: this.props.lessonList,
+            lessonName: '',
         };
         this.setModalShow = this.setModalShow.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
     setModalShow = (value) => {
@@ -25,8 +23,15 @@ class AddLesson extends Component {
         });
     }
 
-    lessonNameHandler = (name) => {
-        
+    handleChange = (event) => {
+        this.setState({
+            lessonName: event.target.value,
+        })
+    }
+
+    onSave = () => {
+        this.props.addLessonNameChange(this.state.lessonName);
+        this.setModalShow(false)
     }
 
     render() {
@@ -44,12 +49,17 @@ class AddLesson extends Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <TextInput
+                    <input
+                        id="lessonName"
+                        name="lessonName"
+                        type="text"
+                        className="form-control"
+                        onChange={(event) => this.handleChange(event)}
                         placeholder="Type lesson name here . . ."
                     />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="success" onClick={() => this.setModalShow(false)}>Save</Button>
+                    <Button variant="success" onClick={this.onSave}>Save</Button>
                 </Modal.Footer>
             </Modal>
         );
