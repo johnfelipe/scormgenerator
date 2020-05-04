@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
-class Resources extends Component {
+class ResourcesUpload extends Component {
 
     render() {
         return (
@@ -16,4 +16,4 @@ class Resources extends Component {
     }
 }
 
-export default Resources;
+export default ResourcesUpload;
