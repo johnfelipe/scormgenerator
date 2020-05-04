@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Accordion, Card } from 'react-bootstrap';
 
 // styling
 import '../../css/styles.css';
@@ -23,6 +24,7 @@ class Main extends Component {
             courseLogo: '',
             navigationType: '',
             showProgressbar: '',
+            lesson: [],
         };
     }
 
@@ -37,7 +39,9 @@ class Main extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-9">
-                            <TextInput />
+                            <TextInput 
+                                placeholder="Type course name here . . ."
+                            />
                         </div>
                         <div className="col-md-3">
                             <FileInput />
@@ -66,12 +70,23 @@ class Main extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12 mt-2">
-                            <div id="lesson-container"></div>
+                            <div id="lesson-container">
+                                <Accordion>
+                                    <Card>
+                                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                                            Click me!
+                                        </Accordion.Toggle>
+                                        <Accordion.Collapse eventKey="0">
+                                            <Card.Body>Hello! I'm the body</Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6 mt-2">
-                            <AddLesson />
+                            <AddLesson lessonList={this.state.lesson}/>
                         </div>
                         <div className="col-md-6 mt-2">
                             <div id="save-btn-container" className="float-right">
