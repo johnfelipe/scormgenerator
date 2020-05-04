@@ -12,6 +12,7 @@ import CheckBoxInput from './CheckBoxInput';
 import ResourcesUpload from './ResourcesUpload';
 import TranscriptUpload from './TranscriptUpload';
 import AddGlossary from './AddGlossary';
+import AddLesson from './AddLesson';
 
 class Main extends Component {
 
@@ -66,6 +67,16 @@ class Main extends Component {
                     <div className="row">
                         <div className="col-md-12 mt-2">
                             <div id="lesson-container"></div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6 mt-2">
+                            <AddLesson />
+                        </div>
+                        <div className="col-md-6 mt-2">
+                            <div id="save-btn-container" className="float-right">
+                                <button type="button" className="btn btn-success">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
