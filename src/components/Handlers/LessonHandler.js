@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
-class AddLesson extends Component {
+class LessonHandler extends Component {
 
     constructor(props) {
         super(props);
@@ -117,4 +117,4 @@ class AddLesson extends Component {
     }
 }
 
-export default AddLesson;
+export default LessonHandler;
