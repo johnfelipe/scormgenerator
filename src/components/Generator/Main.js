@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Accordion, Card, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 
 // styling
 import '../../css/styles.css';
@@ -60,6 +62,22 @@ class Main extends Component {
         })
     }
 
+    removeItem = (lessonName, index) => {
+        console.log('Clicked!');
+        console.log(lessonName);
+        console.log(index);
+        console.log(this.state.lessons);
+
+        const lessonArray = [...this.state.lessons];
+        lessonArray.splice(index, 1);
+
+        console.log(lessonArray);
+
+        this.setState({
+            lessons: lessonArray,
+        })
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -104,7 +122,7 @@ class Main extends Component {
                         <div className="col-md-12 mt-2">
                             <div id="lesson-container">
                                 <div
-                                    className="lesson-draggable-container"
+                                    className="lesson-container"
                                 >
                                     {this.state.lessons.map((item, index) => (
                                         <Accordion
@@ -115,8 +133,8 @@ class Main extends Component {
                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
                                                         <span>{item.lesson_name}</span>
                                                     </Accordion.Toggle>
-                                                    {/* <button className="btn btn-link pl-0">| Edit</button> */}
                                                     <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lesson_name} id={index}/>
+                                                    <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeItem(item.lesson_name, index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
                                                     <Card.Body>Slides will be here</Card.Body>

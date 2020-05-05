@@ -50,11 +50,16 @@ html body #root #generator-container .row #lesson-container {
   border-radius: 5px;
   padding: 5px;
 }
-html body #root #generator-container .row #lesson-container .lesson-draggable-container {
+html body #root #generator-container .row #lesson-container .lesson-container {
   background: lightgrey;
   padding: 8px;
   height: 100%;
   border-radius: 5px;
+}
+html body #root #generator-container .row #lesson-container .lesson-container .lesson-item-remove-btn {
+  padding: 0px 0px 0px 0px;
+  height: 25px;
+  width: 25px;
 }
 html body #root .container-fluid {
   background-color: #70707021;
