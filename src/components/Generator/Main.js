@@ -45,17 +45,15 @@ class Main extends Component {
 
     editLessonNameHandler = (name, index) => {
         console.log(name);
-        const lessonIndex = this.state.lessons.findIndex(p => {
-            return p.index === index;
-          });
+        console.log(index);
           
         const lessonObj = {
-            ...this.state.lessons[lessonIndex]
+            ...this.state.lessons[index]
         };
         lessonObj.lesson_name = name;
 
         const lessons = [...this.state.lessons];
-        lessons[lessonIndex] = lessonObj;
+        lessons[index] = lessonObj;
 
         this.setState({
             lessons: lessons,
