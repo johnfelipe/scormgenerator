@@ -33,12 +33,7 @@ class Main extends Component {
         this.editLessonNameHandler = this.editLessonNameHandler.bind(this);
     }
 
-    componentDidUpdate = () => {
-        console.log(this.state.lessons);
-    }
-
     addLessonNameHandler = (name) => {
-        console.log(name);
         const lessonObj = {'lesson_name': name};
         this.setState({
             lessons: [...this.state.lessons, lessonObj],
@@ -46,9 +41,6 @@ class Main extends Component {
     }
 
     editLessonNameHandler = (name, index) => {
-        console.log(name);
-        console.log(index);
-          
         const lessonObj = {
             ...this.state.lessons[index]
         };
@@ -63,15 +55,8 @@ class Main extends Component {
     }
 
     removeItem = (lessonName, index) => {
-        console.log('Clicked!');
-        console.log(lessonName);
-        console.log(index);
-        console.log(this.state.lessons);
-
         const lessonArray = [...this.state.lessons];
         lessonArray.splice(index, 1);
-
-        console.log(lessonArray);
 
         this.setState({
             lessons: lessonArray,
