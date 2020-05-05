@@ -27,7 +27,6 @@ class TextInput extends Component {
                 {props => {
                     const {
                     values,
-                    isSubmitting,
                     handleChange,
                     handleBlur,
                     handleSubmit,
