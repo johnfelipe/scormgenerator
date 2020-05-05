@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Formik } from "formik";
 
 // styling
 import '../../css/styles.css';
@@ -12,42 +11,28 @@ class TextInput extends Component {
         this.state = {
             textInput: '',
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (event) => {
+        console.log(event.target.value);
+
+        this.setState({
+            textInput: event.target.value,
+        })
     }
 
     render() {
         return (
-            <Formik
-                initialValues={{ textInput: "" }}
-                onSubmit={async (values, { setSubmitting }) => {
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false)
-                }}
-            >
-                {props => {
-                    const {
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    } = props;
-
-                    return (
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            id="textInput"
-                            name="textInput"
-                            type="text"
-                            className="form-control"
-                            value={values.textInput}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            placeholder={this.props.placeholder}
-                        />
-                    </form>
-                    );
-                }}
-            </Formik>
+            <input
+                id="textInput"
+                name="textInput"
+                type="text"
+                className="form-control"
+                value={this.state.textInput}
+                onChange={(event) => this.handleChange(event)}
+                placeholder={this.props.placeholder}
+            />
         )
     }
 }

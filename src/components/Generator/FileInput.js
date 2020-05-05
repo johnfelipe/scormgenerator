@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Formik } from "formik";
 
 // styling
 import '../../css/styles.css';
@@ -12,40 +11,28 @@ class FileInput extends Component {
         this.state = {
             fileInput: '',
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (event) => {
+        console.log(event.target.value);
+
+        this.setState({
+            fileInput: event.target.value,
+        })
     }
 
     render() {
         return (
-            <Formik
-                initialValues={{ fileInput: "" }}
-                onSubmit={async values => {
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                }}
-            >
-                {props => {
-                    const {
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    } = props;
-                    return (
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            id="fileInput"
-                            name="fileInput"
-                            type="file"
-                            className="form-control"
-                            value={values.fileInput}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            accept="image/x-png,image/gif,image/jpeg"
-                        />
-                    </form>
-                    );
-                }}
-            </Formik>
+            <input
+                id="fileInput"
+                name="fileInput"
+                type="file"
+                className="form-control"
+                value={this.state.fileInput}
+                onChange={(event) => this.handleChange(event)}
+                accept="image/x-png,image/gif,image/jpeg"
+            />
         )
     }
 }

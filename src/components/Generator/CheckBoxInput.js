@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Formik } from "formik";
 
 // styling
 import '../../css/styles.css';
@@ -12,39 +11,29 @@ class CheckBoxInput extends Component {
         this.state = {
             cbInput: '',
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (event) => {
+        console.log(event.target.value);
+
+        this.setState({
+            cbInput: event.target.value,
+        })
     }
 
     render() {
         return (
-            <Formik
-                initialValues={{ cbInput: "" }}
-                onSubmit={async values => {
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                }}
-            >
-                {props => {
-                    const {
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    } = props;
-                    return (
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            id="cbInput"
-                            name="cbInput"
-                            type="checkbox"
-                            value={values.cbInput}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        <label htmlFor="cbInput" className="ml-1"> Show/Hide Progress Bar</label>
-                    </form>
-                    );
-                }}
-            </Formik>
+            <div>
+                <input
+                    id="cbInput"
+                    name="cbInput"
+                    type="checkbox"
+                    value={this.state.cbInput}
+                    onChange={(event) => this.handleChange(event)}
+                />
+                <label htmlFor="cbInput" className="ml-1"> Show/Hide Progress Bar</label>
+            </div>
         )
     }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Formik } from "formik";
 
 // styling
 import '../../css/styles.css';
@@ -12,36 +11,27 @@ class SelectInput extends Component {
         this.state = {
             selectInput: '',
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
+    handleChange = (event) => {
+        console.log(event.target.value);
+
+        this.setState({
+            fileInput: event.target.value,
+        })
+    }
+    
     render() {
         return (
-            <Formik
-                initialValues={{ selectInput: "" }}
-                onSubmit={async values => {
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                }}
-            >
-                {props => {
-                    const {
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    } = props;
-                    return (
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="selectInput" className="mr-1">Choose Navigation Type:</label>
-                        <select id="selectInput" className="form-control d-inline w-25" value={values.selectInput} onChange={handleChange} onBlur={handleBlur}>
-                            <option value="sidebar">Sidebar</option>
-                            <option value="dropdownSelect">Dropdown Select</option>
-                            <option value="hamburgerMenu">Hamburger Menu</option>
-                        </select>
-                    </form>
-                    );
-                }}
-            </Formik>
+            <div>
+                <label htmlFor="selectInput" className="mr-1">Choose Navigation Type:</label>
+                <select id="selectInput" className="form-control d-inline w-25" value={this.state.selectInput} onChange={(event) => this.handleChange(event)}>
+                    <option value="sidebar">Sidebar</option>
+                    <option value="dropdownSelect">Dropdown Select</option>
+                    <option value="hamburgerMenu">Hamburger Menu</option>
+                </select>
+            </div>
         )
     }
 }
