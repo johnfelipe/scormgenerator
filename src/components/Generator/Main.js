@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Accordion, Card, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // styling
 import '../../css/styles.css';
@@ -32,10 +33,15 @@ class Main extends Component {
         
         this.addLessonNameHandler = this.addLessonNameHandler.bind(this);
         this.editLessonNameHandler = this.editLessonNameHandler.bind(this);
+        this.removeLesson = this.removeLesson.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.state.lessons);
     }
 
     addLessonNameHandler = (name) => {
-        const lessonObj = {'lesson_name': name};
+        const lessonObj = {'lessonName': name};
         this.setState({
             lessons: [...this.state.lessons, lessonObj],
         })
@@ -45,7 +51,7 @@ class Main extends Component {
         const lessonObj = {
             ...this.state.lessons[index]
         };
-        lessonObj.lesson_name = name;
+        lessonObj.lessonName = name;
 
         const lessons = [...this.state.lessons];
         lessons[index] = lessonObj;
@@ -55,12 +61,34 @@ class Main extends Component {
         })
     }
 
-    removeItem = (lessonName, index) => {
+    removeLesson = (index) => {
         const lessonArray = [...this.state.lessons];
         lessonArray.splice(index, 1);
 
         this.setState({
             lessons: lessonArray,
+        })
+    }
+
+    addSlideHandler = (name, index) => {
+        const lessonObj = {
+            ...this.state.lessons[index]
+        };
+
+        const slide = {slideName: name}
+
+        if (lessonObj.slides) {
+            lessonObj.slides.push(slide);
+        } else {
+            lessonObj.slides = []
+            lessonObj.slides.push(slide);
+        }
+
+        const lessons = [...this.state.lessons];
+        lessons[index] = lessonObj;
+
+        this.setState({
+            lessons: lessons,
         })
     }
 
@@ -117,23 +145,46 @@ class Main extends Component {
                                             <Card>
                                                 <Card.Header>
                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                        <span>{item.lesson_name}</span>
+                                                        <span>{item.lessonName}</span>
                                                     </Accordion.Toggle>
-                                                    <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lesson_name} id={index}/>
-                                                    <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeItem(item.lesson_name, index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                    <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lessonName} id={index}/>
+                                                    <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
                                                     <Card.Body>
-                                                        <SlideHandler action="add"/>
-                                                        <div>
-                                                            Slides will be here
-                                                        </div>
-                                                        <div>
-                                                            Slides will be here
-                                                        </div>
-                                                        <div>
-                                                            Slides will be here
-                                                        </div>
+                                                        <SlideHandler addSlideChange={this.addSlideHandler} action="add" id={index}/>
+                                                        {this.state.lessons[index].slides ?
+                                                            <DragDropContext onDragEnd={this.onDragEnd}>
+                                                                <Droppable droppableId="features">
+                                                                    {(provided) => (
+                                                                        <div
+                                                                            className="slide-container mt-3"
+                                                                            ref={provided.innerRef}>
+                                                                            {this.state.lessons[index].slides.map((item, index) => (
+                                                                                <Draggable
+                                                                                    key={index}
+                                                                                    draggableId={'' + index}
+                                                                                    index={index}>
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            className="region-item"
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                        >
+                                                                                            {item.slideName}
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </DragDropContext>
+                                                            :
+                                                            <div>No slide added yet.</div>
+                                                        }
                                                     </Card.Body>
                                                 </Accordion.Collapse>
                                             </Card>
