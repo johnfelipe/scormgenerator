@@ -16,6 +16,7 @@ import ResourcesUpload from './ResourcesUpload';
 import TranscriptUpload from './TranscriptUpload';
 import AddGlossary from './AddGlossary';
 import LessonHandler from '../Handlers/LessonHandler';
+import SlideHandler from '../Handlers/SlideHandler';
 
 class Main extends Component {
 
@@ -122,7 +123,18 @@ class Main extends Component {
                                                     <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeItem(item.lesson_name, index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
-                                                    <Card.Body>Slides will be here</Card.Body>
+                                                    <Card.Body>
+                                                        <SlideHandler action="add"/>
+                                                        <div>
+                                                            Slides will be here
+                                                        </div>
+                                                        <div>
+                                                            Slides will be here
+                                                        </div>
+                                                        <div>
+                                                            Slides will be here
+                                                        </div>
+                                                    </Card.Body>
                                                 </Accordion.Collapse>
                                             </Card>
                                         </Accordion>
