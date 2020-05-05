@@ -65,4 +65,12 @@ html body #root .container-fluid {
   background-color: #70707021;
 }
 
+html body div.modal div.modal-dialog div.modal-content div.modal-body form input.error {
+  border-color: red;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form .input-feedback {
+  color: #eb3636;
+  font-size: 14px;
+}
+
 /*# sourceMappingURL=styles.css.map */

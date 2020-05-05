@@ -2,8 +2,10 @@
 @import "components/features";
 @import "components/region";
 @import "components/generator";
+@import "components/modal";
 
 @include header;
 @include features;
 @include region;
 @include generator;
+@include modal;

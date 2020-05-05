@@ -1,0 +1,24 @@
+@mixin modal {
+    html {
+        body {
+            div.modal {
+                div.modal-dialog {
+                    div.modal-content {
+                        div.modal-body {
+                            form {
+                                input.error {
+                                    border-color: red;
+                                }
+                                
+                                .input-feedback {
+                                    color: rgb(235, 54, 54);
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 // styling
 import '../../css/styles.css';
@@ -14,7 +16,6 @@ class AddLesson extends Component {
             lessonName: this.props.currentLessonName,
         };
         this.setModalShow = this.setModalShow.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -24,20 +25,11 @@ class AddLesson extends Component {
         });
     }
 
-    handleChange = (event) => {
-        this.setState({
-            lessonName: event.target.value,
-        })
-    }
-
-    onSave = () => {
+    onSave = (lessonName, id) => {
         if (this.props.action === "add") {
-            this.props.addLessonNameChange(this.state.lessonName);
-            this.setState({
-                lessonName: '',
-            })
+            this.props.addLessonNameChange(lessonName);
         } else if (this.props.action === "edit") {
-            this.props.editLessonNameChange(this.state.lessonName, this.props.id);
+            this.props.editLessonNameChange(lessonName, id);
         }
         
         this.setModalShow(false)
@@ -58,19 +50,53 @@ class AddLesson extends Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input
-                        id="lessonName"
-                        name="lessonName"
-                        type="text"
-                        className="form-control"
-                        onChange={(event) => this.handleChange(event)}
-                        value={this.state.lessonName ? this.state.lessonName : ''}
-                        placeholder="Type lesson name here . . ."
-                    />
+                    <Formik
+                        initialValues={{ 
+                            lessonName: this.state.lessonName ? this.state.lessonName : '',
+                        }}
+
+                        onSubmit={values => {
+                            console.log(values.lessonName);
+                            this.onSave(values.lessonName, this.props.id);
+                        }}
+
+                        validationSchema={Yup.object().shape({
+                            lessonName: Yup.string()
+                                .required("Lesson name required"),
+                            }
+                        )}
+                    >
+                        {props => {
+                            const {
+                            values,
+                            touched,
+                            errors,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            } = props;
+                            return (
+                                <form onSubmit={handleSubmit}>
+                                    <input
+                                        id="lessonName"
+                                        name="lessonName"
+                                        type="text"
+                                        className={(errors.lessonName && touched.lessonName && "error form-control") || "form-control"}
+                                        onChange={handleChange}
+                                        value={values.lessonName}
+                                        onBlur={handleBlur}
+                                        placeholder="Type lesson name here . . ."
+                                    />
+                                    {errors.lessonName && touched.lessonName && (
+                                        <div className="input-feedback">{errors.lessonName}</div>
+                                    )}
+                                    <button type="submit" className="btn btn-success float-right mt-4" disabled={isSubmitting}>Save</button>
+                                </form>
+                            );
+                        }}
+                    </Formik>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="success" onClick={this.onSave}>Save</Button>
-                </Modal.Footer>
             </Modal>
         );
 
