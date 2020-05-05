@@ -11,9 +11,10 @@ class AddLesson extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            lessonName: '',
+            lessonName: this.props.currentLessonName,
         };
         this.setModalShow = this.setModalShow.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -30,7 +31,15 @@ class AddLesson extends Component {
     }
 
     onSave = () => {
-        this.props.addLessonNameChange(this.state.lessonName);
+        if (this.props.action === "add") {
+            this.props.addLessonNameChange(this.state.lessonName);
+            this.setState({
+                lessonName: '',
+            })
+        } else if (this.props.action === "edit") {
+            this.props.editLessonNameChange(this.state.lessonName, this.props.id);
+        }
+        
         this.setModalShow(false)
     }
 
@@ -55,7 +64,7 @@ class AddLesson extends Component {
                         type="text"
                         className="form-control"
                         onChange={(event) => this.handleChange(event)}
-                        value={this.props.currentLessonName}
+                        value={this.state.lessonName ? this.state.lessonName : ''}
                         placeholder="Type lesson name here . . ."
                     />
                 </Modal.Body>
@@ -66,11 +75,15 @@ class AddLesson extends Component {
         );
 
         return (
-            <div id="add-lesson-container" className="float-left">
+            <div id="lesson-handler-container" className="d-inline">
                 {this.props.action === "add" ?
-                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Lesson</button>
+                    <div id="add-lesson-btn" className="float-left">
+                        <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Lesson</button>
+                    </div>
                 :
-                    <button type="button" className="btn btn-link" onClick={() => this.setModalShow(true)}>| Edit</button>
+                    <div id="edit-lesson-btn" className="d-inline">
+                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true)}>| Edit</button>
+                    </div>
                 }
                 {lessonModal}
             </div>
