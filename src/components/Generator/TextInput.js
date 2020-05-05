@@ -45,7 +45,6 @@ class TextInput extends Component {
                             onBlur={handleBlur}
                             placeholder={this.props.placeholder}
                         />
-                        <button type="submit" disabled={isSubmitting}>Submit</button>
                     </form>
                     );
                 }}
