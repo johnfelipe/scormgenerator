@@ -27,16 +27,16 @@ class SlideHandler extends Component {
 
     onSave = (slideName, id) => {
         if (this.props.action === "add") {
-            this.props.addLessonNameChange(slideName);
+            this.props.addSlideChange(slideName, id);
         } else if (this.props.action === "edit") {
-            this.props.editLessonNameChange(slideName, id);
+            this.props.editSlideChange(slideName, id);
         }
         
         this.setModalShow(false)
     }
 
     render() {
-        const lessonModal = (
+        const slideModal = (
             <Modal
                 show={this.state.modalShow}
                 onHide={() => this.setModalShow(false)}
@@ -62,7 +62,7 @@ class SlideHandler extends Component {
 
                         validationSchema={Yup.object().shape({
                             slideName: Yup.string()
-                                .required("Lesson name required"),
+                                .required("Slide name required"),
                             }
                         )}
                     >
@@ -102,13 +102,13 @@ class SlideHandler extends Component {
         );
 
         return (
-            <div id="lesson-handler-container">
+            <div id="slide-handler-container">
                 {this.props.action === "add" ?
                     <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Slide</button>
                 :
                     <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true)}>| Edit</button>
                 }
-                {lessonModal}
+                {slideModal}
             </div>
         )
     }
