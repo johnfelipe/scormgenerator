@@ -15,7 +15,7 @@ import CheckBoxInput from './CheckBoxInput';
 import ResourcesUpload from './ResourcesUpload';
 import TranscriptUpload from './TranscriptUpload';
 import AddGlossary from './AddGlossary';
-import LessonHandler from './LessonHandler';
+import LessonHandler from '../Handlers/LessonHandler';
 
 class Main extends Component {
 
