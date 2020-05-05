@@ -21,11 +21,35 @@
                                 padding: 8px;
                                 height: 100%;
                                 border-radius: 5px;
+                                overflow: auto;
 
                                 .lesson-item-remove-btn {
                                     padding: 0px 0px 0px 0px;
                                     height: 25px;
                                     width: 25px;
+                                }
+
+                                div.accordion {
+                                    div.card {
+                                        div.collapse {
+                                            div.card-body {
+                                                div.slide-container {
+                                                    background: lightgrey; 
+                                                    padding: 8px;
+                                                    height: 100%;
+                                                    border-radius: 5px;
+
+                                                    .region-item {
+                                                        user-select: none; 
+                                                        padding: 15px; 
+                                                        margin: 0px 0px 8px 0px; 
+                                                        background: grey;
+                                                        border-radius: 5px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
