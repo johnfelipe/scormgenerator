@@ -68,11 +68,11 @@ html body #root #generator-container .row #lesson-container .lesson-container di
   height: 100%;
   border-radius: 5px;
 }
-html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .region-item {
+html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item {
   user-select: none;
   padding: 15px;
   margin: 0px 0px 8px 0px;
-  background: grey;
+  background: whitesmoke;
   border-radius: 5px;
 }
 html body #root .container-fluid {
