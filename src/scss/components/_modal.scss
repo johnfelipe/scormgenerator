@@ -16,7 +16,7 @@
                                 }
 
                                 div.row {
-                                    #slide-sidebar {
+                                    div#slide-sidebar {
                                         .card-header-tabs {
                                             margin-right: 0rem !important;
                                             margin-left: 0rem !important;
@@ -41,6 +41,15 @@
                                             border-right: 1px solid #ddd;
                                             border-bottom: 1px solid #ddd;
                                             padding: 10px;
+                                        }
+                                    }
+
+                                    div#slide-content {
+                                        div#slide-content-container {
+                                            border-left: 1px solid #ddd;
+                                            border-top: 1px solid #ddd;
+                                            border-bottom: 1px solid #ddd;
+                                            border-right: 1px solid #ddd;
                                         }
                                     }
                                 }
