@@ -291,7 +291,13 @@ class Main extends Component {
                                                                                                             {...provided.dragHandleProps}
                                                                                                         >
                                                                                                             <span class="btn pr-1">{item.slideName}</span>
-                                                                                                            <SlideHandler editSlideChange={this.editSlideHandler} currentSlideName={item.slideName} action="edit" id={index}/>
+                                                                                                            <SlideHandler
+                                                                                                                editSlideChange={this.editSlideHandler}
+                                                                                                                currentSlideName={item.slideName}
+                                                                                                                action="edit"
+                                                                                                                id={index}
+                                                                                                                showTitleValue={true}
+                                                                                                            />
 
                                                                                                             <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeSlide(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                                                                         </div>
