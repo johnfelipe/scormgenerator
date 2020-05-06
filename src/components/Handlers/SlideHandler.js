@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
+import { Form, Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import * as Yup from 'yup';
 
@@ -17,6 +17,7 @@ class SlideHandler extends Component {
         this.state = {
             modalShow: false,
             slideName: this.props.currentSlideName,
+            showTitle: this.props.showTitleValue,
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -63,11 +64,13 @@ class SlideHandler extends Component {
                     <Formik
                         initialValues={{ 
                             slideName: this.state.slideName ? this.state.slideName : '',
+                            showTitle: this.state.showTitle,
                         }}
 
                         onSubmit={values => {
                             console.log(values.slideName);
-                            this.onSave(values.slideName, this.props.id);
+                            console.log(values.showTitle);
+                            // this.onSave(values.slideName, this.props.id);
                         }}
 
                         // validationSchema={Yup.object().shape({
@@ -93,16 +96,22 @@ class SlideHandler extends Component {
                                         id="slideName"
                                         name="slideName"
                                         type="text"
-                                        className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
+                                        className="form-control d-inline"
                                         onChange={handleChange}
                                         value={values.slideName}
                                         onBlur={handleBlur}
                                         placeholder="Type slide name here (Optional) . . ."
                                     />
-                                    <CheckBoxInput label="Display Title" />
-                                    {errors.slideName && touched.slideName && (
-                                        <div className="input-feedback">{errors.slideName}</div>
-                                    )}
+                                    <input
+                                        id="showTitle"
+                                        name="showTitle"
+                                        type="checkbox"
+                                        value={true}
+                                        // checked={values.showTitle === true}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <label htmlFor="showTitle" className="ml-1"> Display Title</label>
                                     <div className="row">
                                         <div id="slide-sidebar" className="col-md-3 pr-0">
                                             <Tabs defaultActiveKey="column" id="uncontrolled-tab">
