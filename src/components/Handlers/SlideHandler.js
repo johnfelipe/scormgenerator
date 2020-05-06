@@ -70,7 +70,7 @@ class SlideHandler extends Component {
                         onSubmit={values => {
                             console.log(values.slideName);
                             console.log(values.showTitle);
-                            // this.onSave(values.slideName, this.props.id);
+                            this.onSave(values.slideName, this.props.id);
                         }}
 
                         // validationSchema={Yup.object().shape({
