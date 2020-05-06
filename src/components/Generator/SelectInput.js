@@ -27,9 +27,9 @@ class SelectInput extends Component {
             <div>
                 <label htmlFor="selectInput" className="mr-1">Choose Navigation Type:</label>
                 <select id="selectInput" className="form-control d-inline w-25" value={this.state.selectInput} onChange={(event) => this.handleChange(event)}>
-                    <option value="sidebar">Sidebar</option>
-                    <option value="dropdownSelect">Dropdown Select</option>
-                    <option value="hamburgerMenu">Hamburger Menu</option>
+                    <option value={0}>Sidebar</option>
+                    <option value={1}>Dropdown Select</option>
+                    <option value={2}>Hamburger Menu</option>
                 </select>
             </div>
         )
