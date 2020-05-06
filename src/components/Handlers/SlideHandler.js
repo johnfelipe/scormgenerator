@@ -48,6 +48,7 @@ class SlideHandler extends Component {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                dialogClassName="slide-modal-width"
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -103,7 +104,7 @@ class SlideHandler extends Component {
                                         <div className="input-feedback">{errors.slideName}</div>
                                     )}
                                     <div className="row">
-                                        <div id="slide-sidebar" className="col-md-5 pr-0">
+                                        <div id="slide-sidebar" className="col-md-3 pr-0">
                                             <Tabs defaultActiveKey="column" id="uncontrolled-tab">
                                                 <Tab eventKey="column" title="Column" className="mt-3">
                                                     <span>Those lips that Love's own hand did make, Breathed forth the sound that said 'I hate', To me that languish'd for her sake: But when she saw my woeful state, Straight in her heart did mercy come, Chiding that tongue that ever sweet Was us'd in giving gentle doom; And taught it thus anew to greet; 'I hate' she alter'd with an end, That followed it as gentle day,</span>
@@ -116,7 +117,7 @@ class SlideHandler extends Component {
                                                 </Tab>
                                             </Tabs>
                                         </div>
-                                        <div id="slide-content" className="col-md-7 pl-0">
+                                        <div id="slide-content" className="col-md-9 pl-0">
                                             <div id="slide-content-container" className="h-100">
 
                                             </div>
