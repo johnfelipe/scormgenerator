@@ -32,7 +32,7 @@ class CheckBoxInput extends Component {
                     value={this.state.cbInput}
                     onChange={(event) => this.handleChange(event)}
                 />
-                <label htmlFor="cbInput" className="ml-1"> Show/Hide Progress Bar</label>
+                <label htmlFor="cbInput" className="ml-1"> {this.props.label}</label>
             </div>
         )
     }

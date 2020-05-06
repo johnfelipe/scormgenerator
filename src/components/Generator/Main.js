@@ -233,7 +233,7 @@ class Main extends Component {
                                         </div>
                                         <div className="col-md-4 mt-2">
                                             <div className="float-right mt-2">
-                                                <CheckBoxInput />
+                                                <CheckBoxInput label="Show/Hide Progress Bar" />
                                             </div>
                                         </div>
                                     </div>
