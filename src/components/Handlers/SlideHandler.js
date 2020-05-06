@@ -117,7 +117,9 @@ class SlideHandler extends Component {
                                             </Tabs>
                                         </div>
                                         <div id="slide-content" className="col-md-7 pl-0">
-                                            
+                                            <div id="slide-content-container" className="h-100">
+
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="submit" className="btn btn-success float-right mt-2" disabled={isSubmitting}>Save</button>
