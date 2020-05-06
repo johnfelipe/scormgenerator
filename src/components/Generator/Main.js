@@ -36,6 +36,9 @@ class Main extends Component {
         this.editLessonNameHandler = this.editLessonNameHandler.bind(this);
         this.removeLesson = this.removeLesson.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
+        this.addSlideHandler = this.addSlideHandler.bind(this);
+        this.editSlideHandler = this.editSlideHandler.bind(this);
+        this.removeSlide = this.removeSlide.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -92,6 +95,35 @@ class Main extends Component {
         this.setState({
             lessons: lessons,
         })
+    }
+
+    editSlideHandler = (name, index) => {
+        const lessonObj = {
+            ...this.state.lessons[this.state.currentClickedLessonId]
+        };
+
+        lessonObj.slides[index].slideName = name;
+
+        const lessons = [...this.state.lessons];
+        lessons[this.state.currentClickedLessonId] = lessonObj;
+
+        this.setState({
+            lessons: lessons,
+        });
+    }
+
+    removeSlide = (index) => {
+        const lessonObj = {
+            ...this.state.lessons[this.state.currentClickedLessonId]
+        };
+        lessonObj.slides.splice(index, 1);
+
+        const lessons = [...this.state.lessons];
+        lessons[this.state.currentClickedLessonId] = lessonObj;
+
+        this.setState({
+            lessons: lessons,
+        });
     }
 
     // a little function to help us with reordering the result
@@ -209,6 +241,7 @@ class Main extends Component {
                                                         <span onClick={() => this.onLessonClickListener(index)}>{item.lessonName}</span>
                                                     </Accordion.Toggle>
                                                     <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lessonName} id={index}/>
+
                                                     <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
@@ -234,7 +267,10 @@ class Main extends Component {
                                                                                             {...provided.draggableProps}
                                                                                             {...provided.dragHandleProps}
                                                                                         >
-                                                                                            {item.slideName}
+                                                                                            <span class="btn pr-1">{item.slideName}</span>
+                                                                                            <SlideHandler editSlideChange={this.editSlideHandler} currentSlideName={item.slideName} action="edit" id={index}/>
+
+                                                                                            <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeSlide(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                                                         </div>
                                                                                     )}
                                                                                 </Draggable>

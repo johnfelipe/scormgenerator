@@ -13,7 +13,7 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            slideName: this.props.currentLessonName,
+            slideName: this.props.currentSlideName,
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -28,8 +28,10 @@ class SlideHandler extends Component {
     onSave = (slideName, id) => {
         if (this.props.action === "add") {
             this.props.addSlideChange(slideName, id);
+            console.log("add");
         } else if (this.props.action === "edit") {
             this.props.editSlideChange(slideName, id);
+            console.log("edit");
         }
         
         this.setModalShow(false)
@@ -46,7 +48,11 @@ class SlideHandler extends Component {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Add Slide
+                        {this.props.action === "add" ?
+                            <span>Add Slide</span>
+                            :
+                            <span>Edit Slide</span>
+                        }
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -87,7 +93,7 @@ class SlideHandler extends Component {
                                         onChange={handleChange}
                                         value={values.slideName}
                                         onBlur={handleBlur}
-                                        placeholder="Type lesson name here . . ."
+                                        placeholder="Type slide name here . . ."
                                     />
                                     {errors.slideName && touched.slideName && (
                                         <div className="input-feedback">{errors.slideName}</div>
@@ -102,11 +108,13 @@ class SlideHandler extends Component {
         );
 
         return (
-            <div id="slide-handler-container">
+            <div id="slide-handler-container" className="d-inline">
                 {this.props.action === "add" ?
                     <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Slide</button>
                 :
-                    <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true)}>| Edit</button>
+                    <div id="edit-slide-btn" className="d-inline">
+                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true)}>| Edit</button>
+                    </div>
                 }
                 {slideModal}
             </div>
