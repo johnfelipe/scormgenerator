@@ -43,6 +43,16 @@ html body #root #generator-container {
   margin: 0 auto;
   padding: 20px;
 }
+html body #root #generator-container .row input.error {
+  border-color: red;
+}
+html body #root #generator-container .row .input-feedback {
+  color: #eb3636;
+  font-size: 14px;
+}
+html body #root #generator-container .row input[type=file] {
+  display: block;
+}
 html body #root #generator-container .row #lesson-container {
   width: 100%;
   height: 350px;

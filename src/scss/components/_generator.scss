@@ -9,6 +9,19 @@
                     padding: 20px;
 
                     .row {
+                        input.error {
+                            border-color: red;
+                        }
+                        
+                        .input-feedback {
+                            color: rgb(235, 54, 54);
+                            font-size: 14px;
+                        }
+
+                        input[type="file"] {
+                            display: block;
+                        }
+
                         #lesson-container {
                             width: 100%;
                             height: 350px;
