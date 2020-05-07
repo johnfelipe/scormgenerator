@@ -11,8 +11,6 @@ import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
 // components
-import TextInput from './TextInput';
-import FileInput from './FileInput';
 import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
 import ResourcesUpload from './ResourcesUpload';
