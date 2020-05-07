@@ -14,7 +14,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
 import ResourcesHandler from '../Handlers/ResourcesHandler';
-import TranscriptUpload from './TranscriptUpload';
+import TranscriptHandler from '../Handlers/TranscriptHandler';
 import AddGlossary from './AddGlossary';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
@@ -27,6 +27,7 @@ class Main extends Component {
             courseTitle: '',
             courseLogo: '',
             resourceFiles: [],
+            transcriptFile: {},
             navigationType: '',
             showProgressbar: '',
             lessons: [],
@@ -41,6 +42,7 @@ class Main extends Component {
         this.editSlideHandler = this.editSlideHandler.bind(this);
         this.removeSlide = this.removeSlide.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
+        this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -196,6 +198,12 @@ class Main extends Component {
         })
     }
 
+    transcriptFileHandler = (object) => {
+        this.setState({
+            transcriptFile: object,
+        })
+    }
+
     render() {
         return (
             <div id="generator-container">
@@ -277,7 +285,7 @@ class Main extends Component {
                                         <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <TranscriptUpload />
+                                        <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <AddGlossary />
