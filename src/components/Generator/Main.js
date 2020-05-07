@@ -13,7 +13,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 // components
 import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
-import ResourcesUpload from './ResourcesUpload';
+import ResourcesUpload from '../Handlers/ResourcesHandler';
 import TranscriptUpload from './TranscriptUpload';
 import AddGlossary from './AddGlossary';
 import LessonHandler from '../Handlers/LessonHandler';
