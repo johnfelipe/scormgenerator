@@ -193,7 +193,7 @@ class Main extends Component {
             <Formik
                     initialValues={{ 
                         courseTitle: '',
-                        courseLogo: '',
+                        courseLogo: this.state.courseLogo,
                     }}
 
                     onSubmit={values => {
@@ -215,6 +215,7 @@ class Main extends Component {
                         handleChange,
                         handleBlur,
                         handleSubmit,
+                        setFieldValue,
                         } = props;
                         return (
                             <form onSubmit={handleSubmit}>
@@ -245,12 +246,11 @@ class Main extends Component {
                                             name="courseLogo"
                                             type="file"
                                             className="form-control custom-file-input"
-                                            onChange={handleChange}
-                                            value={values.courseLogo}
+                                            onChange={(event) => {setFieldValue("courseLogo", event.currentTarget.files[0]);}}
                                             onBlur={handleBlur}
                                             accept="image/x-png,image/gif,image/jpeg"
                                         />
-                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.replace(/^.*[\\]/, '') : <span>Choose file</span> }</label>
+                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo.name ? values.courseLogo.name : <span>Choose file</span> }</label>
                                     </div>
                                 </div>
                                 <div className="row">
