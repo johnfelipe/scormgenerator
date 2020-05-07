@@ -53,6 +53,9 @@ html body #root #generator-container .row .input-feedback {
 html body #root #generator-container .row input[type=file] {
   display: block;
 }
+html body #root #generator-container .row .custom-file-label {
+  width: 280px;
+}
 html body #root #generator-container .row #lesson-container {
   width: 100%;
   height: 350px;
