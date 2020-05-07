@@ -14,6 +14,7 @@ class Home extends Component {
     return (
         <div className="container-fluid">
             <Main />
+            {/* <Generator /> */}
         </div>
     );
   }

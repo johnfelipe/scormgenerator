@@ -187,180 +187,178 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div id="generator-container">
-                <Formik
-                        initialValues={{ 
-                            courseTitle: '',
-                            courseLogo: '',
-                        }}
+            <div id="generator-container">
+            <Formik
+                    initialValues={{ 
+                        courseTitle: '',
+                        courseLogo: '',
+                    }}
 
-                        onSubmit={values => {
-                        
-                        }}
+                    onSubmit={values => {
+                    
+                    }}
 
-                        validationSchema={Yup.object().shape({
-                            courseTitle: Yup.string()
-                                .required("Course title required"),
-                            }
-                        )}
-                    >
-                    {props => {
-                            const {
-                            values,
-                            touched,
-                            errors,
-                            isSubmitting,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            } = props;
-                            return (
-                                <form onSubmit={handleSubmit}>
-                                    <div className="row">
-                                        <div className="col-md-12 text-center">
-                                            <h3>Try it out!</h3>
+                    validationSchema={Yup.object().shape({
+                        courseTitle: Yup.string()
+                            .required("Course title required"),
+                        }
+                    )}
+                >
+                {props => {
+                        const {
+                        values,
+                        touched,
+                        errors,
+                        isSubmitting,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        } = props;
+                        return (
+                            <form onSubmit={handleSubmit}>
+                                <div className="row">
+                                    <div className="col-md-12 text-center">
+                                        <h3>Try it out!</h3>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-9">
+                                        <input
+                                            id="courseTitle"
+                                            name="courseTitle"
+                                            type="text"
+                                            className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
+                                            onChange={handleChange}
+                                            value={values.courseTitle}
+                                            onBlur={handleBlur}
+                                            placeholder="Type course name here . . ."
+                                        />
+                                        {errors.courseTitle && touched.courseTitle && (
+                                            <div className="input-feedback">{errors.courseTitle}</div>
+                                        )}
+                                    </div>
+                                    <div className="col-md-3">
+                                        <input
+                                            id="courseLogo"
+                                            name="courseLogo"
+                                            type="file"
+                                            className={(errors.courseLogo && touched.courseLogo && "error form-control custom-file-input") || "form-control custom-file-input"}
+                                            onChange={handleChange}
+                                            value={values.courseLogo}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> Choose file</label>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-8 mt-2">
+                                        <SelectInput />
+                                    </div>
+                                    <div className="col-md-4 mt-2">
+                                        <div className="float-right mt-2">
+                                            <CheckBoxInput label="Show/Hide Progress Bar" />
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-9">
-                                            <input
-                                                id="courseTitle"
-                                                name="courseTitle"
-                                                type="text"
-                                                className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
-                                                onChange={handleChange}
-                                                value={values.courseTitle}
-                                                onBlur={handleBlur}
-                                                placeholder="Type course name here . . ."
-                                            />
-                                            {errors.courseTitle && touched.courseTitle && (
-                                                <div className="input-feedback">{errors.courseTitle}</div>
-                                            )}
-                                        </div>
-                                        <div className="col-md-3">
-                                            <input
-                                                id="courseLogo"
-                                                name="courseLogo"
-                                                type="file"
-                                                className={(errors.courseLogo && touched.courseLogo && "error form-control custom-file-input") || "form-control custom-file-input"}
-                                                onChange={handleChange}
-                                                value={values.courseLogo}
-                                                onBlur={handleBlur}
-                                                accept="image/x-png,image/gif,image/jpeg"
-                                            />
-                                            <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> Choose file</label>
-                                        </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4 mt-2">
+                                        <ResourcesUpload />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-8 mt-2">
-                                            <SelectInput />
-                                        </div>
-                                        <div className="col-md-4 mt-2">
-                                            <div className="float-right mt-2">
-                                                <CheckBoxInput label="Show/Hide Progress Bar" />
+                                    <div className="col-md-4 mt-2">
+                                        <TranscriptUpload />
+                                    </div>
+                                    <div className="col-md-4 mt-2">
+                                        <AddGlossary />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-12 mt-2">
+                                        <div id="lesson-container">
+                                            <div
+                                                className="lesson-container"
+                                            >
+                                                {this.state.lessons.map((item, index) => (
+                                                    <Accordion
+                                                        key={index}
+                                                    >
+                                                        <Card>
+                                                            <Card.Header>
+                                                                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
+                                                                    <span onClick={() => this.onLessonClickListener(index)}>{item.lessonName}</span>
+                                                                </Accordion.Toggle>
+                                                                <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lessonName} id={index}/>
+
+                                                                <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                            </Card.Header>
+                                                            <Accordion.Collapse eventKey="0">
+                                                                <Card.Body>
+                                                                    <SlideHandler addSlideChange={this.addSlideHandler} action="add" id={index}/>
+                                                                    {this.state.lessons[index].slides ?
+                                                                        <DragDropContext onDragEnd={this.onDragEnd}>
+                                                                            <Droppable droppableId="slides">
+                                                                                {(provided) => (
+                                                                                    <div
+                                                                                        className="slide-container mt-3"
+                                                                                        ref={provided.innerRef}
+                                                                                    >
+                                                                                        {this.state.lessons[index].slides.map((item, index) => (
+                                                                                            <Draggable
+                                                                                                key={index}
+                                                                                                draggableId={'' + index}
+                                                                                                index={index}>
+                                                                                                {(provided) => (
+                                                                                                    <div
+                                                                                                        className="slide-item"
+                                                                                                        ref={provided.innerRef}
+                                                                                                        {...provided.draggableProps}
+                                                                                                        {...provided.dragHandleProps}
+                                                                                                    >
+                                                                                                        <span className="btn pr-1">{item.slideName}</span>
+                                                                                                        <SlideHandler
+                                                                                                            editSlideChange={this.editSlideHandler}
+                                                                                                            currentSlideName={item.slideName}
+                                                                                                            action="edit"
+                                                                                                            id={index}
+                                                                                                            showTitleValue={true}
+                                                                                                        />
+
+                                                                                                        <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeSlide(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                                                                    </div>
+                                                                                                )}
+                                                                                            </Draggable>
+                                                                                        ))}
+                                                                                        {provided.placeholder}
+                                                                                    </div>
+                                                                                )}
+                                                                            </Droppable>
+                                                                        </DragDropContext>
+                                                                        :
+                                                                        <div className="mt-2">No slide added yet.</div>
+                                                                    }
+                                                                </Card.Body>
+                                                            </Accordion.Collapse>
+                                                        </Card>
+                                                    </Accordion>
+                                                ))}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-4 mt-2">
-                                            <ResourcesUpload />
-                                        </div>
-                                        <div className="col-md-4 mt-2">
-                                            <TranscriptUpload />
-                                        </div>
-                                        <div className="col-md-4 mt-2">
-                                            <AddGlossary />
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6 mt-2">
+                                        <LessonHandler addLessonNameChange={this.addLessonNameHandler} action="add"/>
+                                    </div>
+                                    <div className="col-md-6 mt-2">
+                                        <div id="save-btn-container" className="float-right">
+                                            <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-12 mt-2">
-                                            <div id="lesson-container">
-                                                <div
-                                                    className="lesson-container"
-                                                >
-                                                    {this.state.lessons.map((item, index) => (
-                                                        <Accordion
-                                                            key={index}
-                                                        >
-                                                            <Card>
-                                                                <Card.Header>
-                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                                        <span onClick={() => this.onLessonClickListener(index)}>{item.lessonName}</span>
-                                                                    </Accordion.Toggle>
-                                                                    <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lessonName} id={index}/>
-
-                                                                    <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
-                                                                </Card.Header>
-                                                                <Accordion.Collapse eventKey="0">
-                                                                    <Card.Body>
-                                                                        <SlideHandler addSlideChange={this.addSlideHandler} action="add" id={index}/>
-                                                                        {this.state.lessons[index].slides ?
-                                                                            <DragDropContext onDragEnd={this.onDragEnd}>
-                                                                                <Droppable droppableId="slides">
-                                                                                    {(provided) => (
-                                                                                        <div
-                                                                                            className="slide-container mt-3"
-                                                                                            ref={provided.innerRef}
-                                                                                        >
-                                                                                            {this.state.lessons[index].slides.map((item, index) => (
-                                                                                                <Draggable
-                                                                                                    key={index}
-                                                                                                    draggableId={'' + index}
-                                                                                                    index={index}>
-                                                                                                    {(provided) => (
-                                                                                                        <div
-                                                                                                            className="slide-item"
-                                                                                                            ref={provided.innerRef}
-                                                                                                            {...provided.draggableProps}
-                                                                                                            {...provided.dragHandleProps}
-                                                                                                        >
-                                                                                                            <span className="btn pr-1">{item.slideName}</span>
-                                                                                                            <SlideHandler
-                                                                                                                editSlideChange={this.editSlideHandler}
-                                                                                                                currentSlideName={item.slideName}
-                                                                                                                action="edit"
-                                                                                                                id={index}
-                                                                                                                showTitleValue={true}
-                                                                                                            />
-
-                                                                                                            <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeSlide(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
-                                                                                                        </div>
-                                                                                                    )}
-                                                                                                </Draggable>
-                                                                                            ))}
-                                                                                            {provided.placeholder}
-                                                                                        </div>
-                                                                                    )}
-                                                                                </Droppable>
-                                                                            </DragDropContext>
-                                                                            :
-                                                                            <div className="mt-2">No slide added yet.</div>
-                                                                        }
-                                                                    </Card.Body>
-                                                                </Accordion.Collapse>
-                                                            </Card>
-                                                        </Accordion>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6 mt-2">
-                                            <LessonHandler addLessonNameChange={this.addLessonNameHandler} action="add"/>
-                                        </div>
-                                        <div className="col-md-6 mt-2">
-                                            <div id="save-btn-container" className="float-right">
-                                                <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            );
-                        }}
-                    </Formik>
-                </div>
+                                </div>
+                            </form>
+                        );
+                    }}
+                </Formik>
             </div>
         )
     }
