@@ -12,14 +12,13 @@ class ResourcesHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            resourceFile1: '',
-            resourceFile2: '',
-            resourceFile3: '',
-            resourceFile4: '',
-            resourceFile5: '',
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.props.resourceFilesData);
     }
 
     setModalShow = (value) => {
@@ -52,11 +51,11 @@ class ResourcesHandler extends Component {
                 <Modal.Body>
                     <Formik
                         initialValues={{ 
-                            resourceFile1: this.state.resourceFile1 ? this.state.resourceFile1 : '',
-                            resourceFile2: this.state.resourceFile2 ? this.state.resourceFile2 : '',
-                            resourceFile3: this.state.resourceFile3 ? this.state.resourceFile3 : '',
-                            resourceFile4: this.state.resourceFile4 ? this.state.resourceFile4 : '',
-                            resourceFile5: this.state.resourceFile5 ? this.state.resourceFile5 : '',
+                            resourceFile1: this.props.resourceFilesData.resourceFile1 ? this.props.resourceFilesData.resourceFile1 : '',
+                            resourceFile2: this.props.resourceFilesData.resourceFile2 ? this.props.resourceFilesData.resourceFile2 : '',
+                            resourceFile3: this.props.resourceFilesData.resourceFile3 ? this.props.resourceFilesData.resourceFile3 : '',
+                            resourceFile4: this.props.resourceFilesData.resourceFile4 ? this.props.resourceFilesData.resourceFile4 : '',
+                            resourceFile5: this.props.resourceFilesData.resourceFile5 ? this.props.resourceFilesData.resourceFile5 : '',
                         }}
 
                         onSubmit={values => {

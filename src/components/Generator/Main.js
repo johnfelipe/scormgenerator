@@ -274,7 +274,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler}/>
+                                        <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <TranscriptUpload />
