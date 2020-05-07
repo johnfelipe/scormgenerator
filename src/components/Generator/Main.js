@@ -193,12 +193,19 @@ class Main extends Component {
                 <div id="generator-container">
                 <Formik
                         initialValues={{ 
-                        
+                            courseTitle: '',
+                            courseLogo: '',
                         }}
 
                         onSubmit={values => {
                         
                         }}
+
+                        validationSchema={Yup.object().shape({
+                            courseTitle: Yup.string()
+                                .required("Course title required"),
+                            }
+                        )}
                     >
                     {props => {
                             const {
@@ -219,12 +226,32 @@ class Main extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-9">
-                                            <TextInput 
+                                            <input
+                                                id="courseTitle"
+                                                name="courseTitle"
+                                                type="text"
+                                                className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
+                                                onChange={handleChange}
+                                                value={values.courseTitle}
+                                                onBlur={handleBlur}
                                                 placeholder="Type course name here . . ."
                                             />
+                                            {errors.courseTitle && touched.courseTitle && (
+                                                <div className="input-feedback">{errors.courseTitle}</div>
+                                            )}
                                         </div>
                                         <div className="col-md-3">
-                                            <FileInput />
+                                            <input
+                                                id="courseLogo"
+                                                name="courseLogo"
+                                                type="file"
+                                                className={(errors.courseLogo && touched.courseLogo && "error form-control custom-file-input") || "form-control custom-file-input"}
+                                                onChange={handleChange}
+                                                value={values.courseLogo}
+                                                onBlur={handleBlur}
+                                                accept="image/x-png,image/gif,image/jpeg"
+                                            />
+                                            <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> Choose file</label>
                                         </div>
                                     </div>
                                     <div className="row">
