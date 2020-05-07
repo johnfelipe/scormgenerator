@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 // styling
 import '../../css/styles.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 
 // components
-import CheckBoxInput from '../Generator/CheckBoxInput';
 
 class SlideHandler extends Component {
 
@@ -82,8 +81,6 @@ class SlideHandler extends Component {
                         {props => {
                             const {
                             values,
-                            touched,
-                            errors,
                             isSubmitting,
                             handleChange,
                             handleBlur,
