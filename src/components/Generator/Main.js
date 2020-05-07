@@ -244,13 +244,13 @@ class Main extends Component {
                                             id="courseLogo"
                                             name="courseLogo"
                                             type="file"
-                                            className={(errors.courseLogo && touched.courseLogo && "error form-control custom-file-input") || "form-control custom-file-input"}
+                                            className="form-control custom-file-input"
                                             onChange={handleChange}
                                             value={values.courseLogo}
                                             onBlur={handleBlur}
                                             accept="image/x-png,image/gif,image/jpeg"
                                         />
-                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.replace(/^.*[\\\/]/, '') : <span>Choose file</span> }</label>
+                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.replace(/^.*[\\]/, '') : <span>Choose file</span> }</label>
                                     </div>
                                 </div>
                                 <div className="row">
