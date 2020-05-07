@@ -42,6 +42,8 @@ class Main extends Component {
     }
 
     componentDidUpdate = () => {
+        console.log(this.state.courseTitle);
+        console.log(this.state.courseLogo);
         console.log(this.state.lessons);
     }
 
@@ -195,7 +197,7 @@ class Main extends Component {
                     }}
 
                     onSubmit={values => {
-                    
+                        console.log(values);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -248,7 +250,7 @@ class Main extends Component {
                                             onBlur={handleBlur}
                                             accept="image/x-png,image/gif,image/jpeg"
                                         />
-                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> Choose file</label>
+                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.replace(/^.*[\\\/]/, '') : <span>Choose file</span> }</label>
                                     </div>
                                 </div>
                                 <div className="row">
