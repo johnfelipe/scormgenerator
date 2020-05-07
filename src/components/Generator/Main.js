@@ -290,7 +290,7 @@ class Main extends Component {
                                                                                                             {...provided.draggableProps}
                                                                                                             {...provided.dragHandleProps}
                                                                                                         >
-                                                                                                            <span class="btn pr-1">{item.slideName}</span>
+                                                                                                            <span className="btn pr-1">{item.slideName}</span>
                                                                                                             <SlideHandler
                                                                                                                 editSlideChange={this.editSlideHandler}
                                                                                                                 currentSlideName={item.slideName}
