@@ -19,12 +19,19 @@ class ResourcesHandler extends Component {
             resourceFile5: '',
         };
         this.setModalShow = this.setModalShow.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
     setModalShow = (value) => {
         this.setState({
             modalShow: value,
         });
+    }
+
+    onSave = (object) => {
+        this.props.resourceFilesHandler(object);
+
+        this.setModalShow(false)
     }
 
     render() {
@@ -53,7 +60,7 @@ class ResourcesHandler extends Component {
                         }}
 
                         onSubmit={values => {
-                            console.log(values);
+                            this.onSave(values);
                         }}
                     >
                         {props => {

@@ -26,6 +26,7 @@ class Main extends Component {
         this.state = {
             courseTitle: '',
             courseLogo: '',
+            resourceFiles: [],
             navigationType: '',
             showProgressbar: '',
             lessons: [],
@@ -39,11 +40,13 @@ class Main extends Component {
         this.addSlideHandler = this.addSlideHandler.bind(this);
         this.editSlideHandler = this.editSlideHandler.bind(this);
         this.removeSlide = this.removeSlide.bind(this);
+        this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
     }
 
     componentDidUpdate = () => {
         console.log(this.state.courseTitle);
         console.log(this.state.courseLogo);
+        console.log(this.state.resourceFiles);
         console.log(this.state.lessons);
     }
 
@@ -187,6 +190,12 @@ class Main extends Component {
         })
     }
 
+    resourceFilesHandler = (object) => {
+        this.setState({
+            resourceFiles: object,
+        })
+    }
+
     render() {
         return (
             <div id="generator-container">
@@ -265,7 +274,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <ResourcesHandler />
+                                        <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <TranscriptUpload />
