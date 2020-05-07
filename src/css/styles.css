@@ -211,4 +211,8 @@ html body div.modal div.resources-modal div.modal-content div.modal-body form .r
   border-radius: 0.25rem;
 }
 
+html body div.modal div.resources-modal div.modal-content div.modal-body form .custom-file-label {
+  margin: 10px;
+}
+
 /*# sourceMappingURL=styles.css.map */

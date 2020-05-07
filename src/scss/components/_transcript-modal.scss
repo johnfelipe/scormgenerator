@@ -1,0 +1,20 @@
+@mixin transcript-modal {
+    html {
+        body {
+            div.modal {
+                div.resources-modal {
+                    div.modal-content {
+                        div.modal-body {
+                            form {
+
+                                .custom-file-label {
+                                    margin: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -4,6 +4,7 @@
 @import "components/generator";
 @import "components/slide-modal";
 @import "components/resources-modal";
+@import "components/transcript-modal";
 
 @include header;
 @include features;
@@ -11,3 +12,4 @@
 @include generator;
 @include slide-modal;
 @include resources-modal;
+@include transcript-modal;
