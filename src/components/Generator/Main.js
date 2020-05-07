@@ -250,7 +250,7 @@ class Main extends Component {
                                             onBlur={handleBlur}
                                             accept="image/x-png,image/gif,image/jpeg"
                                         />
-                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo.name ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                     </div>
                                 </div>
                                 <div className="row">
