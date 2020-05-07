@@ -13,7 +13,7 @@ import '../../assets/bootstrap/css/bootstrap.min.css';
 // components
 import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
-import ResourcesUpload from './ResourcesUpload';
+import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptUpload from './TranscriptUpload';
 import AddGlossary from './AddGlossary';
 import LessonHandler from '../Handlers/LessonHandler';
@@ -265,7 +265,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <ResourcesUpload />
+                                        <ResourcesHandler />
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <TranscriptUpload />
