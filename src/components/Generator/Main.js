@@ -29,7 +29,6 @@ class Main extends Component {
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
-        this.removeSlide = this.removeSlide.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
     }
@@ -39,20 +38,6 @@ class Main extends Component {
         console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
         console.log(this.props.courseLessons);
-    }
-
-    removeSlide = (index) => {
-        const lessonObj = {
-            ...this.state.lessons[this.state.currentClickedLessonId]
-        };
-        lessonObj.slides.splice(index, 1);
-
-        const lessons = [...this.state.lessons];
-        lessons[this.state.currentClickedLessonId] = lessonObj;
-
-        this.setState({
-            lessons: lessons,
-        });
     }
 
     // a little function to help us with reordering the result
