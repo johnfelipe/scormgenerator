@@ -3,10 +3,6 @@ import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import * as Yup from 'yup';
 
-// styling
-import '../../css/styles.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-
 class LessonHandler extends Component {
 
     constructor(props) {

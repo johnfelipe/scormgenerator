@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 // styling
-import '../App.css';
-import '../css/styles.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
+// import '../css/styles.css';
+// import '../assets/bootstrap/css/bootstrap.min.css';
 
 //components
 // import Generator from '../components/Generator/Generator';

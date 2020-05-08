@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavLink } from 'react-bootstrap';
 
-// styling
-import '../../css/styles.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-
 class NavigationHeader extends Component {
 
     render() {

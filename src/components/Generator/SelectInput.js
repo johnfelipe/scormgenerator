@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-// styling
-import '../../css/styles.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-
 class SelectInput extends Component {
 
     constructor(props) {

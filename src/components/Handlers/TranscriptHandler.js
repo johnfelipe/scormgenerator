@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 
-// styling
-import '../../css/styles.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-
 class TranscriptHandler extends Component {
 
     constructor(props) {
