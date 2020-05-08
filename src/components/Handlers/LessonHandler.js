@@ -9,7 +9,6 @@ class LessonHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            lessonName: this.props.currentLessonName,
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -48,7 +47,7 @@ class LessonHandler extends Component {
                 <Modal.Body>
                     <Formik
                         initialValues={{ 
-                            lessonName: this.state.lessonName ? this.state.lessonName : '',
+                            lessonName: this.props.currentLessonName ? this.props.currentLessonName : '',
                         }}
 
                         onSubmit={values => {

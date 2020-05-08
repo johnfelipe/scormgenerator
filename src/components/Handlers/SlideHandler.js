@@ -8,9 +8,8 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            slideName: this.props.currentSlideName,
-            showTitle: this.props.showTitleValue,
         };
+        
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -55,8 +54,8 @@ class SlideHandler extends Component {
                 <Modal.Body>
                     <Formik
                         initialValues={{ 
-                            slideName: this.state.slideName ? this.state.slideName : '',
-                            showTitle: this.state.showTitle,
+                            slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
+                            showTitle: this.props.showTitleValue,
                         }}
 
                         onSubmit={values => {
