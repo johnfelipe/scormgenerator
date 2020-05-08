@@ -21,19 +21,13 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            courseTitle: '',
-            courseLogo: '',
             resourceFiles: [],
             transcriptFile: {},
             navigationType: '',
             showProgressbar: '',
-            lessons: [],
             currentClickedLessonId: '',
         };
         
-        this.addLessonNameHandler = this.addLessonNameHandler.bind(this);
-        this.editLessonNameHandler = this.editLessonNameHandler.bind(this);
-        this.removeLesson = this.removeLesson.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.addSlideHandler = this.addSlideHandler.bind(this);
         this.editSlideHandler = this.editSlideHandler.bind(this);
@@ -46,37 +40,7 @@ class Main extends Component {
         console.log(this.props.courseTitle);
         console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
-        console.log(this.state.lessons);
-    }
-
-    addLessonNameHandler = (name) => {
-        const lessonObj = {'lessonName': name};
-        this.setState({
-            lessons: [...this.state.lessons, lessonObj],
-        })
-    }
-
-    editLessonNameHandler = (name, index) => {
-        const lessonObj = {
-            ...this.state.lessons[index]
-        };
-        lessonObj.lessonName = name;
-
-        const lessons = [...this.state.lessons];
-        lessons[index] = lessonObj;
-
-        this.setState({
-            lessons: lessons,
-        })
-    }
-
-    removeLesson = (index) => {
-        const lessonArray = [...this.state.lessons];
-        lessonArray.splice(index, 1);
-
-        this.setState({
-            lessons: lessonArray,
-        })
+        console.log(this.props.courseLessons);
     }
 
     addSlideHandler = (name, index) => {
@@ -296,7 +260,7 @@ class Main extends Component {
                                             <div
                                                 className="lesson-container"
                                             >
-                                                {this.state.lessons.map((item, index) => (
+                                                {this.props.courseLessons.map((item, index) => (
                                                     <Accordion
                                                         key={index}
                                                     >
@@ -305,14 +269,14 @@ class Main extends Component {
                                                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
                                                                     <span onClick={() => this.onLessonClickListener(index)}>{item.lessonName}</span>
                                                                 </Accordion.Toggle>
-                                                                <LessonHandler editLessonNameChange={this.editLessonNameHandler} action="edit" currentLessonName={item.lessonName} id={index}/>
+                                                                <LessonHandler editLessonNameChange={this.props.editCourseLessonName} action="edit" currentLessonName={item.lessonName} id={index}/>
 
-                                                                <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                                <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                             </Card.Header>
                                                             <Accordion.Collapse eventKey="0">
                                                                 <Card.Body>
                                                                     <SlideHandler addSlideChange={this.addSlideHandler} action="add" id={index}/>
-                                                                    {this.state.lessons[index].slides ?
+                                                                    {this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={this.onDragEnd}>
                                                                             <Droppable droppableId="slides">
                                                                                 {(provided) => (
@@ -320,7 +284,7 @@ class Main extends Component {
                                                                                         className="slide-container mt-3"
                                                                                         ref={provided.innerRef}
                                                                                     >
-                                                                                        {this.state.lessons[index].slides.map((item, index) => (
+                                                                                        {this.props.courseLessons[index].slides.map((item, index) => (
                                                                                             <Draggable
                                                                                                 key={index}
                                                                                                 draggableId={'' + index}
@@ -365,7 +329,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mt-2">
-                                        <LessonHandler addLessonNameChange={this.addLessonNameHandler} action="add"/>
+                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
                                     </div>
                                     <div className="col-md-6 mt-2">
                                         <div id="save-btn-container" className="float-right">
@@ -386,13 +350,17 @@ const mapStateToProps = (state) => {
     return {
         courseTitle: state.courseTitle,
         courseLogo: state.courseLogo,
+        courseLessons: state.courseLessons,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', value: courseTitle}),
-        addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', value: courseLogo}),
+        addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', courseTitle: courseTitle}),
+        addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', courseLogo: courseLogo}),
+        addCourseLessons: (lessonName) => dispatch({type: 'ADD_COURSE_LESSONS', lessonName: lessonName}),
+        editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
+        removeLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
     }
 }
 

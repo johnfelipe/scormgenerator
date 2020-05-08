@@ -7,7 +7,7 @@ const initialState ={
     transcriptFile: {},
     navigationType: '',
     showProgressbar: '',
-    lessons: [],
+    courseLessons: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,12 +15,40 @@ const reducer = (state = initialState, action) => {
         case types.ADD_COURSE_TITLE:
             return {
                 ...state,
-                courseTitle: action.value,
+                courseTitle: action.courseTitle,
             }
         case types.ADD_COURSE_LOGO:
             return {
                 ...state,
-                courseLogo: action.value,
+                courseLogo: action.courseLogo,
+            }
+        case types.ADD_COURSE_LESSONS:
+            const lessonObj = {'lessonName': action.lessonName};
+
+            return {
+                ...state,
+                courseLessons: [...state.courseLessons, lessonObj],
+            }
+        case types.EDIT_COURSE_LESSON_NAME:
+            const lessonObject = {
+                ...state.courseLessons[action.index]
+            };
+            lessonObject.lessonName = action.lessonName;
+    
+            const lessons = [...state.courseLessons];
+            lessons[action.index] = lessonObject;
+
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
+        case types.DELETE_LESSON:
+            const lessonArray = [...state.courseLessons];
+            lessonArray.splice(action.index, 1);
+
+            return {
+                ...state,
+                courseLessons: lessonArray,
             }
         default:
             return state;
