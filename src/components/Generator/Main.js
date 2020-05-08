@@ -29,7 +29,6 @@ class Main extends Component {
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
-        this.editSlideHandler = this.editSlideHandler.bind(this);
         this.removeSlide = this.removeSlide.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
@@ -40,21 +39,6 @@ class Main extends Component {
         console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
         console.log(this.props.courseLessons);
-    }
-
-    editSlideHandler = (name, index) => {
-        const lessonObj = {
-            ...this.state.lessons[this.state.currentClickedLessonId]
-        };
-
-        lessonObj.slides[index].slideName = name;
-
-        const lessons = [...this.state.lessons];
-        lessons[this.state.currentClickedLessonId] = lessonObj;
-
-        this.setState({
-            lessons: lessons,
-        });
     }
 
     removeSlide = (index) => {
@@ -281,7 +265,7 @@ class Main extends Component {
                                                                                                             showTitleValue={true}
                                                                                                         />
 
-                                                                                                        <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.removeSlide(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                                                                        <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.deleteSlide(index, this.state.currentClickedLessonId)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                                                                     </div>
                                                                                                 )}
                                                                                             </Draggable>
@@ -340,6 +324,7 @@ const mapDispatchToProps = (dispatch) => {
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
         addLessonSlides: (slideName, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideName: slideName, index: lessonId}),
         editLessonSlideName: (slideName, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideName: slideName, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
+        deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
     }
 }
 

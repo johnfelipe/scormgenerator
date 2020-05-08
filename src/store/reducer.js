@@ -34,6 +34,7 @@ const reducer = (state = initialState, action) => {
         }
         case types.UPDATE_COURSE_LESSONS: {
             return {
+                ...state,
                 courseLessons: action.courseLessons,
             }
         }
@@ -88,6 +89,20 @@ const reducer = (state = initialState, action) => {
             };
     
             lessonObj.slides[action.index].slideName = action.slideName;
+    
+            const lessons = [...state.courseLessons];
+            lessons[action.currentClickedLessonId] = lessonObj;
+    
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
+        }
+        case types.DELETE_SLIDE: {
+            const lessonObj = {
+                ...state.courseLessons[action.currentClickedLessonId]
+            };
+            lessonObj.slides.splice(action.index, 1);
     
             const lessons = [...state.courseLessons];
             lessons[action.currentClickedLessonId] = lessonObj;
