@@ -1,3 +1,5 @@
+import * as types from './actions/types';
+
 const initialState ={
     courseTitle: '',
     courseLogo: '',
@@ -10,12 +12,12 @@ const initialState ={
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'UPDATE_COURSE_TITLE':
+        case types.ADD_COURSE_TITLE:
             return {
                 ...state,
                 courseTitle: action.value,
             }
-        case 'UPDATE_COURSE_LOGO':
+        case types.ADD_COURSE_LOGO:
             return {
                 ...state,
                 courseLogo: action.value,
