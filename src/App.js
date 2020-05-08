@@ -3,7 +3,6 @@ import Routes from "./Routes";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // styling
-import './assets/bootstrap/css/bootstrap.min.css';
 import './css/styles.css';
 import './App.css';
 
