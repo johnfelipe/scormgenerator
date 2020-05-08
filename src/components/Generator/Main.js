@@ -5,10 +5,7 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Formik } from "formik";
 import * as Yup from 'yup';
-
-// styling
-// import '../../css/styles.css';
-// import '../../assets/bootstrap/css/bootstrap.min.css';
+import { connect } from 'react-redux';
 
 // components
 import SelectInput from './SelectInput';
@@ -46,8 +43,8 @@ class Main extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.state.courseTitle);
-        console.log(this.state.courseLogo);
+        console.log(this.props.courseTitle);
+        console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
         console.log(this.state.lessons);
     }
@@ -209,12 +206,14 @@ class Main extends Component {
             <div id="generator-container">
             <Formik
                     initialValues={{ 
-                        courseTitle: '',
-                        courseLogo: this.state.courseLogo,
+                        courseTitle: this.props.courseTitle,
+                        courseLogo: this.props.courseLogo,
                     }}
 
                     onSubmit={values => {
                         console.log(values);
+                        this.props.addCourseTitle(values.courseTitle);
+                        this.props.addCourseLogo(values.courseLogo);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -383,4 +382,18 @@ class Main extends Component {
     }
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+    return {
+        courseTitle: state.courseTitle,
+        courseLogo: state.courseLogo,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCourseTitle: (courseTitle) => dispatch({type: 'UPDATE_COURSE_TITLE', value: courseTitle}),
+        addCourseLogo: (courseLogo) => dispatch({type: 'UPDATE_COURSE_LOGO', value: courseLogo}),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
