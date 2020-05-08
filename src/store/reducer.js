@@ -34,7 +34,6 @@ const reducer = (state = initialState, action) => {
         }
         case types.UPDATE_COURSE_LESSONS: {
             return {
-                ...state,
                 courseLessons: action.courseLessons,
             }
         }
@@ -83,8 +82,24 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
-        default:
+        case types.EDIT_LESSON_SLIDE_NAME: {
+            const lessonObj = {
+                ...state.courseLessons[action.currentClickedLessonId]
+            };
+    
+            lessonObj.slides[action.index].slideName = action.slideName;
+    
+            const lessons = [...state.courseLessons];
+            lessons[action.currentClickedLessonId] = lessonObj;
+    
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
+        }
+        default: {
             return state;
+        }
     }
 }
 

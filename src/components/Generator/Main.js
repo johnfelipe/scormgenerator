@@ -246,7 +246,7 @@ class Main extends Component {
                                                                 </Accordion.Toggle>
                                                                 <LessonHandler editLessonNameChange={this.props.editCourseLessonName} action="edit" currentLessonName={item.lessonName} id={index}/>
 
-                                                                <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.removeLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                                <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.deleteLesson(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                             </Card.Header>
                                                             <Accordion.Collapse eventKey="0">
                                                                 <Card.Body>
@@ -273,8 +273,9 @@ class Main extends Component {
                                                                                                     >
                                                                                                         <span className="btn pr-1">{item.slideName}</span>
                                                                                                         <SlideHandler
-                                                                                                            editSlideChange={this.editSlideHandler}
+                                                                                                            editSlideChange={this.props.editLessonSlideName}
                                                                                                             currentSlideName={item.slideName}
+                                                                                                            currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                             action="edit"
                                                                                                             id={index}
                                                                                                             showTitleValue={true}
@@ -336,8 +337,9 @@ const mapDispatchToProps = (dispatch) => {
         addCourseLessons: (lessonName) => dispatch({type: 'ADD_COURSE_LESSONS', lessonName: lessonName}),
         updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
-        removeLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
+        deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
         addLessonSlides: (slideName, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideName: slideName, index: lessonId}),
+        editLessonSlideName: (slideName, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideName: slideName, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
     }
 }
 

@@ -26,7 +26,7 @@ class SlideHandler extends Component {
             this.props.addSlideChange(slideName, id);
             console.log("add");
         } else if (this.props.action === "edit") {
-            this.props.editSlideChange(slideName, id);
+            this.props.editSlideChange(slideName, id, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -64,12 +64,6 @@ class SlideHandler extends Component {
                             console.log(values.showTitle);
                             this.onSave(values.slideName, this.props.id);
                         }}
-
-                        // validationSchema={Yup.object().shape({
-                        //     slideName: Yup.string()
-                        //         .required("Slide name required"),
-                        //     }
-                        // )}
                     >
                         {props => {
                             const {
