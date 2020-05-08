@@ -391,8 +391,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCourseTitle: (courseTitle) => dispatch({type: 'UPDATE_COURSE_TITLE', value: courseTitle}),
-        addCourseLogo: (courseLogo) => dispatch({type: 'UPDATE_COURSE_LOGO', value: courseLogo}),
+        addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', value: courseTitle}),
+        addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', value: courseLogo}),
     }
 }
 
