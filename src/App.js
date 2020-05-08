@@ -3,9 +3,9 @@ import Routes from "./Routes";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // styling
-import './App.css';
-import './css/styles.css';
 import './assets/bootstrap/css/bootstrap.min.css';
+import './css/styles.css';
+import './App.css';
 
 //components
 import Header from './components/Navigation/NavigationHeader';
