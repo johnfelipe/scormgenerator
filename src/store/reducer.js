@@ -12,37 +12,47 @@ const initialState ={
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.ADD_COURSE_TITLE:
+        case types.ADD_COURSE_TITLE: {
             return {
                 ...state,
                 courseTitle: action.courseTitle,
             }
-        case types.ADD_COURSE_LOGO:
+        }
+        case types.ADD_COURSE_LOGO: {
             return {
                 ...state,
                 courseLogo: action.courseLogo,
             }
-        case types.ADD_COURSE_LESSONS:
+        }
+        case types.ADD_COURSE_LESSONS: {
             const lessonObj = {'lessonName': action.lessonName};
 
             return {
                 ...state,
                 courseLessons: [...state.courseLessons, lessonObj],
             }
-        case types.EDIT_COURSE_LESSON_NAME:
-            const lessonObject = {
+        }
+        case types.UPDATE_COURSE_LESSONS: {
+            return {
+                ...state,
+                courseLessons: action.courseLessons,
+            }
+        }
+        case types.EDIT_COURSE_LESSON_NAME: {
+            const lessonObj = {
                 ...state.courseLessons[action.index]
             };
-            lessonObject.lessonName = action.lessonName;
+            lessonObj.lessonName = action.lessonName;
     
             const lessons = [...state.courseLessons];
-            lessons[action.index] = lessonObject;
+            lessons[action.index] = lessonObj;
 
             return {
                 ...state,
                 courseLessons: lessons,
             }
-        case types.DELETE_LESSON:
+        }
+        case types.DELETE_LESSON: {
             const lessonArray = [...state.courseLessons];
             lessonArray.splice(action.index, 1);
 
@@ -50,6 +60,29 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 courseLessons: lessonArray,
             }
+        }
+        case types.ADD_LESSON_SLIDES: {
+            const lessonObj = {
+                ...state.courseLessons[action.index]
+            };
+    
+            const slide = {slideName: action.slideName}
+    
+            if (lessonObj.slides) {
+                lessonObj.slides.push(slide);
+            } else {
+                lessonObj.slides = []
+                lessonObj.slides.push(slide);
+            }
+    
+            const lessons = [...state.courseLessons];
+            lessons[action.index] = lessonObj;
+
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
+        }
         default:
             return state;
     }

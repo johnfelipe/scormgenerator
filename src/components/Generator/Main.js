@@ -29,7 +29,6 @@ class Main extends Component {
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
-        this.addSlideHandler = this.addSlideHandler.bind(this);
         this.editSlideHandler = this.editSlideHandler.bind(this);
         this.removeSlide = this.removeSlide.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
@@ -41,28 +40,6 @@ class Main extends Component {
         console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
         console.log(this.props.courseLessons);
-    }
-
-    addSlideHandler = (name, index) => {
-        const lessonObj = {
-            ...this.state.lessons[index]
-        };
-
-        const slide = {slideName: name}
-
-        if (lessonObj.slides) {
-            lessonObj.slides.push(slide);
-        } else {
-            lessonObj.slides = []
-            lessonObj.slides.push(slide);
-        }
-
-        const lessons = [...this.state.lessons];
-        lessons[index] = lessonObj;
-
-        this.setState({
-            lessons: lessons,
-        })
     }
 
     editSlideHandler = (name, index) => {
@@ -129,7 +106,7 @@ class Main extends Component {
         }
 
         if (source.droppableId === destination.droppableId) {
-            const lessonSlideList = this.state.lessons[this.state.currentClickedLessonId].slides;
+            const lessonSlideList = this.props.courseLessons[this.state.currentClickedLessonId].slides;
 
             const reordered_slides = this.reorder(
                 lessonSlideList,
@@ -138,12 +115,10 @@ class Main extends Component {
             );
             let slides = reordered_slides;
 
-            const lessons = [...this.state.lessons];
+            const lessons = [...this.props.courseLessons];
             lessons[this.state.currentClickedLessonId].slides = slides;
 
-            this.setState({
-                lessons: lessons,
-            });
+            this.props.updateCourseLessons(lessons);
         }
     };
 
@@ -275,7 +250,7 @@ class Main extends Component {
                                                             </Card.Header>
                                                             <Accordion.Collapse eventKey="0">
                                                                 <Card.Body>
-                                                                    <SlideHandler addSlideChange={this.addSlideHandler} action="add" id={index}/>
+                                                                    <SlideHandler addSlideChange={this.props.addLessonSlides} action="add" id={index}/>
                                                                     {this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={this.onDragEnd}>
                                                                             <Droppable droppableId="slides">
@@ -359,8 +334,10 @@ const mapDispatchToProps = (dispatch) => {
         addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', courseTitle: courseTitle}),
         addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', courseLogo: courseLogo}),
         addCourseLessons: (lessonName) => dispatch({type: 'ADD_COURSE_LESSONS', lessonName: lessonName}),
+        updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         removeLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
+        addLessonSlides: (slideName, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideName: slideName, index: lessonId}),
     }
 }
 
