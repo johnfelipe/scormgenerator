@@ -25,7 +25,7 @@ class Main extends Component {
             transcriptFile: {},
             navigationType: '',
             showProgressbar: '',
-            glossaryObject: '',
+            glossaryObject: [],
             currentClickedLessonId: '',
         };
         
@@ -111,8 +111,10 @@ class Main extends Component {
         })
     }
 
-    glossaryHandler = () => {
-
+    glossaryHandler = (object) => {
+        this.setState({
+            glossaryObject: object,
+        })
     }
 
     render() {
