@@ -1,0 +1,25 @@
+@mixin glossary-modal {
+    html {
+        body {
+            div.modal {
+                div.glossary-modal {
+                    max-width: none;
+                    width: 70%;
+                    div.modal-content {
+                        div.modal-body {
+                            form {
+                                .glossary-input-container {
+                                    background: lightgrey;
+                                    padding: 8px;
+                                    max-height: 250px;
+                                    border-radius: 5px;
+                                    overflow: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

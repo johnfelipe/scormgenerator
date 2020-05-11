@@ -5,6 +5,7 @@
 @import "components/slide-modal";
 @import "components/resources-modal";
 @import "components/transcript-modal";
+@import "components/glossary-modal";
 
 @include header;
 @include features;
@@ -13,3 +14,4 @@
 @include slide-modal;
 @include resources-modal;
 @include transcript-modal;
+@include glossary-modal;
