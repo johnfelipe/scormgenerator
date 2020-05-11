@@ -16,6 +16,9 @@ import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
 
+//modal
+import ConfirmationModal from '../AlertModal/Confirmation';
+
 class Main extends Component {
 
     constructor(props) {
@@ -287,9 +290,10 @@ class Main extends Component {
                                         <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
                                     </div>
                                     <div className="col-md-6 mt-2">
-                                        <div id="save-btn-container" className="float-right">
+                                        {/* <div id="save-btn-container" className="float-right">
                                             <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
-                                        </div>
+                                        </div> */}
+                                        <ConfirmationModal isSubmitting={isSubmitting}/>
                                     </div>
                                 </div>
                             </form>
