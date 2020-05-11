@@ -113,7 +113,6 @@ class ResourcesHandler extends Component {
                                                     className="form-control custom-file-input"
                                                     onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
                                                     onBlur={handleBlur}
-                                                    accept="image/x-png,image/gif,image/jpeg"
                                                 />
                                                 <label htmlFor={input.name} style={{top: input.top}} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
                                             </div>
