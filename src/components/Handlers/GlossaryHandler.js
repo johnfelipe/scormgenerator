@@ -10,14 +10,17 @@ class GlossaryHandler extends Component {
             modalShow: false,
             inputCounter: 1,
             inputObject: [
-                {key: 'glossaryKey1', value: 'glossaryValue1', top: 0}
+                {key: 'glossaryKey1', value: 'glossaryValue1'}
             ],
-            top: 45,
         };
         this.setModalShow = this.setModalShow.bind(this);
-        // this.onSave = this.onSave.bind(this);
+        this.onSave = this.onSave.bind(this);
         this.addInput = this.addInput.bind(this);
         this.getInitialValues = this.getInitialValues.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.props.glossaryData);
     }
 
     setModalShow = (value) => {
@@ -34,8 +37,8 @@ class GlossaryHandler extends Component {
         // pluck off the name and value props and add it to the initialValues object;
         inputs.forEach((field, index) => {
             if(!initialValues[field.key]) {
-                initialValues[field.key] = '';
-                initialValues[field.value] = '';
+                initialValues[field.key] = this.props.glossaryData[index] ? this.props.glossaryData[index].key : '';
+                initialValues[field.value] = this.props.glossaryData[index] ? this.props.glossaryData[index].value : '';
             }
         });
     
@@ -47,12 +50,38 @@ class GlossaryHandler extends Component {
         let currentCount = this.state.inputCounter;
         currentCount += 1;
 
-        const inputObj = { key: 'glossaryKey' + currentCount, value: 'glossaryValue' + currentCount, top: this.state.inputObject[currentCount - 2].top + this.state.top };
+        const inputObj = { key: 'glossaryKey' + currentCount, value: 'glossaryValue' + currentCount };
 
         this.setState({
             inputCounter: currentCount,
             inputObject: [...this.state.inputObject, inputObj],
         });
+    }
+
+    onSave = (object) => {
+        let glossaryObj = [];
+
+        let keyCount = 1;
+        let valueCount = 1;
+        for (var key in object) {
+            
+            let keyCompare = "glossaryKey" + keyCount;
+            let valueCompare = "glossaryValue" + valueCount;
+            if (object.hasOwnProperty(key)) {
+                if (key === keyCompare) {
+                    glossaryObj[keyCount-1] = { ...glossaryObj[keyCount-1], key: object[key] };
+                    console.log(key + " -> " + object[key]);
+                    keyCount++;
+                } else if (key === valueCompare){
+                    glossaryObj[valueCount-1] = { ...glossaryObj[valueCount-1], value: object[key] };
+                    console.log(key + " -> " + object[key]);
+                    valueCount++;
+                }
+            }
+        }
+
+        this.props.glossaryHandler(glossaryObj);
+        this.setModalShow(false)
     }
 
     render() {
@@ -76,9 +105,7 @@ class GlossaryHandler extends Component {
                         initialValues= {initialValues}
 
                         onSubmit={values => {
-                            // this.onSave(values);
-                            console.log(values);
-                            this.setModalShow(false)
+                            this.onSave(values);
                         }}
                     >
                         {props => {

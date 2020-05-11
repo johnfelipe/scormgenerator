@@ -39,7 +39,9 @@ class Main extends Component {
         console.log(this.props.courseTitle);
         console.log(this.props.courseLogo);
         console.log(this.state.resourceFiles);
+        console.log(this.state.transcriptFile);
         console.log(this.props.courseLessons);
+        console.log(this.state.glossaryObject);
     }
 
     // a little function to help us with reordering the result
@@ -203,7 +205,7 @@ class Main extends Component {
                                         <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <GlossaryHandler />
+                                        <GlossaryHandler glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryObject}/>
                                     </div>
                                 </div>
                                 <div className="row">
