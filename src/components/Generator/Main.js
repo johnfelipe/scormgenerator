@@ -12,7 +12,7 @@ import SelectInput from './SelectInput';
 import CheckBoxInput from './CheckBoxInput';
 import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptHandler from '../Handlers/TranscriptHandler';
-import AddGlossary from './AddGlossary';
+import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
 
@@ -25,12 +25,14 @@ class Main extends Component {
             transcriptFile: {},
             navigationType: '',
             showProgressbar: '',
+            glossaryObject: '',
             currentClickedLessonId: '',
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
+        this.glossaryHandler = this.glossaryHandler.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -107,6 +109,10 @@ class Main extends Component {
         this.setState({
             transcriptFile: object,
         })
+    }
+
+    glossaryHandler = () => {
+
     }
 
     render() {
@@ -195,7 +201,7 @@ class Main extends Component {
                                         <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <AddGlossary />
+                                        <GlossaryHandler />
                                     </div>
                                 </div>
                                 <div className="row">
