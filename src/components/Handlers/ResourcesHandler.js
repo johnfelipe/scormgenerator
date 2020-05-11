@@ -52,7 +52,7 @@ class ResourcesHandler extends Component {
         //loop loop over fields array
         //if prop does not exit in the initialValues object,
         // pluck off the name and value props and add it to the initialValues object;
-        inputs.forEach((field, index) => {
+        inputs.forEach((field) => {
             if(!initialValues[field.name]) {
                 initialValues[field.name] = this.props.resourceFilesData[field.name] ? this.props.resourceFilesData[field.name] : '';
             }
