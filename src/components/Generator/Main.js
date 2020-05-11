@@ -201,9 +201,7 @@ class Main extends Component {
                                 <div className="row">
                                     <div className="col-md-12 mt-2">
                                         <div id="lesson-container">
-                                            <div
-                                                className="lesson-container"
-                                            >
+                                            <div className="lesson-container">
                                                 {this.props.courseLessons.map((item, index) => (
                                                     <Accordion
                                                         key={index}
