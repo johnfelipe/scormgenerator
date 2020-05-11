@@ -8,6 +8,7 @@ class ResourcesHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
+            inputCounter: 1,
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -67,59 +68,62 @@ class ResourcesHandler extends Component {
                             setFieldValue,
                             } = props;
                             return (
-                                <form onSubmit={handleSubmit}>
-                                    <input
-                                        id="resourceFile1"
-                                        name="resourceFile1"
-                                        type="file"
-                                        className="form-control custom-file-input"
-                                        onChange={(event) => {setFieldValue("resourceFile1", event.currentTarget.files[0]);}}
-                                        onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                    />
-                                    <label htmlFor="resourceFile1" className="resourceFile1-input-label custom-file-label" id="custom-form-label"> { values.resourceFile1 ? values.resourceFile1.name : <span>Choose file</span> }</label>
-                                    <input
-                                        id="resourceFile2"
-                                        name="resourceFile2"
-                                        type="file"
-                                        className="form-control custom-file-input"
-                                        onChange={(event) => {setFieldValue("resourceFile2", event.currentTarget.files[0]);}}
-                                        onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                    />
-                                    <label htmlFor="resourceFile2" className="resourceFile2-input-label custom-file-label" id="custom-form-label"> { values.resourceFile2 ? values.resourceFile2.name : <span>Choose file</span> }</label>
-                                    <input
-                                        id="resourceFile3"
-                                        name="resourceFile3"
-                                        type="file"
-                                        className="form-control custom-file-input"
-                                        onChange={(event) => {setFieldValue("resourceFile3", event.currentTarget.files[0]);}}
-                                        onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                    />
-                                    <label htmlFor="resourceFile3" className="resourceFile3-input-label custom-file-label" id="custom-form-label"> { values.resourceFile3 ? values.resourceFile3.name : <span>Choose file</span> }</label>
-                                    <input
-                                        id="resourceFile4"
-                                        name="resourceFile4"
-                                        type="file"
-                                        className="form-control custom-file-input"
-                                        onChange={(event) => {setFieldValue("resourceFile4", event.currentTarget.files[0]);}}
-                                        onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                    />
-                                    <label htmlFor="resourceFile4" className="resourceFile4-input-label custom-file-label" id="custom-form-label"> { values.resourceFile4 ? values.resourceFile4.name : <span>Choose file</span> }</label>
-                                    <input
-                                        id="resourceFile5"
-                                        name="resourceFile5"
-                                        type="file"
-                                        className="form-control custom-file-input"
-                                        onChange={(event) => {setFieldValue("resourceFile5", event.currentTarget.files[0]);}}
-                                        onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                    />
-                                    <label htmlFor="resourceFile5" className="resourceFile5-input-label custom-file-label" id="custom-form-label"> { values.resourceFile5 ? values.resourceFile5.name : <span>Choose file</span> }</label>
-                                    <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
-                                </form>
+                                <div>
+                                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add File</button>
+                                    <form onSubmit={handleSubmit}>
+                                        <input
+                                            id="resourceFile1"
+                                            name="resourceFile1"
+                                            type="file"
+                                            className="form-control custom-file-input"
+                                            onChange={(event) => {setFieldValue("resourceFile1", event.currentTarget.files[0]);}}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="resourceFile1" className="resourceFile1-input-label custom-file-label" id="custom-form-label"> { values.resourceFile1 ? values.resourceFile1.name : <span>Choose file</span> }</label>
+                                        {/* <input
+                                            id="resourceFile2"
+                                            name="resourceFile2"
+                                            type="file"
+                                            className="form-control custom-file-input"
+                                            onChange={(event) => {setFieldValue("resourceFile2", event.currentTarget.files[0]);}}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="resourceFile2" className="resourceFile2-input-label custom-file-label" id="custom-form-label"> { values.resourceFile2 ? values.resourceFile2.name : <span>Choose file</span> }</label>
+                                        <input
+                                            id="resourceFile3"
+                                            name="resourceFile3"
+                                            type="file"
+                                            className="form-control custom-file-input"
+                                            onChange={(event) => {setFieldValue("resourceFile3", event.currentTarget.files[0]);}}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="resourceFile3" className="resourceFile3-input-label custom-file-label" id="custom-form-label"> { values.resourceFile3 ? values.resourceFile3.name : <span>Choose file</span> }</label>
+                                        <input
+                                            id="resourceFile4"
+                                            name="resourceFile4"
+                                            type="file"
+                                            className="form-control custom-file-input"
+                                            onChange={(event) => {setFieldValue("resourceFile4", event.currentTarget.files[0]);}}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="resourceFile4" className="resourceFile4-input-label custom-file-label" id="custom-form-label"> { values.resourceFile4 ? values.resourceFile4.name : <span>Choose file</span> }</label>
+                                        <input
+                                            id="resourceFile5"
+                                            name="resourceFile5"
+                                            type="file"
+                                            className="form-control custom-file-input"
+                                            onChange={(event) => {setFieldValue("resourceFile5", event.currentTarget.files[0]);}}
+                                            onBlur={handleBlur}
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                        />
+                                        <label htmlFor="resourceFile5" className="resourceFile5-input-label custom-file-label" id="custom-form-label"> { values.resourceFile5 ? values.resourceFile5.name : <span>Choose file</span> }</label> */}
+                                        <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
+                                    </form>
+                                </div>
                             );
                         }}
                     </Formik>
