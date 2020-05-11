@@ -133,7 +133,7 @@ html body div.modal .slide-modal-width {
 }
 
 html body div.modal div.resources-modal div.modal-content div.modal-body form .custom-file-label {
-  margin: 10px;
+  margin: 65px 15px 10px 15px;
 }
 html body div.modal div.resources-modal div.modal-content div.modal-body form .resourceFile1-input-label {
   position: absolute;
@@ -210,8 +210,15 @@ html body div.modal div.resources-modal div.modal-content div.modal-body form .r
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
+html body div.modal div.resources-modal div.modal-content div.modal-body form .resources-input-container {
+  background: lightgrey;
+  padding: 8px;
+  height: 100%;
+  border-radius: 5px;
+  overflow: auto;
+}
 
-html body div.modal div.resources-modal div.modal-content div.modal-body form .custom-file-label {
+html body div.modal div.transcript-modal div.modal-content div.modal-body form .custom-file-label {
   margin: 10px;
 }
 

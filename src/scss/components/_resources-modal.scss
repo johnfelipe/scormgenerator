@@ -6,10 +6,10 @@
                     div.modal-content {
                         div.modal-body {
                             form {
-
                                 .custom-file-label {
-                                    margin: 10px;
+                                    margin: 65px 15px 10px 15px;
                                 }
+
                                 .resourceFile1-input-label {
                                     position: absolute;
                                     top: 0;
@@ -88,6 +88,14 @@
                                     background-color: #fff;
                                     border: 1px solid #ced4da;
                                     border-radius: .25rem;
+                                }
+
+                                .resources-input-container {
+                                    background: lightgrey;
+                                    padding: 8px;
+                                    height: 100%;
+                                    border-radius: 5px;
+                                    overflow: auto;
                                 }
                             }
                         }
