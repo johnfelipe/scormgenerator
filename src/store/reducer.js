@@ -112,6 +112,12 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
+        case types.NAVIGATION_TYPE: {
+            return {
+                ...state,
+                navigationType: action.typeId,
+            }
+        }
         default: {
             return state;
         }

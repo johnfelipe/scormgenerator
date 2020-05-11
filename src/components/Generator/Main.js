@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 
 // components
-import SelectInput from './SelectInput';
+import NavigationHandler from '../Handlers/NavigationHandler';
 import CheckBoxInput from './CheckBoxInput';
 import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptHandler from '../Handlers/TranscriptHandler';
@@ -23,7 +23,6 @@ class Main extends Component {
         this.state = {
             resourceFiles: [],
             transcriptFile: {},
-            navigationType: '',
             showProgressbar: '',
             glossaryObject: [],
             currentClickedLessonId: '',
@@ -38,6 +37,7 @@ class Main extends Component {
     componentDidUpdate = () => {
         console.log(this.props.courseTitle);
         console.log(this.props.courseLogo);
+        console.log(this.props.navigationType);
         console.log(this.state.resourceFiles);
         console.log(this.state.transcriptFile);
         console.log(this.props.courseLessons);
@@ -126,12 +126,14 @@ class Main extends Component {
                     initialValues={{ 
                         courseTitle: this.props.courseTitle,
                         courseLogo: this.props.courseLogo,
+                        navigationType: this.props.navigationType,
                     }}
 
                     onSubmit={values => {
                         console.log(values);
                         this.props.addCourseTitle(values.courseTitle);
                         this.props.addCourseLogo(values.courseLogo);
+                        this.props.chooseNavigationType(values.navigationType);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -189,7 +191,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-8 mt-2">
-                                        <SelectInput />
+                                        <NavigationHandler currentType={values.navigationType} handleChange={handleChange}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="float-right mt-2">
@@ -304,6 +306,7 @@ const mapStateToProps = (state) => {
         courseTitle: state.courseTitle,
         courseLogo: state.courseLogo,
         courseLessons: state.courseLessons,
+        navigationType: state.navigationType,
     }
 }
 
@@ -318,6 +321,7 @@ const mapDispatchToProps = (dispatch) => {
         addLessonSlides: (slideName, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideName: slideName, index: lessonId}),
         editLessonSlideName: (slideName, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideName: slideName, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
+        chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
     }
 }
 
