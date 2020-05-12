@@ -31,12 +31,7 @@ const reducer = (state = initialState, action) => {
 
         case types.DELETE_SLIDE: return methods.deleteSlide(state, action);
 
-        case types.NAVIGATION_TYPE: {
-            return {
-                ...state,
-                navigationType: action.typeId,
-            }
-        }
+        case types.NAVIGATION_TYPE: return methods.chooseNavigationType(state, action);
 
         case types.SHOW_HIDE_PROGRESSBAR: {
             return {

@@ -106,3 +106,10 @@ export const deleteSlide = (state, action) => {
         courseLessons: lessons,
     }
 }
+
+export const chooseNavigationType = (state, action) => {
+    return {
+        ...state,
+        navigationType: action.typeId,
+    }
+}
