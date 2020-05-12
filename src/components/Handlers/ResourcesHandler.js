@@ -122,20 +122,20 @@ class ResourcesHandler extends Component {
                                     <form onSubmit={handleSubmit}>
                                         {this.state.inputObject.map((input, index) => (
                                             <div key={input.name} className="row mt-2">
-                                            <div className="col-md-11">
-                                                <input
-                                                    id={input.name}
-                                                    name={input.name}
-                                                    type="file"
-                                                    className="form-control custom-file-input"
-                                                    onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
-                                                    onBlur={handleBlur}
-                                                />
-                                                <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
-                                            </div>
-                                            <div className="col-md-1">
-                                                <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => this.deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
-                                            </div>
+                                                <div className="col-md-11">
+                                                    <input
+                                                        id={input.name}
+                                                        name={input.name}
+                                                        type="file"
+                                                        className="form-control custom-file-input"
+                                                        onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
+                                                        onBlur={handleBlur}
+                                                    />
+                                                    <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
+                                                </div>
+                                                <div className="col-md-1">
+                                                    <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => this.deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                </div>
                                             </div>
                                         ))}
                                         <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
