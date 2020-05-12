@@ -29,20 +29,7 @@ const reducer = (state = initialState, action) => {
 
         case types.EDIT_LESSON_SLIDE_NAME: return methods.editLessonSlideName(state, action);
 
-        case types.DELETE_SLIDE: {
-            const lessonObj = {
-                ...state.courseLessons[action.currentClickedLessonId]
-            };
-            lessonObj.slides.splice(action.index, 1);
-    
-            const lessons = [...state.courseLessons];
-            lessons[action.currentClickedLessonId] = lessonObj;
-    
-            return {
-                ...state,
-                courseLessons: lessons,
-            }
-        }
+        case types.DELETE_SLIDE: return methods.deleteSlide(state, action);
 
         case types.NAVIGATION_TYPE: {
             return {

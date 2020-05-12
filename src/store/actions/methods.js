@@ -91,3 +91,18 @@ export const editLessonSlideName = (state, action) => {
         courseLessons: lessons,
     }
 }
+
+export const deleteSlide = (state, action) => {
+    const lessonObj = {
+        ...state.courseLessons[action.currentClickedLessonId]
+    };
+    lessonObj.slides.splice(action.index, 1);
+
+    const lessons = [...state.courseLessons];
+    lessons[action.currentClickedLessonId] = lessonObj;
+
+    return {
+        ...state,
+        courseLessons: lessons,
+    }
+}
