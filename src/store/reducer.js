@@ -13,18 +13,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.ADD_COURSE_TITLE: return methods.addCourseTitle(state, action, state.courseTitle);
+        case types.ADD_COURSE_TITLE: return methods.addCourseTitle(state, action);
 
-        case types.ADD_COURSE_LOGO: return methods.addCourseLogo(state, action, state.courseLogo);
+        case types.ADD_COURSE_LOGO: return methods.addCourseLogo(state, action);
 
-        case types.ADD_COURSE_LESSONS: return methods.addCourseLessons(state, action, initialState.courseLessons);
-        
-        case types.UPDATE_COURSE_LESSONS: {
-            return {
-                ...state,
-                courseLessons: action.courseLessons,
-            }
-        }
+        case types.ADD_COURSE_LESSONS: return methods.addCourseLessons(state, action);
+
+        case types.UPDATE_COURSE_LESSONS: return methods.updateCourseLessons(state, action);
 
         case types.EDIT_COURSE_LESSON_NAME: {
             const lessonObj = {

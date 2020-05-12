@@ -20,3 +20,10 @@ export const addCourseLessons = (state, action) => {
         courseLessons: [...state.courseLessons, lessonObj],
     }
 }
+
+export const updateCourseLessons = (state, action) => {
+    return {
+        ...state,
+        courseLessons: action.courseLessons,
+    }
+}
