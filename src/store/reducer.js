@@ -25,28 +25,7 @@ const reducer = (state = initialState, action) => {
 
         case types.DELETE_LESSON: return methods.deleteLesson(state, action);
 
-        case types.ADD_LESSON_SLIDES: {
-            const lessonObj = {
-                ...state.courseLessons[action.index]
-            };
-    
-            const slide = {slideName: action.slideName}
-    
-            if (lessonObj.slides) {
-                lessonObj.slides.push(slide);
-            } else {
-                lessonObj.slides = []
-                lessonObj.slides.push(slide);
-            }
-    
-            const lessons = [...state.courseLessons];
-            lessons[action.index] = lessonObj;
-
-            return {
-                ...state,
-                courseLessons: lessons,
-            }
-        }
+        case types.ADD_LESSON_SLIDES: return methods.addLessonSlides(state, action);
 
         case types.EDIT_LESSON_SLIDE_NAME: {
             const lessonObj = {

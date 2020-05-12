@@ -52,3 +52,26 @@ export const deleteLesson = (state, action) => {
         courseLessons: lessonArray,
     }
 }
+
+export const addLessonSlides = (state, action) => {
+    const lessonObj = {
+        ...state.courseLessons[action.index]
+    };
+
+    const slide = {slideName: action.slideName}
+
+    if (lessonObj.slides) {
+        lessonObj.slides.push(slide);
+    } else {
+        lessonObj.slides = []
+        lessonObj.slides.push(slide);
+    }
+
+    const lessons = [...state.courseLessons];
+    lessons[action.index] = lessonObj;
+
+    return {
+        ...state,
+        courseLessons: lessons,
+    }
+}
