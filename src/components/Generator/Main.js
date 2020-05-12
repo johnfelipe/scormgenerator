@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 // components
 import NavigationHandler from '../Handlers/NavigationHandler';
-import CheckBoxInput from './CheckBoxInput';
+import CheckBoxInput from '../Handlers/CheckBoxHandler';
 import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptHandler from '../Handlers/TranscriptHandler';
 import GlossaryHandler from '../Handlers/GlossaryHandler';

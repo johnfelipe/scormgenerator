@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CheckBoxInput extends Component {
+class CheckBoxHandler extends Component {
 
     constructor(props) {
         super(props);
@@ -27,4 +27,4 @@ class CheckBoxInput extends Component {
     }
 }
 
-export default CheckBoxInput;
+export default CheckBoxHandler;
