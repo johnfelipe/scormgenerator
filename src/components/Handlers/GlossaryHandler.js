@@ -80,30 +80,21 @@ class GlossaryHandler extends Component {
         let keyCount = 1;
         let valueCount = 1;
         for (var key in object) {
-            console.log(key);
-            
             if (object.hasOwnProperty(key)) {
                 if (key.includes("glossaryKey")) {
                     if (object[key] !== "") {
                         glossaryObj[keyCount-1] = { ...glossaryObj[keyCount-1], key: object[key] };
-                        console.log(key + " -> " + object[key]);
-                        console.log(keyCount);
                         keyCount++;
                     } else {
-                        console.log(keyCount);
                         keyCount++;
                     }
                 } else if (key.includes("glossaryValue")){
                     if (object[key] !== "") {
                         glossaryObj[valueCount-1] = { ...glossaryObj[valueCount-1], value: object[key] };
-                        console.log(key + " -> " + object[key]);
-                        console.log(valueCount);
                         valueCount++;
                     } else {
-                        console.log(valueCount);
                         valueCount++;
                     }
-                    
                 }
             }
         }
