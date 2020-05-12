@@ -207,15 +207,25 @@ class Main extends Component {
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
                                         <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
-                                        {/* {this.state.resourceFiles.length !== 0 ? 
+                                        {
+                                            this.state.resourceFiles.length !== 0 ? 
                                             <span>
                                             Files Uploaded: 
-                                            {Object.keys(this.state.resourceFiles).map((item) => (
-                                                    <label>{this.state.resourceFiles[item]}</label>
-                                            ))}</span> : <span></span>} */}
+                                            {this.state.resourceFiles.map((item) => (
+                                                <strong><label> {item.file.name},</label></strong>
+                                            ))}</span> : <span></span>
+                                        }
                                     </div>
                                     <div className="col-md-4 mt-2 text-center">
                                         <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
+                                        {
+                                            this.state.transcriptFile.length !== 0 ? 
+                                            <span>
+                                            Files Uploaded: 
+                                            {this.state.resourceFiles.map((item) => (
+                                                <strong><label> {item.file.name},</label></strong>
+                                            ))}</span> : <span></span>
+                                        }
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <GlossaryHandler glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryObject}/>
