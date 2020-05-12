@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 class ResourcesHandler extends Component {
 
@@ -18,6 +20,7 @@ class ResourcesHandler extends Component {
         this.onSave = this.onSave.bind(this);
         this.addInput = this.addInput.bind(this);
         this.getInitialValues = this.getInitialValues.bind(this);
+        this.deleteFileInputField = this.deleteFileInputField.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -35,7 +38,8 @@ class ResourcesHandler extends Component {
         currentCount += 1;
 
         if (!(currentCount === 6)) {
-            const inputObj = { name: 'resourceFile' + currentCount, top: this.state.inputObject[currentCount - 2].top + this.state.top };
+            // const inputObj = { name: 'resourceFile' + currentCount, top: this.state.inputObject[currentCount - 2].top + this.state.top };
+            const inputObj = { name: 'resourceFile' + currentCount };
 
             this.setState({
                 inputCounter: currentCount,
@@ -60,6 +64,18 @@ class ResourcesHandler extends Component {
     
         //return initialValues object
         return initialValues;
+    }
+
+    deleteFileInputField = (index) => {
+        const inputObj = [...this.state.inputObject];
+        inputObj.splice(index, 1);
+
+        const currentCount = inputObj.length;
+
+        this.setState({
+            inputCounter: currentCount,
+            inputObject: inputObj,
+        });
     }
 
     onSave = (object) => {
@@ -105,7 +121,8 @@ class ResourcesHandler extends Component {
                                     <button type="button" className="btn btn-success" onClick={this.addInput}>Add File</button>
                                     <form onSubmit={handleSubmit}>
                                         {this.state.inputObject.map((input, index) => (
-                                            <div key={input.name}>
+                                            <div key={input.name} className="row mt-2">
+                                            <div className="col-md-11">
                                                 <input
                                                     id={input.name}
                                                     name={input.name}
@@ -114,7 +131,11 @@ class ResourcesHandler extends Component {
                                                     onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
                                                     onBlur={handleBlur}
                                                 />
-                                                <label htmlFor={input.name} style={{top: input.top}} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
+                                                <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
+                                            </div>
+                                            <div className="col-md-1">
+                                                <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => this.deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                            </div>
                                             </div>
                                         ))}
                                         <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
