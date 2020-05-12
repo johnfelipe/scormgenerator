@@ -1,6 +1,7 @@
 import * as types from './actions/types';
+import * as methods from './actions/methods';
 
-const initialState ={
+const initialState = {
     courseTitle: '',
     courseLogo: '',
     resourceFiles: [],
@@ -12,28 +13,12 @@ const initialState ={
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.ADD_COURSE_TITLE: {
-            return {
-                ...state,
-                courseTitle: action.courseTitle,
-            }
-        }
+        case types.ADD_COURSE_TITLE: return methods.addCourseTitle(state, action, state.courseTitle);
 
-        case types.ADD_COURSE_LOGO: {
-            return {
-                ...state,
-                courseLogo: action.courseLogo,
-            }
-        }
+        case types.ADD_COURSE_LOGO: return methods.addCourseLogo(state, action, state.courseLogo);
 
-        case types.ADD_COURSE_LESSONS: {
-            const lessonObj = {'lessonName': action.lessonName};
-
-            return {
-                ...state,
-                courseLessons: [...state.courseLessons, lessonObj],
-            }
-        }
+        case types.ADD_COURSE_LESSONS: return methods.addCourseLessons(state, action, initialState.courseLessons);
+        
         case types.UPDATE_COURSE_LESSONS: {
             return {
                 ...state,
