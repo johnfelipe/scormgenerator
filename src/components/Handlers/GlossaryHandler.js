@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 class GlossaryHandler extends Component {
 
@@ -17,6 +19,7 @@ class GlossaryHandler extends Component {
         this.onSave = this.onSave.bind(this);
         this.addInput = this.addInput.bind(this);
         this.getInitialValues = this.getInitialValues.bind(this);
+        this.deleteRowInputField = this.deleteRowInputField.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -58,24 +61,49 @@ class GlossaryHandler extends Component {
         });
     }
 
+    deleteRowInputField = (index) => {
+        const inputObj = [...this.state.inputObject];
+        inputObj.splice(index, 1);
+
+        const currentCount = inputObj.length;
+
+        this.setState({
+            inputCounter: currentCount,
+            inputObject: inputObj,
+        });
+    }
+
     onSave = (object) => {
+        console.log(object);
         let glossaryObj = [];
 
         let keyCount = 1;
         let valueCount = 1;
         for (var key in object) {
+            console.log(key);
             
-            let keyCompare = "glossaryKey" + keyCount;
-            let valueCompare = "glossaryValue" + valueCount;
             if (object.hasOwnProperty(key)) {
-                if (key === keyCompare) {
-                    glossaryObj[keyCount-1] = { ...glossaryObj[keyCount-1], key: object[key] };
-                    console.log(key + " -> " + object[key]);
-                    keyCount++;
-                } else if (key === valueCompare){
-                    glossaryObj[valueCount-1] = { ...glossaryObj[valueCount-1], value: object[key] };
-                    console.log(key + " -> " + object[key]);
-                    valueCount++;
+                if (key.includes("glossaryKey")) {
+                    if (object[key] !== "") {
+                        glossaryObj[keyCount-1] = { ...glossaryObj[keyCount-1], key: object[key] };
+                        console.log(key + " -> " + object[key]);
+                        console.log(keyCount);
+                        keyCount++;
+                    } else {
+                        console.log(keyCount);
+                        keyCount++;
+                    }
+                } else if (key.includes("glossaryValue")){
+                    if (object[key] !== "") {
+                        glossaryObj[valueCount-1] = { ...glossaryObj[valueCount-1], value: object[key] };
+                        console.log(key + " -> " + object[key]);
+                        console.log(valueCount);
+                        valueCount++;
+                    } else {
+                        console.log(valueCount);
+                        valueCount++;
+                    }
+                    
                 }
             }
         }
@@ -105,6 +133,7 @@ class GlossaryHandler extends Component {
                         initialValues= {initialValues}
 
                         onSubmit={values => {
+                            console.log(values);
                             this.onSave(values);
                         }}
                     >
@@ -122,8 +151,8 @@ class GlossaryHandler extends Component {
                                     <form onSubmit={handleSubmit}>
                                         <div className="glossary-input-container mt-2">
                                             {this.state.inputObject.map((input, index) => (
-                                                <div key={input.key + input.value} className="key-value-container row">
-                                                    <div className="col-md-4 mt-1">
+                                                <div key={input.key + input.value} className="key-value-container row mr-0 ml-0">
+                                                    <div className="col-md-3 mt-1 mb-1">
                                                         <input
                                                             id={input.key}
                                                             name={input.key}
@@ -135,7 +164,7 @@ class GlossaryHandler extends Component {
                                                             placeholder="Term"
                                                         />
                                                     </div>
-                                                    <div className="col-md-8 mt-1">
+                                                    <div className="col-md-8 mt-1 mb-1 pl-0">
                                                         <input
                                                             id={input.value}
                                                             name={input.value}
@@ -146,6 +175,9 @@ class GlossaryHandler extends Component {
                                                             onBlur={handleBlur}
                                                             placeholder="Definition"
                                                         />
+                                                    </div>
+                                                    <div className="col-md-1 mt-1 mb-1 pl-0 pr-0 text-center">
+                                                        <button className="btn btn-danger remove-file-input-row" title="Remove" onClick={() => this.deleteRowInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
                                                     </div>
                                                 </div>
                                             ))}
