@@ -79,17 +79,17 @@ class ResourcesHandler extends Component {
     }
 
     onSave = (object) => {
-        let resourcesObj = [];
+        let resourcesArr = [];
         let counter = 0
 
         for (var key in object) {
             if (object.hasOwnProperty(key)) {
-                resourcesObj[counter] = { ...resourcesObj[counter], file: object[key] };
+                resourcesArr[counter] = { ...resourcesArr[counter], file: object[key] };
             }
             counter++;
         }
 
-        this.props.resourceFilesHandler(resourcesObj);
+        this.props.resourceFilesHandler(resourcesArr);
 
         this.setModalShow(false)
     }

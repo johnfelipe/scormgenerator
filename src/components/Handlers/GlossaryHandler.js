@@ -75,7 +75,7 @@ class GlossaryHandler extends Component {
 
     onSave = (object) => {
         console.log(object);
-        let glossaryObj = [];
+        let glossaryArr = [];
 
         let keyCount = 1;
         let valueCount = 1;
@@ -83,14 +83,14 @@ class GlossaryHandler extends Component {
             if (object.hasOwnProperty(key)) {
                 if (key.includes("glossaryKey")) {
                     if (object[key] !== "") {
-                        glossaryObj[keyCount-1] = { ...glossaryObj[keyCount-1], key: object[key] };
+                        glossaryArr[keyCount-1] = { ...glossaryArr[keyCount-1], key: object[key] };
                         keyCount++;
                     } else {
                         keyCount++;
                     }
                 } else if (key.includes("glossaryValue")){
                     if (object[key] !== "") {
-                        glossaryObj[valueCount-1] = { ...glossaryObj[valueCount-1], value: object[key] };
+                        glossaryArr[valueCount-1] = { ...glossaryArr[valueCount-1], value: object[key] };
                         valueCount++;
                     } else {
                         valueCount++;
@@ -99,7 +99,7 @@ class GlossaryHandler extends Component {
             }
         }
 
-        this.props.glossaryHandler(glossaryObj);
+        this.props.glossaryHandler(glossaryArr);
         this.setModalShow(false)
     }
 
