@@ -113,3 +113,10 @@ export const chooseNavigationType = (state, action) => {
         navigationType: action.typeId,
     }
 }
+
+export const showHideProgressbar = (state, action) => {
+    return {
+        ...state,
+        showProgressbar: action.value,
+    }
+}

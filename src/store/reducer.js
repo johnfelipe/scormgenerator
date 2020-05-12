@@ -33,12 +33,8 @@ const reducer = (state = initialState, action) => {
 
         case types.NAVIGATION_TYPE: return methods.chooseNavigationType(state, action);
 
-        case types.SHOW_HIDE_PROGRESSBAR: {
-            return {
-                ...state,
-                showProgressbar: action.value,
-            }
-        }
+        case types.SHOW_HIDE_PROGRESSBAR: return methods.showHideProgressbar(state, action);
+
         default: {
             return state;
         }
