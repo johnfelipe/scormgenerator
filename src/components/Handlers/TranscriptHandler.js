@@ -24,7 +24,11 @@ class TranscriptHandler extends Component {
     }
 
     onSave = (object) => {
-        this.props.transcriptFileHandler(object);
+        let transcriptArr = [];
+
+        transcriptArr[0] = object;
+
+        this.props.transcriptFileHandler(transcriptArr);
 
         this.setModalShow(false)
     }
@@ -47,7 +51,7 @@ class TranscriptHandler extends Component {
                 <Modal.Body>
                     <Formik
                         initialValues={{ 
-                            transcriptFile: this.props.transcriptFileData.transcriptFile ? this.props.transcriptFileData.transcriptFile : '',
+                            transcriptFile: this.props.transcriptFileData[0] ? this.props.transcriptFileData[0].transcriptFile : '',
                         }}
 
                         onSubmit={values => {

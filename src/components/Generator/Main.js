@@ -210,20 +210,22 @@ class Main extends Component {
                                         {
                                             this.state.resourceFiles.length !== 0 ? 
                                             <span>
-                                            Files Uploaded: 
+                                            Files Uploaded: &nbsp;
                                             {this.state.resourceFiles.map((item) => (
                                                 <strong><label> {item.file.name},</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
-                                    <div className="col-md-4 mt-2 text-center">
-                                        <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
+                                    <div className="col-md-4 mt-2">
+                                        <div className="text-center">
+                                            <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
+                                        </div>
                                         {
                                             this.state.transcriptFile.length !== 0 ? 
                                             <span>
-                                            Files Uploaded: 
-                                            {this.state.resourceFiles.map((item) => (
-                                                <strong><label> {item.file.name},</label></strong>
+                                            File Uploaded: &nbsp;
+                                            {this.state.transcriptFile.map((item) => (
+                                                <strong><label> {item.transcriptFile.name},</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
