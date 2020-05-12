@@ -75,3 +75,19 @@ export const addLessonSlides = (state, action) => {
         courseLessons: lessons,
     }
 }
+
+export const editLessonSlideName = (state, action) => {
+    const lessonObj = {
+        ...state.courseLessons[action.currentClickedLessonId]
+    };
+
+    lessonObj.slides[action.index].slideName = action.slideName;
+
+    const lessons = [...state.courseLessons];
+    lessons[action.currentClickedLessonId] = lessonObj;
+
+    return {
+        ...state,
+        courseLessons: lessons,
+    }
+}
