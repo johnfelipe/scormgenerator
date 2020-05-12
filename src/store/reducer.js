@@ -21,20 +21,7 @@ const reducer = (state = initialState, action) => {
 
         case types.UPDATE_COURSE_LESSONS: return methods.updateCourseLessons(state, action);
 
-        case types.EDIT_COURSE_LESSON_NAME: {
-            const lessonObj = {
-                ...state.courseLessons[action.index]
-            };
-            lessonObj.lessonName = action.lessonName;
-    
-            const lessons = [...state.courseLessons];
-            lessons[action.index] = lessonObj;
-
-            return {
-                ...state,
-                courseLessons: lessons,
-            }
-        }
+        case types.EDIT_COURSE_LESSON_NAME: return methods.editCourseLessonName(state, action);
 
         case types.DELETE_LESSON: {
             const lessonArray = [...state.courseLessons];

@@ -27,3 +27,18 @@ export const updateCourseLessons = (state, action) => {
         courseLessons: action.courseLessons,
     }
 }
+
+export const editCourseLessonName = (state, action) => {
+    const lessonObj = {
+        ...state.courseLessons[action.index]
+    };
+    lessonObj.lessonName = action.lessonName;
+
+    const lessons = [...state.courseLessons];
+    lessons[action.index] = lessonObj;
+
+    return {
+        ...state,
+        courseLessons: lessons,
+    }
+}
