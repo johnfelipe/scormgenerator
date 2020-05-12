@@ -42,3 +42,13 @@ export const editCourseLessonName = (state, action) => {
         courseLessons: lessons,
     }
 }
+
+export const deleteLesson = (state, action) => {
+    const lessonArray = [...state.courseLessons];
+    lessonArray.splice(action.index, 1);
+
+    return {
+        ...state,
+        courseLessons: lessonArray,
+    }
+}

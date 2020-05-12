@@ -23,15 +23,7 @@ const reducer = (state = initialState, action) => {
 
         case types.EDIT_COURSE_LESSON_NAME: return methods.editCourseLessonName(state, action);
 
-        case types.DELETE_LESSON: {
-            const lessonArray = [...state.courseLessons];
-            lessonArray.splice(action.index, 1);
-
-            return {
-                ...state,
-                courseLessons: lessonArray,
-            }
-        }
+        case types.DELETE_LESSON: return methods.deleteLesson(state, action);
 
         case types.ADD_LESSON_SLIDES: {
             const lessonObj = {
