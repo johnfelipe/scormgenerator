@@ -56,9 +56,9 @@ class ResourcesHandler extends Component {
         //loop loop over fields array
         //if prop does not exit in the initialValues object,
         // pluck off the name and value props and add it to the initialValues object;
-        inputs.forEach((field) => {
+        inputs.forEach((field, index) => {
             if(!initialValues[field.name]) {
-                initialValues[field.name] = this.props.resourceFilesData[field.name] ? this.props.resourceFilesData[field.name] : '';
+                initialValues[field.name] = this.props.resourceFilesData[index] ? this.props.resourceFilesData[index].file : '';
             }
         });
     
@@ -79,7 +79,17 @@ class ResourcesHandler extends Component {
     }
 
     onSave = (object) => {
-        this.props.resourceFilesHandler(object);
+        let resourcesObj = [];
+        let counter = 0
+
+        for (var key in object) {
+            if (object.hasOwnProperty(key)) {
+                resourcesObj[counter] = { ...resourcesObj[counter], file: object[key] };
+            }
+            counter++;
+        }
+
+        this.props.resourceFilesHandler(resourcesObj);
 
         this.setModalShow(false)
     }
@@ -131,7 +141,7 @@ class ResourcesHandler extends Component {
                                                         onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
                                                         onBlur={handleBlur}
                                                     />
-                                                    <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].name : <span>Choose file</span> }</label>
+                                                    <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].file ? values[input.name].file.name : values[input.name].name : <span>Choose file</span> }</label>
                                                 </div>
                                                 <div className="col-md-1">
                                                     <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => this.deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
