@@ -26,7 +26,6 @@ class Main extends Component {
         this.state = {
             resourceFiles: [],
             transcriptFile: {},
-            showProgressbar: '',
             glossaryObject: [],
             currentClickedLessonId: '',
         };
@@ -41,6 +40,7 @@ class Main extends Component {
         console.log(this.props.courseTitle);
         console.log(this.props.courseLogo);
         console.log(this.props.navigationType);
+        console.log(this.props.showProgressbar);
         console.log(this.state.resourceFiles);
         console.log(this.state.transcriptFile);
         console.log(this.props.courseLessons);
@@ -130,6 +130,7 @@ class Main extends Component {
                         courseTitle: this.props.courseTitle,
                         courseLogo: this.props.courseLogo,
                         navigationType: this.props.navigationType,
+                        showProgressbar: this.props.showProgressbar ? this.props.showProgressbar : false,
                     }}
 
                     onSubmit={values => {
@@ -137,6 +138,7 @@ class Main extends Component {
                         this.props.addCourseTitle(values.courseTitle);
                         this.props.addCourseLogo(values.courseLogo);
                         this.props.chooseNavigationType(values.navigationType);
+                        this.props.showHideProgressbar(values.showProgressbar);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -194,11 +196,11 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-8 mt-2">
-                                        <NavigationHandler currentType={values.navigationType} handleChange={handleChange}/>
+                                        <NavigationHandler currentType={values.navigationType} name="navigationType" handleChange={handleChange}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="float-right mt-2">
-                                            <CheckBoxInput label="Show/Hide Progress Bar" />
+                                            <CheckBoxInput currentCbValue={values.showProgressbar} name="showProgressbar" label="Show/Hide Progress Bar" handleChange={handleChange} onBlur={handleBlur}/>
                                         </div>
                                     </div>
                                 </div>
@@ -311,6 +313,7 @@ const mapStateToProps = (state) => {
         courseLogo: state.courseLogo,
         courseLessons: state.courseLessons,
         navigationType: state.navigationType,
+        showProgressbar: state.showProgressbar,
     }
 }
 
@@ -326,6 +329,7 @@ const mapDispatchToProps = (dispatch) => {
         editLessonSlideName: (slideName, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideName: slideName, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
+        showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value})
     }
 }
 

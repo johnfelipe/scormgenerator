@@ -18,12 +18,14 @@ const reducer = (state = initialState, action) => {
                 courseTitle: action.courseTitle,
             }
         }
+
         case types.ADD_COURSE_LOGO: {
             return {
                 ...state,
                 courseLogo: action.courseLogo,
             }
         }
+
         case types.ADD_COURSE_LESSONS: {
             const lessonObj = {'lessonName': action.lessonName};
 
@@ -38,6 +40,7 @@ const reducer = (state = initialState, action) => {
                 courseLessons: action.courseLessons,
             }
         }
+
         case types.EDIT_COURSE_LESSON_NAME: {
             const lessonObj = {
                 ...state.courseLessons[action.index]
@@ -52,6 +55,7 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
+
         case types.DELETE_LESSON: {
             const lessonArray = [...state.courseLessons];
             lessonArray.splice(action.index, 1);
@@ -61,6 +65,7 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessonArray,
             }
         }
+
         case types.ADD_LESSON_SLIDES: {
             const lessonObj = {
                 ...state.courseLessons[action.index]
@@ -83,6 +88,7 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
+
         case types.EDIT_LESSON_SLIDE_NAME: {
             const lessonObj = {
                 ...state.courseLessons[action.currentClickedLessonId]
@@ -98,6 +104,7 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
+
         case types.DELETE_SLIDE: {
             const lessonObj = {
                 ...state.courseLessons[action.currentClickedLessonId]
@@ -112,10 +119,18 @@ const reducer = (state = initialState, action) => {
                 courseLessons: lessons,
             }
         }
+
         case types.NAVIGATION_TYPE: {
             return {
                 ...state,
                 navigationType: action.typeId,
+            }
+        }
+
+        case types.SHOW_HIDE_PROGRESSBAR: {
+            return {
+                ...state,
+                showProgressbar: action.value,
             }
         }
         default: {
