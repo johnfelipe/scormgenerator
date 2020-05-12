@@ -206,7 +206,7 @@ class Main extends Component {
                                     <div className="col-md-4 mt-2">
                                         <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
                                     </div>
-                                    <div className="col-md-4 mt-2">
+                                    <div className="col-md-4 mt-2 text-center">
                                         <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
