@@ -132,7 +132,7 @@ class GlossaryHandler extends Component {
                                                             onChange={handleChange}
                                                             value={values[input.key]}
                                                             onBlur={handleBlur}
-                                                            placeholder="Key"
+                                                            placeholder="Term"
                                                         />
                                                     </div>
                                                     <div className="col-md-8 mt-1">
@@ -144,7 +144,7 @@ class GlossaryHandler extends Component {
                                                             onChange={handleChange}
                                                             value={values[input.value]}
                                                             onBlur={handleBlur}
-                                                            placeholder="Value"
+                                                            placeholder="Definition"
                                                         />
                                                     </div>
                                                 </div>
