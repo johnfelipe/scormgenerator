@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
+import { Accordion, Card, Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 
 class SlideHandler extends Component {
@@ -8,6 +8,7 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
+            column: [],
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -99,7 +100,26 @@ class SlideHandler extends Component {
                                         <div id="slide-sidebar" className="col-md-3 pr-0">
                                             <Tabs defaultActiveKey="column" id="uncontrolled-tab" className="text-center">
                                                 <Tab eventKey="column" title="Column" className="mt-3">
-                                                    <span>Those lips that Love's own hand did make, Breathed forth the sound that said 'I hate', To me that languish'd for her sake: But when she saw my woeful state, Straight in her heart did mercy come, Chiding that tongue that ever sweet Was us'd in giving gentle doom; And taught it thus anew to greet; 'I hate' she alter'd with an end, That followed it as gentle day,</span>
+                                                    {/* {this.state.column.length != 0 ?
+                                                        this.state.column.map((item, index) => (
+                                                            <div key={index}></div>
+                                                        ))
+                                                        :
+                                                        <span></span>} */}
+
+                                                    <Accordion>
+                                                        <Card>
+                                                            <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
+                                                            Sample Section
+                                                            </Accordion.Toggle>
+                                                            <Accordion.Collapse eventKey="0">
+                                                            <Card.Body className="section-body">
+                                                                This will contain the rows and different kind of splitting a row just like in cornerstone.
+                                                            </Card.Body>
+                                                            </Accordion.Collapse>
+                                                        </Card>
+                                                    </Accordion>
+
                                                 </Tab>
                                                 <Tab eventKey="features" title="Features" className="mt-3">
                                                     <span>To me that languish'd for her sake: But when she saw my woeful state, </span>
