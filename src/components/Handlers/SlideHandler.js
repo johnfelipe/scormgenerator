@@ -12,12 +12,26 @@ class SlideHandler extends Component {
         };
         
         this.setModalShow = this.setModalShow.bind(this);
+        this.addColumn = this.addColumn.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.column);
     }
 
     setModalShow = (value) => {
         this.setState({
             modalShow: value,
+        });
+    }
+
+    addColumn = () => {
+        const currentCount = this.state.column.length + 1
+        const columnObj = { type: 'column', name: 'Column ' + currentCount }
+
+        this.setState({
+            column: [...this.state.column, columnObj],
         });
     }
 
@@ -100,25 +114,29 @@ class SlideHandler extends Component {
                                         <div id="slide-sidebar" className="col-md-3 pr-0">
                                             <Tabs defaultActiveKey="column" id="uncontrolled-tab" className="text-center">
                                                 <Tab eventKey="column" title="Column" className="mt-3">
-                                                    {/* {this.state.column.length != 0 ?
+                                                    {
+                                                        this.state.column.length !== 0 ?
                                                         this.state.column.map((item, index) => (
-                                                            <div key={index}></div>
+                                                            <>
+                                                                <Accordion key={index}>
+                                                                    <Card>
+                                                                        <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
+                                                                            {item.name}
+                                                                        </Accordion.Toggle>
+                                                                        <Accordion.Collapse eventKey="0">
+                                                                            <Card.Body className="section-body">
+                                                                                This will contain the rows and different kind of splitting a row just like in cornerstone.
+                                                                            </Card.Body>
+                                                                        </Accordion.Collapse>
+                                                                    </Card>
+                                                                </Accordion>
+                                                            </>
                                                         ))
                                                         :
-                                                        <span></span>} */}
+                                                        <span></span>
+                                                    }
 
-                                                    <Accordion>
-                                                        <Card>
-                                                            <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
-                                                            Sample Section
-                                                            </Accordion.Toggle>
-                                                            <Accordion.Collapse eventKey="0">
-                                                            <Card.Body className="section-body">
-                                                                This will contain the rows and different kind of splitting a row just like in cornerstone.
-                                                            </Card.Body>
-                                                            </Accordion.Collapse>
-                                                        </Card>
-                                                    </Accordion>
+                                                    <button type="button" className="sg-add-sortable-item-after" onClick={this.addColumn}>Add Column</button>
 
                                                 </Tab>
                                                 <Tab eventKey="features" title="Features" className="mt-3">
