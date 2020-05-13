@@ -118,7 +118,7 @@ class SlideHandler extends Component {
                                                         this.state.column.length !== 0 ?
                                                         this.state.column.map((item, index) => (
                                                             <>
-                                                                <Accordion key={index}>
+                                                                <Accordion key={index} className="mb-2">
                                                                     <Card>
                                                                         <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
                                                                             {item.name}
