@@ -104,7 +104,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   margin-left: 0rem !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .card-header-tabs .nav-link {
-  padding: 0.5rem 2.14rem !important;
+  width: calc(100% / 3);
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;

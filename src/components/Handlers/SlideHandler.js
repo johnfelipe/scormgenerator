@@ -97,7 +97,7 @@ class SlideHandler extends Component {
                                     <label htmlFor="showTitle" className="ml-1"> Display Title</label>
                                     <div className="row">
                                         <div id="slide-sidebar" className="col-md-3 pr-0">
-                                            <Tabs defaultActiveKey="column" id="uncontrolled-tab">
+                                            <Tabs defaultActiveKey="column" id="uncontrolled-tab" className="text-center">
                                                 <Tab eventKey="column" title="Column" className="mt-3">
                                                     <span>Those lips that Love's own hand did make, Breathed forth the sound that said 'I hate', To me that languish'd for her sake: But when she saw my woeful state, Straight in her heart did mercy come, Chiding that tongue that ever sweet Was us'd in giving gentle doom; And taught it thus anew to greet; 'I hate' she alter'd with an end, That followed it as gentle day,</span>
                                                 </Tab>
