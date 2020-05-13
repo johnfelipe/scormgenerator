@@ -125,7 +125,7 @@ class Main extends Component {
     render() {
         return (
             <div id="generator-container">
-            <Formik
+                <Formik
                     initialValues={{ 
                         courseTitle: this.props.courseTitle,
                         courseLogo: this.props.courseLogo,
@@ -211,8 +211,8 @@ class Main extends Component {
                                             this.state.resourceFiles.length !== 0 ? 
                                             <span>
                                             Files Uploaded: &nbsp;
-                                            {this.state.resourceFiles.map((item) => (
-                                                <strong><label> {item.file.name},</label></strong>
+                                            {this.state.resourceFiles.map((item, index) => (
+                                                index + 1 !== this.state.resourceFiles.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
@@ -225,7 +225,7 @@ class Main extends Component {
                                             <span>
                                             File Uploaded: &nbsp;
                                             {this.state.transcriptFile.map((item) => (
-                                                <strong><label> {item.transcriptFile.name},</label></strong>
+                                                <strong><label> {item.transcriptFile.name}</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
