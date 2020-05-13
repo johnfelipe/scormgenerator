@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
+import * as Yup from 'yup';
 
 class TranscriptHandler extends Component {
 
@@ -34,6 +35,9 @@ class TranscriptHandler extends Component {
     }
 
     render() {
+        const SUPPORTED_FORMATS = [
+            "application/pdf"
+        ];
         const transcriptModal = (
             <Modal
                 show={this.state.modalShow}
@@ -54,6 +58,17 @@ class TranscriptHandler extends Component {
                             transcriptFile: this.props.transcriptFileData[0] ? this.props.transcriptFileData[0].transcriptFile : '',
                         }}
 
+                        validationSchema={Yup.object().shape({
+                            transcriptFile: Yup.mixed()
+                                .required("A file is required")
+                                .test(
+                                    "fileFormat",
+                                    "Unsupported Format",
+                                    value => value && SUPPORTED_FORMATS.includes(value.type)
+                                )
+                            }
+                        )}
+
                         onSubmit={values => {
                             this.onSave(values);
                         }}
@@ -61,6 +76,8 @@ class TranscriptHandler extends Component {
                         {props => {
                             const {
                             values,
+                            touched,
+                            errors,
                             isSubmitting,
                             handleBlur,
                             handleSubmit,
@@ -75,9 +92,18 @@ class TranscriptHandler extends Component {
                                         className="form-control custom-file-input"
                                         onChange={(event) => {setFieldValue("transcriptFile", event.currentTarget.files[0]);}}
                                         onBlur={handleBlur}
-                                        accept="image/x-png,image/gif,image/jpeg"
+                                        accept="application/pdf"
                                     />
-                                    <label htmlFor="transcriptFile" className="custom-input-label custom-file-label" id="custom-form-label"> { values.transcriptFile ? values.transcriptFile.name : <span>Choose file</span> }</label>
+                                    <label 
+                                        htmlFor="transcriptFile"
+                                        className={(errors.transcriptFile && touched.transcriptFile && "error custom-input-label custom-file-label") || "custom-input-label custom-file-label"}
+                                        id="custom-form-label"
+                                    >
+                                        { values.transcriptFile ? values.transcriptFile.name : <span>Choose file</span> }
+                                    </label>
+                                    {errors.transcriptFile && touched.transcriptFile && (
+                                        <div className="input-feedback">{errors.transcriptFile}</div>
+                                    )}
                                     <button type="submit" className="btn btn-success float-right mt-1" disabled={isSubmitting}>Save</button>
                                 </form>
                             );

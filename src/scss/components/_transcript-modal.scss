@@ -9,6 +9,11 @@
                                 .custom-file-label {
                                     margin: 10px;
                                 }
+
+                                label.error {
+                                    border: 1px solid red;
+                                    color: red;
+                                }
                             }
                         }
                     }

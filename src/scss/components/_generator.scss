@@ -9,7 +9,7 @@
                     padding: 20px;
 
                     .row {
-                        input.error {
+                        input.error, label.error {
                             border-color: red;
                         }
                         

@@ -43,7 +43,7 @@ html body #root #generator-container {
   margin: 0 auto;
   padding: 20px;
 }
-html body #root #generator-container .row input.error {
+html body #root #generator-container .row input.error, html body #root #generator-container .row label.error {
   border-color: red;
 }
 html body #root #generator-container .row .input-feedback {
@@ -138,6 +138,10 @@ html body div.modal div.resources-modal div.modal-content div.modal-body form .c
 
 html body div.modal div.transcript-modal div.modal-content div.modal-body form .custom-file-label {
   margin: 10px;
+}
+html body div.modal div.transcript-modal div.modal-content div.modal-body form label.error {
+  border: 1px solid red;
+  color: red;
 }
 
 html body div.modal div.glossary-modal {
