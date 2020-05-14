@@ -158,11 +158,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100px;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container {
-  border-left: 1px solid #ddd;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  max-height: 750px;
+  max-height: 545px;
   overflow: auto;
 }
 html body div.modal .slide-modal-width {
