@@ -8,7 +8,7 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            column: [],
+            column: this.props.currentColumns ? this.props.currentColumns : [],
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -17,13 +17,23 @@ class SlideHandler extends Component {
     }
 
     componentDidUpdate() {
+        console.log('state.columns: ');
         console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
     }
 
-    setModalShow = (value) => {
+    setModalShow = (value, action) => {
+        
         this.setState({
             modalShow: value,
         });
+
+        if (!value && (action === "close")) {
+            this.setState({
+                column: this.props.currentColumns ? this.props.currentColumns : [],
+            });
+        }
     }
 
     addColumn = () => {
@@ -35,23 +45,25 @@ class SlideHandler extends Component {
         });
     }
 
-    onSave = (slideName, id) => {
+    onSave = (slide, columns, id) => {
         if (this.props.action === "add") {
-            this.props.addSlideChange(slideName, id);
+            const slideObj = {slideName: slide, columns: columns}
+            this.props.addSlideChange(slideObj, id);
             console.log("add");
         } else if (this.props.action === "edit") {
-            this.props.editSlideChange(slideName, id, this.props.currentClickedLessonId);
+            const slideObj = {slideName: slide, columns: columns}
+            this.props.editSlideChange(slideObj, id, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
-        this.setModalShow(false)
+        this.setModalShow(false, 'save')
     }
 
     render() {
         const slideModal = (
             <Modal
                 show={this.state.modalShow}
-                onHide={() => this.setModalShow(false)}
+                onHide={() => this.setModalShow(false, 'close')}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -76,7 +88,7 @@ class SlideHandler extends Component {
                         onSubmit={values => {
                             console.log(values.slideName);
                             console.log(values.showTitle);
-                            this.onSave(values.slideName, this.props.id);
+                            this.onSave(values.slideName, this.state.column, this.props.id);
                         }}
                     >
                         {props => {
@@ -165,10 +177,10 @@ class SlideHandler extends Component {
         return (
             <div id="slide-handler-container" className="d-inline">
                 {this.props.action === "add" ?
-                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true)}>Add Slide</button>
+                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
                 :
                     <div id="edit-slide-btn" className="d-inline">
-                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true)}>| Edit</button>
+                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true, 'edit')}>| Edit</button>
                     </div>
                 }
                 {slideModal}

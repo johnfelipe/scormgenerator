@@ -37,14 +37,14 @@ class Main extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.props.courseTitle);
-        console.log(this.props.courseLogo);
-        console.log(this.props.navigationType);
-        console.log(this.props.showProgressbar);
-        console.log(this.state.resourceFiles);
-        console.log(this.state.transcriptFile);
+        // console.log(this.props.courseTitle);
+        // console.log(this.props.courseLogo);
+        // console.log(this.props.navigationType);
+        // console.log(this.props.showProgressbar);
+        // console.log(this.state.resourceFiles);
+        // console.log(this.state.transcriptFile);
         console.log(this.props.courseLessons);
-        console.log(this.state.glossaryObject);
+        // console.log(this.state.glossaryObject);
     }
 
     // a little function to help us with reordering the result
@@ -277,6 +277,7 @@ class Main extends Component {
                                                                                                         <SlideHandler
                                                                                                             editSlideChange={this.props.editLessonSlideName}
                                                                                                             currentSlideName={item.slideName}
+                                                                                                            currentColumns={item.columns}
                                                                                                             currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                             action="edit"
                                                                                                             id={index}
@@ -343,8 +344,8 @@ const mapDispatchToProps = (dispatch) => {
         updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
-        addLessonSlides: (slideName, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideName: slideName, index: lessonId}),
-        editLessonSlideName: (slideName, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideName: slideName, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
+        addLessonSlides: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
+        editLessonSlideName: (slideObj, lessonId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, index: lessonId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
         showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value})
