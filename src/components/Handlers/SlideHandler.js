@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Accordion, Card, Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class SlideHandler extends Component {
 
@@ -13,6 +15,7 @@ class SlideHandler extends Component {
         
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
+        this.deleteColumn = this.deleteColumn.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -43,6 +46,17 @@ class SlideHandler extends Component {
         this.setState({
             column: [...this.state.column, columnObj],
         });
+    }
+
+    deleteColumn = (index) => {
+        console.log('index:');
+        console.log(index);
+        const columnArr = [...this.state.column];
+        columnArr.splice(index, 1);
+
+        this.setState({
+            column: columnArr,
+        })
     }
 
     onSave = (slide, columns, id) => {
@@ -134,6 +148,7 @@ class SlideHandler extends Component {
                                                                     <Card>
                                                                         <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
                                                                             {item.name}
+                                                                            <a className="float-right column-item-remove-btn" title="Remove" onClick={() => this.deleteColumn(index)}><FontAwesomeIcon icon={faTrash} /></a>
                                                                         </Accordion.Toggle>
                                                                         <Accordion.Collapse eventKey="0">
                                                                             <Card.Body className="section-body">

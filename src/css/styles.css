@@ -128,6 +128,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .section-header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .section-header .column-item-remove-btn {
+  cursor: pointer;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .section-body {
   border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
 }
@@ -159,6 +162,8 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
+  max-height: 750px;
+  overflow: auto;
 }
 html body div.modal .slide-modal-width {
   max-width: none;

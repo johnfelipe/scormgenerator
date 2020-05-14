@@ -48,6 +48,10 @@
 
                                             .section-header {
                                                 border-bottom: 2px solid rgba(0,0,0,.125) !important;
+
+                                                .column-item-remove-btn {
+                                                    cursor: pointer;
+                                                }
                                             }
 
                                             .section-body {
@@ -87,6 +91,8 @@
                                             border-top: 1px solid #ddd;
                                             border-bottom: 1px solid #ddd;
                                             border-right: 1px solid #ddd;
+                                            max-height: 750px;
+                                            overflow: auto;
                                         }
                                     }
                                 }
