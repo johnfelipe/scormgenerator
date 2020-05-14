@@ -150,9 +150,43 @@ class SlideHandler extends Component {
                                                                             {item.name}
                                                                             <a className="float-right column-item-remove-btn" title="Remove" onClick={() => this.deleteColumn(index)}><FontAwesomeIcon icon={faTrash} /></a>
                                                                         </Accordion.Toggle>
-                                                                        <Accordion.Collapse eventKey="0">
+                                                                        <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
                                                                             <Card.Body className="section-body">
-                                                                                This will contain the rows and different kind of splitting a row just like in cornerstone.
+                                                                                <ul class="sg-column-layout">
+                                                                                    <li>
+                                                                                        <span class="sg-1-1">1/1</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-1-2">1/2</span>
+                                                                                        <span class="sg-1-2">1/2</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-1-3">1/3</span>
+                                                                                        <span class="sg-2-3">2/3</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-2-3">2/3</span>
+                                                                                        <span class="sg-1-3">1/3</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-1-3">1/3</span>
+                                                                                        <span class="sg-1-3">1/3</span>
+                                                                                        <span class="sg-1-3">1/3</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-1-4">1/4</span>
+                                                                                        <span class="sg-1-4">1/4</span>
+                                                                                        <span class="sg-1-4">1/4</span>
+                                                                                        <span class="sg-1-4">1/4</span>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <span class="sg-1-5">1/5</span>
+                                                                                        <span class="sg-1-5">1/5</span>
+                                                                                        <span class="sg-1-5">1/5</span>
+                                                                                        <span class="sg-1-5">1/5</span>
+                                                                                        <span class="sg-1-5">1/5</span>
+                                                                                    </li>
+                                                                                </ul>
                                                                             </Card.Body>
                                                                         </Accordion.Collapse>
                                                                     </Card>
