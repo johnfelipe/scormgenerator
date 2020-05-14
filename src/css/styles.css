@@ -120,6 +120,10 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 10px;
+  max-height: 500px;
+  overflow: auto;
+  margin-top: 1rem !important;
+  padding-top: 0 !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .section-header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
