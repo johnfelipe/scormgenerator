@@ -175,8 +175,17 @@ class SlideHandler extends Component {
                                             </Tabs>
                                         </div>
                                         <div id="slide-content" className="col-md-9 pl-0">
-                                            <div id="slide-content-container" className="h-100">
-
+                                            <div id="slide-content-container" className="border p-3 h-100">
+                                                    {
+                                                        this.state.column.length !== 0 ?
+                                                        this.state.column.map((item, index) => (
+                                                            <div key={index} id={item.name} className="border p-5 text-center mt-2">
+                                                                {item.name}
+                                                            </div>
+                                                        ))
+                                                        :
+                                                        <span></span>
+                                                    }
                                             </div>
                                         </div>
                                     </div>
