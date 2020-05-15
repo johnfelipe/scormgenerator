@@ -3,7 +3,8 @@ import { Accordion, Card, Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import ContentEditable from 'react-contenteditable'
+import ContentEditable from 'react-contenteditable';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class SlideHandler extends Component {
 
@@ -91,6 +92,56 @@ class SlideHandler extends Component {
         })
     }
 
+    // a little function to help us with reordering the result
+    reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+    
+        return result;
+    };
+
+    /**
+     * Moves an item from one list to another list.
+     */
+    move = (source, destination, droppableSource, droppableDestination) => {
+        const sourceClone = Array.from(source);
+        const destClone = Array.from(destination);
+        const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+        destClone.splice(droppableDestination.index, 0, removed);
+
+        const result = {};
+        result[droppableSource.droppableId] = sourceClone;
+        result[droppableDestination.droppableId] = destClone;
+
+        return result;
+    };
+
+    onDragEnd = result => {
+        const { source, destination } = result;
+        
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if (source.droppableId === destination.droppableId) {
+            const currentColumnList = this.state.column;
+
+            const reordered_slides = this.reorder(
+                currentColumnList,
+                source.index,
+                destination.index
+            );
+            let columns = reordered_slides;
+
+            this.setState({
+                column: columns,
+            })
+        }
+    };
+
     onSave = (slide, columns, id) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -173,46 +224,65 @@ class SlideHandler extends Component {
                                                 <Tab eventKey="column" title="Column" className="mt-3">
                                                     {
                                                         this.state.column.length !== 0 ?
-                                                        this.state.column.map((item, columnIndex) => (
-                                                            <>
-                                                                <Accordion key={columnIndex} className="mb-2">
-                                                                    <Card>
-                                                                        <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
-                                                                            <ContentEditable
-                                                                                html={item.name}
-                                                                                onChange={(event) => this.handleContentEditable(event, columnIndex)}
-                                                                                className="content-editable d-inline"
-                                                                            />
-                                                                            <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
-                                                                        </Accordion.Toggle>
-                                                                        <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
-                                                                            <Card.Body className="section-body">
-                                                                                <ul className="sg-column-layout">
-                                                                                    {this.state.columnSizes.map((item, sizeIndex) => (
-                                                                                        this.state.column[columnIndex].active === sizeIndex ?
-                                                                                            <li key={sizeIndex} className="sg-active">
-                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) => (
-                                                                                                    <span key={index} className={item.class}>
-                                                                                                        {item.size}
-                                                                                                    </span>
-                                                                                                ))}
-                                                                                            </li>
-                                                                                        :
-                                                                                            <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex, item.id)}>
-                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
-                                                                                                    <span key={index} className={item.class}>
-                                                                                                        {item.size}
-                                                                                                    </span>
-                                                                                                ))}
-                                                                                            </li>
-                                                                                    ))}
-                                                                                </ul>
-                                                                            </Card.Body>
-                                                                        </Accordion.Collapse>
-                                                                    </Card>
-                                                                </Accordion>
-                                                            </>
-                                                        ))
+                                                            <DragDropContext onDragEnd={this.onDragEnd}>
+                                                                <Droppable droppableId="columns">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef}>
+                                                                            {this.state.column.map((item, columnIndex) => (
+                                                                                <Draggable
+                                                                                    key={'draggable-' + columnIndex}
+                                                                                    draggableId={'' + columnIndex}
+                                                                                    index={columnIndex}>
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                        >
+                                                                                            <Accordion key={'accordion-column-' + columnIndex} className="mb-2">
+                                                                                                <Card>
+                                                                                                    <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
+                                                                                                        <ContentEditable
+                                                                                                            html={item.name}
+                                                                                                            onChange={(event) => this.handleContentEditable(event, columnIndex)}
+                                                                                                            className="content-editable d-inline"
+                                                                                                        />
+                                                                                                        <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
+                                                                                                    </Accordion.Toggle>
+                                                                                                    <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
+                                                                                                        <Card.Body className="section-body">
+                                                                                                            <ul className="sg-column-layout">
+                                                                                                                {this.state.columnSizes.map((item, sizeIndex) => (
+                                                                                                                    this.state.column[columnIndex].active === sizeIndex ?
+                                                                                                                        <li key={sizeIndex} className="sg-active">
+                                                                                                                            {this.state.columnSizes[sizeIndex].items.map((item, index) => (
+                                                                                                                                <span key={index} className={item.class}>
+                                                                                                                                    {item.size}
+                                                                                                                                </span>
+                                                                                                                            ))}
+                                                                                                                        </li>
+                                                                                                                    :
+                                                                                                                        <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex, item.id)}>
+                                                                                                                            {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
+                                                                                                                                <span key={index} className={item.class}>
+                                                                                                                                    {item.size}
+                                                                                                                                </span>
+                                                                                                                            ))}
+                                                                                                                        </li>
+                                                                                                                ))}
+                                                                                                            </ul>
+                                                                                                        </Card.Body>
+                                                                                                    </Accordion.Collapse>
+                                                                                                </Card>
+                                                                                            </Accordion>
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </DragDropContext>
                                                         :
                                                         <span></span>
                                                     }
