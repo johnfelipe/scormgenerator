@@ -13,13 +13,13 @@ class SlideHandler extends Component {
             modalShow: false,
             column: this.props.currentColumns ? this.props.currentColumns : [],
             columnSizes: [
-                { items: [{ size: "1/1", class: "sg-1-1"}]},
-                { items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
-                { items: [{ size: "1/3", class: "sg-1-3"}, { size: "2/3", class: "sg-2-3"}]},
-                { items: [{ size: "2/3", class: "sg-2-3"}, { size: "1/3", class: "sg-1-3"}]},
-                { items: [{ size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}]},
-                { items: [{ size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}]},
-                { items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
+                { id: 0,items: [{ size: "1/1", class: "sg-1-1"}]},
+                { id: 1,items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
+                { id: 2,items: [{ size: "1/3", class: "sg-1-3"}, { size: "2/3", class: "sg-2-3"}]},
+                { id: 3,items: [{ size: "2/3", class: "sg-2-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { id: 4,items: [{ size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { id: 5,items: [{ size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}]},
+                { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
             ]
         };
         
@@ -52,7 +52,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, size: '' }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1 }
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -80,10 +80,11 @@ class SlideHandler extends Component {
         })
     }
 
-    handleSizeActive = (columnIndex, sizeIndex) => {
+    handleSizeActive = (columnIndex, sizeIndex, sizeId) => {
         const columnSizesObj = this.state.column;
 
         columnSizesObj[columnIndex].active = sizeIndex;
+        columnSizesObj[columnIndex].sizeId = sizeId;
 
         this.setState({
             column: columnSizesObj,
@@ -139,7 +140,6 @@ class SlideHandler extends Component {
                         {props => {
                             const {
                             values,
-                            isSubmitting,
                             handleChange,
                             handleBlur,
                             handleSubmit,
@@ -162,7 +162,7 @@ class SlideHandler extends Component {
                                         name="showTitle"
                                         type="checkbox"
                                         value={true}
-                                        // checked={values.showTitle === true}
+                                        checked={values.showTitle === true}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
@@ -191,14 +191,14 @@ class SlideHandler extends Component {
                                                                                     {this.state.columnSizes.map((item, sizeIndex) => (
                                                                                         this.state.column[columnIndex].active === sizeIndex ?
                                                                                             <li key={sizeIndex} className="sg-active">
-                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
+                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) => (
                                                                                                     <span key={index} className={item.class}>
                                                                                                         {item.size}
                                                                                                     </span>
                                                                                                 ))}
                                                                                             </li>
                                                                                         :
-                                                                                            <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex)}>
+                                                                                            <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex, item.id)}>
                                                                                                 {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
                                                                                                     <span key={index} className={item.class}>
                                                                                                         {item.size}
@@ -233,9 +233,101 @@ class SlideHandler extends Component {
                                                     {
                                                         this.state.column.length !== 0 ?
                                                         this.state.column.map((item, index) => (
-                                                            <div key={index} id={item.name} className="border p-5 text-center mt-2">
-                                                                {item.name}
-                                                            </div>
+                                                            item.sizeId === 0 || item.sizeId === -1 ?
+                                                                <div key={index} className="container p-0 pb-3">
+                                                                    <div key={index} id={item.name} className="border p-5 text-center sg-column mt-2">
+                                                                        {item.name}
+                                                                    </div>
+                                                                </div>
+                                                            :
+                                                                item.sizeId === 1 ?
+                                                                    <div key={index} className="container p-0 pb-3">
+                                                                        <div className="row w-100 m-0">
+                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-2">
+                                                                                {item.name}
+                                                                            </div>
+                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-2">
+                                                                                {item.name}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                :
+                                                                    item.sizeId === 2 ?
+                                                                        <div key={index} className="container p-0 pb-3">
+                                                                            <div className="row w-100 m-0">
+                                                                                <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                    {item.name}
+                                                                                </div>
+                                                                                <div id={item.name} className="border d-inline p-5 text-center sg-column sg-2-3">
+                                                                                    {item.name}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    :
+                                                                        item.sizeId === 3 ?
+                                                                            <div key={index} className="container p-0 pb-3">
+                                                                                <div className="row w-100 m-0">
+                                                                                    <div id={item.name} className="border d-inline p-5 text-center sg-column sg-2-3">
+                                                                                        {item.name}
+                                                                                    </div>
+                                                                                    <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        {item.name}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        :
+                                                                            item.sizeId === 4 ?
+                                                                                <div key={index} className="container p-0 pb-3">
+                                                                                    <div className="row w-100 m-0">
+                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            :
+                                                                                item.sizeId === 5 ?
+                                                                                    <div key={index} className="container p-0 pb-3">
+                                                                                        <div className="row w-100 m-0">
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                :
+                                                                                    <div key={index} className="container p-0 pb-3">
+                                                                                        <div className="row w-100 m-0">
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                         ))
                                                         :
                                                         <span></span>
@@ -243,7 +335,7 @@ class SlideHandler extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-success float-right mt-2" disabled={isSubmitting}>Save</button>
+                                    <button type="submit" className="btn btn-success float-right mt-2">Save</button>
                                 </form>
                             );
                         }}
