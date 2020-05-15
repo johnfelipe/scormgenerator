@@ -12,11 +12,21 @@ class SlideHandler extends Component {
         this.state = {
             modalShow: false,
             column: this.props.currentColumns ? this.props.currentColumns : [],
+            columnSizes: [
+                { items: [{ size: "1/1", class: "sg-1-1"}]},
+                { items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
+                { items: [{ size: "1/3", class: "sg-1-3"}, { size: "2/3", class: "sg-2-3"}]},
+                { items: [{ size: "2/3", class: "sg-2-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { items: [{ size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { items: [{ size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}]},
+                { items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
+            ]
         };
         
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
         this.deleteColumn = this.deleteColumn.bind(this);
+        this.handleSizeActive = this.handleSizeActive.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -42,7 +52,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1 }
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -67,6 +77,16 @@ class SlideHandler extends Component {
 
         this.setState({
             column: columnObj,
+        })
+    }
+
+    handleSizeActive = (columnIndex, sizeIndex) => {
+        const columnSizesObj = this.state.column;
+
+        columnSizesObj[columnIndex].active = sizeIndex;
+
+        this.setState({
+            column: columnSizesObj,
         })
     }
 
@@ -153,54 +173,39 @@ class SlideHandler extends Component {
                                                 <Tab eventKey="column" title="Column" className="mt-3">
                                                     {
                                                         this.state.column.length !== 0 ?
-                                                        this.state.column.map((item, index) => (
+                                                        this.state.column.map((item, columnIndex) => (
                                                             <>
-                                                                <Accordion key={index} className="mb-2">
+                                                                <Accordion key={columnIndex} className="mb-2">
                                                                     <Card>
                                                                         <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
                                                                             <ContentEditable
                                                                                 html={item.name}
-                                                                                onChange={(event) => this.handleContentEditable(event, index)}
+                                                                                onChange={(event) => this.handleContentEditable(event, columnIndex)}
                                                                                 className="content-editable d-inline"
                                                                             />
-                                                                            <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(index)}><FontAwesomeIcon icon={faTrash}/></button>
+                                                                            <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
                                                                         </Accordion.Toggle>
                                                                         <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
                                                                             <Card.Body className="section-body">
-                                                                                <ul class="sg-column-layout">
-                                                                                    <li>
-                                                                                        <span class="sg-1-1">1/1</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-1-2">1/2</span>
-                                                                                        <span class="sg-1-2">1/2</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-1-3">1/3</span>
-                                                                                        <span class="sg-2-3">2/3</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-2-3">2/3</span>
-                                                                                        <span class="sg-1-3">1/3</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-1-3">1/3</span>
-                                                                                        <span class="sg-1-3">1/3</span>
-                                                                                        <span class="sg-1-3">1/3</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-1-4">1/4</span>
-                                                                                        <span class="sg-1-4">1/4</span>
-                                                                                        <span class="sg-1-4">1/4</span>
-                                                                                        <span class="sg-1-4">1/4</span>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                        <span class="sg-1-5">1/5</span>
-                                                                                        <span class="sg-1-5">1/5</span>
-                                                                                        <span class="sg-1-5">1/5</span>
-                                                                                        <span class="sg-1-5">1/5</span>
-                                                                                        <span class="sg-1-5">1/5</span>
-                                                                                    </li>
+                                                                                <ul className="sg-column-layout">
+                                                                                    {this.state.columnSizes.map((item, sizeIndex) => (
+                                                                                        this.state.column[columnIndex].active === sizeIndex ?
+                                                                                            <li key={sizeIndex} className="sg-active" onClick={() => this.handleSizeActive(columnIndex, sizeIndex)}>
+                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
+                                                                                                    <span key={index} className={item.class}>
+                                                                                                        {item.size}
+                                                                                                    </span>
+                                                                                                ))}
+                                                                                            </li>
+                                                                                        :
+                                                                                            <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex)}>
+                                                                                                {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
+                                                                                                    <span key={index} className={item.class}>
+                                                                                                        {item.size}
+                                                                                                    </span>
+                                                                                                ))}
+                                                                                            </li>
+                                                                                    ))}
                                                                                 </ul>
                                                                             </Card.Body>
                                                                         </Accordion.Collapse>
