@@ -3,6 +3,7 @@ import { Accordion, Card, Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import ContentEditable from 'react-contenteditable'
 
 class SlideHandler extends Component {
 
@@ -56,6 +57,16 @@ class SlideHandler extends Component {
 
         this.setState({
             column: columnArr,
+        })
+    }
+    
+    handleContentEditable = (event, index) => {
+        const columnObj = this.state.column;
+
+        columnObj[index].name = event.target.value;
+
+        this.setState({
+            column: columnObj,
         })
     }
 
@@ -147,8 +158,12 @@ class SlideHandler extends Component {
                                                                 <Accordion key={index} className="mb-2">
                                                                     <Card>
                                                                         <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
-                                                                            {item.name}
-                                                                            <a className="float-right column-item-remove-btn" title="Remove" onClick={() => this.deleteColumn(index)}><FontAwesomeIcon icon={faTrash} /></a>
+                                                                            <ContentEditable
+                                                                                html={item.name}
+                                                                                onChange={(event) => this.handleContentEditable(event, index)}
+                                                                                className="content-editable d-inline"
+                                                                            />
+                                                                            <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(index)}><FontAwesomeIcon icon={faTrash}/></button>
                                                                         </Accordion.Toggle>
                                                                         <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
                                                                             <Card.Body className="section-body">
