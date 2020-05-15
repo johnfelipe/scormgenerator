@@ -52,7 +52,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1 }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, size: '' }
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -190,7 +190,7 @@ class SlideHandler extends Component {
                                                                                 <ul className="sg-column-layout">
                                                                                     {this.state.columnSizes.map((item, sizeIndex) => (
                                                                                         this.state.column[columnIndex].active === sizeIndex ?
-                                                                                            <li key={sizeIndex} className="sg-active" onClick={() => this.handleSizeActive(columnIndex, sizeIndex)}>
+                                                                                            <li key={sizeIndex} className="sg-active">
                                                                                                 {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
                                                                                                     <span key={index} className={item.class}>
                                                                                                         {item.size}
