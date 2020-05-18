@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -230,48 +232,53 @@ class SlideHandler extends Component {
                                         <div id="slide-sidebar" className="col-md-3 pr-0">
                                             <Tabs defaultActiveKey="column" id="uncontrolled-tab" className="text-center">
                                                 <Tab eventKey="column" title="Column" className="mt-3">
-                                                    {
-                                                        this.state.column.length !== 0 ?
-                                                            <DragDropContext onDragEnd={this.onDragEnd}>
-                                                                <Droppable droppableId="columns">
-                                                                    {(provided) => (
-                                                                        <div ref={provided.innerRef}>
-                                                                            {this.state.column.map((item, columnIndex) => (
-                                                                                <Draggable
-                                                                                    key={'draggable-' + columnIndex}
-                                                                                    draggableId={'' + columnIndex}
-                                                                                    index={columnIndex}>
-                                                                                    {(provided) => (
-                                                                                        <div
-                                                                                            ref={provided.innerRef}
-                                                                                            {...provided.draggableProps}
-                                                                                            {...provided.dragHandleProps}
-                                                                                        >
-                                                                                            <SlideColumn 
-                                                                                                columnIndex={columnIndex}
-                                                                                                name={item.name}
-                                                                                                deleteColumn={this.deleteColumn}
-                                                                                                columnSizes={this.state.columnSizes}
-                                                                                                column={this.state.column}
-                                                                                                handleSizeActive={this.handleSizeActive}
-                                                                                            />
-                                                                                        </div>
-                                                                                    )}
-                                                                                </Draggable>
-                                                                            ))}
-                                                                        </div>
-                                                                    )}
-                                                                </Droppable>
-                                                            </DragDropContext>
-                                                        :
-                                                        <span></span>
-                                                    }
+                                                    <div className="sg-workspace-content-section">
+                                                        {
+                                                            this.state.column.length !== 0 ?
+                                                                <DragDropContext onDragEnd={this.onDragEnd}>
+                                                                    <Droppable droppableId="columns">
+                                                                        {(provided) => (
+                                                                            <div ref={provided.innerRef}>
+                                                                                {this.state.column.map((item, columnIndex) => (
+                                                                                    <Draggable
+                                                                                        key={'draggable-' + columnIndex}
+                                                                                        draggableId={'' + columnIndex}
+                                                                                        index={columnIndex}>
+                                                                                        {(provided) => (
+                                                                                            <div
+                                                                                                ref={provided.innerRef}
+                                                                                                {...provided.draggableProps}
+                                                                                                {...provided.dragHandleProps}
+                                                                                            >
+                                                                                                <SlideColumn 
+                                                                                                    columnIndex={columnIndex}
+                                                                                                    name={item.name}
+                                                                                                    deleteColumn={this.deleteColumn}
+                                                                                                    columnSizes={this.state.columnSizes}
+                                                                                                    column={this.state.column}
+                                                                                                    handleSizeActive={this.handleSizeActive}
+                                                                                                />
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </Draggable>
+                                                                                ))}
+                                                                            </div>
+                                                                        )}
+                                                                    </Droppable>
+                                                                </DragDropContext>
+                                                            :
+                                                            <span></span>
+                                                        }
 
-                                                    <button type="button" className="sg-add-sortable-item-after" onClick={this.addColumn}>Add Column</button>
-
+                                                        <button type="button" className="sg-add-sortable-item-after" onClick={this.addColumn}><span><FontAwesomeIcon icon={faPlus}/>Add Column</span></button>
+                                                    </div>
                                                 </Tab>
                                                 <Tab eventKey="features" title="Features" className="mt-3">
-                                                    <span>To me that languish'd for her sake: But when she saw my woeful state, </span>
+                                                    <div className="sg-element-library">
+                                                        <div className="sg-element-library-item draggable">
+                                                        <h4>Content Area</h4>
+                                                        </div>
+                                                    </div>
                                                 </Tab>
                                                 <Tab eventKey="editor" title="Editor" className="mt-3">
                                                     <span>Straight in her heart did mercy come, Chiding that tongue that ever sweet Was us'd in giving gentle doom; And taught it thus anew to greet; 'I hate' she alter'd with an end, That followed it as gentle day,</span>
@@ -285,7 +292,7 @@ class SlideHandler extends Component {
                                                         this.state.column.map((item, index) => (
                                                             item.sizeId === 0 || item.sizeId === -1 ?
                                                                 <div key={index} className="container p-0 pb-3">
-                                                                    <div key={index} id={item.name} className="border p-5 text-center sg-column mt-2">
+                                                                    <div key={index} id={item.name} className="p-5 text-center sg-column mt-2">
                                                                         {item.name}
                                                                     </div>
                                                                 </div>
@@ -293,10 +300,10 @@ class SlideHandler extends Component {
                                                                 item.sizeId === 1 ?
                                                                     <div key={index} className="container p-0 pb-3">
                                                                         <div className="row w-100 m-0">
-                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-2">
+                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                 {item.name}
                                                                             </div>
-                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-2">
+                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                 {item.name}
                                                                             </div>
                                                                         </div>
@@ -305,10 +312,10 @@ class SlideHandler extends Component {
                                                                     item.sizeId === 2 ?
                                                                         <div key={index} className="container p-0 pb-3">
                                                                             <div className="row w-100 m-0">
-                                                                                <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                     {item.name}
                                                                                 </div>
-                                                                                <div id={item.name} className="border d-inline p-5 text-center sg-column sg-2-3">
+                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
                                                                                     {item.name}
                                                                                 </div>
                                                                             </div>
@@ -317,10 +324,10 @@ class SlideHandler extends Component {
                                                                         item.sizeId === 3 ?
                                                                             <div key={index} className="container p-0 pb-3">
                                                                                 <div className="row w-100 m-0">
-                                                                                    <div id={item.name} className="border d-inline p-5 text-center sg-column sg-2-3">
+                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
                                                                                         {item.name}
                                                                                     </div>
-                                                                                    <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                         {item.name}
                                                                                     </div>
                                                                                 </div>
@@ -329,13 +336,13 @@ class SlideHandler extends Component {
                                                                             item.sizeId === 4 ?
                                                                                 <div key={index} className="container p-0 pb-3">
                                                                                     <div className="row w-100 m-0">
-                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                        <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                             {item.name}
                                                                                         </div>
                                                                                     </div>
@@ -344,16 +351,16 @@ class SlideHandler extends Component {
                                                                                 item.sizeId === 5 ?
                                                                                     <div key={index} className="container p-0 pb-3">
                                                                                         <div className="row w-100 m-0">
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-4">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                         </div>
@@ -361,19 +368,19 @@ class SlideHandler extends Component {
                                                                                 :
                                                                                     <div key={index} className="container p-0 pb-3">
                                                                                         <div className="row w-100 m-0">
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
                                                                                                 {item.name}
                                                                                             </div>
-                                                                                            <div id={item.name} className="border d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                         </div>
