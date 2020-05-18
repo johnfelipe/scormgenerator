@@ -3,7 +3,8 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -275,8 +276,15 @@ class SlideHandler extends Component {
                                                 </Tab>
                                                 <Tab eventKey="features" title="Features" className="mt-3">
                                                     <div className="sg-element-library">
-                                                        <div className="sg-element-library-item draggable">
-                                                        <h4>Content Area</h4>
+                                                        <div className="sg-element-library-item">
+                                                            <FontAwesomeIcon className="feature-icon" icon={faFileAudio}/>
+                                                            <h4>Audio</h4>
+                                                            <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                        </div>
+                                                        <div className="sg-element-library-item">
+                                                            <FontAwesomeIcon className="feature-icon" icon={faSquare}/>
+                                                            <h4>Content Area</h4>
+                                                            <FontAwesomeIcon icon={faArrowsAlt}/>
                                                         </div>
                                                     </div>
                                                 </Tab>
