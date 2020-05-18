@@ -142,14 +142,14 @@ class SlideHandler extends Component {
         }
     };
 
-    onSave = (slide, columns, id) => {
+    onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
-            this.props.addSlideChange(slideObj, id);
+            this.props.addSlideChange(slideObj, slideId);
             console.log("add");
         } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, columns: columns}
-            this.props.editSlideChange(slideObj, id, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, slideId, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -185,7 +185,7 @@ class SlideHandler extends Component {
                         onSubmit={values => {
                             console.log(values.slideName);
                             console.log(values.showTitle);
-                            this.onSave(values.slideName, this.state.column, this.props.id);
+                            this.onSave(values.slideName, this.state.column, this.props.slideId);
                         }}
                     >
                         {props => {
