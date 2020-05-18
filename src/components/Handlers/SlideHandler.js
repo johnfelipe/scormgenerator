@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Accordion, Card, Modal, Tab, Tabs } from 'react-bootstrap';
+import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import ContentEditable from 'react-contenteditable';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+// components
+import SlideColumn from '../Slide/Columns';
 
 class SlideHandler extends Component {
 
@@ -239,42 +239,14 @@ class SlideHandler extends Component {
                                                                                             {...provided.draggableProps}
                                                                                             {...provided.dragHandleProps}
                                                                                         >
-                                                                                            <Accordion key={'accordion-column-' + columnIndex} className="mb-2">
-                                                                                                <Card>
-                                                                                                    <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2">
-                                                                                                        <ContentEditable
-                                                                                                            html={item.name}
-                                                                                                            onChange={(event) => this.handleContentEditable(event, columnIndex)}
-                                                                                                            className="content-editable d-inline"
-                                                                                                        />
-                                                                                                        <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.deleteColumn(columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
-                                                                                                    </Accordion.Toggle>
-                                                                                                    <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
-                                                                                                        <Card.Body className="section-body">
-                                                                                                            <ul className="sg-column-layout">
-                                                                                                                {this.state.columnSizes.map((item, sizeIndex) => (
-                                                                                                                    this.state.column[columnIndex].active === sizeIndex ?
-                                                                                                                        <li key={sizeIndex} className="sg-active">
-                                                                                                                            {this.state.columnSizes[sizeIndex].items.map((item, index) => (
-                                                                                                                                <span key={index} className={item.class}>
-                                                                                                                                    {item.size}
-                                                                                                                                </span>
-                                                                                                                            ))}
-                                                                                                                        </li>
-                                                                                                                    :
-                                                                                                                        <li key={sizeIndex} onClick={() => this.handleSizeActive(columnIndex, sizeIndex, item.id)}>
-                                                                                                                            {this.state.columnSizes[sizeIndex].items.map((item, index) =>(
-                                                                                                                                <span key={index} className={item.class}>
-                                                                                                                                    {item.size}
-                                                                                                                                </span>
-                                                                                                                            ))}
-                                                                                                                        </li>
-                                                                                                                ))}
-                                                                                                            </ul>
-                                                                                                        </Card.Body>
-                                                                                                    </Accordion.Collapse>
-                                                                                                </Card>
-                                                                                            </Accordion>
+                                                                                            <SlideColumn 
+                                                                                                columnIndex={columnIndex}
+                                                                                                name={item.name}
+                                                                                                deleteColumn={this.deleteColumn}
+                                                                                                columnSizes={this.state.columnSizes}
+                                                                                                column={this.state.column}
+                                                                                                handleSizeActive={this.handleSizeActive}
+                                                                                            />
                                                                                         </div>
                                                                                     )}
                                                                                 </Draggable>
