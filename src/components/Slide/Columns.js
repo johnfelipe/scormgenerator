@@ -36,7 +36,7 @@ class Columns extends Component {
                     <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2" onClick={this.collapseListener}>
                         <ContentEditable
                             html={this.props.name}
-                            onChange={(event) => this.handleContentEditable(event, this.props.columnIndex)}
+                            onChange={(event) => this.props.handleContentEditable(event, this.props.columnIndex)}
                             className="content-editable d-inline"
                         />
                         <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.props.deleteColumn(this.props.columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
