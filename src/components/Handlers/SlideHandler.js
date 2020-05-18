@@ -284,44 +284,59 @@ class SlideHandler extends Component {
                                         </div>
                                         <div id="slide-content" className="col-md-9 pl-0">
                                             <div id="slide-content-container" className="border p-3 h-100">
-                                                    {
-                                                        this.state.column.length !== 0 ?
-                                                        this.state.column.map((item, index) => (
-                                                            item.sizeId === 0 || item.sizeId === -1 ?
+                                                {
+                                                    this.state.column.length !== 0 ?
+                                                    this.state.column.map((item, index) => (
+                                                        item.sizeId === 0 || item.sizeId === -1 ?
+                                                            <div key={index} className="container p-0 pb-3">
+                                                                <div key={index} id={item.name} className="p-5 text-center sg-column mt-2">
+                                                                    {item.name}
+                                                                </div>
+                                                            </div>
+                                                        :
+                                                            item.sizeId === 1 ?
                                                                 <div key={index} className="container p-0 pb-3">
-                                                                    <div key={index} id={item.name} className="p-5 text-center sg-column mt-2">
-                                                                        {item.name}
+                                                                    <div className="row w-100 m-0">
+                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                            {item.name}
+                                                                        </div>
+                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                            {item.name}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             :
-                                                                item.sizeId === 1 ?
+                                                                item.sizeId === 2 ?
                                                                     <div key={index} className="container p-0 pb-3">
                                                                         <div className="row w-100 m-0">
-                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                 {item.name}
                                                                             </div>
-                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
                                                                                 {item.name}
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 :
-                                                                    item.sizeId === 2 ?
+                                                                    item.sizeId === 3 ?
                                                                         <div key={index} className="container p-0 pb-3">
                                                                             <div className="row w-100 m-0">
-                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
                                                                                     {item.name}
                                                                                 </div>
-                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
+                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                     {item.name}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     :
-                                                                        item.sizeId === 3 ?
+                                                                        item.sizeId === 4 ?
                                                                             <div key={index} className="container p-0 pb-3">
                                                                                 <div className="row w-100 m-0">
-                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
+                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        {item.name}
+                                                                                    </div>
+                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
                                                                                         {item.name}
                                                                                     </div>
                                                                                     <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
@@ -330,62 +345,47 @@ class SlideHandler extends Component {
                                                                                 </div>
                                                                             </div>
                                                                         :
-                                                                            item.sizeId === 4 ?
+                                                                            item.sizeId === 5 ?
                                                                                 <div key={index} className="container p-0 pb-3">
                                                                                     <div className="row w-100 m-0">
-                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
                                                                                             {item.name}
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             :
-                                                                                item.sizeId === 5 ?
-                                                                                    <div key={index} className="container p-0 pb-3">
-                                                                                        <div className="row w-100 m-0">
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                {item.name}
-                                                                                            </div>
+                                                                                <div key={index} className="container p-0 pb-3">
+                                                                                    <div className="row w-100 m-0">
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                            {item.name}
                                                                                         </div>
                                                                                     </div>
-                                                                                :
-                                                                                    <div key={index} className="container p-0 pb-3">
-                                                                                        <div className="row w-100 m-0">
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                        ))
-                                                        :
-                                                        <span></span>
-                                                    }
+                                                                                </div>
+                                                    ))
+                                                    :
+                                                    <span></span>
+                                                }
                                             </div>
                                         </div>
                                     </div>
