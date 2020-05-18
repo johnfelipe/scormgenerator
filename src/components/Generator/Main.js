@@ -149,14 +149,14 @@ class Main extends Component {
                 >
                 {props => {
                         const {
-                        values,
-                        touched,
-                        errors,
-                        isSubmitting,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        setFieldValue,
+                            values,
+                            touched,
+                            errors,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            setFieldValue,
                         } = props;
                         return (
                             <form onSubmit={handleSubmit}>

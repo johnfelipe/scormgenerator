@@ -198,10 +198,10 @@ class SlideHandler extends Component {
                     >
                         {props => {
                             const {
-                            values,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
+                                values,
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
                             } = props;
                             return (
                                 <form onSubmit={handleSubmit}>
