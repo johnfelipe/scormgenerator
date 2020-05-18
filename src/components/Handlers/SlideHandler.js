@@ -36,6 +36,8 @@ class SlideHandler extends Component {
         console.log(this.state.column);
         console.log('props.columns: ');
         console.log(this.props.currentColumns);
+        console.log('props.action');
+        console.log(this.props.action);
     }
 
     setModalShow = (value, action) => {
@@ -44,9 +46,15 @@ class SlideHandler extends Component {
             modalShow: value,
         });
 
-        if (!value && (action === "close")) {
+        if (!value && (action === "close" || action === "edit")) {
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
+            });
+        }
+
+        if (!value && (action === "save" || action === "add")) {
+            this.setState({
+                column: [],
             });
         }
     }
