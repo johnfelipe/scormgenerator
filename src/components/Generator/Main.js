@@ -252,7 +252,7 @@ class Main extends Component {
                                                             </Card.Header>
                                                             <Accordion.Collapse eventKey="0">
                                                                 <Card.Body>
-                                                                    <SlideHandler addSlideChange={this.props.addLessonSlides} action="add" id={index}/>
+                                                                    <SlideHandler addSlideChange={this.props.addLessonSlide} action="add" slideId={index}/>
                                                                     {this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={this.onDragEnd}>
                                                                             <Droppable droppableId="slides">
@@ -275,7 +275,7 @@ class Main extends Component {
                                                                                                     >
                                                                                                         <span className="btn pr-1">{item.slideName}</span>
                                                                                                         <SlideHandler
-                                                                                                            editSlideChange={this.props.editLessonSlideName}
+                                                                                                            editSlideChange={this.props.editLessonSlide}
                                                                                                             currentSlideName={item.slideName}
                                                                                                             currentColumns={item.columns}
                                                                                                             currentClickedLessonId={this.state.currentClickedLessonId}
@@ -344,8 +344,8 @@ const mapDispatchToProps = (dispatch) => {
         updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
-        addLessonSlides: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlideName: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, index: slideId, currentClickedLessonId: currentClickedLessonId}),
+        addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
+        editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, index: slideId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
         showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value})
