@@ -53,7 +53,7 @@ export const deleteLesson = (state, action) => {
     }
 }
 
-export const addLessonSlides = (state, action) => {
+export const addLessonSlide = (state, action) => {
     const lessonObj = {
         ...state.courseLessons[action.index]
     };
@@ -76,7 +76,7 @@ export const addLessonSlides = (state, action) => {
     }
 }
 
-export const editLessonSlideName = (state, action) => {
+export const editLessonSlide = (state, action) => {
     const lessonObj = {
         ...state.courseLessons[action.currentClickedLessonId]
     };

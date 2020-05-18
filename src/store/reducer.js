@@ -25,9 +25,9 @@ const reducer = (state = initialState, action) => {
 
         case types.DELETE_LESSON: return methods.deleteLesson(state, action);
 
-        case types.ADD_LESSON_SLIDES: return methods.addLessonSlides(state, action);
+        case types.ADD_LESSON_SLIDES: return methods.addLessonSlide(state, action);
 
-        case types.EDIT_LESSON_SLIDE_NAME: return methods.editLessonSlideName(state, action);
+        case types.EDIT_LESSON_SLIDE_NAME: return methods.editLessonSlide(state, action);
 
         case types.DELETE_SLIDE: return methods.deleteSlide(state, action);
 
