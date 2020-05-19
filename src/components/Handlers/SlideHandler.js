@@ -27,8 +27,8 @@ class SlideHandler extends Component {
                 { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
             ],
             features: [
-                { name: 'Audio', icon: faFileAudio, },
-                { name: 'Content Area', icon: faSquare, },
+                { type: 'audio', name: 'Audio', icon: faFileAudio, },
+                { type: 'content-area', name: 'Content Area', icon: faSquare, },
             ]
         };
         
@@ -69,7 +69,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1, id: 'column' + currentCount }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1, id: 'column' + currentCount, content: [] }
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -162,6 +162,26 @@ class SlideHandler extends Component {
 
             for (var key in currentColumns) {
                 if (destination.droppableId === currentColumns[key]['id']) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                        })
+                    }
+                    
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -328,7 +348,7 @@ class SlideHandler extends Component {
                                             <div id="slide-content" className="col-md-9 pl-0">
                                                 <div id="slide-content-container" className="border p-3 h-100">
                                                     {
-                                                        this.state.column.length !== 0 ?
+                                                        this.state.column.length > 0 ?
                                                             this.state.column.map((item, index) => (
                                                                 item.sizeId === 0 || item.sizeId === -1 ?
                                                                     <Droppable droppableId={item.id}>
@@ -342,20 +362,24 @@ class SlideHandler extends Component {
                                                                     </Droppable>
                                                                 :
                                                                     item.sizeId === 1 ?
-                                                                        <Droppable droppableId={item.id}>
-                                                                            {(provided) => (
-                                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                                    <div className="row w-100 m-0">
-                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                        <div  className="container p-0 pb-3">
+                                                                            <div className="row w-100 m-0">
+                                                                                <Droppable droppableId={item.id + '-sg-1-2-1'}>
+                                                                                    {(provided) => (
+                                                                                        <div ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                                    )}
+                                                                                </Droppable>
+                                                                                <Droppable droppableId={item.id + '-sg-1-2-2'}>
+                                                                                    {(provided) => (
+                                                                                        <div ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )}
-                                                                        </Droppable>
+                                                                                    )}
+                                                                                </Droppable>
+                                                                            </div>
+                                                                        </div>
                                                                     :
                                                                         item.sizeId === 2 ?
                                                                             <Droppable droppableId={item.id}>
