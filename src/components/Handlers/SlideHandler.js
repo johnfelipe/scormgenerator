@@ -351,10 +351,10 @@ class SlideHandler extends Component {
                                                         this.state.column.length > 0 ?
                                                             this.state.column.map((item, index) => (
                                                                 item.sizeId === 0 || item.sizeId === -1 ?
-                                                                    <Droppable droppableId={item.id}>
+                                                                    <Droppable key={index} droppableId={item.id}>
                                                                         {(provided) => (
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                                <div key={index} id={index} className="p-5 text-center sg-column mt-2">
+                                                                                <div id={index} className="p-5 text-center sg-column mt-2">
                                                                                     {item.name}
                                                                                 </div>
                                                                             </div>
@@ -364,14 +364,14 @@ class SlideHandler extends Component {
                                                                     item.sizeId === 1 ?
                                                                         <div  className="container p-0 pb-3">
                                                                             <div className="row w-100 m-0">
-                                                                                <Droppable droppableId={item.id + '-sg-1-2-1'}>
+                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-2-1'}>
                                                                                     {(provided) => (
                                                                                         <div ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                             {item.name}
                                                                                         </div>
                                                                                     )}
                                                                                 </Droppable>
-                                                                                <Droppable droppableId={item.id + '-sg-1-2-2'}>
+                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-2-2'}>
                                                                                     {(provided) => (
                                                                                         <div ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2">
                                                                                             {item.name}
@@ -382,7 +382,7 @@ class SlideHandler extends Component {
                                                                         </div>
                                                                     :
                                                                         item.sizeId === 2 ?
-                                                                            <Droppable droppableId={item.id}>
+                                                                            <Droppable key={index} droppableId={item.id}>
                                                                                 {(provided) => (
                                                                                     <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                         <div className="row w-100 m-0">
@@ -398,7 +398,7 @@ class SlideHandler extends Component {
                                                                             </Droppable>
                                                                         :
                                                                             item.sizeId === 3 ?
-                                                                                <Droppable droppableId={item.id}>
+                                                                                <Droppable key={index} droppableId={item.id}>
                                                                                     {(provided) => (
                                                                                         <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                             <div className="row w-100 m-0">
@@ -414,7 +414,7 @@ class SlideHandler extends Component {
                                                                                 </Droppable>
                                                                             :
                                                                                 item.sizeId === 4 ?
-                                                                                    <Droppable droppableId={item.id}>
+                                                                                    <Droppable key={index} droppableId={item.id}>
                                                                                         {(provided) => (
                                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                                 <div className="row w-100 m-0">
@@ -433,7 +433,7 @@ class SlideHandler extends Component {
                                                                                     </Droppable>
                                                                                 :
                                                                                     item.sizeId === 5 ?
-                                                                                        <Droppable droppableId={item.id}>
+                                                                                        <Droppable key={index} droppableId={item.id}>
                                                                                             {(provided) => (
                                                                                                 <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                                     <div className="row w-100 m-0">
@@ -454,7 +454,7 @@ class SlideHandler extends Component {
                                                                                             )}
                                                                                         </Droppable>
                                                                                     :
-                                                                                        <Droppable droppableId={item.id}>
+                                                                                        <Droppable key={index} droppableId={item.id}>
                                                                                             {(provided) => (
                                                                                                 <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                                     <div className="row w-100 m-0">
