@@ -69,7 +69,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1 }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1, id: 'column' + currentCount }
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -157,10 +157,17 @@ class SlideHandler extends Component {
             })
         }
 
-        if (source.droppableId === "features" && destination.droppableId === "column-content") {
-            console.log("Drag!");
-            console.log(source);
-            console.log(destination);
+        if (source.droppableId === "features") {
+            const currentColumns = this.state.column;
+
+            for (var key in currentColumns) {
+                if (destination.droppableId === currentColumns[key]['id']) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                }
+            }
         }
     };
 
@@ -322,95 +329,131 @@ class SlideHandler extends Component {
                                                 <div id="slide-content-container" className="border p-3 h-100">
                                                     {
                                                         this.state.column.length !== 0 ?
-                                                        <Droppable droppableId="column-content">
-                                                            {(provided) => (
-                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                    {this.state.column.map((item, index) => (
-                                                                        item.sizeId === 0 || item.sizeId === -1 ?
-                                                                            <div key={index} id={item.name} className="p-5 text-center sg-column mt-2">
-                                                                                {item.name}
+                                                            this.state.column.map((item, index) => (
+                                                                item.sizeId === 0 || item.sizeId === -1 ?
+                                                                    <Droppable droppableId={item.id}>
+                                                                        {(provided) => (
+                                                                            <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                <div key={index} id={index} className="p-5 text-center sg-column mt-2">
+                                                                                    {item.name}
+                                                                                </div>
                                                                             </div>
-                                                                        :
-                                                                            item.sizeId === 1 ?
-                                                                                <div className="row w-100 m-0">
-                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
-                                                                                        {item.name}
-                                                                                    </div>
-                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-2">
-                                                                                        {item.name}
+                                                                        )}
+                                                                    </Droppable>
+                                                                :
+                                                                    item.sizeId === 1 ?
+                                                                        <Droppable droppableId={item.id}>
+                                                                            {(provided) => (
+                                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                    <div className="row w-100 m-0">
+                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                                            {item.name}
+                                                                                        </div>
+                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-2">
+                                                                                            {item.name}
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            :
-                                                                                item.sizeId === 2 ?
-                                                                                    <div className="row w-100 m-0">
-                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
-                                                                                            {item.name}
-                                                                                        </div>
-                                                                                        <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
-                                                                                            {item.name}
+                                                                            )}
+                                                                        </Droppable>
+                                                                    :
+                                                                        item.sizeId === 2 ?
+                                                                            <Droppable droppableId={item.id}>
+                                                                                {(provided) => (
+                                                                                    <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                        <div className="row w-100 m-0">
+                                                                                            <div id={index} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                            <div id={index} className="d-inline p-5 text-center sg-column sg-2-3">
+                                                                                                {item.name}
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                :
-                                                                                    item.sizeId === 3 ?
-                                                                                        <div className="row w-100 m-0">
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-2-3">
-                                                                                                {item.name}
-                                                                                            </div>
-                                                                                            <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
-                                                                                                {item.name}
+                                                                                )}
+                                                                            </Droppable>
+                                                                        :
+                                                                            item.sizeId === 3 ?
+                                                                                <Droppable droppableId={item.id}>
+                                                                                    {(provided) => (
+                                                                                        <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                            <div className="row w-100 m-0">
+                                                                                                <div id={index} className="d-inline p-5 text-center sg-column sg-2-3">
+                                                                                                    {item.name}
+                                                                                                </div>
+                                                                                                <div id={index} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                                    {item.name}
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    :
-                                                                                        item.sizeId === 4 ?
-                                                                                            <div className="row w-100 m-0">
-                                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
-                                                                                                    {item.name}
-                                                                                                </div>
-                                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
-                                                                                                    {item.name}
-                                                                                                </div>
-                                                                                                <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-3">
-                                                                                                    {item.name}
+                                                                                    )}
+                                                                                </Droppable>
+                                                                            :
+                                                                                item.sizeId === 4 ?
+                                                                                    <Droppable droppableId={item.id}>
+                                                                                        {(provided) => (
+                                                                                            <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                                <div className="row w-100 m-0">
+                                                                                                    <div id={index} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                                        {item.name}
+                                                                                                    </div>
+                                                                                                    <div id={index} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                                        {item.name}
+                                                                                                    </div>
+                                                                                                    <div id={index} className="d-inline p-5 text-center sg-column sg-1-3">
+                                                                                                        {item.name}
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        :
-                                                                                            item.sizeId === 5 ?
-                                                                                                <div className="row w-100 m-0">
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-4">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            :
-                                                                                                <div className="row w-100 m-0">
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                        {item.name}
-                                                                                                    </div>
-                                                                                                    <div id={item.name} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                        {item.name}
+                                                                                        )}
+                                                                                    </Droppable>
+                                                                                :
+                                                                                    item.sizeId === 5 ?
+                                                                                        <Droppable droppableId={item.id}>
+                                                                                            {(provided) => (
+                                                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                                    <div className="row w-100 m-0">
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-4">
+                                                                                                            {item.name}
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                    ))}
-                                                                </div>
-                                                            )}
-                                                        </Droppable>
+                                                                                            )}
+                                                                                        </Droppable>
+                                                                                    :
+                                                                                        <Droppable droppableId={item.id}>
+                                                                                            {(provided) => (
+                                                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                                    <div className="row w-100 m-0">
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
+                                                                                                            {item.name}
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
+                                                            ))
                                                         :
                                                         <span></span>
                                                     }
