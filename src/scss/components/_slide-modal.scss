@@ -29,6 +29,8 @@
                                                 border-right: 1px solid #ddd;
                                                 border-top-left-radius: 0rem !important;
                                                 border-top-right-radius: 0rem !important;
+                                                text-overflow: ellipsis;
+                                                overflow: hidden;
                                             }
 
                                             .active {
@@ -194,6 +196,72 @@
                                                         height: 30px;
                                                         width: 30px;
                                                     }
+                                                }
+                                            }
+                                        }
+
+                                        div#uncontrolled-tab-tabpane-editor {
+
+                                            .sg-workspace-controls {
+                                                > .sg-scroll-box {
+                                                    flex-grow: 1;
+                                                    height: 100%;
+                                                }
+                                            }
+
+                                            .sg-scroll-box {
+                                                position: relative;
+                                                height: 100%;
+                                            }
+
+                                            .ps {
+                                                overflow: hidden!important;
+                                                overflow-anchor: none;
+                                                touch-action: auto;
+                                                -ms-overflow-style: none;
+                                                -ms-touch-action: auto;
+                                            }
+
+                                            .sg-workspace-actions {
+                                                position: relative;
+                                                display: flex;
+                                                flex-flow: row nowrap;
+                                                width: 100%;
+                                                height: 70px;
+                                                border-bottom: 1px solid #e2e2e2;
+
+                                                .sg-workspace-action-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    flex: 1 0 0%;
+                                                    margin: 0;
+                                                    border: 0;
+                                                    padding: 0;
+                                                    text-decoration: none;
+                                                    color: #444;
+                                                    background-color: #fff;
+                                                    cursor: pointer;
+
+                                                    .fa-trash-alt {
+                                                        width: 20px !important;
+                                                        height: 20px;
+                                                    }
+                                                }
+                                            }
+
+                                            .sg-control-header {
+                                                margin: 0 0 10px;
+                                            }
+
+                                            .sg-control-text-editor {
+                                                > .sg-control-input {
+                                                    height: 188px!important;
+                                                }
+
+                                                > .sg-expandable-rich-text, .sg-workspace-expander {
+                                                    height: 100%
                                                 }
                                             }
                                         }
