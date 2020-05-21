@@ -9,6 +9,7 @@ import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 // components
 import SlideColumn from '../Slide/Columns';
 import SlideFeature from '../Slide/Features';
+import SlideEditor from '../Slide/Editor';
 
 class SlideHandler extends Component {
 
@@ -341,7 +342,7 @@ class SlideHandler extends Component {
                                                         </Droppable>
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-3">
-                                                        <span>Straight in her heart did mercy come, Chiding that tongue that ever sweet Was us'd in giving gentle doom; And taught it thus anew to greet; 'I hate' she alter'd with an end, That followed it as gentle day,</span>
+                                                        <SlideEditor />
                                                     </Tab>
                                                 </Tabs>
                                             </div>
