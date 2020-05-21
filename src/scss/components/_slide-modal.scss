@@ -207,6 +207,16 @@
                                                     flex-grow: 1;
                                                     height: 100%;
                                                 }
+
+                                                > .sg-scroll-box .sg-control {
+                                                    border-bottom: 1px solid #e2e2e2;
+                                                }
+                                            }
+
+                                            .sg-control {
+                                                position: relative;
+                                                padding: 20px;
+                                                border-bottom: 1px solid #e2e2e2;
                                             }
 
                                             .sg-scroll-box {
@@ -222,13 +232,16 @@
                                                 -ms-touch-action: auto;
                                             }
 
+                                            .sg-workspace-controls .sg-control.sg-inspector-actions {
+                                                padding: 0;
+                                            }
+
                                             .sg-workspace-actions {
                                                 position: relative;
                                                 display: flex;
                                                 flex-flow: row nowrap;
                                                 width: 100%;
                                                 height: 70px;
-                                                border-bottom: 1px solid #e2e2e2;
 
                                                 .sg-workspace-action-item {
                                                     display: flex;
@@ -253,15 +266,75 @@
 
                                             .sg-control-header {
                                                 margin: 0 0 10px;
+
+                                                > label {
+                                                    display: block;
+                                                    margin: 0;
+                                                    font-size: 10px;
+                                                    font-weight: 600;
+                                                    letter-spacing: .065em;
+                                                    line-height: 1.4;
+                                                    text-transform: uppercase;
+                                                    cursor: pointer;
+                                                }
                                             }
 
                                             .sg-control-text-editor {
                                                 > .sg-control-input {
                                                     height: 188px!important;
+
+                                                    > .sg-expandable-rich-text {
+                                                        height: 100%;
+                                                    }
                                                 }
 
-                                                > .sg-expandable-rich-text, .sg-workspace-expander {
-                                                    height: 100%
+                                                > .sg-expandable-rich-text, .sg-workspace-expander, .sg-workspace-expander-toggle, .sg-workspace-expander-toggle > textarea {
+                                                    height: 100%;
+                                                    width: 100%;
+                                                }
+
+                                                .sg-workspace-expander-toggle {
+                                                    position: relative;
+                                                    cursor: pointer;
+
+                                                    > span {
+                                                        display: -webkit-flex;
+                                                        display: flex;
+                                                        -webkit-justify-content: center;
+                                                        justify-content: center;
+                                                        -webkit-align-items: center;
+                                                        align-items: center;
+                                                        -webkit-align-content: center;
+                                                        align-content: center;
+                                                        position: absolute;
+                                                        z-index: 15;
+                                                        top: 0;
+                                                        left: 0;
+                                                        right: 0;
+                                                        bottom: 0;
+                                                        line-height: 1;
+                                                        text-align: center;
+                                                        opacity: 0;
+                                                        transform: translate3d(-5px,0,0);
+                                                        transition-delay: 0s;
+                                                        transition-duration: .2s;
+                                                        transition-property: opacity,transform;
+                                                        transition-timing-function: ease;
+                                                        pointer-events: none;
+                                                    }
+
+                                                    > button span:after {
+                                                        content: "\00A0\2192";
+                                                        display: inline;
+                                                        position: relative;
+                                                        bottom: 1px;
+                                                    }
+
+                                                    .textarea-hover-btn {
+                                                        position: absolute;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                    }
                                                 }
                                             }
                                         }
