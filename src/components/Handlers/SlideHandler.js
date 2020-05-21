@@ -30,13 +30,16 @@ class SlideHandler extends Component {
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'content-area', name: 'Content Area', icon: faSquare, },
-            ]
+            ],
+            activeFeature: '',
+            activeTab: 'column',
         };
         
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
         this.deleteColumn = this.deleteColumn.bind(this);
         this.handleSizeActive = this.handleSizeActive.bind(this);
+        this.setActiveTab = this.setActiveTab.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -161,6 +164,8 @@ class SlideHandler extends Component {
         if (source.droppableId === "features") {
             const currentColumns = this.state.column;
 
+            this.setActiveTab("editor");
+
             for (var key in currentColumns) {
                 if (destination.droppableId === currentColumns[key]['id']) {
                     destination.index = parseInt(key);
@@ -169,11 +174,12 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'audio') {
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
                         currentColumns[key].content.push(currentContent);
                         this.setState({
                             column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
                         })
                     }
                     
@@ -190,7 +196,13 @@ class SlideHandler extends Component {
                 }
             }
         }
-    };
+    }
+
+    setActiveTab = (value) => {
+        this.setState({
+            activeTab: value,
+        })
+    }
 
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
@@ -271,7 +283,7 @@ class SlideHandler extends Component {
                                     <DragDropContext onDragEnd={this.onDragEnd}>
                                         <div className="row">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
-                                                <Tabs defaultActiveKey="column" id="uncontrolled-tab" className="text-center">
+                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
                                                     <Tab eventKey="column" title="Column" className="mt-3">
                                                         <div className="sg-workspace-content-section">
                                                             {
@@ -342,7 +354,7 @@ class SlideHandler extends Component {
                                                         </Droppable>
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-3">
-                                                        <SlideEditor />
+                                                        <SlideEditor feature={this.state.activeFeature}/>
                                                     </Tab>
                                                 </Tabs>
                                             </div>
