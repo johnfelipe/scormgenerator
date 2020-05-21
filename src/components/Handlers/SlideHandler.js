@@ -173,8 +173,15 @@ class SlideHandler extends Component {
                     console.log(source);
                     console.log(destination);
                     const currentFeatures = this.state.features;
-
+                    
                     if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
                         currentColumns[key].content.push(currentContent);
                         this.setState({
