@@ -59,12 +59,13 @@ class SlideHandler extends Component {
         });
 
         if (!value && (action === "close" || action === "edit")) {
+            console.log('Edit here');
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
             });
         }
 
-        if (!value && (action === "save" || action === "add")) {
+        if (!value && (action === "add")) {
             this.setState({
                 column: [],
             });
