@@ -34,7 +34,7 @@ class SlideHandler extends Component {
             ],
             activeFeature: '',
             activeTab: 'column',
-            activeColumnId: 'column',
+            activeColumnId: -1,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -64,6 +64,9 @@ class SlideHandler extends Component {
             console.log('Edit here');
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
+                activeFeature: '',
+                activeColumnId: -1,
+                activeTab: 'column'
             });
         }
 
@@ -520,7 +523,12 @@ class SlideHandler extends Component {
                                             </div>
                                             {/* Content Area Side popup Editor */}
                                             <div className="sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active">
-
+                                                <div className="sg-workspace-expander-head">
+                                                    <div className="sg-workspace-expander-head-actions"></div>
+                                                    <div className=""></div>
+                                                    <div className=""></div>
+                                                </div>
+                                                <div className="sg-workspace-expander-body"></div>
                                             </div>
                                         </div>
                                     </DragDropContext>
