@@ -26,7 +26,9 @@ class HtmlEditor extends Component {
                     <div className="sg-text-editor sg-text-editor-mode-html">
                         <textarea
                             className="sg-text-editor-html"
-                            value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }/>
+                            value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }
+                            onChange={(event) => this.props.onChangeTextArea(event)}
+                        />
                     </div>
                 </div>
             </div>

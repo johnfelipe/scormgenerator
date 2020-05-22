@@ -45,6 +45,7 @@ class SlideHandler extends Component {
         this.handleSizeActive = this.handleSizeActive.bind(this);
         this.setActiveTab = this.setActiveTab.bind(this);
         this.setShowHtmlEditor = this.setShowHtmlEditor.bind(this);
+        this.onChangeTextArea = this.onChangeTextArea.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -225,6 +226,19 @@ class SlideHandler extends Component {
     setShowHtmlEditor = (value) => {
         this.setState({
             showHtmlEditor: value,
+        })
+    }
+
+    onChangeTextArea = (event) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+
+        currentColumnObj.content[0].output = event.target.value;
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
         })
     }
 
@@ -538,6 +552,7 @@ class SlideHandler extends Component {
                                                 currentColumn={this.state.column[this.state.activeColumnId]}
                                                 setShowEditor={this.setShowHtmlEditor}
                                                 showHtmlEditor={this.state.showHtmlEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
                                             />
                                         </div>
                                     </DragDropContext>
