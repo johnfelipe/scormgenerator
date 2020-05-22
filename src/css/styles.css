@@ -207,7 +207,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-column [class*=sg-add-sortable-item]:hover {
   color: green;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-features .sg-element-library {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-element-library {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -215,10 +215,10 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   box-shadow: inset 0 -1px 0 0 #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item:first-child {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item:first-child {
   margin-top: -5.5px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item {
   display: flex;
   align-items: center;
   flex: 1 1 100%;
@@ -231,7 +231,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item h4 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item h4 {
   flex: 0 1 auto;
   overflow: hidden;
   min-width: 1px;
@@ -245,47 +245,47 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   white-space: nowrap;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item .feature-icon {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-element-library .sg-element-library-item .feature-icon {
   height: 30px;
   width: 30px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor {
   height: 90%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
   flex-grow: 1;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
   border-bottom: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control {
   position: relative;
   padding: 20px;
   border-bottom: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-scroll-box {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-scroll-box {
   position: relative;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .ps {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .ps {
   overflow: hidden !important;
   overflow-anchor: none;
   touch-action: auto;
   -ms-overflow-style: none;
   -ms-touch-action: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
   padding: 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-actions {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-actions {
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   height: 70px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -299,14 +299,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
   width: 20px !important;
   height: 20px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-header {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-header {
   margin: 0 0 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-header > label {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-header > label {
   display: block;
   margin: 0;
   font-size: 10px;
@@ -316,21 +316,21 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-input {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-input {
   height: 188px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
   height: 100%;
   width: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle {
   position: relative;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > span {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > span {
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
@@ -355,28 +355,28 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   transition-timing-function: ease;
   pointer-events: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > button span:after {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > button span:after {
   content: " →";
   display: inline;
   position: relative;
   bottom: 1px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle .textarea-hover-btn {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle .textarea-hover-btn {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list {
   margin: -7px 0 0;
   padding: 0;
   list-style: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -387,14 +387,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   padding: 0 10px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label > span {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label > span {
   display: block;
   line-height: 1.3;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input {
   flex: 1;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input textarea {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input textarea {
   height: 100% !important;
   line-height: 1.4;
   resize: none;
@@ -420,13 +420,13 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
   height: 188px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor textarea.sg-input-code {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor textarea.sg-input-code {
   font-family: monospace;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar div#uncontrolled-tab-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
   height: 100%;
   line-height: 1.5;
   resize: none;
