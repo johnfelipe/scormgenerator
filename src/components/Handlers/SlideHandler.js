@@ -35,6 +35,7 @@ class SlideHandler extends Component {
             activeFeature: '',
             activeTab: 'column',
             activeColumnId: -1,
+            showHtmlEditor: false,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -42,6 +43,7 @@ class SlideHandler extends Component {
         this.deleteColumn = this.deleteColumn.bind(this);
         this.handleSizeActive = this.handleSizeActive.bind(this);
         this.setActiveTab = this.setActiveTab.bind(this);
+        this.setShowHtmlEditor = this.setShowHtmlEditor.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -219,6 +221,12 @@ class SlideHandler extends Component {
         })
     }
 
+    setShowHtmlEditor = (value) => {
+        this.setState({
+            showHtmlEditor: value,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -369,7 +377,11 @@ class SlideHandler extends Component {
                                                         </Droppable>
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-3">
-                                                        <SlideEditor feature={this.state.activeFeature} currentColumn={this.state.column[this.state.activeColumnId]}/>
+                                                        <SlideEditor 
+                                                            feature={this.state.activeFeature} 
+                                                            currentColumn={this.state.column[this.state.activeColumnId]}
+                                                            setShowEditor={this.setShowHtmlEditor}
+                                                        />
                                                     </Tab>
                                                 </Tabs>
                                             </div>
@@ -522,7 +534,7 @@ class SlideHandler extends Component {
                                                 </div>
                                             </div>
                                             {/* Content Area Side popup Editor */}
-                                            <div className="sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active">
+                                            <div className={this.state.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
                                                 <div className="sg-workspace-expander-head">
                                                     <div className="sg-workspace-expander-head-actions">
                                                         <button type="button" className="sg-active">
@@ -533,14 +545,16 @@ class SlideHandler extends Component {
                                                         <span>HTML</span>
                                                     </div>
                                                     <div className="sg-workspace-expander-head-actions">
-                                                        <button type="button" className="sg-close">
+                                                        <button type="button" className="sg-close" onClick={() => this.setShowHtmlEditor(false)}>
                                                             <FontAwesomeIcon icon={faTimes}/>
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div className="sg-workspace-expander-body">
                                                     <div className="sg-text-editor sg-text-editor-mode-html">
-                                                        <textarea class="sg-text-editor-html"></textarea>
+                                                        <textarea
+                                                            className="sg-text-editor-html"
+                                                            value={ typeof this.state.column[this.state.activeColumnId] != "undefined" ? 'content' in this.state.column[this.state.activeColumnId] ? this.state.column[this.state.activeColumnId].content[0].output : '' : '' }/>
                                                     </div>
                                                 </div>
                                             </div>
