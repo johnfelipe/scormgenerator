@@ -709,5 +709,105 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   line-height: 1.5;
   color: rgba(68, 68, 68, 0.5);
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content.sg-active {
+  transform: translate3d(0, 0, 0);
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content-vertical {
+  top: 270px;
+  width: 270px;
+  border-right: 1px solid #e2e2e2;
+  transform: translate3d(-100%, 0, 0);
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content {
+  position: fixed;
+  z-index: 8889;
+  left: 160px;
+  bottom: 144px;
+  background-color: #fff;
+  transition-duration: 0.65s;
+  transition-property: width, height, transform;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+  height: 40px;
+  border-bottom: 1px solid #e2e2e2;
+  background-color: #f5f5f5;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button.sg-active {
+  color: #444;
+  background-color: #fff;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button {
+  position: relative;
+  display: block;
+  width: 40px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  color: rgba(68, 68, 68, 0.35);
+  background-color: transparent;
+  cursor: pointer;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:first-child button {
+  border-right: 1px solid #e2e2e2;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:last-child button {
+  border-left: 1px solid #e2e2e2;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-label {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0 auto 0 1em;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-label span {
+  display: block;
+  margin: 0;
+  line-height: 1.4;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body {
+  position: absolute;
+  z-index: 2;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor {
+  position: relative;
+  z-index: 1;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor textarea.sg-text-editor-html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 12px 15px;
+  font-size: 13px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  line-height: 1.55;
+  box-shadow: none !important;
+  outline: 0 !important;
+  resize: none;
+}
 
 /*# sourceMappingURL=styles.css.map */
