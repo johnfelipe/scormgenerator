@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCode, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 
@@ -524,11 +524,25 @@ class SlideHandler extends Component {
                                             {/* Content Area Side popup Editor */}
                                             <div className="sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active">
                                                 <div className="sg-workspace-expander-head">
-                                                    <div className="sg-workspace-expander-head-actions"></div>
-                                                    <div className=""></div>
-                                                    <div className=""></div>
+                                                    <div className="sg-workspace-expander-head-actions">
+                                                        <button type="button" className="sg-active">
+                                                            <FontAwesomeIcon icon={faCode}/>
+                                                        </button>
+                                                    </div>
+                                                    <div className="sg-workspace-expander-head-label">
+                                                        <span>HTML</span>
+                                                    </div>
+                                                    <div className="sg-workspace-expander-head-actions">
+                                                        <button type="button" className="sg-close">
+                                                            <FontAwesomeIcon icon={faTimes}/>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div className="sg-workspace-expander-body"></div>
+                                                <div className="sg-workspace-expander-body">
+                                                    <div className="sg-text-editor sg-text-editor-mode-html">
+                                                        <textarea class="sg-text-editor-html"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </DragDropContext>
