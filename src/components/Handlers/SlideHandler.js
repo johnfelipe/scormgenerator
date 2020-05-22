@@ -11,6 +11,7 @@ import ReactHtmlParser from 'react-html-parser';
 import SlideColumn from '../Slide/Columns';
 import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
+import HtmlEditor from '../Slide/HtmlEditor';
 
 class SlideHandler extends Component {
 
@@ -533,31 +534,11 @@ class SlideHandler extends Component {
                                                     }
                                                 </div>
                                             </div>
-                                            {/* Content Area Side popup Editor */}
-                                            <div className={this.state.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
-                                                <div className="sg-workspace-expander-head">
-                                                    <div className="sg-workspace-expander-head-actions">
-                                                        <button type="button" className="sg-active">
-                                                            <FontAwesomeIcon icon={faCode}/>
-                                                        </button>
-                                                    </div>
-                                                    <div className="sg-workspace-expander-head-label">
-                                                        <span>HTML</span>
-                                                    </div>
-                                                    <div className="sg-workspace-expander-head-actions">
-                                                        <button type="button" className="sg-close" onClick={() => this.setShowHtmlEditor(false)}>
-                                                            <FontAwesomeIcon icon={faTimes}/>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div className="sg-workspace-expander-body">
-                                                    <div className="sg-text-editor sg-text-editor-mode-html">
-                                                        <textarea
-                                                            className="sg-text-editor-html"
-                                                            value={ typeof this.state.column[this.state.activeColumnId] != "undefined" ? 'content' in this.state.column[this.state.activeColumnId] ? this.state.column[this.state.activeColumnId].content[0].output : '' : '' }/>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <HtmlEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowEditor={this.setShowHtmlEditor}
+                                                showHtmlEditor={this.state.showHtmlEditor}
+                                            />
                                         </div>
                                     </DragDropContext>
                                     <button type="submit" className="btn btn-success float-right mt-2">Save</button>
