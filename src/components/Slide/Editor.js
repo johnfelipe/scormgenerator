@@ -40,7 +40,7 @@ class Editor extends Component {
                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                     { 
                                         this.state.isShown ? 
-                                        <button className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)}>
+                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)}>
                                             <span>Click to Edit</span>
                                         </button>
                                         :
