@@ -46,7 +46,11 @@ class Editor extends Component {
                                         :
                                         <span></span>
                                     }
-                                    <textarea onMouseOver={() => this.setIsShown(true)} disabled value="&lt;span&gt;This content will show up directly in its container.&lt;/span&gt;"/>
+                                    <textarea 
+                                        onMouseOver={() => this.setIsShown(true)} 
+                                        disabled 
+                                        value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }
+                                    />
                                 </div>
                             </div>
                         </div>
