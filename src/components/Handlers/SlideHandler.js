@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
+import ReactHtmlParser from 'react-html-parser';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -33,6 +34,7 @@ class SlideHandler extends Component {
             ],
             activeFeature: '',
             activeTab: 'column',
+            activeColumnId: 'column',
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -176,11 +178,12 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
                     
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
                         currentColumns[key].content = [currentContent];
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -188,6 +191,7 @@ class SlideHandler extends Component {
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
                         })
                     }
                     
@@ -362,7 +366,7 @@ class SlideHandler extends Component {
                                                         </Droppable>
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-3">
-                                                        <SlideEditor feature={this.state.activeFeature}/>
+                                                        <SlideEditor feature={this.state.activeFeature} currentColumn={this.state.column[this.state.activeColumnId]}/>
                                                     </Tab>
                                                 </Tabs>
                                             </div>
@@ -375,9 +379,19 @@ class SlideHandler extends Component {
                                                                     <Droppable key={index} droppableId={item.id}>
                                                                         {(provided) => (
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                                <div id={index} className="p-5 text-center sg-column mt-2">
-                                                                                    {item.name}
-                                                                                </div>
+                                                                                { typeof item.content[0] != "undefined" ? 
+                                                                                    'output' in item.content[0] ?
+                                                                                            ReactHtmlParser(item.content[0].output)
+                                                                                        :
+                                                                                            <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                                {item.name}
+                                                                                            </div>
+                                                                                    :
+
+                                                                                    <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                        {item.name}
+                                                                                    </div>
+                                                                                }
                                                                             </div>
                                                                         )}
                                                                     </Droppable>
@@ -503,6 +517,10 @@ class SlideHandler extends Component {
                                                         <span></span>
                                                     }
                                                 </div>
+                                            </div>
+                                            {/* Content Area Side popup Editor */}
+                                            <div className="sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active">
+
                                             </div>
                                         </div>
                                     </DragDropContext>
