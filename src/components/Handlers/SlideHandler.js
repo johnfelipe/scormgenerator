@@ -177,14 +177,14 @@ class SlideHandler extends Component {
                     
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content.push(currentContent);
+                        currentColumns[key].content = [currentContent];
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content.push(currentContent);
+                        currentColumns[key].content = [currentContent];
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
