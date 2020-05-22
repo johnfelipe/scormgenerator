@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faCode, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 
