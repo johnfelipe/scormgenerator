@@ -411,7 +411,9 @@ class SlideHandler extends Component {
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                 { typeof item.content[0] != "undefined" ? 
                                                                                     'output' in item.content[0] ?
-                                                                                            ReactHtmlParser(item.content[0].output)
+                                                                                            <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                                {ReactHtmlParser(item.content[0].output)}
+                                                                                            </div>
                                                                                         :
                                                                                             <div id={index} className="p-5 text-center sg-column mt-2">
                                                                                                 {item.name}
