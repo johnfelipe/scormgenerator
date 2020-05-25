@@ -23,7 +23,7 @@ class HtmlEditor extends Component {
                     </div>
                 </div>
                 <div className="sg-workspace-expander-body">
-                    <div className="sg-text-editor sg-text-editor-mode-html">
+                    <div className="sg-text-editor sg-text-editor-mode-html h-100">
                         <textarea
                             className="sg-text-editor-html"
                             value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }
