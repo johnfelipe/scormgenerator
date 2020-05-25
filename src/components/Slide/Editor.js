@@ -49,7 +49,15 @@ class Editor extends Component {
                                     <textarea 
                                         onMouseOver={() => this.setIsShown(true)} 
                                         disabled 
-                                        value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }
+                                        value={ 
+                                            typeof this.props.currentColumn != "undefined" ? 
+                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
+                                                this.props.currentColumn.content[0].output 
+                                                : 
+                                                ''
+                                            : 
+                                            '' 
+                                        }
                                     />
                                 </div>
                             </div>
