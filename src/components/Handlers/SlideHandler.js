@@ -46,6 +46,7 @@ class SlideHandler extends Component {
         this.setActiveTab = this.setActiveTab.bind(this);
         this.setShowHtmlEditor = this.setShowHtmlEditor.bind(this);
         this.onChangeTextArea = this.onChangeTextArea.bind(this);
+        this.contentPaneClick = this.contentPaneClick.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -247,6 +248,15 @@ class SlideHandler extends Component {
         })
     }
 
+    contentPaneClick = (index) => {
+
+        this.setState({
+            activeFeature: this.state.column[index].content[0].type,
+            activeColumnId: index,
+            activeTab: 'editor'
+        });
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -416,7 +426,7 @@ class SlideHandler extends Component {
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                 { typeof item.content[0] != "undefined" ? 
                                                                                     'output' in item.content[0] ?
-                                                                                            <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                            <div id={index} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index)}>
                                                                                                 {ReactHtmlParser(item.content[0].output)}
                                                                                             </div>
                                                                                         :
