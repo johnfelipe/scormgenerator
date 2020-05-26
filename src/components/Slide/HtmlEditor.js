@@ -17,7 +17,7 @@ class HtmlEditor extends Component {
                         <span>HTML</span>
                     </div>
                     <div className="sg-workspace-expander-head-actions">
-                        <button type="button" className="sg-close" onClick={() => this.props.setShowEditor(false)}>
+                        <button type="button" className="sg-close" onClick={() => this.props.setShowEditor(false, this.props.contentIndex)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </button>
                     </div>
@@ -26,8 +26,8 @@ class HtmlEditor extends Component {
                     <div className="sg-text-editor sg-text-editor-mode-html h-100">
                         <textarea
                             className="sg-text-editor-html"
-                            value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[0].output : '' : '' }
-                            onChange={(event) => this.props.onChangeTextArea(event)}
+                            value={ typeof this.props.currentColumn != "undefined" ? 'content' in this.props.currentColumn ? this.props.currentColumn.content[this.props.contentIndex].output : '' : '' }
+                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
                         />
                     </div>
                 </div>
