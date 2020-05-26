@@ -40,7 +40,7 @@ class Editor extends Component {
                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                     { 
                                         this.state.isShown ? 
-                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)} onClick={() => this.props.setShowEditor(true)}>
+                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)} onClick={() => this.props.setShowEditor(true, this.props.contentIndex)}>
                                             <span>Click to Edit</span>
                                         </button>
                                         :
@@ -52,7 +52,7 @@ class Editor extends Component {
                                         value={ 
                                             typeof this.props.currentColumn != "undefined" ? 
                                                 'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
-                                                this.props.currentColumn.content[0].output 
+                                                this.props.currentColumn.content[this.props.contentIndex].output 
                                                 : 
                                                 ''
                                             : 
