@@ -150,6 +150,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   margin-right: 4%;
   max-height: 200px;
   border: 2px dashed #e2e2e2;
+  cursor: pointer;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column:last-of-type {
   margin-right: 0 !important;
