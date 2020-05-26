@@ -354,6 +354,7 @@ class SlideHandler extends Component {
                                                                                                 ref={provided.innerRef}
                                                                                                 {...provided.draggableProps}
                                                                                                 {...provided.dragHandleProps}
+                                                                                                id={'column-' + columnIndex}
                                                                                             >
                                                                                                 <SlideColumn 
                                                                                                     columnIndex={columnIndex}
