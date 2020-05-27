@@ -548,6 +548,136 @@ class SlideHandler extends Component {
                             activeContentIndex: 3,
                         })
                     }
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        currentColumns[key].content[0] = currentContent;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 0,
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content = [currentContent];
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 0,
+                        })
+                    }
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        currentColumns[key].content[1] = currentContent;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 1,
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content = [currentContent];
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 1,
+                        })
+                    }
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-3')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        currentColumns[key].content[2] = currentContent;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 2,
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content = [currentContent];
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 2,
+                        })
+                    }
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        currentColumns[key].content[3] = currentContent;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 3,
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content = [currentContent];
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 3,
+                        })
+                    }
+                } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
+                    destination.index = parseInt(key);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentFeatures = this.state.features;
+
+                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        currentColumns[key].content[4] = currentContent;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 4,
+                        })
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
+                        currentColumns[key].content = [currentContent];
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: 4,
+                        })
+                    }
                 }
             }
         }
@@ -1009,29 +1139,87 @@ class SlideHandler extends Component {
                                                                                         </div>
                                                                                             
                                                                                     :
-                                                                                        <Droppable key={index} droppableId={item.id}>
-                                                                                            {(provided) => (
-                                                                                                <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                                                    <div className="row w-100 m-0">
-                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                            {item.name}
+                                                                                        
+                                                                                        <div className="container p-0 pb-3">
+                                                                                            <div className="row w-100 m-0">
+                                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-5-1'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                                            {
+                                                                                                                typeof item.content[0] != "undefined" ? 
+                                                                                                                    'output' in item.content[0] ?
+                                                                                                                        ReactHtmlParser(item.content[0].output)
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
                                                                                                         </div>
-                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                            {item.name}
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-5-2'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                                            {
+                                                                                                                typeof item.content[1] != "undefined" ? 
+                                                                                                                    'output' in item.content[1] ?
+                                                                                                                        ReactHtmlParser(item.content[1].output)
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
                                                                                                         </div>
-                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                            {item.name}
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-5-3'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 2)}>
+                                                                                                            {
+                                                                                                                typeof item.content[2] != "undefined" ? 
+                                                                                                                    'output' in item.content[2] ?
+                                                                                                                        ReactHtmlParser(item.content[2].output)
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
                                                                                                         </div>
-                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                            {item.name}
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-5-4'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 3)}>
+                                                                                                            {
+                                                                                                                typeof item.content[3] != "undefined" ? 
+                                                                                                                    'output' in item.content[3] ?
+                                                                                                                        ReactHtmlParser(item.content[3].output)
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
                                                                                                         </div>
-                                                                                                        <div id={index} className="d-inline p-5 text-center sg-column sg-1-5">
-                                                                                                            {item.name}
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable key={index} droppableId={item.id + '-sg-1-5-5'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 4)}>
+                                                                                                            {
+                                                                                                                typeof item.content[4] != "undefined" ? 
+                                                                                                                    'output' in item.content[4] ?
+                                                                                                                        ReactHtmlParser(item.content[4].output)
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            )}
-                                                                                        </Droppable>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                            
                                                             ))
                                                         :
                                                         <span></span>
