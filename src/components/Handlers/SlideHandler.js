@@ -48,6 +48,7 @@ class SlideHandler extends Component {
         this.setShowHtmlEditor = this.setShowHtmlEditor.bind(this);
         this.onChangeTextArea = this.onChangeTextArea.bind(this);
         this.contentPaneClick = this.contentPaneClick.bind(this);
+        this.deleteFeature = this.deleteFeature.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -720,6 +721,25 @@ class SlideHandler extends Component {
         }
     }
 
+    deleteFeature = (contentIndex) => {
+        console.log(this.state.activeColumnId);
+        console.log(contentIndex);
+
+        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
+        delete currentColumnContent[contentIndex];
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId].content = currentColumnContent;
+
+        this.setState({
+            column: columns,
+            activeFeature: '',
+            activeColumnId: -1,
+            activeTab: 'column',
+            activeContentIndex: 0,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -876,6 +896,7 @@ class SlideHandler extends Component {
                                                             currentColumn={this.state.column[this.state.activeColumnId]}
                                                             setShowEditor={this.setShowHtmlEditor}
                                                             contentIndex={this.state.activeContentIndex}
+                                                            deleteFeature={this.deleteFeature}
                                                         />
                                                     </Tab>
                                                 </Tabs>

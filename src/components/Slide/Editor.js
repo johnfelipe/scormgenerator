@@ -11,6 +11,7 @@ class Editor extends Component {
         };
         
         this.setIsShown = this.setIsShown.bind(this);
+        this.deleteFeature = this.deleteFeature.bind(this);
     }
 
     setIsShown = (value) => {
@@ -19,12 +20,16 @@ class Editor extends Component {
         })
     }
 
+    deleteFeature = () => {
+        this.props.deleteFeature(this.props.contentIndex);
+    }
+
     render() {
         const contentAreaInterface = (
             <div className="sg-controls">
                 <div className="sg-control sg-inspector-actions">
                     <div className="sg-workspace-actions">
-                        <button type="button" className="sg-workspace-action-item btn btn-link">
+                        <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => this.deleteFeature(this.props.contentIndex)}>
                             <FontAwesomeIcon icon={faTrashAlt}/>
                             <span>Delete</span>
                         </button>
