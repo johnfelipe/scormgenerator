@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import {Controlled as CodeMirror} from 'react-codemirror2';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+// import {Controlled as CodeMirror} from 'react-codemirror2';
+// import 'codemirror/lib/codemirror.css';
+// import 'codemirror/theme/material.css';
 
 class CssEditor extends Component {
 
@@ -29,7 +29,7 @@ class CssEditor extends Component {
                 </div>
                 <div className="sg-workspace-expander-body">
                     <div className="sg-inline-code-editor h-100">
-                        <CodeMirror
+                        {/* <CodeMirror
                             className="h-100"
                             value={this.state.value}
 
@@ -50,7 +50,7 @@ class CssEditor extends Component {
                                 console.log(data);
                                 console.log(value);
                             }}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
