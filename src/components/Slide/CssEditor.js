@@ -10,7 +10,7 @@ class CssEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'this is still not editable',
+            value: 'this is still work in progress and cannot be edited yet',
         };
     }
 
