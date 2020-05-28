@@ -89,7 +89,20 @@ class Editor extends Component {
                                     <span>ID</span>
                                 </div>
                                 <div className="sg-control-input-list-input">
-                                    <input type="text" placeholder=""/>
+                                    <input
+                                        type="text"
+                                        placeholder=""
+                                        onChange={(event) => this.props.setFeatureId(event, this.props.contentIndex)}
+                                        value={ 
+                                            typeof this.props.currentColumn != "undefined" ? 
+                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
+                                                this.props.currentColumn.content[this.props.contentIndex].id 
+                                                : 
+                                                ''
+                                            : 
+                                            '' 
+                                        }
+                                    />
                                 </div>
                             </li>
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -97,7 +110,20 @@ class Editor extends Component {
                                     <span>Class</span>
                                 </div>
                                 <div className="sg-control-input-list-input">
-                                    <input type="text" placeholder=""/>
+                                    <input
+                                        type="text"
+                                        placeholder=""
+                                        onChange={(event) => this.props.setFeatureClass(event, this.props.contentIndex)}
+                                        value={ 
+                                            typeof this.props.currentColumn != "undefined" ? 
+                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
+                                                this.props.currentColumn.content[this.props.contentIndex].class 
+                                                : 
+                                                ''
+                                            : 
+                                            '' 
+                                        }
+                                    />
                                 </div>
                             </li>
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">

@@ -52,6 +52,8 @@ class SlideHandler extends Component {
         this.contentPaneClick = this.contentPaneClick.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
         this.setShowCssEditor = this.setShowCssEditor.bind(this);
+        this.setFeatureId = this.setFeatureId.bind(this);
+        this.setFeatureClass = this.setFeatureClass.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -198,7 +200,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
                     
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content = [currentContent];
                         this.setState({
                             column: currentColumns,
@@ -223,7 +225,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -248,7 +250,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -274,7 +276,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -300,7 +302,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -326,7 +328,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -352,7 +354,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -378,7 +380,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -404,7 +406,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -430,7 +432,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[2] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -456,7 +458,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -482,7 +484,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -508,7 +510,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[2] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -534,7 +536,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[3] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -560,7 +562,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[0] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -586,7 +588,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[1] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -612,7 +614,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[2] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -638,7 +640,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[3] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -664,7 +666,7 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>' };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content[4] = currentContent;
                         this.setState({
                             column: currentColumns,
@@ -725,9 +727,6 @@ class SlideHandler extends Component {
     }
 
     deleteFeature = (contentIndex) => {
-        console.log(this.state.activeColumnId);
-        console.log(contentIndex);
-
         const currentColumnContent = this.state.column[this.state.activeColumnId].content;
         delete currentColumnContent[contentIndex];
 
@@ -747,6 +746,32 @@ class SlideHandler extends Component {
         this.setState({
             showCssEditor: value,
             activeContentIndex: contentIndex,
+        })
+    }
+
+    setFeatureId = (event, contentIndex) => {
+        console.log(event.target.value);
+        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
+        currentColumnContent[contentIndex].id = event.target.value;
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId].content = currentColumnContent;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
+    setFeatureClass = (event, contentIndex) => {
+        console.log(event.target.value);
+        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
+        currentColumnContent[contentIndex].class = event.target.value;
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId].content = currentColumnContent;
+
+        this.setState({
+            column: columns,
         })
     }
 
@@ -908,6 +933,8 @@ class SlideHandler extends Component {
                                                             setShowEditor={this.setShowHtmlEditor}
                                                             deleteFeature={this.deleteFeature}
                                                             setShowCssEditor={this.setShowCssEditor}
+                                                            setFeatureId={this.setFeatureId}
+                                                            setFeatureClass={this.setFeatureClass}
                                                         />
                                                     </Tab>
                                                 </Tabs>
