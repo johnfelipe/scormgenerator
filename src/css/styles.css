@@ -540,16 +540,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100%;
   z-index: 6;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-controls .sg-workspace-expander-content .sg-code-editor-wrapper .sg-workspace-expander-head {
-  background-color: #002b36;
-  border-bottom-color: #00232c;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-controls .sg-workspace-expander-content .sg-code-editor-wrapper .sg-workspace-expander-head-actions:last-child button {
-  border-left-color: #00232c;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-controls .sg-workspace-expander-content .sg-code-editor-wrapper .sg-workspace-expander-head-actions button {
-  color: #fff;
-}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
   flex-grow: 1;
   height: 100%;
@@ -810,18 +800,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:last-child button {
   border-left: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-label {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  margin: 0 auto 0 1em;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-label span {
-  display: block;
-  margin: 0;
-  line-height: 1.4;
-}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body {
   position: absolute;
   z-index: 2;
@@ -863,6 +841,40 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   -webkit-tap-highlight-color: transparent;
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head {
+  background-color: #002b36;
+  border-bottom-color: #00232c;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-actions:last-child button {
+  border-left-color: #00232c;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-label {
+  color: #fff;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-actions button {
+  color: #fff;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .CodeMirror.cm-s-material {
+  text-shadow: none;
+  background-color: rgba(0, 43, 54, 0.965);
+  height: 100%;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head-label {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0 auto 0 1em;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head-label span {
+  display: block;
+  margin: 0;
+  line-height: 1.4;
+  font-size: 10px;
+  letter-spacing: 0.065em;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=styles.css.map */

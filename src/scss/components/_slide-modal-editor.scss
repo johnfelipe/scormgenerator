@@ -67,23 +67,6 @@
                                                             z-index: 6;
                                                         }
                                                     }
-
-                                                    .sg-workspace-expander-content {
-                                                        .sg-code-editor-wrapper {
-                                                            .sg-workspace-expander-head {
-                                                                background-color: #002b36;
-                                                                border-bottom-color: #00232c;
-                                                            }
-
-                                                            .sg-workspace-expander-head-actions:last-child button {
-                                                                border-left-color: #00232c;
-                                                            }
-
-                                                            .sg-workspace-expander-head-actions button {
-                                                                color: #fff;
-                                                            }
-                                                        }
-                                                    }
                                                 }
     
                                                 .sg-workspace-controls {
@@ -389,20 +372,6 @@
                                         .sg-workspace-expander-head-actions:last-child button {
                                             border-left: 1px solid #e2e2e2;
                                         }
-
-                                        .sg-workspace-expander-head-label {
-                                            display: -webkit-flex;
-                                            display: flex;
-                                            -webkit-align-items: center;
-                                            align-items: center;
-                                            margin: 0 auto 0 1em;
-
-                                            span {
-                                                display: block;
-                                                margin: 0;
-                                                line-height: 1.4;
-                                            }
-                                        }
                                     }
 
                                     .sg-workspace-expander-body {
@@ -448,6 +417,49 @@
                                             -webkit-tap-highlight-color: transparent;
                                             -webkit-font-variant-ligatures: contextual;
                                             font-variant-ligatures: contextual;
+                                        }
+                                    }
+
+                                    .sg-code-editor-wrapper {
+                                        .sg-workspace-expander-head {
+                                            background-color: #002b36;
+                                            border-bottom-color: #00232c;
+                                        }
+
+                                        .sg-workspace-expander-head-actions:last-child button {
+                                            border-left-color: #00232c;
+                                        }
+
+                                        .sg-workspace-expander-head-label {
+                                            color: #fff;
+                                        }
+
+                                        .sg-workspace-expander-head-actions button {
+                                            color: #fff;
+                                        }
+
+                                        .CodeMirror.cm-s-material {
+                                            text-shadow: none;
+                                            background-color: rgba(0,43,54,.965);
+                                            height: 100%;
+                                        }
+                                    }
+
+                                    .sg-workspace-expander-head-label {
+                                        display: -webkit-flex;
+                                        display: flex;
+                                        -webkit-align-items: center;
+                                        align-items: center;
+                                        margin: 0 auto 0 1em;
+
+                                        span {
+                                            display: block;
+                                            margin: 0;
+                                            line-height: 1.4;
+                                            font-size: 10px;
+                                            letter-spacing: .065em;
+                                            font-weight: 600;
+                                            text-transform: uppercase;
                                         }
                                     }
                                 }
