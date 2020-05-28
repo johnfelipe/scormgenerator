@@ -830,7 +830,7 @@ class SlideHandler extends Component {
                                         <div className="row">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
                                                 <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
-                                                    <Tab eventKey="column" title="Column" className="mt-3">
+                                                    <Tab eventKey="column" title="Column" className="mt-1">
                                                         <div className="sg-workspace-content-section">
                                                             {
                                                                 this.state.column.length !== 0 ?
@@ -871,7 +871,7 @@ class SlideHandler extends Component {
                                                             <button type="button" className="sg-add-sortable-item-after" onClick={this.addColumn}><span><FontAwesomeIcon icon={faPlus}/>Add Column</span></button>
                                                         </div>
                                                     </Tab>
-                                                    <Tab eventKey="features" title="Features" className="mt-3">
+                                                    <Tab eventKey="features" title="Features" className="mt-1">
                                                         <Droppable droppableId="features">
                                                             {(provided) => (
                                                                 <div ref={provided.innerRef} className="sg-element-library">
@@ -900,7 +900,7 @@ class SlideHandler extends Component {
                                                             )}
                                                         </Droppable>
                                                     </Tab>
-                                                    <Tab eventKey="editor" title="Editor" className="mt-3">
+                                                    <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
                                                             feature={this.state.activeFeature} 
                                                             currentColumn={this.state.column[this.state.activeColumnId]}
