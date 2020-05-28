@@ -10,7 +10,7 @@ class CssEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'this is still work in progress and cannot be edited yet',
+            value: 'this is still work in progress and edits will not reflect',
         };
     }
 
@@ -51,6 +51,12 @@ class CssEditor extends Component {
                                 console.log(value);
                             }}
                         /> */}
+
+                        <textarea
+                            className="sg-text-editor-css"
+                            value={ this.state.value }
+                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
+                        />
                     </div>
                 </div>
             </div>
