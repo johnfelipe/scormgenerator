@@ -7,17 +7,26 @@ class Editor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShown: false,
+            isShownTextArea: false,
+            isShownInput: false,
         };
         
         this.setIsShown = this.setIsShown.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
     }
 
-    setIsShown = (value) => {
-        this.setState({
-            isShown: value,
-        })
+    setIsShown = (value, tag) => {
+
+        if (tag === "textarea") {
+            this.setState({
+                isShownTextArea: value,
+            })
+        } else if (tag === "input") {
+            this.setState({
+                isShownInput: value,
+            })
+        }
+        
     }
 
     deleteFeature = () => {
@@ -44,15 +53,15 @@ class Editor extends Component {
                             <div className="sg-workspace-expander">
                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                     { 
-                                        this.state.isShown ? 
-                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)} onClick={() => this.props.setShowEditor(true, this.props.contentIndex)}>
+                                        this.state.isShownTextArea ? 
+                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false, "textarea")} onClick={() => this.props.setShowEditor(true, this.props.contentIndex)}>
                                             <span>Click to Edit</span>
                                         </button>
                                         :
                                         <span></span>
                                     }
                                     <textarea 
-                                        onMouseOver={() => this.setIsShown(true)} 
+                                        onMouseOver={() => this.setIsShown(true, "textarea")} 
                                         disabled 
                                         value={ 
                                             typeof this.props.currentColumn != "undefined" ? 
@@ -75,7 +84,44 @@ class Editor extends Component {
                     </div>
                     <div className="sg-control-input sg-control-input">
                         <ul className="sg-control-input-list">
-                            
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>ID</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <input type="text" placeholder=""/>
+                                </div>
+                            </li>
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Class</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <input type="text" placeholder=""/>
+                                </div>
+                            </li>
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Element CSS</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <div className="sg-expandable-code-editor">
+                                        <div className="sg-workspace-expander">
+                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                { 
+                                                    this.state.isShownInput ? 
+                                                    <button type="button" className="input-hover-btn" onMouseLeave={() => this.setIsShown(false, "input")} onClick={() => this.props.setShowCssEditor(true, this.props.contentIndex)}>
+                                                        <span>Edit CSS</span>
+                                                    </button>
+                                                    :
+                                                    <span></span>
+                                                }
+                                                <input onMouseOver={() => this.setIsShown(true, "input")}  type="text" value="" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
