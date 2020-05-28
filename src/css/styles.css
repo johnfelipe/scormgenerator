@@ -860,6 +860,22 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: rgba(0, 43, 54, 0.965);
   height: 100%;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper textarea.sg-text-editor-css {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 12px 15px;
+  font-size: 13px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  line-height: 1.55;
+  box-shadow: none !important;
+  outline: 0 !important;
+  resize: none;
+  text-shadow: none;
+  background-color: rgba(0, 43, 54, 0.965);
+  color: #fff;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head-label {
   display: -webkit-flex;
   display: flex;
