@@ -69,6 +69,16 @@ class Editor extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="sg-control sg-control-group sg-control-group-omega">
+                    <div className="sg-control-header">
+                        <label>Customize</label>
+                    </div>
+                    <div className="sg-control-input sg-control-input">
+                        <ul className="sg-control-input-list">
+                            
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
 
