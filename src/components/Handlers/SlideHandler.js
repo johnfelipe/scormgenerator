@@ -12,6 +12,7 @@ import SlideColumn from '../Slide/Columns';
 import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
+import CssEditor from '../Slide/CssEditor';
 
 class SlideHandler extends Component {
 
@@ -37,6 +38,7 @@ class SlideHandler extends Component {
             activeTab: 'column',
             activeColumnId: -1,
             showHtmlEditor: false,
+            showCssEditor: false,
             activeContentIndex: 0,
         };
         
@@ -49,6 +51,7 @@ class SlideHandler extends Component {
         this.onChangeTextArea = this.onChangeTextArea.bind(this);
         this.contentPaneClick = this.contentPaneClick.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
+        this.setShowCssEditor = this.setShowCssEditor.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -740,6 +743,13 @@ class SlideHandler extends Component {
         })
     }
 
+    setShowCssEditor = (value, contentIndex) => {
+        this.setState({
+            showCssEditor: value,
+            activeContentIndex: contentIndex,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -894,9 +904,10 @@ class SlideHandler extends Component {
                                                         <SlideEditor 
                                                             feature={this.state.activeFeature} 
                                                             currentColumn={this.state.column[this.state.activeColumnId]}
-                                                            setShowEditor={this.setShowHtmlEditor}
                                                             contentIndex={this.state.activeContentIndex}
+                                                            setShowEditor={this.setShowHtmlEditor}
                                                             deleteFeature={this.deleteFeature}
+                                                            setShowCssEditor={this.setShowCssEditor}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -1252,6 +1263,13 @@ class SlideHandler extends Component {
                                                 currentColumn={this.state.column[this.state.activeColumnId]}
                                                 setShowEditor={this.setShowHtmlEditor}
                                                 showHtmlEditor={this.state.showHtmlEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
+                                                contentIndex={this.state.activeContentIndex}
+                                            />
+                                            <CssEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowCssEditor={this.setShowCssEditor}
+                                                showCssEditor={this.state.showCssEditor}
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
                                             />
