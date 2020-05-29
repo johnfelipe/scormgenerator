@@ -893,13 +893,13 @@ class SlideHandler extends Component {
                                                                 <span></span>
                                                             }
 
-                                                            <button type="button" className="sg-add-sortable-item-after" onClick={this.addColumn}><span><FontAwesomeIcon icon={faPlus}/>Add Column</span></button>
+                                                            <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}><span><FontAwesomeIcon icon={faPlus}/>Add Column</span></button>
                                                         </div>
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="mt-1">
                                                         <Droppable droppableId="features">
                                                             {(provided) => (
-                                                                <div ref={provided.innerRef} className="sg-element-library">
+                                                                <div ref={provided.innerRef} className="sg-feature-list">
                                                                     {this.state.features.map((item, featureIndex) => (
                                                                         <Draggable
                                                                             key={'feature-draggable-' + featureIndex}
@@ -911,7 +911,7 @@ class SlideHandler extends Component {
                                                                                     ref={provided.innerRef}
                                                                                     {...provided.draggableProps}
                                                                                     {...provided.dragHandleProps}
-                                                                                    className="sg-element-library-item"
+                                                                                    className="sg-feature-list-item"
                                                                                 >
                                                                                     <SlideFeature
                                                                                         icon={item.icon}
