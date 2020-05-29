@@ -1,3 +1,4 @@
+@import "base/defaults";
 @import "components/header";
 @import "components/features";
 @import "components/region";
@@ -10,6 +11,7 @@
 @import "components/slide-modal-features";
 @import "components/slide-modal-editor";
 
+@include defaults;
 @include header;
 @include features;
 @include region;
