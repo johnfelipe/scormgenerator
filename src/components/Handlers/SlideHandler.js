@@ -719,7 +719,7 @@ class SlideHandler extends Component {
         const elem = document.getElementById(elementId);
         const prevId = localStorage.getItem('prevId');
 
-        if ((prevId === null) || (prevId !== null)) {
+        if (((prevId === null) || (prevId !== null)) && (elem !== null)) {
             localStorage.setItem('prevId', elementId);
             elem.focus();
             elem.classList.add("border");
@@ -728,8 +728,11 @@ class SlideHandler extends Component {
 
         if ((prevId !== elementId) && (prevId !== null)) {
             const prevElem = document.getElementById(prevId);
-            prevElem.classList.remove("border");
-            prevElem.classList.remove("border-dark");
+
+            if (prevElem !== null) {
+                prevElem.classList.remove("border");
+                prevElem.classList.remove("border-dark");
+            }
         }
 
         if ((this.state.column[index].content.length > 0) && (typeof this.state.column[index].content[contentIndex] !== "undefined")) {
