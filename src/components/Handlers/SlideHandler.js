@@ -715,7 +715,24 @@ class SlideHandler extends Component {
         })
     }
 
-    contentPaneClick = (index, contentIndex) => {
+    contentPaneClick = (index, contentIndex, elementId) => {
+        const elem = document.getElementById(elementId);
+        const prevId = localStorage.getItem('prevId');
+
+        console.log(prevId);
+        if ((prevId === null) || (prevId !== null)) {
+            localStorage.setItem('prevId', elementId);
+            elem.focus();
+            elem.classList.add("border");
+            elem.classList.add("border-dark");
+        } 
+
+        if ((prevId !== elementId) && (prevId !== null)) {
+            const prevElem = document.getElementById(prevId);
+            prevElem.classList.remove("border");
+            prevElem.classList.remove("border-dark");
+        }
+
         if (this.state.column[index].content.length > 0) {
             this.setState({
                 activeFeature: this.state.column[index].content[contentIndex].type,
@@ -950,16 +967,16 @@ class SlideHandler extends Component {
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                 { typeof item.content[0] != "undefined" ? 
                                                                                     'output' in item.content[0] ?
-                                                                                            <div id={index} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
                                                                                                 {ReactHtmlParser(item.content[0].output)}
                                                                                             </div>
                                                                                         :
-                                                                                            <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                     :
 
-                                                                                    <div id={index} className="p-5 text-center sg-column mt-2">
+                                                                                    <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
                                                                                         {item.name}
                                                                                     </div>
                                                                                 }
@@ -972,7 +989,7 @@ class SlideHandler extends Component {
                                                                             <div className="row w-100 m-0">
                                                                                 <Droppable droppableId={item.id + '-sg-1-2-1'}>
                                                                                     {(provided) => (
-                                                                                        <div key={'sg-1-2-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                        <div key={'sg-1-2-1-' + index} ref={provided.innerRef} id={'sg-1-2-1-' + index} className="d-inline p-5 text-center sg-column sg-1-2" onClick={() => this.contentPaneClick(index, 0, 'sg-1-2-1-' + index)} tabIndex="0">
                                                                                             {
                                                                                                 typeof item.content[0] != "undefined" ? 
                                                                                                     'output' in item.content[0] ?
@@ -987,7 +1004,7 @@ class SlideHandler extends Component {
                                                                                 </Droppable>
                                                                                 <Droppable droppableId={item.id + '-sg-1-2-2'}>
                                                                                     {(provided) => (
-                                                                                        <div key={'sg-1-2-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-2" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                        <div key={'sg-1-2-2-' + index} ref={provided.innerRef} id={'sg-1-2-2-' + index} className="d-inline p-5 text-center sg-column sg-1-2" onClick={() => this.contentPaneClick(index, 1, 'sg-1-2-2-' + index)} tabIndex="1">
                                                                                             {
                                                                                                 typeof item.content[1] != "undefined" ? 
                                                                                                     'output' in item.content[1] ?
@@ -1009,7 +1026,7 @@ class SlideHandler extends Component {
                                                                                 <div className="row w-100 m-0">
                                                                                     <Droppable droppableId={item.id + '-sg-1-3-1'}>
                                                                                         {(provided) => (
-                                                                                            <div key={'sg-1-3-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                            <div key={'sg-1-3-1-' + index} ref={provided.innerRef} id={'sg-1-3-1-' + index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 0, 'sg-1-3-1-' + index)} tabIndex="0">
                                                                                                 {
                                                                                                     typeof item.content[0] != "undefined" ? 
                                                                                                         'output' in item.content[0] ?
@@ -1024,7 +1041,7 @@ class SlideHandler extends Component {
                                                                                     </Droppable>
                                                                                     <Droppable droppableId={item.id + '-sg-2-3-2'}>
                                                                                         {(provided) => (
-                                                                                            <div key={'sg-2-3-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-2-3" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                            <div key={'sg-2-3-2-' + index} ref={provided.innerRef} id={'sg-2-3-2-' + index} className="d-inline p-5 text-center sg-column sg-2-3" onClick={() => this.contentPaneClick(index, 1, 'sg-2-3-2-' + index)} tabIndex="1">
                                                                                                 {
                                                                                                     typeof item.content[1] != "undefined" ? 
                                                                                                         'output' in item.content[1] ?
@@ -1046,7 +1063,7 @@ class SlideHandler extends Component {
                                                                                     <div className="row w-100 m-0">
                                                                                         <Droppable droppableId={item.id + '-sg-2-3-1'}>
                                                                                             {(provided) => (
-                                                                                                <div key={'sg-2-3-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-2-3" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                                <div key={'sg-2-3-1-' + index} ref={provided.innerRef} id={'sg-2-3-1-' + index} className="d-inline p-5 text-center sg-column sg-2-3" onClick={() => this.contentPaneClick(index, 0, 'sg-2-3-1-' + index)} tabIndex="0">
                                                                                                     {
                                                                                                         typeof item.content[0] != "undefined" ? 
                                                                                                             'output' in item.content[0] ?
@@ -1061,7 +1078,7 @@ class SlideHandler extends Component {
                                                                                         </Droppable>
                                                                                         <Droppable droppableId={item.id + '-sg-1-3-2'}>
                                                                                             {(provided) => (
-                                                                                                <div key={'sg-1-3-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                                <div key={'sg-1-3-2-' + index} ref={provided.innerRef} id={'sg-1-3-2-' + index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 1, 'sg-1-3-2-' + index)} tabIndex="1">
                                                                                                     {
                                                                                                         typeof item.content[1] != "undefined" ? 
                                                                                                             'output' in item.content[1] ?
@@ -1084,7 +1101,7 @@ class SlideHandler extends Component {
                                                                                         <div className="row w-100 m-0">
                                                                                         <Droppable droppableId={item.id + '-sg-1-3-1-1'}>
                                                                                             {(provided) => (
-                                                                                                <div key={'sg-1-3-1-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                                <div key={'sg-1-3-1-1-' + index} ref={provided.innerRef} id={'sg-1-3-1-1-' + index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 0, 'sg-1-3-1-1-' + index)} tabIndex="0">
                                                                                                     {
                                                                                                         typeof item.content[0] != "undefined" ? 
                                                                                                             'output' in item.content[0] ?
@@ -1099,7 +1116,7 @@ class SlideHandler extends Component {
                                                                                         </Droppable>
                                                                                         <Droppable droppableId={item.id + '-sg-1-3-1-2'}>
                                                                                             {(provided) => (
-                                                                                                <div key={'sg-1-3-1-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                                <div key={'sg-1-3-1-2-' + index} ref={provided.innerRef} id={'sg-1-3-1-2-' + index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 1, 'sg-1-3-1-2-' + index)} tabIndex="1">
                                                                                                     {
                                                                                                         typeof item.content[1] != "undefined" ? 
                                                                                                             'output' in item.content[1] ?
@@ -1114,7 +1131,7 @@ class SlideHandler extends Component {
                                                                                         </Droppable>
                                                                                         <Droppable droppableId={item.id + '-sg-1-3-1-3'}>
                                                                                             {(provided) => (
-                                                                                                <div key={'sg-1-3-1-3-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 2)}>
+                                                                                                <div key={'sg-1-3-1-3-' + index} ref={provided.innerRef} id={'sg-1-3-1-3-' + index} className="d-inline p-5 text-center sg-column sg-1-3" onClick={() => this.contentPaneClick(index, 2, 'sg-1-3-1-3-' + index)} tabIndex="2">
                                                                                                     {
                                                                                                         typeof item.content[2] != "undefined" ? 
                                                                                                             'output' in item.content[2] ?
@@ -1137,7 +1154,7 @@ class SlideHandler extends Component {
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-4-1'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-4-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                                        <div key={'sg-1-4-1-' + index} ref={provided.innerRef} id={'sg-1-4-1-' + index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 0, 'sg-1-4-1-' + index)} tabIndex="0">
                                                                                                             {
                                                                                                                 typeof item.content[0] != "undefined" ? 
                                                                                                                     'output' in item.content[0] ?
@@ -1152,7 +1169,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-4-2'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-4-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                                        <div key={'sg-1-4-2-' + index} ref={provided.innerRef} id={'sg-1-4-2-' + index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 1, 'sg-1-4-2-' + index)} tabIndex="1">
                                                                                                             {
                                                                                                                 typeof item.content[1] != "undefined" ? 
                                                                                                                     'output' in item.content[1] ?
@@ -1167,7 +1184,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-4-3'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-4-3-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 2)}>
+                                                                                                        <div key={'sg-1-4-3-' + index} ref={provided.innerRef} id={'sg-1-4-3-' + index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 2, 'sg-1-4-3-' + index)} tabIndex="2">
                                                                                                             {
                                                                                                                 typeof item.content[2] != "undefined" ? 
                                                                                                                     'output' in item.content[2] ?
@@ -1182,7 +1199,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-4-4'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-4-4-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 3)}>
+                                                                                                        <div key={'sg-1-4-4-' + index} ref={provided.innerRef} id={'sg-1-4-4-' + index} className="d-inline p-5 text-center sg-column sg-1-4" onClick={() => this.contentPaneClick(index, 3, 'sg-1-4-4-' + index)} tabIndex="3">
                                                                                                             {
                                                                                                                 typeof item.content[3] != "undefined" ? 
                                                                                                                     'output' in item.content[3] ?
@@ -1204,7 +1221,7 @@ class SlideHandler extends Component {
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-1'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 0)}>
+                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={'sg-1-5-1-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 0, 'sg-1-5-1-' + index)} tabIndex="0">
                                                                                                             {
                                                                                                                 typeof item.content[0] != "undefined" ? 
                                                                                                                     'output' in item.content[0] ?
@@ -1219,7 +1236,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-2'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 1)}>
+                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={'sg-1-5-2-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 1, 'sg-1-5-2-' + index)} tabIndex="1">
                                                                                                             {
                                                                                                                 typeof item.content[1] != "undefined" ? 
                                                                                                                     'output' in item.content[1] ?
@@ -1234,7 +1251,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-3'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 2)}>
+                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={'sg-1-5-3-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 2, 'sg-1-5-3-' + index)} tabIndex="2">
                                                                                                             {
                                                                                                                 typeof item.content[2] != "undefined" ? 
                                                                                                                     'output' in item.content[2] ?
@@ -1249,7 +1266,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-4'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 3)}>
+                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={'sg-1-5-4-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 3, 'sg-1-5-4-' + index)} tabIndex="3">
                                                                                                             {
                                                                                                                 typeof item.content[3] != "undefined" ? 
                                                                                                                     'output' in item.content[3] ?
@@ -1264,7 +1281,7 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-5'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 4)}>
+                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={'sg-1-5-5-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 4, 'sg-1-5-5-' + index)} tabIndex="4">
                                                                                                             {
                                                                                                                 typeof item.content[4] != "undefined" ? 
                                                                                                                     'output' in item.content[4] ?
