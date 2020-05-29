@@ -724,6 +724,7 @@ class SlideHandler extends Component {
             elem.focus();
             elem.classList.add("border");
             elem.classList.add("border-dark");
+            elem.classList.add("active-column");
         } 
 
         if ((prevId !== elementId) && (prevId !== null)) {
@@ -732,6 +733,7 @@ class SlideHandler extends Component {
             if (prevElem !== null) {
                 prevElem.classList.remove("border");
                 prevElem.classList.remove("border-dark");
+                prevElem.classList.remove("active-column");
             }
         }
 

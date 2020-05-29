@@ -186,6 +186,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column:last-of-type {
   margin-right: 0 !important;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .active-column {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 html body div.modal .slide-modal-width {
   max-width: none;
   width: 80%;
