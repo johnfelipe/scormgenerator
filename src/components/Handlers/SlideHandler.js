@@ -970,12 +970,12 @@ class SlideHandler extends Component {
                                                                                                 {ReactHtmlParser(item.content[0].output)}
                                                                                             </div>
                                                                                         :
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                     :
 
-                                                                                    <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
+                                                                                    <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
                                                                                         {item.name}
                                                                                     </div>
                                                                                 }
