@@ -45,7 +45,7 @@ class Editor extends Component {
                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                     { 
                                         this.state.isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn" onMouseLeave={() => this.setIsShown(false)} onClick={() => this.props.setShowEditor(true, this.props.contentIndex)}>
+                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => this.setIsShown(false)} onClick={() => this.props.setShowEditor(true, this.props.contentIndex)}>
                                             <span>Click to Edit</span>
                                         </button>
                                         :
@@ -125,10 +125,10 @@ class Editor extends Component {
                                     <div className="sg-expandable-code-editor">
                                         <div className="sg-workspace-expander">
                                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                <button type="button" className="input-hover-btn" onClick={() => this.props.setShowCssEditor(true, this.props.contentIndex)}>
+                                                <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => this.props.setShowCssEditor(true, this.props.contentIndex)}>
                                                     <span>Add CSS</span>
                                                 </button>
-                                                <input type="text" value="" disabled/>
+                                                <input type="text" value="" disabled className="rounded"/>
                                             </div>
                                         </div>
                                     </div>
