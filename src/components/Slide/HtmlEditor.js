@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class HtmlEditor extends Component {
 
@@ -8,11 +8,6 @@ class HtmlEditor extends Component {
         return (
             <div className={this.props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
                 <div className="sg-workspace-expander-head">
-                    <div className="sg-workspace-expander-head-actions">
-                        <button type="button" className="sg-active">
-                            <FontAwesomeIcon icon={faCode}/>
-                        </button>
-                    </div>
                     <div className="sg-workspace-expander-head-label">
                         <span>HTML</span>
                     </div>
