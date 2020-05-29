@@ -306,8 +306,8 @@
                                     }
 
                                     .sg-workspace-expander-content-vertical {
-                                        top: 270px;
-                                        width: 19.2%;
+                                        top: 265px;
+                                        width: 19.199%;
                                         border-right: 1px solid #e2e2e2;
                                         transform: translate3d(-160%,0,0);
                                     }
@@ -316,12 +316,13 @@
                                         position: fixed;
                                         z-index: 8889;
                                         margin-left: 15px;
-                                        bottom: 144px;
+                                        // bottom: 140px;
                                         background-color: #fff;
                                         transition-duration: .65s;
                                         transition-property: width,height,transform;
                                         transition-timing-function: cubic-bezier(.23,1,.32,1);
                                         border: 1px solid #ddd;
+                                        height: 57.2%;
                                     }
 
                                     .sg-workspace-expander-head {

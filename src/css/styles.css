@@ -740,8 +740,8 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   transform: translate3d(0, 0, 0);
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content-vertical {
-  top: 270px;
-  width: 19.2%;
+  top: 265px;
+  width: 19.199%;
   border-right: 1px solid #e2e2e2;
   transform: translate3d(-160%, 0, 0);
 }
@@ -749,12 +749,12 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   position: fixed;
   z-index: 8889;
   margin-left: 15px;
-  bottom: 144px;
   background-color: #fff;
   transition-duration: 0.65s;
   transition-property: width, height, transform;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   border: 1px solid #ddd;
+  height: 57.2%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head {
   display: -webkit-flex;
