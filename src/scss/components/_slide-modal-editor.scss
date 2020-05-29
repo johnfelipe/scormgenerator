@@ -422,26 +422,9 @@
                                     }
 
                                     .sg-code-editor-wrapper {
-                                        .sg-workspace-expander-head {
-                                            background-color: #002b36;
-                                            border-bottom-color: #00232c;
-                                        }
-
-                                        .sg-workspace-expander-head-actions:last-child button {
-                                            border-left-color: #00232c;
-                                        }
-
-                                        .sg-workspace-expander-head-label {
-                                            color: #fff;
-                                        }
-
-                                        .sg-workspace-expander-head-actions button {
-                                            color: #fff;
-                                        }
-
                                         .CodeMirror.cm-s-material {
                                             text-shadow: none;
-                                            background-color: rgba(0,43,54,.965);
+                                            background-color: #fff;
                                             height: 100%;
                                         }
 

@@ -841,22 +841,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head {
-  background-color: #002b36;
-  border-bottom-color: #00232c;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-actions:last-child button {
-  border-left-color: #00232c;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-label {
-  color: #fff;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .sg-workspace-expander-head-actions button {
-  color: #fff;
-}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .CodeMirror.cm-s-material {
   text-shadow: none;
-  background-color: rgba(0, 43, 54, 0.965);
+  background-color: #fff;
   height: 100%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper textarea.sg-text-editor-css {
