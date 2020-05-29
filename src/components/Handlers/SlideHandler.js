@@ -719,7 +719,6 @@ class SlideHandler extends Component {
         const elem = document.getElementById(elementId);
         const prevId = localStorage.getItem('prevId');
 
-        console.log(prevId);
         if ((prevId === null) || (prevId !== null)) {
             localStorage.setItem('prevId', elementId);
             elem.focus();
