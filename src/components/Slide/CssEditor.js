@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-// import {Controlled as CodeMirror} from 'react-codemirror2';
-// import 'codemirror/lib/codemirror.css';
-// import 'codemirror/theme/material.css';
+import { faTimes, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+
+import {Controlled as CodeMirror} from 'react-codemirror2';
+require('codemirror/lib/codemirror.css');
+require('codemirror/theme/material.css');
+require('codemirror/theme/neat.css');
+require('codemirror/mode/xml/xml.js');
+require('codemirror/mode/javascript/javascript.js');
 
 class CssEditor extends Component {
 
@@ -25,38 +29,34 @@ class CssEditor extends Component {
                         <button type="button" className="sg-close" onClick={() => this.props.setShowCssEditor(false, this.props.contentIndex)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </button>
+                        <button type="button" className="sg-expand" onClick={() => console.log('This will expand')}>
+                            <FontAwesomeIcon icon={faCaretRight}/>
+                        </button>
                     </div>
                 </div>
                 <div className="sg-workspace-expander-body">
                     <div className="sg-inline-code-editor h-100">
-                        {/* <CodeMirror
+                        <CodeMirror
                             className="h-100"
                             value={this.state.value}
-
                             options={{
-                                mode: 'css',
+                                mode: 'javascript',
                                 theme: 'material',
                                 lineNumbers: true
                             }}
-
                             onBeforeChange={(editor, data, value) => {
-                                this.setState({
-                                    sampleValue: value,
-                                });
+                                this.setState({value});
                             }}
-
-                            onChange={(editor, data, value) => {
-                                console.log(editor);
-                                console.log(data);
-                                console.log(value);
+                            onChange={(editor, value) => {
+                                console.log('controlled', {value});
                             }}
-                        /> */}
+                        />
 
-                        <textarea
+                        {/* <textarea
                             className="sg-text-editor-css"
                             value={ this.state.value }
                             onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
