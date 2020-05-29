@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import {Controlled as CodeMirror} from 'react-codemirror2';
 require('codemirror/lib/codemirror.css');
@@ -29,9 +29,9 @@ class CssEditor extends Component {
                         <button type="button" className="sg-close" onClick={() => this.props.setShowCssEditor(false, this.props.contentIndex)}>
                             <FontAwesomeIcon icon={faTimes}/>
                         </button>
-                        <button type="button" className="sg-expand" onClick={() => console.log('This will expand')}>
+                        {/* <button type="button" className="sg-expand" onClick={() => console.log('This will expand')}>
                             <FontAwesomeIcon icon={faCaretRight}/>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
                 <div className="sg-workspace-expander-body">
