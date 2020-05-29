@@ -732,7 +732,7 @@ class SlideHandler extends Component {
             prevElem.classList.remove("border-dark");
         }
 
-        if (this.state.column[index].content.length > 0) {
+        if ((this.state.column[index].content.length > 0) && (typeof this.state.column[index].content[contentIndex] !== "undefined")) {
             this.setState({
                 activeFeature: this.state.column[index].content[contentIndex].type,
                 activeColumnId: index,
