@@ -171,7 +171,7 @@ class SlideHandler extends Component {
             return;
         }
 
-        if (source.droppableId === destination.droppableId) {
+        if ((source.droppableId === "columns") && (destination.droppableId === "columns")) {
             const currentColumnList = this.state.column;
 
             const reordered_slides = this.reorder(
@@ -186,7 +186,7 @@ class SlideHandler extends Component {
             })
         }
 
-        if (source.droppableId === "features") {
+        if ((source.droppableId === "features") && (destination.droppableId !== "features")) {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
@@ -1295,7 +1295,6 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                             </div>
                                                                                         </div>
-                                                                                            
                                                             ))
                                                         :
                                                         <span></span>
