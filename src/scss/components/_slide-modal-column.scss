@@ -83,7 +83,7 @@
                                                     }
                                                 }
 
-                                                [class*=sg-add-sortable-item] {
+                                                [class*=sg-add-sortable-column] {
                                                     left: 0;
                                                     right: 0;
                                                     height: 20px;
@@ -97,7 +97,7 @@
                                                     overflow: hidden;
                                                 }
 
-                                                [class*=sg-add-sortable-item] {
+                                                [class*=sg-add-sortable-column] {
                                                     display: block;
                                                     margin: 0;
                                                     background-color: transparent;
@@ -107,7 +107,7 @@
                                                     cursor: pointer;
                                                 }
 
-                                                [class*=sg-add-sortable-item]:hover {
+                                                [class*=sg-add-sortable-column]:hover {
                                                     color: green;
                                                 }
                                             }
