@@ -56,12 +56,12 @@ class Editor extends Component {
                                         disabled 
                                         value={ 
                                             typeof this.props.currentColumn != "undefined" ? 
-                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
-                                                this.props.currentColumn.content[this.props.contentIndex].output 
+                                                'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                                                    this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output 
                                                 : 
-                                                ''
+                                                    ''
                                             : 
-                                            '' 
+                                                '' 
                                         }
                                     />
                                 </div>
