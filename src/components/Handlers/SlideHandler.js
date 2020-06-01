@@ -40,6 +40,7 @@ class SlideHandler extends Component {
             showHtmlEditor: false,
             showCssEditor: false,
             activeContentIndex: 0,
+            currentColumnContentIndex: '',
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -99,6 +100,7 @@ class SlideHandler extends Component {
     addColumn = () => {
         const currentCount = this.state.column.length + 1
         const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1, id: 'column' + currentCount, content: [] }
+        columnObj.content['first'] = [];
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -193,6 +195,11 @@ class SlideHandler extends Component {
 
             for (var key in currentColumns) {
                 if (destination.droppableId === currentColumns[key]['id']) {
+
+                    this.setState({
+                        currentColumnContentIndex: 'first',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -201,12 +208,13 @@ class SlideHandler extends Component {
                     
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content = [currentContent];
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
                         currentColumns[key].content = [currentContent];
@@ -214,7 +222,7 @@ class SlideHandler extends Component {
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                        })
+                        });
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
@@ -704,8 +712,9 @@ class SlideHandler extends Component {
 
     onChangeTextArea = (event, contentIndex) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
-        currentColumnObj.content[contentIndex].output = event.target.value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
@@ -737,9 +746,9 @@ class SlideHandler extends Component {
             }
         }
 
-        if ((this.state.column[index].content.length > 0) && (typeof this.state.column[index].content[contentIndex] !== "undefined")) {
+        if ((this.state.column[index].content[this.state.currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[this.state.currentColumnContentIndex][contentIndex] !== "undefined")) {
             this.setState({
-                activeFeature: this.state.column[index].content[contentIndex].type,
+                activeFeature: this.state.column[index].content[this.state.currentColumnContentIndex][contentIndex].type,
                 activeColumnId: index,
                 activeTab: 'editor',
                 activeContentIndex: contentIndex,
@@ -956,6 +965,7 @@ class SlideHandler extends Component {
                                                             setShowCssEditor={this.setShowCssEditor}
                                                             setFeatureId={this.setFeatureId}
                                                             setFeatureClass={this.setFeatureClass}
+                                                            currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -969,20 +979,22 @@ class SlideHandler extends Component {
                                                                     <Droppable key={index} droppableId={item.id}>
                                                                         {(provided) => (
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                                { typeof item.content[0] != "undefined" ? 
-                                                                                    'output' in item.content[0] ?
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
-                                                                                                {ReactHtmlParser(item.content[0].output)}
-                                                                                            </div>
-                                                                                        :
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
-                                                                                                {item.name}
-                                                                                            </div>
+                                                                                { 
+                                                                                    typeof item.content['first'] != "undefined" ? 
+                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
+                                                                                            {
+                                                                                                item.content['first'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                    <div key={'content-output-' + contentFirstIndex} id={'content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id)}>
+                                                                                                        {ReactHtmlParser(contentFirst.output)}
+                                                                                                    </div>
+                                                                                                ))
+                                                                                            }
+                                                                                        </div>
                                                                                     :
 
-                                                                                    <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
-                                                                                        {item.name}
-                                                                                    </div>
+                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
+                                                                                            {item.name}
+                                                                                        </div>
                                                                                 }
                                                                             </div>
                                                                         )}
@@ -1312,6 +1324,7 @@ class SlideHandler extends Component {
                                                 showHtmlEditor={this.state.showHtmlEditor}
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
                                             />
                                             <CssEditor 
                                                 currentColumn={this.state.column[this.state.activeColumnId]}
