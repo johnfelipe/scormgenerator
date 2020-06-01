@@ -104,6 +104,7 @@ class SlideHandler extends Component {
 
         this.setState({
             column: [...this.state.column, columnObj],
+            currentColumnContentIndex: 'first',
         });
     }
 
