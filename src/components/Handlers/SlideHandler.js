@@ -1017,12 +1017,12 @@ class SlideHandler extends Component {
                                                                                                 }
                                                                                             </div>
                                                                                         :
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                     :
 
-                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
+                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                             {item.name}
                                                                                         </div>
                                                                                 }
@@ -1036,7 +1036,7 @@ class SlideHandler extends Component {
                                                                             <div className="row w-100 m-0">
                                                                                 <Droppable droppableId={item.id + '-sg-1-2-1'}>
                                                                                     {(provided) => (
-                                                                                        <div key={'sg-1-2-1-' + index} ref={provided.innerRef} id={'sg-1-2-1-' + index} className="d-inline p-5 text-center sg-column sg-1-2" onClick={() => this.contentPaneClick(index, 0, 'sg-1-2-1-' + index, 'first')} tabIndex="0">
+                                                                                        <div key={'sg-1-2-1-' + index} ref={provided.innerRef} id={'sg-1-2-1-' + index} className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0">
                                                                                             {
                                                                                                 typeof item.content['first'] != "undefined" ? 
                                                                                                     item.content['first'].length > 0 ?
