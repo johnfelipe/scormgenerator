@@ -142,6 +142,17 @@ class SlideHandler extends Component {
             columnSizesObj[columnIndex].content['first'] = [];
             columnSizesObj[columnIndex].content['second'] = [];
             columnSizesObj[columnIndex].content['third'] = [];
+        } else if (sizeId === 5) {
+            columnSizesObj[columnIndex].content['first'] = [];
+            columnSizesObj[columnIndex].content['second'] = [];
+            columnSizesObj[columnIndex].content['third'] = [];
+            columnSizesObj[columnIndex].content['fourth'] = [];
+        } else if (sizeId === 6) {
+            columnSizesObj[columnIndex].content['first'] = [];
+            columnSizesObj[columnIndex].content['second'] = [];
+            columnSizesObj[columnIndex].content['third'] = [];
+            columnSizesObj[columnIndex].content['fourth'] = [];
+            columnSizesObj[columnIndex].content['fifth'] = [];
         }
 
         this.setState({
