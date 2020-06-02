@@ -741,9 +741,14 @@ class SlideHandler extends Component {
         })
     }
 
-    contentPaneClick = (index, contentIndex, elementId) => {
+    contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
         const elem = document.getElementById(elementId);
         const prevId = localStorage.getItem('prevId');
+
+        console.log('First Block: ');
+        console.log(prevId === null);
+        console.log(prevId !== null);
+        console.log(elem !== null);
 
         if (((prevId === null) || (prevId !== null)) && (elem !== null)) {
             localStorage.setItem('prevId', elementId);
@@ -752,6 +757,10 @@ class SlideHandler extends Component {
             elem.classList.add("border-dark");
             elem.classList.add("active-column");
         } 
+
+        console.log('Second Block: ');
+        console.log(prevId !== elementId);
+        console.log(prevId !== null);
 
         if ((prevId !== elementId) && (prevId !== null)) {
             const prevElem = document.getElementById(prevId);
@@ -763,12 +772,17 @@ class SlideHandler extends Component {
             }
         }
 
-        if ((this.state.column[index].content[this.state.currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[this.state.currentColumnContentIndex][contentIndex] !== "undefined")) {
+        console.log('Debug here:');
+        console.log(index);
+        console.log(this.state.currentColumnContentIndex);
+
+        if ((this.state.column[index].content[currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[currentColumnContentIndex][contentIndex] !== "undefined")) {
             this.setState({
-                activeFeature: this.state.column[index].content[this.state.currentColumnContentIndex][contentIndex].type,
+                activeFeature: this.state.column[index].content[currentColumnContentIndex][contentIndex].type,
                 activeColumnId: index,
                 activeTab: 'editor',
                 activeContentIndex: contentIndex,
+                currentColumnContentIndex: currentColumnContentIndex,
             });
         }
     }
@@ -1002,19 +1016,19 @@ class SlideHandler extends Component {
                                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
                                                                                                 {
                                                                                                     item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                        <div key={'content-output-' + contentFirstIndex} id={'content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id)}>
+                                                                                                        <div key={item.id + '-content-output-' + contentFirstIndex} id={item.id + '-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'first')}>
                                                                                                             {ReactHtmlParser(contentFirst.output)}
                                                                                                         </div>
                                                                                                     ))
                                                                                                 }
                                                                                             </div>
                                                                                         :
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                     :
 
-                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id)} tabIndex="0">
+                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
                                                                                             {item.name}
                                                                                         </div>
                                                                                 }
@@ -1032,7 +1046,7 @@ class SlideHandler extends Component {
                                                                                                 typeof item.content['first'] != "undefined" ? 
                                                                                                     item.content['first'].length > 0 ?
                                                                                                         item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                            <div key={'content-output-' + contentFirstIndex} id={'content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-2-1-' + index)}>
+                                                                                                            <div key={'sg-1-2-1-content-output-' + contentFirstIndex} id={'sg-1-2-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-2-1-content-output-' + contentFirstIndex, 'first')}>
                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                             </div>
                                                                                                         ))
@@ -1051,7 +1065,7 @@ class SlideHandler extends Component {
                                                                                                 typeof item.content['second'] != "undefined" ? 
                                                                                                     item.content['second'].length > 0 ?
                                                                                                         item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                            <div key={'content-output-' + contentSecondIndex} id={'content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-2-1-' + index)}>
+                                                                                                            <div key={'sg-1-2-2-content-output-' + contentSecondIndex} id={'sg-1-2-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-2-2-content-output-' + contentSecondIndex, 'second')}>
                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                             </div>
                                                                                                         ))
