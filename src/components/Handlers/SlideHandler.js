@@ -745,12 +745,6 @@ class SlideHandler extends Component {
         const elem = document.getElementById(elementId);
         const prevId = localStorage.getItem('prevId');
 
-        console.log('First Block: ');
-        console.log(prevId === null);
-        console.log(prevId !== null);
-        console.log(elem !== null);
-        console.log(elementId.includes("content-output"));
-
         if (((prevId === null) || (prevId !== null)) && (elem !== null)) {
             localStorage.setItem('prevId', elementId);
             elem.focus();
@@ -761,11 +755,6 @@ class SlideHandler extends Component {
                 elem.classList.add("active-column");
             }
         } 
-
-        console.log('Second Block: ');
-        console.log(prevId !== elementId);
-        console.log(prevId !== null);
-        console.log(prevId.includes("content-output"));
 
         if ((prevId !== elementId) && (prevId !== null)) {
             const prevElem = document.getElementById(prevId);
@@ -780,10 +769,6 @@ class SlideHandler extends Component {
             }
         }
 
-        console.log('Debug here:');
-        console.log(index);
-        console.log(this.state.currentColumnContentIndex);
-
         if ((this.state.column[index].content[currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[currentColumnContentIndex][contentIndex] !== "undefined")) {
             this.setState({
                 activeFeature: this.state.column[index].content[currentColumnContentIndex][contentIndex].type,
@@ -796,7 +781,7 @@ class SlideHandler extends Component {
     }
 
     deleteFeature = (contentIndex) => {
-        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
+        const currentColumnContent = this.state.column[this.state.activeColumnId].content[this.state.currentColumnContentIndex];
         delete currentColumnContent[contentIndex];
 
         const columns = this.state.column;
@@ -990,6 +975,7 @@ class SlideHandler extends Component {
                                                                             )}
                                                                         </Draggable>
                                                                     ))}
+                                                                    {provided.placeholder}
                                                                 </div>
                                                             )}
                                                         </Droppable>
@@ -1021,7 +1007,7 @@ class SlideHandler extends Component {
                                                                                 { 
                                                                                     typeof item.content['first'] != "undefined" ? 
                                                                                         item.content['first'].length > 0 ?
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" tabIndex="0">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {
                                                                                                     item.content['first'].map((contentFirst, contentFirstIndex) =>(
                                                                                                         <div key={item.id + '-content-output-' + contentFirstIndex} id={item.id + '-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'first')}>
@@ -1031,15 +1017,16 @@ class SlideHandler extends Component {
                                                                                                 }
                                                                                             </div>
                                                                                         :
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
                                                                                                 {item.name}
                                                                                             </div>
                                                                                     :
 
-                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
+                                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" onClick={() => this.contentPaneClick(index, 0, item.id, 'first')} tabIndex="0">
                                                                                             {item.name}
                                                                                         </div>
                                                                                 }
+                                                                                {provided.placeholder}
                                                                             </div>
                                                                         )}
                                                                     </Droppable>
@@ -1063,6 +1050,7 @@ class SlideHandler extends Component {
                                                                                                 :
                                                                                                     item.name
                                                                                             }
+                                                                                            {provided.placeholder}
                                                                                         </div>
                                                                                     )}
                                                                                 </Droppable>
@@ -1082,6 +1070,7 @@ class SlideHandler extends Component {
                                                                                                 :
                                                                                                     item.name
                                                                                             }
+                                                                                            {provided.placeholder}
                                                                                         </div>
                                                                                     )}
                                                                                 </Droppable>
