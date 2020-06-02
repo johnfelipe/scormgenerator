@@ -1121,12 +1121,12 @@ class SlideHandler extends Component {
                                                                                             </div>
                                                                                         :
                                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
-                                                                                                dito {item.name}
+                                                                                                {item.name}
                                                                                             </div>
                                                                                     :
 
                                                                                         <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
-                                                                                            dato {item.name}
+                                                                                            {item.name}
                                                                                         </div>
                                                                                 }
                                                                                 {provided.placeholder}
