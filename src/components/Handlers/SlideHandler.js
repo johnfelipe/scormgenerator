@@ -657,6 +657,11 @@ class SlideHandler extends Component {
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
                     // Seventh Size
+
+                    this.setState({
+                        currentColumnContentIndex: 'first',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -665,12 +670,12 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content[0] = currentContent;
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -683,6 +688,11 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
+
+                    this.setState({
+                        currentColumnContentIndex: 'second',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -691,12 +701,12 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content[1] = currentContent;
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -709,6 +719,11 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-3')) {
+
+                    this.setState({
+                        currentColumnContentIndex: 'third',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -717,12 +732,12 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content[2] = currentContent;
+                        currentColumns[key].content['third'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 2,
+                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -735,6 +750,11 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
+
+                    this.setState({
+                        currentColumnContentIndex: 'fourth',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -743,12 +763,12 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content[3] = currentContent;
+                        currentColumns[key].content['fourth'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 3,
+                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -761,6 +781,11 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
+
+                    this.setState({
+                        currentColumnContentIndex: 'fifth',
+                    });
+
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -769,12 +794,12 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content[4] = currentContent;
+                        currentColumns[key].content['fifth'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 4,
+                            activeContentIndex: (currentColumns[key].content['fifth'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
@@ -1417,8 +1442,22 @@ class SlideHandler extends Component {
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-1'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={'sg-1-5-1-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 0, 'sg-1-5-1-' + index)} tabIndex="0">
+                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={'sg-1-5-1-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0">
                                                                                                             {
+                                                                                                                typeof item.content['first'] != "undefined" ? 
+                                                                                                                    item.content['first'].length > 0 ?
+                                                                                                                        item.content['first'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                            <div key={'sg-1-5-1-content-output-' + contentFirstIndex} id={'sg-1-5-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                                                {ReactHtmlParser(contentFirst.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                            {/* {
                                                                                                                 typeof item.content[0] != "undefined" ? 
                                                                                                                     'output' in item.content[0] ?
                                                                                                                         ReactHtmlParser(item.content[0].output)
@@ -1426,14 +1465,28 @@ class SlideHandler extends Component {
                                                                                                                         item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-2'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={'sg-1-5-2-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 1, 'sg-1-5-2-' + index)} tabIndex="1">
+                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={'sg-1-5-2-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1">
                                                                                                             {
+                                                                                                                typeof item.content['second'] != "undefined" ? 
+                                                                                                                    item.content['second'].length > 0 ?
+                                                                                                                        item.content['second'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                            <div key={'sg-1-5-2-content-output-' + contentSecondIndex} id={'sg-1-5-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                                                {ReactHtmlParser(contentSecond.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                            {/* {
                                                                                                                 typeof item.content[1] != "undefined" ? 
                                                                                                                     'output' in item.content[1] ?
                                                                                                                         ReactHtmlParser(item.content[1].output)
@@ -1441,14 +1494,28 @@ class SlideHandler extends Component {
                                                                                                                         item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-3'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={'sg-1-5-3-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 2, 'sg-1-5-3-' + index)} tabIndex="2">
+                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={'sg-1-5-3-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2">
                                                                                                             {
+                                                                                                                typeof item.content['third'] != "undefined" ? 
+                                                                                                                    item.content['third'].length > 0 ?
+                                                                                                                        item.content['third'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                            <div key={'sg-1-5-3-content-output-' + contentThirdIndex} id={'sg-1-5-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'third')}>
+                                                                                                                                {ReactHtmlParser(contentThird.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                            {/* {
                                                                                                                 typeof item.content[2] != "undefined" ? 
                                                                                                                     'output' in item.content[2] ?
                                                                                                                         ReactHtmlParser(item.content[2].output)
@@ -1456,14 +1523,28 @@ class SlideHandler extends Component {
                                                                                                                         item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-4'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={'sg-1-5-4-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 3, 'sg-1-5-4-' + index)} tabIndex="3">
+                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={'sg-1-5-4-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3">
                                                                                                             {
+                                                                                                                typeof item.content['fourth'] != "undefined" ? 
+                                                                                                                    item.content['fourth'].length > 0 ?
+                                                                                                                        item.content['fourth'].map((contentFourth, contentFourthIndex) =>(
+                                                                                                                            <div key={'sg-1-5-4-content-output-' + contentFourthIndex} id={'sg-1-5-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'fourth')}>
+                                                                                                                                {ReactHtmlParser(contentFourth.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                            {/* {
                                                                                                                 typeof item.content[3] != "undefined" ? 
                                                                                                                     'output' in item.content[3] ?
                                                                                                                         ReactHtmlParser(item.content[3].output)
@@ -1471,14 +1552,28 @@ class SlideHandler extends Component {
                                                                                                                         item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-5'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={'sg-1-5-5-' + index} className="d-inline p-5 text-center sg-column sg-1-5" onClick={() => this.contentPaneClick(index, 4, 'sg-1-5-5-' + index)} tabIndex="4">
+                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={'sg-1-5-5-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4">
                                                                                                             {
+                                                                                                                typeof item.content['fifth'] != "undefined" ? 
+                                                                                                                    item.content['fifth'].length > 0 ?
+                                                                                                                        item.content['fifth'].map((contentFifth, contentFifthIndex) =>(
+                                                                                                                            <div key={'sg-1-5-5-content-output-' + contentFifthIndex} id={'sg-1-5-5-content-output-' + contentFifthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'fifth')}>
+                                                                                                                                {ReactHtmlParser(contentFifth.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                            {/* {
                                                                                                                 typeof item.content[4] != "undefined" ? 
                                                                                                                     'output' in item.content[4] ?
                                                                                                                         ReactHtmlParser(item.content[4].output)
@@ -1486,7 +1581,7 @@ class SlideHandler extends Component {
                                                                                                                         item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            }
+                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
