@@ -201,6 +201,7 @@ class SlideHandler extends Component {
 
             for (var key in currentColumns) {
                 if (destination.droppableId === currentColumns[key]['id']) {
+                    // First Size
 
                     this.setState({
                         currentColumnContentIndex: 'first',
@@ -232,6 +233,7 @@ class SlideHandler extends Component {
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
+                    // Second Size
 
                     this.setState({
                         currentColumnContentIndex: 'first',
@@ -294,6 +296,7 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1')) {
+                    // Third Size
 
                     this.setState({
                         currentColumnContentIndex: 'first',
@@ -356,6 +359,7 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-1')) {
+                    // Fourth Size
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -408,6 +412,7 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-1')) {
+                    // Fifth Size
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -486,6 +491,7 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-1')) {
+                    // Sixth Size
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
@@ -590,6 +596,7 @@ class SlideHandler extends Component {
                         })
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
+                    // Seventh Size
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
