@@ -1344,15 +1344,6 @@ class SlideHandler extends Component {
                                                                                                                     item.name
                                                                                                             }
                                                                                                             {provided.placeholder}
-                                                                                                            {/* {
-                                                                                                                typeof item.content[0] != "undefined" ? 
-                                                                                                                    'output' in item.content[0] ?
-                                                                                                                        ReactHtmlParser(item.content[0].output)
-                                                                                                                    :
-                                                                                                                        item.name
-                                                                                                                :
-                                                                                                                    item.name
-                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
@@ -1373,15 +1364,6 @@ class SlideHandler extends Component {
                                                                                                                     item.name
                                                                                                             }
                                                                                                             {provided.placeholder}
-                                                                                                            {/* {
-                                                                                                                typeof item.content[1] != "undefined" ? 
-                                                                                                                    'output' in item.content[1] ?
-                                                                                                                        ReactHtmlParser(item.content[1].output)
-                                                                                                                    :
-                                                                                                                        item.name
-                                                                                                                :
-                                                                                                                    item.name
-                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
@@ -1402,15 +1384,6 @@ class SlideHandler extends Component {
                                                                                                                     item.name
                                                                                                             }
                                                                                                             {provided.placeholder}
-                                                                                                            {/* {
-                                                                                                                typeof item.content[2] != "undefined" ? 
-                                                                                                                    'output' in item.content[2] ?
-                                                                                                                        ReactHtmlParser(item.content[2].output)
-                                                                                                                    :
-                                                                                                                        item.name
-                                                                                                                :
-                                                                                                                    item.name
-                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
@@ -1431,15 +1404,6 @@ class SlideHandler extends Component {
                                                                                                                     item.name
                                                                                                             }
                                                                                                             {provided.placeholder}
-                                                                                                            {/* {
-                                                                                                                typeof item.content[3] != "undefined" ? 
-                                                                                                                    'output' in item.content[3] ?
-                                                                                                                        ReactHtmlParser(item.content[3].output)
-                                                                                                                    :
-                                                                                                                        item.name
-                                                                                                                :
-                                                                                                                    item.name
-                                                                                                            } */}
                                                                                                         </div>
                                                                                                     )}
                                                                                                 </Droppable>
