@@ -1042,6 +1042,7 @@ class SlideHandler extends Component {
                                                                                         )}
                                                                                     </Draggable>
                                                                                 ))}
+                                                                                {provided.placeholder}
                                                                             </div>
                                                                         )}
                                                                     </Droppable>
