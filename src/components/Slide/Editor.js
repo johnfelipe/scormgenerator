@@ -171,7 +171,7 @@ class Editor extends Component {
                                 </div>
                                 <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
                                     <textarea
-                                        placeholder="Put code here . . ."
+                                        placeholder="Put embed code here . . ."
                                         className="sg-input-code"
                                         style={{fontSize: 10}}
                                         value={ 
