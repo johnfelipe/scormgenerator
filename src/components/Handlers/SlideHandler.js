@@ -906,12 +906,13 @@ class SlideHandler extends Component {
     }
 
     setFeatureId = (event, contentIndex) => {
-        console.log(event.target.value);
-        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
-        currentColumnContent[contentIndex].id = event.target.value;
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].id = event.target.value;
 
         const columns = this.state.column;
-        columns[this.state.activeColumnId].content = currentColumnContent;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
         this.setState({
             column: columns,
@@ -919,12 +920,13 @@ class SlideHandler extends Component {
     }
 
     setFeatureClass = (event, contentIndex) => {
-        console.log(event.target.value);
-        const currentColumnContent = this.state.column[this.state.activeColumnId].content;
-        currentColumnContent[contentIndex].class = event.target.value;
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].class = event.target.value;
 
         const columns = this.state.column;
-        columns[this.state.activeColumnId].content = currentColumnContent;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
         this.setState({
             column: columns,
