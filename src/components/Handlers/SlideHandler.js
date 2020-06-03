@@ -244,6 +244,7 @@ class SlideHandler extends Component {
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         });
                     }
                     
