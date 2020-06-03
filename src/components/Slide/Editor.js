@@ -164,7 +164,24 @@ class Editor extends Component {
                                     <span>Embed Code</span>
                                 </div>
                                 <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                    <textarea placeholder="" className="sg-input-code"></textarea>
+                                    <textarea
+                                        placeholder="Put code here . . ."
+                                        className="sg-input-code"
+                                        style={{fontSize: 10}}
+                                        value={ 
+                                            typeof this.props.currentColumn != "undefined" ? 
+                                                'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                                                    this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ?
+                                                        this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output 
+                                                    :
+                                                        ''
+                                                : 
+                                                    ''
+                                            : 
+                                                ''
+                                        }
+                                        onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
+                                    />
                                 </div>
                             </li>
                         </ul>

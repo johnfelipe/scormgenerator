@@ -238,8 +238,8 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: 'test', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
@@ -1094,6 +1094,7 @@ class SlideHandler extends Component {
                                                             setFeatureId={this.setFeatureId}
                                                             setFeatureClass={this.setFeatureClass}
                                                             currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                            onChangeTextArea={this.onChangeTextArea}
                                                         />
                                                     </Tab>
                                                 </Tabs>
