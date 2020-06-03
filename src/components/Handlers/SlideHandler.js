@@ -879,6 +879,7 @@ class SlideHandler extends Component {
                 activeTab: 'editor',
                 activeContentIndex: contentIndex,
                 currentColumnContentIndex: currentColumnContentIndex,
+                showHtmlEditor: false,
             });
         }
     }
