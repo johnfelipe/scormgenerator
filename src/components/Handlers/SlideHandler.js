@@ -238,7 +238,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: 'test', class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
