@@ -15,6 +15,7 @@ import TranscriptHandler from '../Handlers/TranscriptHandler';
 import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
+import GalleryHandler from '../Handlers/GalleryHandler';
 
 //modal
 import ConfirmationModal from '../AlertModal/Confirmation';
@@ -195,8 +196,13 @@ class Main extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-8 mt-2">
+                                    <div className="col-md-4 mt-2">
                                         <NavigationHandler currentType={values.navigationType} name="navigationType" handleChange={handleChange}/>
+                                    </div>
+                                    <div className="col-md-4 mt-2">
+                                        <div className="text-center">
+                                            <GalleryHandler />
+                                        </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="float-right mt-2">
