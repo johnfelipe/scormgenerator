@@ -44,24 +44,12 @@ class ImageUploader extends Component {
           };
 
           this.props.setMediaUrls(urlObject);
-          // this.setState({
-          //   file: file,
-          //   imagePreviewUrl: reader.result
-          // });
         }
       });
     }
   
     render() {
-      // let {imagePreviewUrl} = this.state;
-      // let $imagePreview = null;
-      // if (imagePreviewUrl) {
-      //   $imagePreview = (<img src={imagePreviewUrl} alt="sample"/>);
-      // }
 
-      // console.log(this.state.file);
-      // console.log(this.state.imagePreviewUrl);
-  
       return (
         <div>
           <form onSubmit={this._handleSubmit}>
