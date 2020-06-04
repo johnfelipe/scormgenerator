@@ -6,6 +6,7 @@ import { Modal, Tabs, Tab } from 'react-bootstrap';
 
 // Gallery Components
 import ImageUploader from '../Gallery/ImageUploader';
+import MediaLoader from '../Gallery/MediaLoader';
 
 class GalleryHandler extends Component {
 
@@ -86,7 +87,11 @@ class GalleryHandler extends Component {
                             <ImageUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
-                            Tab 2
+                            {
+                                this.state.mediaUrls.map((fileData) => (
+                                    <MediaLoader dataUrl={fileData.dataUrl} fileName={fileData.name} />
+                                ))
+                            }
                         </Tab>
                     </Tabs>
                 </Modal.Body>
