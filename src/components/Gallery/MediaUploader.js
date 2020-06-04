@@ -54,7 +54,6 @@ class MediaUploader extends Component {
         <div>
           <form onSubmit={this._handleSubmit}>
             <input type="file" onChange={this._handleImageChange} multiple/>
-            <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
           </form>
         </div>
       )
