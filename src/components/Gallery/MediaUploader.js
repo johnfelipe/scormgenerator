@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // https://codepen.io/hartzis/pen/VvNGZP
-class ImageUploader extends Component {
+class MediaUploader extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -62,4 +62,4 @@ class ImageUploader extends Component {
   
   }
 
-  export default ImageUploader;
+  export default MediaUploader;

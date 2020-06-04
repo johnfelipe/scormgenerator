@@ -5,7 +5,7 @@ import { Modal, Tabs, Tab } from 'react-bootstrap';
 // import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 // Gallery Components
-import ImageUploader from '../Gallery/ImageUploader';
+import MediaUploader from '../Gallery/MediaUploader';
 import MediaLoader from '../Gallery/MediaLoader';
 
 class GalleryHandler extends Component {
@@ -84,7 +84,7 @@ class GalleryHandler extends Component {
                         onSelect={(k) => this.setKey(k)}
                     >
                         <Tab eventKey="uploadFiles" title="Upload Files">
-                            <ImageUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
+                            <MediaUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
                             {
