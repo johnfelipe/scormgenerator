@@ -19,34 +19,56 @@ class ImageUploader extends Component {
   
     _handleImageChange(e) {
       e.preventDefault();
-  
-      let reader = new FileReader();
-      let file = e.target.files[0];
-  
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          imagePreviewUrl: reader.result
-        });
-      }
-  
-      reader.readAsDataURL(file)
+      let files = e.target.files;
+
+      Object.keys(files).map((fileIndex) => {
+
+        let reader = new FileReader();
+
+        const fileObject = {
+          name: files[fileIndex].name,
+          size: files[fileIndex].size,
+          type: files[fileIndex].type,
+          lastModified: files[fileIndex].lastModified,
+          lastModifiedDate: files[fileIndex].lastModifiedDate,
+        };
+
+        this.props.setMediaFiles(fileObject, fileIndex);
+
+        reader.readAsDataURL(files[fileIndex])
+        reader.onloadend = () => {
+
+          const urlObject = {
+            name: files[fileIndex].name,
+            dataUrl: reader.result
+          };
+
+          this.props.setMediaUrls(urlObject);
+          // this.setState({
+          //   file: file,
+          //   imagePreviewUrl: reader.result
+          // });
+        }
+      });
     }
   
     render() {
-      let {imagePreviewUrl} = this.state;
-      let $imagePreview = null;
-      if (imagePreviewUrl) {
-        $imagePreview = (<img src={imagePreviewUrl} />);
-      }
+      // let {imagePreviewUrl} = this.state;
+      // let $imagePreview = null;
+      // if (imagePreviewUrl) {
+      //   $imagePreview = (<img src={imagePreviewUrl} alt="sample"/>);
+      // }
+
+      // console.log(this.state.file);
+      // console.log(this.state.imagePreviewUrl);
   
       return (
         <div>
           <form onSubmit={this._handleSubmit}>
-            <input type="file" onChange={this._handleImageChange} />
+            <input type="file" onChange={this._handleImageChange} multiple/>
             <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
           </form>
-          {$imagePreview}
+          {/* {$imagePreview} */}
         </div>
       )
     }
