@@ -10,6 +10,7 @@
 @import "components/slide-modal-column";
 @import "components/slide-modal-features";
 @import "components/slide-modal-editor";
+@import "components/gallery-modal";
 
 @include defaults;
 @include header;
@@ -23,3 +24,4 @@
 @include slide-modal-column;
 @include slide-modal-features;
 @include slide-modal-editor;
+@include gallery-modal;

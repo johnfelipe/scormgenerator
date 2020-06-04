@@ -1,0 +1,11 @@
+@mixin gallery-modal {
+    html {
+        body {
+            div.modal {
+                .gallery-modal {
+                    max-width: none;
+                }
+            }
+        }
+    }
+}
