@@ -52,9 +52,9 @@ class MediaUploader extends Component {
 
       return (
         <div>
-          <form onSubmit={this._handleSubmit}>
+          {/* <form onSubmit={this._handleSubmit}> */}
             <input type="file" onChange={this._handleImageChange} multiple/>
-          </form>
+          {/* </form> */}
         </div>
       )
     }
