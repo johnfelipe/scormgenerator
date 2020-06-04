@@ -939,5 +939,8 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal .gallery-modal {
   max-width: none;
 }
+html body div.modal .gallery-modal .modal-content {
+  height: 750px !important;
+}
 
 /*# sourceMappingURL=styles.css.map */

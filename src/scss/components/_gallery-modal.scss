@@ -4,6 +4,10 @@
             div.modal {
                 .gallery-modal {
                     max-width: none;
+
+                    .modal-content {
+                        height: 750px !important;
+                    }
                 }
             }
         }
