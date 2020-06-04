@@ -56,7 +56,6 @@ class ImageUploader extends Component {
             <input type="file" onChange={this._handleImageChange} multiple/>
             <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
           </form>
-          {/* {$imagePreview} */}
         </div>
       )
     }
