@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Tabs, Tab } from 'react-bootstrap';
 // import { Formik } from "formik";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+
+// Gallery Components
+// import ImageUploader from '../Gallery/ImageUploader';
 
 class GalleryHandler extends Component {
 
@@ -10,8 +13,16 @@ class GalleryHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
+            key: 'uploadFiles',
         };
         this.setModalShow = this.setModalShow.bind(this);
+        this.setKey = this.setKey.bind(this);
+    }
+
+    setKey = (key) => {
+        this.setState({
+            key: key,
+        })
     }
 
     setModalShow = (value) => {
@@ -29,7 +40,7 @@ class GalleryHandler extends Component {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                dialogClassName="gallery-modal w-95"
+                dialogClassName="gallery-modal w-90"
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -37,7 +48,18 @@ class GalleryHandler extends Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Sample
+                    <Tabs
+                        id="controlled-tab-example"
+                        activeKey={this.state.key}
+                        onSelect={(k) => this.setKey(k)}
+                    >
+                        <Tab eventKey="uploadFiles" title="Upload Files">
+                            Tab 1
+                        </Tab>
+                        <Tab eventKey="mediaLibrary" title="Media Library">
+                            Tab 2
+                        </Tab>
+                    </Tabs>
                 </Modal.Body>
             </Modal>
         );
