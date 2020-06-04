@@ -5,7 +5,7 @@ import { Modal, Tabs, Tab } from 'react-bootstrap';
 // import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 // Gallery Components
-// import ImageUploader from '../Gallery/ImageUploader';
+import ImageUploader from '../Gallery/ImageUploader';
 
 class GalleryHandler extends Component {
 
@@ -14,9 +14,20 @@ class GalleryHandler extends Component {
         this.state = {
             modalShow: false,
             key: 'uploadFiles',
+            mediaFiles: [],
+            mediaUrls: [],
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.setKey = this.setKey.bind(this);
+        this.setMediaFiles = this.setMediaFiles.bind(this);
+        this.setMediaUrls = this.setMediaUrls.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        console.log("Media Files: ");
+        console.log(this.state.mediaFiles);
+        console.log("Media Urls:");
+        console.log(this.state.mediaUrls);
     }
 
     setKey = (key) => {
@@ -29,6 +40,24 @@ class GalleryHandler extends Component {
         this.setState({
             modalShow: value,
         });
+    }
+
+    setMediaFiles = (fileObject, fileIndex) => {
+        const mediaFile = fileObject;
+        const mediaFiles = this.state.mediaFiles;
+        mediaFiles[fileIndex] = mediaFile;
+
+        this.setState({
+            mediaFiles: mediaFiles,
+        })
+    }
+
+    setMediaUrls = (fileUrl) => {
+        const mediaUrl = fileUrl;
+
+        this.setState({
+            mediaUrls: [...this.state.mediaUrls, mediaUrl]
+        })
     }
 
     render() {
@@ -54,7 +83,7 @@ class GalleryHandler extends Component {
                         onSelect={(k) => this.setKey(k)}
                     >
                         <Tab eventKey="uploadFiles" title="Upload Files">
-                            Tab 1
+                            <ImageUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
                             Tab 2
