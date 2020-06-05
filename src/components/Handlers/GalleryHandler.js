@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Tabs, Tab } from 'react-bootstrap';
+import { Modal, Tabs, Tab, ModalFooter } from 'react-bootstrap';
 // import { Formik } from "formik";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
@@ -91,6 +91,9 @@ class GalleryHandler extends Component {
                         </Tab>
                     </Tabs>
                 </Modal.Body>
+                <ModalFooter>
+                    
+                </ModalFooter>
             </Modal>
         );
 
