@@ -9,6 +9,9 @@ const initialState = {
     navigationType: '',
     showProgressbar: '',
     courseLessons: [],
+    resourceFiles: [],
+    transcriptFile: [],
+    glossaryObject: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +37,12 @@ const reducer = (state = initialState, action) => {
         case types.NAVIGATION_TYPE: return methods.chooseNavigationType(state, action);
 
         case types.SHOW_HIDE_PROGRESSBAR: return methods.showHideProgressbar(state, action);
+
+        case types.ADD_RESOURCE_FILES: return methods.addResourceFiles(state, action);
+
+        case types.ADD_TRANSCRIPT_FILE: return methods.addTranscriptFile(state, action);
+
+        case types.ADD_GLOSSARY_ENTRIES: return methods.addGlossaryEntries(state, action);
 
         default: {
             return state;

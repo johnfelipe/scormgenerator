@@ -25,10 +25,10 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentClickedLessonId: '',
             resourceFiles: [],
             transcriptFile: [],
             glossaryObject: [],
-            currentClickedLessonId: '',
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -212,7 +212,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <ResourcesHandler resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
+                                        <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
                                         {
                                             this.state.resourceFiles.length !== 0 ? 
                                             <span>
@@ -224,7 +224,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <TranscriptHandler transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
+                                            <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
                                         </div>
                                         {
                                             this.state.transcriptFile.length !== 0 ? 
@@ -236,7 +236,7 @@ class Main extends Component {
                                         }
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <GlossaryHandler glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryObject}/>
+                                        <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryObject}/>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -339,6 +339,9 @@ const mapStateToProps = (state) => {
         courseLessons: state.courseLessons,
         navigationType: state.navigationType,
         showProgressbar: state.showProgressbar,
+        resourceFiles: state.resourceFiles,
+        transcriptFile: state.transcriptFile,
+        glossaryObject: state.glossaryObject,
     }
 }
 
@@ -354,7 +357,10 @@ const mapDispatchToProps = (dispatch) => {
         editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, index: slideId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
-        showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value})
+        showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
+        addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
+        addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
+        addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
     }
 }
 

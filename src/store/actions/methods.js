@@ -120,3 +120,27 @@ export const showHideProgressbar = (state, action) => {
         showProgressbar: action.value,
     }
 }
+
+export const addResourceFiles = (state, action) => {
+    console.log(action.object)
+    return {
+        ...state,
+        resourceFiles: action.object,
+    }
+}
+
+export const addTranscriptFile = (state, action) => {
+    console.log(action.object)
+    return {
+        ...state,
+        transcriptFile: action.object,
+    }
+}
+
+export const addGlossaryEntries = (state, action) => {
+    console.log(action.object)
+    return {
+        ...state,
+        glossaryObject: action.object,
+    }
+}

@@ -88,8 +88,9 @@ class ResourcesHandler extends Component {
             }
             counter++;
         }
-
+        
         this.props.resourceFilesHandler(resourcesArr);
+        this.props.addResourceFiles(resourcesArr);
 
         this.setModalShow(false)
     }

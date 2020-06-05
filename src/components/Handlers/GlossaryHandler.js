@@ -98,8 +98,9 @@ class GlossaryHandler extends Component {
                 }
             }
         }
-
+        
         this.props.glossaryHandler(glossaryArr);
+        this.props.addGlossaryEntries(glossaryArr);
         this.setModalShow(false)
     }
 

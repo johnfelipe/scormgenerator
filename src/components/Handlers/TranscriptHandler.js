@@ -30,6 +30,7 @@ class TranscriptHandler extends Component {
         transcriptArr[0] = object;
 
         this.props.transcriptFileHandler(transcriptArr);
+        this.props.addTranscriptFile(transcriptArr);
 
         this.setModalShow(false)
     }
