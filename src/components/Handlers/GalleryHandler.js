@@ -15,7 +15,7 @@ class GalleryHandler extends Component {
         this.state = {
             modalShow: false,
             key: 'uploadFiles',
-            // mediaFiles: [],
+            mediaFiles: [],
             mediaUrls: [],
         };
         this.setModalShow = this.setModalShow.bind(this);
@@ -44,15 +44,15 @@ class GalleryHandler extends Component {
     }
 
     setMediaFiles = (fileObject, fileIndex) => {
-        // const mediaFile = fileObject;
-        // const mediaFiles = this.state.mediaFiles;
-        // mediaFiles[fileIndex] = mediaFile;
+        const mediaFile = fileObject;
+        const mediaFiles = this.state.mediaFiles;
+        mediaFiles[fileIndex] = mediaFile;
 
-        // this.setState({
-        //     mediaFiles: mediaFiles,
-        // })
+        this.props.galleryHandler(mediaFiles);
 
-        this.props.galleryHandler(fileObject, fileIndex);
+        this.setState({
+            mediaFiles: mediaFiles,
+        })
     }
 
     setMediaUrls = (fileUrl) => {
