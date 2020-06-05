@@ -271,13 +271,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
@@ -302,14 +303,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1')) {
                     // Third Size
@@ -334,14 +335,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
@@ -365,14 +366,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-1')) {
                     // Fourth Size
@@ -397,14 +398,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
@@ -428,14 +429,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-1')) {
                     // Fifth Size
@@ -460,14 +461,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
@@ -491,14 +492,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
@@ -522,14 +523,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['third'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['third'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 2,
-                        })
+                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-1')) {
                     // Sixth Size
@@ -554,14 +555,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-2')) {
 
@@ -585,14 +586,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-3')) {
 
@@ -616,14 +617,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['third'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['third'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 2,
-                        })
+                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-4')) {
 
@@ -647,14 +648,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['fourth'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 3,
-                        })
+                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
                     // Seventh Size
@@ -679,14 +680,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['first'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['first'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 0,
-                        })
+                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
@@ -710,14 +711,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['second'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['second'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 1,
-                        })
+                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-3')) {
 
@@ -741,14 +742,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['third'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['third'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 2,
-                        })
+                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
@@ -772,14 +773,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['fourth'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 3,
-                        })
+                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
@@ -803,14 +804,14 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content['fifth'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '' };
-                        currentColumns[key].content = [currentContent];
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content['fifth'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: 4,
-                        })
+                            activeContentIndex: (currentColumns[key].content['fifth'].length - 1),
+                        });
                     }
                 }
             }
