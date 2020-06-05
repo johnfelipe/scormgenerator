@@ -846,10 +846,10 @@ class SlideHandler extends Component {
 
     contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
         const elem = document.getElementById(elementId);
-        const prevId = localStorage.getItem('prevId');
+        const prevElemId = localStorage.getItem('prevElemId');
 
-        if (((prevId === null) || (prevId !== null)) && (elem !== null)) {
-            localStorage.setItem('prevId', elementId);
+        if (((prevElemId === null) || (prevElemId !== null)) && (elem !== null)) {
+            localStorage.setItem('prevElemId', elementId);
             elem.focus();
             elem.classList.add("border");
             elem.classList.add("border-dark");
@@ -859,14 +859,14 @@ class SlideHandler extends Component {
             }
         } 
 
-        if ((prevId !== elementId) && (prevId !== null)) {
-            const prevElem = document.getElementById(prevId);
+        if ((prevElemId !== elementId) && (prevElemId !== null)) {
+            const prevElem = document.getElementById(prevElemId);
 
             if (prevElem !== null) {
                 prevElem.classList.remove("border");
                 prevElem.classList.remove("border-dark");
 
-                if (prevId.includes("content-output")) {
+                if (prevElemId.includes("content-output")) {
                     prevElem.classList.remove("active-column");
                 }
             }
