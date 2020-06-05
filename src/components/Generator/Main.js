@@ -208,7 +208,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject}/>
+                                            <GalleryHandler addMediaFiles={this.props.addMediaFiles} galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject}/>
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
@@ -349,6 +349,7 @@ const mapStateToProps = (state) => {
         resourceFiles: state.resourceFiles,
         transcriptFile: state.transcriptFile,
         glossaryEntries: state.glossaryEntries,
+        mediaFiles: state.mediaFiles,
     }
 }
 
@@ -368,6 +369,7 @@ const mapDispatchToProps = (dispatch) => {
         addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
         addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
         addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
+        addMediaFiles: (value) => dispatch({type: 'ADD_MEDIA_FILES', object: value}),
     }
 }
 

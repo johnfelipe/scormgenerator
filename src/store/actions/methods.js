@@ -122,7 +122,6 @@ export const showHideProgressbar = (state, action) => {
 }
 
 export const addResourceFiles = (state, action) => {
-    console.log(action.object)
     return {
         ...state,
         resourceFiles: action.object,
@@ -130,7 +129,6 @@ export const addResourceFiles = (state, action) => {
 }
 
 export const addTranscriptFile = (state, action) => {
-    console.log(action.object)
     return {
         ...state,
         transcriptFile: action.object,
@@ -138,9 +136,15 @@ export const addTranscriptFile = (state, action) => {
 }
 
 export const addGlossaryEntries = (state, action) => {
-    console.log(action.object)
     return {
         ...state,
         glossaryEntries: action.object,
+    }
+}
+
+export const addMediaFiles = (state, action) => {
+    return {
+        ...state,
+        mediaFiles: action.object,
     }
 }

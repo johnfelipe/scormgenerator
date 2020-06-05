@@ -50,6 +50,7 @@ class GalleryHandler extends Component {
         mediaFiles[fileIndex] = mediaFile;
 
         this.props.galleryHandler(mediaFiles);
+        this.props.addMediaFiles(mediaFiles);
 
         this.setState({
             mediaFiles: mediaFiles,
@@ -72,6 +73,7 @@ class GalleryHandler extends Component {
         mediaUrls.splice(mediaIndex, 1);
 
         this.props.galleryHandler(mediaFiles);
+        this.props.addMediaFiles(mediaFiles);
 
         this.setState({
             mediaFiles: mediaFiles,

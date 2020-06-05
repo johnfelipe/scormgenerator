@@ -10,6 +10,7 @@ const initialState = {
     showProgressbar: '',
     courseLessons: [],
     glossaryEntries: [],
+    mediaFiles: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +42,8 @@ const reducer = (state = initialState, action) => {
         case types.ADD_TRANSCRIPT_FILE: return methods.addTranscriptFile(state, action);
 
         case types.ADD_GLOSSARY_ENTRIES: return methods.addGlossaryEntries(state, action);
+
+        case types.ADD_MEDIA_FILES: return methods.addMediaFiles(state, action);
 
         default: {
             return state;
