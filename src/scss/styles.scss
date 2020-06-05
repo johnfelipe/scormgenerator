@@ -12,6 +12,7 @@
 @import "components/slide-modal-editor";
 @import "components/gallery-modal";
 @import "components/media-library";
+@import "components/media-uploader";
 
 @include defaults;
 @include header;
@@ -27,3 +28,4 @@
 @include slide-modal-editor;
 @include gallery-modal;
 @include media-library;
+@include media-uploader;

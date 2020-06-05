@@ -1,0 +1,19 @@
+@mixin media-uploader {
+    html {
+        body {
+            .gallery-modal {
+                .modal-content {
+                    .modal-body {
+                        .tab-content {
+                            #controlled-tab-example-tabpane-uploadFiles {
+                                .custom-file {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

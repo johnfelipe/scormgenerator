@@ -1,4 +1,5 @@
 @mixin defaults {
+    // Custom widths
     .w-10 {
         width: 10% !important;
     }
@@ -49,5 +50,10 @@
 
     .w-95 {
         width: 95% !important;
+    }
+
+    // Custom paddings
+    .pr-6 {
+        padding-right: 4.5rem !important;
     }
 }
