@@ -51,6 +51,58 @@
   width: 95% !important;
 }
 
+.h-10 {
+  height: 10% !important;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-30 {
+  height: 30% !important;
+}
+
+.h-40 {
+  height: 40% !important;
+}
+
+.h-55 {
+  height: 55% !important;
+}
+
+.h-60 {
+  height: 60% !important;
+}
+
+.h-65 {
+  height: 65% !important;
+}
+
+.h-70 {
+  height: 70% !important;
+}
+
+.h-75 {
+  height: 75% !important;
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
+.h-85 {
+  height: 85% !important;
+}
+
+.h-90 {
+  height: 90% !important;
+}
+
+.h-95 {
+  height: 95% !important;
+}
+
 .pr-6 {
   padding-right: 4.5rem !important;
 }
@@ -1009,6 +1061,10 @@ html body div.modal .gallery-modal .modal-content .modal-body .tab-content #cont
   top: 0;
   left: 0;
 }
+html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .thumbnail .audio, html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .thumbnail .video {
+  font-size: 12px;
+  word-break: break-all;
+}
 html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .thumbail:after {
   content: "";
   display: block;
@@ -1020,13 +1076,10 @@ html body div.modal .gallery-modal .modal-content .modal-body .tab-content #cont
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .details {
+html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item.details {
   box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 7px #0073aa;
 }
-html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .selected {
-  box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 7px #ccc;
-}
-html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .details:focus, html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item .selected:focus {
+html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item.details:focus {
   box-shadow: inset 0 0 2px 3px #fff, inset 0 0 0 7px #5b9dd9;
   outline: 2px solid transparent;
   outline-offset: -6px;
@@ -1034,6 +1087,18 @@ html body div.modal .gallery-modal .modal-content .modal-body .tab-content #cont
 
 html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-uploadFiles .custom-file {
   cursor: pointer;
+}
+html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-uploadFiles .fadeOut {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+}
+html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-uploadFiles .fadeIn {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }
 
 /*# sourceMappingURL=styles.css.map */

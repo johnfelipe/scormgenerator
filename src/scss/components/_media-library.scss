@@ -73,6 +73,11 @@
                                                     top: 0;
                                                     left: 0;
                                                 }
+
+                                                .audio, .video {
+                                                    font-size: 12px;
+                                                    word-break: break-all;
+                                                }
                                             }
 
                                             .thumbail:after {
@@ -86,20 +91,17 @@
                                                 box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
                                                 overflow: hidden;
                                             }
+                                            
+                                        }
 
-                                            .details {
-                                                box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 7px #0073aa;
-                                            }
+                                        li.media-library-list-item.details {
+                                            box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 7px #0073aa;
+                                        }
 
-                                            .selected {
-                                                box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 7px #ccc;
-                                            }
-
-                                            .details:focus, .selected:focus {
-                                                box-shadow: inset 0 0 2px 3px #fff, inset 0 0 0 7px #5b9dd9;
-                                                outline: 2px solid transparent;
-                                                outline-offset: -6px;
-                                            }
+                                        li.media-library-list-item.details:focus {
+                                            box-shadow: inset 0 0 2px 3px #fff, inset 0 0 0 7px #5b9dd9;
+                                            outline: 2px solid transparent;
+                                            outline-offset: -6px;
                                         }
                                     }
                                 }
