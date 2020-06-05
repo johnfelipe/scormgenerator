@@ -5,7 +5,7 @@ class MediaLoader extends Component {
     render() {
 
         return (
-            <ul className="media-library-list">
+            <ul className="media-library-list w-100">
                 {
                     this.props.mediaUrls.map((fileData) => (
                         <li className="media-library-list-item">
