@@ -1,22 +1,73 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
 
 class MediaLoader extends Component {
+
+    constructor(props) {
+        super(props);
+        
+        this.itemClick = this.itemClick.bind(this);
+    }
+
+    itemClick = (itemId) => {
+        const elem = document.getElementById(itemId);
+        const prevItemId = localStorage.getItem('prevItemId');
+
+        if (((prevItemId === null) || (prevItemId !== null)) && (elem !== null)) {
+            localStorage.setItem('prevItemId', itemId);
+            elem.focus();
+            elem.classList.add("details");
+        } 
+
+        if ((prevItemId !== itemId) && (prevItemId !== null)) {
+            const prevElem = document.getElementById(prevItemId);
+
+            if (prevElem !== null) {
+                prevElem.classList.remove("details");
+            }
+        }
+    }
 
     render() {
 
         return (
             <ul className="media-library-list w-100">
                 {
-                    this.props.mediaUrls.map((fileData) => (
-                        <li className="media-library-list-item">
-                            <div className="media-preview">
-                                <div className="thumbnail">
-                                    <div className="centered">
-                                        <img src={fileData.dataUrl} alt={fileData.fileName}/>
+                    this.props.mediaUrls.map((fileData, fileIndex) => (
+                        fileData.type.includes("image") ?
+                            <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                    <div className="thumbnail">
+                                        <div className="centered">
+                                            <img src={fileData.dataUrl} alt={fileData.name}/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        :
+                            fileData.type.includes("audio") ?
+                                <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                    <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                        <div className="thumbnail">
+                                            <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                            <div className="audio">
+                                                <div>{fileData.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            :
+                                <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                    <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                        <div className="thumbnail">
+                                            <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
+                                            <div className="video">
+                                                <div>{fileData.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                     ))
                 }
             </ul>
