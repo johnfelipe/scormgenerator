@@ -14,10 +14,13 @@ class MediaUploader extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log("files");
-        console.log(this.state.files);
-        console.log("urls");
-        console.log(this.state.urls);
+        setTimeout(
+            function() {
+                this.setState({showSuccessMsg: false});
+            }
+            .bind(this),
+            5000
+        );
     }
 
     handleImageChange(e) {
@@ -48,7 +51,8 @@ class MediaUploader extends Component {
 
                 const urlObject = {
                     name: files[fileIndex].name,
-                    dataUrl: reader.result
+                    type: files[fileIndex].type,
+                    dataUrl: reader.result,
                 };
 
                 this.props.setMediaUrls(urlObject);
@@ -82,16 +86,11 @@ class MediaUploader extends Component {
                             </label>
                         </div>
                     </div>
-                    {
-                        this.state.showSuccessMsg ?
-                            <div id="success-message">
-                                <Alert variant='success'>
-                                    <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
-                                </Alert>
-                            </div>
-                        :
-                            null
-                    }
+                    <div id="success-message" className={this.state.showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut'}>
+                        <Alert variant='success'>
+                            <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
+                        </Alert>
+                    </div>
                 </div>
                 <div className="col-md-4"></div>
             </div>
