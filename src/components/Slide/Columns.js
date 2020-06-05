@@ -39,7 +39,9 @@ class Columns extends Component {
                             onChange={(event) => this.props.handleContentEditable(event, this.props.columnIndex)}
                             className="content-editable d-inline"
                         />
-                        <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.props.deleteColumn(this.props.columnIndex)}><FontAwesomeIcon icon={faTrash}/></button>
+                        <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => this.props.deleteColumn(this.props.columnIndex)}>
+                            <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                        </button>
                         <span className="float-right mr-3"><FontAwesomeIcon icon={this.state.collapseID === true ? faCaretUp : faCaretDown}/></span>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
