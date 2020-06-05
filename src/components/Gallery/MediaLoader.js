@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAudio, faFileVideo } from '@fortawesome/free-solid-svg-icons';
+import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class MediaLoader extends Component {
 
@@ -18,6 +18,7 @@ class MediaLoader extends Component {
             localStorage.setItem('prevItemId', itemId);
             elem.focus();
             elem.classList.add("details");
+            elem.classList.add("selected");
         } 
 
         if ((prevItemId !== itemId) && (prevItemId !== null)) {
@@ -25,6 +26,7 @@ class MediaLoader extends Component {
 
             if (prevElem !== null) {
                 prevElem.classList.remove("details");
+                prevElem.classList.remove("selected");
             }
         }
     }
@@ -44,6 +46,9 @@ class MediaLoader extends Component {
                                         </div>
                                     </div>
                                 </div>
+                                <button type="button" class="check">
+                                    <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                </button>
                             </li>
                         :
                             fileData.type.includes("audio") ?
