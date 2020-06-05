@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Tabs, Tab, ModalFooter } from 'react-bootstrap';
+import { Modal, Tabs, Tab } from 'react-bootstrap';
 // import { Formik } from "formik";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
@@ -87,13 +87,15 @@ class GalleryHandler extends Component {
                             <MediaUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
-                            <MediaLoader mediaUrls={this.state.mediaUrls}/>
+                            {
+                                this.state.mediaUrls.length > 0 ?
+                                    <MediaLoader mediaUrls={this.state.mediaUrls}/>
+                                :
+                                    <div className="p-3">No files found</div>
+                            }
                         </Tab>
                     </Tabs>
                 </Modal.Body>
-                <ModalFooter>
-                    
-                </ModalFooter>
             </Modal>
         );
 
