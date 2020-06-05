@@ -153,7 +153,7 @@ class Editor extends Component {
             <div className="sg-controls">
                 <div className="sg-control sg-inspector-actions">
                     <div className="sg-workspace-actions">
-                        <button type="button" className="sg-workspace-action-item btn btn-link">
+                        <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => this.deleteFeature(this.props.contentIndex)}>
                             <FontAwesomeIcon icon={faTrashAlt}/>
                             <span>Delete</span>
                         </button>
