@@ -29,6 +29,7 @@ class Main extends Component {
             resourceFiles: [],
             transcriptFile: [],
             glossaryObject: [],
+            mediaFiles: [],
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -123,6 +124,16 @@ class Main extends Component {
         })
     }
 
+    galleryHandler = (object, index) => {
+        const mediaFile = object;
+        const mediaFiles = this.state.mediaFiles;
+        mediaFiles[index] = mediaFile;
+
+        this.setState({
+            mediaFiles: mediaFiles,
+        })
+    }
+
     render() {
         return (
             <div id="generator-container">
@@ -201,7 +212,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler />
+                                            <GalleryHandler galleryHandler={this.galleryHandler} mediaFiles={this.state.mediaFiles}/>
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">

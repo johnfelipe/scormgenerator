@@ -61,6 +61,9 @@ class MediaLoader extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="button" class="check">
+                                        <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                    </button>
                                 </li>
                             :
                                 <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
@@ -72,6 +75,9 @@ class MediaLoader extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="button" class="check">
+                                        <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                    </button>
                                 </li>
                     ))
                 }
