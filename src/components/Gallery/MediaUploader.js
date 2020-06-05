@@ -86,7 +86,7 @@ class MediaUploader extends Component {
                             </label>
                         </div>
                     </div>
-                    <div id="success-message" className={this.state.showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut'}>
+                    <div id="success-message" className={this.state.showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
                         <Alert variant='success'>
                             <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
                         </Alert>
