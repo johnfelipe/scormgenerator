@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 
 class MediaLoader extends Component {
-  
+
     render() {
 
-      return (
-        <img src={this.props.dataUrl} alt={this.props.fileName} className="w-25 h-25 mr-3 mt-3"/>
-      )
+        return (
+            <ul className="media-library-list">
+                {
+                    this.props.mediaUrls.map((fileData) => (
+                        <li className="media-library-list-item">
+                            <div className="media-preview">
+                                <div className="thumbnail">
+                                    <div className="centered">
+                                        <img src={fileData.dataUrl} alt={fileData.fileName}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+        )
     }
-  
-  }
 
-  export default MediaLoader;
+}
+
+export default MediaLoader;
