@@ -46,7 +46,7 @@ class MediaLoader extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="check">
+                                <button type="button" className="check" onClick={() => console.log(fileIndex)}>
                                     <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                 </button>
                             </li>
@@ -61,7 +61,7 @@ class MediaLoader extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="check">
+                                    <button type="button" className="check">
                                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                     </button>
                                 </li>
@@ -75,7 +75,7 @@ class MediaLoader extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="check">
+                                    <button type="button" className="check">
                                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                     </button>
                                 </li>
