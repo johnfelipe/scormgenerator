@@ -87,11 +87,7 @@ class GalleryHandler extends Component {
                             <MediaUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
-                            {
-                                this.state.mediaUrls.map((fileData) => (
-                                    <MediaLoader dataUrl={fileData.dataUrl} fileName={fileData.name} />
-                                ))
-                            }
+                            <MediaLoader mediaUrls={this.state.mediaUrls}/>
                         </Tab>
                     </Tabs>
                 </Modal.Body>
