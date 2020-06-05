@@ -141,6 +141,6 @@ export const addGlossaryEntries = (state, action) => {
     console.log(action.object)
     return {
         ...state,
-        glossaryObject: action.object,
+        glossaryEntries: action.object,
     }
 }

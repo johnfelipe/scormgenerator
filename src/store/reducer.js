@@ -11,7 +11,7 @@ const initialState = {
     courseLessons: [],
     resourceFiles: [],
     transcriptFile: [],
-    glossaryObject: [],
+    glossaryEntries: [],
 }
 
 const reducer = (state = initialState, action) => {

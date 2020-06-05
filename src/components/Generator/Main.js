@@ -26,9 +26,9 @@ class Main extends Component {
         super(props);
         this.state = {
             currentClickedLessonId: '',
-            resourceFiles: [],
-            transcriptFile: [],
-            glossaryObject: [],
+            resourceFilesObject: [],
+            transcriptFileObject: [],
+            glossaryEntryObject: [],
             mediaFiles: [],
         };
         
@@ -43,10 +43,10 @@ class Main extends Component {
         // console.log(this.props.courseLogo);
         // console.log(this.props.navigationType);
         // console.log(this.props.showProgressbar);
-        // console.log(this.state.resourceFiles);
-        // console.log(this.state.transcriptFile);
+        // console.log(this.state.resourceFilesObject);
+        // console.log(this.state.transcriptFileObject);
         console.log(this.props.courseLessons);
-        // console.log(this.state.glossaryObject);
+        // console.log(this.state.glossaryEntryObject);
     }
 
     // a little function to help us with reordering the result
@@ -124,13 +124,9 @@ class Main extends Component {
         })
     }
 
-    galleryHandler = (object, index) => {
-        const mediaFile = object;
-        const mediaFiles = this.state.mediaFiles;
-        mediaFiles[index] = mediaFile;
-
+    galleryHandler = (object) => {
         this.setState({
-            mediaFiles: mediaFiles,
+            mediaFiles: object,
         })
     }
 
@@ -223,31 +219,31 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFiles}/>
+                                        <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFilesObject}/>
                                         {
-                                            this.state.resourceFiles.length !== 0 ? 
+                                            this.state.resourceFilesObject.length !== 0 ? 
                                             <span>
                                             Files Uploaded: &nbsp;
-                                            {this.state.resourceFiles.map((item, index) => (
-                                                index + 1 !== this.state.resourceFiles.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
+                                            {this.state.resourceFilesObject.map((item, index) => (
+                                                index + 1 !== this.state.resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFile}/>
+                                            <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFileObject}/>
                                         </div>
                                         {
-                                            this.state.transcriptFile.length !== 0 ? 
+                                            this.state.transcriptFileObject.length !== 0 ? 
                                             <span>
                                             File Uploaded: &nbsp;
-                                            {this.state.transcriptFile.map((item) => (
+                                            {this.state.transcriptFileObject.map((item) => (
                                                 <strong><label> {item.transcriptFile.name}</label></strong>
                                             ))}</span> : <span></span>
                                         }
                                     </div>
                                     <div className="col-md-4 mt-2">
-                                        <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryObject}/>
+                                        <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryEntryObject}/>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -352,7 +348,7 @@ const mapStateToProps = (state) => {
         showProgressbar: state.showProgressbar,
         resourceFiles: state.resourceFiles,
         transcriptFile: state.transcriptFile,
-        glossaryObject: state.glossaryObject,
+        glossaryEntries: state.glossaryEntries,
     }
 }
 
