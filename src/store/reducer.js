@@ -9,8 +9,6 @@ const initialState = {
     navigationType: '',
     showProgressbar: '',
     courseLessons: [],
-    resourceFiles: [],
-    transcriptFile: [],
     glossaryEntries: [],
 }
 
