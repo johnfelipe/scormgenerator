@@ -27,7 +27,7 @@ class GalleryHandler extends Component {
 
     componentDidUpdate = () => {
         console.log("Media Files: ");
-        console.log(this.props.mediaFiles);
+        console.log(this.props.mediaFilesObject);
         console.log("Media Urls:");
         console.log(this.state.mediaUrls);
     }
@@ -72,7 +72,7 @@ class GalleryHandler extends Component {
         mediaUrls.splice(mediaIndex, 1);
 
         this.props.galleryHandler(mediaFiles);
-        
+
         this.setState({
             mediaFiles: mediaFiles,
             mediaUrls: mediaUrls,

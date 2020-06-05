@@ -29,7 +29,7 @@ class Main extends Component {
             resourceFilesObject: [],
             transcriptFileObject: [],
             glossaryEntryObject: [],
-            mediaFiles: [],
+            mediaFilesObject: [],
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -126,7 +126,7 @@ class Main extends Component {
 
     galleryHandler = (object) => {
         this.setState({
-            mediaFiles: object,
+            mediaFilesObject: object,
         })
     }
 
@@ -208,7 +208,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler galleryHandler={this.galleryHandler} mediaFiles={this.state.mediaFiles}/>
+                                            <GalleryHandler galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject}/>
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
