@@ -40,10 +40,9 @@ class GalleryHandler extends Component {
         });
     }
 
-    setMediaFiles = (fileObject, fileIndex) => {
+    setMediaFiles = (fileObject) => {
         const mediaFile = fileObject;
-        const mediaFiles = this.state.mediaFiles;
-        mediaFiles[fileIndex] = mediaFile;
+        const mediaFiles = [...this.state.mediaFiles, mediaFile];
 
         this.props.galleryHandler(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
