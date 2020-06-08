@@ -37,7 +37,8 @@ class MediaUploader extends Component {
             let reader = new FileReader();
 
             const fileObject = {
-                name: files[fileIndex].name,
+                name: files[fileIndex].name.split(".")[0],
+                extension: files[fileIndex].name.split(".")[1],
                 size: files[fileIndex].size,
                 type: files[fileIndex].type,
                 lastModified: files[fileIndex].lastModified,
@@ -49,7 +50,7 @@ class MediaUploader extends Component {
                 fileObject.dataUrl = reader.result;
             }
 
-            this.props.setMediaFiles(fileObject, fileIndex);
+            this.props.setMediaFiles(fileObject);
         });
     }
 
