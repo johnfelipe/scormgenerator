@@ -16,7 +16,6 @@ class GalleryHandler extends Component {
             modalShow: false,
             key: 'uploadFiles',
             mediaFiles: [],
-            mediaUrls: [],
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.setKey = this.setKey.bind(this);
@@ -28,8 +27,6 @@ class GalleryHandler extends Component {
     componentDidUpdate = () => {
         console.log("Media Files: ");
         console.log(this.props.mediaFilesObject);
-        console.log("Media Urls:");
-        console.log(this.state.mediaUrls);
     }
 
     setKey = (key) => {
@@ -57,27 +54,15 @@ class GalleryHandler extends Component {
         })
     }
 
-    setMediaUrls = (fileUrl) => {
-        const mediaUrl = fileUrl;
-
-        this.setState({
-            mediaUrls: [...this.state.mediaUrls, mediaUrl]
-        })
-    }
-
     deleteMedia = (mediaIndex) => {
         const mediaFiles = this.state.mediaFiles;
         mediaFiles.splice(mediaIndex, 1);
-
-        const mediaUrls = this.state.mediaUrls;
-        mediaUrls.splice(mediaIndex, 1);
 
         this.props.galleryHandler(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
 
         this.setState({
             mediaFiles: mediaFiles,
-            mediaUrls: mediaUrls,
         })
     }
 
@@ -108,8 +93,8 @@ class GalleryHandler extends Component {
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
                             {
-                                this.state.mediaUrls.length > 0 ?
-                                    <MediaLoader mediaUrls={this.state.mediaUrls} deleteMedia={this.deleteMedia}/>
+                                this.state.mediaFiles.length > 0 ?
+                                    <MediaLoader mediaFiles={this.state.mediaFiles} deleteMedia={this.deleteMedia}/>
                                 :
                                     <div className="p-3">No files found</div>
                             }

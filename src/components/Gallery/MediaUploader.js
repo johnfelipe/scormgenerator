@@ -44,19 +44,12 @@ class MediaUploader extends Component {
                 lastModifiedDate: files[fileIndex].lastModifiedDate,
             };
 
-            this.props.setMediaFiles(fileObject, fileIndex);
-
             reader.readAsDataURL(files[fileIndex])
             reader.onloadend = () => {
-
-                const urlObject = {
-                    name: files[fileIndex].name,
-                    type: files[fileIndex].type,
-                    dataUrl: reader.result,
-                };
-
-                this.props.setMediaUrls(urlObject);
+                fileObject.dataUrl = reader.result;
             }
+
+            this.props.setMediaFiles(fileObject, fileIndex);
         });
     }
 

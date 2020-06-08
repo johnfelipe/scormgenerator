@@ -36,7 +36,7 @@ class MediaLoader extends Component {
         return (
             <ul className="media-library-list w-100">
                 {
-                    this.props.mediaUrls.map((fileData, fileIndex) => (
+                    this.props.mediaFiles.map((fileData, fileIndex) => (
                         fileData.type.includes("image") ?
                             <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
                                 <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
