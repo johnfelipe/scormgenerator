@@ -48,9 +48,8 @@ class MediaUploader extends Component {
             reader.readAsDataURL(files[fileIndex])
             reader.onloadend = () => {
                 fileObject.dataUrl = reader.result;
+                this.props.setMediaFiles(fileObject);
             }
-
-            this.props.setMediaFiles(fileObject);
         });
     }
 
