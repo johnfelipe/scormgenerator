@@ -203,8 +203,8 @@
                                                     list-style: none;
     
                                                     > li {
-                                                        display: flex;
-                                                        align-items: flex-start;
+                                                        // display: flex;
+                                                        // align-items: flex-start;
                                                         margin: 7px 0 0;
     
                                                         > .sg-control-input-list-label {
@@ -259,7 +259,7 @@
                                                 }
     
                                                 .sg-control-input-list-input-height-5 {
-                                                    height: 188px!important;
+                                                    height: 155px!important;
                                                 }
     
                                                 textarea.sg-input-code {

@@ -543,8 +543,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   list-style: none;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li {
-  display: flex;
-  align-items: flex-start;
   margin: 7px 0 0;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
@@ -592,7 +590,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   resize: none;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
-  height: 188px !important;
+  height: 155px !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor textarea.sg-input-code {
   font-family: monospace;
@@ -733,8 +731,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   list-style: none;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li {
-  display: flex;
-  align-items: flex-start;
   margin: 7px 0 0;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
@@ -754,6 +750,12 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input {
   flex: 1;
+  overflow: auto;
+  background-color: rgba(112, 112, 112, 0.25);
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .audio-feature-value-list {
+  list-style: none;
+  font-size: 11px;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input textarea {
   height: 100% !important;
@@ -802,7 +804,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
-  height: 188px !important;
+  height: 155px !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor textarea.sg-input-code {
   font-family: monospace;

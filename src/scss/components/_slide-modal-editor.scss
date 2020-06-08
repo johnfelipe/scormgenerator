@@ -167,8 +167,8 @@
                                                     list-style: none;
     
                                                     > li {
-                                                        display: flex;
-                                                        align-items: flex-start;
+                                                        // display: flex;
+                                                        // align-items: flex-start;
                                                         margin: 7px 0 0;
     
                                                         > .sg-control-input-list-label {
@@ -190,6 +190,13 @@
     
                                                         > .sg-control-input-list-input {
                                                             flex: 1;
+                                                            overflow: auto;
+                                                            background-color: rgba(112, 112, 112, 0.25);
+
+                                                            .audio-feature-value-list {
+                                                                list-style: none;
+                                                                font-size: 11px;
+                                                            }
     
                                                             textarea {
                                                                 height: 100% !important;
@@ -244,7 +251,7 @@
                                                 }
     
                                                 .sg-control-input-list-input-height-5 {
-                                                    height: 188px!important;
+                                                    height: 155px!important;
                                                 }
     
                                                 textarea.sg-input-code {
