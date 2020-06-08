@@ -8,10 +8,12 @@ class Editor extends Component {
         super(props);
         this.state = {
             isShownTextArea: false,
+            radioValue: -1,
         };
         
         this.setIsShown = this.setIsShown.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
+        this.radioClick = this.radioClick.bind(this);
     }
 
     setIsShown = (value) => {
@@ -22,6 +24,12 @@ class Editor extends Component {
 
     deleteFeature = () => {
         this.props.deleteFeature(this.props.contentIndex);
+    }
+
+    radioClick = (value) => {
+        this.setState({
+            radioValue: value,
+        })
     }
 
     render() {
@@ -169,8 +177,8 @@ class Editor extends Component {
                                 <div className="sg-control-input-list-label">
                                     <span>Embed Code</span>
                                 </div>
-                                <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                    <textarea
+                                <div className="sg-control-input-list-input sg-control-input-list-input-height-5 p-2">
+                                    {/* <textarea
                                         placeholder="Put embed code here . . ."
                                         className="sg-input-code"
                                         style={{fontSize: 10}}
@@ -187,7 +195,20 @@ class Editor extends Component {
                                                 ''
                                         }
                                         onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
-                                    />
+                                    /> */}
+                                    <ul className="audio-feature-value-list pl-0">
+                                        {
+                                            this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
+                                                mediaFile.type.includes("audio") ?
+                                                    <li key={mediaIndex} className="audio-feature-value-list-item">
+                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex)} checked={this.state.radioValue === mediaIndex ? true : false} />
+                                                        <label className="pl-1">{mediaFile.name}</label>
+                                                    </li>
+                                                :
+                                                    null
+                                            ))
+                                        }
+                                    </ul>
                                 </div>
                             </li>
                         </ul>

@@ -265,7 +265,12 @@ class Main extends Component {
                                                             </Card.Header>
                                                             <Accordion.Collapse eventKey="0">
                                                                 <Card.Body>
-                                                                    <SlideHandler addSlideChange={this.props.addLessonSlide} action="add" slideId={index}/>
+                                                                    <SlideHandler
+                                                                        addSlideChange={this.props.addLessonSlide}
+                                                                        action="add"
+                                                                        slideId={index}
+                                                                        mediaFilesObject={this.state.mediaFilesObject}
+                                                                    />
                                                                     {this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={this.onDragEnd}>
                                                                             <Droppable droppableId="slides">
@@ -295,6 +300,7 @@ class Main extends Component {
                                                                                                             action="edit"
                                                                                                             slideId={index}
                                                                                                             showTitleValue={true}
+                                                                                                            mediaFilesObject={this.state.mediaFilesObject}
                                                                                                         />
 
                                                                                                         <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.deleteSlide(index, this.state.currentClickedLessonId)}><FontAwesomeIcon icon={faWindowClose} /></button>

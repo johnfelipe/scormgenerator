@@ -1100,6 +1100,7 @@ class SlideHandler extends Component {
                                                             setFeatureClass={this.setFeatureClass}
                                                             currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                             onChangeTextArea={this.onChangeTextArea}
+                                                            mediaFilesObject={this.props.mediaFilesObject}
                                                         />
                                                     </Tab>
                                                 </Tabs>
