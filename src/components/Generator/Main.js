@@ -208,7 +208,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler addMediaFiles={this.props.addMediaFiles} galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject}/>
+                                            <GalleryHandler addMediaFiles={this.props.addMediaFiles} galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject} location="home"/>
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
@@ -270,6 +270,8 @@ class Main extends Component {
                                                                         action="add"
                                                                         slideId={index}
                                                                         mediaFilesObject={this.state.mediaFilesObject}
+                                                                        addMediaFiles={this.props.addMediaFiles}
+                                                                        galleryHandler={this.galleryHandler}
                                                                     />
                                                                     {this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -301,6 +303,8 @@ class Main extends Component {
                                                                                                             slideId={index}
                                                                                                             showTitleValue={true}
                                                                                                             mediaFilesObject={this.state.mediaFilesObject}
+                                                                                                            addMediaFiles={this.props.addMediaFiles}
+                                                                                                            galleryHandler={this.galleryHandler}
                                                                                                         />
 
                                                                                                         <button className="btn btn-danger float-right lesson-item-remove-btn" title="Remove" onClick={() => this.props.deleteSlide(index, this.state.currentClickedLessonId)}><FontAwesomeIcon icon={faWindowClose} /></button>
