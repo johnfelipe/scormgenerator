@@ -1126,6 +1126,8 @@ class SlideHandler extends Component {
                                                             onChangeTextArea={this.onChangeTextArea}
                                                             mediaFilesObject={this.props.mediaFilesObject}
                                                             onChangeRadio={this.onChangeRadio}
+                                                            addMediaFiles={this.props.addMediaFiles}
+                                                            galleryHandler={this.props.galleryHandler}
                                                         />
                                                     </Tab>
                                                 </Tabs>
