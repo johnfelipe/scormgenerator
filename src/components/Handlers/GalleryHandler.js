@@ -15,7 +15,6 @@ class GalleryHandler extends Component {
         this.state = {
             modalShow: false,
             key: 'uploadFiles',
-            mediaFiles: [],
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.setKey = this.setKey.bind(this);
@@ -42,26 +41,18 @@ class GalleryHandler extends Component {
 
     setMediaFiles = (fileObject) => {
         const mediaFile = fileObject;
-        let mediaFiles = [...this.state.mediaFiles, mediaFile];
+        let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
 
         this.props.galleryHandler(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
-
-        this.setState({
-            mediaFiles: mediaFiles,
-        })
     }
 
     deleteMedia = (mediaIndex) => {
-        const mediaFiles = this.state.mediaFiles;
+        const mediaFiles = this.props.mediaFilesObject;
         mediaFiles.splice(mediaIndex, 1);
 
         this.props.galleryHandler(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
-
-        this.setState({
-            mediaFiles: mediaFiles,
-        })
     }
 
     render() {
@@ -87,12 +78,12 @@ class GalleryHandler extends Component {
                         onSelect={(k) => this.setKey(k)}
                     >
                         <Tab eventKey="uploadFiles" title="Upload Files">
-                            <MediaUploader setMediaFiles={this.setMediaFiles} setMediaUrls={this.setMediaUrls} />
+                            <MediaUploader setMediaFiles={this.setMediaFiles} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
                             {
-                                this.state.mediaFiles.length > 0 ?
-                                    <MediaLoader mediaFiles={this.state.mediaFiles} deleteMedia={this.deleteMedia}/>
+                                this.props.mediaFilesObject.length > 0 ?
+                                    <MediaLoader mediaFiles={this.props.mediaFilesObject} deleteMedia={this.deleteMedia}/>
                                 :
                                     <div className="p-3">No files found</div>
                             }
@@ -104,8 +95,16 @@ class GalleryHandler extends Component {
 
         return (
             <div id="gallery-btn-container">
-                <label htmlFor="galleryBtn" className="mr-2">Add Gallery Files:</label>
-                <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Gallery</button>
+                {this.props.location === "home" ?
+                    <>
+                        <label htmlFor="galleryBtn" className="mr-2">Add Gallery Files:</label>
+                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Gallery</button>
+                    </>
+                :
+                    <>
+                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Gallery</button>
+                    </>
+                }
                 {galleryModal}
             </div>
         )
