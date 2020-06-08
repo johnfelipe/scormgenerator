@@ -55,6 +55,7 @@ class SlideHandler extends Component {
         this.setShowCssEditor = this.setShowCssEditor.bind(this);
         this.setFeatureId = this.setFeatureId.bind(this);
         this.setFeatureClass = this.setFeatureClass.bind(this);
+        this.onChangeRadio = this.onChangeRadio.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -67,6 +68,12 @@ class SlideHandler extends Component {
         console.log(this.props.action);
         console.log('state.activeFeature');
         console.log(this.state.activeFeature);
+
+        let audio = document.getElementById('feature-audio');
+
+        if (audio !== null) {
+            audio.load();
+        }
     }
 
     setModalShow = (value, action) => {
@@ -936,6 +943,23 @@ class SlideHandler extends Component {
         })
     }
 
+    onChangeRadio = (dataUrl, type, contentIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        const audioHtml = "<audio id='feature-audio' controls><source src='" + dataUrl +"' type='" + type +"'><p>Your browser doesn't support HTML5 audio. Here is a <a href='" + dataUrl +"'>link to the audio</a> instead.</p></audio>";
+        // const audioHtml = "<iframe type='" + type +"' src='" + dataUrl +"' />";
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output = audioHtml;
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1101,6 +1125,7 @@ class SlideHandler extends Component {
                                                             currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                             onChangeTextArea={this.onChangeTextArea}
                                                             mediaFilesObject={this.props.mediaFilesObject}
+                                                            onChangeRadio={this.onChangeRadio}
                                                         />
                                                     </Tab>
                                                 </Tabs>

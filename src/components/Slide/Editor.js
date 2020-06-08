@@ -26,7 +26,10 @@ class Editor extends Component {
         this.props.deleteFeature(this.props.contentIndex);
     }
 
-    radioClick = (value) => {
+    radioClick = (value, mediaObject) => {
+
+        this.props.onChangeRadio(mediaObject.dataUrl, mediaObject.type, this.props.contentIndex);
+
         this.setState({
             radioValue: value,
         })
@@ -201,7 +204,7 @@ class Editor extends Component {
                                             this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
                                                 mediaFile.type.includes("audio") ?
                                                     <li key={mediaIndex} className="audio-feature-value-list-item">
-                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex)} checked={this.state.radioValue === mediaIndex ? true : false} />
+                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
                                                         <label className="pl-1">{mediaFile.name}</label>
                                                     </li>
                                                 :
