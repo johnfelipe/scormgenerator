@@ -218,7 +218,7 @@ class Editor extends Component {
                         <ul className="sg-control-input-list">
                             <li className="sg-control-input-list-item sg-control-input-list-item-textarea">
                                 <div className="sg-control-input-list-label">
-                                    <span>Embed Code</span>
+                                    <span>Choose Audio</span>
                                 </div>
                                 <div className="sg-control-input-list-input sg-control-input-list-input-height-5 p-2">
                                     {/* <textarea
