@@ -20,7 +20,6 @@ class GalleryHandler extends Component {
         this.setModalShow = this.setModalShow.bind(this);
         this.setKey = this.setKey.bind(this);
         this.setMediaFiles = this.setMediaFiles.bind(this);
-        this.setMediaUrls = this.setMediaUrls.bind(this);
         this.deleteMedia = this.deleteMedia.bind(this);
     }
 
