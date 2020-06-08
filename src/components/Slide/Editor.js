@@ -14,6 +14,8 @@ class Editor extends Component {
         this.setIsShown = this.setIsShown.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
         this.radioClick = this.radioClick.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.setMediaFiles = this.setMediaFiles.bind(this);
     }
 
     setIsShown = (value) => {
@@ -33,6 +35,44 @@ class Editor extends Component {
         this.setState({
             radioValue: value,
         })
+    }
+
+    handleFileUpload = (e) => {
+        e.preventDefault();
+        let files = e.target.files;
+
+        this.setState({
+            showSuccessMsg: true,
+        })
+
+        // eslint-disable-next-line
+        Object.keys(files).map((fileIndex) => {
+
+            let reader = new FileReader();
+
+            const fileObject = {
+                name: files[fileIndex].name.split(".")[0],
+                extension: files[fileIndex].name.split(".")[1],
+                size: files[fileIndex].size,
+                type: files[fileIndex].type,
+                lastModified: files[fileIndex].lastModified,
+                lastModifiedDate: files[fileIndex].lastModifiedDate,
+            };
+
+            reader.readAsDataURL(files[fileIndex])
+            reader.onloadend = () => {
+                fileObject.dataUrl = reader.result;
+                this.setMediaFiles(fileObject);
+            }
+        });
+    }
+
+    setMediaFiles = (fileObject) => {
+        const mediaFile = fileObject;
+        let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
+
+        this.props.galleryHandler(mediaFiles);
+        this.props.addMediaFiles(mediaFiles);
     }
 
     render() {
@@ -201,15 +241,24 @@ class Editor extends Component {
                                     /> */}
                                     <ul className="audio-feature-value-list pl-0">
                                         {
-                                            this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
-                                                mediaFile.type.includes("audio") ?
-                                                    <li key={mediaIndex} className="audio-feature-value-list-item">
-                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
-                                                        <label className="pl-1">{mediaFile.name}</label>
-                                                    </li>
-                                                :
-                                                    null
-                                            ))
+                                            this.props.mediaFilesObject.length > 0 ?
+                                                this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
+                                                    mediaFile.type.includes("audio") ?
+                                                        <li key={mediaIndex} className="audio-feature-value-list-item">
+                                                            <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
+                                                            <label className="pl-1">{mediaFile.name}</label>
+                                                        </li>
+                                                    :
+                                                        null
+                                                ))
+                                            :
+                                                <div className="w-100">
+                                                    <input
+                                                        type="file"
+                                                        onChange={this.handleFileUpload}
+                                                        multiple
+                                                    />
+                                                </div>
                                         }
                                     </ul>
                                 </div>
