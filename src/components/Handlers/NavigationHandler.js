@@ -12,7 +12,7 @@ class NavigationHandler extends Component {
     render() {
         return (
             <div>
-                <label htmlFor={this.props.name} className="mr-1">Choose Navigation Type:</label>
+                <label htmlFor={this.props.name} className="mr-1">Navigation:</label>
                 <select id={this.props.name} className="form-control d-inline w-50" value={this.props.currentType} onChange={this.props.handleChange}>
                     <option value={0}>Sidebar</option>
                     <option value={1}>Dropdown Select</option>
