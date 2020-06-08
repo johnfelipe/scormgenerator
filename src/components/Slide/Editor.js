@@ -256,6 +256,7 @@ class Editor extends Component {
                                                     <input
                                                         type="file"
                                                         onChange={this.handleFileUpload}
+                                                        accept="audio/*"
                                                         multiple
                                                     />
                                                 </div>
