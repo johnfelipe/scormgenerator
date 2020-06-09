@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -18,7 +18,7 @@ import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
 
 //modal
-import ConfirmationModal from '../AlertModal/Confirmation';
+// import ConfirmationModal from '../AlertModal/Confirmation';
 
 class Main extends Component {
 
@@ -30,12 +30,17 @@ class Main extends Component {
             transcriptFileObject: [],
             glossaryEntryObject: [],
             mediaFilesObject: [],
+            isSaveClicked: false,
+            modalShow: false,
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
         this.glossaryHandler = this.glossaryHandler.bind(this);
+        this.galleryHandler = this.galleryHandler.bind(this);
+        this.setSaveClick = this.setSaveClick.bind(this);
+        this.setModalShow = this.setModalShow.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -130,12 +135,47 @@ class Main extends Component {
         })
     }
 
+    setSaveClick = (value) => {
+        this.setState({
+            isSaveClicked: value,
+        })
+    }
+
+    setModalShow = (value) => {
+        this.setState({
+            modalShow: value,
+        });
+    }
+
     render() {
+
+        // Warning modal
+        const warningModal = (
+            <Modal
+                show={this.state.modalShow}
+                onHide={() => this.setModalShow(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Warning
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <span>Please enter a course name first</span>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button className="btn btn-success" onClick={() => this.setModalShow(false)}>Okay</button>
+                </Modal.Footer>
+            </Modal>
+        );
+
         return (
             <div id="generator-container">
                 <Formik
-                    initialValues={{ 
-                        courseTitle: this.props.courseTitle,
+                    initialValues={{
                         courseLogo: this.props.courseLogo,
                         navigationType: this.props.navigationType,
                         showProgressbar: this.props.showProgressbar ? this.props.showProgressbar : false,
@@ -143,7 +183,11 @@ class Main extends Component {
 
                     onSubmit={values => {
                         console.log(values);
-                        this.props.addCourseTitle(values.courseTitle);
+
+                        if (this.state.isSaveClicked !== true) {
+                            this.props.addCourseTitle(values.courseTitle);
+                            console.log('Clickuko!');
+                        }
                         this.props.addCourseLogo(values.courseLogo);
                         this.props.chooseNavigationType(values.navigationType);
                         this.props.showHideProgressbar(values.showProgressbar);
@@ -182,25 +226,41 @@ class Main extends Component {
                                             className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
                                             onChange={handleChange}
                                             value={values.courseTitle}
-                                            onBlur={handleBlur}
+                                            onBlur={(e) => {
+                                                    handleBlur(e);
+                                                    console.log(values.courseTitle !== undefined);
+                                                    if (values.courseTitle !== undefined) {
+                                                        this.props.addCourseTitle(values.courseTitle);
+                                                        this.setSaveClick(true);
+                                                    }
+                                                    
+                                                }
+                                            }
                                             placeholder="Type course name here . . ."
                                         />
                                         {errors.courseTitle && touched.courseTitle && (
                                             <div className="input-feedback">{errors.courseTitle}</div>
                                         )}
                                     </div>
-                                    <div className="col-md-3">
-                                        <input
-                                            id="courseLogo"
-                                            name="courseLogo"
-                                            type="file"
-                                            className="form-control custom-file-input"
-                                            onChange={(event) => {setFieldValue("courseLogo", event.currentTarget.files[0]);}}
-                                            onBlur={handleBlur}
-                                            accept="image/x-png,image/gif,image/jpeg"
-                                        />
-                                        <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
-                                    </div>
+                                    {
+                                        this.state.isSaveClicked ?
+                                            <div className="col-md-3">
+                                                <input
+                                                    id="courseLogo"
+                                                    name="courseLogo"
+                                                    type="file"
+                                                    className="form-control custom-file-input"
+                                                    onChange={(event) => {setFieldValue("courseLogo", event.currentTarget.files[0])}}
+                                                    onBlur={handleBlur}
+                                                    accept="image/x-png,image/jpeg"
+                                                />
+                                                <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                            </div>
+                                        :
+                                            <div className="col-md-3">
+                                                <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label" onClick={() => {this.setModalShow(true)}}> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                            </div>
+                                    }
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
@@ -218,33 +278,65 @@ class Main extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-4 mt-2">
-                                        <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFilesObject}/>
-                                        {
-                                            this.state.resourceFilesObject.length !== 0 ? 
-                                            <span>
-                                            Files Uploaded: &nbsp;
-                                            {this.state.resourceFilesObject.map((item, index) => (
-                                                index + 1 !== this.state.resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
-                                            ))}</span> : <span></span>
-                                        }
-                                    </div>
-                                    <div className="col-md-4 mt-2">
-                                        <div className="text-center">
-                                            <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFileObject}/>
-                                        </div>
-                                        {
-                                            this.state.transcriptFileObject.length !== 0 ? 
-                                            <span>
-                                            File Uploaded: &nbsp;
-                                            {this.state.transcriptFileObject.map((item) => (
-                                                <strong><label> {item.transcriptFile.name}</label></strong>
-                                            ))}</span> : <span></span>
-                                        }
-                                    </div>
-                                    <div className="col-md-4 mt-2">
-                                        <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryEntryObject}/>
-                                    </div>
+                                    {
+                                        this.state.isSaveClicked ?
+                                            <div className="col-md-4 mt-2">
+                                                <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFilesObject}/>
+                                                {
+                                                    this.state.resourceFilesObject.length !== 0 ? 
+                                                    <span>
+                                                    Files Uploaded: &nbsp;
+                                                    {this.state.resourceFilesObject.map((item, index) => (
+                                                        index + 1 !== this.state.resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
+                                                    ))}</span> : <span></span>
+                                                }
+                                            </div>
+                                        :
+                                            <div className="col-md-4 mt-2">
+                                                <div id="resources-btn-container">
+                                                    <label htmlFor="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
+                                                    <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Resources</button>
+                                                </div>
+                                            </div>
+                                    }
+                                    {
+                                        this.state.isSaveClicked ?
+                                            <div className="col-md-4 mt-2">
+                                                <div className="text-center">
+                                                    <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFileObject}/>
+                                                </div>
+                                                {
+                                                    this.state.transcriptFileObject.length !== 0 ? 
+                                                    <span>
+                                                    File Uploaded: &nbsp;
+                                                    {this.state.transcriptFileObject.map((item) => (
+                                                        <strong><label> {item.transcriptFile.name}</label></strong>
+                                                    ))}</span> : <span></span>
+                                                }
+                                            </div>
+                                        :
+                                            <div className="col-md-4 mt-2">
+                                                <div className="text-center">
+                                                    <div id="transcript-btn-container">
+                                                        <label htmlFor="transcriptBtn" className="mr-2">Upload Transcript (Optional):</label>
+                                                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Transcript</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    }
+                                    {
+                                        this.state.isSaveClicked ?
+                                            <div className="col-md-4 mt-2">
+                                                <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryEntryObject}/>
+                                            </div>
+                                        :
+                                            <div className="col-md-4 mt-2">
+                                                <div id="add-glossary-container" className="float-right">
+                                                    <label htmlFor="glossaryBtn" className="mr-2">Add Glossary (Optional):</label>
+                                                    <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Glossary</button>
+                                                </div>
+                                            </div>
+                                    }
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12 mt-2">
@@ -329,21 +421,41 @@ class Main extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6 mt-2">
-                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
-                                    </div>
-                                    <div className="col-md-6 mt-2">
-                                        {/* <div id="save-btn-container" className="float-right">
-                                            <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
-                                        </div> */}
-                                        <ConfirmationModal isSubmitting={isSubmitting}/>
-                                    </div>
-                                </div>
+                                {
+                                    this.state.isSaveClicked ?
+                                        <div className="row">
+                                            <div className="col-md-6 mt-2">
+                                                <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
+                                            </div>
+                                            <div className="col-md-6 mt-2">
+                                                <div id="save-btn-container" className="float-right">
+                                                    <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
+                                                </div>
+                                                {/* <ConfirmationModal isSubmitting={isSubmitting}/> */}
+                                            </div>
+                                        </div>
+                                    :
+                                        <div className="row">
+                                            <div className="col-md-6 mt-2">
+                                                <div id="lesson-handler-container" className="d-inline">
+                                                    <div id="add-lesson-btn" className="float-left">
+                                                        <button type="button" className="btn btn-success" disabled>Add Lesson</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mt-2">
+                                                <div id="save-btn-container" className="float-right">
+                                                    <button type="submit" className="btn btn-success" disabled>Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
                             </form>
                         );
                     }}
                 </Formik>
+                {/* Modals */}
+                {warningModal}
             </div>
         )
     }
