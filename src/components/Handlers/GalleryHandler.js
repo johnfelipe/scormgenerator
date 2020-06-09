@@ -22,10 +22,10 @@ class GalleryHandler extends Component {
         this.deleteMedia = this.deleteMedia.bind(this);
     }
 
-    componentDidUpdate = () => {
-        console.log("Media Files: ");
-        console.log(this.props.mediaFilesObject);
-    }
+    // componentDidUpdate = () => {
+    //     console.log("Media Files: ");
+    //     console.log(this.props.mediaFilesObject);
+    // }
 
     setKey = (key) => {
         this.setState({
