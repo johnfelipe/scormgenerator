@@ -218,10 +218,11 @@ class Editor extends Component {
                         <ul className="sg-control-input-list">
                             <li className="sg-control-input-list-item sg-control-input-list-item-textarea">
                                 <div className="sg-control-input-list-label">
-                                    <span>Choose Audio</span>
+                                    {/* <span>Choose Audio</span> */}
+                                    <span>Embed Code</span>
                                 </div>
                                 <div className="sg-control-input-list-input sg-control-input-list-input-height-5 p-2">
-                                    {/* <textarea
+                                    <textarea
                                         placeholder="Put embed code here . . ."
                                         className="sg-input-code"
                                         style={{fontSize: 10}}
@@ -238,8 +239,8 @@ class Editor extends Component {
                                                 ''
                                         }
                                         onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
-                                    /> */}
-                                    <ul className="audio-feature-value-list pl-0">
+                                    />
+                                    {/* <ul className="audio-feature-value-list pl-0">
                                         {
                                             this.props.mediaFilesObject.length > 0 ?
                                                 this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
@@ -261,7 +262,7 @@ class Editor extends Component {
                                                     />
                                                 </div>
                                         }
-                                    </ul>
+                                    </ul> */}
                                 </div>
                             </li>
                         </ul>
