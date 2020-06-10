@@ -238,6 +238,7 @@ class Main extends Component {
                                                     labelClasses="custom-file-label"
                                                     labelId="custom-form-label"
                                                     label="Choose file"
+                                                    modalMessage="Please enter a course name first"
                                                 />
                                             </div>
                                     }
@@ -281,6 +282,7 @@ class Main extends Component {
                                                         label="Upload Resources (Optional):"
                                                         btnClasses="btn btn-outline-dark"
                                                         btnLabel="Resources"
+                                                        modalMessage="Please enter a course name first"
                                                     />
                                                 </div>
                                             </div>
@@ -311,6 +313,7 @@ class Main extends Component {
                                                             label="Upload Transcript (Optional):"
                                                             btnClasses="btn btn-outline-dark"
                                                             btnLabel="Transcript"
+                                                            modalMessage="Please enter a course name first"
                                                         />
                                                     </div>
                                                 </div>
@@ -331,6 +334,7 @@ class Main extends Component {
                                                         label="Add Glossary (Optional):"
                                                         btnClasses="btn btn-outline-dark"
                                                         btnLabel="Glossary"
+                                                        modalMessage="Please enter a course name first"
                                                     />
                                                 </div>
                                             </div>
