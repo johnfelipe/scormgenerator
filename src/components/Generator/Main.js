@@ -50,8 +50,9 @@ class Main extends Component {
         // console.log(this.props.showProgressbar);
         // console.log(this.state.resourceFilesObject);
         // console.log(this.state.transcriptFileObject);
-        console.log(this.props.courseLessons);
+        // console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
+        console.log(this.props.course);
     }
 
     // a little function to help us with reordering the result
@@ -191,6 +192,9 @@ class Main extends Component {
                         this.props.addCourseLogo(values.courseLogo);
                         this.props.chooseNavigationType(values.navigationType);
                         this.props.showHideProgressbar(values.showProgressbar);
+
+                        // Create course
+                        this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -472,6 +476,7 @@ const mapStateToProps = (state) => {
         transcriptFile: state.transcriptFile,
         glossaryEntries: state.glossaryEntries,
         mediaFiles: state.mediaFiles,
+        course: state.course,
     }
 }
 
@@ -492,6 +497,7 @@ const mapDispatchToProps = (dispatch) => {
         addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
         addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
         addMediaFiles: (value) => dispatch({type: 'ADD_MEDIA_FILES', object: value}),
+        createCourse: (userId, logo, navigation, progressbar, title) => dispatch({type: 'CREATE_COURSE', uid: userId, logo: logo, navigation: navigation, progressbar: progressbar, title: title}),
     }
 }
 
