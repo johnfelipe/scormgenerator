@@ -150,30 +150,6 @@ class Main extends Component {
     }
 
     render() {
-
-        // Warning modal
-        const warningModal = (
-            <Modal
-                show={this.state.modalShow}
-                onHide={() => this.setModalShow(false)}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Warning
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <span>Please enter a course name first</span>
-                </Modal.Body>
-                <Modal.Footer>
-                    <button className="btn btn-success" onClick={() => this.setModalShow(false)}>Okay</button>
-                </Modal.Footer>
-            </Modal>
-        );
-
         return (
             <div id="generator-container">
                 <Formik
@@ -483,8 +459,6 @@ class Main extends Component {
                         );
                     }}
                 </Formik>
-                {/* Modals */}
-                {warningModal}
             </div>
         )
     }
