@@ -19,6 +19,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 
 //modal
 // import ConfirmationModal from '../AlertModal/Confirmation';
+import WarningModal from '../AlertModal/Warning';
 
 class Main extends Component {
 
@@ -262,7 +263,13 @@ class Main extends Component {
                                             </div>
                                         :
                                             <div className="col-md-3">
-                                                <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label" onClick={() => {this.setModalShow(true)}}> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                                <WarningModal 
+                                                    fieldType="label"
+                                                    htmlFor="courseLogo"
+                                                    classes="custom-file-label"
+                                                    id="custom-form-label"
+                                                    label="Choose file"
+                                                />
                                             </div>
                                     }
                                 </div>
