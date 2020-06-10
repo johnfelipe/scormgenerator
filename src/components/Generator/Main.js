@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Card, Button, Modal } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -32,7 +32,6 @@ class Main extends Component {
             glossaryEntryObject: [],
             mediaFilesObject: [],
             isSaveClicked: false,
-            modalShow: false,
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -41,7 +40,6 @@ class Main extends Component {
         this.glossaryHandler = this.glossaryHandler.bind(this);
         this.galleryHandler = this.galleryHandler.bind(this);
         this.setSaveClick = this.setSaveClick.bind(this);
-        this.setModalShow = this.setModalShow.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -143,12 +141,6 @@ class Main extends Component {
         })
     }
 
-    setModalShow = (value) => {
-        this.setState({
-            modalShow: value,
-        });
-    }
-
     render() {
         return (
             <div id="generator-container">
@@ -166,6 +158,7 @@ class Main extends Component {
                             this.props.addCourseTitle(values.courseTitle);
                             console.log('Clickuko!');
                         }
+
                         this.props.addCourseLogo(values.courseLogo);
                         this.props.chooseNavigationType(values.navigationType);
                         this.props.showHideProgressbar(values.showProgressbar);
