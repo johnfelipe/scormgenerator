@@ -355,8 +355,14 @@ class Main extends Component {
                                         :
                                             <div className="col-md-4 mt-2">
                                                 <div id="add-glossary-container" className="float-right">
-                                                    <label htmlFor="glossaryBtn" className="mr-2">Add Glossary (Optional):</label>
-                                                    <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Glossary</button>
+                                                    <WarningModal 
+                                                        fieldType="buttonWithLabel"
+                                                        htmlFor="glossaryBtn"
+                                                        labelClasses="mr-2"
+                                                        label="Add Glossary (Optional):"
+                                                        btnClasses="btn btn-outline-dark"
+                                                        btnLabel="Glossary"
+                                                    />
                                                 </div>
                                             </div>
                                     }
