@@ -148,3 +148,18 @@ export const addMediaFiles = (state, action) => {
         mediaFiles: action.object,
     }
 }
+
+export const createCourse = (state, action) => {
+    const courseObject = {
+        uid: action.uid,
+        logo: action.logo,
+        navigation: action.navigation,
+        progressbar: action.progressbar,
+        title: action.title,
+    }
+
+    return {
+        ...state,
+        course: courseObject,
+    }
+}
