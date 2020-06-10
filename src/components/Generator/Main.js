@@ -309,7 +309,7 @@ class Main extends Component {
                                                         fieldType="buttonWithLabel"
                                                         htmlFor="resourcesBtn"
                                                         labelClasses="mr-2"
-                                                        label="Upload Resources (Optional)"
+                                                        label="Upload Resources (Optional):"
                                                         btnClasses="btn btn-outline-dark"
                                                         btnLabel="Resources"
                                                     />
@@ -335,8 +335,14 @@ class Main extends Component {
                                             <div className="col-md-4 mt-2">
                                                 <div className="text-center">
                                                     <div id="transcript-btn-container">
-                                                        <label htmlFor="transcriptBtn" className="mr-2">Upload Transcript (Optional):</label>
-                                                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Transcript</button>
+                                                        <WarningModal 
+                                                            fieldType="buttonWithLabel"
+                                                            htmlFor="transcriptBtn"
+                                                            labelClasses="mr-2"
+                                                            label="Upload Transcript (Optional):"
+                                                            btnClasses="btn btn-outline-dark"
+                                                            btnLabel="Transcript"
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
