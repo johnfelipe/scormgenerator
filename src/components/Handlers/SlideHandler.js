@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
+import * as Yup from 'yup';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -1005,10 +1006,18 @@ class SlideHandler extends Component {
                             console.log(values.showTitle);
                             this.onSave(values.slideName, this.state.column, this.props.slideId);
                         }}
+
+                        validationSchema={Yup.object().shape({
+                            slideName: Yup.string()
+                            .required("Slide name required"),
+                        }
+                    )}
                     >
                         {props => {
                             const {
                                 values,
+                                touched,
+                                errors,
                                 handleChange,
                                 handleBlur,
                                 handleSubmit,
@@ -1020,12 +1029,15 @@ class SlideHandler extends Component {
                                         id="slideName"
                                         name="slideName"
                                         type="text"
-                                        className="form-control d-inline"
+                                        className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
                                         onChange={handleChange}
                                         value={values.slideName}
                                         onBlur={handleBlur}
-                                        placeholder="Type slide name here (Optional) . . ."
+                                        placeholder="Type slide name here . . ."
                                     />
+                                    {errors.slideName && touched.slideName && (
+                                        <div className="input-feedback">{errors.slideName}</div>
+                                    )}
                                     <input
                                         id="showTitle"
                                         name="showTitle"
