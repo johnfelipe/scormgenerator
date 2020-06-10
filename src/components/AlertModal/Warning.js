@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// eslint-disable-next-line
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 class Warning extends Component {
 
@@ -34,7 +37,7 @@ class Warning extends Component {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <span>Please enter a course name first</span>
+                    <span>{this.props.modalMessage}</span>
                 </Modal.Body>
                 <Modal.Footer>
                     <button className="btn btn-success" onClick={() => this.setModalShow(false)}>Okay</button>
@@ -56,6 +59,12 @@ class Warning extends Component {
                     <label htmlFor={this.props.htmlFor} className={this.props.labelClasses}>{this.props.label}</label>
                     <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>{this.props.btnLabel}</button>
                 </>
+            );
+        } else if (this.props.fieldType === 'buttonWithIcon') {
+            value = (
+                <button type="button" className={this.props.btnClasses} onClick={() => {this.setModalShow(true)}}>
+                    <span><FontAwesomeIcon icon={this.props.icon}/>{this.props.btnLabel}</span>
+                </button>
             );
         }
 
