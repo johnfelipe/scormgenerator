@@ -15,6 +15,9 @@ import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
 
+// modals
+import WarningModal from '../AlertModal/Warning';
+
 class SlideHandler extends Component {
 
     constructor(props) {
@@ -42,6 +45,7 @@ class SlideHandler extends Component {
             showCssEditor: false,
             activeContentIndex: 0,
             currentColumnContentIndex: '',
+            isSlideNameNotEmpty: false,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -1032,7 +1036,16 @@ class SlideHandler extends Component {
                                         className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
                                         onChange={handleChange}
                                         value={values.slideName}
-                                        onBlur={handleBlur}
+                                        onBlur={(e) => {
+                                                handleBlur(e)
+
+                                                if (values.slideName) {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: true,
+                                                    })
+                                                }
+                                            }
+                                        }
                                         placeholder="Type slide name here . . ."
                                     />
                                     {errors.slideName && touched.slideName && (
@@ -1090,8 +1103,21 @@ class SlideHandler extends Component {
                                                                 :
                                                                 <span></span>
                                                             }
-
-                                                            <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}><span><FontAwesomeIcon icon={faPlus}/>Add Column</span></button>
+                                                            {
+                                                                this.state.isSlideNameNotEmpty ?
+                                                                    <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
+                                                                        <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
+                                                                    </button>
+                                                                :
+                                                                    <WarningModal 
+                                                                        fieldType="buttonWithIcon"
+                                                                        btnClasses="sg-add-sortable-column-after"
+                                                                        icon={faPlus}
+                                                                        btnLabel="Add Column"
+                                                                        modalMessage="Please enter a slide name first"
+                                                                    />
+                                                            }
+                                                            
                                                         </div>
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="mt-1">
