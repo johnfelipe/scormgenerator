@@ -46,9 +46,16 @@ class Warning extends Component {
 
         if (this.props.fieldType === 'label') {
             value = (
-                <label htmlFor={this.props.htmlFor} className={this.props.classes} id={this.props.id} onClick={() => {this.setModalShow(true)}}>
+                <label htmlFor={this.props.htmlFor} className={this.props.labelClasses} id={this.props.labelId} onClick={() => {this.setModalShow(true)}}>
                     <span>{this.props.label}</span>
                 </label>
+            );
+        } else if (this.props.fieldType === 'buttonWithLabel') {
+            value = (
+                <>
+                    <label htmlFor={this.props.htmlFor} className={this.props.labelClasses}>{this.props.label}</label>
+                    <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>{this.props.btnLabel}</button>
+                </>
             );
         }
 
