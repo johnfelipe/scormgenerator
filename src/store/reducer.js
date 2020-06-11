@@ -13,6 +13,7 @@ const initialState = {
     mediaFiles: [],
     course: {},
     lesson: {},
+    slide: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +51,8 @@ const reducer = (state = initialState, action) => {
         case types.CREATE_COURSE: return methods.createCourse(state, action);
 
         case types.CREATE_LESSON: return methods.createLesson(state, action);
+
+        case types.CREATE_SLIDE: return methods.createSlide(state, action);
 
         default: {
             return state;
