@@ -7,6 +7,45 @@
 
                     .modal-content {
                         height: 750px !important;
+
+                        .modal-body {
+                            .tab-content {
+                                #controlled-tab-example-tabpane-mediaLibrary {
+                                    .gallery-toolbar {
+                                        height: 72px;
+                                        background: #fff;
+                                        z-index: 100;
+                                        padding: 0 16px;
+                                        border: 0 solid #ddd;
+                                        overflow: hidden;
+
+                                        .gallery-toolbar-filter {
+                                            max-width: 66%;
+                                            float: left;
+                                            height: 100%;
+
+                                            .gallery-filter-heading {
+                                                margin: 10px 0;
+                                                font-size: 16px;
+                                                line-height: 1;
+                                                z-index: 151;
+                                            }
+
+                                            select.gallery-filters {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        select {
+                                            padding: 2px;
+                                            line-height: 28px;
+                                            height: 28px;
+                                            vertical-align: middle;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
