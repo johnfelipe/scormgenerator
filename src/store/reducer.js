@@ -11,7 +11,8 @@ const initialState = {
     courseLessons: [],
     glossaryEntries: [],
     mediaFiles: [],
-    course: [],
+    course: {},
+    lesson: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +48,8 @@ const reducer = (state = initialState, action) => {
         case types.ADD_MEDIA_FILES: return methods.addMediaFiles(state, action);
 
         case types.CREATE_COURSE: return methods.createCourse(state, action);
+
+        case types.CREATE_LESSON: return methods.createLesson(state, action);
 
         default: {
             return state;
