@@ -113,7 +113,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, sizeId: -1, id: 'column' + currentCount, content: [] }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, grid: 0, id: 'column' + currentCount, content: [] }
         columnObj.content['first'] = [];
 
         this.setState({
@@ -143,25 +143,25 @@ class SlideHandler extends Component {
         })
     }
 
-    handleSizeActive = (columnIndex, sizeIndex, sizeId) => {
+    handleSizeActive = (columnIndex, sizeIndex, grid) => {
         const columnSizesObj = this.state.column;
 
         columnSizesObj[columnIndex].active = sizeIndex;
-        columnSizesObj[columnIndex].sizeId = sizeId;
+        columnSizesObj[columnIndex].grid = grid;
 
-        if (sizeId === 1 || sizeId === 2 || sizeId === 3) {
+        if (grid === 1 || grid === 2 || grid === 3) {
             columnSizesObj[columnIndex].content['first'] = [];
             columnSizesObj[columnIndex].content['second'] = [];
-        } else if (sizeId === 4) {
+        } else if (grid === 4) {
             columnSizesObj[columnIndex].content['first'] = [];
             columnSizesObj[columnIndex].content['second'] = [];
             columnSizesObj[columnIndex].content['third'] = [];
-        } else if (sizeId === 5) {
+        } else if (grid === 5) {
             columnSizesObj[columnIndex].content['first'] = [];
             columnSizesObj[columnIndex].content['second'] = [];
             columnSizesObj[columnIndex].content['third'] = [];
             columnSizesObj[columnIndex].content['fourth'] = [];
-        } else if (sizeId === 6) {
+        } else if (grid === 6) {
             columnSizesObj[columnIndex].content['first'] = [];
             columnSizesObj[columnIndex].content['second'] = [];
             columnSizesObj[columnIndex].content['third'] = [];
@@ -1182,7 +1182,7 @@ class SlideHandler extends Component {
                                                     {
                                                         this.state.column.length > 0 ?
                                                             this.state.column.map((item, index) => (
-                                                                item.sizeId === 0 || item.sizeId === -1 ?
+                                                                item.grid === 0 || item.grid === -1 ?
                                                                     <Droppable key={index} droppableId={item.id}>
                                                                         {/* First Size */}
                                                                         {(provided) => (
@@ -1214,7 +1214,7 @@ class SlideHandler extends Component {
                                                                         )}
                                                                     </Droppable>
                                                                 :
-                                                                    item.sizeId === 1 ?
+                                                                    item.grid === 1 ?
                                                                         <div  className="container p-0 pb-3">
                                                                             {/* Second Size */}
                                                                             <div className="row w-100 m-0">
@@ -1261,7 +1261,7 @@ class SlideHandler extends Component {
                                                                             </div>
                                                                         </div>
                                                                     :
-                                                                        item.sizeId === 2 ?
+                                                                        item.grid === 2 ?
                                                                             
                                                                             <div  className="container p-0 pb-3">
                                                                                 {/* Third Size */}
@@ -1309,7 +1309,7 @@ class SlideHandler extends Component {
                                                                                 </div>
                                                                             </div>
                                                                         :
-                                                                            item.sizeId === 3 ?
+                                                                            item.grid === 3 ?
                                                                                 
                                                                                 <div className="container p-0 pb-3">
                                                                                     {/* Fourth Size */}
@@ -1358,7 +1358,7 @@ class SlideHandler extends Component {
                                                                                 </div>
                                                                                     
                                                                             :
-                                                                                item.sizeId === 4 ?
+                                                                                item.grid === 4 ?
                                                                                     
                                                                                     <div className="container p-0 pb-3">
                                                                                         {/* Fifth Size */}
@@ -1427,7 +1427,7 @@ class SlideHandler extends Component {
                                                                                     </div>
                                                                                         
                                                                                 :
-                                                                                    item.sizeId === 5 ?
+                                                                                    item.grid === 5 ?
                                                                                         
                                                                                         <div className="container p-0 pb-3">
                                                                                             {/* Sixth Size */}
