@@ -1044,7 +1044,7 @@ class SlideHandler extends Component {
                                         onBlur={(e) => {
                                                 handleBlur(e)
 
-                                                if (values.slideName.trim() === "" || e.target.value.trim() === "") {
+                                                if (e.target.value.trim() === "") {
                                                     this.setState({
                                                         isSlideNameNotEmpty: false,
                                                     })
@@ -1056,7 +1056,7 @@ class SlideHandler extends Component {
                                         onChange={(e) => {
                                                 handleChange(e)
 
-                                                if (values.slideName.trim() !== "" || e.target.value.trim() !== "") {
+                                                if (e.target.value.trim() !== "") {
                                                     this.setState({
                                                         isSlideNameNotEmpty: true,
                                                     })
