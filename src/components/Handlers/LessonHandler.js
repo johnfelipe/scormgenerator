@@ -121,7 +121,6 @@ class LessonHandler extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
     return {
         lesson: state.lesson,
