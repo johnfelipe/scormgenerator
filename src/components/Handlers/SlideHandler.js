@@ -114,11 +114,11 @@ class SlideHandler extends Component {
     addColumn = () => {
         const currentCount = this.state.column.length + 1
         const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, grid: 0, id: 'column' + currentCount, content: [] }
-        columnObj.content['first'] = [];
+        columnObj.content['subColumnOne'] = [];
 
         this.setState({
             column: [...this.state.column, columnObj],
-            currentColumnContentIndex: 'first',
+            currentColumnContentIndex: 'subColumnOne',
         });
     }
 
@@ -150,23 +150,23 @@ class SlideHandler extends Component {
         columnSizesObj[columnIndex].grid = grid;
 
         if (grid === 1 || grid === 2 || grid === 3) {
-            columnSizesObj[columnIndex].content['first'] = [];
-            columnSizesObj[columnIndex].content['second'] = [];
+            columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
         } else if (grid === 4) {
-            columnSizesObj[columnIndex].content['first'] = [];
-            columnSizesObj[columnIndex].content['second'] = [];
-            columnSizesObj[columnIndex].content['third'] = [];
+            columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            columnSizesObj[columnIndex].content['subColumnThree'] = [];
         } else if (grid === 5) {
-            columnSizesObj[columnIndex].content['first'] = [];
-            columnSizesObj[columnIndex].content['second'] = [];
-            columnSizesObj[columnIndex].content['third'] = [];
-            columnSizesObj[columnIndex].content['fourth'] = [];
+            columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            columnSizesObj[columnIndex].content['subColumnFour'] = [];
         } else if (grid === 6) {
-            columnSizesObj[columnIndex].content['first'] = [];
-            columnSizesObj[columnIndex].content['second'] = [];
-            columnSizesObj[columnIndex].content['third'] = [];
-            columnSizesObj[columnIndex].content['fourth'] = [];
-            columnSizesObj[columnIndex].content['fifth'] = [];
+            columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            columnSizesObj[columnIndex].content['subColumnFour'] = [];
+            columnSizesObj[columnIndex].content['subColumnFive'] = [];
         }
 
         this.setState({
@@ -233,7 +233,7 @@ class SlideHandler extends Component {
                     // First Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -244,21 +244,21 @@ class SlideHandler extends Component {
                     
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                     
@@ -266,7 +266,7 @@ class SlideHandler extends Component {
                     // Second Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -277,28 +277,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -309,28 +309,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1')) {
                     // Third Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -341,27 +341,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -372,28 +372,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-1')) {
                     // Fourth Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -404,27 +404,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -435,28 +435,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-1')) {
                     // Fifth Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -467,27 +467,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -498,27 +498,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'third',
+                        currentColumnContentIndex: 'subColumnThree',
                     });
 
                     destination.index = parseInt(key);
@@ -529,28 +529,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-1')) {
                     // Sixth Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -561,27 +561,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -592,27 +592,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-3')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'third',
+                        currentColumnContentIndex: 'subColumnThree',
                     });
 
                     destination.index = parseInt(key);
@@ -623,27 +623,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-4')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'fourth',
+                        currentColumnContentIndex: 'subColumnFour',
                     });
 
                     destination.index = parseInt(key);
@@ -654,28 +654,28 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['fourth'].push(currentContent);
+                        currentColumns[key].content['subColumnFour'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFour'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['fourth'].push(currentContent);
+                        currentColumns[key].content['subColumnFour'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFour'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
                     // Seventh Size
 
                     this.setState({
-                        currentColumnContentIndex: 'first',
+                        currentColumnContentIndex: 'subColumnOne',
                     });
 
                     destination.index = parseInt(key);
@@ -686,27 +686,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['first'].push(currentContent);
+                        currentColumns[key].content['subColumnOne'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['first'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'second',
+                        currentColumnContentIndex: 'subColumnTwo',
                     });
 
                     destination.index = parseInt(key);
@@ -717,27 +717,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['second'].push(currentContent);
+                        currentColumns[key].content['subColumnTwo'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['second'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-3')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'third',
+                        currentColumnContentIndex: 'subColumnThree',
                     });
 
                     destination.index = parseInt(key);
@@ -748,27 +748,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['third'].push(currentContent);
+                        currentColumns[key].content['subColumnThree'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['third'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnThree'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'fourth',
+                        currentColumnContentIndex: 'subColumnFour',
                     });
 
                     destination.index = parseInt(key);
@@ -779,27 +779,27 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['fourth'].push(currentContent);
+                        currentColumns[key].content['subColumnFour'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFour'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['fourth'].push(currentContent);
+                        currentColumns[key].content['subColumnFour'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fourth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFour'].length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
                     this.setState({
-                        currentColumnContentIndex: 'fifth',
+                        currentColumnContentIndex: 'subColumnFive',
                     });
 
                     destination.index = parseInt(key);
@@ -810,21 +810,21 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['fifth'].push(currentContent);
+                        currentColumns[key].content['subColumnFive'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fifth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFive'].length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['fifth'].push(currentContent);
+                        currentColumns[key].content['subColumnFive'].push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['fifth'].length - 1),
+                            activeContentIndex: (currentColumns[key].content['subColumnFive'].length - 1),
                         });
                     }
                 }
@@ -1188,12 +1188,12 @@ class SlideHandler extends Component {
                                                                         {(provided) => (
                                                                             <div ref={provided.innerRef} className="container p-0 pb-3">
                                                                                 { 
-                                                                                    typeof item.content['first'] != "undefined" ? 
-                                                                                        item.content['first'].length > 0 ?
+                                                                                    typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                        item.content['subColumnOne'].length > 0 ?
                                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {
-                                                                                                    item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                        <div key={item.id + '-content-output-' + contentFirstIndex} id={item.id + '-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                        <div key={item.id + '-content-output-' + contentFirstIndex} id={item.id + '-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                             {ReactHtmlParser(contentFirst.output)}
                                                                                                         </div>
                                                                                                     ))
@@ -1222,10 +1222,10 @@ class SlideHandler extends Component {
                                                                                     {(provided) => (
                                                                                         <div key={'sg-1-2-1-' + index} ref={provided.innerRef} id={'sg-1-2-1-' + index} className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0">
                                                                                             {
-                                                                                                typeof item.content['first'] != "undefined" ? 
-                                                                                                    item.content['first'].length > 0 ?
-                                                                                                        item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                            <div key={'sg-1-2-1-content-output-' + contentFirstIndex} id={'sg-1-2-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-2-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                    item.content['subColumnOne'].length > 0 ?
+                                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                            <div key={'sg-1-2-1-content-output-' + contentFirstIndex} id={'sg-1-2-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-2-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                             </div>
                                                                                                         ))
@@ -1242,10 +1242,10 @@ class SlideHandler extends Component {
                                                                                     {(provided) => (
                                                                                         <div key={'sg-1-2-2-' + index} ref={provided.innerRef} id={'sg-1-2-2-' + index} className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="1">
                                                                                             {
-                                                                                                typeof item.content['second'] != "undefined" ? 
-                                                                                                    item.content['second'].length > 0 ?
-                                                                                                        item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                            <div key={'sg-1-2-2-content-output-' + contentSecondIndex} id={'sg-1-2-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-2-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                    item.content['subColumnTwo'].length > 0 ?
+                                                                                                        item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                            <div key={'sg-1-2-2-content-output-' + contentSecondIndex} id={'sg-1-2-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-2-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                             </div>
                                                                                                         ))
@@ -1270,10 +1270,10 @@ class SlideHandler extends Component {
                                                                                         {(provided) => (
                                                                                             <div key={'sg-1-3-1-' + index} ref={provided.innerRef} id={'sg-1-3-1-' + index} className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0">
                                                                                                 {
-                                                                                                    typeof item.content['first'] != "undefined" ? 
-                                                                                                        item.content['first'].length > 0 ?
-                                                                                                            item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                <div key={'sg-1-3-1-content-output-' + contentFirstIndex} id={'sg-1-3-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                    typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                        item.content['subColumnOne'].length > 0 ?
+                                                                                                            item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                <div key={'sg-1-3-1-content-output-' + contentFirstIndex} id={'sg-1-3-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                     {ReactHtmlParser(contentFirst.output)}
                                                                                                                 </div>
                                                                                                             ))
@@ -1290,10 +1290,10 @@ class SlideHandler extends Component {
                                                                                         {(provided) => (
                                                                                             <div key={'sg-2-3-2-' + index} ref={provided.innerRef} id={'sg-2-3-2-' + index} className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="1">
                                                                                                 {
-                                                                                                    typeof item.content['second'] != "undefined" ? 
-                                                                                                        item.content['second'].length > 0 ?
-                                                                                                            item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                <div key={'sg-2-3-2-content-output-' + contentSecondIndex} id={'sg-2-3-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-2-3-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                    typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                        item.content['subColumnTwo'].length > 0 ?
+                                                                                                            item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                <div key={'sg-2-3-2-content-output-' + contentSecondIndex} id={'sg-2-3-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-2-3-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                     {ReactHtmlParser(contentSecond.output)}
                                                                                                                 </div>
                                                                                                             ))
@@ -1318,10 +1318,10 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div key={'sg-2-3-1-' + index} ref={provided.innerRef} id={'sg-2-3-1-' + index} className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="0">
                                                                                                     {
-                                                                                                        typeof item.content['first'] != "undefined" ? 
-                                                                                                            item.content['first'].length > 0 ?
-                                                                                                                item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                    <div key={'sg-2-3-1-content-output-' + contentFirstIndex} id={'sg-2-3-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-2-3-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                        typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                            item.content['subColumnOne'].length > 0 ?
+                                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                    <div key={'sg-2-3-1-content-output-' + contentFirstIndex} id={'sg-2-3-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-2-3-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                         {ReactHtmlParser(contentFirst.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1338,10 +1338,10 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div key={'sg-1-3-2-' + index} ref={provided.innerRef} id={'sg-1-3-2-' + index} className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1">
                                                                                                     {
-                                                                                                        typeof item.content['second'] != "undefined" ? 
-                                                                                                            item.content['second'].length > 0 ?
-                                                                                                                item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                    <div key={'sg-1-3-2-content-output-' + contentSecondIndex} id={'sg-1-3-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                        typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                            item.content['subColumnTwo'].length > 0 ?
+                                                                                                                item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                    <div key={'sg-1-3-2-content-output-' + contentSecondIndex} id={'sg-1-3-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                         {ReactHtmlParser(contentSecond.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1367,10 +1367,10 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div key={'sg-1-3-1-1-' + index} ref={provided.innerRef} id={'sg-1-3-1-1-' + index} className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0">
                                                                                                     {
-                                                                                                        typeof item.content['first'] != "undefined" ? 
-                                                                                                            item.content['first'].length > 0 ?
-                                                                                                                item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                    <div key={'sg-1-3-1-1-content-output-' + contentFirstIndex} id={'sg-1-3-1-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                        typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                            item.content['subColumnOne'].length > 0 ?
+                                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                    <div key={'sg-1-3-1-1-content-output-' + contentFirstIndex} id={'sg-1-3-1-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                         {ReactHtmlParser(contentFirst.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1387,10 +1387,10 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div key={'sg-1-3-1-2-' + index} ref={provided.innerRef} id={'sg-1-3-1-2-' + index} className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1">
                                                                                                     {
-                                                                                                        typeof item.content['second'] != "undefined" ? 
-                                                                                                            item.content['second'].length > 0 ?
-                                                                                                                item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                    <div key={'sg-1-3-1-2-content-output-' + contentSecondIndex} id={'sg-1-3-1-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-1-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                        typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                            item.content['subColumnTwo'].length > 0 ?
+                                                                                                                item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                    <div key={'sg-1-3-1-2-content-output-' + contentSecondIndex} id={'sg-1-3-1-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-1-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                         {ReactHtmlParser(contentSecond.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1407,10 +1407,10 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div key={'sg-1-3-1-3-' + index} ref={provided.innerRef} id={'sg-1-3-1-3-' + index} className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="2">
                                                                                                     {
-                                                                                                        typeof item.content['third'] != "undefined" ? 
-                                                                                                            item.content['third'].length > 0 ?
-                                                                                                                item.content['third'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                    <div key={'sg-1-3-1-3-content-output-' + contentThirdIndex} id={'sg-1-3-1-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-3-1-3-content-output-' + contentThirdIndex, 'third')}>
+                                                                                                        typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                            item.content['subColumnThree'].length > 0 ?
+                                                                                                                item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                    <div key={'sg-1-3-1-3-content-output-' + contentThirdIndex} id={'sg-1-3-1-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-3-1-3-content-output-' + contentThirdIndex, 'subColumnThree')}>
                                                                                                                         {ReactHtmlParser(contentThird.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1436,10 +1436,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-4-1-' + index} ref={provided.innerRef} id={'sg-1-4-1-' + index} className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="0">
                                                                                                             {
-                                                                                                                typeof item.content['first'] != "undefined" ? 
-                                                                                                                    item.content['first'].length > 0 ?
-                                                                                                                        item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                            <div key={'sg-1-4-1-content-output-' + contentFirstIndex} id={'sg-1-4-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-4-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                                    item.content['subColumnOne'].length > 0 ?
+                                                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                            <div key={'sg-1-4-1-content-output-' + contentFirstIndex} id={'sg-1-4-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-4-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1456,10 +1456,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-4-2-' + index} ref={provided.innerRef} id={'sg-1-4-2-' + index} className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="1">
                                                                                                             {
-                                                                                                                typeof item.content['second'] != "undefined" ? 
-                                                                                                                    item.content['second'].length > 0 ?
-                                                                                                                        item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                            <div key={'sg-1-4-2-content-output-' + contentSecondIndex} id={'sg-1-4-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-4-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                                typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                                    item.content['subColumnTwo'].length > 0 ?
+                                                                                                                        item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                            <div key={'sg-1-4-2-content-output-' + contentSecondIndex} id={'sg-1-4-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-4-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1476,10 +1476,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-4-3-' + index} ref={provided.innerRef} id={'sg-1-4-3-' + index} className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="2">
                                                                                                             {
-                                                                                                                typeof item.content['third'] != "undefined" ? 
-                                                                                                                    item.content['third'].length > 0 ?
-                                                                                                                        item.content['third'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                            <div key={'sg-1-4-3-content-output-' + contentThirdIndex} id={'sg-1-4-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-4-3-content-output-' + contentThirdIndex, 'third')}>
+                                                                                                                typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                                    item.content['subColumnThree'].length > 0 ?
+                                                                                                                        item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                            <div key={'sg-1-4-3-content-output-' + contentThirdIndex} id={'sg-1-4-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-4-3-content-output-' + contentThirdIndex, 'subColumnThree')}>
                                                                                                                                 {ReactHtmlParser(contentThird.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1496,10 +1496,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-4-4-' + index} ref={provided.innerRef} id={'sg-1-4-4-' + index} className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="3">
                                                                                                             {
-                                                                                                                typeof item.content['fourth'] != "undefined" ? 
-                                                                                                                    item.content['fourth'].length > 0 ?
-                                                                                                                        item.content['fourth'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                            <div key={'sg-1-4-4-content-output-' + contentFourthIndex} id={'sg-1-4-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-4-4-content-output-' + contentFourthIndex, 'fourth')}>
+                                                                                                                typeof item.content['subColumnFour'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFour'].length > 0 ?
+                                                                                                                        item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
+                                                                                                                            <div key={'sg-1-4-4-content-output-' + contentFourthIndex} id={'sg-1-4-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-4-4-content-output-' + contentFourthIndex, 'subColumnFour')}>
                                                                                                                                 {ReactHtmlParser(contentFourth.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1524,10 +1524,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={'sg-1-5-1-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0">
                                                                                                             {
-                                                                                                                typeof item.content['first'] != "undefined" ? 
-                                                                                                                    item.content['first'].length > 0 ?
-                                                                                                                        item.content['first'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                            <div key={'sg-1-5-1-content-output-' + contentFirstIndex} id={'sg-1-5-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'first')}>
+                                                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                                    item.content['subColumnOne'].length > 0 ?
+                                                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                            <div key={'sg-1-5-1-content-output-' + contentFirstIndex} id={'sg-1-5-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
                                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1544,10 +1544,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={'sg-1-5-2-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1">
                                                                                                             {
-                                                                                                                typeof item.content['second'] != "undefined" ? 
-                                                                                                                    item.content['second'].length > 0 ?
-                                                                                                                        item.content['second'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                            <div key={'sg-1-5-2-content-output-' + contentSecondIndex} id={'sg-1-5-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'second')}>
+                                                                                                                typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                                    item.content['subColumnTwo'].length > 0 ?
+                                                                                                                        item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                            <div key={'sg-1-5-2-content-output-' + contentSecondIndex} id={'sg-1-5-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
                                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1564,10 +1564,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={'sg-1-5-3-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2">
                                                                                                             {
-                                                                                                                typeof item.content['third'] != "undefined" ? 
-                                                                                                                    item.content['third'].length > 0 ?
-                                                                                                                        item.content['third'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                            <div key={'sg-1-5-3-content-output-' + contentThirdIndex} id={'sg-1-5-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'third')}>
+                                                                                                                typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                                    item.content['subColumnThree'].length > 0 ?
+                                                                                                                        item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                            <div key={'sg-1-5-3-content-output-' + contentThirdIndex} id={'sg-1-5-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'subColumnThree')}>
                                                                                                                                 {ReactHtmlParser(contentThird.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1584,10 +1584,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={'sg-1-5-4-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3">
                                                                                                             {
-                                                                                                                typeof item.content['fourth'] != "undefined" ? 
-                                                                                                                    item.content['fourth'].length > 0 ?
-                                                                                                                        item.content['fourth'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                            <div key={'sg-1-5-4-content-output-' + contentFourthIndex} id={'sg-1-5-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'fourth')}>
+                                                                                                                typeof item.content['subColumnFour'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFour'].length > 0 ?
+                                                                                                                        item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
+                                                                                                                            <div key={'sg-1-5-4-content-output-' + contentFourthIndex} id={'sg-1-5-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'subColumnFour')}>
                                                                                                                                 {ReactHtmlParser(contentFourth.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1604,10 +1604,10 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={'sg-1-5-5-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4">
                                                                                                             {
-                                                                                                                typeof item.content['fifth'] != "undefined" ? 
-                                                                                                                    item.content['fifth'].length > 0 ?
-                                                                                                                        item.content['fifth'].map((contentFifth, contentFifthIndex) =>(
-                                                                                                                            <div key={'sg-1-5-5-content-output-' + contentFifthIndex} id={'sg-1-5-5-content-output-' + contentFifthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'fifth')}>
+                                                                                                                typeof item.content['subColumnFive'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFive'].length > 0 ?
+                                                                                                                        item.content['subColumnFive'].map((contentFifth, contentFifthIndex) =>(
+                                                                                                                            <div key={'sg-1-5-5-content-output-' + contentFifthIndex} id={'sg-1-5-5-content-output-' + contentFifthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'subColumnFive')}>
                                                                                                                                 {ReactHtmlParser(contentFifth.output)}
                                                                                                                             </div>
                                                                                                                         ))
