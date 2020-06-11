@@ -60,7 +60,7 @@ class LessonHandler extends Component {
                             this.onSave(values.lessonName, this.props.id);
 
                             // create lesson
-                            // uid and cid is temporary
+                            // uid and cid are temporary
                             this.props.createLesson(1, 1, values.lessonName);
                         }}
 

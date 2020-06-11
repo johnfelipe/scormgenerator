@@ -7,6 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -73,6 +74,7 @@ class SlideHandler extends Component {
         console.log(this.props.action);
         console.log('state.activeFeature');
         console.log(this.state.activeFeature);
+        console.log(this.props.slide);
 
         let audio = document.getElementById('feature-audio');
 
@@ -1002,13 +1004,18 @@ class SlideHandler extends Component {
                     <Formik
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
-                            showTitle: this.props.showTitleValue,
+                            showTitle: this.props.slide.hide_title,
                         }}
 
                         onSubmit={values => {
                             console.log(values.slideName);
                             console.log(values.showTitle);
                             this.onSave(values.slideName, this.state.column, this.props.slideId);
+
+                            // create slide
+                            // lid and uid are temporary
+                            this.props.createSlide(1, values.slideName, 1, values.showTitle);
+
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -1662,4 +1669,16 @@ class SlideHandler extends Component {
     }
 }
 
-export default SlideHandler;
+const mapStateToProps = (state) => {
+    return {
+        slide: state.slide,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createSlide: (lessonId, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonId, title: title, uid: userId, hide_title: hideShowTitle}),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlideHandler);
