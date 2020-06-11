@@ -1041,12 +1041,22 @@ class SlideHandler extends Component {
                                         name="slideName"
                                         type="text"
                                         className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
-                                        onChange={handleChange}
-                                        value={values.slideName}
                                         onBlur={(e) => {
                                                 handleBlur(e)
 
-                                                if (values.slideName) {
+                                                if (values.slideName.trim() === "" || e.target.value.trim() === "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: false,
+                                                    })
+                                                }
+
+                                            }
+                                        }
+                                        value={values.slideName}
+                                        onChange={(e) => {
+                                                handleChange(e)
+
+                                                if (values.slideName.trim() !== "" || e.target.value.trim() !== "") {
                                                     this.setState({
                                                         isSlideNameNotEmpty: true,
                                                     })
@@ -1111,7 +1121,7 @@ class SlideHandler extends Component {
                                                                 <span></span>
                                                             }
                                                             {
-                                                                this.state.isSlideNameNotEmpty ?
+                                                                this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
                                                                     <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
                                                                         <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
                                                                     </button>
