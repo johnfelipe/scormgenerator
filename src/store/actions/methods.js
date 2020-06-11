@@ -163,3 +163,16 @@ export const createCourse = (state, action) => {
         course: courseObject,
     }
 }
+
+export const createLesson = (state, action) => {
+    const lessonObject = {
+        cid: action.cid,
+        title: action.title,
+        uid: action.uid,
+    }
+
+    return {
+        ...state,
+        course: lessonObject,
+    }
+}
