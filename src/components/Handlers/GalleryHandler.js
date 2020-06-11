@@ -15,17 +15,19 @@ class GalleryHandler extends Component {
         this.state = {
             modalShow: false,
             key: 'uploadFiles',
+            filterType: 'all',
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.setKey = this.setKey.bind(this);
         this.setMediaFiles = this.setMediaFiles.bind(this);
         this.deleteMedia = this.deleteMedia.bind(this);
+        this.setFilterType = this.setFilterType.bind(this);
     }
 
-    // componentDidUpdate = () => {
-    //     console.log("Media Files: ");
-    //     console.log(this.props.mediaFilesObject);
-    // }
+    componentDidUpdate = () => {
+        console.log("Media Files: ");
+        console.log(this.props.mediaFilesObject);
+    }
 
     setKey = (key) => {
         this.setState({
@@ -53,6 +55,12 @@ class GalleryHandler extends Component {
 
         this.props.galleryHandler(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
+    }
+
+    setFilterType = (type) => {
+        this.setState({
+            filterType: type,
+        })
     }
 
     render() {
@@ -87,14 +95,15 @@ class GalleryHandler extends Component {
                                         <div className="gallery-toolbar">
                                             <div className="gallery-toolbar-filter">
                                                 <h2 className="gallery-filter-heading">Filter Gallery</h2>
-                                                <select id="gellery-attachment-filters" className="gallery-filters">
+                                                <select id="gellery-attachment-filters" onChange={(e) => this.setFilterType(e.target.value)} className="gallery-filters">
                                                     <option value="all">All media items</option>
                                                     <option value="image">Images</option>
-                                                    <option value="audio">Audio</option><option value="video">Video</option>
+                                                    <option value="audio">Audio</option>
+                                                    <option value="video">Video</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <MediaLoader mediaFiles={this.props.mediaFilesObject} deleteMedia={this.deleteMedia}/>
+                                        <MediaLoader mediaFiles={this.props.mediaFilesObject} deleteMedia={this.deleteMedia} filterType={this.state.filterType}/>
                                     </>
                                 :
                                     <div className="p-3">No files found</div>
