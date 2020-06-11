@@ -199,15 +199,22 @@ class Main extends Component {
                                             name="courseTitle"
                                             type="text"
                                             className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
-                                            onChange={handleChange}
                                             value={values.courseTitle}
                                             onBlur={(e) => {
-                                                    handleBlur(e);
-                                                    if (values.courseTitle !== undefined) {
+                                                    handleBlur(e)
+
+                                                    if (e.target.value.trim() === "") {
+                                                        this.setSaveClick(false);
+                                                    }
+                                                }
+                                            }
+                                            onChange={(e) => {
+                                                    handleChange(e)
+
+                                                    if (e.target.value.trim() !== "") {
                                                         this.props.addCourseTitle(values.courseTitle);
                                                         this.setSaveClick(true);
                                                     }
-                                                    
                                                 }
                                             }
                                             placeholder="Type course name here . . ."
