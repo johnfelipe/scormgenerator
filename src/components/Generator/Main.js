@@ -49,7 +49,7 @@ class Main extends Component {
         // console.log(this.props.showProgressbar);
         // console.log(this.state.resourceFilesObject);
         // console.log(this.state.transcriptFileObject);
-        // console.log(this.props.courseLessons);
+        console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
         console.log(this.props.course);
     }
