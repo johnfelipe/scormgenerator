@@ -81,21 +81,23 @@ class GalleryHandler extends Component {
                             <MediaUploader setMediaFiles={this.setMediaFiles} />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
-                            <div className="gallery-toolbar">
-                                <div className="gallery-toolbar-filter">
-                                    <h2 className="gallery-filter-heading">Filter Gallery</h2>
-                                    <select id="gellery-attachment-filters" className="gallery-filters">
-                                        <option value="all">All media items</option>
-                                        <option value="image">Images</option>
-                                        <option value="audio">Audio</option><option value="video">Video</option>
-                                    </select>
-                                </div>
-                            </div>
                             {
                                 this.props.mediaFilesObject.length > 0 ?
-                                    <MediaLoader mediaFiles={this.props.mediaFilesObject} deleteMedia={this.deleteMedia}/>
+                                    <>
+                                        <div className="gallery-toolbar">
+                                            <div className="gallery-toolbar-filter">
+                                                <h2 className="gallery-filter-heading">Filter Gallery</h2>
+                                                <select id="gellery-attachment-filters" className="gallery-filters">
+                                                    <option value="all">All media items</option>
+                                                    <option value="image">Images</option>
+                                                    <option value="audio">Audio</option><option value="video">Video</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <MediaLoader mediaFiles={this.props.mediaFilesObject} deleteMedia={this.deleteMedia}/>
+                                    </>
                                 :
-                                    <div className="pt-1 pb-3 pr-3 pl-3">No files found</div>
+                                    <div className="p-3">No files found</div>
                             }
                         </Tab>
                     </Tabs>
