@@ -163,7 +163,8 @@ class Main extends Component {
                         this.props.chooseNavigationType(values.navigationType);
                         this.props.showHideProgressbar(values.showProgressbar);
 
-                        // Create course
+                        // create course
+                        // uid is temporary
                         this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
                     }}
 
@@ -202,7 +203,6 @@ class Main extends Component {
                                             value={values.courseTitle}
                                             onBlur={(e) => {
                                                     handleBlur(e);
-                                                    console.log(values.courseTitle !== undefined);
                                                     if (values.courseTitle !== undefined) {
                                                         this.props.addCourseTitle(values.courseTitle);
                                                         this.setSaveClick(true);
