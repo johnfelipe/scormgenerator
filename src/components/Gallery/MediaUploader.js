@@ -14,7 +14,7 @@ class MediaUploader extends Component {
         this.clearSuccessMessage = this.clearSuccessMessage.bind(this);
     }
 
-    handleImageChange(e) {
+    handleImageChange = (e) => {
         e.preventDefault();
         let files = e.target.files;
 
