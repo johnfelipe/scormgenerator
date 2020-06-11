@@ -173,6 +173,20 @@ export const createLesson = (state, action) => {
 
     return {
         ...state,
-        course: lessonObject,
+        lesson: lessonObject,
+    }
+}
+
+export const createSlide = (state, action) => {
+    const slideObject = {
+        lid: action.lid,
+        title: action.title,
+        uid: action.uid,
+        hide_title: action.hide_title
+    }
+
+    return {
+        ...state,
+        slide: slideObject,
     }
 }
