@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
 
 class LessonHandler extends Component {
 
@@ -12,6 +13,10 @@ class LessonHandler extends Component {
         };
         this.setModalShow = this.setModalShow.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidUpdate = () => {
+        console.log(this.props.lesson);
     }
 
     setModalShow = (value) => {
@@ -53,6 +58,10 @@ class LessonHandler extends Component {
                         onSubmit={values => {
                             console.log(values.lessonName);
                             this.onSave(values.lessonName, this.props.id);
+
+                            // create lesson
+                            // uid and cid is temporary
+                            this.props.createLesson(1, 1, values.lessonName);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -112,4 +121,17 @@ class LessonHandler extends Component {
     }
 }
 
-export default LessonHandler;
+
+const mapStateToProps = (state) => {
+    return {
+        lesson: state.lesson,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createLesson: (userId, courseId, title) => dispatch({type: 'CREATE_LESSON', uid: userId, cid: courseId, title: title}),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LessonHandler);
