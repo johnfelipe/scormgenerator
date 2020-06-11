@@ -11,16 +11,7 @@ class MediaUploader extends Component {
             showSuccessMsg: false,
         };
         this.handleImageChange = this.handleImageChange.bind(this);
-    }
-
-    componentDidUpdate = () => {
-        setTimeout(
-            function() {
-                this.setState({showSuccessMsg: false});
-            }
-            .bind(this),
-            5000
-        );
+        this.clearSuccessMessage = this.clearSuccessMessage.bind(this);
     }
 
     handleImageChange(e) {
@@ -53,6 +44,16 @@ class MediaUploader extends Component {
         });
     }
 
+    clearSuccessMessage = () => {
+        setTimeout(
+            function() {
+                this.setState({showSuccessMsg: false});
+            }
+            .bind(this),
+            5000
+        );
+    }
+
     render() {
 
         return (
@@ -67,6 +68,7 @@ class MediaUploader extends Component {
                                 id="inputGroupFile01"
                                 aria-describedby="inputGroupFileAddon01"
                                 onChange={this.handleImageChange}
+                                onBlur={this.clearSuccessMessage}
                                 multiple
                             />
                             <label className="custom-file-label pr-6" htmlFor="inputGroupFile01">
