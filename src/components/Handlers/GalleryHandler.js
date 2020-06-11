@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
-// import { Formik } from "formik";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 // Gallery Components
 import MediaUploader from '../Gallery/MediaUploader';
@@ -39,6 +36,12 @@ class GalleryHandler extends Component {
         this.setState({
             modalShow: value,
         });
+
+        if (value === false) {
+            this.setState({
+                filterType: "all",
+            });
+        }
     }
 
     setMediaFiles = (fileObject) => {
