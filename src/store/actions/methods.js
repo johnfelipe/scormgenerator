@@ -198,13 +198,22 @@ export const createColumn = (state, action) => {
     for (let index in action.columnArr) {
 
         let featuresJson = [];
-        // console.log(action.columnArr[index].content);
 
         if (action.columnArr[index].grid === 0) {
             featuresJson = JSON.stringify(action.columnArr[index].content['subColumnOne']);
             console.log(featuresJson);
-        } else if (action.columnArr[index].grid === 1) {
-            featuresJson = [JSON.stringify(action.columnArr[index].content['subColumnOne']), JSON.stringify(action.columnArr[index].content['subColumnTwo'])];
+        } else if (action.columnArr[index].grid === 1 || action.columnArr[index].grid === 2 || action.columnArr[index].grid === 3) {
+            featuresJson = [
+                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
+                JSON.stringify(action.columnArr[index].content['subColumnTwo'])
+            ];
+            console.log(featuresJson);
+        } else if (action.columnArr[index].grid === 4) {
+            featuresJson = [
+                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
+                JSON.stringify(action.columnArr[index].content['subColumnTwo']),
+                JSON.stringify(action.columnArr[index].content['subColumnThree']),
+            ];
             console.log(featuresJson);
         }
 
