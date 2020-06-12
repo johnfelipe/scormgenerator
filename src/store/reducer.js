@@ -14,6 +14,7 @@ const initialState = {
     course: {},
     lesson: {},
     slide: {},
+    columns: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -53,6 +54,8 @@ const reducer = (state = initialState, action) => {
         case types.CREATE_LESSON: return methods.createLesson(state, action);
 
         case types.CREATE_SLIDE: return methods.createSlide(state, action);
+
+        case types.CREATE_COLUMN: return methods.createColumn(state, action);
 
         default: {
             return state;
