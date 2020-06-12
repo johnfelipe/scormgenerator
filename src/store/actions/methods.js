@@ -223,6 +223,15 @@ export const createColumn = (state, action) => {
                 JSON.stringify(action.columnArr[index].content['subColumnFour']),
             ];
             console.log(featuresJson);
+        } else if (action.columnArr[index].grid === 6) {
+            featuresJson = [
+                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
+                JSON.stringify(action.columnArr[index].content['subColumnTwo']),
+                JSON.stringify(action.columnArr[index].content['subColumnThree']),
+                JSON.stringify(action.columnArr[index].content['subColumnFour']),
+                JSON.stringify(action.columnArr[index].content['subColumnFive']),
+            ];
+            console.log(featuresJson);
         }
 
         columnObject.push({
