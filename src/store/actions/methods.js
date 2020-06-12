@@ -215,6 +215,14 @@ export const createColumn = (state, action) => {
                 JSON.stringify(action.columnArr[index].content['subColumnThree']),
             ];
             console.log(featuresJson);
+        } else if (action.columnArr[index].grid === 5) {
+            featuresJson = [
+                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
+                JSON.stringify(action.columnArr[index].content['subColumnTwo']),
+                JSON.stringify(action.columnArr[index].content['subColumnThree']),
+                JSON.stringify(action.columnArr[index].content['subColumnFour']),
+            ];
+            console.log(featuresJson);
         }
 
         columnObject.push({
