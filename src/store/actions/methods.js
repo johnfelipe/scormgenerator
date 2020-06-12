@@ -190,3 +190,37 @@ export const createSlide = (state, action) => {
         slide: slideObject,
     }
 }
+
+export const createColumn = (state, action) => {
+
+    let columnObject = [];
+
+    for (let index in action.columnArr) {
+
+        let featuresJson = [];
+        // console.log(action.columnArr[index].content);
+
+        if (action.columnArr[index].grid === 0) {
+            featuresJson = JSON.stringify(action.columnArr[index].content['subColumnOne']);
+            console.log(featuresJson);
+        } else if (action.columnArr[index].grid === 1) {
+            featuresJson = [JSON.stringify(action.columnArr[index].content['subColumnOne']), JSON.stringify(action.columnArr[index].content['subColumnTwo'])];
+            console.log(featuresJson);
+        }
+
+        columnObject.push({
+            sid: action.sid,
+            uid: action.uid,
+            grid: action.columnArr[index].grid,
+            features: featuresJson
+        });
+        
+        console.log(columnObject);
+        console.log(state.columns);
+    }
+
+    return {
+        ...state,
+        columns: columnObject,
+    }
+}
