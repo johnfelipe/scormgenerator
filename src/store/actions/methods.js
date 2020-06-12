@@ -203,11 +203,12 @@ export const createColumn = (state, action) => {
             featuresJson = JSON.stringify(action.columnArr[index].content['subColumnOne']);
             console.log(featuresJson);
         } else if (action.columnArr[index].grid === 1 || action.columnArr[index].grid === 2 || action.columnArr[index].grid === 3) {
-            featuresJson = [
-                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
-                JSON.stringify(action.columnArr[index].content['subColumnTwo'])
-            ];
+            featuresJson = JSON.stringify({
+                subColumnOne: action.columnArr[index].content['subColumnOne'], 
+                subColumnTwo: action.columnArr[index].content['subColumnTwo']
+            });
             console.log(featuresJson);
+            console.log(typeof featuresJson);
         } else if (action.columnArr[index].grid === 4) {
             featuresJson = [
                 JSON.stringify(action.columnArr[index].content['subColumnOne']), 
