@@ -210,11 +210,11 @@ export const createColumn = (state, action) => {
             console.log(featuresJson);
             console.log(typeof featuresJson);
         } else if (action.columnArr[index].grid === 4) {
-            featuresJson = [
-                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
-                JSON.stringify(action.columnArr[index].content['subColumnTwo']),
-                JSON.stringify(action.columnArr[index].content['subColumnThree']),
-            ];
+            featuresJson = JSON.stringify({
+                subColumnOne: action.columnArr[index].content['subColumnOne'], 
+                subColumnTwo: action.columnArr[index].content['subColumnTwo'],
+                subColumnThree: action.columnArr[index].content['subColumnThree'],
+            });
             console.log(featuresJson);
         } else if (action.columnArr[index].grid === 5) {
             featuresJson = [
