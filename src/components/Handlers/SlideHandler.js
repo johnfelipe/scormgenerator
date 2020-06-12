@@ -66,15 +66,18 @@ class SlideHandler extends Component {
     }
 
     componentDidUpdate() {
-        console.log('state.columns: ');
-        console.log(this.state.column);
-        console.log('props.columns: ');
-        console.log(this.props.currentColumns);
-        console.log('props.action');
-        console.log(this.props.action);
-        console.log('state.activeFeature');
-        console.log(this.state.activeFeature);
+        // console.log('state.columns: ');
+        // console.log(this.state.column);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
+        // console.log('props.action');
+        // console.log(this.props.action);
+        // console.log('state.activeFeature');
+        // console.log(this.state.activeFeature);
+        console.log('this.props.slide');
         console.log(this.props.slide);
+        console.log('this.props.column');
+        console.log(this.props.columns);
 
         let audio = document.getElementById('feature-audio');
 
@@ -1016,6 +1019,10 @@ class SlideHandler extends Component {
                             // lid and uid are temporary
                             this.props.createSlide(1, values.slideName, 1, values.showTitle);
 
+                            // create column
+                            // sid and uid are temporary
+                            this.props.createColumn(1, 1, this.state.column);
+
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -1682,12 +1689,14 @@ class SlideHandler extends Component {
 const mapStateToProps = (state) => {
     return {
         slide: state.slide,
+        columns: state.columns,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         createSlide: (lessonId, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonId, title: title, uid: userId, hide_title: hideShowTitle}),
+        createColumn: (slideId, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: slideId, uid: userId, columnArr: columnArr}),
     }
 }
 
