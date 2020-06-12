@@ -217,12 +217,12 @@ export const createColumn = (state, action) => {
             });
             console.log(featuresJson);
         } else if (action.columnArr[index].grid === 5) {
-            featuresJson = [
-                JSON.stringify(action.columnArr[index].content['subColumnOne']), 
-                JSON.stringify(action.columnArr[index].content['subColumnTwo']),
-                JSON.stringify(action.columnArr[index].content['subColumnThree']),
-                JSON.stringify(action.columnArr[index].content['subColumnFour']),
-            ];
+            featuresJson = JSON.stringify({
+                subColumnOne: action.columnArr[index].content['subColumnOne'], 
+                subColumnTwo: action.columnArr[index].content['subColumnTwo'],
+                subColumnThree: action.columnArr[index].content['subColumnThree'],
+                subColumnFour: action.columnArr[index].content['subColumnFour'],
+            });
             console.log(featuresJson);
         } else if (action.columnArr[index].grid === 6) {
             featuresJson = [
