@@ -166,9 +166,9 @@
                                                     padding: 0;
                                                     list-style: none;
     
-                                                    > li {
-                                                        // display: flex;
-                                                        // align-items: flex-start;
+                                                    > li.sg-control-input-list-item {
+                                                        display: flex;
+                                                        align-items: flex-start;
                                                         margin: 7px 0 0;
     
                                                         > .sg-control-input-list-label {
@@ -191,7 +191,7 @@
                                                         > .sg-control-input-list-input {
                                                             flex: 1;
                                                             overflow: auto;
-                                                            background-color: rgba(112, 112, 112, 0.25);
+                                                            // background-color: rgba(112, 112, 112, 0.25);
 
                                                             .audio-feature-value-list {
                                                                 list-style: none;
