@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import {Controlled as CodeMirror} from 'react-codemirror2';
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/material.css');
-require('codemirror/theme/neat.css');
-require('codemirror/mode/xml/xml.js');
-require('codemirror/mode/javascript/javascript.js');
+// import {Controlled as CodeMirror} from 'react-codemirror2';
+// require('codemirror/lib/codemirror.css');
+// require('codemirror/theme/material.css');
+// require('codemirror/theme/neat.css');
+// require('codemirror/mode/xml/xml.js');
+// require('codemirror/mode/javascript/javascript.js');
+
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/theme-xcode";
 
 class CssEditor extends Component {
 
@@ -36,7 +40,7 @@ class CssEditor extends Component {
                 </div>
                 <div className="sg-workspace-expander-body">
                     <div className="sg-inline-code-editor h-100">
-                        <CodeMirror
+                        {/* <CodeMirror
                             className="h-100"
                             value={this.state.value}
                             options={{
@@ -50,13 +54,39 @@ class CssEditor extends Component {
                             onChange={(editor, value) => {
                                 console.log('controlled', {value});
                             }}
-                        />
+                        /> */}
 
                         {/* <textarea
                             className="sg-text-editor-css"
                             value={ this.state.value }
                             onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
                         /> */}
+
+                        <AceEditor
+                            placeholder="Placeholder Text"
+                            mode="css"
+                            theme="xcode"
+                            name="blah2"
+                            onLoad={this.onLoad}
+                            onChange={this.onChange}
+                            fontSize={14}
+                            showPrintMargin={true}
+                            showGutter={true}
+                            highlightActiveLine={true}
+                            value={
+                                `function onLoad(editor) {
+                                    console.log("i've loaded");
+                                }`
+                            }
+                            setOptions={{
+                                enableBasicAutocompletion: false,
+                                enableLiveAutocompletion: false,
+                                enableSnippets: false,
+                                showLineNumbers: true,
+                                tabSize: 2,
+                            }}
+                            className='h-100 w-100'
+                        />
                     </div>
                 </div>
             </div>
