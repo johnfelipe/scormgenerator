@@ -62,6 +62,7 @@ class SlideHandler extends Component {
         this.setFeatureId = this.setFeatureId.bind(this);
         this.setFeatureClass = this.setFeatureClass.bind(this);
         this.onChangeRadio = this.onChangeRadio.bind(this);
+        this.stringToObject = this.stringToObject.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -974,6 +975,22 @@ class SlideHandler extends Component {
         })
     }
 
+    stringToObject = (str) => {
+        let result = {}, attributes = str.split(';');
+
+        for (let i = 0; i < attributes.length; i++) {
+            if (attributes[i] !== "") {
+                let entry = attributes[i].split(':');
+                entry[0] = entry[0].replace(/\n/g, '');
+                entry[1] = entry[1].trim();
+                console.log(entry)
+                result[entry.splice(0,1)[0]] = entry.join(':');
+            }
+        }
+
+        return result;
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1229,6 +1246,15 @@ class SlideHandler extends Component {
                                                                                                                     "content-output"
                                                                                                             } 
                                                                                                             onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'subColumnOne')} 
+                                                                                                            style={
+                                                                                                                contentFirst.css ? 
+                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                        this.stringToObject(contentFirst.css)
+                                                                                                                    :
+                                                                                                                        console.log('error here')
+                                                                                                                : 
+                                                                                                                    null
+                                                                                                            }
                                                                                                         >
                                                                                                             {ReactHtmlParser(contentFirst.output)}
                                                                                                         </div>

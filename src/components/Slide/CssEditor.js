@@ -63,7 +63,7 @@ class CssEditor extends Component {
                         /> */}
 
                         <AceEditor
-                            placeholder="Write css code here. . ."
+                            placeholder={"Please write like:\nproperty: value;\n\nExample:\nbackground: red;\nfont-size: 15px;"}
                             mode="css"
                             theme="xcode"
                             name="blah2"
