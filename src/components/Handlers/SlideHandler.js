@@ -1218,7 +1218,7 @@ class SlideHandler extends Component {
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex} 
                                                                                                             id={
                                                                                                                 contentFirst.id ? 
-                                                                                                                    contentFirst.id 
+                                                                                                                    contentFirst.id + '-content-output-' + contentFirstIndex
                                                                                                                 : 
                                                                                                                     item.id + '-content-output-' + contentFirstIndex
                                                                                                             } 
