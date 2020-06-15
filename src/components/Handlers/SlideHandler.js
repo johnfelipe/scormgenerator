@@ -1805,12 +1805,32 @@ class SlideHandler extends Component {
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-1'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-1-' + index} ref={provided.innerRef} id={'sg-1-5-1-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0">
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-1-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-1-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0"
+                                                                                                        >
                                                                                                             {
                                                                                                                 typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                                                     item.content['subColumnOne'].length > 0 ?
                                                                                                                         item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                            <div key={'sg-1-5-1-content-output-' + contentFirstIndex} id={'sg-1-5-1-content-output-' + contentFirstIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'subColumnOne')}>
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-1-content-output-' + contentFirstIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                        contentFirst.id + 'sg-1-5-1-content-output-' + contentFirstIndex 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                        contentFirst + "content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'subColumnOne')}
+                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1825,12 +1845,32 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-2'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-2-' + index} ref={provided.innerRef} id={'sg-1-5-2-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1">
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-2-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-2-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1"
+                                                                                                        >
                                                                                                             {
                                                                                                                 typeof item.content['subColumnTwo'] != "undefined" ? 
                                                                                                                     item.content['subColumnTwo'].length > 0 ?
                                                                                                                         item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                            <div key={'sg-1-5-2-content-output-' + contentSecondIndex} id={'sg-1-5-2-content-output-' + contentSecondIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'subColumnTwo')}>
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-2-content-output-' + contentSecondIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                        contentSecond.id + 'sg-1-5-2-content-output-' + contentSecondIndex 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-2-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                        contentSecond.class + "content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
+                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1845,12 +1885,31 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-3'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-3-' + index} ref={provided.innerRef} id={'sg-1-5-3-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2">
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-3-' + index} 
+                                                                                                            ref={provided.innerRef} id={'sg-1-5-3-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2"
+                                                                                                        >
                                                                                                             {
                                                                                                                 typeof item.content['subColumnThree'] != "undefined" ? 
                                                                                                                     item.content['subColumnThree'].length > 0 ?
                                                                                                                         item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                            <div key={'sg-1-5-3-content-output-' + contentThirdIndex} id={'sg-1-5-3-content-output-' + contentThirdIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'subColumnThree')}>
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-3-content-output-' + contentThirdIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentThird.id ? 
+                                                                                                                                        contentThird.id + 'sg-1-5-3-content-output-' + contentThirdIndex 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentThird.class ? 
+                                                                                                                                        contentThird.class + "content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'subColumnThree')}
+                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentThird.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1865,12 +1924,32 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-4'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-4-' + index} ref={provided.innerRef} id={'sg-1-5-4-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3">
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-4-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-4-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3"
+                                                                                                        >
                                                                                                             {
                                                                                                                 typeof item.content['subColumnFour'] != "undefined" ? 
                                                                                                                     item.content['subColumnFour'].length > 0 ?
                                                                                                                         item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                            <div key={'sg-1-5-4-content-output-' + contentFourthIndex} id={'sg-1-5-4-content-output-' + contentFourthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'subColumnFour')}>
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-4-content-output-' + contentFourthIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentFourth.id ? 
+                                                                                                                                        contentFourth.id + 'sg-1-5-4-content-output-' + contentFourthIndex 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-4-content-output-' + contentFourthIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFourth.class ? 
+                                                                                                                                        contentFourth.class + "content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'subColumnFour')}
+                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFourth.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1885,12 +1964,32 @@ class SlideHandler extends Component {
                                                                                                 </Droppable>
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-5'}>
                                                                                                     {(provided) => (
-                                                                                                        <div key={'sg-1-5-5-' + index} ref={provided.innerRef} id={'sg-1-5-5-' + index} className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4">
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-5-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-5-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4"
+                                                                                                        >
                                                                                                             {
                                                                                                                 typeof item.content['subColumnFive'] != "undefined" ? 
                                                                                                                     item.content['subColumnFive'].length > 0 ?
                                                                                                                         item.content['subColumnFive'].map((contentFifth, contentFifthIndex) =>(
-                                                                                                                            <div key={'sg-1-5-5-content-output-' + contentFifthIndex} id={'sg-1-5-5-content-output-' + contentFifthIndex} className="content-output" onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'subColumnFive')}>
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-5-content-output-' + contentFifthIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentFifth.id ? 
+                                                                                                                                        contentFifth.id + 'sg-1-5-5-content-output-' + contentFifthIndex 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-5-content-output-' + contentFifthIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFifth.class ? 
+                                                                                                                                        contentFifth.class + "content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'subColumnFive')}
+                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFifth.output)}
                                                                                                                             </div>
                                                                                                                         ))
