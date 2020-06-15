@@ -33,7 +33,7 @@ class HtmlEditor extends Component {
                                 : 
                                     ''
                             }
-                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
+                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex, 'html')}
                         />
                     </div>
                 </div>
