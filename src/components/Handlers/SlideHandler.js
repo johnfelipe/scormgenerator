@@ -1518,6 +1518,15 @@ class SlideHandler extends Component {
                                                                                                                                 "content-output"
                                                                                                                         } 
                                                                                                                         onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-2-3-1-content-output-' + contentFirstIndex, 'subColumnOne')}
+                                                                                                                        style={
+                                                                                                                            contentFirst.css ? 
+                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                    this.stringToObject(contentFirst.css)
+                                                                                                                                :
+                                                                                                                                    null
+                                                                                                                            : 
+                                                                                                                                null
+                                                                                                                        }
                                                                                                                     >
                                                                                                                         {ReactHtmlParser(contentFirst.output)}
                                                                                                                     </div>
@@ -1558,6 +1567,15 @@ class SlideHandler extends Component {
                                                                                                                                 "content-output"
                                                                                                                         } 
                                                                                                                         onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
+                                                                                                                        style={
+                                                                                                                            contentSecond.css ? 
+                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                    this.stringToObject(contentSecond.css)
+                                                                                                                                :
+                                                                                                                                    null
+                                                                                                                            : 
+                                                                                                                                null
+                                                                                                                        }
                                                                                                                     >
                                                                                                                         {ReactHtmlParser(contentSecond.output)}
                                                                                                                     </div>
