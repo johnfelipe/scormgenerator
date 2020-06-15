@@ -957,6 +957,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-inline-code-editor .react-codemirror2 .CodeMirror .CodeMirror-scroll {
+  width: 100%;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .CodeMirror.cm-s-material {
   text-shadow: none;
   background-color: #fff;

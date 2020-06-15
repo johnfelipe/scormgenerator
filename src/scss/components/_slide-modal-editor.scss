@@ -427,6 +427,16 @@
                                             -webkit-font-variant-ligatures: contextual;
                                             font-variant-ligatures: contextual;
                                         }
+
+                                        .sg-inline-code-editor {
+                                            .react-codemirror2 {
+                                                .CodeMirror {
+                                                    .CodeMirror-scroll {
+                                                        width: 100%;
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
 
                                     .sg-code-editor-wrapper {
