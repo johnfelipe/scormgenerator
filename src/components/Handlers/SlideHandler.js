@@ -848,11 +848,15 @@ class SlideHandler extends Component {
         })
     }
 
-    onChangeTextArea = (event, contentIndex) => {
+    onChangeTextArea = (event, contentIndex, editorType) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
+        if (editorType === 'html') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
+        } else if (editorType === 'css') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].css = event;
+        }
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
@@ -1659,6 +1663,7 @@ class SlideHandler extends Component {
                                                 showCssEditor={this.state.showCssEditor}
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
                                             />
                                         </div>
                                     </DragDropContext>
