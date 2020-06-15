@@ -63,20 +63,27 @@ class CssEditor extends Component {
                         /> */}
 
                         <AceEditor
-                            placeholder="Placeholder Text"
+                            placeholder="Write css code here. . ."
                             mode="css"
                             theme="xcode"
                             name="blah2"
                             onLoad={this.onLoad}
-                            onChange={this.onChange}
+                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex, 'css')}
                             fontSize={14}
                             showPrintMargin={true}
                             showGutter={true}
                             highlightActiveLine={true}
-                            value={
-                                `function onLoad(editor) {
-                                    console.log("i've loaded");
-                                }`
+                            value={ 
+                                typeof this.props.currentColumn !== "undefined" ? 
+                                    'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                                        this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
+                                            this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
+                                        :
+                                            ''
+                                    : 
+                                        '' 
+                                : 
+                                    ''
                             }
                             setOptions={{
                                 enableBasicAutocompletion: false,
