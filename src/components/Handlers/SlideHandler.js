@@ -1224,7 +1224,7 @@ class SlideHandler extends Component {
                                                                                                             } 
                                                                                                             className={
                                                                                                                 contentFirst.class ? 
-                                                                                                                    contentFirst.class + "content-output"
+                                                                                                                    contentFirst.class + " content-output"
                                                                                                                 : 
                                                                                                                     "content-output"
                                                                                                             } 
@@ -1276,7 +1276,7 @@ class SlideHandler extends Component {
                                                                                                                 } 
                                                                                                                 className={
                                                                                                                     contentFirst.class ? 
-                                                                                                                        contentFirst.class + "content-output"
+                                                                                                                        contentFirst.class + " content-output"
                                                                                                                     : 
                                                                                                                         "content-output"
                                                                                                                 }  
@@ -1316,7 +1316,7 @@ class SlideHandler extends Component {
                                                                                                                 } 
                                                                                                                 className={
                                                                                                                     contentSecond.class ? 
-                                                                                                                        contentSecond.class + "content-output"
+                                                                                                                        contentSecond.class + " content-output"
                                                                                                                     : 
                                                                                                                         "content-output"
                                                                                                                 } 
@@ -1364,7 +1364,7 @@ class SlideHandler extends Component {
                                                                                                                     } 
                                                                                                                     className={
                                                                                                                         contentFirst.class ? 
-                                                                                                                            contentFirst.class + "content-output" 
+                                                                                                                            contentFirst.class + " content-output" 
                                                                                                                         : 
                                                                                                                             "content-output"
                                                                                                                     } 
@@ -1403,7 +1403,7 @@ class SlideHandler extends Component {
                                                                                                                     } 
                                                                                                                     className={
                                                                                                                         contentSecond.class ? 
-                                                                                                                            contentSecond.class + "content-output" 
+                                                                                                                            contentSecond.class + " content-output" 
                                                                                                                         : 
                                                                                                                             "content-output"
                                                                                                                     } 
@@ -1451,7 +1451,7 @@ class SlideHandler extends Component {
                                                                                                                         } 
                                                                                                                         className={
                                                                                                                             contentFirst.class ? 
-                                                                                                                                contentFirst.class + "content-output" 
+                                                                                                                                contentFirst.class + " content-output" 
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
@@ -1491,7 +1491,7 @@ class SlideHandler extends Component {
                                                                                                                         } 
                                                                                                                         className={
                                                                                                                             contentSecond.class ? 
-                                                                                                                                contentSecond.class + "content-output" 
+                                                                                                                                contentSecond.class + " content-output" 
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
@@ -1540,7 +1540,7 @@ class SlideHandler extends Component {
                                                                                                                         } 
                                                                                                                         className={
                                                                                                                             contentFirst.class ? 
-                                                                                                                                contentFirst.class + "content-output" 
+                                                                                                                                contentFirst.class + " content-output" 
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
@@ -1580,7 +1580,7 @@ class SlideHandler extends Component {
                                                                                                                         } 
                                                                                                                         className={
                                                                                                                             contentSecond.class ? 
-                                                                                                                                contentSecond.class + "content-output" 
+                                                                                                                                contentSecond.class + " content-output" 
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
@@ -1620,7 +1620,7 @@ class SlideHandler extends Component {
                                                                                                                         } 
                                                                                                                         className={
                                                                                                                             contentThird.class ? 
-                                                                                                                                contentThird.class + "content-output" 
+                                                                                                                                contentThird.class + " content-output" 
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
@@ -1669,7 +1669,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFirst.class ? 
-                                                                                                                                        contentFirst.class + "content-output" 
+                                                                                                                                        contentFirst.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1709,7 +1709,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentSecond.class ? 
-                                                                                                                                        contentSecond.class + "content-output" 
+                                                                                                                                        contentSecond.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1749,7 +1749,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentThird.class ? 
-                                                                                                                                        contentThird + "content-output" 
+                                                                                                                                        contentThird.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1789,7 +1789,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFourth.class ? 
-                                                                                                                                        contentFourth.class + "content-output" 
+                                                                                                                                        contentFourth.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1837,7 +1837,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFirst.class ? 
-                                                                                                                                        contentFirst + "content-output" 
+                                                                                                                                        contentFirst.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1877,7 +1877,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentSecond.class ? 
-                                                                                                                                        contentSecond.class + "content-output" 
+                                                                                                                                        contentSecond.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1917,7 +1917,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentThird.class ? 
-                                                                                                                                        contentThird.class + "content-output" 
+                                                                                                                                        contentThird.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1957,7 +1957,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFourth.class ? 
-                                                                                                                                        contentFourth.class + "content-output" 
+                                                                                                                                        contentFourth.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -1997,7 +1997,7 @@ class SlideHandler extends Component {
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFifth.class ? 
-                                                                                                                                        contentFifth.class + "content-output" 
+                                                                                                                                        contentFifth.class + " content-output" 
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
