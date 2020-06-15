@@ -238,7 +238,7 @@ class Editor extends Component {
                                             : 
                                                 ''
                                         }
-                                        onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
+                                        onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex, 'html')}
                                     />
                                     {/* <ul className="audio-feature-value-list pl-0">
                                         {
