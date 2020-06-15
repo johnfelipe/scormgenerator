@@ -1258,7 +1258,8 @@ class SlideHandler extends Component {
                                                                                     {(provided) => (
                                                                                         <div 
                                                                                         key={'sg-1-2-1-' + index} 
-                                                                                        ref={provided.innerRef} id={'sg-1-2-1-' + index} 
+                                                                                        ref={provided.innerRef} 
+                                                                                        id={'sg-1-2-1-' + index} 
                                                                                         className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
                                                                                     >
                                                                                             {
@@ -1297,7 +1298,8 @@ class SlideHandler extends Component {
                                                                                     {(provided) => (
                                                                                         <div 
                                                                                             key={'sg-1-2-2-' + index} 
-                                                                                            ref={provided.innerRef} id={'sg-1-2-2-' + index} 
+                                                                                            ref={provided.innerRef} 
+                                                                                            id={'sg-1-2-2-' + index} 
                                                                                             className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="1"
                                                                                         >
                                                                                             {
@@ -1344,7 +1346,8 @@ class SlideHandler extends Component {
                                                                                         {(provided) => (
                                                                                             <div 
                                                                                                 key={'sg-1-3-1-' + index} 
-                                                                                                ref={provided.innerRef} id={'sg-1-3-1-' + index} 
+                                                                                                ref={provided.innerRef} 
+                                                                                                id={'sg-1-3-1-' + index} 
                                                                                                 className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
                                                                                             >
                                                                                                 {
@@ -1383,7 +1386,8 @@ class SlideHandler extends Component {
                                                                                         {(provided) => (
                                                                                             <div 
                                                                                                 key={'sg-2-3-2-' + index} 
-                                                                                                ref={provided.innerRef} id={'sg-2-3-2-' + index} 
+                                                                                                ref={provided.innerRef} 
+                                                                                                id={'sg-2-3-2-' + index} 
                                                                                                 className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="1"
                                                                                             >
                                                                                                 {
@@ -1429,7 +1433,8 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div 
                                                                                                     key={'sg-2-3-1-' + index} 
-                                                                                                    ref={provided.innerRef} id={'sg-2-3-1-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-2-3-1-' + index} 
                                                                                                     className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="0"
                                                                                                 >
                                                                                                     {
@@ -1468,7 +1473,8 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div 
                                                                                                     key={'sg-1-3-2-' + index} 
-                                                                                                    ref={provided.innerRef} id={'sg-1-3-2-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-2-' + index} 
                                                                                                     className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
                                                                                                 >
                                                                                                     {
@@ -1516,7 +1522,8 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div 
                                                                                                     key={'sg-1-3-1-1-' + index} 
-                                                                                                    ref={provided.innerRef} id={'sg-1-3-1-1-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-1-' + index} 
                                                                                                     className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
                                                                                                 >
                                                                                                     {
@@ -1555,7 +1562,8 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div 
                                                                                                     key={'sg-1-3-1-2-' + index} 
-                                                                                                    ref={provided.innerRef} id={'sg-1-3-1-2-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-2-' + index} 
                                                                                                     className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
                                                                                                 >
                                                                                                     {
@@ -1594,7 +1602,8 @@ class SlideHandler extends Component {
                                                                                             {(provided) => (
                                                                                                 <div 
                                                                                                     key={'sg-1-3-1-3-' + index} 
-                                                                                                    ref={provided.innerRef} id={'sg-1-3-1-3-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-3-' + index} 
                                                                                                     className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="2"
                                                                                                 >
                                                                                                     {
@@ -1642,7 +1651,8 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div 
                                                                                                             key={'sg-1-4-1-' + index} 
-                                                                                                            ref={provided.innerRef} id={'sg-1-4-1-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-1-' + index} 
                                                                                                             className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="0"
                                                                                                         >
                                                                                                             {
@@ -1681,7 +1691,8 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div 
                                                                                                             key={'sg-1-4-2-' + index} 
-                                                                                                            ref={provided.innerRef} id={'sg-1-4-2-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-2-' + index} 
                                                                                                             className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="1"
                                                                                                         >
                                                                                                             {
@@ -1720,7 +1731,8 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div 
                                                                                                             key={'sg-1-4-3-' + index} 
-                                                                                                            ref={provided.innerRef} id={'sg-1-4-3-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-3-' + index} 
                                                                                                             className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="2"
                                                                                                         >
                                                                                                             {
@@ -1887,7 +1899,8 @@ class SlideHandler extends Component {
                                                                                                     {(provided) => (
                                                                                                         <div 
                                                                                                             key={'sg-1-5-3-' + index} 
-                                                                                                            ref={provided.innerRef} id={'sg-1-5-3-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-3-' + index} 
                                                                                                             className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2"
                                                                                                         >
                                                                                                             {
