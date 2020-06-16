@@ -1028,7 +1028,7 @@ class SlideHandler extends Component {
                     <Formik
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
-                            showTitle: this.props.slide.hide_title,
+                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : '',
                         }}
 
                         onSubmit={values => {
@@ -1100,8 +1100,8 @@ class SlideHandler extends Component {
                                         id="showTitle"
                                         name="showTitle"
                                         type="checkbox"
-                                        value={true}
-                                        checked={values.showTitle === true}
+                                        value={values.showTitle}
+                                        checked={values.showTitle}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
