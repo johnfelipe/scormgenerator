@@ -1359,17 +1359,36 @@ class SlideHandler extends Component {
                                                                                                                     : 
                                                                                                                         "content-output"
                                                                                                                 }  
-                                                                                                                onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-2-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                style={
+                                                                                                                onClick={() => 
+                                                                                                                    this.contentPaneClick(
+                                                                                                                        index, 
+                                                                                                                        contentFirstIndex, 
+                                                                                                                        contentFirst.id ? 
+                                                                                                                            contentFirst.id 
+                                                                                                                        : 
+                                                                                                                            'sg-1-2-1-content-output-' + contentFirstIndex, 
+                                                                                                                        'subColumnOne'
+                                                                                                                    )
+                                                                                                                }
+                                                                                                                // style={
+                                                                                                                //     contentFirst.css ? 
+                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                //         :
+                                                                                                                //             null
+                                                                                                                //     : 
+                                                                                                                //         null
+                                                                                                                // }
+                                                                                                            >
+                                                                                                                {
                                                                                                                     contentFirst.css ? 
-                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                             this.stringToObject(contentFirst.css)
                                                                                                                         :
                                                                                                                             null
                                                                                                                     : 
                                                                                                                         null
                                                                                                                 }
-                                                                                                            >
                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                             </div>
                                                                                                         ))
@@ -1408,17 +1427,36 @@ class SlideHandler extends Component {
                                                                                                                     : 
                                                                                                                         "content-output"
                                                                                                                 } 
-                                                                                                                onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-2-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                style={
+                                                                                                                onClick={() => 
+                                                                                                                    this.contentPaneClick(
+                                                                                                                        index, 
+                                                                                                                        contentSecondIndex, 
+                                                                                                                        contentSecond.id ? 
+                                                                                                                            contentSecond.id 
+                                                                                                                        : 
+                                                                                                                            'sg-1-2-2-content-output-' + contentSecondIndex, 
+                                                                                                                        'subColumnTwo'
+                                                                                                                    )
+                                                                                                                }
+                                                                                                                // style={
+                                                                                                                //     contentSecond.css ? 
+                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                //         :
+                                                                                                                //             null
+                                                                                                                //     : 
+                                                                                                                //         null
+                                                                                                                // }
+                                                                                                            >
+                                                                                                                {
                                                                                                                     contentSecond.css ? 
-                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                             this.stringToObject(contentSecond.css)
                                                                                                                         :
                                                                                                                             null
                                                                                                                     : 
                                                                                                                         null
                                                                                                                 }
-                                                                                                            >
                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                             </div>
                                                                                                         ))
@@ -1465,17 +1503,36 @@ class SlideHandler extends Component {
                                                                                                                         : 
                                                                                                                             "content-output"
                                                                                                                     } 
-                                                                                                                    onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                    style={
+                                                                                                                    onClick={() => 
+                                                                                                                        this.contentPaneClick(
+                                                                                                                            index, 
+                                                                                                                            contentFirstIndex, 
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id 
+                                                                                                                            : 
+                                                                                                                                'sg-1-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                            'subColumnOne'
+                                                                                                                        )
+                                                                                                                    }
+                                                                                                                    // style={
+                                                                                                                    //     contentFirst.css ? 
+                                                                                                                    //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                    //             this.stringToObject(contentFirst.css)
+                                                                                                                    //         :
+                                                                                                                    //             null
+                                                                                                                    //     : 
+                                                                                                                    //         null
+                                                                                                                    // }
+                                                                                                                >
+                                                                                                                    {
                                                                                                                         contentFirst.css ? 
-                                                                                                                            contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                            contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                                 this.stringToObject(contentFirst.css)
                                                                                                                             :
                                                                                                                                 null
                                                                                                                         : 
                                                                                                                             null
                                                                                                                     }
-                                                                                                                >
                                                                                                                     {ReactHtmlParser(contentFirst.output)}
                                                                                                                 </div>
                                                                                                             ))
@@ -1502,7 +1559,8 @@ class SlideHandler extends Component {
                                                                                                             item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
                                                                                                                 <div 
                                                                                                                     key={'sg-2-3-2-content-output-' + contentSecondIndex} 
-                                                                                                                    id={contentSecond.id ? 
+                                                                                                                    id={
+                                                                                                                        contentSecond.id ? 
                                                                                                                             contentSecond.id 
                                                                                                                         : 
                                                                                                                             'sg-2-3-2-content-output-' + contentSecondIndex
@@ -1513,17 +1571,36 @@ class SlideHandler extends Component {
                                                                                                                         : 
                                                                                                                             "content-output"
                                                                                                                     } 
-                                                                                                                    onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-2-3-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                    style={
+                                                                                                                    onClick={() => 
+                                                                                                                        this.contentPaneClick(
+                                                                                                                            index, 
+                                                                                                                            contentSecondIndex, 
+                                                                                                                            contentSecond.id ? 
+                                                                                                                                contentSecond.id 
+                                                                                                                            : 
+                                                                                                                                'sg-2-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                            'subColumnTwo'
+                                                                                                                        )
+                                                                                                                    }
+                                                                                                                    // style={
+                                                                                                                    //     contentSecond.css ? 
+                                                                                                                    //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                    //             this.stringToObject(contentSecond.css)
+                                                                                                                    //         :
+                                                                                                                    //             null
+                                                                                                                    //     : 
+                                                                                                                    //         null
+                                                                                                                    // }
+                                                                                                                >
+                                                                                                                    {
                                                                                                                         contentSecond.css ? 
-                                                                                                                            contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                            contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                                 this.stringToObject(contentSecond.css)
                                                                                                                             :
                                                                                                                                 null
                                                                                                                         : 
                                                                                                                             null
                                                                                                                     }
-                                                                                                                >
                                                                                                                     {ReactHtmlParser(contentSecond.output)}
                                                                                                                 </div>
                                                                                                             ))
@@ -1570,17 +1647,36 @@ class SlideHandler extends Component {
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
-                                                                                                                        onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-2-3-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                        style={
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-2-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                        // style={
+                                                                                                                        //     contentFirst.css ? 
+                                                                                                                        //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                        //             this.stringToObject(contentFirst.css)
+                                                                                                                        //         :
+                                                                                                                        //             null
+                                                                                                                        //     : 
+                                                                                                                        //         null
+                                                                                                                        // }
+                                                                                                                    >
+                                                                                                                        {
                                                                                                                             contentFirst.css ? 
-                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                                     this.stringToObject(contentFirst.css)
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
                                                                                                                                 null
                                                                                                                         }
-                                                                                                                    >
                                                                                                                         {ReactHtmlParser(contentFirst.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1619,17 +1715,36 @@ class SlideHandler extends Component {
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
-                                                                                                                        onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                        style={
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentSecondIndex, 
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                'subColumnTwo'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                        // style={
+                                                                                                                        //     contentSecond.css ? 
+                                                                                                                        //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                        //             this.stringToObject(contentSecond.css)
+                                                                                                                        //         :
+                                                                                                                        //             null
+                                                                                                                        //     : 
+                                                                                                                        //         null
+                                                                                                                        // }
+                                                                                                                    >
+                                                                                                                        {
                                                                                                                             contentSecond.css ? 
-                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                                     this.stringToObject(contentSecond.css)
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
                                                                                                                                 null
                                                                                                                         }
-                                                                                                                    >
                                                                                                                         {ReactHtmlParser(contentSecond.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1677,17 +1792,36 @@ class SlideHandler extends Component {
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
-                                                                                                                        onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-3-1-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                        style={
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-1-content-output-' + contentFirstIndex, 
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                        // style={
+                                                                                                                        //     contentFirst.css ? 
+                                                                                                                        //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                        //             this.stringToObject(contentFirst.css)
+                                                                                                                        //         :
+                                                                                                                        //             null
+                                                                                                                        //     : 
+                                                                                                                        //         null
+                                                                                                                        // }
+                                                                                                                    >
+                                                                                                                        {
                                                                                                                             contentFirst.css ? 
-                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                                     this.stringToObject(contentFirst.css)
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
                                                                                                                                 null
                                                                                                                         }
-                                                                                                                    >
                                                                                                                         {ReactHtmlParser(contentFirst.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1726,17 +1860,36 @@ class SlideHandler extends Component {
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
-                                                                                                                        onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-3-1-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                        style={
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentSecondIndex, 
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-2-content-output-' + contentSecondIndex, 
+                                                                                                                                'subColumnTwo'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                        // style={
+                                                                                                                        //     contentSecond.css ? 
+                                                                                                                        //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                        //             this.stringToObject(contentSecond.css)
+                                                                                                                        //         :
+                                                                                                                        //             null
+                                                                                                                        //     : 
+                                                                                                                        //         null
+                                                                                                                        // }
+                                                                                                                    >
+                                                                                                                        {
                                                                                                                             contentSecond.css ? 
-                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                                     this.stringToObject(contentSecond.css)
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
                                                                                                                                 null
                                                                                                                         }
-                                                                                                                    >
                                                                                                                         {ReactHtmlParser(contentSecond.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1775,17 +1928,36 @@ class SlideHandler extends Component {
                                                                                                                             : 
                                                                                                                                 "content-output"
                                                                                                                         } 
-                                                                                                                        onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-3-1-3-content-output-' + contentThirdIndex, 'subColumnThree')}
-                                                                                                                        style={
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentThirdIndex, 
+                                                                                                                                contentThird.id ? 
+                                                                                                                                    contentThird.id
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-3-content-output-' + contentThirdIndex, 
+                                                                                                                                'subColumnThree'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                        // style={
+                                                                                                                        //     contentThird.css ? 
+                                                                                                                        //         contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                        //             this.stringToObject(contentThird.css)
+                                                                                                                        //         :
+                                                                                                                        //             null
+                                                                                                                        //     : 
+                                                                                                                        //         null
+                                                                                                                        // }
+                                                                                                                    >
+                                                                                                                        {
                                                                                                                             contentThird.css ? 
-                                                                                                                                contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                                contentThird.css[contentThird.css.length - 1] === '}' ?
                                                                                                                                     this.stringToObject(contentThird.css)
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
                                                                                                                                 null
                                                                                                                         }
-                                                                                                                    >
                                                                                                                         {ReactHtmlParser(contentThird.output)}
                                                                                                                     </div>
                                                                                                                 ))
@@ -1833,17 +2005,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-4-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        :
+                                                                                                                                            'sg-1-4-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentFirst.css ? 
+                                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentFirst.css ? 
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentFirst.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1882,17 +2073,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-4-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentSecond.css ? 
+                                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentSecond.css ? 
-                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentSecond.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1931,17 +2141,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-4-3-content-output-' + contentThirdIndex, 'subColumnThree')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentThirdIndex, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-3-content-output-' + contentThirdIndex, 
+                                                                                                                                        'subColumnThree'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentThird.css ? 
+                                                                                                                                //         contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentThird.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentThird.css ? 
-                                                                                                                                        contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                                        contentThird.css[contentThird.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentThird.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentThird.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -1980,17 +2209,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-4-4-content-output-' + contentFourthIndex, 'subColumnFour')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFourthIndex, 
+                                                                                                                                        contentFourth.id ? 
+                                                                                                                                            contentFourth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-4-content-output-' + contentFourthIndex, 
+                                                                                                                                        'subColumnFour'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentFourth.css ? 
+                                                                                                                                //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentFourth.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentFourth.css ? 
-                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === ';' ?
+                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentFourth.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFourth.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -2037,17 +2285,33 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentFirstIndex, 'sg-1-5-1-content-output-' + contentFirstIndex, 'subColumnOne')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentFirst.css ? 
+                                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentFirst.css ? 
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentFirst.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFirst.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -2086,17 +2350,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentSecondIndex, 'sg-1-5-2-content-output-' + contentSecondIndex, 'subColumnTwo')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentSecond.css ? 
+                                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentSecond.css ? 
-                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === ';' ?
+                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentSecond.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentSecond.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -2135,17 +2418,33 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentThirdIndex, 'sg-1-5-3-content-output-' + contentThirdIndex, 'subColumnThree')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentThirdIndex, 
+                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex, 
+                                                                                                                                        'subColumnThree'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentThird.css ? 
+                                                                                                                                //         contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentThird.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentThird.css ? 
-                                                                                                                                        contentThird.css[contentThird.css.length - 1] === ';' ?
+                                                                                                                                        contentThird.css[contentThird.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentThird.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentThird.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -2184,17 +2483,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentFourthIndex, 'sg-1-5-4-content-output-' + contentFourthIndex, 'subColumnFour')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFourthIndex, 
+                                                                                                                                        contentFourth.id ? 
+                                                                                                                                            contentFourth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-4-content-output-' + contentFourthIndex, 
+                                                                                                                                        'subColumnFour'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentFourth.css ? 
+                                                                                                                                //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentFourth.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentFourth.css ? 
-                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === ';' ?
+                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentFourth.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFourth.output)}
                                                                                                                             </div>
                                                                                                                         ))
@@ -2233,17 +2551,36 @@ class SlideHandler extends Component {
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
-                                                                                                                                onClick={() => this.contentPaneClick(index, contentFifthIndex, 'sg-1-5-5-content-output-' + contentFifthIndex, 'subColumnFive')}
-                                                                                                                                style={
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFifthIndex, 
+                                                                                                                                        contentFifth.id ? 
+                                                                                                                                            contentFifth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-5-content-output-' + contentFifthIndex, 
+                                                                                                                                        'subColumnFive'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                                // style={
+                                                                                                                                //     contentFifth.css ? 
+                                                                                                                                //         contentFifth.css[contentFifth.css.length - 1] === ';' ?
+                                                                                                                                //             this.stringToObject(contentFifth.css)
+                                                                                                                                //         :
+                                                                                                                                //             null
+                                                                                                                                //     : 
+                                                                                                                                //         null
+                                                                                                                                // }
+                                                                                                                            >
+                                                                                                                                {
                                                                                                                                     contentFifth.css ? 
-                                                                                                                                        contentFifth.css[contentFifth.css.length - 1] === ';' ?
+                                                                                                                                        contentFifth.css[contentFifth.css.length - 1] === '}' ?
                                                                                                                                             this.stringToObject(contentFifth.css)
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
                                                                                                                                         null
                                                                                                                                 }
-                                                                                                                            >
                                                                                                                                 {ReactHtmlParser(contentFifth.output)}
                                                                                                                             </div>
                                                                                                                         ))
