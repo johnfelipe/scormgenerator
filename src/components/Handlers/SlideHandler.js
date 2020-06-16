@@ -63,7 +63,7 @@ class SlideHandler extends Component {
         this.setFeatureId = this.setFeatureId.bind(this);
         this.setFeatureClass = this.setFeatureClass.bind(this);
         this.onChangeRadio = this.onChangeRadio.bind(this);
-        this.stringToObject = this.stringToObject.bind(this);
+        this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -986,7 +986,7 @@ class SlideHandler extends Component {
         })
     }
 
-    stringToObject = (str) => {
+    cssApplier = (str, featureId) => {
         // let result = {}, attributes = str.split(';');
 
         // for (let i = 0; i < attributes.length; i++) {
@@ -1001,7 +1001,8 @@ class SlideHandler extends Component {
 
         // return result;
         if (this.state.applyCss) {
-            let css = '\n' + str + '\n',
+            const res = str.replace("$elem", '#' + featureId);
+            let css = '\n' + res + '\n',
                 head = document.head || document.getElementsByTagName('head')[0],
                 style = document.createElement('style');
 
@@ -1293,7 +1294,7 @@ class SlideHandler extends Component {
                                                                                                             // style={
                                                                                                             //     contentFirst.css ? 
                                                                                                             //         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                            //             this.stringToObject(contentFirst.css)
+                                                                                                            //             this.cssApplier(contentFirst.css)
                                                                                                             //         :
                                                                                                             //             null
                                                                                                             //     : 
@@ -1303,7 +1304,13 @@ class SlideHandler extends Component {
                                                                                                             {
                                                                                                                 contentFirst.css ? 
                                                                                                                     contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                        this.stringToObject(contentFirst.css)
+                                                                                                                        this.cssApplier(
+                                                                                                                            contentFirst.css, 
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        )
                                                                                                                     :
                                                                                                                         null
                                                                                                                 : 
@@ -1373,7 +1380,7 @@ class SlideHandler extends Component {
                                                                                                                 // style={
                                                                                                                 //     contentFirst.css ? 
                                                                                                                 //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                //             this.cssApplier(contentFirst.css)
                                                                                                                 //         :
                                                                                                                 //             null
                                                                                                                 //     : 
@@ -1383,7 +1390,13 @@ class SlideHandler extends Component {
                                                                                                                 {
                                                                                                                     contentFirst.css ? 
                                                                                                                         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                            this.stringToObject(contentFirst.css)
+                                                                                                                            this.cssApplier(
+                                                                                                                                contentFirst.css, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-1-2-1-content-output-' + contentFirstIndex  
+                                                                                                                        )
                                                                                                                         :
                                                                                                                             null
                                                                                                                     : 
@@ -1441,7 +1454,7 @@ class SlideHandler extends Component {
                                                                                                                 // style={
                                                                                                                 //     contentSecond.css ? 
                                                                                                                 //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                //             this.cssApplier(contentSecond.css)
                                                                                                                 //         :
                                                                                                                 //             null
                                                                                                                 //     : 
@@ -1451,7 +1464,13 @@ class SlideHandler extends Component {
                                                                                                                 {
                                                                                                                     contentSecond.css ? 
                                                                                                                         contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                            this.stringToObject(contentSecond.css)
+                                                                                                                            this.cssApplier(
+                                                                                                                                contentSecond.css, 
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-1-2-2-content-output-' + contentSecondIndex
+                                                                                                                            )
                                                                                                                         :
                                                                                                                             null
                                                                                                                     : 
@@ -1517,7 +1536,7 @@ class SlideHandler extends Component {
                                                                                                                     // style={
                                                                                                                     //     contentFirst.css ? 
                                                                                                                     //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                    //             this.stringToObject(contentFirst.css)
+                                                                                                                    //             this.cssApplier(contentFirst.css)
                                                                                                                     //         :
                                                                                                                     //             null
                                                                                                                     //     : 
@@ -1527,7 +1546,13 @@ class SlideHandler extends Component {
                                                                                                                     {
                                                                                                                         contentFirst.css ? 
                                                                                                                             contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                this.stringToObject(contentFirst.css)
+                                                                                                                                this.cssApplier(
+                                                                                                                                    contentFirst.css, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                        contentFirst.id 
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-3-1-content-output-' + contentFirstIndex
+                                                                                                                                )
                                                                                                                             :
                                                                                                                                 null
                                                                                                                         : 
@@ -1585,7 +1610,7 @@ class SlideHandler extends Component {
                                                                                                                     // style={
                                                                                                                     //     contentSecond.css ? 
                                                                                                                     //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                    //             this.stringToObject(contentSecond.css)
+                                                                                                                    //             this.cssApplier(contentSecond.css)
                                                                                                                     //         :
                                                                                                                     //             null
                                                                                                                     //     : 
@@ -1595,7 +1620,13 @@ class SlideHandler extends Component {
                                                                                                                     {
                                                                                                                         contentSecond.css ? 
                                                                                                                             contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                this.stringToObject(contentSecond.css)
+                                                                                                                                this.cssApplier(
+                                                                                                                                    contentSecond.css, 
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                        contentSecond.id 
+                                                                                                                                    : 
+                                                                                                                                        'sg-2-3-2-content-output-' + contentSecondIndex
+                                                                                                                                )
                                                                                                                             :
                                                                                                                                 null
                                                                                                                         : 
@@ -1661,7 +1692,7 @@ class SlideHandler extends Component {
                                                                                                                         // style={
                                                                                                                         //     contentFirst.css ? 
                                                                                                                         //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                        //             this.stringToObject(contentFirst.css)
+                                                                                                                        //             this.cssApplier(contentFirst.css)
                                                                                                                         //         :
                                                                                                                         //             null
                                                                                                                         //     : 
@@ -1671,7 +1702,13 @@ class SlideHandler extends Component {
                                                                                                                         {
                                                                                                                             contentFirst.css ? 
                                                                                                                                 contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                    this.stringToObject(contentFirst.css)
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentFirst.css, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id 
+                                                                                                                                        : 
+                                                                                                                                            'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                                    )
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
@@ -1729,7 +1766,7 @@ class SlideHandler extends Component {
                                                                                                                         // style={
                                                                                                                         //     contentSecond.css ? 
                                                                                                                         //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                        //             this.stringToObject(contentSecond.css)
+                                                                                                                        //             this.cssApplier(contentSecond.css)
                                                                                                                         //         :
                                                                                                                         //             null
                                                                                                                         //     : 
@@ -1739,7 +1776,13 @@ class SlideHandler extends Component {
                                                                                                                         {
                                                                                                                             contentSecond.css ? 
                                                                                                                                 contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                    this.stringToObject(contentSecond.css)
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentSecond.css, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id 
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                                    )
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
@@ -1806,7 +1849,7 @@ class SlideHandler extends Component {
                                                                                                                         // style={
                                                                                                                         //     contentFirst.css ? 
                                                                                                                         //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                        //             this.stringToObject(contentFirst.css)
+                                                                                                                        //             this.cssApplier(contentFirst.css)
                                                                                                                         //         :
                                                                                                                         //             null
                                                                                                                         //     : 
@@ -1816,7 +1859,13 @@ class SlideHandler extends Component {
                                                                                                                         {
                                                                                                                             contentFirst.css ? 
                                                                                                                                 contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                    this.stringToObject(contentFirst.css)
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentFirst.css, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-1-content-output-' + contentFirstIndex
+                                                                                                                                    )
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
@@ -1874,7 +1923,7 @@ class SlideHandler extends Component {
                                                                                                                         // style={
                                                                                                                         //     contentSecond.css ? 
                                                                                                                         //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                        //             this.stringToObject(contentSecond.css)
+                                                                                                                        //             this.cssApplier(contentSecond.css)
                                                                                                                         //         :
                                                                                                                         //             null
                                                                                                                         //     : 
@@ -1884,7 +1933,13 @@ class SlideHandler extends Component {
                                                                                                                         {
                                                                                                                             contentSecond.css ? 
                                                                                                                                 contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                    this.stringToObject(contentSecond.css)
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentSecond.css, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-2-content-output-' + contentSecondIndex
+                                                                                                                                    )
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
@@ -1942,7 +1997,7 @@ class SlideHandler extends Component {
                                                                                                                         // style={
                                                                                                                         //     contentThird.css ? 
                                                                                                                         //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                        //             this.stringToObject(contentThird.css)
+                                                                                                                        //             this.cssApplier(contentThird.css)
                                                                                                                         //         :
                                                                                                                         //             null
                                                                                                                         //     : 
@@ -1952,7 +2007,13 @@ class SlideHandler extends Component {
                                                                                                                         {
                                                                                                                             contentThird.css ? 
                                                                                                                                 contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                    this.stringToObject(contentThird.css)
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentThird.css, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-3-content-output-' + contentThirdIndex
+                                                                                                                                    )
                                                                                                                                 :
                                                                                                                                     null
                                                                                                                             : 
@@ -2019,7 +2080,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentFirst.css ? 
                                                                                                                                 //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                                //             this.cssApplier(contentFirst.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2029,7 +2090,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentFirst.css ? 
                                                                                                                                         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentFirst.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFirst.css, 
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                :
+                                                                                                                                                    'sg-1-4-1-content-output-' + contentFirstIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2087,7 +2154,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentSecond.css ? 
                                                                                                                                 //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                                //             this.cssApplier(contentSecond.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2097,7 +2164,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentSecond.css ? 
                                                                                                                                         contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentSecond.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentSecond.css, 
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-2-content-output-' + contentSecondIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2155,7 +2228,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentThird.css ? 
                                                                                                                                 //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentThird.css)
+                                                                                                                                //             this.cssApplier(contentThird.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2165,7 +2238,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentThird.css ? 
                                                                                                                                         contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentThird.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentThird.css, 
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-3-content-output-' + contentThirdIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2223,7 +2302,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentFourth.css ? 
                                                                                                                                 //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentFourth.css)
+                                                                                                                                //             this.cssApplier(contentFourth.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2233,7 +2312,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentFourth.css ? 
                                                                                                                                         contentFourth.css[contentFourth.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentFourth.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFourth.css, 
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2289,14 +2374,17 @@ class SlideHandler extends Component {
                                                                                                                                     this.contentPaneClick(
                                                                                                                                         index, 
                                                                                                                                         contentFirstIndex, 
-                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-1-content-output-' + contentFirstIndex, 
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
                                                                                                                                 // style={
                                                                                                                                 //     contentFirst.css ? 
                                                                                                                                 //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentFirst.css)
+                                                                                                                                //             this.cssApplier(contentFirst.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2306,7 +2394,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentFirst.css ? 
                                                                                                                                         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentFirst.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFirst.css, 
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-1-content-output-' + contentFirstIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2364,7 +2458,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentSecond.css ? 
                                                                                                                                 //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentSecond.css)
+                                                                                                                                //             this.cssApplier(contentSecond.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2374,7 +2468,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentSecond.css ? 
                                                                                                                                         contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentSecond.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentSecond.css, 
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-2-content-output-' + contentSecondIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2422,14 +2522,17 @@ class SlideHandler extends Component {
                                                                                                                                     this.contentPaneClick(
                                                                                                                                         index, 
                                                                                                                                         contentThirdIndex, 
-                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-3-content-output-' + contentThirdIndex, 
                                                                                                                                         'subColumnThree'
                                                                                                                                     )
                                                                                                                                 }
                                                                                                                                 // style={
                                                                                                                                 //     contentThird.css ? 
                                                                                                                                 //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentThird.css)
+                                                                                                                                //             this.cssApplier(contentThird.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2439,7 +2542,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentThird.css ? 
                                                                                                                                         contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentThird.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentThird.css, 
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-3-content-output-' + contentThirdIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2497,7 +2606,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentFourth.css ? 
                                                                                                                                 //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentFourth.css)
+                                                                                                                                //             this.cssApplier(contentFourth.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2507,7 +2616,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentFourth.css ? 
                                                                                                                                         contentFourth.css[contentFourth.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentFourth.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFourth.css, 
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-4-content-output-' + contentFourthIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
@@ -2565,7 +2680,7 @@ class SlideHandler extends Component {
                                                                                                                                 // style={
                                                                                                                                 //     contentFifth.css ? 
                                                                                                                                 //         contentFifth.css[contentFifth.css.length - 1] === ';' ?
-                                                                                                                                //             this.stringToObject(contentFifth.css)
+                                                                                                                                //             this.cssApplier(contentFifth.css)
                                                                                                                                 //         :
                                                                                                                                 //             null
                                                                                                                                 //     : 
@@ -2575,7 +2690,13 @@ class SlideHandler extends Component {
                                                                                                                                 {
                                                                                                                                     contentFifth.css ? 
                                                                                                                                         contentFifth.css[contentFifth.css.length - 1] === '}' ?
-                                                                                                                                            this.stringToObject(contentFifth.css)
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFifth.css, 
+                                                                                                                                                contentFifth.id ? 
+                                                                                                                                                    contentFifth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-5-content-output-' + contentFifthIndex
+                                                                                                                                            )
                                                                                                                                         :
                                                                                                                                             null
                                                                                                                                     : 
