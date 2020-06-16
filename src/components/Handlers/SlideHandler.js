@@ -872,6 +872,9 @@ class SlideHandler extends Component {
     contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
         const elem = document.getElementById(elementId);
         const prevElemId = localStorage.getItem('prevElemId');
+        const prevElem = document.getElementById(prevElemId);
+        const elemClasses = elem.getAttribute('class');
+        const prevElemClasses = prevElem.getAttribute('class');
 
         if (((prevElemId === null) || (prevElemId !== null)) && (elem !== null)) {
             localStorage.setItem('prevElemId', elementId);
@@ -879,7 +882,7 @@ class SlideHandler extends Component {
             elem.classList.add("border");
             elem.classList.add("border-dark");
 
-            if (elementId.includes("content-output")) {
+            if (elemClasses.includes("content-output")) {
                 elem.classList.add("active-column");
             }
         } 
@@ -891,7 +894,7 @@ class SlideHandler extends Component {
                 prevElem.classList.remove("border");
                 prevElem.classList.remove("border-dark");
 
-                if (prevElemId.includes("content-output")) {
+                if (prevElemClasses.includes("content-output")) {
                     prevElem.classList.remove("active-column");
                 }
             }
@@ -978,19 +981,33 @@ class SlideHandler extends Component {
     }
 
     stringToObject = (str) => {
-        let result = {}, attributes = str.split(';');
+        // let result = {}, attributes = str.split(';');
 
-        for (let i = 0; i < attributes.length; i++) {
-            if (attributes[i] !== "") {
-                let entry = attributes[i].split(':');
-                entry[0] = entry[0].replace(/\n/g, '');
-                entry[1] = entry[1].trim();
-                console.log(entry)
-                result[entry.splice(0,1)[0]] = entry.join(':');
-            }
+        // for (let i = 0; i < attributes.length; i++) {
+        //     if (attributes[i] !== "") {
+        //         let entry = attributes[i].split(':');
+        //         entry[0] = entry[0].replace(/\n/g, '');
+        //         entry[1] = entry[1].trim();
+        //         console.log(entry)
+        //         result[entry.splice(0,1)[0]] = entry.join(':');
+        //     }
+        // }
+
+        // return result;
+        
+        let css = '\n' + str + '\n',
+            head = document.head || document.getElementsByTagName('head')[0],
+            style = document.createElement('style');
+
+        head.appendChild(style);
+
+        style.type = 'text/css';
+        if (style.styleSheet){
+            // This is required for IE8 and below.
+            style.styleSheet.cssText = css;
+        } else {
+            style.appendChild(document.createTextNode(css));
         }
-
-        return result;
     }
 
     onSave = (slide, columns, slideId) => {
@@ -1247,7 +1264,17 @@ class SlideHandler extends Component {
                                                                                                                 : 
                                                                                                                     "content-output"
                                                                                                             } 
-                                                                                                            onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'subColumnOne')} 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
+                                                                                                                    contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            } 
                                                                                                             style={
                                                                                                                 contentFirst.css ? 
                                                                                                                     contentFirst.css[contentFirst.css.length - 1] === '}' ?
