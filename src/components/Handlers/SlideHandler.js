@@ -82,11 +82,11 @@ class SlideHandler extends Component {
         console.log('this.props.column');
         console.log(this.props.columns);
 
-        let audio = document.getElementById('feature-audio');
+        // let audio = document.getElementById('feature-audio');
 
-        if (audio !== null) {
-            audio.load();
-        }
+        // if (audio !== null) {
+        //     audio.load();
+        // }
     }
 
     setModalShow = (value, action) => {
