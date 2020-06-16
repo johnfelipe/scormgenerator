@@ -47,6 +47,7 @@ class SlideHandler extends Component {
             activeContentIndex: 0,
             currentColumnContentIndex: '',
             isSlideNameNotEmpty: false,
+            applyCss: false,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -63,6 +64,7 @@ class SlideHandler extends Component {
         this.setFeatureClass = this.setFeatureClass.bind(this);
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.stringToObject = this.stringToObject.bind(this);
+        this.setApplyCss = this.setApplyCss.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -872,9 +874,13 @@ class SlideHandler extends Component {
     contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
         const elem = document.getElementById(elementId);
         const prevElemId = localStorage.getItem('prevElemId');
-        const prevElem = document.getElementById(prevElemId);
         const elemClasses = elem.getAttribute('class');
-        const prevElemClasses = prevElem.getAttribute('class');
+        const prevElem = document.getElementById(prevElemId);
+        let prevElemClasses = '';
+
+        if (prevElem !== null) {
+            prevElemClasses = prevElem.getAttribute('class');
+        }
 
         if (((prevElemId === null) || (prevElemId !== null)) && (elem !== null)) {
             localStorage.setItem('prevElemId', elementId);
@@ -994,20 +1000,29 @@ class SlideHandler extends Component {
         // }
 
         // return result;
-        
-        let css = '\n' + str + '\n',
-            head = document.head || document.getElementsByTagName('head')[0],
-            style = document.createElement('style');
+        if (this.state.applyCss) {
+            let css = '\n' + str + '\n',
+                head = document.head || document.getElementsByTagName('head')[0],
+                style = document.createElement('style');
 
-        head.appendChild(style);
+            head.appendChild(style);
 
-        style.type = 'text/css';
-        if (style.styleSheet){
-            // This is required for IE8 and below.
-            style.styleSheet.cssText = css;
-        } else {
-            style.appendChild(document.createTextNode(css));
+            style.type = 'text/css';
+            if (style.styleSheet){
+                // This is required for IE8 and below.
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(document.createTextNode(css));
+            }
+
+            this.setApplyCss(false);
         }
+    }
+
+    setApplyCss = (value) => {
+        this.setState({
+            applyCss: value,
+        })
     }
 
     onSave = (slide, columns, slideId) => {
@@ -1275,7 +1290,17 @@ class SlideHandler extends Component {
                                                                                                                     'subColumnOne'
                                                                                                                 )
                                                                                                             } 
-                                                                                                            style={
+                                                                                                            // style={
+                                                                                                            //     contentFirst.css ? 
+                                                                                                            //         contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                            //             this.stringToObject(contentFirst.css)
+                                                                                                            //         :
+                                                                                                            //             null
+                                                                                                            //     : 
+                                                                                                            //         null
+                                                                                                            // }
+                                                                                                        >
+                                                                                                            {
                                                                                                                 contentFirst.css ? 
                                                                                                                     contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                         this.stringToObject(contentFirst.css)
@@ -1284,7 +1309,6 @@ class SlideHandler extends Component {
                                                                                                                 : 
                                                                                                                     null
                                                                                                             }
-                                                                                                        >
                                                                                                             {ReactHtmlParser(contentFirst.output)}
                                                                                                         </div>
                                                                                                     ))
@@ -2255,6 +2279,7 @@ class SlideHandler extends Component {
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                setApplyCss={this.setApplyCss}
                                             />
                                         </div>
                                     </DragDropContext>
