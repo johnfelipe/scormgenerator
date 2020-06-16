@@ -44,7 +44,8 @@ class CssEditor extends Component {
                             type="button" 
                             className="sg-close" 
                             onClick={() => {
-                                    this.props.onChangeTextArea(this.state.value, this.props.contentIndex, 'css');
+                                    // this.props.onChangeTextArea(this.state.value, this.props.contentIndex, 'css');
+                                    this.props.setApplyCss(true);
                                 }
                             }
                         >
@@ -55,9 +56,9 @@ class CssEditor extends Component {
                             className="sg-close" 
                             onClick={() => {
                                     this.props.setShowCssEditor(false, this.props.contentIndex);
-                                    this.setState({
-                                        value: ''
-                                    })
+                                    // this.setState({
+                                    //     value: ''
+                                    // })
                                 }
                             }
                         >
@@ -74,27 +75,27 @@ class CssEditor extends Component {
                             name="blah2"
                             onLoad={this.onLoad}
                             onChange={(event) => {
-                                    this.setCssValue(event);
-                                    // this.props.onChangeTextArea(event, this.props.contentIndex, 'css');
+                                    // this.setCssValue(event);
+                                    this.props.onChangeTextArea(event, this.props.contentIndex, 'css');
                                 }
                             }
                             fontSize={14}
                             showPrintMargin={true}
                             showGutter={true}
                             highlightActiveLine={true}
-                            // value={ 
-                            //     typeof this.props.currentColumn !== "undefined" ? 
-                            //         'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
-                            //             this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
-                            //                 this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
-                            //             :
-                            //                 ''
-                            //         : 
-                            //             '' 
-                            //     : 
-                            //         ''
-                            // }
-                            value={this.state.value}
+                            value={ 
+                                typeof this.props.currentColumn !== "undefined" ? 
+                                    'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                                        this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
+                                            this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
+                                        :
+                                            ''
+                                    : 
+                                        '' 
+                                : 
+                                    ''
+                            }
+                            // value={this.state.value}
                             setOptions={{
                                 enableBasicAutocompletion: false,
                                 enableLiveAutocompletion: false,
