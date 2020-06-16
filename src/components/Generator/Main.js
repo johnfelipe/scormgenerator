@@ -31,7 +31,7 @@ class Main extends Component {
             transcriptFileObject: [],
             glossaryEntryObject: [],
             mediaFilesObject: [],
-            isSaveClicked: false,
+            courseNameExist: false,
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -39,7 +39,7 @@ class Main extends Component {
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
         this.glossaryHandler = this.glossaryHandler.bind(this);
         this.galleryHandler = this.galleryHandler.bind(this);
-        this.setSaveClick = this.setSaveClick.bind(this);
+        this.setCourseNameExist = this.setCourseNameExist.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -135,9 +135,9 @@ class Main extends Component {
         })
     }
 
-    setSaveClick = (value) => {
+    setCourseNameExist = (value) => {
         this.setState({
-            isSaveClicked: value,
+            courseNameExist: value,
         })
     }
 
@@ -154,7 +154,7 @@ class Main extends Component {
                     onSubmit={values => {
                         console.log(values);
 
-                        if (this.state.isSaveClicked !== true) {
+                        if (this.state.courseNameExist !== true) {
                             this.props.addCourseTitle(values.courseTitle);
                             console.log('Clickuko!');
                         }
@@ -204,7 +204,7 @@ class Main extends Component {
                                                     handleBlur(e)
 
                                                     if (e.target.value.trim() === "") {
-                                                        this.setSaveClick(false);
+                                                        this.setCourseNameExist(false);
                                                     }
                                                 }
                                             }
@@ -213,7 +213,7 @@ class Main extends Component {
 
                                                     if (e.target.value.trim() !== "") {
                                                         this.props.addCourseTitle(values.courseTitle);
-                                                        this.setSaveClick(true);
+                                                        this.setCourseNameExist(true);
                                                     }
                                                 }
                                             }
@@ -224,7 +224,7 @@ class Main extends Component {
                                         )}
                                     </div>
                                     {
-                                        this.state.isSaveClicked ?
+                                        this.state.courseNameExist ?
                                             <div className="col-md-3">
                                                 <input
                                                     id="courseLogo"
@@ -252,7 +252,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 mt-2">
-                                        <NavigationHandler currentType={values.navigationType} name="navigationType" handleChange={handleChange}/>
+                                        <NavigationHandler currentType={values.navigationType} name="navigationType" handleChange={handleChange} courseNameExist={this.state.courseNameExist}/>
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
@@ -267,7 +267,7 @@ class Main extends Component {
                                 </div>
                                 <div className="row">
                                     {
-                                        this.state.isSaveClicked ?
+                                        this.state.courseNameExist ?
                                             <div className="col-md-4 mt-2">
                                                 <ResourcesHandler addResourceFiles={this.props.addResourceFiles} resourceFilesHandler={this.resourceFilesHandler} resourceFilesData={this.state.resourceFilesObject}/>
                                                 {
@@ -295,7 +295,7 @@ class Main extends Component {
                                             </div>
                                     }
                                     {
-                                        this.state.isSaveClicked ?
+                                        this.state.courseNameExist ?
                                             <div className="col-md-4 mt-2">
                                                 <div className="text-center">
                                                     <TranscriptHandler addTranscriptFile={this.props.addTranscriptFile} transcriptFileHandler={this.transcriptFileHandler} transcriptFileData={this.state.transcriptFileObject}/>
@@ -327,7 +327,7 @@ class Main extends Component {
                                             </div>
                                     }
                                     {
-                                        this.state.isSaveClicked ?
+                                        this.state.courseNameExist ?
                                             <div className="col-md-4 mt-2">
                                                 <GlossaryHandler addGlossaryEntries={this.props.addGlossaryEntries} glossaryHandler={this.glossaryHandler} glossaryData={this.state.glossaryEntryObject}/>
                                             </div>
@@ -431,7 +431,7 @@ class Main extends Component {
                                     </div>
                                 </div>
                                 {
-                                    this.state.isSaveClicked ?
+                                    this.state.courseNameExist ?
                                         <div className="row">
                                             <div className="col-md-6 mt-2">
                                                 <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
