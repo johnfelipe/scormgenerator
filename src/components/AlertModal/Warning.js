@@ -66,6 +66,19 @@ class Warning extends Component {
                     <span><FontAwesomeIcon icon={this.props.icon}/>{this.props.btnLabel}</span>
                 </button>
             );
+        } else if (this.props.fieldType === 'dropdownWithLabel') {
+            value = (
+                <>
+                    <label htmlFor={this.props.htmlFor} className={this.props.labelClasses}>{this.props.label}</label>
+                    <select id={this.props.drpdwnId} className={this.props.drpdwnClasses} value={this.props.currentType} onChange={() => this.setModalShow(true)}>
+                        {
+                            this.props.dropdownValues.map((item) => (
+                                <option value={item.value}>{item.name}</option>
+                            ))
+                        }
+                    </select>
+                </>
+            );
         }
 
         return (
