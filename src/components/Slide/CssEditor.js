@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-// import {Controlled as CodeMirror} from 'react-codemirror2';
-// require('codemirror/lib/codemirror.css');
-// require('codemirror/theme/material.css');
-// require('codemirror/theme/neat.css');
-// require('codemirror/mode/xml/xml.js');
-// require('codemirror/mode/javascript/javascript.js');
+import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-css";
@@ -18,8 +11,25 @@ class CssEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'this is still work in progress and edits will not reflect',
+            value: typeof this.props.currentColumn !== "undefined" ? 
+                        'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                            this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
+                                this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
+                            :
+                                ''
+                        : 
+                            '' 
+                    : 
+                        '',
         };
+
+        this.setCssValue = this.setCssValue.bind(this);
+    }
+
+    setCssValue = (value) => {
+        this.setState({
+            value: value,
+        });
     }
 
     render() {
@@ -30,61 +40,61 @@ class CssEditor extends Component {
                         <span>Element CSS</span>
                     </div>
                     <div className="sg-workspace-expander-head-actions">
-                        <button type="button" className="sg-close" onClick={() => this.props.setShowCssEditor(false, this.props.contentIndex)}>
+                        <button 
+                            type="button" 
+                            className="sg-close" 
+                            onClick={() => {
+                                    this.props.onChangeTextArea(this.state.value, this.props.contentIndex, 'css');
+                                }
+                            }
+                        >
+                            <FontAwesomeIcon icon={faCheck}/>
+                        </button>
+                        <button 
+                            type="button" 
+                            className="sg-close" 
+                            onClick={() => {
+                                    this.props.setShowCssEditor(false, this.props.contentIndex);
+                                    this.setState({
+                                        value: ''
+                                    })
+                                }
+                            }
+                        >
                             <FontAwesomeIcon icon={faTimes}/>
                         </button>
-                        {/* <button type="button" className="sg-expand" onClick={() => console.log('This will expand')}>
-                            <FontAwesomeIcon icon={faCaretRight}/>
-                        </button> */}
                     </div>
                 </div>
                 <div className="sg-workspace-expander-body">
                     <div className="sg-inline-code-editor h-100">
-                        {/* <CodeMirror
-                            className="h-100"
-                            value={this.state.value}
-                            options={{
-                                mode: 'javascript',
-                                theme: 'material',
-                                lineNumbers: true
-                            }}
-                            onBeforeChange={(editor, data, value) => {
-                                this.setState({value});
-                            }}
-                            onChange={(editor, value) => {
-                                console.log('controlled', {value});
-                            }}
-                        /> */}
-
-                        {/* <textarea
-                            className="sg-text-editor-css"
-                            value={ this.state.value }
-                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex)}
-                        /> */}
-
                         <AceEditor
                             placeholder={"Please write like:\nproperty: value;\n\nExample:\nbackground: red;\nfont-size: 15px;"}
                             mode="css"
                             theme="xcode"
                             name="blah2"
                             onLoad={this.onLoad}
-                            onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex, 'css')}
+                            onChange={(event) => {
+                                    this.setCssValue(event);
+                                    // this.props.onChangeTextArea(event, this.props.contentIndex, 'css');
+                                }
+                            }
                             fontSize={14}
                             showPrintMargin={true}
                             showGutter={true}
                             highlightActiveLine={true}
-                            value={ 
-                                typeof this.props.currentColumn !== "undefined" ? 
-                                    'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
-                                        this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
-                                            this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
-                                        :
-                                            ''
-                                    : 
-                                        '' 
-                                : 
-                                    ''
-                            }
+                            // value={ 
+                            //     typeof this.props.currentColumn !== "undefined" ? 
+                            //         'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
+                            //             this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  ?
+                            //                 this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].css 
+                            //             :
+                            //                 ''
+                            //         : 
+                            //             '' 
+                            //     : 
+                            //         ''
+                            // }
+                            value={this.state.value}
                             setOptions={{
                                 enableBasicAutocompletion: false,
                                 enableLiveAutocompletion: false,
