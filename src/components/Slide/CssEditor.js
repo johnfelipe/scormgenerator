@@ -69,7 +69,7 @@ class CssEditor extends Component {
                 <div className="sg-workspace-expander-body">
                     <div className="sg-inline-code-editor h-100">
                         <AceEditor
-                            placeholder={"Please write like:\nproperty: value;\n\nExample:\nbackground: red;\nfont-size: 15px;"}
+                            placeholder={"Please write like this:\n\n$elem {\nproperty: value;\n}\n\nExample:\n$elem {\nbackground: red;\nfont-size: 15px;\n}\n\n$elem: refers to the current feature's \nid"}
                             mode="css"
                             theme="xcode"
                             name="blah2"
