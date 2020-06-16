@@ -856,7 +856,9 @@ class SlideHandler extends Component {
         if (editorType === 'html') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
         } else if (editorType === 'css') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].css = event;
+            try {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].css = event;
+            } catch (err) { console.log(err) }
         }
 
         const columns = this.state.column;
@@ -1235,7 +1237,7 @@ class SlideHandler extends Component {
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex} 
                                                                                                             id={
                                                                                                                 contentFirst.id ? 
-                                                                                                                    contentFirst.id + '-content-output-' + contentFirstIndex
+                                                                                                                    contentFirst.id
                                                                                                                 : 
                                                                                                                     item.id + '-content-output-' + contentFirstIndex
                                                                                                             } 
@@ -1248,7 +1250,7 @@ class SlideHandler extends Component {
                                                                                                             onClick={() => this.contentPaneClick(index, contentFirstIndex, item.id + '-content-output-' + contentFirstIndex, 'subColumnOne')} 
                                                                                                             style={
                                                                                                                 contentFirst.css ? 
-                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === ';' ?
+                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' ?
                                                                                                                         this.stringToObject(contentFirst.css)
                                                                                                                     :
                                                                                                                         null
@@ -1296,7 +1298,7 @@ class SlideHandler extends Component {
                                                                                                                 key={'sg-1-2-1-content-output-' + contentFirstIndex} 
                                                                                                                 id={
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id + 'sg-1-2-1-content-output-' + contentFirstIndex 
+                                                                                                                        contentFirst.id 
                                                                                                                     : 
                                                                                                                         'sg-1-2-1-content-output-' + contentFirstIndex
                                                                                                                 } 
@@ -1345,7 +1347,7 @@ class SlideHandler extends Component {
                                                                                                                 key={'sg-1-2-2-content-output-' + contentSecondIndex} 
                                                                                                                 id={
                                                                                                                     contentSecond.id ? 
-                                                                                                                        contentSecond.id + 'sg-1-2-2-content-output-' + contentSecondIndex 
+                                                                                                                        contentSecond.id 
                                                                                                                     : 
                                                                                                                         'sg-1-2-2-content-output-' + contentSecondIndex
                                                                                                                 } 
@@ -1402,7 +1404,7 @@ class SlideHandler extends Component {
                                                                                                                     key={'sg-1-3-1-content-output-' + contentFirstIndex} 
                                                                                                                     id={
                                                                                                                         contentFirst.id ? 
-                                                                                                                            contentFirst.id + 'sg-1-3-1-content-output-' + contentFirstIndex 
+                                                                                                                            contentFirst.id 
                                                                                                                         : 
                                                                                                                             'sg-1-3-1-content-output-' + contentFirstIndex
                                                                                                                     } 
@@ -1450,7 +1452,7 @@ class SlideHandler extends Component {
                                                                                                                 <div 
                                                                                                                     key={'sg-2-3-2-content-output-' + contentSecondIndex} 
                                                                                                                     id={contentSecond.id ? 
-                                                                                                                            contentSecond.id + 'sg-2-3-2-content-output-' + contentSecondIndex 
+                                                                                                                            contentSecond.id 
                                                                                                                         : 
                                                                                                                             'sg-2-3-2-content-output-' + contentSecondIndex
                                                                                                                     } 
@@ -1507,7 +1509,7 @@ class SlideHandler extends Component {
                                                                                                                         key={'sg-2-3-1-content-output-' + contentFirstIndex} 
                                                                                                                         id={
                                                                                                                             contentFirst.id ? 
-                                                                                                                                contentFirst.id + 'sg-2-3-1-content-output-' + contentFirstIndex 
+                                                                                                                                contentFirst.id 
                                                                                                                             : 
                                                                                                                                 'sg-2-3-1-content-output-' + contentFirstIndex
                                                                                                                         } 
@@ -1556,7 +1558,7 @@ class SlideHandler extends Component {
                                                                                                                         key={'sg-1-3-2-content-output-' + contentSecondIndex} 
                                                                                                                         id={
                                                                                                                             contentSecond.id ? 
-                                                                                                                                contentSecond.id + 'sg-1-3-2-content-output-' + contentSecondIndex 
+                                                                                                                                contentSecond.id 
                                                                                                                             : 
                                                                                                                                 'sg-1-3-2-content-output-' + contentSecondIndex
                                                                                                                         } 
@@ -1614,7 +1616,7 @@ class SlideHandler extends Component {
                                                                                                                         key={'sg-1-3-1-1-content-output-' + contentFirstIndex} 
                                                                                                                         id={
                                                                                                                             contentFirst.id ? 
-                                                                                                                                contentFirst.id + 'sg-1-3-1-1-content-output-' + contentFirstIndex 
+                                                                                                                                contentFirst.id
                                                                                                                             : 
                                                                                                                                 'sg-1-3-1-1-content-output-' + contentFirstIndex
                                                                                                                         } 
@@ -1663,7 +1665,7 @@ class SlideHandler extends Component {
                                                                                                                         key={'sg-1-3-1-2-content-output-' + contentSecondIndex} 
                                                                                                                         id={
                                                                                                                             contentSecond.id ? 
-                                                                                                                                contentSecond.id + 'sg-1-3-1-2-content-output-' + contentSecondIndex 
+                                                                                                                                contentSecond.id
                                                                                                                             : 
                                                                                                                                 'sg-1-3-1-2-content-output-' + contentSecondIndex
                                                                                                                         } 
@@ -1712,7 +1714,7 @@ class SlideHandler extends Component {
                                                                                                                         key={'sg-1-3-1-3-content-output-' + contentThirdIndex} 
                                                                                                                         id={
                                                                                                                             contentThird.id ? 
-                                                                                                                                contentThird.id + 'sg-1-3-1-3-content-output-' + contentThirdIndex 
+                                                                                                                                contentThird.id
                                                                                                                             : 
                                                                                                                                 'sg-1-3-1-3-content-output-' + contentThirdIndex
                                                                                                                         } 
@@ -1770,7 +1772,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-4-1-content-output-' + contentFirstIndex} 
                                                                                                                                 id={
                                                                                                                                     contentFirst.id ? 
-                                                                                                                                        contentFirst.id + 'sg-1-4-1-content-output-' + contentFirstIndex
+                                                                                                                                        contentFirst.id
                                                                                                                                     :
                                                                                                                                         'sg-1-4-1-content-output-' + contentFirstIndex
                                                                                                                                 } 
@@ -1819,7 +1821,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-4-2-content-output-' + contentSecondIndex} 
                                                                                                                                 id={
                                                                                                                                     contentSecond.id ? 
-                                                                                                                                        contentSecond.id + 'sg-1-4-2-content-output-' + contentSecondIndex 
+                                                                                                                                        contentSecond.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-4-2-content-output-' + contentSecondIndex
                                                                                                                                 } 
@@ -1868,7 +1870,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-4-3-content-output-' + contentThirdIndex} 
                                                                                                                                 id={
                                                                                                                                     contentThird.id ? 
-                                                                                                                                        contentThird.id + 'sg-1-4-3-content-output-' + contentThirdIndex 
+                                                                                                                                        contentThird.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-4-3-content-output-' + contentThirdIndex
                                                                                                                                 } 
@@ -1917,7 +1919,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-4-4-content-output-' + contentFourthIndex} 
                                                                                                                                 id={
                                                                                                                                     contentFourth.id ? 
-                                                                                                                                        contentFourth.id + 'sg-1-4-4-content-output-' + contentFourthIndex 
+                                                                                                                                        contentFourth.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-4-4-content-output-' + contentFourthIndex
                                                                                                                                 } 
@@ -1974,7 +1976,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-5-1-content-output-' + contentFirstIndex} 
                                                                                                                                 id={
                                                                                                                                     contentFirst.id ? 
-                                                                                                                                        contentFirst.id + 'sg-1-5-1-content-output-' + contentFirstIndex 
+                                                                                                                                        contentFirst.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-5-1-content-output-' + contentFirstIndex
                                                                                                                                 } 
@@ -2023,7 +2025,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-5-2-content-output-' + contentSecondIndex} 
                                                                                                                                 id={
                                                                                                                                     contentSecond.id ? 
-                                                                                                                                        contentSecond.id + 'sg-1-5-2-content-output-' + contentSecondIndex 
+                                                                                                                                        contentSecond.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-5-2-content-output-' + contentSecondIndex
                                                                                                                                 } 
@@ -2072,7 +2074,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-5-3-content-output-' + contentThirdIndex} 
                                                                                                                                 id={
                                                                                                                                     contentThird.id ? 
-                                                                                                                                        contentThird.id + 'sg-1-5-3-content-output-' + contentThirdIndex 
+                                                                                                                                        contentThird.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-5-3-content-output-' + contentThirdIndex
                                                                                                                                 } 
@@ -2121,7 +2123,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-5-4-content-output-' + contentFourthIndex} 
                                                                                                                                 id={
                                                                                                                                     contentFourth.id ? 
-                                                                                                                                        contentFourth.id + 'sg-1-5-4-content-output-' + contentFourthIndex 
+                                                                                                                                        contentFourth.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-5-4-content-output-' + contentFourthIndex
                                                                                                                                 } 
@@ -2170,7 +2172,7 @@ class SlideHandler extends Component {
                                                                                                                                 key={'sg-1-5-5-content-output-' + contentFifthIndex} 
                                                                                                                                 id={
                                                                                                                                     contentFifth.id ? 
-                                                                                                                                        contentFifth.id + 'sg-1-5-5-content-output-' + contentFifthIndex 
+                                                                                                                                        contentFifth.id
                                                                                                                                     : 
                                                                                                                                         'sg-1-5-5-content-output-' + contentFifthIndex
                                                                                                                                 } 
