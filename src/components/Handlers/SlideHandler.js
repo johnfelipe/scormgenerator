@@ -81,12 +81,6 @@ class SlideHandler extends Component {
         console.log(this.props.slide);
         console.log('this.props.column');
         console.log(this.props.columns);
-
-        // let audio = document.getElementById('feature-audio');
-
-        // if (audio !== null) {
-        //     audio.load();
-        // }
     }
 
     setModalShow = (value, action) => {
@@ -974,7 +968,6 @@ class SlideHandler extends Component {
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         const audioHtml = "<audio id='feature-audio' controls><source src='" + dataUrl +"' type='" + type +"'><p>Your browser doesn't support HTML5 audio. Here is a <a href='" + dataUrl +"'>link to the audio</a> instead.</p></audio>";
-        // const audioHtml = "<iframe type='" + type +"' src='" + dataUrl +"' />";
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output = audioHtml;
 
@@ -987,19 +980,6 @@ class SlideHandler extends Component {
     }
 
     cssApplier = (str, featureId) => {
-        // let result = {}, attributes = str.split(';');
-
-        // for (let i = 0; i < attributes.length; i++) {
-        //     if (attributes[i] !== "") {
-        //         let entry = attributes[i].split(':');
-        //         entry[0] = entry[0].replace(/\n/g, '');
-        //         entry[1] = entry[1].trim();
-        //         console.log(entry)
-        //         result[entry.splice(0,1)[0]] = entry.join(':');
-        //     }
-        // }
-
-        // return result;
         if (this.state.applyCss) {
             const res = str.replace("$elem", '#' + featureId);
             let css = '\n' + res + '\n',
