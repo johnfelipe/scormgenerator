@@ -1043,7 +1043,7 @@ html body div.modal .gallery-modal .modal-content .modal-body .tab-content #cont
   padding: 2px 8px 8px;
 }
 html body div.modal .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-mediaLibrary ul.media-library-list li.media-library-list-item {
-  width: 10%;
+  width: 20%;
   position: relative;
   float: left;
   padding: 8px;
