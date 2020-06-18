@@ -858,7 +858,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content-vertical {
   width: 19.199%;
   border-right: 1px solid #e2e2e2;
-  transform: translate3d(-160%, 0, 0);
+  transform: translate3d(-260%, 0, 0);
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content {
   position: fixed;
