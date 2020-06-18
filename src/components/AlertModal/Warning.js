@@ -81,7 +81,11 @@ class Warning extends Component {
             );
         } else if (this.props.fieldType === 'addSlideBtn') {
             value = (
-                <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>Add Slide</button>
+                <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>{this.props.btnLabel}</button>
+            )
+        } else if (this.props.fieldType === 'addLessonBtn') {
+            value = (
+                <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>{this.props.btnLabel}</button>
             )
         }
 

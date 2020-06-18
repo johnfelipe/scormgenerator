@@ -382,6 +382,7 @@ class Main extends Component {
                                                                                     <WarningModal 
                                                                                         fieldType="addSlideBtn"
                                                                                         btnClasses="btn btn-success"
+                                                                                        btnLabel="Add Slide"
                                                                                         modalMessage="You have reached the maximum limit for free users"
                                                                                     />
                                                                                 </div>
@@ -462,7 +463,17 @@ class Main extends Component {
                                     this.state.courseNameExist ?
                                         <div className="row">
                                             <div className="col-md-6 mt-2">
-                                                <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
+                                                {        
+                                                    this.props.courseLessons.length < 2 ?
+                                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
+                                                    :
+                                                        <WarningModal 
+                                                            fieldType="addLessonBtn"
+                                                            btnClasses="btn btn-success"
+                                                            btnLabel="Add Lesson"
+                                                            modalMessage="You have reached the maximum limit for free users"
+                                                        />
+                                                }
                                             </div>
                                             <div className="col-md-6 mt-2">
                                                 <div id="save-btn-container" className="float-right">
