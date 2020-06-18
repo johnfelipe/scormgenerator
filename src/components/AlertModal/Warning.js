@@ -79,6 +79,10 @@ class Warning extends Component {
                     </select>
                 </>
             );
+        } else if (this.props.fieldType === 'addSlideBtn') {
+            value = (
+                <button type="button" className={this.props.btnClasses} onClick={() => this.setModalShow(true)}>Add Slide</button>
+            )
         }
 
         return (
