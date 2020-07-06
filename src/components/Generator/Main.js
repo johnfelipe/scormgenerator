@@ -51,6 +51,7 @@ class Main extends Component {
         // console.log(this.state.transcriptFileObject);
         console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
+        this.props.course['lessons'] = this.props.courseLessons;
         console.log(this.props.course);
     }
 
@@ -166,7 +167,8 @@ class Main extends Component {
                         // create course
                         // uid is temporary
                         this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
-                        localStorage.setItem("Course", JSON.stringify(this.props.courseLessons));
+                        localStorage.setItem("CourseLessons", JSON.stringify(this.props.courseLessons));
+                        localStorage.setItem("Course", JSON.stringify(this.props.course));
                     }}
 
                     validationSchema={Yup.object().shape({
