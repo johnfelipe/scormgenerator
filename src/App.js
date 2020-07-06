@@ -10,15 +10,16 @@ import './App.css';
 import Header from './components/Navigation/NavigationHeader';
 
 class App extends Component {
-  render() {  
-    return (
-      <Router>
-        <Header />
 
-        <Routes />
-      </Router>
-    );
-  }
+    render() {  
+        return (
+            <Router>
+                <Header />
+
+                <Routes />
+            </Router>
+        );
+    }
 }
 
 export default App;
