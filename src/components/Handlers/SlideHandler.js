@@ -114,7 +114,10 @@ class SlideHandler extends Component {
     addColumn = () => {
         const currentCount = this.state.column.length + 1
         const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, grid: 0, id: 'column' + currentCount, content: [] }
-        columnObj.content['subColumnOne'] = [];
+        // columnObj.content['subColumnOne'] = [];
+        columnObj.content = {
+            subColumnOne: []
+        };
 
         this.setState({
             column: [...this.state.column, columnObj],
@@ -150,23 +153,45 @@ class SlideHandler extends Component {
         columnSizesObj[columnIndex].grid = grid;
 
         if (grid === 1 || grid === 2 || grid === 3) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+            };
         } else if (grid === 4) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            // columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+                subColumnThree: [],
+            };
         } else if (grid === 5) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            columnSizesObj[columnIndex].content['subColumnThree'] = [];
-            columnSizesObj[columnIndex].content['subColumnFour'] = [];
+            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            // columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            // columnSizesObj[columnIndex].content['subColumnFour'] = [];
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+                subColumnThree: [],
+                subColumnFour: [],
+            };
         } else if (grid === 6) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            columnSizesObj[columnIndex].content['subColumnThree'] = [];
-            columnSizesObj[columnIndex].content['subColumnFour'] = [];
-            columnSizesObj[columnIndex].content['subColumnFive'] = [];
+            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            // columnSizesObj[columnIndex].content['subColumnThree'] = [];
+            // columnSizesObj[columnIndex].content['subColumnFour'] = [];
+            // columnSizesObj[columnIndex].content['subColumnFive'] = [];
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+                subColumnThree: [],
+                subColumnFour: [],
+                subColumnFive: [],
+            };
         }
 
         this.setState({
