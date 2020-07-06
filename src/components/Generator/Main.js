@@ -166,6 +166,7 @@ class Main extends Component {
                         // create course
                         // uid is temporary
                         this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
+                        localStorage.setItem("Course", JSON.stringify(this.props.courseLessons));
                     }}
 
                     validationSchema={Yup.object().shape({
