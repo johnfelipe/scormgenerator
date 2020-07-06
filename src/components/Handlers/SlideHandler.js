@@ -153,12 +153,12 @@ class SlideHandler extends Component {
         columnSizesObj[columnIndex].grid = grid;
 
         if (grid === 1 || grid === 2 || grid === 3) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            // columnSizesObj[columnIndex].content = {
-            //     subColumnOne: [],
-            //     subColumnTwo: [],
-            // };
+            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
+            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+            };
         } else if (grid === 4) {
             columnSizesObj[columnIndex].content['subColumnOne'] = [];
             columnSizesObj[columnIndex].content['subColumnTwo'] = [];
@@ -302,21 +302,21 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['subColumnOne'].push(currentContent);
+                        currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['subColumnOne'].push(currentContent);
+                        currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['subColumnOne'].length - 1),
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     }
 
@@ -334,21 +334,21 @@ class SlideHandler extends Component {
 
                     if (currentFeatures[source.index]['type'] === 'content-area') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-                        currentColumns[key].content['subColumnTwo'].push(currentContent);
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
-                        currentColumns[key].content['subColumnTwo'].push(currentContent);
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content['subColumnTwo'].length - 1),
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1')) {
