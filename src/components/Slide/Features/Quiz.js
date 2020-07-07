@@ -54,7 +54,7 @@ function Quiz(props) {
                                                                             type="button"
                                                                             className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                             onClick={() => {
-                                                                                console.log(index)
+                                                                                props.deleteQuestion(props.contentIndex, index)
                                                                             }}
                                                                         >
                                                                             <FontAwesomeIcon icon={faTrash}/>
