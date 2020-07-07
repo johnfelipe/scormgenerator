@@ -257,7 +257,11 @@
 
                                                             .quiz-question-list {
                                                                 li.quiz-question-list-item {
-                                                                    font-size: 10px;
+                                                                    font-size: 12px;
+
+                                                                    button {
+                                                                        height: 24px !important;
+                                                                    }
                                                                 }
                                                             }
                                                         }

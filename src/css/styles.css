@@ -590,7 +590,10 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   resize: none;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .quiz-question-list li.quiz-question-list-item {
-  font-size: 10px;
+  font-size: 12px;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .quiz-question-list li.quiz-question-list-item button {
+  height: 24px !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
   height: 155px !important;
