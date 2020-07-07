@@ -66,14 +66,15 @@ class SlideHandler extends Component {
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
+        this.addQuestion = this.addQuestion.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
     componentDidUpdate() {
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
         // console.log('props.action');
         // console.log(this.props.action);
         // console.log('state.activeFeature');
@@ -273,7 +274,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1027,6 +1028,20 @@ class SlideHandler extends Component {
         })
     }
 
+    addQuestion = (value, contentIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(value);
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1247,6 +1262,7 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
+                                                            addQuestion={this.addQuestion}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -1291,16 +1307,7 @@ class SlideHandler extends Component {
                                                                                                                     item.id + '-content-output-' + contentFirstIndex,
                                                                                                                     'subColumnOne'
                                                                                                                 )
-                                                                                                            } 
-                                                                                                            // style={
-                                                                                                            //     contentFirst.css ? 
-                                                                                                            //         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                            //             this.cssApplier(contentFirst.css)
-                                                                                                            //         :
-                                                                                                            //             null
-                                                                                                            //     : 
-                                                                                                            //         null
-                                                                                                            // }
+                                                                                                            }
                                                                                                         >
                                                                                                             {
                                                                                                                 contentFirst.css ? 
@@ -1378,15 +1385,6 @@ class SlideHandler extends Component {
                                                                                                                         'subColumnOne'
                                                                                                                     )
                                                                                                                 }
-                                                                                                                // style={
-                                                                                                                //     contentFirst.css ? 
-                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                //             this.cssApplier(contentFirst.css)
-                                                                                                                //         :
-                                                                                                                //             null
-                                                                                                                //     : 
-                                                                                                                //         null
-                                                                                                                // }
                                                                                                             >
                                                                                                                 {
                                                                                                                     contentFirst.css ? 
@@ -1452,15 +1450,6 @@ class SlideHandler extends Component {
                                                                                                                         'subColumnTwo'
                                                                                                                     )
                                                                                                                 }
-                                                                                                                // style={
-                                                                                                                //     contentSecond.css ? 
-                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                //             this.cssApplier(contentSecond.css)
-                                                                                                                //         :
-                                                                                                                //             null
-                                                                                                                //     : 
-                                                                                                                //         null
-                                                                                                                // }
                                                                                                             >
                                                                                                                 {
                                                                                                                     contentSecond.css ? 
@@ -1534,15 +1523,6 @@ class SlideHandler extends Component {
                                                                                                                             'subColumnOne'
                                                                                                                         )
                                                                                                                     }
-                                                                                                                    // style={
-                                                                                                                    //     contentFirst.css ? 
-                                                                                                                    //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                    //             this.cssApplier(contentFirst.css)
-                                                                                                                    //         :
-                                                                                                                    //             null
-                                                                                                                    //     : 
-                                                                                                                    //         null
-                                                                                                                    // }
                                                                                                                 >
                                                                                                                     {
                                                                                                                         contentFirst.css ? 
@@ -1608,15 +1588,6 @@ class SlideHandler extends Component {
                                                                                                                             'subColumnTwo'
                                                                                                                         )
                                                                                                                     }
-                                                                                                                    // style={
-                                                                                                                    //     contentSecond.css ? 
-                                                                                                                    //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                    //             this.cssApplier(contentSecond.css)
-                                                                                                                    //         :
-                                                                                                                    //             null
-                                                                                                                    //     : 
-                                                                                                                    //         null
-                                                                                                                    // }
                                                                                                                 >
                                                                                                                     {
                                                                                                                         contentSecond.css ? 
@@ -1690,15 +1661,6 @@ class SlideHandler extends Component {
                                                                                                                                 'subColumnOne'
                                                                                                                             )
                                                                                                                         }
-                                                                                                                        // style={
-                                                                                                                        //     contentFirst.css ? 
-                                                                                                                        //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                        //             this.cssApplier(contentFirst.css)
-                                                                                                                        //         :
-                                                                                                                        //             null
-                                                                                                                        //     : 
-                                                                                                                        //         null
-                                                                                                                        // }
                                                                                                                     >
                                                                                                                         {
                                                                                                                             contentFirst.css ? 
@@ -1764,15 +1726,6 @@ class SlideHandler extends Component {
                                                                                                                                 'subColumnTwo'
                                                                                                                             )
                                                                                                                         }
-                                                                                                                        // style={
-                                                                                                                        //     contentSecond.css ? 
-                                                                                                                        //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                        //             this.cssApplier(contentSecond.css)
-                                                                                                                        //         :
-                                                                                                                        //             null
-                                                                                                                        //     : 
-                                                                                                                        //         null
-                                                                                                                        // }
                                                                                                                     >
                                                                                                                         {
                                                                                                                             contentSecond.css ? 
@@ -1847,15 +1800,6 @@ class SlideHandler extends Component {
                                                                                                                                 'subColumnOne'
                                                                                                                             )
                                                                                                                         }
-                                                                                                                        // style={
-                                                                                                                        //     contentFirst.css ? 
-                                                                                                                        //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                        //             this.cssApplier(contentFirst.css)
-                                                                                                                        //         :
-                                                                                                                        //             null
-                                                                                                                        //     : 
-                                                                                                                        //         null
-                                                                                                                        // }
                                                                                                                     >
                                                                                                                         {
                                                                                                                             contentFirst.css ? 
@@ -1921,15 +1865,6 @@ class SlideHandler extends Component {
                                                                                                                                 'subColumnTwo'
                                                                                                                             )
                                                                                                                         }
-                                                                                                                        // style={
-                                                                                                                        //     contentSecond.css ? 
-                                                                                                                        //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                        //             this.cssApplier(contentSecond.css)
-                                                                                                                        //         :
-                                                                                                                        //             null
-                                                                                                                        //     : 
-                                                                                                                        //         null
-                                                                                                                        // }
                                                                                                                     >
                                                                                                                         {
                                                                                                                             contentSecond.css ? 
@@ -1995,15 +1930,6 @@ class SlideHandler extends Component {
                                                                                                                                 'subColumnThree'
                                                                                                                             )
                                                                                                                         }
-                                                                                                                        // style={
-                                                                                                                        //     contentThird.css ? 
-                                                                                                                        //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                        //             this.cssApplier(contentThird.css)
-                                                                                                                        //         :
-                                                                                                                        //             null
-                                                                                                                        //     : 
-                                                                                                                        //         null
-                                                                                                                        // }
                                                                                                                     >
                                                                                                                         {
                                                                                                                             contentThird.css ? 
@@ -2078,15 +2004,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentFirst.css ? 
-                                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentFirst.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentFirst.css ? 
@@ -2152,15 +2069,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnTwo'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentSecond.css ? 
-                                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentSecond.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentSecond.css ? 
@@ -2226,15 +2134,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnThree'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentThird.css ? 
-                                                                                                                                //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentThird.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentThird.css ? 
@@ -2300,15 +2199,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnFour'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentFourth.css ? 
-                                                                                                                                //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentFourth.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentFourth.css ? 
@@ -2382,15 +2272,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentFirst.css ? 
-                                                                                                                                //         contentFirst.css[contentFirst.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentFirst.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentFirst.css ? 
@@ -2456,15 +2337,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnTwo'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentSecond.css ? 
-                                                                                                                                //         contentSecond.css[contentSecond.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentSecond.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentSecond.css ? 
@@ -2530,15 +2402,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnThree'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentThird.css ? 
-                                                                                                                                //         contentThird.css[contentThird.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentThird.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentThird.css ? 
@@ -2604,15 +2467,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnFour'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentFourth.css ? 
-                                                                                                                                //         contentFourth.css[contentFourth.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentFourth.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentFourth.css ? 
@@ -2678,15 +2532,6 @@ class SlideHandler extends Component {
                                                                                                                                         'subColumnFive'
                                                                                                                                     )
                                                                                                                                 }
-                                                                                                                                // style={
-                                                                                                                                //     contentFifth.css ? 
-                                                                                                                                //         contentFifth.css[contentFifth.css.length - 1] === ';' ?
-                                                                                                                                //             this.cssApplier(contentFifth.css)
-                                                                                                                                //         :
-                                                                                                                                //             null
-                                                                                                                                //     : 
-                                                                                                                                //         null
-                                                                                                                                // }
                                                                                                                             >
                                                                                                                                 {
                                                                                                                                     contentFifth.css ? 
