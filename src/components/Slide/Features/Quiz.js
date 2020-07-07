@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function Quiz(props) {
+
+    const [question, setQuestion] = useState('');
     
     return (
         <div className="sg-controls">
@@ -25,20 +27,45 @@ function Quiz(props) {
                                 <span>Question/s</span>
                             </div>
                             <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
-                                    value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content.length > 0 ? 
-                                            props.currentColumn.content[props.contentIndex].id 
-                                            : 
-                                            ''
-                                        : 
-                                        '' 
+                                <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
+                                    {
+                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length > 0 ? 
+                                            props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((question, index) => (
+                                                <>
+                                                    <li key={'number-' + index} className="quiz-question-list-item">
+                                                        <span>{index+1 + '. ' + question}</span>
+                                                    </li>
+                                                    <li key={'question-number-' + index} className="quiz-question-list-item">
+                                                        <span>{index+2}.</span>
+                                                        <input
+                                                            className="ml-2"
+                                                            type="text"
+                                                            placeholder="Type question here. . ."
+                                                            onChange={(event) => setQuestion(event.target.value)}
+                                                            value={question}
+                                                        />
+                                                        <button type="button" className="btn btn-success p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                        </button>
+                                                    </li>
+                                                </>
+                                            ))
+                                        :
+                                            <li className="quiz-question-list-item">
+                                                <span>1.</span>
+                                                <input
+                                                    className="ml-2"
+                                                    type="text"
+                                                    placeholder="Type question here. . ."
+                                                    onChange={(event) => setQuestion(event.target.value)}
+                                                    value={question}
+                                                />
+                                                <button type="button" className="btn btn-success p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                </button>
+                                            </li>             
                                     }
-                                />
+                                </ul>
                             </div>
                         </li>
                     </ul>
