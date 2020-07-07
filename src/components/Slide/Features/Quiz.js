@@ -30,26 +30,27 @@ function Quiz(props) {
                                 <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
                                     {
                                         props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length > 0 ? 
-                                            props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((question, index) => (
                                                 <>
-                                                    <li key={'number-' + index} className="quiz-question-list-item">
-                                                        <span>{index+1 + '. ' + question}</span>
-                                                    </li>
-                                                    <li key={'question-number-' + index} className="quiz-question-list-item">
-                                                        <span>{index+2}.</span>
+                                                    {props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((question, index) => (
+                                                        <li key={'number-' + index} className="quiz-question-list-item">
+                                                            <span>{index+1 + '. '}</span>
+                                                            <span className="ml-2">{question}</span>
+                                                        </li>
+                                                    ))}
+                                                    <li className="quiz-question-list-item">
+                                                        <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
                                                         <input
-                                                            className="ml-2"
+                                                            className="ml-2 mt-1"
                                                             type="text"
                                                             placeholder="Type question here. . ."
                                                             onChange={(event) => setQuestion(event.target.value)}
                                                             value={question}
                                                         />
-                                                        <button type="button" className="btn btn-success p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
                                                             <FontAwesomeIcon icon={faCheck}/>
                                                         </button>
                                                     </li>
                                                 </>
-                                            ))
                                         :
                                             <li className="quiz-question-list-item">
                                                 <span>1.</span>
@@ -60,7 +61,7 @@ function Quiz(props) {
                                                     onChange={(event) => setQuestion(event.target.value)}
                                                     value={question}
                                                 />
-                                                <button type="button" className="btn btn-success p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
                                                     <FontAwesomeIcon icon={faCheck}/>
                                                 </button>
                                             </li>             
