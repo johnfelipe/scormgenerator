@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 // Features
 import ContentArea from './Features/ContentArea';
@@ -80,45 +78,49 @@ class Editor extends Component {
     }
 
     render() {
-        const message = (
-            <div className="sg-workspace-content">
-                <div className="sg-workspace-message">
-                    <h3>Nothing Selected</h3>
-                    <p>Click on an element in the site preview to begin inspecting it.</p>
+        let editorContent;
+
+        if (this.props.feature === "audio") {
+            editorContent = (
+                <Audio
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    onChangeTextArea={this.props.onChangeTextArea}
+                    mediaFilesObject={this.props.mediaFilesObject}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                />
+            );
+        } else if (this.props.feature === "content-area") {
+            editorContent = (
+                <ContentArea
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setIsShown={this.props.setIsShown}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                />
+            );
+        } else {
+            editorContent = (
+                <div className="sg-workspace-content">
+                    <div className="sg-workspace-message">
+                        <h3>Nothing Selected</h3>
+                        <p>Click on an element in the site preview to begin inspecting it.</p>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
 
         return (
             <div className="sg-scroll-box sg-workspace-controls ps">
-                {
-                    this.props.feature === "audio" ?
-                        <Audio
-                            deleteFeature={this.props.deleteFeature}
-                                contentIndex={this.props.contentIndex}
-                                currentColumn={this.props.currentColumn}
-                                currentColumnContentIndex={this.props.currentColumnContentIndex}
-                                onChangeTextArea={this.props.onChangeTextArea}
-                                mediaFilesObject={this.props.mediaFilesObject}
-                                setFeatureId={this.props.setFeatureId}
-                                setFeatureClass={this.props.setFeatureClass}
-                        />
-                    :
-                        this.props.feature === "content-area" ?
-                            <ContentArea
-                                deleteFeature={this.props.deleteFeature}
-                                contentIndex={this.props.contentIndex}
-                                setIsShown={this.props.setIsShown}
-                                setShowEditor={this.props.setShowEditor}
-                                currentColumn={this.props.currentColumn}
-                                currentColumnContentIndex={this.props.currentColumnContentIndex}
-                                setFeatureId={this.props.setFeatureId}
-                                setFeatureClass={this.props.setFeatureClass}
-                                setShowCssEditor={this.props.setShowCssEditor}
-                            />
-                        :
-                            message
-                }
+                {editorContent}
             </div>
         )
     }
