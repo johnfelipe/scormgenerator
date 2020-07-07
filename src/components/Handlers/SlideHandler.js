@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faSquare, faFileAudio } from '@fortawesome/free-regular-svg-icons';
+import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -38,6 +38,7 @@ class SlideHandler extends Component {
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'content-area', name: 'Content Area', icon: faSquare, },
+                { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
             ],
             activeFeature: '',
             activeTab: 'column',
