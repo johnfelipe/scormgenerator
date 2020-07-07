@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
+// Features
 import ContentArea from './Features/ContentArea';
+import Audio from './Features/Audio';
 
 class Editor extends Component {
 
@@ -77,128 +80,6 @@ class Editor extends Component {
     }
 
     render() {
-        const audioInterface = (
-            <div className="sg-controls">
-                <div className="sg-control sg-inspector-actions">
-                    <div className="sg-workspace-actions">
-                        <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => this.deleteFeature(this.props.contentIndex)}>
-                            <FontAwesomeIcon icon={faTrashAlt}/>
-                            <span>Delete</span>
-                        </button>
-                    </div>
-                </div>
-                <div className="sg-control sg-control-text-editor">
-                    <div className="sg-control-header">
-                        <label>Content Setup</label>
-                    </div>
-                    <div className="sg-control-input">
-                        <ul className="sg-control-input-list">
-                            <li className="sg-control-input-list-item-textarea">
-                                <div className="sg-control-input-list-label">
-                                    {/* <span>Choose Audio</span> */}
-                                    <span>Embed Code</span>
-                                </div>
-                                <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                    <textarea
-                                        placeholder="Put embed code here . . ."
-                                        className="sg-input-code"
-                                        style={{fontSize: 10}}
-                                        value={ 
-                                            typeof this.props.currentColumn != "undefined" ? 
-                                                'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ? 
-                                                    this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 ?
-                                                        this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output 
-                                                    :
-                                                        ''
-                                                : 
-                                                    ''
-                                            : 
-                                                ''
-                                        }
-                                        onChange={(event) => this.props.onChangeTextArea(event, this.props.contentIndex, 'html')}
-                                    />
-                                    {/* <ul className="audio-feature-value-list pl-0">
-                                        {
-                                            this.props.mediaFilesObject.length > 0 ?
-                                                this.props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
-                                                    mediaFile.type.includes("audio") ?
-                                                        <li key={mediaIndex} className="audio-feature-value-list-item">
-                                                            <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
-                                                            <label className="pl-1">{mediaFile.name}</label>
-                                                        </li>
-                                                    :
-                                                        null
-                                                ))
-                                            :
-                                                <div className="w-100">
-                                                    <input
-                                                        type="file"
-                                                        onChange={this.handleFileUpload}
-                                                        accept="audio/*"
-                                                        multiple
-                                                    />
-                                                </div>
-                                        }
-                                    </ul> */}
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="sg-control sg-control-group">
-                    <div className="sg-control-header">
-                        <label>Customize</label>
-                    </div>
-                    <div className="sg-control-input sg-control-input">
-                        <ul className="sg-control-input-list">
-                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                <div className="sg-control-input-list-label">
-                                    <span>ID</span>
-                                </div>
-                                <div className="sg-control-input-list-input">
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        onChange={(event) => this.props.setFeatureId(event, this.props.contentIndex)}
-                                        value={ 
-                                            typeof this.props.currentColumn != "undefined" ? 
-                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
-                                                this.props.currentColumn.content[this.props.contentIndex].id 
-                                                : 
-                                                ''
-                                            : 
-                                            '' 
-                                        }
-                                    />
-                                </div>
-                            </li>
-                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                <div className="sg-control-input-list-label">
-                                    <span>Class</span>
-                                </div>
-                                <div className="sg-control-input-list-input">
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        onChange={(event) => this.props.setFeatureClass(event, this.props.contentIndex)}
-                                        value={ 
-                                            typeof this.props.currentColumn != "undefined" ? 
-                                                'content' in this.props.currentColumn && this.props.currentColumn.content.length > 0 ? 
-                                                this.props.currentColumn.content[this.props.contentIndex].class 
-                                                : 
-                                                ''
-                                            : 
-                                            '' 
-                                        }
-                                    />
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        );
-        
         const message = (
             <div className="sg-workspace-content">
                 <div className="sg-workspace-message">
@@ -212,7 +93,16 @@ class Editor extends Component {
             <div className="sg-scroll-box sg-workspace-controls ps">
                 {
                     this.props.feature === "audio" ?
-                        audioInterface
+                        <Audio
+                            deleteFeature={this.props.deleteFeature}
+                                contentIndex={this.props.contentIndex}
+                                currentColumn={this.props.currentColumn}
+                                currentColumnContentIndex={this.props.currentColumnContentIndex}
+                                onChangeTextArea={this.props.onChangeTextArea}
+                                mediaFilesObject={this.props.mediaFilesObject}
+                                setFeatureId={this.props.setFeatureId}
+                                setFeatureClass={this.props.setFeatureClass}
+                        />
                     :
                         this.props.feature === "content-area" ?
                             <ContentArea
