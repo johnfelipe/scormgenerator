@@ -5,6 +5,8 @@ import { faTrashAlt, faCheck, faEdit, faTrash } from '@fortawesome/free-solid-sv
 function Quiz(props) {
 
     const [question, setQuestion] = useState('');
+    const [updateQuestion, setUpdateQuestion] = useState('');
+    const [editQuestion, setEditQuestion] = useState(false);
     
     return (
         <div className="sg-controls">
@@ -33,26 +35,59 @@ function Quiz(props) {
                                                 <>
                                                     {props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((question, index) => (
                                                         <li key={'number-' + index} className="quiz-question-list-item">
-                                                            <span>{index+1 + '. '}</span>
-                                                            <span className="ml-2">{question}</span>
-                                                            <button
-                                                                type="button"
-                                                                className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                onClick={() => {
-                                                                    console.log(index)
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon icon={faEdit}/>
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                onClick={() => {
-                                                                    console.log(index)
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon icon={faTrash}/>
-                                                            </button>
+                                                            {
+                                                                editQuestion === false ?
+                                                                    <>
+                                                                        <span>{index+1 + '. '}</span>
+                                                                        <span className="ml-2">{question}</span>
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                            onClick={() => {
+                                                                                setEditQuestion(true);
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faEdit}/>
+                                                                        </button>
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                            onClick={() => {
+                                                                                console.log(index)
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faTrash}/>
+                                                                        </button>
+                                                                    </>
+                                                                :
+                                                                    <>
+                                                                        <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
+                                                                        <input
+                                                                            id="question"
+                                                                            name="question"
+                                                                            className="ml-2 mt-1"
+                                                                            type="text"
+                                                                            placeholder="Type question here. . ."
+                                                                            onChange={(event) => setUpdateQuestion(event.target.value)}
+                                                                            value={updateQuestion}
+                                                                        />
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                            onClick={() => {
+                                                                                const isEmpty = document.getElementById("question");
+                                                                                
+                                                                                if (isEmpty.value !== "") {
+                                                                                    props.editQuestion(updateQuestion, props.contentIndex, index);
+                                                                                    setUpdateQuestion('');
+                                                                                    setEditQuestion(false);
+                                                                                }
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                                        </button>
+                                                                    </>
+                                                            }
                                                         </li>
                                                     ))}
                                                     <li className="quiz-question-list-item">
