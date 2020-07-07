@@ -589,6 +589,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .quiz-question-list li.quiz-question-list-item {
+  font-size: 10px;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list-input-height-5 {
   height: 155px !important;
 }
