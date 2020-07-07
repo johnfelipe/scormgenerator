@@ -154,26 +154,17 @@ class SlideHandler extends Component {
         columnSizesObj[columnIndex].grid = grid;
 
         if (grid === 1 || grid === 2 || grid === 3) {
-            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
             columnSizesObj[columnIndex].content = {
                 subColumnOne: [],
                 subColumnTwo: [],
             };
         } else if (grid === 4) {
-            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            // columnSizesObj[columnIndex].content['subColumnThree'] = [];
             columnSizesObj[columnIndex].content = {
                 subColumnOne: [],
                 subColumnTwo: [],
                 subColumnThree: [],
             };
         } else if (grid === 5) {
-            // columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            // columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            // columnSizesObj[columnIndex].content['subColumnThree'] = [];
-            // columnSizesObj[columnIndex].content['subColumnFour'] = [];
             columnSizesObj[columnIndex].content = {
                 subColumnOne: [],
                 subColumnTwo: [],
@@ -181,18 +172,13 @@ class SlideHandler extends Component {
                 subColumnFour: [],
             };
         } else if (grid === 6) {
-            columnSizesObj[columnIndex].content['subColumnOne'] = [];
-            columnSizesObj[columnIndex].content['subColumnTwo'] = [];
-            columnSizesObj[columnIndex].content['subColumnThree'] = [];
-            columnSizesObj[columnIndex].content['subColumnFour'] = [];
-            columnSizesObj[columnIndex].content['subColumnFive'] = [];
-            // columnSizesObj[columnIndex].content = {
-            //     subColumnOne: [],
-            //     subColumnTwo: [],
-            //     subColumnThree: [],
-            //     subColumnFour: [],
-            //     subColumnFive: [],
-            // };
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
+                subColumnTwo: [],
+                subColumnThree: [],
+                subColumnFour: [],
+                subColumnFive: [],
+            };
         }
 
         this.setState({
@@ -278,6 +264,15 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'quiz') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({

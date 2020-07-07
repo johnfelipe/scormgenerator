@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 // Features
-import ContentArea from './Features/ContentArea';
 import Audio from './Features/Audio';
+import ContentArea from './Features/ContentArea';
+import Quiz from './Features/Quiz';
 
 class Editor extends Component {
 
@@ -96,6 +97,20 @@ class Editor extends Component {
         } else if (this.props.feature === "content-area") {
             editorContent = (
                 <ContentArea
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setIsShown={this.props.setIsShown}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                />
+            );
+        } else if (this.props.feature === "quiz") {
+            editorContent = (
+                <Quiz
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setIsShown={this.props.setIsShown}
