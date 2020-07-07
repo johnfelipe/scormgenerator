@@ -68,6 +68,7 @@ class SlideHandler extends Component {
         this.setApplyCss = this.setApplyCss.bind(this);
         this.addQuestion = this.addQuestion.bind(this);
         this.editQuestion = this.editQuestion.bind(this);
+        this.deleteQuestion = this.deleteQuestion.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1057,6 +1058,20 @@ class SlideHandler extends Component {
         })
     }
 
+    deleteQuestion = (contentIndex, questionIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1279,6 +1294,7 @@ class SlideHandler extends Component {
                                                             galleryHandler={this.props.galleryHandler}
                                                             addQuestion={this.addQuestion}
                                                             editQuestion={this.editQuestion}
+                                                            deleteQuestion={this.deleteQuestion}
                                                         />
                                                     </Tab>
                                                 </Tabs>
