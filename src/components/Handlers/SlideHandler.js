@@ -1278,6 +1278,7 @@ class SlideHandler extends Component {
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
                                                             addQuestion={this.addQuestion}
+                                                            editQuestion={this.editQuestion}
                                                         />
                                                     </Tab>
                                                 </Tabs>
