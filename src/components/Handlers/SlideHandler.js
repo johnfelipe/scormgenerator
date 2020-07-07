@@ -67,6 +67,7 @@ class SlideHandler extends Component {
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
         this.addQuestion = this.addQuestion.bind(this);
+        this.editQuestion = this.editQuestion.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1033,6 +1034,20 @@ class SlideHandler extends Component {
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(value);
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
+    editQuestion = (value, contentIndex, questionIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex] = value;
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
