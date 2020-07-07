@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faCheck, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Quiz(props) {
 
@@ -35,6 +35,24 @@ function Quiz(props) {
                                                         <li key={'number-' + index} className="quiz-question-list-item">
                                                             <span>{index+1 + '. '}</span>
                                                             <span className="ml-2">{question}</span>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                onClick={() => {
+                                                                    console.log(index)
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon icon={faEdit}/>
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                onClick={() => {
+                                                                    console.log(index)
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon icon={faTrash}/>
+                                                            </button>
                                                         </li>
                                                     ))}
                                                     <li className="quiz-question-list-item">
