@@ -46,7 +46,7 @@ function Quiz(props) {
                                                             onChange={(event) => setQuestion(event.target.value)}
                                                             value={question}
                                                         />
-                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
                                                             <FontAwesomeIcon icon={faCheck}/>
                                                         </button>
                                                     </li>
@@ -61,7 +61,7 @@ function Quiz(props) {
                                                     onChange={(event) => setQuestion(event.target.value)}
                                                     value={question}
                                                 />
-                                                <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
+                                                <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => {props.addQuestion(question, props.contentIndex); setQuestion('');}}>
                                                     <FontAwesomeIcon icon={faCheck}/>
                                                 </button>
                                             </li>             
