@@ -121,6 +121,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     addQuestion={this.props.addQuestion}
+                    editQuestion={this.props.editQuestion}
                 />
             );
         } else {
