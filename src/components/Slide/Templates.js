@@ -13,8 +13,21 @@ class Templates extends Component {
                 <>
                     <ul class="sg-column-layout">
                         <li>
-                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages} className="fa-w-10"/>/<FontAwesomeIcon icon={faFilm} className="fa-w-10"/></span>
-                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages} className="fa-w-10"/>/<FontAwesomeIcon icon={faFilm} className="fa-w-10"/></span>
+                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
+                        </li>
+                    </ul>
+                    <h4>{this.props.name}</h4>
+                    <FontAwesomeIcon icon={faArrowsAlt}/>
+                </>
+            );
+        } else if (this.props.icon === 'template2') {
+            renderContent = (
+                <>
+                    <ul class="sg-column-layout">
+                        <li>
+                            <span class="sg-1-3 p-1 text-center"><FontAwesomeIcon icon={faImages}/><FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-2-3 p-1"></span>
                         </li>
                     </ul>
                     <h4>{this.props.name}</h4>
