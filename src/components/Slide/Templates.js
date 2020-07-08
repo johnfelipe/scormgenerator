@@ -13,8 +13,8 @@ class Templates extends Component {
                 <>
                     <ul class="sg-column-layout">
                         <li>
-                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
-                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-1-2 p-1 text-center"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-1-2 p-1 text-center"><FontAwesomeIcon icon={faImages}/>/<FontAwesomeIcon icon={faFilm}/></span>
                         </li>
                     </ul>
                     <h4>{this.props.name}</h4>
@@ -26,7 +26,7 @@ class Templates extends Component {
                 <>
                     <ul class="sg-column-layout">
                         <li>
-                            <span class="sg-1-3 p-1 text-center"><FontAwesomeIcon icon={faImages}/><FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-1-3 p-1 text-center"><FontAwesomeIcon icon={faImages} className="mt-1"/>/<FontAwesomeIcon icon={faFilm} className="mt-1"/></span>
                             <span class="sg-2-3 p-1"></span>
                         </li>
                     </ul>
@@ -40,7 +40,7 @@ class Templates extends Component {
                     <ul class="sg-column-layout">
                         <li>
                             <span class="sg-2-3 p-1"></span>
-                            <span class="sg-1-3 p-1 text-center"><FontAwesomeIcon icon={faImages}/><FontAwesomeIcon icon={faFilm}/></span>
+                            <span class="sg-1-3 p-1 text-center"><FontAwesomeIcon icon={faImages} className="mt-1"/>/<FontAwesomeIcon icon={faFilm} className="mt-1"/></span>
                         </li>
                     </ul>
                     <h4>{this.props.name}</h4>
