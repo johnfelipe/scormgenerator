@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 // components
 import SlideColumn from '../Slide/Columns';
 import SlideFeature from '../Slide/Features';
+import SlideTemplates from '../Slide/Templates';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
@@ -41,7 +42,7 @@ class SlideHandler extends Component {
             ],
             templates: [
                 { type: 'homePage', name: 'Home Page', icon: faFileAudio, },
-                { type: 'template1', name: 'Slide Template 1', icon: faFileAudio, },
+                { type: 'template1', name: 'Slide Template 1', icon: 'template1',},
                 { type: 'template2', name: 'Slide Template 2', icon: faFileAudio, },
                 { type: 'template3', name: 'Slide Template 3', icon: faFileAudio, },
                 { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
@@ -1324,7 +1325,7 @@ class SlideHandler extends Component {
                                                                                     {...provided.dragHandleProps}
                                                                                     className="sg-template-list-item"
                                                                                 >
-                                                                                    <SlideFeature
+                                                                                    <SlideTemplates
                                                                                         icon={item.icon}
                                                                                         name={item.name}
                                                                                     />
