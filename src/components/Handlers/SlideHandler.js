@@ -75,6 +75,7 @@ class SlideHandler extends Component {
         this.addQuestion = this.addQuestion.bind(this);
         this.editQuestion = this.editQuestion.bind(this);
         this.deleteQuestion = this.deleteQuestion.bind(this);
+        this.addAnswer = this.addAnswer.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1090,7 +1091,7 @@ class SlideHandler extends Component {
     editQuestion = (value, contentIndex, questionIndex) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
-        
+
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
 
         const columns = this.state.column;
@@ -1106,6 +1107,20 @@ class SlideHandler extends Component {
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
+    addAnswer = (value, contentIndex, questionIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(value);
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
@@ -1372,6 +1387,7 @@ class SlideHandler extends Component {
                                                             addQuestion={this.addQuestion}
                                                             editQuestion={this.editQuestion}
                                                             deleteQuestion={this.deleteQuestion}
+                                                            addAnswer={this.addAnswer}
                                                         />
                                                     </Tab>
                                                 </Tabs>
