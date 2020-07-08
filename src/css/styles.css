@@ -404,7 +404,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-feature-list-item ul.sg-column-layout, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-template-list-item ul.sg-column-layout {
   float: left;
-  width: calc(25% + (10px));
+  width: calc(30% + (15px));
   margin: -8px -5px -3px -3px;
   padding: 0;
   list-style: none;
@@ -416,7 +416,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   cursor: pointer;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-feature-list-item ul.sg-column-layout li span, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-template-list-item ul.sg-column-layout li span {
-  background-color: #d9e6ee;
+  background-color: #fff;
   overflow: hidden;
   position: relative;
   display: block;
@@ -425,9 +425,11 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   width: calc(100% - 2px);
   height: 28px;
   border-radius: 2px;
+  border: solid 1px #000;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-feature-list-item ul.sg-column-layout li span.sg-1-2, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-template-list-item ul.sg-column-layout li span.sg-1-2 {
   width: calc(50% - 2px);
+  font-size: 10px;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-feature-list-item ul.sg-column-layout li span.sg-1-3, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-features .sg-feature-list .sg-template-list-item ul.sg-column-layout li span.sg-1-3 {
   width: calc(33.333333% - 2px);

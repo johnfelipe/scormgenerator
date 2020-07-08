@@ -37,7 +37,7 @@
 
                                                         ul.sg-column-layout {
                                                             float: left;
-                                                            width: calc(25% + (10px));
+                                                            width: calc(30% + (15px));
                                                             margin: -8px -5px -3px -3px;
                                                             padding: 0;
                                                             list-style: none;
@@ -49,7 +49,7 @@
                                                                 cursor: pointer;
 
                                                                 span {
-                                                                    background-color: #d9e6ee;
+                                                                    background-color: #fff;
                                                                     overflow: hidden;
                                                                     position: relative;
                                                                     display: block;
@@ -59,10 +59,16 @@
                                                                     height: 28px;
                                                                     // text-indent: -9999em;
                                                                     border-radius: 2px;
+                                                                    border: solid 1px #000;
                                                                 }
 
                                                                 span.sg-1-2 {
                                                                     width: calc(50% - 2px);
+                                                                    font-size: 10px;
+
+                                                                    // .svg-inline--fa.fa-w-10 {
+                                                                    //     width: 0.625em !important;
+                                                                    // }
                                                                 }
 
                                                                 span.sg-1-3 {
