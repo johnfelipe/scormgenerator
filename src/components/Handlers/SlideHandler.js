@@ -77,6 +77,7 @@ class SlideHandler extends Component {
         this.editQuestion = this.editQuestion.bind(this);
         this.deleteQuestion = this.deleteQuestion.bind(this);
         this.addAnswer = this.addAnswer.bind(this);
+        this.setAnswer = this.setAnswer.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1121,7 +1122,33 @@ class SlideHandler extends Component {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(value);
+        const answer = {
+            answer: value,
+            correct: '',
+        }
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
+    setAnswer = (value, contentIndex, questionIndex, answerIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
+
+        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
+
+        for (let i = 0; i < arrayLength; i++) {
+            if (i !== answerIndex) {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
+            }
+        }
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
@@ -1389,6 +1416,7 @@ class SlideHandler extends Component {
                                                             editQuestion={this.editQuestion}
                                                             deleteQuestion={this.deleteQuestion}
                                                             addAnswer={this.addAnswer}
+                                                            setAnswer={this.setAnswer}
                                                         />
                                                     </Tab>
                                                 </Tabs>

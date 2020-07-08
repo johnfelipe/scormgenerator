@@ -124,6 +124,7 @@ class Editor extends Component {
                     editQuestion={this.props.editQuestion}
                     deleteQuestion={this.props.deleteQuestion}
                     addAnswer={this.props.addAnswer}
+                    setAnswer={this.props.setAnswer}
                 />
             );
         } else {
