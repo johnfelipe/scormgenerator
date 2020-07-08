@@ -130,6 +130,7 @@ function Quiz(props) {
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
                                                                                                                                 </button>
                                                                                                                             :
+                                                                                                                                item.correct &&
                                                                                                                                 <span><FontAwesomeIcon icon={faCheck}/></span>
                                                                                                                         }
                                                                                                                 </span>
@@ -150,6 +151,7 @@ function Quiz(props) {
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
                                                                                                                                 </button>
                                                                                                                             :
+                                                                                                                                item.correct &&
                                                                                                                                 <span><FontAwesomeIcon icon={faCheck}/></span>
                                                                                                                         }
                                                                                                                 </span>
@@ -170,6 +172,7 @@ function Quiz(props) {
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
                                                                                                                                 </button>
                                                                                                                             :
+                                                                                                                                item.correct &&
                                                                                                                                 <span><FontAwesomeIcon icon={faCheck}/></span>
                                                                                                                         }
                                                                                                                 </span>
@@ -190,6 +193,7 @@ function Quiz(props) {
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
                                                                                                                                 </button>
                                                                                                                             :
+                                                                                                                                item.correct &&
                                                                                                                                 <span><FontAwesomeIcon icon={faCheck}/></span>
                                                                                                                         }
                                                                                                                 </span>
