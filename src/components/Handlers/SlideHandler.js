@@ -1090,8 +1090,8 @@ class SlideHandler extends Component {
     editQuestion = (value, contentIndex, questionIndex) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex] = value;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
