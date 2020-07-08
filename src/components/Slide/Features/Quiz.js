@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card } from 'react-bootstrap';
 
 function Quiz(props) {
@@ -111,13 +111,89 @@ function Quiz(props) {
                                                                                     {
                                                                                         item.answers.length > 0 ?
                                                                                             <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
-                                                                                                {item.answers.map((answer, index) => (
-                                                                                                    <li key={'answer-' + index} className="quiz-question-list-item">
-                                                                                                        <span key={'answer-' + index}>
-                                                                                                            {index === 0 && 'a. ' + answer}
-                                                                                                            {index === 1 && 'b. ' + answer}
-                                                                                                            {index === 2 && 'c. ' + answer}
-                                                                                                            {index === 3 && 'd. ' + answer}
+                                                                                                {item.answers.map((item, answerIndex) => (
+                                                                                                    <li key={Math.random()} className="quiz-question-list-item">
+                                                                                                        <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
+                                                                                                            {
+                                                                                                                answerIndex === 0 && 
+                                                                                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                                                                                    {'a. ' + item.answer}&nbsp;
+                                                                                                                        {
+                                                                                                                            item.correct === '' ?
+                                                                                                                                <button
+                                                                                                                                    title="Mark as answer"
+                                                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                                                    onClick={() => {
+                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                    }}
+                                                                                                                                >
+                                                                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                                                                </button>
+                                                                                                                            :
+                                                                                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                                                        }
+                                                                                                                </span>
+                                                                                                            }
+                                                                                                            {
+                                                                                                                answerIndex === 1 && 
+                                                                                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                                                                                    {'b. ' + item.answer}&nbsp;
+                                                                                                                        {
+                                                                                                                            item.correct === '' ?
+                                                                                                                                <button
+                                                                                                                                    title="Mark as answer"
+                                                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                                                    onClick={() => {
+                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                    }}
+                                                                                                                                >
+                                                                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                                                                </button>
+                                                                                                                            :
+                                                                                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                                                        }
+                                                                                                                </span>
+                                                                                                            }
+                                                                                                            {
+                                                                                                                answerIndex === 2 && 
+                                                                                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                                                                                    {'c. ' + item.answer}&nbsp;
+                                                                                                                        {
+                                                                                                                            item.correct === '' ?
+                                                                                                                                <button
+                                                                                                                                    title="Mark as answer"
+                                                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                                                    onClick={() => {
+                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                    }}
+                                                                                                                                >
+                                                                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                                                                </button>
+                                                                                                                            :
+                                                                                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                                                        }
+                                                                                                                </span>
+                                                                                                            }
+                                                                                                            {
+                                                                                                                answerIndex === 3 && 
+                                                                                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                                                                                    {'d. ' + item.answer}&nbsp;
+                                                                                                                        {
+                                                                                                                            item.correct === '' ?
+                                                                                                                                <button
+                                                                                                                                    title="Mark as answer"
+                                                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                                                    onClick={() => {
+                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                    }}
+                                                                                                                                >
+                                                                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                                                                </button>
+                                                                                                                            :
+                                                                                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                                                        }
+                                                                                                                </span>
+                                                                                                            }
                                                                                                         </span>
                                                                                                     </li>
                                                                                                 ))}
