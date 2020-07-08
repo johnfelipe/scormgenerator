@@ -8,22 +8,13 @@ class Templates extends Component {
 
         let renderContent = '';
 
-        // if (this.props.icon) {
-        //     renderContent = (
-        //         <>
-        //             <FontAwesomeIcon className="feature-icon" icon={this.props.icon}/>
-        //             <h4>{this.props.name}</h4>
-        //             <FontAwesomeIcon icon={faArrowsAlt}/>
-        //         </>
-        //     );
-        // } else {
         if (this.props.icon === 'template1') {
             renderContent = (
                 <>
                     <ul class="sg-column-layout">
                         <li>
-                            <span class="sg-1-2"><FontAwesomeIcon icon={faImages} size="10px"/><FontAwesomeIcon icon={faFilm} size="10px"/></span>
-                            <span class="sg-1-2"><FontAwesomeIcon icon={faImages} size="10px"/><FontAwesomeIcon icon={faFilm} size="10px"/></span>
+                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages} className="fa-w-10"/>/<FontAwesomeIcon icon={faFilm} className="fa-w-10"/></span>
+                            <span class="sg-1-2 p-1"><FontAwesomeIcon icon={faImages} className="fa-w-10"/>/<FontAwesomeIcon icon={faFilm} className="fa-w-10"/></span>
                         </li>
                     </ul>
                     <h4>{this.props.name}</h4>
@@ -39,7 +30,6 @@ class Templates extends Component {
                 </>
             );
         }
-        // }
 
         return (
             <>
