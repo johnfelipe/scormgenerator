@@ -859,6 +859,38 @@ class SlideHandler extends Component {
                     }
                 }
             }
+        } else if ((source.droppableId === "templates") && (destination.droppableId !== "features")) {
+            const currentColumns = this.state.column;
+
+            this.setActiveTab("editor");
+
+            for (var index in currentColumns) {
+                if (destination.droppableId === currentColumns[index]['id']) {
+                    // First Size
+
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
+
+                    destination.index = parseInt(index);
+                    console.log("Drag!");
+                    console.log(source);
+                    console.log(destination);
+                    const currentTemplates = this.state.templates;
+                    
+                    if (currentTemplates[source.index]['type'] === 'quiz') {
+                        let currentContent = { type: currentTemplates[source.index]['type'], output: [], class: '', id: ''  };
+                        currentColumns[index].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentTemplates[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
+                        });
+                    }
+                    
+                }
+            }
         }
     }
 
