@@ -1072,7 +1072,12 @@ class SlideHandler extends Component {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(value);
+        const question = {
+            question: value,
+            answers: [],
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
 
         const columns = this.state.column;
         columns[this.state.activeColumnId] = currentColumnObj;
@@ -1428,7 +1433,16 @@ class SlideHandler extends Component {
                                                                                                                 : 
                                                                                                                     null
                                                                                                             }
-                                                                                                            {ReactHtmlParser(contentFirst.output)}
+                                                                                                            {
+                                                                                                                typeof contentFirst.output === 'object' ?
+                                                                                                                    contentFirst.output.map((item, index) => (
+                                                                                                                        <div key={'column-question-' + index}>
+                                                                                                                            <span>{index+1 + '. ' + item.question}</span>
+                                                                                                                        </div>
+                                                                                                                    ))
+                                                                                                                :
+                                                                                                                    ReactHtmlParser(contentFirst.output)
+                                                                                                            }
                                                                                                         </div>
                                                                                                     ))
                                                                                                 }
