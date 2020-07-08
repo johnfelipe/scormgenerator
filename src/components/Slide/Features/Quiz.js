@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faCheck, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Quiz(props) {
 
@@ -85,7 +85,7 @@ function Quiz(props) {
                                                                                 }
                                                                             }}
                                                                         >
-                                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
                                                                         </button>
                                                                     </>
                                                             }
@@ -114,7 +114,7 @@ function Quiz(props) {
                                                                 }
                                                             }}
                                                         >
-                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
                                                         </button>
                                                     </li>
                                                 </>
@@ -142,7 +142,7 @@ function Quiz(props) {
                                                         }
                                                     }}
                                                 >
-                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
                                                 </button>
                                             </li>             
                                     }
