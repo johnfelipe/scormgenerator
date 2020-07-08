@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Accordion, Card } from 'react-bootstrap';
 
 function Quiz(props) {
 
@@ -33,33 +34,40 @@ function Quiz(props) {
                                     {
                                         props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length > 0 ? 
                                                 <>
-                                                    {props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((question, index) => (
+                                                    {props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((item, index) => (
                                                         <li key={'number-' + index} className="quiz-question-list-item">
                                                             {
                                                                 editQuestion === false ?
-                                                                    <>
-                                                                        <span>{index+1 + '. '}</span>
-                                                                        <span className="ml-2">{question}</span>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                            onClick={() => {
-                                                                                setEditQuestion(true);
-                                                                                setUpdateQuestion(question);
-                                                                            }}
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faEdit}/>
-                                                                        </button>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                            onClick={() => {
-                                                                                props.deleteQuestion(props.contentIndex, index)
-                                                                            }}
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faTrash}/>
-                                                                        </button>
-                                                                    </>
+                                                                    <Accordion key={'accordion-quiz-question-' + index}>
+                                                                        <Card>
+                                                                            <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2">
+                                                                                <span>{index+1 + '. '}</span>
+                                                                                <span className="ml-2">{item.question}</span>
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
+                                                                                    onClick={() => {
+                                                                                        props.deleteQuestion(props.contentIndex, index)
+                                                                                    }}
+                                                                                >
+                                                                                    <FontAwesomeIcon icon={faTrash}/>
+                                                                                </button>
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
+                                                                                    onClick={() => {
+                                                                                        setEditQuestion(true);
+                                                                                        setUpdateQuestion(item.question);
+                                                                                    }}
+                                                                                >
+                                                                                    <FontAwesomeIcon icon={faEdit}/>
+                                                                                </button>
+                                                                            </Accordion.Toggle>
+                                                                            <Accordion.Collapse eventKey={index}>
+                                                                                <Card.Body>Hello! I'm the body</Card.Body>
+                                                                            </Accordion.Collapse>
+                                                                        </Card>
+                                                                    </Accordion>
                                                                 :
                                                                     <>
                                                                         <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
@@ -91,7 +99,7 @@ function Quiz(props) {
                                                             }
                                                         </li>
                                                     ))}
-                                                    <li className="quiz-question-list-item">
+                                                    <li className="quiz-question-list-item mt-2">
                                                         <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
                                                         <input
                                                             id="question"
