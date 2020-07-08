@@ -6,8 +6,10 @@ import { Accordion, Card } from 'react-bootstrap';
 function Quiz(props) {
 
     const [question, setQuestion] = useState('');
+    const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [editQuestion, setEditQuestion] = useState(false);
+    const [addAnswer, setAddAnswer] = useState(false);
     
     return (
         <div className="sg-controls">
@@ -64,7 +66,66 @@ function Quiz(props) {
                                                                                 </button>
                                                                             </Accordion.Toggle>
                                                                             <Accordion.Collapse eventKey={index}>
-                                                                                <Card.Body>Hello! I'm the body</Card.Body>
+                                                                                <Card.Body className="p-2">
+                                                                                    {
+                                                                                        addAnswer ?
+                                                                                            <>
+                                                                                                <div><span>Add:&nbsp;</span></div>
+                                                                                                <input
+                                                                                                    id="answer"
+                                                                                                    name="answer"
+                                                                                                    className="mt-1"
+                                                                                                    type="text"
+                                                                                                    placeholder="Type answer here. . ."
+                                                                                                    onChange={(event) => setAnswer(event.target.value)}
+                                                                                                    value={answer}
+                                                                                                />
+                                                                                                <button
+                                                                                                    type="button"
+                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                    onClick={() => {
+                                                                                                        const isEmpty = document.getElementById("answer");
+                                                                                                        
+                                                                                                        if (isEmpty.value !== "") {
+                                                                                                            props.addAnswer(answer, props.contentIndex, index);
+                                                                                                            setAnswer('');
+                                                                                                            setAddAnswer(false);
+                                                                                                        }
+                                                                                                    }}
+                                                                                                >
+                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                                </button>
+                                                                                            </>
+                                                                                        :
+                                                                                            item.answers.length !== 4 &&
+                                                                                            <button
+                                                                                                type="button"
+                                                                                                className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                onClick={() => {
+                                                                                                    setAddAnswer(true);
+                                                                                                }}
+                                                                                            >
+                                                                                                Add
+                                                                                            </button>
+                                                                                    }
+                                                                                    {
+                                                                                        item.answers.length > 0 ?
+                                                                                            <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
+                                                                                                {item.answers.map((answer, index) => (
+                                                                                                    <li key={'answer-' + index} className="quiz-question-list-item">
+                                                                                                        <span key={'answer-' + index}>
+                                                                                                            {index === 0 && 'a. ' + answer}
+                                                                                                            {index === 1 && 'b. ' + answer}
+                                                                                                            {index === 2 && 'c. ' + answer}
+                                                                                                            {index === 3 && 'd. ' + answer}
+                                                                                                        </span>
+                                                                                                    </li>
+                                                                                                ))}
+                                                                                            </ul>
+                                                                                        :
+                                                                                            <div><span>No answer/s added.</span></div>
+                                                                                    }
+                                                                                </Card.Body>
                                                                             </Accordion.Collapse>
                                                                         </Card>
                                                                     </Accordion>

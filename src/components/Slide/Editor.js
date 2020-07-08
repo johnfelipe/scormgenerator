@@ -123,6 +123,7 @@ class Editor extends Component {
                     addQuestion={this.props.addQuestion}
                     editQuestion={this.props.editQuestion}
                     deleteQuestion={this.props.deleteQuestion}
+                    addAnswer={this.props.addAnswer}
                 />
             );
         } else {
