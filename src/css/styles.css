@@ -675,8 +675,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control {
   position: relative;
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid #e2e2e2;
+  overflow: auto;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-scroll-box {
   position: relative;
