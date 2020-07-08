@@ -480,7 +480,7 @@ class Main extends Component {
                                             </div>
                                             <div className="col-md-6 mt-2">
                                                 <div id="save-btn-container" className="float-right">
-                                                    <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save</button>
+                                                    <button type="submit" className="btn btn-success" disabled={isSubmitting}>Generate Course</button>
                                                 </div>
                                                 {/* <ConfirmationModal isSubmitting={isSubmitting}/> */}
                                             </div>
@@ -496,7 +496,7 @@ class Main extends Component {
                                             </div>
                                             <div className="col-md-6 mt-2">
                                                 <div id="save-btn-container" className="float-right">
-                                                    <button type="submit" className="btn btn-success" disabled>Save</button>
+                                                    <button type="submit" className="btn btn-success" disabled>Generate Course</button>
                                                 </div>
                                             </div>
                                         </div>
