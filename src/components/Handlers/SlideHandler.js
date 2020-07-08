@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -41,7 +41,7 @@ class SlideHandler extends Component {
                 { type: 'content-area', name: 'Content Area', icon: faSquare, },
             ],
             templates: [
-                { type: 'homePage', name: 'Home Page', icon: faFileAudio, },
+                { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'template1', name: 'Slide Template 1', icon: 'template1',},
                 { type: 'template2', name: 'Slide Template 2', icon: 'template2', },
                 { type: 'template3', name: 'Slide Template 3', icon: 'template3', },
