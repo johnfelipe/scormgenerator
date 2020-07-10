@@ -259,9 +259,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border: 2px dashed #e2e2e2;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column .content-output {
-  padding: 10px 15px;
-}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column:last-of-type {
   margin-right: 0 !important;
 }
@@ -1189,8 +1186,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name h2.course-header {
   color: #ffffff;
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 40px;
+  line-height: 50px;
   margin: 0 0 10px 0;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name .course-bar {
@@ -1201,8 +1198,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name h3.course-sub-header {
   color: #ffffff;
-  font-size: 22px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 30px;
   margin: 10px 0 0 0;
 }
 
