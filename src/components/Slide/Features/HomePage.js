@@ -40,6 +40,29 @@ function HomePage(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const handleImageChange = (e) => {
+        e.preventDefault();
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setBackgroundImg(files[0].name, reader.result);
+        }
+
+        console.log(e);
+        console.log(files);
+    }
+
+    const setBackgroundImg = (name, url) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.url = url;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -123,10 +146,10 @@ function HomePage(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}}/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" readOnly/>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name} readOnly/>
                             </div>
                         </li>
                     </ul>
