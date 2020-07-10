@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function HomePage(props) {
 
@@ -114,6 +114,19 @@ function HomePage(props) {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.courseId && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseId
                                     }
                                 />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Background</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}}/>
+                                    </span>
+                                </label>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" readOnly/>
                             </div>
                         </li>
                     </ul>
