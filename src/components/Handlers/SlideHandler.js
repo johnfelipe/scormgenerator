@@ -72,6 +72,7 @@ class SlideHandler extends Component {
         this.deleteQuestion = this.deleteQuestion.bind(this);
         this.addAnswer = this.addAnswer.bind(this);
         this.setAnswer = this.setAnswer.bind(this);
+        this.setColumn = this.setColumn.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -288,7 +289,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: {}, class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1129,6 +1130,16 @@ class SlideHandler extends Component {
         })
     }
 
+    setColumn = (column) => {
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = column;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1335,6 +1346,7 @@ class SlideHandler extends Component {
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
+                                                            setColumn={this.setColumn}
                                                             feature={this.state.activeFeature} 
                                                             currentColumn={this.state.column[this.state.activeColumnId]}
                                                             contentIndex={this.state.activeContentIndex}
@@ -1373,7 +1385,7 @@ class SlideHandler extends Component {
                                                                                         item.content['subColumnOne'].length > 0 ?
                                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {
-                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
                                                                                                         <div 
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex} 
                                                                                                             id={
