@@ -15,6 +15,7 @@ import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
+import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -72,6 +73,7 @@ class SlideHandler extends Component {
         this.deleteQuestion = this.deleteQuestion.bind(this);
         this.addAnswer = this.addAnswer.bind(this);
         this.setAnswer = this.setAnswer.bind(this);
+        this.setColumn = this.setColumn.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -280,6 +282,15 @@ class SlideHandler extends Component {
                         });
                     } else if (currentFeatures[source.index]['type'] === 'quiz') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: '', id: ''  };
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'homePage') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -856,38 +867,6 @@ class SlideHandler extends Component {
                     }
                 }
             }
-        } else if ((source.droppableId === "templates") && (destination.droppableId !== "features" || destination.droppableId !== "templates")) {
-            const currentColumns = this.state.column;
-
-            this.setActiveTab("editor");
-
-            for (var index in currentColumns) {
-                if (destination.droppableId === currentColumns[index]['id']) {
-                    // First Size
-
-                    this.setState({
-                        currentColumnContentIndex: 'subColumnOne',
-                    });
-
-                    destination.index = parseInt(index);
-                    console.log("Drag!");
-                    console.log(source);
-                    console.log(destination);
-                    const currentTemplates = this.state.templates;
-                    
-                    if (currentTemplates[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentTemplates[source.index]['type'], output: [], class: '', id: ''  };
-                        currentColumns[index].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentTemplates[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
-                        });
-                    }
-                    
-                }
-            }
         }
     }
 
@@ -1152,6 +1131,16 @@ class SlideHandler extends Component {
         })
     }
 
+    setColumn = (column) => {
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = column;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, columns: columns}
@@ -1358,6 +1347,7 @@ class SlideHandler extends Component {
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
+                                                            setColumn={this.setColumn}
                                                             feature={this.state.activeFeature} 
                                                             currentColumn={this.state.column[this.state.activeColumnId]}
                                                             contentIndex={this.state.activeContentIndex}
@@ -1394,9 +1384,9 @@ class SlideHandler extends Component {
                                                                                 { 
                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                         item.content['subColumnOne'].length > 0 ?
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
+                                                                                            <div id={item.id} className="p-3 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {
-                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
                                                                                                         <div 
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex} 
                                                                                                             id={
@@ -1438,15 +1428,24 @@ class SlideHandler extends Component {
                                                                                                                 : 
                                                                                                                     null
                                                                                                             }
-                                                                                                            {
-                                                                                                                typeof contentFirst.output === 'object' ?
-                                                                                                                    contentFirst.output.map((item, index) => (
-                                                                                                                        <div key={'column-question-' + index}>
-                                                                                                                            <span>{index+1 + '. ' + item.question}</span>
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                            {   
+                                                                                                                contentFirst.type === 'homePage' ?
+                                                                                                                    <HomePageLayout
+                                                                                                                        title={contentFirst.output.title}
+                                                                                                                        subtitle={contentFirst.output.subtitle}
+                                                                                                                        date={contentFirst.output.date}
+                                                                                                                        courseId={contentFirst.output.courseId}
+                                                                                                                        backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                    />
                                                                                                                 :
-                                                                                                                    ReactHtmlParser(contentFirst.output)
+                                                                                                                    typeof contentFirst.output === 'object' ?
+                                                                                                                        contentFirst.output.map((item, index) => (
+                                                                                                                            <div key={'column-question-' + index}>
+                                                                                                                                <span>{index+1 + '. ' + item.question}</span>
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        ReactHtmlParser(contentFirst.output)
                                                                                                             }
                                                                                                         </div>
                                                                                                     ))

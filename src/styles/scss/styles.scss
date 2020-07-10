@@ -13,6 +13,7 @@
 @import "components/gallery-modal";
 @import "components/media-library";
 @import "components/media-uploader";
+@import "components/features/homepage";
 
 @include defaults;
 @include header;
@@ -29,3 +30,4 @@
 @include gallery-modal;
 @include media-library;
 @include media-uploader;
+@include homepage;
