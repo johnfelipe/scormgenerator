@@ -155,7 +155,7 @@ function HomePage(props) {
                     </ul>
                 </div>
             </div>
-            <div className="sg-control sg-control-group">
+            {/* <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Customize</label>
                 </div>
@@ -228,7 +228,7 @@ function HomePage(props) {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
