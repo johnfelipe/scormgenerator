@@ -14,7 +14,13 @@ function HomePageLayout(props) {
                 <div className="course-name">
                     <h2 className="course-header">{title}</h2>
                 <div className="course-bar"></div>
-                <h3 className="course-sub-header">{subtitle}<br/>{date}<br/>COURSE ID: {courseId}</h3>
+                <h3 className="course-sub-header">
+                    <span>{subtitle}</span>
+                    <br/>
+                    <span>{date}</span>
+                    <br/>
+                    <span>COURSE ID: {courseId}</span>
+                </h3>
                 </div>
             </div>
         </div>
