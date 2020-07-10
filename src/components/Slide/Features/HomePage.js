@@ -16,6 +16,30 @@ function HomePage(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setSubTitle = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.subtitle = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setDate = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.date = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setCourseId = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseId = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -41,7 +65,7 @@ function HomePage(props) {
                                     type="text"
                                     placeholder=""
                                     onChange={(e) => setTitle(e)}
-                                    value={ 
+                                    value={
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.title && currentColumn.content[currentColumnContentIndex][contentIndex].output.title
                                     }
                                 />
@@ -55,18 +79,9 @@ function HomePage(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                    onChange={(e) => setSubTitle(e)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.subtitle && currentColumn.content[currentColumnContentIndex][contentIndex].output.subtitle
                                     }
                                 />
                             </div>
@@ -79,18 +94,9 @@ function HomePage(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                    onChange={(e) => setDate(e)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.date && currentColumn.content[currentColumnContentIndex][contentIndex].output.date
                                     }
                                 />
                             </div>
@@ -103,18 +109,9 @@ function HomePage(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                    onChange={(e) => setCourseId(e)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.courseId && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseId
                                     }
                                 />
                             </div>
