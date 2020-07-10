@@ -25,11 +25,12 @@
                                                             left: 50px;
                                                             padding: 25px;
                                                             text-align: left !important;
+                                                            width: 250px;
 
                                                             h2.course-header {
                                                                 color: #ffffff;
-                                                                font-size: 40px;
-                                                                line-height: 50px;
+                                                                font-size: 20px;
+                                                                line-height: 30px;
                                                                 margin: 0 0 10px 0;
                                                             }
 
@@ -42,9 +43,10 @@
 
                                                             h3.course-sub-header {
                                                                 color: #ffffff;
-                                                                font-size: 20px;
-                                                                line-height: 30px;
+                                                                font-size: 15px;
+                                                                line-height: 25px;
                                                                 margin: 10px 0 0 0;
+                                                                word-break: break-all;
                                                             }
                                                         }
                                                     }
