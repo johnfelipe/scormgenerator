@@ -1175,5 +1175,31 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   width: 100%;
   height: 450px;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #4c2157;
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  padding: 25px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name h2.course-header {
+  color: #ffffff;
+  font-size: 50px;
+  line-height: 60px;
+  margin: 0 0 10px 0;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name .course-bar {
+  background: #ae71d1;
+  display: inline-block;
+  width: 75px;
+  height: 5px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name h3.course-sub-header {
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 32px;
+  margin: 10px 0 0 0;
+}
 
 /*# sourceMappingURL=styles.css.map */
