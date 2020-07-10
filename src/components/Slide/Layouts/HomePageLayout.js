@@ -6,9 +6,10 @@ function HomePageLayout(props) {
     const subtitle = props.subtitle;
     const date = props.date;
     const courseId = props.courseId;
+    const backgroundImg = props.backgroundImg.url;
 
     return (
-        <div className="home-page-container h-100 w-100">
+        <div className="home-page-container h-100 w-100" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
             <div className="slide">
                 <div className="course-name">
                     <h2 className="course-header">{title}</h2>
