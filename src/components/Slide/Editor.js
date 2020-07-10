@@ -121,6 +121,7 @@ class Editor extends Component {
         } else if (this.props.feature === "homePage") {
             editorContent = (
                 <HomePage
+                    setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}
