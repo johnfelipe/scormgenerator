@@ -12,7 +12,7 @@ function HomePageLayout(props) {
             <div className="slide">
                 <div className="course-name">
                     <h2 className="course-header">{title}</h2>
-                <div className="course-bar"></div>
+                <div className="course-bar float-left"></div>
                 <h3 className="course-sub-header">{subtitle}<br/>{date}<br/>COURSE ID: {courseId}</h3>
                 </div>
             </div>
