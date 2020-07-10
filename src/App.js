@@ -3,7 +3,7 @@ import Routes from "./Routes";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // styling
-import './css/styles.css';
+import './styles/css/styles.css';
 import './App.css';
 
 //components
