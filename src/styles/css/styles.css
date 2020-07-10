@@ -1182,6 +1182,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   bottom: 50px;
   left: 50px;
   padding: 25px;
+  text-align: left !important;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output .course-name h2.course-header {
   color: #ffffff;
