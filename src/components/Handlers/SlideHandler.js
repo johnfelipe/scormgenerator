@@ -15,6 +15,7 @@ import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
+import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -1383,7 +1384,7 @@ class SlideHandler extends Component {
                                                                                 { 
                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                         item.content['subColumnOne'].length > 0 ?
-                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
+                                                                                            <div id={item.id} className="p-3 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                                 {
                                                                                                     item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
                                                                                                         <div 
@@ -1427,15 +1428,23 @@ class SlideHandler extends Component {
                                                                                                                 : 
                                                                                                                     null
                                                                                                             }
-                                                                                                            {
-                                                                                                                typeof contentFirst.output === 'object' ?
-                                                                                                                    contentFirst.output.map((item, index) => (
-                                                                                                                        <div key={'column-question-' + index}>
-                                                                                                                            <span>{index+1 + '. ' + item.question}</span>
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                            {   
+                                                                                                                contentFirst.type === 'homePage' ?
+                                                                                                                    <HomePageLayout
+                                                                                                                        title={contentFirst.output.title}
+                                                                                                                        subtitle={contentFirst.output.subtitle}
+                                                                                                                        date={contentFirst.output.date}
+                                                                                                                        courseId={contentFirst.output.courseId}
+                                                                                                                    />
                                                                                                                 :
-                                                                                                                    ReactHtmlParser(contentFirst.output)
+                                                                                                                    typeof contentFirst.output === 'object' ?
+                                                                                                                        contentFirst.output.map((item, index) => (
+                                                                                                                            <div key={'column-question-' + index}>
+                                                                                                                                <span>{index+1 + '. ' + item.question}</span>
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        ReactHtmlParser(contentFirst.output)
                                                                                                             }
                                                                                                         </div>
                                                                                                     ))
