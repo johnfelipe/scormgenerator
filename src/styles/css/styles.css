@@ -1169,4 +1169,11 @@ html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab
   transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }
 
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 450px;
+}
+
 /*# sourceMappingURL=styles.css.map */
