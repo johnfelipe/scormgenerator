@@ -884,8 +884,16 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
                         });
+                    } else if (currentTemplates[source.index]['type'] === 'homePage') {
+                        let currentContent = { type: currentTemplates[source.index]['type'], output: [], class: '', id: ''  };
+                        currentColumns[index].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentTemplates[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
+                        });
                     }
-                    
                 }
             }
         }
