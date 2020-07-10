@@ -8,7 +8,7 @@ function HomePageLayout(props) {
     const courseId = props.courseId;
 
     return (
-        <div className="container title">
+        <div className="home-page-container h-100 w-100">
             <div className="slide">
                 <div className="course-name">
                     <h2 className="course-header">{title}</h2>
