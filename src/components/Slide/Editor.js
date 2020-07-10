@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Features
 import Audio from './Features/Audio';
 import ContentArea from './Features/ContentArea';
+import HomePage from './Features/HomePage';
 import Quiz from './Features/Quiz';
 
 class Editor extends Component {
@@ -10,21 +11,13 @@ class Editor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShownTextArea: false,
             radioValue: -1,
         };
         
-        this.setIsShown = this.setIsShown.bind(this);
         this.deleteFeature = this.deleteFeature.bind(this);
         this.radioClick = this.radioClick.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.setMediaFiles = this.setMediaFiles.bind(this);
-    }
-
-    setIsShown = (value) => {
-        this.setState({
-            isShownTextArea: value,
-        })
     }
 
     deleteFeature = () => {
@@ -99,7 +92,6 @@ class Editor extends Component {
                 <ContentArea
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
-                    setIsShown={this.props.setIsShown}
                     setShowEditor={this.props.setShowEditor}
                     currentColumn={this.props.currentColumn}
                     currentColumnContentIndex={this.props.currentColumnContentIndex}
@@ -113,7 +105,6 @@ class Editor extends Component {
                 <Quiz
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
-                    setIsShown={this.props.setIsShown}
                     setShowEditor={this.props.setShowEditor}
                     currentColumn={this.props.currentColumn}
                     currentColumnContentIndex={this.props.currentColumnContentIndex}
@@ -125,6 +116,19 @@ class Editor extends Component {
                     deleteQuestion={this.props.deleteQuestion}
                     addAnswer={this.props.addAnswer}
                     setAnswer={this.props.setAnswer}
+                />
+            );
+        } else if (this.props.feature === "homePage") {
+            editorContent = (
+                <HomePage
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
                 />
             );
         } else {
