@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 // components
 import SlideColumn from '../Slide/Columns';
 import SlideFeature from '../Slide/Features';
-import SlideTemplates from '../Slide/Templates';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
@@ -39,12 +38,7 @@ class SlideHandler extends Component {
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'content-area', name: 'Content Area', icon: faSquare, },
-            ],
-            templates: [
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
-                { type: 'template1', name: 'Slide Template 1', icon: 'template1',},
-                { type: 'template2', name: 'Slide Template 2', icon: 'template2', },
-                { type: 'template3', name: 'Slide Template 3', icon: 'template3', },
                 { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
             ],
             activeFeature: '',
@@ -1333,40 +1327,6 @@ class SlideHandler extends Component {
                                                         </div>
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="mt-1">
-                                                        <div id="templates-title" className="border-bottom text-center">
-                                                            <span>Templates</span>
-                                                        </div>
-                                                        <Droppable droppableId="templates">
-                                                            {(provided) => (
-                                                                <div ref={provided.innerRef} className="sg-feature-list">
-                                                                    {this.state.templates.map((item, templateIndex) => (
-                                                                        <Draggable
-                                                                            key={'template-draggable-' + templateIndex}
-                                                                            draggableId={'template-' + templateIndex}
-                                                                            index={templateIndex}
-                                                                        >
-                                                                            {(provided) => (
-                                                                                <div
-                                                                                    ref={provided.innerRef}
-                                                                                    {...provided.draggableProps}
-                                                                                    {...provided.dragHandleProps}
-                                                                                    className="sg-template-list-item"
-                                                                                >
-                                                                                    <SlideTemplates
-                                                                                        icon={item.icon}
-                                                                                        name={item.name}
-                                                                                    />
-                                                                                </div>
-                                                                            )}
-                                                                        </Draggable>
-                                                                    ))}
-                                                                    {provided.placeholder}
-                                                                </div>
-                                                            )}
-                                                        </Droppable>
-                                                        <div id="features-title" className="border-bottom text-center">
-                                                            <span>Features</span>
-                                                        </div>
                                                         <Droppable droppableId="features">
                                                             {(provided) => (
                                                                 <div ref={provided.innerRef} className="sg-feature-list">
