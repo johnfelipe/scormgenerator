@@ -287,6 +287,15 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'homePage') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: '', id: ''  };
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
@@ -852,46 +861,6 @@ class SlideHandler extends Component {
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
-                        });
-                    }
-                }
-            }
-        } else if ((source.droppableId === "templates") && (destination.droppableId !== "features" || destination.droppableId !== "templates")) {
-            const currentColumns = this.state.column;
-
-            this.setActiveTab("editor");
-
-            for (var index in currentColumns) {
-                if (destination.droppableId === currentColumns[index]['id']) {
-                    // First Size
-
-                    this.setState({
-                        currentColumnContentIndex: 'subColumnOne',
-                    });
-
-                    destination.index = parseInt(index);
-                    console.log("Drag!");
-                    console.log(source);
-                    console.log(destination);
-                    const currentTemplates = this.state.templates;
-                    
-                    if (currentTemplates[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentTemplates[source.index]['type'], output: [], class: '', id: ''  };
-                        currentColumns[index].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentTemplates[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentTemplates[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentTemplates[source.index]['type'], output: [], class: '', id: ''  };
-                        currentColumns[index].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentTemplates[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[index].content.subColumnOne.length - 1),
                         });
                     }
                 }
