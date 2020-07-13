@@ -241,7 +241,7 @@ class SlideHandler extends Component {
             })
         }
 
-        if ((source.droppableId === "features") && (destination.droppableId !== "features" || destination.droppableId !== "templates")) {
+        if ((source.droppableId === "features") && (destination.droppableId !== "features")) {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
