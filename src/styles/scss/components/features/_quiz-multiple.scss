@@ -34,6 +34,11 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 ul.quiz-question-list {
                                                     .quiz-question-list-item {
+                                                        ul.quiz-question-list {
+                                                            columns: 2;
+                                                            -webkit-columns: 2;
+                                                            -moz-columns: 2;
+                                                        }
                                                         .quiz-control-input-wrapper {
                                                             display: flex;
                                                             align-items: flex-start;
