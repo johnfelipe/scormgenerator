@@ -14,6 +14,14 @@
                                                     .content-output {
                                                         #quiz-multiple-layout {
                                                             text-align: left !important;
+
+                                                            .question-group {
+                                                                ul.quiz-question-answers {
+                                                                    columns: 2;
+                                                                    -webkit-columns: 2;
+                                                                    -moz-columns: 2;
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

@@ -1205,6 +1205,11 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
   text-align: left !important;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {
   display: flex;
   align-items: flex-start;
