@@ -9,7 +9,7 @@ function Quiz(props) {
     const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
-    const [addAnswer, setAddAnswer] = useState(false);
+    const [IsAddAnswer, setIsAddAnswer] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
@@ -40,6 +40,18 @@ function Quiz(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addAnswer = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        const answer = {
+            answer: value,
+            correct: '',
+        }
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
 
         props.setColumn(currentColumnObj);
     }
@@ -101,7 +113,7 @@ function Quiz(props) {
                                                                             <Accordion.Collapse eventKey={index}>
                                                                                 <Card.Body className="p-2">
                                                                                     {
-                                                                                        addAnswer ?
+                                                                                        IsAddAnswer ?
                                                                                             <>
                                                                                                 <div><span>Add:&nbsp;</span></div>
                                                                                                 <input
@@ -120,9 +132,9 @@ function Quiz(props) {
                                                                                                         const isEmpty = document.getElementById("answer");
                                                                                                         
                                                                                                         if (isEmpty.value !== "") {
-                                                                                                            props.addAnswer(answer, contentIndex, index);
+                                                                                                            addAnswer(answer, index);
                                                                                                             setAnswer('');
-                                                                                                            setAddAnswer(false);
+                                                                                                            setIsAddAnswer(false);
                                                                                                         }
                                                                                                     }}
                                                                                                 >
@@ -135,7 +147,7 @@ function Quiz(props) {
                                                                                                 type="button"
                                                                                                 className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                 onClick={() => {
-                                                                                                    setAddAnswer(true);
+                                                                                                    setIsAddAnswer(true);
                                                                                                 }}
                                                                                             >
                                                                                                 Add
