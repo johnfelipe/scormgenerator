@@ -145,33 +145,38 @@ function Quiz(props) {
                                                                                 <Card.Body className="p-2">
                                                                                     {
                                                                                         IsAddAnswer ?
-                                                                                            <>
-                                                                                                <div><span>Add:&nbsp;</span></div>
-                                                                                                <input
-                                                                                                    id="answer"
-                                                                                                    name="answer"
-                                                                                                    className="mt-1"
-                                                                                                    type="text"
-                                                                                                    placeholder="Type answer here. . ."
-                                                                                                    onChange={(event) => setAnswer(event.target.value)}
-                                                                                                    value={answer}
-                                                                                                />
-                                                                                                <button
-                                                                                                    type="button"
-                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                                    onClick={() => {
-                                                                                                        const isEmpty = document.getElementById("answer");
-                                                                                                        
-                                                                                                        if (isEmpty.value !== "") {
-                                                                                                            addAnswer(answer, index);
-                                                                                                            setAnswer('');
-                                                                                                            setIsAddAnswer(false);
-                                                                                                        }
-                                                                                                    }}
-                                                                                                >
-                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                                                </button>
-                                                                                            </>
+                                                                                            <div className="quiz-control-input-wrapper mb-1">
+                                                                                                <div className="quiz-control-input-label">
+                                                                                                    <span>Add:&nbsp;</span>
+                                                                                                </div>
+                                                                                                <div className="quiz-control-input">
+                                                                                                    <input
+                                                                                                        id="answer"
+                                                                                                        name="answer"
+                                                                                                        type="text"
+                                                                                                        placeholder="Type answer here. . ."
+                                                                                                        onChange={(event) => setAnswer(event.target.value)}
+                                                                                                        value={answer}
+                                                                                                    />
+                                                                                                </div>
+                                                                                                <div className="quiz-control-button">
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        className="btn btn-success btn-sm"
+                                                                                                        onClick={() => {
+                                                                                                            const isEmpty = document.getElementById("answer");
+                                                                                                            
+                                                                                                            if (isEmpty.value !== "") {
+                                                                                                                addAnswer(answer, index);
+                                                                                                                setAnswer('');
+                                                                                                                setIsAddAnswer(false);
+                                                                                                            }
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         :
                                                                                             item.answers.length !== 4 &&
                                                                                             <button
