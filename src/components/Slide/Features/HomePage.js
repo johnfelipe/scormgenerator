@@ -49,9 +49,6 @@ function HomePage(props) {
         reader.onloadend = () => {
             setBackgroundImg(files[0].name, reader.result);
         }
-
-        console.log(e);
-        console.log(files);
     }
 
     const setBackgroundImg = (name, url) => {
