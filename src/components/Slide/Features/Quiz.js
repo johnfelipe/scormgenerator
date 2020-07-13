@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card } from 'react-bootstrap';
 
 function Quiz(props) {
@@ -10,6 +10,7 @@ function Quiz(props) {
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
+    const [collapseId, setCollapseId] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
@@ -71,6 +72,17 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const collapseListener = (currentCollapseId) => {
+
+        if (currentCollapseId) {
+            currentCollapseId = false;
+        } else {
+            currentCollapseId = true;
+        }
+
+        setCollapseId(currentCollapseId);
+    }
     
     return (
         <div className="sg-controls">
@@ -103,7 +115,7 @@ function Quiz(props) {
                                                                 isEditQuestion === false ?
                                                                     <Accordion key={'accordion-quiz-question-' + index}>
                                                                         <Card>
-                                                                            <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2">
+                                                                            <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)}>
                                                                                 <span>{index+1 + '. '}</span>
                                                                                 <span className="ml-2">{item.question}</span>
                                                                                 <button
@@ -125,6 +137,9 @@ function Quiz(props) {
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faEdit}/>
                                                                                 </button>
+                                                                                <span className="float-right mr-2">
+                                                                                    <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
+                                                                                </span>
                                                                             </Accordion.Toggle>
                                                                             <Accordion.Collapse eventKey={index}>
                                                                                 <Card.Body className="p-2">
