@@ -242,14 +242,8 @@ function Quiz(props) {
                                     type="text"
                                     placeholder=""
                                     onChange={(event) => props.setFeatureId(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
-                                            currentColumn.content[contentIndex].id 
-                                            : 
-                                            ''
-                                        : 
-                                        '' 
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id && currentColumn.content[currentColumnContentIndex][contentIndex].id
                                     }
                                 />
                             </div>
@@ -264,13 +258,7 @@ function Quiz(props) {
                                     placeholder=""
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
-                                            currentColumn.content[contentIndex].class 
-                                            : 
-                                            ''
-                                        : 
-                                        '' 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].class && currentColumn.content[currentColumnContentIndex][contentIndex].class
                                     }
                                 />
                             </div>
