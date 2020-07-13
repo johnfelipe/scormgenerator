@@ -288,7 +288,7 @@ function Quiz(props) {
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
                                                                         <div className="quiz-control-input-label">
-                                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length}.</span>
                                                                         </div>
                                                                         <div className="quiz-control-input">
                                                                             <input
@@ -303,7 +303,7 @@ function Quiz(props) {
                                                                         <div className="quiz-control-button">
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                className="btn btn-success btn-sm"
                                                                                 onClick={() => {
                                                                                     const isEmpty = document.getElementById("question");
                                                                                     
@@ -322,19 +322,59 @@ function Quiz(props) {
                                                         </li>
                                                     ))}
                                                     <li className="quiz-question-list-item mt-2">
-                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                        <div className="quiz-control-input-wrapper">
+                                                            <div className="quiz-control-input-label">
+                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                            </div>
+                                                            <div className="quiz-control-input">
+                                                                <input
+                                                                    id="question"
+                                                                    name="question"
+                                                                    type="text"
+                                                                    placeholder="Type question here. . ."
+                                                                    onChange={(event) => setQuestion(event.target.value)}
+                                                                    value={question}
+                                                                />
+                                                            </div>
+                                                            <div className="quiz-control-button">
+                                                                <button
+                                                                    type="button"
+                                                                    className="btn btn-success btn-sm"
+                                                                    onClick={() => {
+                                                                        const isEmpty = document.getElementById("question");
+                                                                        
+                                                                        if (isEmpty.value !== "") {
+                                                                            addQuestion(question);
+                                                                            setQuestion('');
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </>
+                                        :
+                                            <li className="quiz-question-list-item">
+                                                <div className="quiz-control-input-wrapper">
+                                                    <div className="quiz-control-input-label">
+                                                        <span>1.</span>
+                                                    </div>
+                                                    <div className="quiz-control-input">
                                                         <input
                                                             id="question"
                                                             name="question"
-                                                            className="ml-2 mt-1"
                                                             type="text"
                                                             placeholder="Type question here. . ."
                                                             onChange={(event) => setQuestion(event.target.value)}
                                                             value={question}
                                                         />
+                                                    </div>
+                                                    <div className="quiz-control-button">
                                                         <button
                                                             type="button"
-                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                            className="btn btn-success btn-sm"
                                                             onClick={() => {
                                                                 const isEmpty = document.getElementById("question");
                                                                 
@@ -346,34 +386,8 @@ function Quiz(props) {
                                                         >
                                                             <FontAwesomeIcon icon={faArrowAltCircleRight}/>
                                                         </button>
-                                                    </li>
-                                                </>
-                                        :
-                                            <li className="quiz-question-list-item">
-                                                <span>1.</span>
-                                                <input
-                                                    id="question"
-                                                    name="question"
-                                                    className="ml-2"
-                                                    type="text"
-                                                    placeholder="Type question here. . ."
-                                                    onChange={(event) => setQuestion(event.target.value)}
-                                                    value={question}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                    onClick={() => {
-                                                        const isEmpty = document.getElementById("question");
-
-                                                        if (isEmpty.value !== "") {
-                                                            addQuestion(question);
-                                                            setQuestion('');
-                                                        }
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                </button>
+                                                    </div>
+                                                </div>
                                             </li>             
                                     }
                                 </ul>
