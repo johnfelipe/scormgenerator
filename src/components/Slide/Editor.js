@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Audio from './Features/Audio';
 import ContentArea from './Features/ContentArea';
 import HomePage from './Features/HomePage';
-import Quiz from './Features/Quiz';
+import Quiz from './Features/Quiz/Quiz';
 
 class Editor extends Component {
 
@@ -103,6 +103,7 @@ class Editor extends Component {
         } else if (this.props.feature === "quiz") {
             editorContent = (
                 <Quiz
+                    setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}
@@ -111,11 +112,6 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
-                    addQuestion={this.props.addQuestion}
-                    editQuestion={this.props.editQuestion}
-                    deleteQuestion={this.props.deleteQuestion}
-                    addAnswer={this.props.addAnswer}
-                    setAnswer={this.props.setAnswer}
                 />
             );
         } else if (this.props.feature === "homePage") {

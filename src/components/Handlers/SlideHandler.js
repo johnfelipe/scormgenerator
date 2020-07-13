@@ -15,7 +15,10 @@ import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
+
+// feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
+import QuizMultipleLayout from '../Slide/Layouts/QuizMultipleLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -68,11 +71,6 @@ class SlideHandler extends Component {
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
-        this.addQuestion = this.addQuestion.bind(this);
-        this.editQuestion = this.editQuestion.bind(this);
-        this.deleteQuestion = this.deleteQuestion.bind(this);
-        this.addAnswer = this.addAnswer.bind(this);
-        this.setAnswer = this.setAnswer.bind(this);
         this.setColumn = this.setColumn.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -1044,93 +1042,6 @@ class SlideHandler extends Component {
         })
     }
 
-    addQuestion = (value, contentIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        const question = {
-            question: value,
-            answers: [],
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
-    editQuestion = (value, contentIndex, questionIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
-    deleteQuestion = (contentIndex, questionIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
-    addAnswer = (value, contentIndex, questionIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        const answer = {
-            answer: value,
-            correct: '',
-        }
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
-    setAnswer = (value, contentIndex, questionIndex, answerIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
-
-        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
-
-        for (let i = 0; i < arrayLength; i++) {
-            if (i !== answerIndex) {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
-            }
-        }
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
     setColumn = (column) => {
 
         const columns = this.state.column;
@@ -1362,11 +1273,6 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
-                                                            addQuestion={this.addQuestion}
-                                                            editQuestion={this.editQuestion}
-                                                            deleteQuestion={this.deleteQuestion}
-                                                            addAnswer={this.addAnswer}
-                                                            setAnswer={this.setAnswer}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -1438,12 +1344,10 @@ class SlideHandler extends Component {
                                                                                                                         backgroundImg={contentFirst.output.backgroundImg}
                                                                                                                     />
                                                                                                                 :
-                                                                                                                    typeof contentFirst.output === 'object' ?
-                                                                                                                        contentFirst.output.map((item, index) => (
-                                                                                                                            <div key={'column-question-' + index}>
-                                                                                                                                <span>{index+1 + '. ' + item.question}</span>
-                                                                                                                            </div>
-                                                                                                                        ))
+                                                                                                                    contentFirst.type === 'quiz' ?
+                                                                                                                        <QuizMultipleLayout
+                                                                                                                            quiz={contentFirst.output}
+                                                                                                                        />
                                                                                                                     :
                                                                                                                         ReactHtmlParser(contentFirst.output)
                                                                                                             }
