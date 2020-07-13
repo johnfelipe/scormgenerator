@@ -14,6 +14,19 @@ function Quiz(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+
+    const addQuestion = (value) => {
+        const currentColumnObj = currentColumn;
+
+        const question = {
+            question: value,
+            answers: [],
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -262,7 +275,7 @@ function Quiz(props) {
                                                                 const isEmpty = document.getElementById("question");
                                                                 
                                                                 if (isEmpty.value !== "") {
-                                                                    props.addQuestion(question, contentIndex);
+                                                                    addQuestion(question);
                                                                     setQuestion('');
                                                                 }
                                                             }}
@@ -290,7 +303,7 @@ function Quiz(props) {
                                                         const isEmpty = document.getElementById("question");
 
                                                         if (isEmpty.value !== "") {
-                                                            props.addQuestion(question, contentIndex);
+                                                            addQuestion(question);
                                                             setQuestion('');
                                                         }
                                                     }}

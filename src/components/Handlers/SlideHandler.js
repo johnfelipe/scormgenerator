@@ -68,7 +68,6 @@ class SlideHandler extends Component {
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
-        this.addQuestion = this.addQuestion.bind(this);
         this.editQuestion = this.editQuestion.bind(this);
         this.deleteQuestion = this.deleteQuestion.bind(this);
         this.addAnswer = this.addAnswer.bind(this);
@@ -1044,25 +1043,6 @@ class SlideHandler extends Component {
         })
     }
 
-    addQuestion = (value, contentIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        const question = {
-            question: value,
-            answers: [],
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
     editQuestion = (value, contentIndex, questionIndex) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
@@ -1362,7 +1342,6 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
-                                                            addQuestion={this.addQuestion}
                                                             editQuestion={this.editQuestion}
                                                             deleteQuestion={this.deleteQuestion}
                                                             addAnswer={this.addAnswer}
