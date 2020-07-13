@@ -10,12 +10,16 @@ function Quiz(props) {
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [editQuestion, setEditQuestion] = useState(false);
     const [addAnswer, setAddAnswer] = useState(false);
+
+    const currentColumn = props.currentColumn;
+    const contentIndex = props.contentIndex;
+    const currentColumnContentIndex = props.currentColumnContentIndex;
     
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
                     </button>
@@ -34,9 +38,9 @@ function Quiz(props) {
                             <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
                                 <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
                                     {
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length > 0 ? 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
                                                 <>
-                                                    {props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.map((item, index) => (
+                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
                                                         <li key={'number-' + index} className="quiz-question-list-item">
                                                             {
                                                                 editQuestion === false ?
@@ -49,7 +53,7 @@ function Quiz(props) {
                                                                                     type="button"
                                                                                     className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                                                                                     onClick={() => {
-                                                                                        props.deleteQuestion(props.contentIndex, index)
+                                                                                        props.deleteQuestion(contentIndex, index)
                                                                                     }}
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faTrash}/>
@@ -87,7 +91,7 @@ function Quiz(props) {
                                                                                                         const isEmpty = document.getElementById("answer");
                                                                                                         
                                                                                                         if (isEmpty.value !== "") {
-                                                                                                            props.addAnswer(answer, props.contentIndex, index);
+                                                                                                            props.addAnswer(answer, contentIndex, index);
                                                                                                             setAnswer('');
                                                                                                             setAddAnswer(false);
                                                                                                         }
@@ -124,7 +128,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -145,7 +149,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -166,7 +170,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -187,7 +191,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, props.contentIndex, index, answerIndex)
+                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -211,7 +215,7 @@ function Quiz(props) {
                                                                     </Accordion>
                                                                 :
                                                                     <>
-                                                                        <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
+                                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                                         <input
                                                                             id="question"
                                                                             name="question"
@@ -228,7 +232,7 @@ function Quiz(props) {
                                                                                 const isEmpty = document.getElementById("question");
                                                                                 
                                                                                 if (isEmpty.value !== "") {
-                                                                                    props.editQuestion(updateQuestion, props.contentIndex, index);
+                                                                                    props.editQuestion(updateQuestion, contentIndex, index);
                                                                                     setUpdateQuestion('');
                                                                                     setEditQuestion(false);
                                                                                 }
@@ -241,7 +245,7 @@ function Quiz(props) {
                                                         </li>
                                                     ))}
                                                     <li className="quiz-question-list-item mt-2">
-                                                        <span>{props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output.length+1}.</span>
+                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                         <input
                                                             id="question"
                                                             name="question"
@@ -258,7 +262,7 @@ function Quiz(props) {
                                                                 const isEmpty = document.getElementById("question");
                                                                 
                                                                 if (isEmpty.value !== "") {
-                                                                    props.addQuestion(question, props.contentIndex);
+                                                                    props.addQuestion(question, contentIndex);
                                                                     setQuestion('');
                                                                 }
                                                             }}
@@ -286,7 +290,7 @@ function Quiz(props) {
                                                         const isEmpty = document.getElementById("question");
 
                                                         if (isEmpty.value !== "") {
-                                                            props.addQuestion(question, props.contentIndex);
+                                                            props.addQuestion(question, contentIndex);
                                                             setQuestion('');
                                                         }
                                                     }}
@@ -315,11 +319,11 @@ function Quiz(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content.length > 0 ? 
-                                            props.currentColumn.content[props.contentIndex].id 
+                                        typeof currentColumn != "undefined" ? 
+                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
+                                            currentColumn.content[contentIndex].id 
                                             : 
                                             ''
                                         : 
@@ -336,11 +340,11 @@ function Quiz(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content.length > 0 ? 
-                                            props.currentColumn.content[props.contentIndex].class 
+                                        typeof currentColumn != "undefined" ? 
+                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
+                                            currentColumn.content[contentIndex].class 
                                             : 
                                             ''
                                         : 
