@@ -35,6 +35,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const deleteQuestion = (questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -74,7 +82,7 @@ function Quiz(props) {
                                                                                     type="button"
                                                                                     className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                                                                                     onClick={() => {
-                                                                                        props.deleteQuestion(contentIndex, index)
+                                                                                        deleteQuestion(index)
                                                                                     }}
                                                                                 >
                                                                                     <FontAwesomeIcon icon={faTrash}/>

@@ -68,7 +68,6 @@ class SlideHandler extends Component {
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
-        this.deleteQuestion = this.deleteQuestion.bind(this);
         this.addAnswer = this.addAnswer.bind(this);
         this.setAnswer = this.setAnswer.bind(this);
         this.setColumn = this.setColumn.bind(this);
@@ -1042,20 +1041,6 @@ class SlideHandler extends Component {
         })
     }
 
-    deleteQuestion = (contentIndex, questionIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
     addAnswer = (value, contentIndex, questionIndex) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
@@ -1327,7 +1312,6 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
-                                                            deleteQuestion={this.deleteQuestion}
                                                             addAnswer={this.addAnswer}
                                                             setAnswer={this.setAnswer}
                                                         />
