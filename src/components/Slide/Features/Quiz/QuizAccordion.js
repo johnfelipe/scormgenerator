@@ -102,7 +102,7 @@ function QuizAccordion(props) {
                         }
                         {
                             item.answers.length > 0 ?
-                                <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
+                                <ul className="quiz-question-list list-unstyled">
                                     {item.answers.map((item, answerIndex) => (
                                         <li key={Math.random()} className="quiz-question-list-item">
                                             <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
