@@ -1,0 +1,31 @@
+@mixin quiz-multiple {
+    html {
+        body {
+            div.modal {
+                div.modal-dialog {
+                    .modal-content {
+                        .modal-body {
+                            form {
+                                .row {
+                                    #slide-content {
+                                        #slide-content-container {
+                                            .container {
+                                                .sg-column {
+                                                    .content-output {
+                                                        #quiz-multiple-layout {
+                                                            text-align: left !important;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

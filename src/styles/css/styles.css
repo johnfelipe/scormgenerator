@@ -1205,4 +1205,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   word-break: break-all;
 }
 
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
+  text-align: left !important;
+}
+
 /*# sourceMappingURL=styles.css.map */

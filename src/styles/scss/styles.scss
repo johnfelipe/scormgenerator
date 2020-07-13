@@ -14,6 +14,7 @@
 @import "components/media-library";
 @import "components/media-uploader";
 @import "components/features/homepage";
+@import "components/features/quiz-multiple";
 
 @include defaults;
 @include header;
@@ -31,3 +32,4 @@
 @include media-library;
 @include media-uploader;
 @include homepage;
+@include quiz-multiple;
