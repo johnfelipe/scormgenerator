@@ -9,8 +9,17 @@ function QuizMultipleLayout(props) {
             {
                 quiz.length > 0 ?
                     quiz.map((item, itemIndex) => (
-                        <div key={itemIndex} className="question-group">
+                        <div key={"quiz-question-" + itemIndex} className="question-group">
                             <h3><span>{(itemIndex+1) + '. ' + item.question}</span></h3>
+                            <ul className="quiz-question-answers">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <span>{answer.answer}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                     ))
                 :
