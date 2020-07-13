@@ -68,7 +68,6 @@ class SlideHandler extends Component {
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
-        this.setAnswer = this.setAnswer.bind(this);
         this.setColumn = this.setColumn.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -1040,28 +1039,6 @@ class SlideHandler extends Component {
         })
     }
 
-    setAnswer = (value, contentIndex, questionIndex, answerIndex) => {
-        const currentColumnObj = this.state.column[this.state.activeColumnId];
-        const currentColumnContentIndex = this.state.currentColumnContentIndex;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
-
-        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
-
-        for (let i = 0; i < arrayLength; i++) {
-            if (i !== answerIndex) {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
-            }
-        }
-
-        const columns = this.state.column;
-        columns[this.state.activeColumnId] = currentColumnObj;
-
-        this.setState({
-            column: columns,
-        })
-    }
-
     setColumn = (column) => {
 
         const columns = this.state.column;
@@ -1293,7 +1270,6 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
-                                                            setAnswer={this.setAnswer}
                                                         />
                                                     </Tab>
                                                 </Tabs>

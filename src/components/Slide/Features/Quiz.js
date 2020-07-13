@@ -55,6 +55,22 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setCorrectAnswer = (value, questionIndex, answerIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
+
+        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
+
+        for (let i = 0; i < arrayLength; i++) {
+            if (i !== answerIndex) {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
+            }
+        }
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -169,7 +185,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
+                                                                                                                                        setCorrectAnswer(true, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -190,7 +206,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
+                                                                                                                                        setCorrectAnswer(true, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -211,7 +227,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
+                                                                                                                                        setCorrectAnswer(true, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
@@ -232,7 +248,7 @@ function Quiz(props) {
                                                                                                                                     title="Mark as answer"
                                                                                                                                     className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                                                     onClick={() => {
-                                                                                                                                        props.setAnswer(true, contentIndex, index, answerIndex)
+                                                                                                                                        setCorrectAnswer(true, index, answerIndex)
                                                                                                                                     }}
                                                                                                                                 >
                                                                                                                                     <FontAwesomeIcon icon={faCheck}/>
