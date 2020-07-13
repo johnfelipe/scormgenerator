@@ -15,7 +15,10 @@ import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
+
+// feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
+import QuizMultipleLayout from '../Slide/Layouts/QuizMultipleLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -1341,12 +1344,10 @@ class SlideHandler extends Component {
                                                                                                                         backgroundImg={contentFirst.output.backgroundImg}
                                                                                                                     />
                                                                                                                 :
-                                                                                                                    typeof contentFirst.output === 'object' ?
-                                                                                                                        contentFirst.output.map((item, index) => (
-                                                                                                                            <div key={'column-question-' + index}>
-                                                                                                                                <span>{index+1 + '. ' + item.question}</span>
-                                                                                                                            </div>
-                                                                                                                        ))
+                                                                                                                    contentFirst.type === 'quiz' ?
+                                                                                                                        <QuizMultipleLayout
+                                                                                                                            quiz={contentFirst.output}
+                                                                                                                        />
                                                                                                                     :
                                                                                                                         ReactHtmlParser(contentFirst.output)
                                                                                                             }
