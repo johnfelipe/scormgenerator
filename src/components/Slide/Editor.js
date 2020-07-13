@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Audio from './Features/Audio';
 import ContentArea from './Features/ContentArea';
 import HomePage from './Features/HomePage';
-import Quiz from './Features/Quiz';
+import Quiz from './Features/Quiz/Quiz';
 
 class Editor extends Component {
 
