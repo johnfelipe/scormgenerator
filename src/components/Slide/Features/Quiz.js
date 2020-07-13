@@ -8,7 +8,7 @@ function Quiz(props) {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
-    const [editQuestion, setEditQuestion] = useState(false);
+    const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [addAnswer, setAddAnswer] = useState(false);
 
     const currentColumn = props.currentColumn;
@@ -24,6 +24,14 @@ function Quiz(props) {
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editQuestion = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -56,7 +64,7 @@ function Quiz(props) {
                                                     {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
                                                         <li key={'number-' + index} className="quiz-question-list-item">
                                                             {
-                                                                editQuestion === false ?
+                                                                isEditQuestion === false ?
                                                                     <Accordion key={'accordion-quiz-question-' + index}>
                                                                         <Card>
                                                                             <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2">
@@ -75,7 +83,7 @@ function Quiz(props) {
                                                                                     type="button"
                                                                                     className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                                                                                     onClick={() => {
-                                                                                        setEditQuestion(true);
+                                                                                        setIsEditQuestion(true);
                                                                                         setUpdateQuestion(item.question);
                                                                                     }}
                                                                                 >
@@ -245,9 +253,9 @@ function Quiz(props) {
                                                                                 const isEmpty = document.getElementById("question");
                                                                                 
                                                                                 if (isEmpty.value !== "") {
-                                                                                    props.editQuestion(updateQuestion, contentIndex, index);
+                                                                                    editQuestion(updateQuestion, index);
                                                                                     setUpdateQuestion('');
-                                                                                    setEditQuestion(false);
+                                                                                    setIsEditQuestion(false);
                                                                                 }
                                                                             }}
                                                                         >
