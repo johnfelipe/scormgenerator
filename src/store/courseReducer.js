@@ -17,7 +17,7 @@ const initialState = {
     columns: [],
 }
 
-const reducer = (state = initialState, action) => {
+export default function courseReducer (state = initialState, action) {
     switch (action.type) {
         case types.ADD_COURSE_TITLE: return methods.addCourseTitle(state, action);
 
@@ -62,5 +62,3 @@ const reducer = (state = initialState, action) => {
         }
     }
 }
-
-export default reducer;
