@@ -37,11 +37,14 @@ function QuizMultipleLayout(props) {
                                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                                         </div>
                                         <div className="col-md-8">
-                                            <ReactAudioPlayer
-                                                src="http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-                                                autoPlay
-                                                controls
-                                            />
+                                            {
+                                                objectHelpers.isEmpty(item.audio) === false &&
+                                                <ReactAudioPlayer
+                                                    src={item.audio.url}
+                                                    controls
+                                                    title={item.audio.name}
+                                                />
+                                            }
                                             <ul className="quiz-question-answers list-unstyled">
                                                 {
                                                     item.answers.map((answer, answerIndex) => (
