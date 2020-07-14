@@ -21,7 +21,7 @@ function QuizMultipleLayout(props) {
                                             {
                                                 item.answers.map((answer, answerIndex) => (
                                                     <li key={"quiz-question-answer" + answerIndex}>
-                                                        <div class="custom-control custom-checkbox mb-3">
+                                                        <div class="custom-control custom-checkbox mb-2">
                                                             <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
                                                             <label class="custom-control-label" for={"answer-" + answerIndex}>{answer.answer}</label>
                                                         </div>
@@ -36,11 +36,12 @@ function QuizMultipleLayout(props) {
                                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                                         </div>
                                         <div className="col-md-8">
+                                        
                                             <ul className="quiz-question-answers list-unstyled">
                                                 {
                                                     item.answers.map((answer, answerIndex) => (
                                                         <li key={"quiz-question-answer" + answerIndex}>
-                                                            <div class="custom-control custom-checkbox mb-3">
+                                                            <div class="custom-control custom-checkbox mb-2">
                                                                 <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
                                                                 <label class="custom-control-label" for={"answer-" + answerIndex}>{answer.answer}</label>
                                                             </div>
