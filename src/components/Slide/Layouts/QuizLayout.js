@@ -1,5 +1,6 @@
 import React from 'react';
 import { objectHelpers } from '../../../helpers';
+import ReactAudioPlayer from 'react-audio-player';
 
 function QuizMultipleLayout(props) {
     
@@ -36,14 +37,18 @@ function QuizMultipleLayout(props) {
                                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                                         </div>
                                         <div className="col-md-8">
-                                        
+                                            <ReactAudioPlayer
+                                                src="http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+                                                autoPlay
+                                                controls
+                                            />
                                             <ul className="quiz-question-answers list-unstyled">
                                                 {
                                                     item.answers.map((answer, answerIndex) => (
                                                         <li key={"quiz-question-answer" + answerIndex}>
                                                             <div class="custom-control custom-checkbox mb-2">
                                                                 <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                                                <label class="custom-control-label" for={"answer-" + answerIndex}>{answer.answer}</label>
+                                                                <label class="custom-control-label" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
                                                             </div>
                                                         </li>
                                                     ))
