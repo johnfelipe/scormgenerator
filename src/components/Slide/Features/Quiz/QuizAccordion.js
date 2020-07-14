@@ -23,22 +23,33 @@ function QuizAccordion(props) {
         setCollapseId(currentCollapseId);
     }
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e, index) => {
         e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
+            console.log(files[0]);
             console.log(files[0].name);
             console.log(reader.result);
+
+            const imgObj = {
+                name: files[0].name,
+                size: files[0].size,
+                type: files[0].type,
+                url: reader.result,
+                lastModified: files[0].lastModified,
+            }
+
+            props.addImageQuestion(imgObj, index);
         }
     }
 
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)}>
+                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
                     <span>{index+1 + '. '}</span>
                     <span className="ml-2">{item.question}</span>
                     <button
@@ -102,9 +113,9 @@ function QuizAccordion(props) {
                                 </div>
                             :
                                 <div className="quiz-question-action-button">
-                                    <label className="input-group-btn">
+                                    <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
-                                            Add question file/s<input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                            Add question file/s<input type="file" style={{ display: "none"}} onChange={(e) => handleImageChange(e, index)}/>
                                         </span>
                                     </label>
                                     <button
