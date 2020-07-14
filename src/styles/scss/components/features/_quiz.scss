@@ -15,13 +15,13 @@
                                                         #quiz-multiple-layout {
                                                             text-align: left !important;
 
-                                                            .question-group {
-                                                                ul.quiz-question-answers {
-                                                                    columns: 2;
-                                                                    -webkit-columns: 2;
-                                                                    -moz-columns: 2;
-                                                                }
-                                                            }
+                                                            // .question-group {
+                                                            //     ul.quiz-question-answers {
+                                                            //         columns: 2;
+                                                            //         -webkit-columns: 2;
+                                                            //         -moz-columns: 2;
+                                                            //     }
+                                                            // }
                                                         }
                                                     }
                                                 }
@@ -34,11 +34,12 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 ul.quiz-question-list {
                                                     .quiz-question-list-item {
-                                                        ul.quiz-question-list {
-                                                            columns: 2;
-                                                            -webkit-columns: 2;
-                                                            -moz-columns: 2;
-                                                        }
+                                                        // ul.quiz-question-list {
+                                                        //     columns: 2;
+                                                        //     -webkit-columns: 2;
+                                                        //     -moz-columns: 2;
+                                                        // }
+                                                        
                                                         .quiz-control-input-wrapper {
                                                             display: flex;
                                                             align-items: flex-start;
