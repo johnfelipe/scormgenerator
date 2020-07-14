@@ -288,7 +288,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1058,7 +1058,7 @@ class SlideHandler extends Component {
             this.props.addSlideChange(slideObj, slideId);
             console.log("add");
         } else if (this.props.action === "edit") {
-            const slideObj = {slideName: slide, columns: columns}
+            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.editSlideChange(slideObj, slideId, this.props.currentClickedLessonId);
             console.log("edit");
         }
@@ -1376,6 +1376,7 @@ class SlideHandler extends Component {
                                                                                                                         date={contentFirst.output.date}
                                                                                                                         courseId={contentFirst.output.courseId}
                                                                                                                         backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                        homePageClass={contentFirst.class}
                                                                                                                     />
                                                                                                                 :
                                                                                                                     contentFirst.type === 'quiz' ?
