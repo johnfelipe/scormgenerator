@@ -18,7 +18,7 @@ import CssEditor from '../Slide/CssEditor';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
-import QuizMultipleLayout from '../Slide/Layouts/QuizMultipleLayout';
+import QuizMultipleLayout from '../Slide/Layouts/QuizLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
