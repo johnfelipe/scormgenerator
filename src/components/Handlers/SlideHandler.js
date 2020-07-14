@@ -1058,7 +1058,7 @@ class SlideHandler extends Component {
             this.props.addSlideChange(slideObj, slideId);
             console.log("add");
         } else if (this.props.action === "edit") {
-            const slideObj = {slideName: slide, columns: columns}
+            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.editSlideChange(slideObj, slideId, this.props.currentClickedLessonId);
             console.log("edit");
         }
