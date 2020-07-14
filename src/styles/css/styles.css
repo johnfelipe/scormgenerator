@@ -1203,9 +1203,6 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #4c2157;
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
   padding: 25px;
   text-align: left !important;
   width: 250px;
@@ -1228,6 +1225,26 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   line-height: 25px;
   margin: 10px 0 0 0;
   word-break: break-all;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-bottom-left {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-top-left {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-bottom-right {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-top-right {
+  position: absolute;
+  top: 50px;
+  right: 50px;
 }
 
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
