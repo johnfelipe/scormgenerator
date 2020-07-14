@@ -152,13 +152,31 @@ function HomePage(props) {
                     </ul>
                 </div>
             </div>
-            {/* <div className="sg-control sg-control-group">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Customize</label>
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="course-title-top-left">Top-left</option>
+                                    <option value="course-title-bottom-left">Bottom-left</option>
+                                    <option value="course-title-top-right">Top-right</option>
+                                    <option value="course-title-bottom-right">Bottom-right</option>
+                                </select>
+                            </div>
+                        </li>
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
                             </div>
@@ -222,10 +240,10 @@ function HomePage(props) {
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
