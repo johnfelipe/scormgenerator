@@ -23,6 +23,18 @@ function QuizAccordion(props) {
         setCollapseId(currentCollapseId);
     }
 
+    const handleImageChange = (e) => {
+        e.preventDefault();
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            console.log(files[0].name);
+            console.log(reader.result);
+        }
+    }
+
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
             <Card>
@@ -90,15 +102,11 @@ function QuizAccordion(props) {
                                 </div>
                             :
                                 <div className="quiz-question-action-button">
-                                    <button
-                                        type="button"
-                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                        onClick={() => {
-                                            props.setIsAddAnswer(true);
-                                        }}
-                                    >
-                                        Add question file/s
-                                    </button>
+                                    <label className="input-group-btn">
+                                        <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
+                                            Add question file/s<input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                        </span>
+                                    </label>
                                     <button
                                         type="button"
                                         className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
