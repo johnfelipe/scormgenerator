@@ -30,19 +30,30 @@ function QuizAccordion(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            console.log(files[0]);
-            console.log(files[0].name);
-            console.log(reader.result);
 
-            const imgObj = {
-                name: files[0].name,
-                size: files[0].size,
-                type: files[0].type,
-                url: reader.result,
-                lastModified: files[0].lastModified,
+            if (~files[0].type.indexOf('image')) {
+                const imgObj = {
+                    name: files[0].name,
+                    size: files[0].size,
+                    type: files[0].type,
+                    url: reader.result,
+                    lastModified: files[0].lastModified,
+                }
+    
+                props.addImageQuestion(imgObj, index);
+            } else if (~files[0].type.indexOf('audio')) {
+                const audioObj = {
+                    name: files[0].name,
+                    size: files[0].size,
+                    type: files[0].type,
+                    url: reader.result,
+                    lastModified: files[0].lastModified,
+                }
+    
+                props.addAudioQuestion(audioObj, index);
             }
 
-            props.addImageQuestion(imgObj, index);
+            
         }
     }
 
