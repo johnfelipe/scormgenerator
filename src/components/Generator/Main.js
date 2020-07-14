@@ -424,6 +424,7 @@ class Main extends Component {
                                                                                                             <SlideHandler
                                                                                                                 editSlideChange={this.props.editLessonSlide}
                                                                                                                 currentSlideName={item.slideName}
+                                                                                                                currentSlideSubtitle={item.slideSubtitle}
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                                 action="edit"

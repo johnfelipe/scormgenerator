@@ -73,6 +73,22 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addImageQuestion = (imgObj, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].img = imgObj;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addAudioQuestion = (audioObj, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].audio = audioObj;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -115,6 +131,8 @@ function Quiz(props) {
                                                                         setCorrectAnswer={setCorrectAnswer}
                                                                         IsAddAnswer={IsAddAnswer}
                                                                         answer={answer}
+                                                                        addImageQuestion={addImageQuestion}
+                                                                        addAudioQuestion={addAudioQuestion}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">

@@ -18,7 +18,7 @@ import CssEditor from '../Slide/CssEditor';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
-import QuizMultipleLayout from '../Slide/Layouts/QuizMultipleLayout';
+import QuizMultipleLayout from '../Slide/Layouts/QuizLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -1052,9 +1052,9 @@ class SlideHandler extends Component {
         })
     }
 
-    onSave = (slide, columns, slideId) => {
+    onSave = (slide, subtitle, columns, slideId) => {
         if (this.props.action === "add") {
-            const slideObj = {slideName: slide, columns: columns}
+            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.addSlideChange(slideObj, slideId);
             console.log("add");
         } else if (this.props.action === "edit") {
@@ -1089,13 +1089,12 @@ class SlideHandler extends Component {
                     <Formik
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
+                            slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
                             showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : '',
                         }}
 
                         onSubmit={values => {
-                            console.log(values.slideName);
-                            console.log(values.showTitle);
-                            this.onSave(values.slideName, this.state.column, this.props.slideId);
+                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.slideId);
 
                             // create slide
                             // lid and uid are temporary
@@ -1110,6 +1109,8 @@ class SlideHandler extends Component {
                         validationSchema={Yup.object().shape({
                             slideName: Yup.string()
                             .required("Slide name required"),
+                            slideSubtitle: Yup.string()
+                            .required("Slide subtitle required"),
                         }
                     )}
                     >
@@ -1167,8 +1168,41 @@ class SlideHandler extends Component {
                                         onBlur={handleBlur}
                                     />
                                     <label htmlFor="showTitle" className="ml-1"> Display Title</label>
+                                    <label htmlFor="slideSubtitle" className="d-block">Slide Subtitle:</label>
+                                    <input
+                                        id="slideSubtitle"
+                                        name="slideSubtitle"
+                                        type="text"
+                                        className={(errors.slideSubtitle && touched.slideSubtitle && "error form-control d-inline") || "form-control d-inline"}
+                                        onBlur={(e) => {
+                                                handleBlur(e)
+
+                                                if (e.target.value.trim() === "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: false,
+                                                    })
+                                                }
+
+                                            }
+                                        }
+                                        value={values.slideSubtitle}
+                                        onChange={(e) => {
+                                                handleChange(e)
+
+                                                if (e.target.value.trim() !== "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: true,
+                                                    })
+                                                }
+                                            }
+                                        }
+                                        placeholder="Type slide subtitle here . . ."
+                                    />
+                                    {errors.slideSubtitle && touched.slideSubtitle && (
+                                        <div className="input-feedback">{errors.slideSubtitle}</div>
+                                    )}
                                     <DragDropContext onDragEnd={this.onDragEnd}>
-                                        <div className="row">
+                                        <div className="row mt-2">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
                                                 <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
                                                     <Tab eventKey="column" title="Column" className="mt-1">

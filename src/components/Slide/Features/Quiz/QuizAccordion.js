@@ -23,10 +23,44 @@ function QuizAccordion(props) {
         setCollapseId(currentCollapseId);
     }
 
+    const handleFileChange = (e, index) => {
+        e.preventDefault();
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+
+            if (~files[0].type.indexOf('image')) {
+                const imgObj = {
+                    name: files[0].name,
+                    size: files[0].size,
+                    type: files[0].type,
+                    url: reader.result,
+                    lastModified: files[0].lastModified,
+                }
+    
+                props.addImageQuestion(imgObj, index);
+            } else if (~files[0].type.indexOf('audio')) {
+                const audioObj = {
+                    name: files[0].name,
+                    size: files[0].size,
+                    type: files[0].type,
+                    url: reader.result,
+                    lastModified: files[0].lastModified,
+                }
+    
+                props.addAudioQuestion(audioObj, index);
+            }
+
+            
+        }
+    }
+
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)}>
+                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
                     <span>{index+1 + '. '}</span>
                     <span className="ml-2">{item.question}</span>
                     <button
@@ -89,107 +123,47 @@ function QuizAccordion(props) {
                                     </div>
                                 </div>
                             :
-                                item.answers.length !== 4 &&
-                                <button
-                                    type="button"
-                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                    onClick={() => {
-                                        props.setIsAddAnswer(true);
-                                    }}
-                                >
-                                    Add
-                                </button>
+                                <div className="quiz-question-action-button">
+                                    <label className="input-group-btn" style={{ cursor: 'pointer' }}>
+                                        <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
+                                            Add question file/s<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
+                                        </span>
+                                    </label>
+                                    <button
+                                        type="button"
+                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                        onClick={() => {
+                                            props.setIsAddAnswer(true);
+                                        }}
+                                    >
+                                        Add answers
+                                    </button>
+                                </div>
                         }
                         {
                             item.answers.length > 0 ?
-                                <ul className="quiz-question-list list-unstyled">
+                                <ul className="quiz-question-list">
                                     {item.answers.map((item, answerIndex) => (
                                         <li key={Math.random()} className="quiz-question-list-item">
                                             <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
-                                                {
-                                                    answerIndex === 0 && 
-                                                    <span key={'quiz-feature-answer-list-item-' + answerIndex}>
-                                                        {'a. ' + item.answer}&nbsp;
-                                                            {
-                                                                item.correct === '' ?
-                                                                    <button
-                                                                        title="Mark as answer"
-                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                        onClick={() => {
-                                                                            props.setCorrectAnswer(true, index, answerIndex)
-                                                                        }}
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faCheck}/>
-                                                                    </button>
-                                                                :
-                                                                    item.correct &&
-                                                                    <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                            }
-                                                    </span>
-                                                }
-                                                {
-                                                    answerIndex === 1 && 
-                                                    <span key={'quiz-feature-answer-list-item-' + answerIndex}>
-                                                        {'b. ' + item.answer}&nbsp;
-                                                            {
-                                                                item.correct === '' ?
-                                                                    <button
-                                                                        title="Mark as answer"
-                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                        onClick={() => {
-                                                                            props.setCorrectAnswer(true, index, answerIndex)
-                                                                        }}
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faCheck}/>
-                                                                    </button>
-                                                                :
-                                                                    item.correct &&
-                                                                    <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                            }
-                                                    </span>
-                                                }
-                                                {
-                                                    answerIndex === 2 && 
-                                                    <span key={'quiz-feature-answer-list-item-' + answerIndex}>
-                                                        {'c. ' + item.answer}&nbsp;
-                                                            {
-                                                                item.correct === '' ?
-                                                                    <button
-                                                                        title="Mark as answer"
-                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                        onClick={() => {
-                                                                            props.setCorrectAnswer(true, index, answerIndex)
-                                                                        }}
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faCheck}/>
-                                                                    </button>
-                                                                :
-                                                                    item.correct &&
-                                                                    <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                            }
-                                                    </span>
-                                                }
-                                                {
-                                                    answerIndex === 3 && 
-                                                    <span key={'quiz-feature-answer-list-item-' + answerIndex}>
-                                                        {'d. ' + item.answer}&nbsp;
-                                                            {
-                                                                item.correct === '' ?
-                                                                    <button
-                                                                        title="Mark as answer"
-                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                        onClick={() => {
-                                                                            props.setCorrectAnswer(true, index, answerIndex)
-                                                                        }}
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faCheck}/>
-                                                                    </button>
-                                                                :
-                                                                    item.correct &&
-                                                                    <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                            }
-                                                    </span>
-                                                }
+                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                    {item.answer}&nbsp;
+                                                        {
+                                                            item.correct === '' ?
+                                                                <button
+                                                                    title="Mark as answer"
+                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                    onClick={() => {
+                                                                        props.setCorrectAnswer(true, index, answerIndex)
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                </button>
+                                                            :
+                                                                item.correct &&
+                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                        }
+                                                </span>
                                             </span>
                                         </li>
                                     ))}
