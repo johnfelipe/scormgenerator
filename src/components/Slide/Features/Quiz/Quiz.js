@@ -253,6 +253,22 @@ function Quiz(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
+                                <span>Question Files Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="question-files-left">Left</option>
+                                    <option value="question-files-right">Right</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
                                 <span>ID</span>
                             </div>
                             <div className="sg-control-input-list-input">
@@ -262,21 +278,6 @@ function Quiz(props) {
                                     onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={
                                         currentColumn.content[currentColumnContentIndex][contentIndex].id && currentColumn.content[currentColumnContentIndex][contentIndex].id
-                                    }
-                                />
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Class</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].class && currentColumn.content[currentColumnContentIndex][contentIndex].class
                                     }
                                 />
                             </div>
