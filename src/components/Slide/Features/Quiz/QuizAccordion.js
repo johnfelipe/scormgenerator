@@ -58,12 +58,19 @@ function QuizAccordion(props) {
                     type: files[0].type,
                     url: reader.result,
                     lastModified: files[0].lastModified,
+                    caption: '',
                 }
     
                 props.addVideoQuestion(videoObj, index);
-            }
+            } else if (files[0].type === "") {
+                const fileExt = files[0].name.split(".");
 
-            
+                if (fileExt[1] === 'vtt') {
+                    const captionUrl = reader.result;
+        
+                    props.addVideoQuestionCaption(captionUrl, index);
+                }
+            }
         }
     }
 
