@@ -173,6 +173,7 @@ function HomePage(props) {
                                     <option value="course-title-bottom-left">Bottom-left</option>
                                     <option value="course-title-top-right">Top-right</option>
                                     <option value="course-title-bottom-right">Bottom-right</option>
+                                    <option value="course-title-center">Center</option>
                                 </select>
                             </div>
                         </li>
