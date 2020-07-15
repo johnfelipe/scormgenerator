@@ -596,9 +596,9 @@ body.video-react-full-window .video-react-fullscreen {
   font-size: 1.8em;
   line-height: 1.67;
 }
-.video-react .video-react-control:focus:before, .video-react .video-react-control:hover:before, .video-react .video-react-control:focus {
+/* .video-react .video-react-control:focus:before, .video-react .video-react-control:hover:before, .video-react .video-react-control:focus {
   text-shadow: 0em 0em 1em #fff, 0em 0em 0.5em #fff;
-}
+} */
 
 .video-react .video-react-control-text {
   border: 0;
