@@ -97,6 +97,18 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addVideoQuestionCaption = (captionUrl, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video !== undefined) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video.caption = captionUrl;
+        } else {
+            alert('PLease upload a video first!');
+        }
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -142,6 +154,7 @@ function Quiz(props) {
                                                                         addImageQuestion={addImageQuestion}
                                                                         addAudioQuestion={addAudioQuestion}
                                                                         addVideoQuestion={addVideoQuestion}
+                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
