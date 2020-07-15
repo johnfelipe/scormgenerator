@@ -51,6 +51,16 @@ function QuizAccordion(props) {
                 }
     
                 props.addAudioQuestion(audioObj, index);
+            } else if (~files[0].type.indexOf('video')) {
+                const videoObj = {
+                    name: files[0].name,
+                    size: files[0].size,
+                    type: files[0].type,
+                    url: reader.result,
+                    lastModified: files[0].lastModified,
+                }
+    
+                props.addVideoQuestion(videoObj, index);
             }
 
             

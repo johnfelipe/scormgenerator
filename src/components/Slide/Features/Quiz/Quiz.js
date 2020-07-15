@@ -89,6 +89,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addVideoQuestion = (videoObj, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video = videoObj;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -133,6 +141,7 @@ function Quiz(props) {
                                                                         answer={answer}
                                                                         addImageQuestion={addImageQuestion}
                                                                         addAudioQuestion={addAudioQuestion}
+                                                                        addVideoQuestion={addVideoQuestion}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
@@ -267,7 +276,7 @@ function Quiz(props) {
                                 </select>
                             </div>
                         </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
                             </div>
@@ -281,7 +290,7 @@ function Quiz(props) {
                                     }
                                 />
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
