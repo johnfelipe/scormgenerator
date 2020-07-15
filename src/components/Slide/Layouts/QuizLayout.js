@@ -1,7 +1,7 @@
 import React from 'react';
 import { objectHelpers } from '../../../helpers';
 import ReactAudioPlayer from 'react-audio-player';
-import { Player, ControlBar  } from 'video-react';
+import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
 
 function QuizMultipleLayout(props) {
     
@@ -107,7 +107,16 @@ function QuizMultipleLayout(props) {
                         <div className="col-md-6">
                             <Player>
                                 <source src={item.video.url} />
-                                <ControlBar autoHide={true} />
+                                <track
+                                    kind="captions"
+                                    src="/assets/elephantsdream/captions.en.vtt"
+                                    srcLang="en"
+                                    label="English"
+                                    default
+                                />
+                                <ControlBar autoHide={true}>
+                                    <ClosedCaptionButton order={7} />
+                                </ControlBar>
                             </Player>
                         </div>
                         <div className="col-md-6">
