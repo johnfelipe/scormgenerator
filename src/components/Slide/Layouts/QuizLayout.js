@@ -1,6 +1,7 @@
 import React from 'react';
 import { objectHelpers } from '../../../helpers';
 import ReactAudioPlayer from 'react-audio-player';
+import { Player, ControlBar  } from 'video-react';
 
 function QuizMultipleLayout(props) {
     
@@ -97,6 +98,35 @@ function QuizMultipleLayout(props) {
                                 title={item.audio.name}
                                 id="audio-question-player"
                             />
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'video')) {
+                return (
+                    <>
+                        <div className="col-md-4">
+                            <Player>
+                                <source src={item.video.url} />
+                                <ControlBar autoHide={true} />
+                            </Player>
+                        </div>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                     </>
                 );
@@ -210,6 +240,35 @@ function QuizMultipleLayout(props) {
                                 title={item.audio.name}
                                 id="audio-question-player"
                             />
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'video')) {
+                return (
+                    <>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="col-md-4">
+                            <Player>
+                                <source src={item.video.url} />
+                                <ControlBar autoHide={true} />
+                            </Player>
                         </div>
                     </>
                 );
