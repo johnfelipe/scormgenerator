@@ -5,6 +5,7 @@ import ReactAudioPlayer from 'react-audio-player';
 function QuizMultipleLayout(props) {
     
     const quiz = props.quiz;
+    const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     const content = (item) => {
         if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
@@ -25,9 +26,13 @@ function QuizMultipleLayout(props) {
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
-                                        <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                        <div className="mb-2 row">
+                                            <div className="font-20 col-md-1 p-0 text-center">
+                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                            </div>
+                                            <div className="font-20 col-md-11 p-0">
+                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            </div>
                                         </div>
                                     </li>
                                 ))
@@ -47,9 +52,13 @@ function QuizMultipleLayout(props) {
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
-                                        <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                        <div className="mb-2 row">
+                                            <div className="font-20 col-md-1 p-0 text-center">
+                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                            </div>
+                                            <div className="font-20 col-md-11 p-0">
+                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            </div>
                                         </div>
                                     </li>
                                 ))
@@ -66,9 +75,13 @@ function QuizMultipleLayout(props) {
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
-                                        <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                        <div className="mb-2 row">
+                                            <div className="font-20 col-md-1 p-0 text-center">
+                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                            </div>
+                                            <div className="font-20 col-md-11 p-0">
+                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            </div>
                                         </div>
                                     </li>
                                 ))
@@ -92,9 +105,13 @@ function QuizMultipleLayout(props) {
                         {
                             item.answers.map((answer, answerIndex) => (
                                 <li key={"quiz-question-answer" + answerIndex}>
-                                    <div class="custom-control custom-checkbox mb-2">
-                                        <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                        <label class="custom-control-label font-20" for={"answer-" + answerIndex}>{answer.answer}</label>
+                                    <div className="mb-2 row">
+                                        <div className="font-20 col-md-1 p-0 text-center">
+                                            <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                        </div>
+                                        <div className="font-20 col-md-11 p-0">
+                                            <span className="font-20 ml-2">{answer.answer}</span>
+                                        </div>
                                     </div>
                                 </li>
                             ))
@@ -114,10 +131,7 @@ function QuizMultipleLayout(props) {
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
-                            {
-                                
-                                    content(item)
-                            }
+                            {content(item)}
                         </div>
                     ))
                 :
