@@ -1246,6 +1246,12 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   top: 50px;
   right: 50px;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
   text-align: left !important;
