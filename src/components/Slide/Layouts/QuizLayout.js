@@ -276,7 +276,16 @@ function QuizMultipleLayout(props) {
                         <div className="col-md-6">
                             <Player>
                                 <source src={item.video.url} />
-                                <ControlBar autoHide={true} />
+                                <track
+                                    kind="captions"
+                                    src={item.video.caption && item.video.caption}
+                                    srcLang="en"
+                                    label="English"
+                                    default
+                                />
+                                <ControlBar autoHide={true}>
+                                    <ClosedCaptionButton order={7} />
+                                </ControlBar>
                             </Player>
                         </div>
                     </>
