@@ -109,7 +109,7 @@ function QuizMultipleLayout(props) {
                                 <source src={item.video.url} />
                                 <track
                                     kind="captions"
-                                    src="/assets/elephantsdream/captions.en.vtt"
+                                    src={item.video.caption && item.video.caption}
                                     srcLang="en"
                                     label="English"
                                     default
