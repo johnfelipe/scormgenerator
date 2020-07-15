@@ -127,7 +127,7 @@ function QuizAccordion(props) {
                                 <div className="quiz-question-action-button mt-3">
                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
-                                            Add question file/s<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
+                                            Add files<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
                                         </span>
                                     </label>
                                     <button
