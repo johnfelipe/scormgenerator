@@ -104,7 +104,7 @@ function Quiz(props) {
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
-                <div className="sg-control-input">
+                <div className="sg-control-content">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">

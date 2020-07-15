@@ -763,6 +763,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100%;
   width: 100%;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-content {
+  height: 258px !important;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list {
   margin: -7px 0 0;
   padding: 0;
