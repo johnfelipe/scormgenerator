@@ -9,11 +9,11 @@ function QuizMultipleLayout(props) {
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     const content = (item, quizClass) => {
-        if (quizClass === 'question-file-left') {
+        if (quizClass === 'question-files-left') {
             if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
                 return (
                     <>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                             <ReactAudioPlayer
                                 src={item.audio.url}
@@ -46,7 +46,7 @@ function QuizMultipleLayout(props) {
             } else if (objectHelpers.isEmpty(item, 'img')) {
                 return (
                     <>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                         </div>
                         <div className="col-md-8">
@@ -122,7 +122,7 @@ function QuizMultipleLayout(props) {
                     </div>
                 );
             }
-        } else if (quizClass === 'question-file-right') {
+        } else if (quizClass === 'question-files-right') {
             if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
                 return (
                     <>
@@ -144,7 +144,7 @@ function QuizMultipleLayout(props) {
                                 }
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                             <ReactAudioPlayer
                                 src={item.audio.url}
@@ -177,7 +177,7 @@ function QuizMultipleLayout(props) {
                                 }
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div className="col-md-4">
                             <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                         </div>
                     </>
@@ -243,7 +243,7 @@ function QuizMultipleLayout(props) {
             {
                 quiz.length > 0 ?
                     quiz.map((item, itemIndex) => (
-                        <div key={"quiz-question-" + itemIndex} className="question-group row">
+                        <div key={"quiz-question-" + itemIndex} className={"question-group row " + quizClass}>
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
