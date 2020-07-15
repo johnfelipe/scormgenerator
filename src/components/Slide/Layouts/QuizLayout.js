@@ -10,17 +10,17 @@ function QuizMultipleLayout(props) {
         if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
             return (
                 <>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
                         <ReactAudioPlayer
                             src={item.audio.url}
                             controls
                             title={item.audio.name}
-                            className="mt-3"
+                            className="mt-3 w-100"
                             id="audio-question-player"
                         />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-7">
                         <ul className="quiz-question-answers list-unstyled">
                             {
                                 item.answers.map((answer, answerIndex) => (
