@@ -5,72 +5,104 @@ import ReactAudioPlayer from 'react-audio-player';
 function QuizMultipleLayout(props) {
     
     const quiz = props.quiz;
+    const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-    const content = (item) => {
-        if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
-            return (
-                <>
-                    <div class="col-md-4">
-                        <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
-                        <ReactAudioPlayer
-                            src={item.audio.url}
-                            controls
-                            title={item.audio.name}
-                            className="mt-3 w-100"
-                            id="audio-question-player"
-                        />
-                    </div>
-                    <div className="col-md-8">
-                        <ul className="quiz-question-answers list-unstyled">
-                            {
-                                item.answers.map((answer, answerIndex) => (
-                                    <li key={"quiz-question-answer" + answerIndex}>
-                                        <div className="mb-2 row">
-                                            <div className="font-20 col-md-1 p-0 text-center">
-                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+    const content = (item, quizClass) => {
+        if (quizClass === 'question-file-left') {
+            if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
+                return (
+                    <>
+                        <div class="col-md-4">
+                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <ReactAudioPlayer
+                                src={item.audio.url}
+                                controls
+                                title={item.audio.name}
+                                className="mt-3 w-100"
+                                id="audio-question-player"
+                            />
+                        </div>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
                                             </div>
-                                            <div className="font-20 col-md-11 p-0">
-                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'img')) {
+                return (
+                    <>
+                        <div class="col-md-4">
+                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                        </div>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </>
-            );
-        } else if (objectHelpers.isEmpty(item, 'img')) {
-            return (
-                <>
-                    <div class="col-md-4">
-                        <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
-                    </div>
-                    <div className="col-md-8">
-                        <ul className="quiz-question-answers list-unstyled">
-                            {
-                                item.answers.map((answer, answerIndex) => (
-                                    <li key={"quiz-question-answer" + answerIndex}>
-                                        <div className="mb-2 row">
-                                            <div className="font-20 col-md-1 p-0 text-center">
-                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'audio')) {
+                return (
+                    <>
+                        <div className="col-md-12">
+                            <ul className="quiz-question-answers list-unstyled pl-5">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
                                             </div>
-                                            <div className="font-20 col-md-11 p-0">
-                                                <span className="font-20 ml-2">{answer.answer}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </>
-            );
-        } else if (objectHelpers.isEmpty(item, 'audio')) {
-            return (
-                <>
-                    <div className="col-md-12">
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="col-md-12">
+                            <ReactAudioPlayer
+                                src={item.audio.url}
+                                controls
+                                title={item.audio.name}
+                                id="audio-question-player"
+                            />
+                        </div>
+                    </>
+                );
+            } else {
+                return (
+                    <div className="col-md-12 ml-2">
                         <ul className="quiz-question-answers list-unstyled pl-5">
                             {
                                 item.answers.map((answer, answerIndex) => (
@@ -88,37 +120,121 @@ function QuizMultipleLayout(props) {
                             }
                         </ul>
                     </div>
-                    <div className="col-md-12">
-                        <ReactAudioPlayer
-                            src={item.audio.url}
-                            controls
-                            title={item.audio.name}
-                            id="audio-question-player"
-                        />
+                );
+            }
+        } else if (quizClass === 'question-file-right') {
+            if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
+                return (
+                    <>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <ReactAudioPlayer
+                                src={item.audio.url}
+                                controls
+                                title={item.audio.name}
+                                className="mt-3 w-100"
+                                id="audio-question-player"
+                            />
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'img')) {
+                return (
+                    <>
+                        <div className="col-md-8">
+                            <ul className="quiz-question-answers list-unstyled">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                        </div>
+                    </>
+                );
+            } else if (objectHelpers.isEmpty(item, 'audio')) {
+                return (
+                    <>
+                        <div className="col-md-12">
+                            <ul className="quiz-question-answers list-unstyled pl-5">
+                                {
+                                    item.answers.map((answer, answerIndex) => (
+                                        <li key={"quiz-question-answer" + answerIndex}>
+                                            <div className="mb-2 row">
+                                                <div className="font-20 col-md-1 p-0 text-center">
+                                                    <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                                </div>
+                                                <div className="font-20 col-md-11 p-0">
+                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="col-md-12">
+                            <ReactAudioPlayer
+                                src={item.audio.url}
+                                controls
+                                title={item.audio.name}
+                                id="audio-question-player"
+                            />
+                        </div>
+                    </>
+                );
+            } else {
+                return (
+                    <div className="col-md-12 ml-2">
+                        <ul className="quiz-question-answers list-unstyled pl-5">
+                            {
+                                item.answers.map((answer, answerIndex) => (
+                                    <li key={"quiz-question-answer" + answerIndex}>
+                                        <div className="mb-2 row">
+                                            <div className="font-20 col-md-1 p-0 text-center">
+                                                <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
+                                            </div>
+                                            <div className="font-20 col-md-11 p-0">
+                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))
+                            }
+                        </ul>
                     </div>
-                </>
-            );
-        } else {
-            return (
-                <div className="col-md-12 ml-2">
-                    <ul className="quiz-question-answers list-unstyled pl-5">
-                        {
-                            item.answers.map((answer, answerIndex) => (
-                                <li key={"quiz-question-answer" + answerIndex}>
-                                    <div className="mb-2 row">
-                                        <div className="font-20 col-md-1 p-0 text-center">
-                                            <span className="font-20"><strong>{alpbahet[answerIndex] + '. '}</strong></span>
-                                        </div>
-                                        <div className="font-20 col-md-11 p-0">
-                                            <span className="font-20 ml-2">{answer.answer}</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            );
+                );
+            }
         }
     }
     
@@ -131,7 +247,7 @@ function QuizMultipleLayout(props) {
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
-                            {content(item)}
+                            {content(item, quizClass)}
                         </div>
                     ))
                 :
