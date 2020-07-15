@@ -110,7 +110,7 @@ function Quiz(props) {
                             <div className="sg-control-input-list-label">
                                 <span>Question/s</span>
                             </div>
-                            <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
+                            <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
                                     {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
