@@ -12,6 +12,13 @@ function QuizMultipleLayout(props) {
                 <>
                     <div class="col-md-4">
                         <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                        <ReactAudioPlayer
+                            src={item.audio.url}
+                            controls
+                            title={item.audio.name}
+                            className="mt-3"
+                            id="audio-question-player"
+                        />
                     </div>
                     <div className="col-md-8">
                         <ul className="quiz-question-answers list-unstyled">
@@ -20,20 +27,21 @@ function QuizMultipleLayout(props) {
                                     <li key={"quiz-question-answer" + answerIndex}>
                                         <div class="custom-control custom-checkbox mb-2">
                                             <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
                                         </div>
                                     </li>
                                 ))
                             }
                         </ul>
                     </div>
-                    <div className="col-md-12">
+                    {/* <div className="col-md-12">
                         <ReactAudioPlayer
                             src={item.audio.url}
                             controls
                             title={item.audio.name}
+                            className="mt-3"
                         />
-                    </div>
+                    </div> */}
                 </>
             );
         } else if (objectHelpers.isEmpty(item, 'img')) {
@@ -49,7 +57,7 @@ function QuizMultipleLayout(props) {
                                     <li key={"quiz-question-answer" + answerIndex}>
                                         <div class="custom-control custom-checkbox mb-2">
                                             <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
                                         </div>
                                     </li>
                                 ))
@@ -68,7 +76,7 @@ function QuizMultipleLayout(props) {
                                     <li key={"quiz-question-answer" + answerIndex}>
                                         <div class="custom-control custom-checkbox mb-2">
                                             <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                            <label class="custom-control-label" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
+                                            <label class="custom-control-label font-20" htmlFor={"answer-" + answerIndex}>{answer.answer}</label>
                                         </div>
                                     </li>
                                 ))
@@ -80,6 +88,7 @@ function QuizMultipleLayout(props) {
                             src={item.audio.url}
                             controls
                             title={item.audio.name}
+                            id="audio-question-player"
                         />
                     </div>
                 </>
@@ -93,7 +102,7 @@ function QuizMultipleLayout(props) {
                                 <li key={"quiz-question-answer" + answerIndex}>
                                     <div class="custom-control custom-checkbox mb-2">
                                         <input type="checkbox" class="custom-control-input" id={"answer-" + answerIndex} name={answer.answer} disabled={true}/>
-                                        <label class="custom-control-label" for={"answer-" + answerIndex}>{answer.answer}</label>
+                                        <label class="custom-control-label font-20" for={"answer-" + answerIndex}>{answer.answer}</label>
                                     </div>
                                 </li>
                             ))
