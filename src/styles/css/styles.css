@@ -763,6 +763,9 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100%;
   width: 100%;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-text-editor > .sg-control-content {
+  height: 258px !important;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list {
   margin: -7px 0 0;
   padding: 0;
@@ -1255,6 +1258,9 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
   text-align: left !important;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div {
+  line-height: 45px;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {
   display: flex;

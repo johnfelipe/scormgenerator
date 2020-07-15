@@ -89,6 +89,26 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addVideoQuestion = (videoObj, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video = videoObj;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addVideoQuestionCaption = (captionUrl, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video !== undefined) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video.caption = captionUrl;
+        } else {
+            alert('PLease upload a video first!');
+        }
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -104,13 +124,13 @@ function Quiz(props) {
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
-                <div className="sg-control-input">
+                <div className="sg-control-content">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Question/s</span>
                             </div>
-                            <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
+                            <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
                                     {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
@@ -133,6 +153,8 @@ function Quiz(props) {
                                                                         answer={answer}
                                                                         addImageQuestion={addImageQuestion}
                                                                         addAudioQuestion={addAudioQuestion}
+                                                                        addVideoQuestion={addVideoQuestion}
+                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
@@ -253,6 +275,22 @@ function Quiz(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
+                                <span>Question Files Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="question-files-left">Left</option>
+                                    <option value="question-files-right">Right</option>
+                                </select>
+                            </div>
+                        </li>
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
                                 <span>ID</span>
                             </div>
                             <div className="sg-control-input-list-input">
@@ -265,22 +303,7 @@ function Quiz(props) {
                                     }
                                 />
                             </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Class</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].class && currentColumn.content[currentColumnContentIndex][contentIndex].class
-                                    }
-                                />
-                            </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

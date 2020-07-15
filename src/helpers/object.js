@@ -2,10 +2,14 @@ export const objectHelpers = {
     isEmpty,
 };
 
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
+function isEmpty(obj, key) {
+    if (obj !== 'undefined') {
+        if(obj.hasOwnProperty(key)) {
+            return true;
+        } else {
             return false;
+        }
+    } else {
+        return false;
     }
-    return true;
 }

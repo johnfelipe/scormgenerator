@@ -279,7 +279,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1382,6 +1382,8 @@ class SlideHandler extends Component {
                                                                                                                     contentFirst.type === 'quiz' ?
                                                                                                                         <QuizMultipleLayout
                                                                                                                             quiz={contentFirst.output}
+                                                                                                                            quizClass={contentFirst.class}
+                                                                                                                            quizId={contentFirst.id}
                                                                                                                         />
                                                                                                                     :
                                                                                                                         ReactHtmlParser(contentFirst.output)
