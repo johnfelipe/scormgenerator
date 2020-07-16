@@ -29,7 +29,11 @@ function doesObjectInArrayExist(array, property) {
 function findObjectIndexInArray(array, property) {
     if (array.length > 0) {
         for (let index in array) {
-            return isEmpty(array[index], property);
+            let result = isEmpty(array[index], property);
+
+            if (result) {
+                return index;
+            }
         }
     } else {
         return false;
