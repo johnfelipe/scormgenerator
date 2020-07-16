@@ -23,6 +23,7 @@ function Quiz(props) {
         const question = {
             question: value,
             answers: [],
+            files: [],
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
@@ -77,7 +78,11 @@ function Quiz(props) {
     const addImageQuestion = (imgObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].img = imgObj;
+        const object = {
+            img: imgObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
@@ -280,7 +285,6 @@ function Quiz(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >
