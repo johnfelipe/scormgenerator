@@ -320,7 +320,7 @@ function QuizMultipleLayout(props) {
             {
                 quiz.length > 0 ?
                     quiz.map((item, itemIndex) => (
-                        <div key={"quiz-question-" + itemIndex} className={"question-group row " + quizClass}>
+                        <div key={"quiz-question-" + itemIndex} className={"question-group row mb-4" + quizClass}>
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
