@@ -132,6 +132,20 @@
                                                                     .tab-content {
                                                                         padding: 10px;
                                                                         height: 200px;
+
+                                                                        #question-answers-files-tabs-tabpane-files {
+                                                                            .quiz-question-files-list {
+                                                                                .quiz-question-files-list-item {
+                                                                                    #quiz-question-file-item {
+                                                                                        user-select: none;
+                                                                                        padding: 15px;
+                                                                                        margin: 0px 0px 8px 0px;
+                                                                                        background: whitesmoke;
+                                                                                        border-radius: 5px;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }
