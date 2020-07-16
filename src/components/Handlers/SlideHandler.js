@@ -1377,6 +1377,7 @@ class SlideHandler extends Component {
                                                                                                                         courseId={contentFirst.output.courseId}
                                                                                                                         backgroundImg={contentFirst.output.backgroundImg}
                                                                                                                         homePageClass={contentFirst.class}
+                                                                                                                        colorScheme={contentFirst.colorScheme}
                                                                                                                     />
                                                                                                                 :
                                                                                                                     contentFirst.type === 'quiz' ?
