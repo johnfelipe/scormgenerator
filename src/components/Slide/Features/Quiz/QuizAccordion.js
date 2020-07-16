@@ -201,12 +201,12 @@ function QuizAccordion(props) {
                                             {item.files.map((file, fileIndex) => (
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
                                                     <div id="quiz-question-file-item" className="row">
-                                                        <div className="col-md-11 pl-0">
+                                                        <div className="col-md-11 pl-0 quiz-question-file-item-label">
                                                             {file.img && file.img.name}
                                                             {file.audio && file.audio.name}
                                                             {file.video && file.video.name}
                                                         </div>
-                                                        <div className="col-md-1 p-0">
+                                                        <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                         </div>
                                                     </div>
