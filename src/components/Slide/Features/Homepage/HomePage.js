@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import ColorPicker from './ColorPicker';
 
 function HomePage(props) {
 
     const currentColumn = props.currentColumn;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentIndex = props.contentIndex;
+    const [showPicker, setShowPicker] = useState(false);
+    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor;
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -56,6 +59,14 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name = name;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.url = url;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleBoxColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -177,74 +188,25 @@ function HomePage(props) {
                                 </select>
                             </div>
                         </li>
-                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>ID</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].id 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                />
-                            </div>
-                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Class</span>
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Color Scheme</span>
                             </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                />
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Element CSS</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <div className="sg-expandable-code-editor">
-                                    <div className="sg-workspace-expander">
-                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
-                                                <span>Add CSS</span>
-                                            </button>
-                                            <input type="text" value="" disabled className="rounded"/>
-                                        </div>
-                                    </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                    <span className="h-100 w-100 text-white">{currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}</span>
                                 </div>
                             </div>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
             </div>
+            <ColorPicker
+                classNames="mr-3 ml-3 position-absolute homepage-color-picker"
+                showPicker={showPicker}
+                setTitleBoxColor={setTitleBoxColor}
+                defaultColor={currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}
+            />
         </div>
     )
 }

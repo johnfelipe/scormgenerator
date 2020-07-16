@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // Features
 import Audio from './Features/Audio';
 import ContentArea from './Features/ContentArea';
-import HomePage from './Features/HomePage';
+import HomePage from './Features/Homepage/HomePage';
 import Quiz from './Features/Quiz/Quiz';
 
 class Editor extends Component {
