@@ -697,7 +697,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control {
   position: relative;
-  padding: 15px;
+  padding: 10px;
   border-bottom: 1px solid #e2e2e2;
   overflow: auto;
 }
@@ -1331,6 +1331,26 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper .quiz-control-button {
   padding-left: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .card-header-tabs {
+  margin-top: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
+  width: calc(100%/2);
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .tab-content {
+  padding: 10px;
+  height: 200px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .quiz-question-files-list .quiz-question-files-list-item #quiz-question-file-item {
+  user-select: none;
+  padding: 15px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+  border-radius: 5px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .quiz-question-files-list .quiz-question-files-list-item #quiz-question-file-item .quiz-question-file-item-delete {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */

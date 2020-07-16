@@ -117,6 +117,43 @@
                                                                 padding-left: 10px
                                                             }
                                                         }
+
+                                                        .accordion {
+                                                            .card {
+                                                                .card-body {
+                                                                    .card-header-tabs {
+                                                                        margin-top: 10px;
+
+                                                                        .nav-link {
+                                                                            width: calc(100%/2);
+                                                                        }
+                                                                    }
+
+                                                                    .tab-content {
+                                                                        padding: 10px;
+                                                                        height: 200px;
+
+                                                                        #question-answers-files-tabs-tabpane-files {
+                                                                            .quiz-question-files-list {
+                                                                                .quiz-question-files-list-item {
+                                                                                    #quiz-question-file-item {
+                                                                                        user-select: none;
+                                                                                        padding: 15px;
+                                                                                        margin: 0px 0px 8px 0px;
+                                                                                        background: whitesmoke;
+                                                                                        border-radius: 5px;
+
+                                                                                        .quiz-question-file-item-delete {
+                                                                                            cursor: pointer;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }

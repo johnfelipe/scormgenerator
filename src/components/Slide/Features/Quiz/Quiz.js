@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { objectHelpers } from '../../../../helpers';
 
 // components
 import QuizAccordion from './QuizAccordion';
@@ -23,6 +24,7 @@ function Quiz(props) {
         const question = {
             question: value,
             answers: [],
+            files: [],
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
@@ -77,7 +79,11 @@ function Quiz(props) {
     const addImageQuestion = (imgObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].img = imgObj;
+        const object = {
+            img: imgObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
@@ -85,7 +91,11 @@ function Quiz(props) {
     const addAudioQuestion = (audioObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].audio = audioObj;
+        const object = {
+            audio: audioObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
@@ -93,19 +103,34 @@ function Quiz(props) {
     const addVideoQuestion = (videoObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video = videoObj;
+        const object = {
+            video: videoObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
 
     const addVideoQuestionCaption = (captionUrl, questionIndex) => {
         const currentColumnObj = currentColumn;
-
-        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video !== undefined) {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video.caption = captionUrl;
+        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+        console.log(doesExist)
+        if (doesExist) {
+            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+            console.log(index)
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionUrl;
         } else {
             alert('PLease upload a video first!');
         }
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteQuestionFile = (index, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
 
         props.setColumn(currentColumnObj);
     }
@@ -155,6 +180,7 @@ function Quiz(props) {
                                                                         addAudioQuestion={addAudioQuestion}
                                                                         addVideoQuestion={addVideoQuestion}
                                                                         addVideoQuestionCaption={addVideoQuestionCaption}
+                                                                        deleteQuestionFile={deleteQuestionFile}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
@@ -280,7 +306,6 @@ function Quiz(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >

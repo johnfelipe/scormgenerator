@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function QuizAccordion(props) {
 
@@ -106,89 +106,118 @@ function QuizAccordion(props) {
                 <Accordion.Collapse eventKey={index}>
                     <Card.Body className="p-2">
                         <span>Question: <strong>{item.question}</strong></span>
-                        {
-                            IsAddAnswer ?
-                                <div className="quiz-control-input-wrapper mb-1 mt-3">
-                                    <div className="quiz-control-input-label">
-                                        <span>Add:&nbsp;</span>
-                                    </div>
-                                    <div className="quiz-control-input">
-                                        <input
-                                            id="answer"
-                                            name="answer"
-                                            type="text"
-                                            placeholder="Type answer here. . ."
-                                            onChange={(event) => props.setAnswer(event.target.value)}
-                                            value={answer}
-                                        />
-                                    </div>
-                                    <div className="quiz-control-button">
-                                        <button
-                                            type="button"
-                                            className="btn btn-success btn-sm"
-                                            onClick={() => {
-                                                const isEmpty = document.getElementById("answer");
-                                                
-                                                if (isEmpty.value !== "") {
-                                                    props.addAnswer(answer, index);
-                                                    props.setAnswer('');
-                                                    props.setIsAddAnswer(false);
-                                                }
-                                            }}
-                                        >
-                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                        </button>
-                                    </div>
-                                </div>
-                            :
+                        <Tabs defaultActiveKey="answers" id="question-answers-files-tabs">
+                            <Tab eventKey="answers" title="Answers">
+                                {
+                                    IsAddAnswer ?
+                                        <div className="quiz-control-input-wrapper mb-1 mt-3">
+                                            <div className="quiz-control-input-label">
+                                                <span>Add:&nbsp;</span>
+                                            </div>
+                                            <div className="quiz-control-input">
+                                                <input
+                                                    id="answer"
+                                                    name="answer"
+                                                    type="text"
+                                                    placeholder="Type answer here. . ."
+                                                    onChange={(event) => props.setAnswer(event.target.value)}
+                                                    value={answer}
+                                                />
+                                            </div>
+                                            <div className="quiz-control-button">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        const isEmpty = document.getElementById("answer");
+                                                        
+                                                        if (isEmpty.value !== "") {
+                                                            props.addAnswer(answer, index);
+                                                            props.setAnswer('');
+                                                            props.setIsAddAnswer(false);
+                                                        }
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <div className="quiz-question-action-button mt-3">
+                                            <button
+                                                type="button"
+                                                className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                onClick={() => {
+                                                    props.setIsAddAnswer(true);
+                                                }}
+                                            >
+                                                Add answers
+                                            </button>
+                                        </div>
+                                }
+                                {
+                                    item.answers.length > 0 ?
+                                        <ul className="quiz-question-list">
+                                            {item.answers.map((item, answerIndex) => (
+                                                <li key={Math.random()} className="quiz-question-list-item">
+                                                    <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
+                                                        <span key={'quiz-feature-answer-list-item-' + answerIndex}>
+                                                            {item.answer}&nbsp;
+                                                                {
+                                                                    item.correct === '' ?
+                                                                        <button
+                                                                            title="Mark as answer"
+                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                            onClick={() => {
+                                                                                props.setCorrectAnswer(true, index, answerIndex)
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                                        </button>
+                                                                    :
+                                                                        item.correct &&
+                                                                        <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                }
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    :
+                                        <div><span>No answer/s added.</span></div>
+                                }
+                            </Tab>
+                            <Tab eventKey="files" title="Files">
                                 <div className="quiz-question-action-button mt-3">
                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                             Add files<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
                                         </span>
                                     </label>
-                                    <button
-                                        type="button"
-                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                        onClick={() => {
-                                            props.setIsAddAnswer(true);
-                                        }}
-                                    >
-                                        Add answers
-                                    </button>
                                 </div>
-                        }
-                        {
-                            item.answers.length > 0 ?
-                                <ul className="quiz-question-list">
-                                    {item.answers.map((item, answerIndex) => (
-                                        <li key={Math.random()} className="quiz-question-list-item">
-                                            <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
-                                                <span key={'quiz-feature-answer-list-item-' + answerIndex}>
-                                                    {item.answer}&nbsp;
-                                                        {
-                                                            item.correct === '' ?
-                                                                <button
-                                                                    title="Mark as answer"
-                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                    onClick={() => {
-                                                                        props.setCorrectAnswer(true, index, answerIndex)
-                                                                    }}
-                                                                >
-                                                                    <FontAwesomeIcon icon={faCheck}/>
-                                                                </button>
-                                                            :
-                                                                item.correct &&
-                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                        }
-                                                </span>
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            :
-                                <div><span>No answer/s added.</span></div>
-                        }
+                                {
+                                    item.files.length > 0 ?
+                                        <ul className="quiz-question-files-list list-unstyled">
+                                            {item.files.map((file, fileIndex) => (
+                                                <li key={Math.random()} className="quiz-question-files-list-item">
+                                                    <div id="quiz-question-file-item" className="row">
+                                                        <div className="col-md-11 pl-0 quiz-question-file-item-label">
+                                                            {file.img && file.img.name}
+                                                            {file.audio && file.audio.name}
+                                                            {file.video && file.video.name}
+                                                        </div>
+                                                        <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
+                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    :
+                                        <div><span>No file/s added.</span></div>
+                                }
+                            </Tab>
+                        </Tabs>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
