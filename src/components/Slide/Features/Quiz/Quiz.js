@@ -126,6 +126,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const deleteQuestionFile = (index, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -172,6 +180,7 @@ function Quiz(props) {
                                                                         addAudioQuestion={addAudioQuestion}
                                                                         addVideoQuestion={addVideoQuestion}
                                                                         addVideoQuestionCaption={addVideoQuestionCaption}
+                                                                        deleteQuestionFile={deleteQuestionFile}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
