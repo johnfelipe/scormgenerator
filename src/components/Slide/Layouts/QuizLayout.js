@@ -8,6 +8,7 @@ function QuizMultipleLayout(props) {
     const quiz = props.quiz;
     const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    
     const content = (item, quizClass) => {
         if (quizClass === 'question-files-left') {
             if ((objectHelpers.doesObjectInArrayExist(item.files, 'audio') === true) && (objectHelpers.doesObjectInArrayExist(item.files, 'img') === true)) {
