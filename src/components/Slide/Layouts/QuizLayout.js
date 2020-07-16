@@ -30,11 +30,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -56,11 +56,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -79,11 +79,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -125,10 +125,10 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-15"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
+                                                <div className="quiz-choice-text">
                                                     <span className="font-15 ml-2">{answer.answer}</span>
                                                 </div>
                                             </div>
@@ -147,11 +147,11 @@ function QuizMultipleLayout(props) {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
                                         <div className="quiz-choices mb-2 row">
-                                            <div className="col-md-1 p-0 text-center">
-                                                <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                            <div className="quiz-label text-center">
+                                                <span><strong>{alpbahet[answerIndex]}</strong></span>
                                             </div>
-                                            <div className="col-md-11 p-0">
-                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            <div className="quiz-choice-text">
+                                                <span>{answer.answer}</span>
                                             </div>
                                         </div>
                                     </li>
@@ -171,11 +171,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -204,11 +204,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -230,11 +230,11 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
-                                                    <span className="font-20 ml-2">{answer.answer}</span>
+                                                <div className="quiz-choice-text">
+                                                    <span>{answer.answer}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -261,10 +261,10 @@ function QuizMultipleLayout(props) {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
                                             <div className="quiz-choices mb-2 row">
-                                                <div className="col-md-1 p-0 text-center">
-                                                    <span className="font-15"><strong>{alpbahet[answerIndex]}</strong></span>
+                                                <div className="quiz-label text-center">
+                                                    <span><strong>{alpbahet[answerIndex]}</strong></span>
                                                 </div>
-                                                <div className="col-md-11 p-0">
+                                                <div className="quiz-choice-text">
                                                     <span className="font-15 ml-2">{answer.answer}</span>
                                                 </div>
                                             </div>
@@ -298,11 +298,11 @@ function QuizMultipleLayout(props) {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
                                         <div className="quiz-choices mb-2 row">
-                                            <div className="col-md-1 p-0 text-center">
-                                                <span className="font-20"><strong>{alpbahet[answerIndex]}</strong></span>
+                                            <div className="quiz-label text-center">
+                                                <span><strong>{alpbahet[answerIndex]}</strong></span>
                                             </div>
-                                            <div className="col-md-11 p-0">
-                                                <span className="font-20 ml-2">{answer.answer}</span>
+                                            <div className="quiz-choice-text">
+                                                <span>{answer.answer}</span>
                                             </div>
                                         </div>
                                     </li>
