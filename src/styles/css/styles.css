@@ -1205,7 +1205,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #4c2157;
+  background: #0069d9;
   padding: 25px;
   text-align: left !important;
   width: 250px;
@@ -1217,7 +1217,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   margin: 0 0 10px 0;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-name .course-bar {
-  background: #ae71d1;
+  background: #007bff;
   display: inline-block;
   width: 75px;
   height: 5px;
