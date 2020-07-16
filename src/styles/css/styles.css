@@ -1267,6 +1267,22 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   width: 100%;
   cursor: pointer;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-label {
+  width: 45px;
+  height: 45px;
+  background: #778395;
+  color: white;
+  font-size: 28px;
+  line-height: 45px;
+  float: left;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-choice-text {
+  height: 45px;
+  font-size: 20px;
+  line-height: 45px;
+  float: left;
+  padding-left: 20px;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {
   display: flex;
   align-items: flex-start;

@@ -2,7 +2,7 @@
     html {
         body {
             font-family: 'Open Sans';
-            
+
             div.modal {
                 div.modal-dialog {
                     .modal-content {
@@ -27,6 +27,24 @@
                                                                             line-height: 45px;
                                                                             width: 100%;
                                                                             cursor: pointer;
+
+                                                                            .quiz-label {
+                                                                                width: 45px;
+                                                                                height: 45px;
+                                                                                background: #778395;
+                                                                                color: white;
+                                                                                font-size: 28px;
+                                                                                line-height: 45px;
+                                                                                float: left;
+                                                                            }
+
+                                                                            .quiz-choice-text {
+                                                                                height: 45px;
+                                                                                font-size: 20px;
+                                                                                line-height: 45px;
+                                                                                float: left;
+                                                                                padding-left: 20px;
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
