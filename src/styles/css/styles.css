@@ -1256,11 +1256,16 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   transform: translate(-50%, -50%);
 }
 
+html body {
+  font-family: "Open Sans";
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices {
   line-height: 45px;
+  width: 100%;
+  cursor: pointer;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {
   display: flex;

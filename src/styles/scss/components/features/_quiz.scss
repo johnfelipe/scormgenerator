@@ -1,6 +1,8 @@
 @mixin quiz {
     html {
         body {
+            font-family: 'Open Sans';
+            
             div.modal {
                 div.modal-dialog {
                     .modal-content {
@@ -21,8 +23,10 @@
                                                                     // -webkit-columns: 2;
                                                                     // -moz-columns: 2;
                                                                     li {
-                                                                        div {
+                                                                        div.quiz-choices {
                                                                             line-height: 45px;
+                                                                            width: 100%;
+                                                                            cursor: pointer;
                                                                         }
                                                                     }
                                                                 }
