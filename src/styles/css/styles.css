@@ -1349,5 +1349,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   background: whitesmoke;
   border-radius: 5px;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .quiz-question-files-list .quiz-question-files-list-item #quiz-question-file-item .quiz-question-file-item-delete {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=styles.css.map */
