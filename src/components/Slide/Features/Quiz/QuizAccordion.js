@@ -188,7 +188,7 @@ function QuizAccordion(props) {
                                 }
                             </Tab>
                             <Tab eventKey="files" title="Files">
-                                <div className="quiz-question-action-button mt-3 mb-3">
+                                <div className="quiz-question-action-button mt-3">
                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                             Add files<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
@@ -200,7 +200,9 @@ function QuizAccordion(props) {
                                         <ul className="quiz-question-files-list">
                                             {item.files.map((file, fileIndex) => (
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
-                                                    {file.img.name}
+                                                    {file.img && file.img.name}
+                                                    {file.audio && file.audio.name}
+                                                    {file.video && file.video.name}
                                                 </li>
                                             ))}
                                         </ul>

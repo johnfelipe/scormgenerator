@@ -8,7 +8,7 @@ function QuizMultipleLayout(props) {
     const quiz = props.quiz;
     const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
+
     const content = (item, quizClass) => {
         if (quizClass === 'question-files-left') {
             if ((objectHelpers.doesObjectInArrayExist(item.files, 'audio') === true) && (objectHelpers.doesObjectInArrayExist(item.files, 'img') === true)) {
@@ -338,7 +338,7 @@ function QuizMultipleLayout(props) {
             {
                 quiz.length > 0 ?
                     quiz.map((item, itemIndex) => (
-                        <div key={"quiz-question-" + itemIndex} className={"question-group row mb-4" + quizClass}>
+                        <div key={"quiz-question-" + itemIndex} className={"question-group row mb-4 " + quizClass}>
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
