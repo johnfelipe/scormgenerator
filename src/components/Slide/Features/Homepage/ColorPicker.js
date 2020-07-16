@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
 
 function ColorPicker(props) {
 
+    const [currentColor, setCurrentColor] = useState(props.defaultColor);
     const classNames = props.classNames;
     const showPicker = props.showPicker;
 
@@ -22,13 +23,16 @@ function ColorPicker(props) {
         //     a: 1,
         //   },
         // }
-        console.log(color);
+        setCurrentColor(color);
+        props.setTitleBoxColor(color.hex);
     }
 
     return (
-        <SketchPicker 
+        <SketchPicker
+            color={currentColor}
             className={showPicker ? 'd-block ' + classNames : 'd-none ' + classNames}
-            onChangeComplete={setColor}
+            // onChangeComplete={setColor}
+            onChange={setColor}
         />
     );
 }
