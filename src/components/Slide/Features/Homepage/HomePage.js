@@ -62,6 +62,18 @@ function HomePage(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setTitleBoxColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        const cssObj = {
+            titleBoxColor: color,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].css = cssObj;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -184,8 +196,8 @@ function HomePage(props) {
                                 <span>Color Scheme</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <button type="button" className="btn border border-light rounder text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)}>
-                                    <span>Sample</span>
+                                <button type="button" className="btn border border-secondary rounder text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)}>
+                                    <span className="h-100 w-100" style={{ backgroundColor: currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor + ' !important' }}>Sample</span>
                                 </button>
                             </div>
                         </li>
@@ -195,6 +207,8 @@ function HomePage(props) {
             <ColorPicker
                 classNames="mr-3 ml-3 position-absolute homepage-color-picker"
                 showPicker={showPicker}
+                setTitleBoxColor={setTitleBoxColor}
+                defaultColor={currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}
             />
         </div>
     )
