@@ -9,6 +9,7 @@ function HomePage(props) {
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentIndex = props.contentIndex;
     const [showPicker, setShowPicker] = useState(false);
+    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor;
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -192,8 +193,8 @@ function HomePage(props) {
                                 <span>Color Scheme</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor + ' !important', cursor: 'pointer' }}>
-                                    <span className="h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}</span>
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                    <span className="h-100 w-100 text-white">{currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}</span>
                                 </div>
                             </div>
                         </li>
