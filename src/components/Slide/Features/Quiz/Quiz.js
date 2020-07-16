@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { objectHelpers } from '../../../../helpers';
 
 // components
 import QuizAccordion from './QuizAccordion';
@@ -90,7 +91,11 @@ function Quiz(props) {
     const addAudioQuestion = (audioObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].audio = audioObj;
+        const object = {
+            audio: audioObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
@@ -98,16 +103,23 @@ function Quiz(props) {
     const addVideoQuestion = (videoObj, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video = videoObj;
+        const object = {
+            video: videoObj,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
         props.setColumn(currentColumnObj);
     }
 
     const addVideoQuestionCaption = (captionUrl, questionIndex) => {
         const currentColumnObj = currentColumn;
-
-        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video !== undefined) {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].video.caption = captionUrl;
+        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+        console.log(doesExist)
+        if (doesExist) {
+            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+            console.log(index)
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionUrl;
         } else {
             alert('PLease upload a video first!');
         }
