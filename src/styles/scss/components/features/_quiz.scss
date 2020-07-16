@@ -117,6 +117,25 @@
                                                                 padding-left: 10px
                                                             }
                                                         }
+
+                                                        .accordion {
+                                                            .card {
+                                                                .card-body {
+                                                                    .card-header-tabs {
+                                                                        margin-top: 10px;
+
+                                                                        .nav-link {
+                                                                            width: calc(100%/2);
+                                                                        }
+                                                                    }
+
+                                                                    .tab-content {
+                                                                        padding: 10px;
+                                                                        height: 200px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
