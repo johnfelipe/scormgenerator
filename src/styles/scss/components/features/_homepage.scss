@@ -87,6 +87,21 @@
                                             }
                                         }
                                     }
+
+                                    #slide-sidebar {
+                                        .tab-content {
+                                            #uncontrolled-tab-tabpane-editor {
+                                                .sg-workspace-controls {
+                                                    .sg-controls {
+                                                        .homepage-color-picker {
+                                                            z-index: 5000;
+                                                            top: 80px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

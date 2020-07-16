@@ -1255,6 +1255,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   left: 50%;
   transform: translate(-50%, -50%);
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+  z-index: 5000;
+  top: 80px;
+}
 
 html body {
   font-family: "Open Sans";
