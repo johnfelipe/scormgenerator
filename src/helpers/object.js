@@ -19,8 +19,14 @@ function isEmpty(obj, key) {
 function doesObjectInArrayExist(array, property) {
     if (array.length > 0) {
         for (let index in array) {
-            return isEmpty(array[index], property);
+            let result = isEmpty(array[index], property);
+
+            if (result) {
+                return result;
+            }
         }
+
+        return false;
     } else {
         return false;
     }
@@ -35,6 +41,8 @@ function findObjectIndexInArray(array, property) {
                 return index;
             }
         }
+
+        return false;
     } else {
         return false;
     }
