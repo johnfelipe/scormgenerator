@@ -7,19 +7,21 @@ function QuizMultipleLayout(props) {
     
     const quiz = props.quiz;
     const quizClass = props.quizClass;
-    const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+    const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const content = (item, quizClass) => {
         if (quizClass === 'question-files-left') {
-            if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
+            if ((objectHelpers.doesObjectInArrayExist(item.files, 'audio') === true) && (objectHelpers.doesObjectInArrayExist(item.files, 'img') === true)) {
+                const audioIndex = objectHelpers.findObjectIndexInArray(item.files, 'audio');
+                const imgIndex = objectHelpers.findObjectIndexInArray(item.files, 'img');
+                
                 return (
                     <>
                         <div className="col-md-4">
-                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
                             <ReactAudioPlayer
-                                src={item.audio.url}
+                                src={item.files[audioIndex].audio.url}
                                 controls
-                                title={item.audio.name}
+                                title={item.files[audioIndex].audio.name}
                                 className="mt-3 w-100"
                                 id="audio-question-player"
                             />
@@ -44,11 +46,13 @@ function QuizMultipleLayout(props) {
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'img')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'img')) {
+                const imgIndex = objectHelpers.findObjectIndexInArray(item.files, 'img');
+
                 return (
                     <>
                         <div className="col-md-4">
-                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
                         </div>
                         <div className="col-md-8">
                             <ul className="quiz-question-answers list-unstyled">
@@ -70,7 +74,9 @@ function QuizMultipleLayout(props) {
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'audio')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'audio')) {
+                const audioIndex = objectHelpers.findObjectIndexInArray(item.files, 'audio');
+
                 return (
                     <>
                         <div className="col-md-12">
@@ -93,23 +99,25 @@ function QuizMultipleLayout(props) {
                         </div>
                         <div className="col-md-12">
                             <ReactAudioPlayer
-                                src={item.audio.url}
+                                src={item.files[audioIndex].audio.url}
                                 controls
-                                title={item.audio.name}
+                                title={item.files[audioIndex].audio.name}
                                 id="audio-question-player"
                             />
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'video')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'video')) {
+                const videoIndex = objectHelpers.findObjectIndexInArray(item.files, 'video');
+
                 return (
                     <>
                         <div className="col-md-6">
                             <Player>
-                                <source src={item.video.url} />
+                                <source src={item.files[videoIndex].video.url} />
                                 <track
                                     kind="captions"
-                                    src={item.video.caption && item.video.caption}
+                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption}
                                     srcLang="en"
                                     label="English"
                                     default
@@ -162,7 +170,10 @@ function QuizMultipleLayout(props) {
                 );
             }
         } else if (quizClass === 'question-files-right') {
-            if ((objectHelpers.isEmpty(item, 'audio') === true) && (objectHelpers.isEmpty(item, 'img') === true)) {
+            if ((objectHelpers.doesObjectInArrayExist(item.files, 'audio') === true) && (objectHelpers.doesObjectInArrayExist(item.files, 'img') === true)) {
+                const audioIndex = objectHelpers.findObjectIndexInArray(item.files, 'audio');
+                const imgIndex = objectHelpers.findObjectIndexInArray(item.files, 'img');
+
                 return (
                     <>
                         <div className="col-md-8">
@@ -184,18 +195,20 @@ function QuizMultipleLayout(props) {
                             </ul>
                         </div>
                         <div className="col-md-4">
-                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
                             <ReactAudioPlayer
-                                src={item.audio.url}
+                                src={item.files[audioIndex].audio.url}
                                 controls
-                                title={item.audio.name}
+                                title={item.files[audioIndex].audio.name}
                                 className="mt-3 w-100"
                                 id="audio-question-player"
                             />
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'img')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'img')) {
+                const imgIndex = objectHelpers.findObjectIndexInArray(item.files, 'img');
+
                 return (
                     <>
                         <div className="col-md-8">
@@ -217,11 +230,13 @@ function QuizMultipleLayout(props) {
                             </ul>
                         </div>
                         <div className="col-md-4">
-                            <img src={item.img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'audio')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'audio')) {
+                const audioIndex = objectHelpers.findObjectIndexInArray(item.files, 'audio');
+
                 return (
                     <>
                         <div className="col-md-12">
@@ -244,15 +259,17 @@ function QuizMultipleLayout(props) {
                         </div>
                         <div className="col-md-12">
                             <ReactAudioPlayer
-                                src={item.audio.url}
+                                src={item.files[audioIndex].audio.url}
                                 controls
-                                title={item.audio.name}
+                                title={item.files[audioIndex].audio.name}
                                 id="audio-question-player"
                             />
                         </div>
                     </>
                 );
-            } else if (objectHelpers.isEmpty(item, 'video')) {
+            } else if (objectHelpers.doesObjectInArrayExist(item.files, 'video')) {
+                const videoIndex = objectHelpers.findObjectIndexInArray(item.files, 'video');
+
                 return (
                     <>
                         <div className="col-md-6">
@@ -275,10 +292,10 @@ function QuizMultipleLayout(props) {
                         </div>
                         <div className="col-md-6">
                             <Player>
-                                <source src={item.video.url} />
+                                <source src={item.files[videoIndex].video.url} />
                                 <track
                                     kind="captions"
-                                    src={item.video.caption && item.video.caption}
+                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption}
                                     srcLang="en"
                                     label="English"
                                     default
