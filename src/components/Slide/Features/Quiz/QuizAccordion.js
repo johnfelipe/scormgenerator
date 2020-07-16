@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function QuizAccordion(props) {
 
@@ -197,12 +197,19 @@ function QuizAccordion(props) {
                                 </div>
                                 {
                                     item.files.length > 0 ?
-                                        <ul className="quiz-question-files-list">
+                                        <ul className="quiz-question-files-list list-unstyled">
                                             {item.files.map((file, fileIndex) => (
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
-                                                    {file.img && file.img.name}
-                                                    {file.audio && file.audio.name}
-                                                    {file.video && file.video.name}
+                                                    <div id="quiz-question-file-item" className="row">
+                                                        <div className="col-md-11 pl-0">
+                                                            {file.img && file.img.name}
+                                                            {file.audio && file.audio.name}
+                                                            {file.video && file.video.name}
+                                                        </div>
+                                                        <div className="col-md-1 p-0">
+                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                        </div>
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>
