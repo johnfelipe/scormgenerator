@@ -28,6 +28,10 @@
                                                                             width: 100%;
                                                                             cursor: pointer;
 
+                                                                            .quiz-choice-label-selected {
+                                                                                background: #5eb75e;
+                                                                            }
+
                                                                             .quiz-label {
                                                                                 width: 45px;
                                                                                 height: 45px;

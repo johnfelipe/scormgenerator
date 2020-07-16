@@ -1267,6 +1267,9 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   width: 100%;
   cursor: pointer;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-choice-label-selected {
+  background: #5eb75e;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-label {
   width: 45px;
   height: 45px;
