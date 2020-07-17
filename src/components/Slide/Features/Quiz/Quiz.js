@@ -175,6 +175,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setQuizTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.quizTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -355,6 +363,21 @@ function Quiz(props) {
                                     <option value="rounded-circle">&nbsp;Rounded Circle</option>
                                     <option value="rounded">&nbsp;Rounded</option>
                                     <option value="rounded-0">&nbsp;None</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.quizTextColor}
+                                    onChange={(event) => setQuizTextColor(event.target.value)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="text-black">&nbsp;White</option>
+                                    <option value="text-white">&nbsp;Black</option>
                                 </select>
                             </div>
                         </li>
