@@ -112,14 +112,13 @@ function Quiz(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addVideoQuestionCaption = (captionUrl, questionIndex) => {
+    const addVideoQuestionCaption = (captionObj, questionIndex) => {
         const currentColumnObj = currentColumn;
         const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-        console.log(doesExist)
+
         if (doesExist) {
             const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-            console.log(index)
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionUrl;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionObj;
         } else {
             alert('PLease upload a video first!');
         }
@@ -131,6 +130,20 @@ function Quiz(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteQuestionVideoVttFile = (questionIndex) => {
+        const currentColumnObj = currentColumn;
+        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+
+        if (doesExist) {
+            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+            delete currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption;
+        } else {
+            alert('PLease upload a video first!');
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -181,6 +194,7 @@ function Quiz(props) {
                                                                         addVideoQuestion={addVideoQuestion}
                                                                         addVideoQuestionCaption={addVideoQuestionCaption}
                                                                         deleteQuestionFile={deleteQuestionFile}
+                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
