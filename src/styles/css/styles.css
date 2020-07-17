@@ -1257,7 +1257,20 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
   z-index: 5000;
-  top: 75px;
+  margin: 0 16px;
+  top: 55px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+    margin: 0 75px;
+    top: 55px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+    margin: 0 16px;
+    top: 75px;
+  }
 }
 
 html body {
@@ -1301,6 +1314,23 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 @media only screen and (max-width: 1366px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-choice-text {
     font-size: 14px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+  z-index: 5000;
+  margin: 0 16px;
+  top: 55px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+    margin: 0 75px;
+    top: 55px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+    margin: 0 16px;
+    top: 75px;
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {
