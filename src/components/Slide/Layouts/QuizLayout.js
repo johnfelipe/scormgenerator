@@ -335,7 +335,7 @@ function QuizMultipleLayout(props) {
     }
     
     return (
-        <div id="quiz-multiple-layout" className="w-100 h-100 p-3">
+        <div id="quiz-multiple-layout" className="w-100 h-100 p-3" style={{ background: quizStyles.questionBackgroundColor, }}>
             {
                 quiz.length > 0 ?
                     quiz.map((item, itemIndex) => (
