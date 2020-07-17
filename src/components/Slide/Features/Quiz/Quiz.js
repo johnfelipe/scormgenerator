@@ -5,6 +5,7 @@ import { objectHelpers } from '../../../../helpers';
 
 // components
 import QuizAccordion from './QuizAccordion';
+import ColorPicker from '../../../Common/ColorPicker';
 
 function Quiz(props) {
 
@@ -13,10 +14,13 @@ function Quiz(props) {
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
+    const [filesExist, setFilesExist] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
 
     const addQuestion = (value) => {
         const currentColumnObj = currentColumn;
@@ -112,14 +116,13 @@ function Quiz(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addVideoQuestionCaption = (captionUrl, questionIndex) => {
+    const addVideoQuestionCaption = (captionObj, questionIndex) => {
         const currentColumnObj = currentColumn;
         const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-        console.log(doesExist)
+
         if (doesExist) {
             const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-            console.log(index)
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionUrl;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionObj;
         } else {
             alert('PLease upload a video first!');
         }
@@ -128,9 +131,55 @@ function Quiz(props) {
     }
 
     const deleteQuestionFile = (index, questionIndex) => {
+        document.getElementById("question-files-uploader").value = "";
+
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
+
+        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.length === 0) {
+            setFilesExist(false);
+        }
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteQuestionVideoVttFile = (questionIndex) => {
+        document.getElementById("question-files-uploader").value = "";
+
+        const currentColumnObj = currentColumn;
+        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+
+        if (doesExist) {
+            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+            delete currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption;
+        } else {
+            alert('PLease upload a video first!');
+        }
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setQuestionLabelClass = (labelClass) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
+
+        props.setColumn(currentColumnObj);  
+    }
+
+    const setQuestionBackgroundColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setQuizTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.quizTextColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -181,6 +230,8 @@ function Quiz(props) {
                                                                         addVideoQuestion={addVideoQuestion}
                                                                         addVideoQuestionCaption={addVideoQuestionCaption}
                                                                         deleteQuestionFile={deleteQuestionFile}
+                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
+                                                                        setFilesExist={setFilesExist}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
@@ -295,25 +346,69 @@ function Quiz(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Customize</label>
+                    <label>Customize Question</label>
                 </div>
-                <div className="sg-control-input sg-control-input">
+                <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Question Files Position</span>
+                                <span>Label Border</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
+                                    onChange={(event) => setQuestionLabelClass(event.target.value)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >
-                                    <option value="question-files-left">Left</option>
-                                    <option value="question-files-right">Right</option>
+                                    <option value="rounded-circle">&nbsp;Rounded Circle</option>
+                                    <option value="rounded">&nbsp;Rounded</option>
+                                    <option value="rounded-0">&nbsp;None</option>
                                 </select>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.quizTextColor}
+                                    onChange={(event) => setQuizTextColor(event.target.value)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="text-black">&nbsp;Black</option>
+                                    <option value="text-white">&nbsp;White</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label quiz-background-color-label">
+                                <span>Background Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input quiz-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {
+                            filesExist &&
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Files Position</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <select
+                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                        onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                        className="form-control-plaintext border border-dark rounded"
+                                    >
+                                        <option value="question-files-left">&nbsp;Left</option>
+                                        <option value="question-files-right">&nbsp;Right</option>
+                                    </select>
+                                </div>
+                            </li>
+                        }
                         {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
@@ -332,6 +427,12 @@ function Quiz(props) {
                     </ul>
                 </div>
             </div>
+            <ColorPicker
+                classNames="position-absolute quiz-color-picker"
+                showPicker={showPicker}
+                setBackgroundColor={setQuestionBackgroundColor}
+                defaultColor={currentBackgroundColor}
+            />
         </div>
     )
 }

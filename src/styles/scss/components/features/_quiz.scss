@@ -74,6 +74,26 @@
                                     #slide-sidebar {
                                         .tab-content {
                                             #uncontrolled-tab-tabpane-editor {
+                                                .sg-workspace-controls {
+                                                    .sg-controls {
+                                                        .quiz-color-picker {
+                                                            z-index: 5000;
+                                                            margin: 0 16px;
+                                                            top: 55px;
+
+                                                            @media only screen and (min-width: 1920px) {
+                                                                margin: 0 75px;
+                                                                top: 55px;
+                                                            }
+
+                                                            @media only screen and (max-width: 1366px) {
+                                                                margin: 0 16px;
+                                                                top: 75px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
                                                 ul.quiz-question-list {
                                                     .quiz-question-list-item {
                                                         // ul.quiz-question-list {

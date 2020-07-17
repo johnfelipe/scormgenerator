@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import ColorPicker from './ColorPicker';
+import ColorPicker from '../../../Common/ColorPicker';
 
 function HomePage(props) {
 
@@ -202,10 +202,10 @@ function HomePage(props) {
                 </div>
             </div>
             <ColorPicker
-                classNames="mr-3 ml-3 position-absolute homepage-color-picker"
+                classNames="position-absolute homepage-color-picker"
                 showPicker={showPicker}
-                setTitleBoxColor={setTitleBoxColor}
-                defaultColor={currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}
+                setBackgroundColor={setTitleBoxColor}
+                defaultColor={titleBoxColor}
             />
         </div>
     )

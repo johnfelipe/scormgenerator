@@ -259,7 +259,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: 500px;
-  overflow: auto;
+  overflow: hidden !important;
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
@@ -706,7 +706,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .ps {
-  overflow: hidden !important;
+  overflow: auto !important;
   overflow-anchor: none;
   touch-action: auto;
   -ms-overflow-style: none;
@@ -1257,7 +1257,20 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
   z-index: 5000;
-  top: 75px;
+  margin: 0 16px;
+  top: 55px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+    margin: 0 75px;
+    top: 55px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+    margin: 0 16px;
+    top: 75px;
+  }
 }
 
 html body {
@@ -1301,6 +1314,23 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 @media only screen and (max-width: 1366px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group ul.quiz-question-answers li div.quiz-choices .quiz-choice-text {
     font-size: 14px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+  z-index: 5000;
+  margin: 0 16px;
+  top: 55px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+    margin: 0 75px;
+    top: 55px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
+    margin: 0 16px;
+    top: 75px;
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .quiz-control-input-wrapper {

@@ -43,7 +43,7 @@
                                             border-right: 1px solid #ddd;
                                             border-bottom: 1px solid #ddd;
                                             height: 500px;
-                                            overflow: auto;
+                                            overflow: hidden !important;
                                             margin-top: 0.8rem !important;
                                             padding-top: 0 !important;
                                         }
