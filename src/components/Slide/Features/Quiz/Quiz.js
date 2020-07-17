@@ -5,6 +5,7 @@ import { objectHelpers } from '../../../../helpers';
 
 // components
 import QuizAccordion from './QuizAccordion';
+import ColorPicker from '../../../Common/ColorPicker';
 
 function Quiz(props) {
 
@@ -14,10 +15,12 @@ function Quiz(props) {
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
     const [filesExist, setFilesExist] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
 
     const addQuestion = (value) => {
         const currentColumnObj = currentColumn;
@@ -163,6 +166,14 @@ function Quiz(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
 
         props.setColumn(currentColumnObj);  
+    }
+
+    const setQuestionBackgroundColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor = color;
+
+        props.setColumn(currentColumnObj);
     }
     
     return (
@@ -332,21 +343,31 @@ function Quiz(props) {
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                <div className="sg-control-input-list-label">
-                                    <span>Label Border</span>
+                            <div className="sg-control-input-list-label">
+                                <span>Label Border</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
+                                    onChange={(event) => setQuestionLabelClass(event.target.value)}
+                                    className="form-control-plaintext border border-dark rounded"
+                                >
+                                    <option value="rounded-circle">&nbsp;Rounded Circle</option>
+                                    <option value="rounded">&nbsp;Rounded</option>
+                                    <option value="rounded-0">&nbsp;None</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label quiz-background-color-label">
+                                <span>Background Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input quiz-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor}</span>
                                 </div>
-                                <div className="sg-control-input-list-input">
-                                    <select
-                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
-                                        onChange={(event) => setQuestionLabelClass(event.target.value)}
-                                        className="form-control-plaintext border border-dark rounded"
-                                    >
-                                        <option value="rounded-circle">&nbsp;Rounded Circle</option>
-                                        <option value="rounded">&nbsp;Rounded</option>
-                                        <option value="rounded-0">&nbsp;None</option>
-                                    </select>
-                                </div>
-                            </li>
+                            </div>
+                        </li>
                         {
                             filesExist &&
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -383,6 +404,12 @@ function Quiz(props) {
                     </ul>
                 </div>
             </div>
+            <ColorPicker
+                classNames="position-absolute quiz-color-picker"
+                showPicker={showPicker}
+                setBackgroundColor={setQuestionBackgroundColor}
+                defaultColor={currentBackgroundColor}
+            />
         </div>
     )
 }
