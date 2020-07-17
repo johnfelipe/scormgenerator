@@ -82,7 +82,7 @@ function QuizMultipleLayout(props) {
                 return (
                     <>
                         <div className="col-md-12">
-                            <ul className="quiz-question-answers list-unstyled pl-5">
+                            <ul className="quiz-question-answers list-unstyled">
                                 {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
@@ -152,7 +152,7 @@ function QuizMultipleLayout(props) {
             } else {
                 return (
                     <div className="col-md-12 ml-2">
-                        <ul className="quiz-question-answers list-unstyled pl-5">
+                        <ul className="quiz-question-answers list-unstyled">
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
@@ -242,7 +242,7 @@ function QuizMultipleLayout(props) {
                 return (
                     <>
                         <div className="col-md-12">
-                            <ul className="quiz-question-answers list-unstyled pl-5">
+                            <ul className="quiz-question-answers list-unstyled">
                                 {
                                     item.answers.map((answer, answerIndex) => (
                                         <li key={"quiz-question-answer" + answerIndex}>
@@ -312,7 +312,7 @@ function QuizMultipleLayout(props) {
             } else {
                 return (
                     <div className="col-md-12 ml-2">
-                        <ul className="quiz-question-answers list-unstyled pl-5">
+                        <ul className="quiz-question-answers list-unstyled">
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"quiz-question-answer" + answerIndex}>
