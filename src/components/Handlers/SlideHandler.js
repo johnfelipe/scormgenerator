@@ -950,7 +950,8 @@ class SlideHandler extends Component {
 
     deleteFeature = (contentIndex) => {
         const currentColumnContent = this.state.column[this.state.activeColumnId].content[this.state.currentColumnContentIndex];
-        delete currentColumnContent[contentIndex];
+        // delete currentColumnContent[contentIndex];
+        currentColumnContent.splice(contentIndex, 1);
 
         const columns = this.state.column;
         columns[this.state.activeColumnId].content[this.state.currentColumnContentIndex] = currentColumnContent;
@@ -1226,7 +1227,8 @@ class SlideHandler extends Component {
                                                                                             >
                                                                                                 <SlideColumn 
                                                                                                     columnIndex={columnIndex}
-                                                                                                    column={item}
+                                                                                                    currentColumn={item}
+                                                                                                    currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                                                                     name={item.name}
                                                                                                     deleteColumn={this.deleteColumn}
                                                                                                     columnSizes={this.state.columnSizes}
@@ -1411,7 +1413,7 @@ class SlideHandler extends Component {
                                                                     </Droppable>
                                                                 :
                                                                     item.grid === 1 ?
-                                                                        <div  className="container p-0 pb-3">
+                                                                        <div key={Math.random()} className="container p-0 pb-3">
                                                                             {/* Second Size */}
                                                                             <div className="row w-100 m-0">
                                                                                 <Droppable droppableId={item.id + '-sg-1-2-1'}>
@@ -1549,7 +1551,7 @@ class SlideHandler extends Component {
                                                                     :
                                                                         item.grid === 2 ?
                                                                             
-                                                                            <div  className="container p-0 pb-3">
+                                                                            <div key={Math.random()} className="container p-0 pb-3">
                                                                                 {/* Third Size */}
                                                                                 <div className="row w-100 m-0">
                                                                                     <Droppable droppableId={item.id + '-sg-1-3-1'}>
@@ -1687,7 +1689,7 @@ class SlideHandler extends Component {
                                                                         :
                                                                             item.grid === 3 ?
                                                                                 
-                                                                                <div className="container p-0 pb-3">
+                                                                                <div key={Math.random()} className="container p-0 pb-3">
                                                                                     {/* Fourth Size */}
                                                                                     <div className="row w-100 m-0">
                                                                                         <Droppable droppableId={item.id + '-sg-2-3-1'}>
@@ -1826,7 +1828,7 @@ class SlideHandler extends Component {
                                                                             :
                                                                                 item.grid === 4 ?
                                                                                     
-                                                                                    <div className="container p-0 pb-3">
+                                                                                    <div key={Math.random()} className="container p-0 pb-3">
                                                                                         {/* Fifth Size */}
                                                                                         <div className="row w-100 m-0">
                                                                                         <Droppable droppableId={item.id + '-sg-1-3-1-1'}>
@@ -2030,7 +2032,7 @@ class SlideHandler extends Component {
                                                                                 :
                                                                                     item.grid === 5 ?
                                                                                         
-                                                                                        <div className="container p-0 pb-3">
+                                                                                        <div key={Math.random()} className="container p-0 pb-3">
                                                                                             {/* Sixth Size */}
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-4-1'}>
@@ -2298,7 +2300,7 @@ class SlideHandler extends Component {
                                                                                             
                                                                                     :
                                                                                         
-                                                                                        <div className="container p-0 pb-3">
+                                                                                        <div key={Math.random()} className="container p-0 pb-3">
                                                                                             {/* Seventh Size */}
                                                                                             <div className="row w-100 m-0">
                                                                                                 <Droppable droppableId={item.id + '-sg-1-5-1'}>
