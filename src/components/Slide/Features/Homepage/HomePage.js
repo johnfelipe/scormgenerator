@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import ColorPicker from './ColorPicker';
+import ColorPicker from '../../../Common/ColorPicker';
 
 function HomePage(props) {
 
