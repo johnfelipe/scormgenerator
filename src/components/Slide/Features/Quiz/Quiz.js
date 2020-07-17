@@ -128,6 +128,8 @@ function Quiz(props) {
     }
 
     const deleteQuestionFile = (index, questionIndex) => {
+        document.getElementById("question-files-uploader").value = "";
+
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
@@ -140,6 +142,8 @@ function Quiz(props) {
     }
 
     const deleteQuestionVideoVttFile = (questionIndex) => {
+        document.getElementById("question-files-uploader").value = "";
+        
         const currentColumnObj = currentColumn;
         const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
 
