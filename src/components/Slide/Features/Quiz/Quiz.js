@@ -143,7 +143,7 @@ function Quiz(props) {
 
     const deleteQuestionVideoVttFile = (questionIndex) => {
         document.getElementById("question-files-uploader").value = "";
-        
+
         const currentColumnObj = currentColumn;
         const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
 
@@ -155,6 +155,14 @@ function Quiz(props) {
         }
 
         props.setColumn(currentColumnObj);
+    }
+
+    const setQuestionLabelClass = (labelClass) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
+
+        props.setColumn(currentColumnObj);  
     }
     
     return (
@@ -319,15 +327,31 @@ function Quiz(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Customize</label>
+                    <label>Customize Question</label>
                 </div>
-                <div className="sg-control-input sg-control-input">
+                <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Label Border</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <select
+                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
+                                        onChange={(event) => setQuestionLabelClass(event.target.value)}
+                                        className="form-control-plaintext border border-dark rounded"
+                                    >
+                                        <option value="rounded-circle">&nbsp;Rounded Circle</option>
+                                        <option value="rounded">&nbsp;Rounded</option>
+                                        <option value="rounded-0">&nbsp;None</option>
+                                    </select>
+                                </div>
+                            </li>
                         {
                             filesExist &&
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
                                 <div className="sg-control-input-list-label">
-                                    <span>Question Files Position</span>
+                                    <span>Files Position</span>
                                 </div>
                                 <div className="sg-control-input-list-input">
                                     <select
@@ -335,8 +359,8 @@ function Quiz(props) {
                                         onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                         className="form-control-plaintext border border-dark rounded"
                                     >
-                                        <option value="question-files-left">Left</option>
-                                        <option value="question-files-right">Right</option>
+                                        <option value="question-files-left">&nbsp;Left</option>
+                                        <option value="question-files-right">&nbsp;Right</option>
                                     </select>
                                 </div>
                             </li>
