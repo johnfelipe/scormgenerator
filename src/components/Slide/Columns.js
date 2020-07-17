@@ -33,6 +33,7 @@ function Columns (props) {
         if (removeFeatures) {
             props.handleSizeActive(columnIndex, sizeIndex, itemId);
             setRemoveFeaures(false);
+            props.resetStates();
         }
     }, [removeFeatures, props, columnIndex, sizeIndex, itemId]);
 
