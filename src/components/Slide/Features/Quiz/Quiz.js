@@ -376,8 +376,8 @@ function Quiz(props) {
                                     onChange={(event) => setQuizTextColor(event.target.value)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >
-                                    <option value="text-black">&nbsp;White</option>
-                                    <option value="text-white">&nbsp;Black</option>
+                                    <option value="text-black">&nbsp;Black</option>
+                                    <option value="text-white">&nbsp;White</option>
                                 </select>
                             </div>
                         </li>
