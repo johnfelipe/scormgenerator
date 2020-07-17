@@ -118,7 +118,7 @@ function QuizMultipleLayout(props) {
                                 <source src={item.files[videoIndex].video.url} />
                                 <track
                                     kind="captions"
-                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption}
+                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption.url}
                                     srcLang="en"
                                     label="English"
                                     default
@@ -296,7 +296,7 @@ function QuizMultipleLayout(props) {
                                 <source src={item.files[videoIndex].video.url} />
                                 <track
                                     kind="captions"
-                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption}
+                                    src={item.files[videoIndex].video.caption && item.files[videoIndex].video.caption.url}
                                     srcLang="en"
                                     label="English"
                                     default
