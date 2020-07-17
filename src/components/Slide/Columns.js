@@ -57,7 +57,12 @@ class Columns extends Component {
                                             ))}
                                         </li>
                                     :
-                                        <li key={sizeIndex} onClick={() => this.props.handleSizeActive(this.props.columnIndex, sizeIndex, item.id)}>
+                                        <li
+                                            key={sizeIndex}
+                                            onClick={() => {
+                                                this.props.handleSizeActive(this.props.columnIndex, sizeIndex, item.id)
+                                            }}
+                                        >
                                             {this.props.columnSizes[sizeIndex].items.map((item, index) =>(
                                                 <span key={index} className={item.class}>
                                                     {item.size}

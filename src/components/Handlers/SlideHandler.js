@@ -1226,6 +1226,7 @@ class SlideHandler extends Component {
                                                                                             >
                                                                                                 <SlideColumn 
                                                                                                     columnIndex={columnIndex}
+                                                                                                    column={item}
                                                                                                     name={item.name}
                                                                                                     deleteColumn={this.deleteColumn}
                                                                                                     columnSizes={this.state.columnSizes}
