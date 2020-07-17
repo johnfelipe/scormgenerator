@@ -24,7 +24,7 @@ function ColorPicker(props) {
         //   },
         // }
         setCurrentColor(color);
-        props.setTitleBoxColor(color.hex);
+        props.setBackgroundColor(color.hex);
     }
 
     return (
