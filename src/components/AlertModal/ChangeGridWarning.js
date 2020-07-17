@@ -4,7 +4,6 @@ import { Modal } from 'react-bootstrap';
 function ChangeGrid (props) {
 
     const modalShow = props.modalShow;
-    // const removeFeatures = props.removeFeatures;
 
     const confirmationModal = (
         <Modal
@@ -26,8 +25,8 @@ function ChangeGrid (props) {
                 <button
                     className="btn btn-primary"
                     onClick={() => {
-                        props.setModalShow(false);
                         props.setRemoveFeaures(true);
+                        props.setModalShow(false);
                     }}
                 >
                     Yes
@@ -35,8 +34,8 @@ function ChangeGrid (props) {
                 <button
                     className="btn btn-danger"
                     onClick={() => {
-                        props.setModalShow(false);
                         props.setRemoveFeaures(false);
+                        props.setModalShow(false);
                     }}
                 >
                     No
