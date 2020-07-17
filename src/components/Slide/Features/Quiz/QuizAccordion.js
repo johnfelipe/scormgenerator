@@ -29,54 +29,55 @@ function QuizAccordion(props) {
         let reader = new FileReader();
 
         console.log(files[0])
+        if (files[0] !== undefined) {
+            reader.readAsDataURL(files[0])
+            reader.onloadend = () => {
 
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-
-            if (~files[0].type.indexOf('image')) {
-                const imgObj = {
-                    name: files[0].name,
-                    size: files[0].size,
-                    type: files[0].type,
-                    url: reader.result,
-                    lastModified: files[0].lastModified,
-                }
-    
-                props.addImageQuestion(imgObj, index);
-            } else if (~files[0].type.indexOf('audio')) {
-                const audioObj = {
-                    name: files[0].name,
-                    size: files[0].size,
-                    type: files[0].type,
-                    url: reader.result,
-                    lastModified: files[0].lastModified,
-                }
-    
-                props.addAudioQuestion(audioObj, index);
-            } else if (~files[0].type.indexOf('video')) {
-                const videoObj = {
-                    name: files[0].name,
-                    size: files[0].size,
-                    type: files[0].type,
-                    url: reader.result,
-                    lastModified: files[0].lastModified,
-                    caption: '',
-                }
-    
-                props.addVideoQuestion(videoObj, index);
-            } else if (files[0].type === "") {
-                const fileExt = files[0].name.split(".");
-
-                if (fileExt[1] === 'vtt') {
-                    // const captionUrl = reader.result;
+                if (~files[0].type.indexOf('image')) {
+                    const imgObj = {
+                        name: files[0].name,
+                        size: files[0].size,
+                        type: files[0].type,
+                        url: reader.result,
+                        lastModified: files[0].lastModified,
+                    }
         
-                    // props.addVideoQuestionCaption(captionUrl, index);
+                    props.addImageQuestion(imgObj, index);
+                } else if (~files[0].type.indexOf('audio')) {
+                    const audioObj = {
+                        name: files[0].name,
+                        size: files[0].size,
+                        type: files[0].type,
+                        url: reader.result,
+                        lastModified: files[0].lastModified,
+                    }
+        
+                    props.addAudioQuestion(audioObj, index);
+                } else if (~files[0].type.indexOf('video')) {
+                    const videoObj = {
+                        name: files[0].name,
+                        size: files[0].size,
+                        type: files[0].type,
+                        url: reader.result,
+                        lastModified: files[0].lastModified,
+                        caption: '',
+                    }
+        
+                    props.addVideoQuestion(videoObj, index);
+                } else if (files[0].type === "") {
+                    const fileExt = files[0].name.split(".");
 
-                    alert("Cannot upload .vtt files here.")
+                    if (fileExt[1] === 'vtt') {
+                        // const captionUrl = reader.result;
+            
+                        // props.addVideoQuestionCaption(captionUrl, index);
+
+                        alert("Cannot upload .vtt files here.")
+                    }
                 }
-            }
 
-            props.setFilesExist(true);
+                props.setFilesExist(true);
+            }
         }
     }
 
@@ -223,7 +224,7 @@ function QuizAccordion(props) {
                                 <div className="quiz-question-action-button mt-3">
                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
-                                            Add files<input type="file" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
+                                            Add files<input type="file" id="question-files-uploader" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
                                         </span>
                                     </label>
                                 </div>
