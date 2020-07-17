@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
@@ -10,11 +10,13 @@ import ChangeGridWarning from '../AlertModal/ChangeGridWarning';
 function Columns (props) {
 
     const [modalShow, setModalShow] = useState(false);
-    const [removeFeatures, setRemoveFeaures] = useState(false);
     const currentColumn = props.currentColumn;
     const [collapseId, setCollapseId] = useState(false);
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const columnIndex = props.columnIndex;
+    const [sizeIndex, setSizeIndex] = useState(-1);
+    const [itemId, setItemId] = useState(-1);
+    const [removeFeatures, setRemoveFeaures] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -26,6 +28,13 @@ function Columns (props) {
 
         setCollapseId(currentCollapseId);
     }
+    
+    useEffect(() => {
+        if (removeFeatures) {
+            props.handleSizeActive(columnIndex, sizeIndex, itemId);
+            setRemoveFeaures(false);
+        }
+    }, [removeFeatures, props, columnIndex, sizeIndex, itemId]);
 
     return (
         <Accordion key={'accordion-column-' + columnIndex} className="mb-2">
@@ -58,14 +67,10 @@ function Columns (props) {
                                         key={sizeIndex}
                                         onClick={() => {
                                             console.log(currentColumnContentIndex);
-                                            console.log(removeFeatures);
                                             if (currentColumn.content[currentColumnContentIndex].length > 0) {
                                                 setModalShow(true);
-
-                                                if (removeFeatures) {
-                                                    props.handleSizeActive(columnIndex, sizeIndex, item.id);
-                                                    setRemoveFeaures(false);
-                                                }
+                                                setSizeIndex(sizeIndex);
+                                                setItemId(item.id);
                                             } else {
                                                 props.handleSizeActive(columnIndex, sizeIndex, item.id);
                                             }
@@ -84,10 +89,13 @@ function Columns (props) {
             </Card>
 
             <ChangeGridWarning
-                removeFeatures={removeFeatures}
                 setRemoveFeaures={setRemoveFeaures}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
+                handleSizeActive={props.handleSizeActive}
+                columnIndex={columnIndex}
+                sizeIndex={sizeIndex}
+                itemId={itemId}
             />
         </Accordion>
     );
