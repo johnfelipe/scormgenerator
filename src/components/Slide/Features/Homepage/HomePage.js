@@ -202,10 +202,10 @@ function HomePage(props) {
                 </div>
             </div>
             <ColorPicker
-                classNames="mr-3 ml-3 position-absolute homepage-color-picker"
+                classNames="position-absolute homepage-color-picker"
                 showPicker={showPicker}
-                setTitleBoxColor={setTitleBoxColor}
-                defaultColor={currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor}
+                setBackgroundColor={setTitleBoxColor}
+                defaultColor={titleBoxColor}
             />
         </div>
     )
