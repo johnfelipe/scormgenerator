@@ -28,6 +28,8 @@ function QuizAccordion(props) {
         let files = e.target.files;
         let reader = new FileReader();
 
+        console.log(files[0])
+
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
 
@@ -73,6 +75,8 @@ function QuizAccordion(props) {
                     alert("Cannot upload .vtt files here.")
                 }
             }
+
+            props.setFilesExist(true);
         }
     }
 

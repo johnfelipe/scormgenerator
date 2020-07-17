@@ -13,6 +13,7 @@ function Quiz(props) {
     const [updateQuestion, setUpdateQuestion] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
+    const [filesExist, setFilesExist] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
@@ -131,6 +132,10 @@ function Quiz(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
 
+        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.length === 0) {
+            setFilesExist(false);
+        }
+
         props.setColumn(currentColumnObj);
     }
 
@@ -195,6 +200,7 @@ function Quiz(props) {
                                                                         addVideoQuestionCaption={addVideoQuestionCaption}
                                                                         deleteQuestionFile={deleteQuestionFile}
                                                                         deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
+                                                                        setFilesExist={setFilesExist}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
@@ -313,21 +319,24 @@ function Quiz(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Question Files Position</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    className="form-control-plaintext border border-dark rounded"
-                                >
-                                    <option value="question-files-left">Left</option>
-                                    <option value="question-files-right">Right</option>
-                                </select>
-                            </div>
-                        </li>
+                        {
+                            filesExist &&
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Question Files Position</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <select
+                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
+                                        onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                        className="form-control-plaintext border border-dark rounded"
+                                    >
+                                        <option value="question-files-left">Left</option>
+                                        <option value="question-files-right">Right</option>
+                                    </select>
+                                </div>
+                            </li>
+                        }
                         {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
