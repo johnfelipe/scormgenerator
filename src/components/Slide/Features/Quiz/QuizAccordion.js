@@ -231,7 +231,7 @@ function QuizAccordion(props) {
                                                     {
                                                         file.video ?
                                                             <Accordion>
-                                                                <div id="quiz-question-file-item" className="row">
+                                                                <div id="quiz-question-file-item" className="row mb-0">
                                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0" className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label">
                                                                         {file.video.name}
                                                                     </Accordion.Toggle>
@@ -240,8 +240,8 @@ function QuizAccordion(props) {
                                                                     </div>
                                                                 </div>
                                                                 <Accordion.Collapse eventKey="0">
-                                                                    <div className="mt-3">
-                                                                        <div className="quiz-question-action-button">
+                                                                    <div className="border border-light rounded-bottom pr-3">
+                                                                        <div className="quiz-question-action-button mt-3">
                                                                             <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                                                                 <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                                                                     Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
@@ -249,11 +249,11 @@ function QuizAccordion(props) {
                                                                             </label>
                                                                         </div>
                                                                         {file.video.caption &&
-                                                                            <ul className="quiz-question-file-item-list">
+                                                                            <ul className="quiz-question-file-item-list pl-4">
                                                                                 <li className="quiz-question-file-item-list-item">
                                                                                     <div className="row">
-                                                                                        <div className="col-md-11 pl-0">{file.video.caption.name}</div>
-                                                                                        <div className="col-md-1 p-0" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
+                                                                                        <div className="col-md-10">{file.video.caption.name}</div>
+                                                                                        <div className="col-md-2 pl-2" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
                                                                                     </div>
