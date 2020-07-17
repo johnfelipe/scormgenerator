@@ -1167,13 +1167,13 @@ class SlideHandler extends Component {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    <label htmlFor="showTitle" className="ml-1"> Display Title</label>
+                                    <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
                                     <label htmlFor="slideSubtitle" className="d-block">Slide Subtitle:</label>
                                     <input
                                         id="slideSubtitle"
                                         name="slideSubtitle"
                                         type="text"
-                                        className={(errors.slideSubtitle && touched.slideSubtitle && "error form-control d-inline") || "form-control d-inline"}
+                                        className={(errors.slideSubtitle && touched.slideSubtitle && "error form-control d-inline mb-2") || "form-control d-inline mb-2"}
                                         onBlur={(e) => {
                                                 handleBlur(e)
 
