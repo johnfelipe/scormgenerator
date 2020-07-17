@@ -228,16 +228,19 @@ function QuizAccordion(props) {
                                         <ul className="quiz-question-files-list list-unstyled">
                                             {item.files.map((file, fileIndex) => (
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
-                                                    <div id="quiz-question-file-item" className="row">
-                                                        <div className="col-md-11 pl-0 quiz-question-file-item-label">
-                                                            {file.img && file.img.name}
-                                                            {file.audio && file.audio.name}
-                                                            {file.video && 
-                                                                <Accordion>
-                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0 font-15">
+                                                    {
+                                                        file.video ?
+                                                            <Accordion>
+                                                                <div id="quiz-question-file-item" className="row">
+                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label">
                                                                         {file.video.name}
                                                                     </Accordion.Toggle>
-                                                                    <Accordion.Collapse eventKey="0">
+                                                                    <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
+                                                                        <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                                    </div>
+                                                                </div>
+                                                                <Accordion.Collapse eventKey="0">
+                                                                    <div className="mt-3">
                                                                         <div className="quiz-question-action-button">
                                                                             <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                                                                 <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
@@ -257,14 +260,20 @@ function QuizAccordion(props) {
                                                                                 </li>
                                                                             </ul>
                                                                         }
-                                                                    </Accordion.Collapse>
-                                                                </Accordion>
-                                                            }
-                                                        </div>
-                                                        <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
-                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
-                                                        </div>
-                                                    </div>
+                                                                    </div>
+                                                                </Accordion.Collapse>
+                                                            </Accordion>
+                                                        :
+                                                            <div id="quiz-question-file-item" className="row">
+                                                                <div className="col-md-11 pl-0 quiz-question-file-item-label">
+                                                                    {file.img && file.img.name}
+                                                                    {file.audio && file.audio.name}
+                                                                </div>
+                                                                <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
+                                                                    <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                                </div>
+                                                            </div>
+                                                    }
                                                 </li>
                                             ))}
                                         </ul>
