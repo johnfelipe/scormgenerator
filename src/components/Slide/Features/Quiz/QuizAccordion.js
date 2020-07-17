@@ -138,7 +138,7 @@ function QuizAccordion(props) {
                             <Tab eventKey="answers" title="Answers">
                                 {
                                     IsAddAnswer ?
-                                        <div className="quiz-control-input-wrapper mb-1 mt-3">
+                                        <div className="quiz-control-input-wrapper mb-1 mt-3 mb-3">
                                             <div className="quiz-control-input-label">
                                                 <span>Add:&nbsp;</span>
                                             </div>
@@ -171,7 +171,7 @@ function QuizAccordion(props) {
                                             </div>
                                         </div>
                                     :
-                                        <div className="quiz-question-action-button mt-3">
+                                        <div className="quiz-question-action-button mt-3 mb-3">
                                             <button
                                                 type="button"
                                                 className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
@@ -187,7 +187,7 @@ function QuizAccordion(props) {
                                     item.answers.length > 0 ?
                                         <ul className="quiz-question-list">
                                             {item.answers.map((item, answerIndex) => (
-                                                <li key={Math.random()} className="quiz-question-list-item">
+                                                <li key={Math.random()} className="quiz-question-list-item mb-3">
                                                     <span key={'quiz-feature-answer-list-item-span-' + answerIndex}>
                                                         <span key={'quiz-feature-answer-list-item-' + answerIndex}>
                                                             {item.answer}&nbsp;
@@ -230,7 +230,7 @@ function QuizAccordion(props) {
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
                                                     {
                                                         file.video ?
-                                                            <Accordion>
+                                                            <Accordion classname="mb-2">
                                                                 <div id="quiz-question-file-item" className="row mb-0">
                                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0" className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label">
                                                                         {file.video.name}
@@ -240,7 +240,7 @@ function QuizAccordion(props) {
                                                                     </div>
                                                                 </div>
                                                                 <Accordion.Collapse eventKey="0">
-                                                                    <div className="border border-light rounded-bottom pr-3">
+                                                                    <div className="border border-light rounded-bottom p-1 pb-3 pr-3">
                                                                         <div className="quiz-question-action-button mt-3">
                                                                             <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                                                                 <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
