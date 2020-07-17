@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
+import { Accordion, Card, Tabs, Tab, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -66,9 +66,37 @@ function QuizAccordion(props) {
                 const fileExt = files[0].name.split(".");
 
                 if (fileExt[1] === 'vtt') {
-                    const captionUrl = reader.result;
+                    // const captionUrl = reader.result;
         
-                    props.addVideoQuestionCaption(captionUrl, index);
+                    // props.addVideoQuestionCaption(captionUrl, index);
+
+                    alert("Cannot upload .vtt files here.")
+                }
+            }
+        }
+    }
+
+    const uploadVtt = (e, index) => {
+        e.preventDefault();
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+
+            if (files[0].type === "") {
+                const fileExt = files[0].name.split(".");
+
+                if (fileExt[1] === 'vtt') {
+                    const captionObj = {
+                        name: files[0].name,
+                        size: files[0].size,
+                        type: fileExt[1],
+                        url: reader.result,
+                        lastModified: files[0].lastModified,
+                    }
+        
+                    props.addVideoQuestionCaption(captionObj, index);
                 }
             }
         }
@@ -204,7 +232,34 @@ function QuizAccordion(props) {
                                                         <div className="col-md-11 pl-0 quiz-question-file-item-label">
                                                             {file.img && file.img.name}
                                                             {file.audio && file.audio.name}
-                                                            {file.video && file.video.name}
+                                                            {file.video && 
+                                                                <Accordion>
+                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0 font-15">
+                                                                        {file.video.name}
+                                                                    </Accordion.Toggle>
+                                                                    <Accordion.Collapse eventKey="0">
+                                                                        <div className="quiz-question-action-button">
+                                                                            <label className="input-group-btn" style={{ cursor: 'pointer' }}>
+                                                                                <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
+                                                                                    Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
+                                                                                </span>
+                                                                            </label>
+                                                                        </div>
+                                                                        {file.video.caption &&
+                                                                            <ul className="quiz-question-file-item-list">
+                                                                                <li className="quiz-question-file-item-list-item">
+                                                                                    <div className="row">
+                                                                                        <div className="col-md-11 pl-0">{file.video.caption.name}</div>
+                                                                                        <div className="col-md-1 p-0" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
+                                                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </li>
+                                                                            </ul>
+                                                                        }
+                                                                    </Accordion.Collapse>
+                                                                </Accordion>
+                                                            }
                                                         </div>
                                                         <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
