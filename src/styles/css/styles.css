@@ -259,7 +259,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: 500px;
-  overflow: auto;
+  overflow: hidden !important;
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
@@ -706,7 +706,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   height: 100%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .ps {
-  overflow: hidden !important;
+  overflow: auto !important;
   overflow-anchor: none;
   touch-action: auto;
   -ms-overflow-style: none;

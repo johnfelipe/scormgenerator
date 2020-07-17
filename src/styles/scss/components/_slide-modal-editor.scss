@@ -93,7 +93,8 @@
                                                 }
     
                                                 .ps {
-                                                    overflow: hidden!important;
+                                                    // overflow: hidden!important;
+                                                    overflow: auto!important;
                                                     overflow-anchor: none;
                                                     touch-action: auto;
                                                     -ms-overflow-style: none;
