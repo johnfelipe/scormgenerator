@@ -72,6 +72,7 @@ class SlideHandler extends Component {
         this.cssApplier = this.cssApplier.bind(this);
         this.setApplyCss = this.setApplyCss.bind(this);
         this.setColumn = this.setColumn.bind(this);
+        this.resetStates = this.resetStates.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -184,6 +185,10 @@ class SlideHandler extends Component {
                 subColumnThree: [],
                 subColumnFour: [],
                 subColumnFive: [],
+            };
+        } else {
+            columnSizesObj[columnIndex].content = {
+                subColumnOne: [],
             };
         }
 
@@ -1053,6 +1058,20 @@ class SlideHandler extends Component {
         })
     }
 
+    resetStates = () => {
+        this.setState({
+            activeFeature: '',
+            activeTab: 'column',
+            activeColumnId: -1,
+            showHtmlEditor: false,
+            showCssEditor: false,
+            activeContentIndex: 0,
+            currentColumnContentIndex: '',
+            isSlideNameNotEmpty: false,
+            applyCss: false,
+        });
+    }
+
     onSave = (slide, subtitle, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
@@ -1234,6 +1253,7 @@ class SlideHandler extends Component {
                                                                                                     columnSizes={this.state.columnSizes}
                                                                                                     column={this.state.column}
                                                                                                     handleSizeActive={this.handleSizeActive}
+                                                                                                    resetStates={this.resetStates}
                                                                                                 />
                                                                                             </div>
                                                                                         )}
