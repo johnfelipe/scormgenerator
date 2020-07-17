@@ -279,7 +279,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '', }, };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1385,6 +1385,7 @@ class SlideHandler extends Component {
                                                                                                                             quiz={contentFirst.output}
                                                                                                                             quizClass={contentFirst.class}
                                                                                                                             quizId={contentFirst.id}
+                                                                                                                            quizStyles={contentFirst.styles}
                                                                                                                         />
                                                                                                                     :
                                                                                                                         ReactHtmlParser(contentFirst.output)
