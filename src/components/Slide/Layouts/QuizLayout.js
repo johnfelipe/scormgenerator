@@ -3,7 +3,7 @@ import { objectHelpers } from '../../../helpers';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function QuizMultipleLayout(props) {
     
@@ -59,7 +59,7 @@ function QuizMultipleLayout(props) {
                                                     value={imgLabel}
                                                 />
                                             </div>
-                                            <div className="img-add-label-button d-inline ml-3">
+                                            <div className="img-add-label-button d-inline ml-2">
                                                 <button
                                                     type="button"
                                                     className="btn btn-success btn-sm"
@@ -68,7 +68,16 @@ function QuizMultipleLayout(props) {
                                                         setImgAddLabel(false);
                                                     }}
                                                 >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setImgAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
                                                 </button>
                                             </div>
                                         </div>
