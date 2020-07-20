@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Accordion, Card, Tabs, Tab, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function QuizAccordion(props) {
 
     const index = props.index;
-    const item = props.item;
+    let item = props.item;
+    item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
     
@@ -28,7 +30,6 @@ function QuizAccordion(props) {
         let files = e.target.files;
         let reader = new FileReader();
 
-        console.log(files[0])
         if (files[0] !== undefined) {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {
@@ -106,6 +107,41 @@ function QuizAccordion(props) {
             }
         }
     }
+
+    // a little function to help us with reordering the result
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+    
+        return result;
+    };
+
+    const onDragEnd = result => {
+        const { source, destination } = result;
+        
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if (source.droppableId === destination.droppableId) {
+
+            const reorderedFiles = reorder(
+                item.files,
+                source.index,
+                destination.index
+            );
+
+            let files = reorderedFiles;
+
+            for (let key in files) {
+                files[key].weight = parseInt(key);
+            }
+
+            props.setQuestionFiles(files, index);
+        }
+    };
 
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
@@ -228,63 +264,87 @@ function QuizAccordion(props) {
                                         </span>
                                     </label>
                                 </div>
-                                {
-                                    item.files.length > 0 ?
-                                        <ul className="quiz-question-files-list list-unstyled">
-                                            {item.files.map((file, fileIndex) => (
-                                                <li key={Math.random()} className="quiz-question-files-list-item">
-                                                    {
-                                                        file.video ?
-                                                            <Accordion classname="mb-2">
-                                                                <div id="quiz-question-file-item" className="row mb-0">
-                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label">
-                                                                        {file.video.name}
-                                                                    </Accordion.Toggle>
-                                                                    <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
-                                                                        <span><FontAwesomeIcon icon={faTimes}/></span>
-                                                                    </div>
-                                                                </div>
-                                                                <Accordion.Collapse eventKey="0">
-                                                                    <div className="border border-light rounded-bottom p-1 pb-3 pr-3">
-                                                                        <div className="quiz-question-action-button mt-3">
-                                                                            <label className="input-group-btn" style={{ cursor: 'pointer' }}>
-                                                                                <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
-                                                                                    Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
-                                                                                </span>
-                                                                            </label>
-                                                                        </div>
-                                                                        {file.video.caption &&
-                                                                            <ul className="quiz-question-file-item-list pl-4">
-                                                                                <li className="quiz-question-file-item-list-item">
-                                                                                    <div className="row">
-                                                                                        <div className="col-md-10">{file.video.caption.name}</div>
-                                                                                        <div className="col-md-2 pl-2" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
+                                <DragDropContext onDragEnd={onDragEnd}>
+                                    <Droppable droppableId="files-droppable">
+                                        {(provided) => (
+                                            <div
+                                                {...provided.droppableProps}
+                                                ref={provided.innerRef}
+                                            >
+                                                {
+                                                    item.files.length > 0 ?
+                                                        <ul className="quiz-question-files-list list-unstyled">
+                                                            {item.files.map((file, fileIndex) => (
+                                                                <Draggable
+                                                                    key={Math.random()}
+                                                                    draggableId={'' + fileIndex}
+                                                                    index={fileIndex}>
+                                                                    {(provided) => (
+                                                                        <li
+                                                                            className="quiz-question-files-list-item"
+                                                                            ref={provided.innerRef}
+                                                                            {...provided.draggableProps}
+                                                                            {...provided.dragHandleProps}
+                                                                        >
+                                                                            {
+                                                                                file.video ?
+                                                                                    <Accordion classname="mb-2">
+                                                                                        <div id="quiz-question-file-item" className="row mb-0">
+                                                                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label">
+                                                                                                {file.video.name}
+                                                                                            </Accordion.Toggle>
+                                                                                            <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
+                                                                                                <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <Accordion.Collapse eventKey="0">
+                                                                                            <div className="border border-light rounded-bottom p-1 pb-3 pr-3">
+                                                                                                <div className="quiz-question-action-button mt-3">
+                                                                                                    <label className="input-group-btn" style={{ cursor: 'pointer' }}>
+                                                                                                        <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
+                                                                                                            Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
+                                                                                                        </span>
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                                {file.video.caption &&
+                                                                                                    <ul className="quiz-question-file-item-list pl-4">
+                                                                                                        <li className="quiz-question-file-item-list-item">
+                                                                                                            <div className="row">
+                                                                                                                <div className="col-md-10">{file.video.caption.name}</div>
+                                                                                                                <div className="col-md-2 pl-2" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
+                                                                                                                    <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                }
+                                                                                            </div>
+                                                                                        </Accordion.Collapse>
+                                                                                    </Accordion>
+                                                                                :
+                                                                                    <div id="quiz-question-file-item" className="row">
+                                                                                        <div className="col-md-11 pl-0 quiz-question-file-item-label">
+                                                                                            {file.img && file.img.name}
+                                                                                            {file.audio && file.audio.name}
+                                                                                        </div>
+                                                                                        <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                </li>
-                                                                            </ul>
-                                                                        }
-                                                                    </div>
-                                                                </Accordion.Collapse>
-                                                            </Accordion>
-                                                        :
-                                                            <div id="quiz-question-file-item" className="row">
-                                                                <div className="col-md-11 pl-0 quiz-question-file-item-label">
-                                                                    {file.img && file.img.name}
-                                                                    {file.audio && file.audio.name}
-                                                                </div>
-                                                                <div className="col-md-1 p-0 quiz-question-file-item-delete" onClick={() => {props.deleteQuestionFile(fileIndex, index)}}>
-                                                                    <span><FontAwesomeIcon icon={faTimes}/></span>
-                                                                </div>
-                                                            </div>
-                                                    }
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    :
-                                        <div><span>No file/s added.</span></div>
-                                }
+                                                                            }
+                                                                        </li>
+                                                                    )}
+                                                                </Draggable>
+                                                            ))}
+                                                        </ul>
+                                                    :
+                                                        <div><span>No file/s added.</span></div>
+                                                }
+                                                {provided.placeholder}
+                                            </div>
+                                        )}
+                                    </Droppable>
+                                </DragDropContext>
                             </Tab>
                         </Tabs>
                     </Card.Body>

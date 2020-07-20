@@ -1409,6 +1409,10 @@ class SlideHandler extends Component {
                                                                                                                             quizClass={contentFirst.class}
                                                                                                                             quizId={contentFirst.id}
                                                                                                                             quizStyles={contentFirst.styles}
+                                                                                                                            currentColumn={this.state.column[this.state.activeColumnId]}
+                                                                                                                            contentIndex={this.state.activeContentIndex}
+                                                                                                                            currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                                                                                            setColumn={this.setColumn}
                                                                                                                         />
                                                                                                                     :
                                                                                                                         ReactHtmlParser(contentFirst.output)
