@@ -176,7 +176,6 @@ function HomePage(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    defaultValue={currentColumn.content[currentColumnContentIndex][contentIndex].class}
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >
