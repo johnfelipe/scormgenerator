@@ -1346,98 +1346,96 @@ class SlideHandler extends Component {
                                                                                 { 
                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                         item.content['subColumnOne'].length > 0 ?
+                                                                                            <div
                                                                                                 
-                                                                                                        <div
-                                                                                                            
-                                                                                                            id={item.id}
-                                                                                                            className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
+                                                                                                id={item.id}
+                                                                                                className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
+                                                                                            >
+                                                                                                {
+                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
+                                                                                                        <Draggable
+                                                                                                            key={Math.random()}
+                                                                                                            draggableId={'' + contentFirstIndex}
+                                                                                                            index={contentFirstIndex}
                                                                                                         >
-                                                                                                            {
-                                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
-                                                                                                                    <Draggable
-                                                                                                                        key={Math.random()}
-                                                                                                                        draggableId={'' + contentFirstIndex}
-                                                                                                                        index={contentFirstIndex}
-                                                                                                                    >
-                                                                                                                        {(provided) => (
-                                                                                                                            <div 
-                                                                                                                                ref={provided.innerRef}
-                                                                                                                                {...provided.draggableProps}
-                                                                                                                                {...provided.dragHandleProps}
+                                                                                                            {(provided) => (
+                                                                                                                <div 
+                                                                                                                    ref={provided.innerRef}
+                                                                                                                    {...provided.draggableProps}
+                                                                                                                    {...provided.dragHandleProps}
 
-                                                                                                                                key={item.id + '-content-output-' + contentFirstIndex} 
-                                                                                                                                id={
+                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex} 
+                                                                                                                    id={
+                                                                                                                        contentFirst.id ? 
+                                                                                                                            contentFirst.id
+                                                                                                                        : 
+                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                    } 
+                                                                                                                    className={
+                                                                                                                        contentFirst.class ? 
+                                                                                                                            contentFirst.class + " content-output"
+                                                                                                                        : 
+                                                                                                                            "content-output"
+                                                                                                                    } 
+                                                                                                                    onClick={() => 
+                                                                                                                        this.contentPaneClick(
+                                                                                                                            index, 
+                                                                                                                            contentFirstIndex, 
+                                                                                                                            contentFirst.id ? 
+                                                                                                                            contentFirst.id
+                                                                                                                                : 
+                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                            'subColumnOne'
+                                                                                                                        )
+                                                                                                                    }
+                                                                                                                >
+                                                                                                                    {
+                                                                                                                        contentFirst.css ? 
+                                                                                                                            contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                this.cssApplier(
+                                                                                                                                    contentFirst.css, 
                                                                                                                                     contentFirst.id ? 
                                                                                                                                         contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                                } 
-                                                                                                                                className={
-                                                                                                                                    contentFirst.class ? 
-                                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                                    : 
-                                                                                                                                        "content-output"
-                                                                                                                                } 
-                                                                                                                                onClick={() => 
-                                                                                                                                    this.contentPaneClick(
-                                                                                                                                        index, 
-                                                                                                                                        contentFirstIndex, 
-                                                                                                                                        contentFirst.id ? 
-                                                                                                                                        contentFirst.id
                                                                                                                                             : 
-                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                        'subColumnOne'
-                                                                                                                                    )
-                                                                                                                                }
-                                                                                                                            >
-                                                                                                                                {
-                                                                                                                                    contentFirst.css ? 
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentFirst.css, 
-                                                                                                                                                contentFirst.id ? 
-                                                                                                                                                    contentFirst.id
-                                                                                                                                                        : 
-                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
-                                                                                                                                            )
-                                                                                                                                        :
-                                                                                                                                            null
-                                                                                                                                    : 
-                                                                                                                                        null
-                                                                                                                                }
-                                                                                                                                {   
-                                                                                                                                    contentFirst.type === 'homePage' ?
-                                                                                                                                        <HomePageLayout
-                                                                                                                                            title={contentFirst.output.title}
-                                                                                                                                            subtitle={contentFirst.output.subtitle}
-                                                                                                                                            date={contentFirst.output.date}
-                                                                                                                                            courseId={contentFirst.output.courseId}
-                                                                                                                                            backgroundImg={contentFirst.output.backgroundImg}
-                                                                                                                                            homePageClass={contentFirst.class}
-                                                                                                                                            colorScheme={contentFirst.colorScheme}
-                                                                                                                                        />
-                                                                                                                                    :
-                                                                                                                                        contentFirst.type === 'quiz' ?
-                                                                                                                                            <QuizMultipleLayout
-                                                                                                                                                quiz={contentFirst.output}
-                                                                                                                                                quizClass={contentFirst.class}
-                                                                                                                                                quizId={contentFirst.id}
-                                                                                                                                                quizStyles={contentFirst.styles}
-                                                                                                                                                currentColumn={this.state.column[this.state.activeColumnId]}
-                                                                                                                                                contentIndex={this.state.activeContentIndex}
-                                                                                                                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
-                                                                                                                                                setColumn={this.setColumn}
-                                                                                                                                            />
-                                                                                                                                        :
-                                                                                                                                            ReactHtmlParser(contentFirst.output)
-                                                                                                                                }
-                                                                                                                            </div>
-                                                                                                                        )}
-                                                                                                                    </Draggable>
-                                                                                                                ))
-                                                                                                            }
-                                                                                                            
-                                                                                                        </div>
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                )
+                                                                                                                            :
+                                                                                                                                null
+                                                                                                                        : 
+                                                                                                                            null
+                                                                                                                    }
+                                                                                                                    {   
+                                                                                                                        contentFirst.type === 'homePage' ?
+                                                                                                                            <HomePageLayout
+                                                                                                                                title={contentFirst.output.title}
+                                                                                                                                subtitle={contentFirst.output.subtitle}
+                                                                                                                                date={contentFirst.output.date}
+                                                                                                                                courseId={contentFirst.output.courseId}
+                                                                                                                                backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                                homePageClass={contentFirst.class}
+                                                                                                                                colorScheme={contentFirst.colorScheme}
+                                                                                                                            />
+                                                                                                                        :
+                                                                                                                            contentFirst.type === 'quiz' ?
+                                                                                                                                <QuizMultipleLayout
+                                                                                                                                    quiz={contentFirst.output}
+                                                                                                                                    quizClass={contentFirst.class}
+                                                                                                                                    quizId={contentFirst.id}
+                                                                                                                                    quizStyles={contentFirst.styles}
+                                                                                                                                    currentColumn={this.state.column[this.state.activeColumnId]}
+                                                                                                                                    contentIndex={this.state.activeContentIndex}
+                                                                                                                                    currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                                                                                                    setColumn={this.setColumn}
+                                                                                                                                />
+                                                                                                                            :
+                                                                                                                                ReactHtmlParser(contentFirst.output)
+                                                                                                                    }
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                        </Draggable>
+                                                                                                    ))
+                                                                                                }
+                                                                                            </div>
                                                                                                     
                                                                                         :
                                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
