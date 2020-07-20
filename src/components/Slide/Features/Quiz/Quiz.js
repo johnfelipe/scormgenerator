@@ -189,6 +189,15 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setQuestionFiles = (questionFilesArray, questionIndex) => {
+        const currentColumnObj = currentColumn;
+        console.log(questionFilesArray);
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files = questionFilesArray;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -238,6 +247,7 @@ function Quiz(props) {
                                                                         deleteQuestionFile={deleteQuestionFile}
                                                                         deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
                                                                         setFilesExist={setFilesExist}
+                                                                        setQuestionFiles={setQuestionFiles}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
