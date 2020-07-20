@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { objectHelpers } from '../../../helpers';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 function QuizMultipleLayout(props) {
     
@@ -9,6 +11,7 @@ function QuizMultipleLayout(props) {
     const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const quizStyles = props.quizStyles;
+    const [imgAddLabel, setImgAddLabel] = useState(false);
 
     const content = (item, quizClass) => {
         if (quizClass === 'question-files-left') {
@@ -20,6 +23,41 @@ function QuizMultipleLayout(props) {
                     <>
                         <div className="col-md-4">
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                            {
+                                item.files[imgIndex].label ?
+                                    <span>{item.files[imgIndex].label}</span>
+                                :
+                                    imgAddLabel ? 
+                                        <div className="img-add-label-wrapper">
+                                            <div className="img-add-label-label">
+                                                <span>Label</span>
+                                            </div>
+                                            <div className="img-add-label-input">
+                                                <input
+                                                    id="question"
+                                                    name="question"
+                                                    type="text"
+                                                    placeholder="Type question here. . ."
+                                                    onChange={(event) => console.log(event.target.value)}
+                                                    value={item.files[imgIndex].label}
+                                                />
+                                            </div>
+                                            <div className="img-add-label-button">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        console.log('clicked');
+                                                        setImgAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                            }
                             <ReactAudioPlayer
                                 src={item.files[audioIndex].audio.url}
                                 controls
