@@ -231,6 +231,8 @@ function QuizAccordion(props) {
                                 {
                                     item.files.length > 0 ?
                                         <ul className="quiz-question-files-list list-unstyled">
+                                            {/* sorts the array of object via their weights */}
+                                            {item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1)}
                                             {item.files.map((file, fileIndex) => (
                                                 <li key={Math.random()} className="quiz-question-files-list-item">
                                                     {
