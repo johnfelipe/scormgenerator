@@ -86,6 +86,7 @@ function Quiz(props) {
         const object = {
             img: imgObj,
             label: '',
+            weight: 0,
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
@@ -99,6 +100,7 @@ function Quiz(props) {
         const object = {
             audio: audioObj,
             label: '',
+            weight: 1,
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
@@ -112,6 +114,7 @@ function Quiz(props) {
         const object = {
             video: videoObj,
             label: '',
+            weight: 2,
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
