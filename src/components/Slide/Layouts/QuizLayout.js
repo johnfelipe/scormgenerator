@@ -274,6 +274,53 @@ function QuizMultipleLayout(props) {
                                 title={item.files[audioIndex].audio.name}
                                 id="audio-question-player"
                             />
+                            {
+                                item.files[audioIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[audioIndex].label}</span>
+                                    </div>
+                                :
+                                    audioAddLabel ? 
+                                        <div className="audio-add-label-wrapper mt-2">
+                                            <div className="audio-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="audio-add-label-input d-inline">
+                                                <input
+                                                    id="audioLabel"
+                                                    name="audioLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setAudioLabel(event.target.value)}
+                                                    value={audioLabel}
+                                                />
+                                            </div>
+                                            <div className="audio-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addAudioLabel(audioLabel, audioIndex, itemIndex);
+                                                        setAudioAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setAudioAddLabel(false);
+                                                        setAudioLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                     </>
                 );
@@ -420,6 +467,53 @@ function QuizMultipleLayout(props) {
                                 className="mt-3 w-100"
                                 id="audio-question-player"
                             />
+                            {
+                                item.files[audioIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[audioIndex].label}</span>
+                                    </div>
+                                :
+                                    audioAddLabel ? 
+                                        <div className="audio-add-label-wrapper mt-2">
+                                            <div className="audio-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="audio-add-label-input d-inline">
+                                                <input
+                                                    id="audioLabel"
+                                                    name="audioLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setAudioLabel(event.target.value)}
+                                                    value={audioLabel}
+                                                />
+                                            </div>
+                                            <div className="audio-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addAudioLabel(audioLabel, audioIndex, itemIndex);
+                                                        setAudioAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setAudioAddLabel(false);
+                                                        setAudioLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                     </>
                 );
@@ -528,6 +622,53 @@ function QuizMultipleLayout(props) {
                                 title={item.files[audioIndex].audio.name}
                                 id="audio-question-player"
                             />
+                            {
+                                item.files[audioIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[audioIndex].label}</span>
+                                    </div>
+                                :
+                                    audioAddLabel ? 
+                                        <div className="audio-add-label-wrapper mt-2">
+                                            <div className="audio-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="audio-add-label-input d-inline">
+                                                <input
+                                                    id="audioLabel"
+                                                    name="audioLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setAudioLabel(event.target.value)}
+                                                    value={audioLabel}
+                                                />
+                                            </div>
+                                            <div className="audio-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addAudioLabel(audioLabel, audioIndex, itemIndex);
+                                                        setAudioAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setAudioAddLabel(false);
+                                                        setAudioLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                     </>
                 );
