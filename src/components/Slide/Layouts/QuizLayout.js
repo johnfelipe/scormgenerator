@@ -12,6 +12,9 @@ function QuizMultipleLayout(props) {
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const quizStyles = props.quizStyles;
     const [imgAddLabel, setImgAddLabel] = useState(false);
+    // const [audioAddLabel, setAudioAddLabel] = useState(false);
+    const [imgLabel, setImgLabel] = useState('');
+    // const [audioLabel, setAudioLabel] = useState('');
 
     const content = (item, quizClass) => {
         if (quizClass === 'question-files-left') {
@@ -29,25 +32,24 @@ function QuizMultipleLayout(props) {
                                 :
                                     imgAddLabel ? 
                                         <div className="img-add-label-wrapper">
-                                            <div className="img-add-label-label">
+                                            <div className="img-add-label-label d-inline">
                                                 <span>Label</span>
                                             </div>
-                                            <div className="img-add-label-input">
+                                            <div className="img-add-label-input d-inline">
                                                 <input
                                                     id="question"
                                                     name="question"
                                                     type="text"
                                                     placeholder="Type question here. . ."
-                                                    onChange={(event) => console.log(event.target.value)}
+                                                    onChange={(event) => setImgLabel(event.target.value)}
                                                     value={item.files[imgIndex].label}
                                                 />
                                             </div>
-                                            <div className="img-add-label-button">
+                                            <div className="img-add-label-button d-inline">
                                                 <button
                                                     type="button"
                                                     className="btn btn-success btn-sm"
                                                     onClick={() => {
-                                                        console.log('clicked');
                                                         setImgAddLabel(false);
                                                     }}
                                                 >
