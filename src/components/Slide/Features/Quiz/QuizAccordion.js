@@ -30,7 +30,6 @@ function QuizAccordion(props) {
         let files = e.target.files;
         let reader = new FileReader();
 
-        console.log(files[0])
         if (files[0] !== undefined) {
             reader.readAsDataURL(files[0])
             reader.onloadend = () => {
@@ -135,13 +134,12 @@ function QuizAccordion(props) {
             );
 
             let files = reorderedFiles;
-            console.log(files)
+
             for (let key in files) {
                 files[key].weight = key;
             }
-            console.log(files)
-            item.files = files;
-            props.setQuestionFiles(item, index);
+
+            props.setQuestionFiles(files, index);
         }
     };
 
