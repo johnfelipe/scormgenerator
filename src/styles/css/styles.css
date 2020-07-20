@@ -1316,6 +1316,17 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
     font-size: 14px;
   }
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #quiz-multiple-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel {
+  height: 32px;
+  margin: 0;
+  border: 1px solid #ddd;
+  padding: 5px 7px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #444;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .quiz-color-picker {
   z-index: 5000;
   margin: 0 16px;
