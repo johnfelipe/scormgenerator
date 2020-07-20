@@ -19,7 +19,7 @@ function QuizMultipleLayout(props) {
                 return (
                     <>
                         <div className="col-md-4">
-                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                             <ReactAudioPlayer
                                 src={item.files[audioIndex].audio.url}
                                 controls
@@ -54,7 +54,7 @@ function QuizMultipleLayout(props) {
                 return (
                     <>
                         <div className="col-md-4">
-                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                         </div>
                         <div className="col-md-8">
                             <ul className="quiz-question-answers list-unstyled">
@@ -197,7 +197,7 @@ function QuizMultipleLayout(props) {
                             </ul>
                         </div>
                         <div className="col-md-4">
-                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                             <ReactAudioPlayer
                                 src={item.files[audioIndex].audio.url}
                                 controls
@@ -232,7 +232,7 @@ function QuizMultipleLayout(props) {
                             </ul>
                         </div>
                         <div className="col-md-4">
-                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt="Relation to the question"/>
+                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                         </div>
                     </>
                 );
