@@ -11,12 +11,24 @@ function QuizMultipleLayout(props) {
     const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const quizStyles = props.quizStyles;
+    const currentColumn = props.currentColumn;
+    const contentIndex = props.contentIndex;
+    const currentColumnContentIndex = props.currentColumnContentIndex;
     const [imgAddLabel, setImgAddLabel] = useState(false);
     // const [audioAddLabel, setAudioAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
     // const [audioLabel, setAudioLabel] = useState('');
 
-    const content = (item, quizClass) => {
+    
+    const addImageLabel = (value, fileIndex, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const content = (item, quizClass, itemIndex) => {
         if (quizClass === 'question-files-left') {
             if ((objectHelpers.doesObjectInArrayExist(item.files, 'audio') === true) && (objectHelpers.doesObjectInArrayExist(item.files, 'img') === true)) {
                 const audioIndex = objectHelpers.findObjectIndexInArray(item.files, 'audio');
@@ -28,28 +40,29 @@ function QuizMultipleLayout(props) {
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                             {
                                 item.files[imgIndex].label ?
-                                    <span>{item.files[imgIndex].label}</span>
+                                    <span className="mt-3">{item.files[imgIndex].label}</span>
                                 :
                                     imgAddLabel ? 
-                                        <div className="img-add-label-wrapper">
-                                            <div className="img-add-label-label d-inline">
-                                                <span>Label</span>
+                                        <div className="img-add-label-wrapper mt-3">
+                                            <div className="img-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
                                             </div>
                                             <div className="img-add-label-input d-inline">
                                                 <input
-                                                    id="question"
-                                                    name="question"
+                                                    id="imgLabel"
+                                                    name="imgLabel"
                                                     type="text"
-                                                    placeholder="Type question here. . ."
+                                                    placeholder="Type label here. . ."
                                                     onChange={(event) => setImgLabel(event.target.value)}
-                                                    value={item.files[imgIndex].label}
+                                                    value={imgLabel}
                                                 />
                                             </div>
-                                            <div className="img-add-label-button d-inline">
+                                            <div className="img-add-label-button d-inline ml-3">
                                                 <button
                                                     type="button"
                                                     className="btn btn-success btn-sm"
                                                     onClick={() => {
+                                                        addImageLabel(imgLabel, imgIndex, itemIndex);
                                                         setImgAddLabel(false);
                                                     }}
                                                 >
@@ -58,7 +71,7 @@ function QuizMultipleLayout(props) {
                                             </div>
                                         </div>
                                     :
-                                        <button type="button" className="btn btn-success btn-sm" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
                             }
                             <ReactAudioPlayer
                                 src={item.files[audioIndex].audio.url}
@@ -383,7 +396,7 @@ function QuizMultipleLayout(props) {
                             <div className="col-md-12">
                                 <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
                             </div>
-                            {content(item, quizClass)}
+                            {content(item, quizClass, itemIndex)}
                         </div>
                     ))
                 :
