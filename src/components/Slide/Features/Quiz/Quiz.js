@@ -189,6 +189,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addImageLabel = (value, fileIndex, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
