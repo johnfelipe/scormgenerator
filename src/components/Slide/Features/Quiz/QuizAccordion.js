@@ -7,7 +7,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 function QuizAccordion(props) {
 
     const index = props.index;
-    let [item, setItem] = useState(props.item);
+    let item = props.item;
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
@@ -141,7 +141,7 @@ function QuizAccordion(props) {
             }
             console.log(files)
             item.files = files;
-            setItem(item);
+            props.setQuestionFiles(item, index);
         }
     };
 
