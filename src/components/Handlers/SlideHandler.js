@@ -879,11 +879,19 @@ class SlideHandler extends Component {
             );
             currentColumnList[this.state.activeColumnId].content[this.state.currentColumnContentIndex] = reorderedFeatures;
             let columns = currentColumnList;
-
-            this.setState({
-                column: columns,
-                activeContentIndex: source.index,
-            })
+            
+            if (this.state.activeContentIndex === source.index) {
+                this.setState({
+                    column: columns,
+                    activeContentIndex: destination.index,
+                });
+            } else if (this.state.activeContentIndex === destination.index) {
+                this.setState({
+                    column: columns,
+                    activeContentIndex: source.index,
+                });
+            }
+                
         }
     }
 
