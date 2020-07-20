@@ -136,7 +136,7 @@ function QuizAccordion(props) {
             let files = reorderedFiles;
 
             for (let key in files) {
-                files[key].weight = key;
+                files[key].weight = parseInt(key);
             }
 
             props.setQuestionFiles(files, index);
