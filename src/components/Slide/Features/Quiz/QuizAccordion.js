@@ -6,7 +6,7 @@ import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown
 function QuizAccordion(props) {
 
     const index = props.index;
-    const item = props.item.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+    const item = props.item.sort((a, b) => (a.weight > b.weight) ? 1 : -1)    ;
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
     
