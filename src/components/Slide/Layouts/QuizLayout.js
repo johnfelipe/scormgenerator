@@ -26,6 +26,7 @@ function QuizMultipleLayout(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
 
         props.setColumn(currentColumnObj);
+        setImgLabel('');
     }
 
     const content = (item, quizClass, itemIndex) => {
@@ -75,6 +76,7 @@ function QuizMultipleLayout(props) {
                                                     className="btn btn-danger btn-sm ml-2"
                                                     onClick={() => {
                                                         setImgAddLabel(false);
+                                                        setImgLabel('');
                                                     }}
                                                 >
                                                     <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
@@ -119,6 +121,53 @@ function QuizMultipleLayout(props) {
                     <>
                         <div className="col-md-4">
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                            {
+                                item.files[imgIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[imgIndex].label}</span>
+                                    </div>
+                                :
+                                    imgAddLabel ? 
+                                        <div className="img-add-label-wrapper mt-2">
+                                            <div className="img-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="img-add-label-input d-inline">
+                                                <input
+                                                    id="imgLabel"
+                                                    name="imgLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setImgLabel(event.target.value)}
+                                                    value={imgLabel}
+                                                />
+                                            </div>
+                                            <div className="img-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addImageLabel(imgLabel, imgIndex, itemIndex);
+                                                        setImgAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setImgAddLabel(false);
+                                                        setImgLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                         <div className="col-md-8">
                             <ul className="quiz-question-answers list-unstyled">
@@ -262,6 +311,53 @@ function QuizMultipleLayout(props) {
                         </div>
                         <div className="col-md-4">
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                            {
+                                item.files[imgIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[imgIndex].label}</span>
+                                    </div>
+                                :
+                                    imgAddLabel ? 
+                                        <div className="img-add-label-wrapper mt-2">
+                                            <div className="img-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="img-add-label-input d-inline">
+                                                <input
+                                                    id="imgLabel"
+                                                    name="imgLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setImgLabel(event.target.value)}
+                                                    value={imgLabel}
+                                                />
+                                            </div>
+                                            <div className="img-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addImageLabel(imgLabel, imgIndex, itemIndex);
+                                                        setImgAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setImgAddLabel(false);
+                                                        setImgLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                            }
                             <ReactAudioPlayer
                                 src={item.files[audioIndex].audio.url}
                                 controls
@@ -297,6 +393,53 @@ function QuizMultipleLayout(props) {
                         </div>
                         <div className="col-md-4">
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                            {
+                                item.files[imgIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[imgIndex].label}</span>
+                                    </div>
+                                :
+                                    imgAddLabel ? 
+                                        <div className="img-add-label-wrapper mt-2">
+                                            <div className="img-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="img-add-label-input d-inline">
+                                                <input
+                                                    id="imgLabel"
+                                                    name="imgLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setImgLabel(event.target.value)}
+                                                    value={imgLabel}
+                                                />
+                                            </div>
+                                            <div className="img-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addImageLabel(imgLabel, imgIndex, itemIndex);
+                                                        setImgAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setImgAddLabel(false);
+                                                        setImgLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                     </>
                 );
