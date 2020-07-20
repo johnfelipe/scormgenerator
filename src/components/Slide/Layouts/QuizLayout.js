@@ -40,10 +40,12 @@ function QuizMultipleLayout(props) {
                             <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                             {
                                 item.files[imgIndex].label ?
-                                    <span className="mt-3">{item.files[imgIndex].label}</span>
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[imgIndex].label}</span>
+                                    </div>
                                 :
                                     imgAddLabel ? 
-                                        <div className="img-add-label-wrapper mt-3">
+                                        <div className="img-add-label-wrapper mt-2">
                                             <div className="img-add-label-label d-inline mr-3">
                                                 <span>Label:</span>
                                             </div>
