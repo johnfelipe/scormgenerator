@@ -64,9 +64,9 @@
                                                                     }
                                                                 }
 
-                                                                .img-add-label-wrapper {
-                                                                    .img-add-label-input {
-                                                                        #imgLabel {
+                                                                .img-add-label-wrapper, .audio-add-label-wrapper, .video-add-label-wrapper {
+                                                                    .img-add-label-input, .audio-add-label-input, .video-add-label-input {
+                                                                        #imgLabel, #audioLabel, #videoLabel {
                                                                             height: 32px;
                                                                             margin: 0;
                                                                             border: 1px solid #ddd;
