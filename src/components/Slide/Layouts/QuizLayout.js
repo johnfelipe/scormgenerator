@@ -767,6 +767,53 @@ function QuizMultipleLayout(props) {
                                     <ClosedCaptionButton order={7} />
                                 </ControlBar>
                             </Player>
+                            {
+                                item.files[videoIndex].label ?
+                                    <div className="mt-2 text-center">
+                                        <span className="font-15">{item.files[videoIndex].label}</span>
+                                    </div>
+                                :
+                                    videoAddLabel ? 
+                                        <div className="img-add-label-wrapper mt-2">
+                                            <div className="img-add-label-label d-inline mr-3">
+                                                <span>Label:</span>
+                                            </div>
+                                            <div className="img-add-label-input d-inline">
+                                                <input
+                                                    id="imgLabel"
+                                                    name="imgLabel"
+                                                    type="text"
+                                                    placeholder="Type label here. . ."
+                                                    onChange={(event) => setVideoLabel(event.target.value)}
+                                                    value={videoLabel}
+                                                />
+                                            </div>
+                                            <div className="img-add-label-button d-inline ml-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        addVideoLabel(videoLabel, videoIndex, itemIndex);
+                                                        setVideoAddLabel(false);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-16"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm ml-2"
+                                                    onClick={() => {
+                                                        setVideoAddLabel(false);
+                                                        setVideoLabel('');
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-16"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    :
+                                        <button type="button" className="btn btn-success btn-sm my-2" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                            }
                         </div>
                     </>
                 );
