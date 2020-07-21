@@ -3,6 +3,7 @@ import { Accordion, Card, Tabs, Tab, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import EllipsisText from "react-ellipsis-text";
 
 function QuizAccordion(props) {
 
@@ -293,17 +294,18 @@ function QuizAccordion(props) {
                                                                             <Accordion classname="mb-2" key={Math.random()}>
                                                                                 <Card>
                                                                                     <div id="quiz-question-file-item" className="row mb-0">
-                                                                                        <Accordion.Toggle
-                                                                                            as={Button}
-                                                                                            variant="link"
-                                                                                            eventKey={fileIndex}
-                                                                                            className="text-left p-0 font-15 col-md-11 pl-0 quiz-question-file-item-label"
-                                                                                        >
-                                                                                            {file.video && file.video.name}
-                                                                                            {file.img && file.img.name}
-                                                                                            {file.audio && file.audio.name}
-                                                                                            {console.log(fileIndex)}
-                                                                                        </Accordion.Toggle>
+                                                                                        <div className="p-0 col-md-11 pl-0">
+                                                                                            <Accordion.Toggle
+                                                                                                as={Button}
+                                                                                                variant="link"
+                                                                                                eventKey={fileIndex}
+                                                                                                className="text-left p-0 font-15 quiz-question-file-item-label"
+                                                                                            >
+                                                                                                {file.video && <EllipsisText text={file.video.name} length={"10"} />}
+                                                                                                {file.img && <EllipsisText text={file.img.name} length={"10"} />}
+                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={"10"} />}
+                                                                                            </Accordion.Toggle>
+                                                                                        </div>
                                                                                         <div
                                                                                             className="col-md-1 p-0 quiz-question-file-item-delete"
                                                                                             onClick={() => {props.deleteQuestionFile(fileIndex, index)}}
