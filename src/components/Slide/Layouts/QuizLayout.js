@@ -264,7 +264,51 @@ function QuizMultipleLayout(props) {
                             </ul>
                         </div>
                         <div className="col-md-4">
-                            <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                            {
+                                item.files[imgIndex].weight === 0 || item.files[audioIndex].weight === 1 ?
+                                    <>
+                                        <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                                        {item.files[imgIndex].label &&
+                                            <div className="mt-2 text-center">
+                                                <span className="font-15">{item.files[imgIndex].label}</span>
+                                            </div>
+                                        }
+                                        <ReactAudioPlayer
+                                            src={item.files[audioIndex].audio.url}
+                                            controls
+                                            title={item.files[audioIndex].audio.name}
+                                            className="mt-3 w-100"
+                                            id="audio-question-player"
+                                        />
+                                        {item.files[audioIndex].label &&
+                                            <div className="mt-2 text-center">
+                                                <span className="font-15">{item.files[audioIndex].label}</span>
+                                            </div>
+                                        }
+                                    </>
+                                :
+                                    <>
+                                        <ReactAudioPlayer
+                                            src={item.files[audioIndex].audio.url}
+                                            controls
+                                            title={item.files[audioIndex].audio.name}
+                                            className="mt-3 w-100"
+                                            id="audio-question-player"
+                                        />
+                                        {item.files[audioIndex].label &&
+                                            <div className="mt-2 text-center">
+                                                <span className="font-15">{item.files[audioIndex].label}</span>
+                                            </div>
+                                        }
+                                        <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
+                                        {item.files[imgIndex].label &&
+                                            <div className="mt-2 text-center">
+                                                <span className="font-15">{item.files[imgIndex].label}</span>
+                                            </div>
+                                        }
+                                    </>
+                            }
+                            {/* <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
                             {item.files[imgIndex].label &&
                                 <div className="mt-2 text-center">
                                     <span className="font-15">{item.files[imgIndex].label}</span>
@@ -281,7 +325,7 @@ function QuizMultipleLayout(props) {
                                 <div className="mt-2 text-center">
                                     <span className="font-15">{item.files[audioIndex].label}</span>
                                 </div>
-                            }
+                            } */}
                         </div>
                     </>
                 );
