@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { objectHelpers } from '../../../helpers';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function QuizMultipleLayout(props) {
     
@@ -11,20 +9,6 @@ function QuizMultipleLayout(props) {
     const quizClass = props.quizClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const quizStyles = props.quizStyles;
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const [videoAddLabel, setVideoAddLabel] = useState(false);
-    const [videoLabel, setVideoLabel] = useState('');
-
-    const addVideoLabel = (value, fileIndex, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
-
-        props.setColumn(currentColumnObj);
-        setVideoLabel('');
-    }
 
     const content = (item, quizClass, itemIndex) => {
         if (quizClass === 'question-files-left') {
@@ -308,24 +292,6 @@ function QuizMultipleLayout(props) {
                                         }
                                     </>
                             }
-                            {/* <img src={item.files[imgIndex].img.url} className="w-100 h-auto" alt={item.files[imgIndex].label}/>
-                            {item.files[imgIndex].label &&
-                                <div className="mt-2 text-center">
-                                    <span className="font-15">{item.files[imgIndex].label}</span>
-                                </div>
-                            }
-                            <ReactAudioPlayer
-                                src={item.files[audioIndex].audio.url}
-                                controls
-                                title={item.files[audioIndex].audio.name}
-                                className="mt-3 w-100"
-                                id="audio-question-player"
-                            />
-                            {item.files[audioIndex].label &&
-                                <div className="mt-2 text-center">
-                                    <span className="font-15">{item.files[audioIndex].label}</span>
-                                </div>
-                            } */}
                         </div>
                     </>
                 );
