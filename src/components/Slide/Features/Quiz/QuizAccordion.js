@@ -301,9 +301,9 @@ function QuizAccordion(props) {
                                                                                                 eventKey={fileIndex}
                                                                                                 className="text-left p-0 font-15 quiz-question-file-item-label"
                                                                                             >
-                                                                                                {file.video && <EllipsisText text={file.video.name} length={"10"} />}
-                                                                                                {file.img && <EllipsisText text={file.img.name} length={"10"} />}
-                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={"10"} />}
+                                                                                                {file.video && <EllipsisText text={file.video.name} length={"20"} />}
+                                                                                                {file.img && <EllipsisText text={file.img.name} length={"20"} />}
+                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={"20"} />}
                                                                                             </Accordion.Toggle>
                                                                                         </div>
                                                                                         <div
