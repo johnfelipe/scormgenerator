@@ -293,19 +293,19 @@ function QuizAccordion(props) {
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            <Accordion classname="mb-2" key={Math.random()}>
+                                                                            <Accordion key={Math.random()}>
                                                                                 <Card>
                                                                                     <div id="quiz-question-file-item" className="row mb-0">
                                                                                         <div className="p-0 col-md-11 pl-0">
                                                                                             <Accordion.Toggle
                                                                                                 as={Button}
                                                                                                 variant="link"
-                                                                                                eventKey={fileIndex}
+                                                                                                eventKey="0"
                                                                                                 className="text-left p-0 font-15 quiz-question-file-item-label"
                                                                                             >
-                                                                                                {file.video && <EllipsisText text={file.video.name} length={"20"} />}
-                                                                                                {file.img && <EllipsisText text={file.img.name} length={"20"} />}
-                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={"20"} />}
+                                                                                                {file.video && <EllipsisText text={file.video.name} length={20} />}
+                                                                                                {file.img && <EllipsisText text={file.img.name} length={20} />}
+                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={20} />}
                                                                                             </Accordion.Toggle>
                                                                                         </div>
                                                                                         <div
@@ -315,7 +315,7 @@ function QuizAccordion(props) {
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <Accordion.Collapse eventKey={fileIndex}>
+                                                                                    <Accordion.Collapse eventKey="0">
                                                                                         <Card.Body className="p-1">
                                                                                             {file.label === "" &&
                                                                                                 <div className="quiz-question-action-button mt-3">
