@@ -207,6 +207,15 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const addAudioLabel = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+        const audioIndex = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'audio');
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[audioIndex].label = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -258,6 +267,7 @@ function Quiz(props) {
                                                                         setFilesExist={setFilesExist}
                                                                         setQuestionFiles={setQuestionFiles}
                                                                         addImageLabel={addImageLabel}
+                                                                        addAudioLabel={addAudioLabel}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
