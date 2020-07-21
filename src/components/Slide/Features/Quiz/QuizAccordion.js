@@ -445,7 +445,8 @@ function QuizAccordion(props) {
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                                                                                                        file.label === "" && file.video && 
+                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                     
                                                                                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
