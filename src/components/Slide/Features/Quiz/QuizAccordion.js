@@ -288,7 +288,7 @@ function QuizAccordion(props) {
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            <Accordion classname="mb-2" key={Math.random()} activeKey={fileIndex}>
+                                                                            <Accordion classname="mb-2" key={Math.random()} defaultActiveKey={fileIndex}>
                                                                                 <Card>
                                                                                     <div id="quiz-question-file-item" className="row mb-0">
                                                                                         <Accordion.Toggle
