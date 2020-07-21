@@ -216,6 +216,16 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    
+    const addVideoLabel = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+        const videoIndex = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[videoIndex].label = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -268,6 +278,7 @@ function Quiz(props) {
                                                                         setQuestionFiles={setQuestionFiles}
                                                                         addImageLabel={addImageLabel}
                                                                         addAudioLabel={addAudioLabel}
+                                                                        addVideoLabel={addVideoLabel}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
