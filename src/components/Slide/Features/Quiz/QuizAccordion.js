@@ -282,7 +282,7 @@ function QuizAccordion(props) {
                                                                     draggableId={'' + fileIndex}
                                                                     index={fileIndex}>
                                                                     {(provided) => (
-                                                                        <div
+                                                                        <li
                                                                             className="quiz-question-files-list-item"
                                                                             ref={provided.innerRef}
                                                                             {...provided.draggableProps}
@@ -393,7 +393,7 @@ function QuizAccordion(props) {
                                                                                     </Accordion.Collapse>
                                                                                 </Card>
                                                                             </Accordion>
-                                                                        </div>
+                                                                        </li>
                                                                     )}
                                                                 </Draggable>
                                                             ))}
