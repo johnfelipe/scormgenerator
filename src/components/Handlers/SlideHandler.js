@@ -47,11 +47,11 @@ class SlideHandler extends Component {
             ],
             activeFeature: '',
             activeTab: 'column',
-            activeColumnId: -1,
+            activeColumnId: 0,
             showHtmlEditor: false,
             showCssEditor: false,
             activeContentIndex: 0,
-            currentColumnContentIndex: '',
+            currentColumnContentIndex: 'subColumnOne',
             isSlideNameNotEmpty: false,
             applyCss: false,
         };
@@ -102,7 +102,7 @@ class SlideHandler extends Component {
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
                 activeFeature: '',
-                activeColumnId: -1,
+                activeColumnId: 0,
                 activeTab: 'column',
                 activeContentIndex: 0,
             });
@@ -112,7 +112,7 @@ class SlideHandler extends Component {
             this.setState({
                 column: [],
                 activeFeature: '',
-                activeColumnId: -1,
+                activeColumnId: 0,
                 activeTab: 'column',
                 activeContentIndex: 0,
             });
@@ -875,8 +875,10 @@ class SlideHandler extends Component {
         }
 
         // if ((source.droppableId === "features-droppable") && (destination.droppableId === "features-droppable")) {
-        if (source.droppableId === destination.droppableId) {
+        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features")) {
             const currentColumnList = this.state.column;
+            console.log(this.state.activeColumnId);
+            console.log(this.state.currentColumnContentIndex);
             const reorderedFeatures = this.reorder(
                 currentColumnList[this.state.activeColumnId].content[this.state.currentColumnContentIndex],
                 source.index,
@@ -1089,11 +1091,11 @@ class SlideHandler extends Component {
         this.setState({
             activeFeature: '',
             activeTab: 'column',
-            activeColumnId: -1,
+            activeColumnId: 0,
             showHtmlEditor: false,
             showCssEditor: false,
             activeContentIndex: 0,
-            currentColumnContentIndex: '',
+            currentColumnContentIndex: 'subColumnOne',
             isSlideNameNotEmpty: false,
             applyCss: false,
         });
