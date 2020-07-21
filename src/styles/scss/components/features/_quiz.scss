@@ -179,6 +179,7 @@
                                                                     .tab-content {
                                                                         padding: 10px;
                                                                         height: 200px;
+                                                                        overflow: auto !important;
 
                                                                         #question-answers-files-tabs-tabpane-files {
                                                                             .quiz-question-files-list {
