@@ -7,9 +7,10 @@ function TextEditor(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const contentFor = props.contentFor;
 
     return (
-        <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
+        <div className={props.showTextEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
                 <div className="sg-workspace-expander-head-label">
                     <span>Text</span>
@@ -25,7 +26,10 @@ function TextEditor(props) {
                     <textarea
                         className="sg-text-editor-html"
                         value={
-                            typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output
+                            contentFor === 'courseInfo' ?
+                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo
+                            :
+                                contentFor === 'courseReq' && typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq
                             // typeof currentColumn !== "undefined" ? 
                             //     'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
                             //         currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  ?
