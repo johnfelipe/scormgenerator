@@ -3,8 +3,8 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome } from '@fortawesome/free-solid-svg-icons';
-import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { faPlus, faHome, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, faFileAudio, faQuestionCircle, faListAlt } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -41,9 +41,10 @@ class SlideHandler extends Component {
             ],
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
-                { type: 'content-area', name: 'Content Area', icon: faSquare, },
+                { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
             ],
             activeFeature: '',
             activeTab: 'column',
@@ -267,7 +268,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
                     
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -318,7 +319,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -350,7 +351,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -382,7 +383,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -413,7 +414,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -445,7 +446,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -476,7 +477,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -508,7 +509,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -539,7 +540,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -570,7 +571,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
@@ -602,7 +603,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -633,7 +634,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -664,7 +665,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
@@ -695,7 +696,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
@@ -727,7 +728,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
@@ -758,7 +759,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
@@ -789,7 +790,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
@@ -820,7 +821,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
@@ -851,7 +852,7 @@ class SlideHandler extends Component {
                     console.log(destination);
                     const currentFeatures = this.state.features;
 
-                    if (currentFeatures[source.index]['type'] === 'content-area') {
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFive.push(currentContent);
                         this.setState({
@@ -874,7 +875,6 @@ class SlideHandler extends Component {
             }
         }
 
-        // if ((source.droppableId === "features-droppable") && (destination.droppableId === "features-droppable")) {
         if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features")) {
             const currentColumnList = this.state.column;
             console.log(this.state.activeColumnId);
