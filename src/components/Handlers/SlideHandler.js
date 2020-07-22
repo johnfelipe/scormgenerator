@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faHome, faListAlt } from '@fortawesome/free-solid-svg-icons';
-import { faSquare, faFileAudio, faQuestionCircle, faListAlt } from '@fortawesome/free-regular-svg-icons';
+import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
