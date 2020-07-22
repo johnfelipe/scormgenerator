@@ -278,7 +278,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: 'No audio added.', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -296,7 +296,16 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' }  };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: '', courseReq: '', }, class: '', id: '', };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
