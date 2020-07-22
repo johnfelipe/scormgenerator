@@ -310,7 +310,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: '', courseReq: '', }, class: '', id: '', styles: { courseIntroColor: '#0069d9' } };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: '', courseReq: '', introVideo: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4' }, class: '', id: '', styles: { courseIntroColor: '#0069d9' } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1501,6 +1501,7 @@ class SlideHandler extends Component {
                                                                                                                         >
                                                                                                                             <CourseObjLayout
                                                                                                                                 styles={contentFirst.styles}
+                                                                                                                                content={contentFirst.output}
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
