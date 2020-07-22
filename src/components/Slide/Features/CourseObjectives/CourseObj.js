@@ -26,7 +26,7 @@ function CourseObj(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Course Information</span>
+                                <span>Course Info</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <div className="sg-expandable-code-editor">
@@ -43,7 +43,7 @@ function CourseObj(props) {
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Course Requirements</span>
+                                <span>Course Req's</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <div className="sg-expandable-code-editor">
