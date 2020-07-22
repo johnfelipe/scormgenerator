@@ -15,6 +15,7 @@ import SlideFeature from '../Slide/Features';
 import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
+import TextEditor from '../Slide/TextEditor';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
@@ -51,6 +52,7 @@ class SlideHandler extends Component {
             activeColumnId: 0,
             showHtmlEditor: false,
             showCssEditor: false,
+            showTextEditor: false,
             activeContentIndex: 0,
             currentColumnContentIndex: 'subColumnOne',
             isSlideNameNotEmpty: false,
@@ -74,6 +76,7 @@ class SlideHandler extends Component {
         this.setApplyCss = this.setApplyCss.bind(this);
         this.setColumn = this.setColumn.bind(this);
         this.resetStates = this.resetStates.bind(this);
+        this.setShowTextEditor = this.setShowTextEditor.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -934,6 +937,12 @@ class SlideHandler extends Component {
             try {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].css = event;
             } catch (err) { console.log(err) }
+        } else if (editorType.type === 'text') {
+            if (editorType.for === 'courseInfo') {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo = event.target.value;
+            } else if (editorType.for === 'courseReq') {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq = event.target.value;
+            }
         }
 
         const columns = this.state.column;
@@ -1108,6 +1117,13 @@ class SlideHandler extends Component {
             isSlideNameNotEmpty: false,
             applyCss: false,
         });
+    }
+
+    setShowTextEditor = (value, contentIndex) => {
+        this.setState({
+            showTextEditor: value,
+            activeContentIndex: contentIndex,
+        })
     }
 
     onSave = (slide, subtitle, columns, slideId) => {
@@ -2772,6 +2788,14 @@ class SlideHandler extends Component {
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                 setApplyCss={this.setApplyCss}
+                                            />
+                                            <TextEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowTextEditor={this.setShowTextEditor}
+                                                showTextEditor={this.state.showTextEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
+                                                contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
                                             />
                                         </div>
                                     </DragDropContext>
