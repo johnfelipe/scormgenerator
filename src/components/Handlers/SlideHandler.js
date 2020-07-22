@@ -42,9 +42,9 @@ class SlideHandler extends Component {
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
-                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
             ],
             activeFeature: '',
             activeTab: 'column',
