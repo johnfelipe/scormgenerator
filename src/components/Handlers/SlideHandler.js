@@ -57,6 +57,7 @@ class SlideHandler extends Component {
             currentColumnContentIndex: 'subColumnOne',
             isSlideNameNotEmpty: false,
             applyCss: false,
+            contentFor: '',
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -1119,8 +1120,9 @@ class SlideHandler extends Component {
         });
     }
 
-    setShowTextEditor = (value, contentIndex) => {
+    setShowTextEditor = (value, contentIndex, contentFor) => {
         this.setState({
+            contentFor: contentFor,
             showTextEditor: value,
             activeContentIndex: contentIndex,
         })
@@ -2797,6 +2799,7 @@ class SlideHandler extends Component {
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                contentFor={this.state.contentFor}
                                             />
                                         </div>
                                     </DragDropContext>
