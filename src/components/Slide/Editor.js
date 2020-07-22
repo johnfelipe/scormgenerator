@@ -88,7 +88,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                 />
             );
-        } else if (this.props.feature === "content-area") {
+        } else if (this.props.feature === "contentArea") {
             editorContent = (
                 <ContentArea
                     deleteFeature={this.props.deleteFeature}
