@@ -1500,7 +1500,7 @@ class SlideHandler extends Component {
                                                                                                                             }
                                                                                                                         >
                                                                                                                             <CourseObjLayout
-                                                                                                                                styles={contentFirstIndex.styles}
+                                                                                                                                styles={contentFirst.styles}
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
