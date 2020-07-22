@@ -25,7 +25,7 @@ function TextEditor(props) {
                     <textarea
                         className="sg-text-editor-html"
                         value={
-                            currentColumn.content[currentColumnContentIndex][contentIndex].output && currentColumn.content[currentColumnContentIndex][contentIndex].output
+                            typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output
                             // typeof currentColumn !== "undefined" ? 
                             //     'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
                             //         currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  ?
