@@ -20,6 +20,7 @@ import TextEditor from '../Slide/TextEditor';
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 import QuizMultipleLayout from '../Slide/Layouts/QuizLayout';
+import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -309,7 +310,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: '', courseReq: '', }, class: '', id: '', };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: '', courseReq: '', }, class: '', id: '', styles: { courseIntroColor: '#0069d9' } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1479,8 +1480,32 @@ class SlideHandler extends Component {
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
+
+                                                                                                                    {contentFirst.type === 'courseObjectives' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex,
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <CourseObjLayout
+                                                                                                                                styles={contentFirstIndex.styles}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
                                                                                                                         
-                                                                                                                    {contentFirst.type !== 'quiz' && contentFirst.type !== 'homePage' &&
+                                                                                                                    {contentFirst.type !== 'quiz' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
                                                                                                                             <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
