@@ -1384,6 +1384,7 @@ class SlideHandler extends Component {
                                                             onChangeRadio={this.onChangeRadio}
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
+                                                            setShowTextEditor={this.setShowTextEditor}
                                                         />
                                                     </Tab>
                                                 </Tabs>
