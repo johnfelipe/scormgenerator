@@ -85,7 +85,7 @@ function HomePage(props) {
                 <div className="sg-control-header">
                     <label>Content</label>
                 </div>
-                <div className="sg-control-input sg-control-input">
+                <div className="sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
