@@ -1429,13 +1429,11 @@ class SlideHandler extends Component {
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
-                                                                                                                                    contentFirstIndex, 
-                                                                                                                                    contentFirst.id ? 
-                                                                                                                                    contentFirst.id
-                                                                                                                                        : 
+                                                                                                                                    contentFirstIndex,
                                                                                                                                     item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                     'subColumnOne'
                                                                                                                                 )
