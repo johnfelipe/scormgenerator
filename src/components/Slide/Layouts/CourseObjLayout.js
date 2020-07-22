@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 function CourseObjLayout(props) {
 
@@ -13,10 +15,16 @@ function CourseObjLayout(props) {
                     </div>
                     <div className="col-md-4">
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
-                            <div className="mt-5">
-                                <div type="button" className="mt-3">Course Navigation</div>
-                                <div type="button" className="mt-3">Course Information</div>
-                                <div type="button" className="mt-3">Course Requirements</div>
+                            <div className="mt-3">
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
+                                </button>
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Information
+                                </button>
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Requirements
+                                </button>
                             </div>
                         </div>
                     </div>
