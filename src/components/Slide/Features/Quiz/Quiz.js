@@ -438,6 +438,23 @@ function Quiz(props) {
                                 </div>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Element CSS</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <div className="sg-expandable-code-editor">
+                                    <div className="sg-workspace-expander">
+                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
+                                                <span>Add CSS</span>
+                                            </button>
+                                            <input type="text" value="" disabled className="rounded"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         {
                             filesExist &&
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -456,21 +473,6 @@ function Quiz(props) {
                                 </div>
                             </li>
                         }
-                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>ID</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
-                                    value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].id && currentColumn.content[currentColumnContentIndex][contentIndex].id
-                                    }
-                                />
-                            </div>
-                        </li> */}
                     </ul>
                 </div>
             </div>
