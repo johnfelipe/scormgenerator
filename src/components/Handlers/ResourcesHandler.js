@@ -24,7 +24,7 @@ class ResourcesHandler extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.props.resourceFilesData);
+        // console.log(this.props.resourceFilesData);
     }
 
     setModalShow = (value) => {

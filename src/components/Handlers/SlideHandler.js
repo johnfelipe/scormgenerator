@@ -85,10 +85,10 @@ class SlideHandler extends Component {
         // console.log(this.props.action);
         // console.log('state.activeFeature');
         // console.log(this.state.activeFeature);
-        console.log('this.props.slide');
-        console.log(this.props.slide);
-        console.log('this.props.column');
-        console.log(this.props.columns);
+        // console.log('this.props.slide');
+        // console.log(this.props.slide);
+        // console.log('this.props.column');
+        // console.log(this.props.columns);
     }
 
     setModalShow = (value, action) => {

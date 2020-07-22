@@ -15,7 +15,7 @@ class TranscriptHandler extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.props.transcriptFileData);
+        // console.log(this.props.transcriptFileData);
     }
 
     setModalShow = (value) => {

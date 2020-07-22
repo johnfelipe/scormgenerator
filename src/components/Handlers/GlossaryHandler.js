@@ -23,7 +23,7 @@ class GlossaryHandler extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.props.glossaryData);
+        // console.log(this.props.glossaryData);
     }
 
     setModalShow = (value) => {

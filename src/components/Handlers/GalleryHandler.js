@@ -22,8 +22,8 @@ class GalleryHandler extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log("Media Files: ");
-        console.log(this.props.mediaFilesObject);
+        // console.log("Media Files: ");
+        // console.log(this.props.mediaFilesObject);
     }
 
     setKey = (key) => {

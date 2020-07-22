@@ -16,7 +16,7 @@ class LessonHandler extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log(this.props.lesson);
+        // console.log(this.props.lesson);
     }
 
     setModalShow = (value) => {
