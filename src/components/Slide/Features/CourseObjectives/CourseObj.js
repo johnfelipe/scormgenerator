@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-function CourseObj() {
+function CourseObj(props) {
+    
+    const [isShownTextArea, setIsShownTextArea] = useState(false);
+    const currentColumn = props.currentColumn;
+    const contentIndex = props.contentIndex;
+    const currentColumnContentIndex = props.currentColumnContentIndex;
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
