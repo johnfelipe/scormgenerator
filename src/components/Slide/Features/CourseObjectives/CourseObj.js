@@ -4,7 +4,6 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function CourseObj(props) {
     
-    const [isShownTextArea, setIsShownTextArea] = useState(false);
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
@@ -13,7 +12,7 @@ function CourseObj(props) {
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
                     </button>
@@ -24,36 +23,6 @@ function CourseObj(props) {
                     <label>Content</label>
                 </div>
                 <div className="sg-control-input">
-                    {/* <div className="sg-expandable-rich-text">
-                        <div className="sg-workspace-expander">
-                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                { 
-                                    isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => {props.setShowTextEditor(true, props.contentIndex); console.log('text')}}>
-                                            <span>Click to Edit</span>
-                                        </button>
-                                    :
-                                        <span></span>
-                                }
-                                <textarea 
-                                    onMouseOver={() => setIsShownTextArea(true)} 
-                                    disabled 
-                                    value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                />
-                            </div>
-                        </div>
-                    </div> */}
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
@@ -63,7 +32,7 @@ function CourseObj(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, props.contentIndex, 'courseInfo')}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
                                                 <span>Edit</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
@@ -74,50 +43,19 @@ function CourseObj(props) {
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>ID</span>
+                                <span>Course Requirements</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
-                                    value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                />
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Class</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
-                                    value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                />
+                                <div className="sg-expandable-code-editor">
+                                    <div className="sg-workspace-expander">
+                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseReq')}>
+                                                <span>Edit</span>
+                                            </button>
+                                            <input type="text" value="" disabled className="rounded"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -137,18 +75,12 @@ function CourseObj(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
-                                    value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
+                                    value={
+                                        typeof currentColumn != "undefined" &&
+                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 && 
+                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                                    currentColumn.content[currentColumnContentIndex][contentIndex].id
                                     }
                                 />
                             </div>
@@ -161,18 +93,12 @@ function CourseObj(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                        typeof currentColumn != "undefined" &&
+                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                                    currentColumn.content[currentColumnContentIndex][contentIndex].class
                                     }
                                 />
                             </div>
@@ -185,7 +111,7 @@ function CourseObj(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
