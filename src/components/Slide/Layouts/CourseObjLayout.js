@@ -2,28 +2,23 @@ import React from 'react';
 
 function CourseObjLayout(props) {
 
-    const title = props.title;
-    const subtitle = props.subtitle;
-    const date = props.date;
-    const courseId = props.courseId;
-    const backgroundImg = props.backgroundImg.url;
-    const homePageClass = props.homePageClass;
-    const colorScheme = props.colorScheme;
+    const styles = props.styles;
 
     return (
-        <div id="home-page-layout">
-            <div className="home-page-container h-100 w-100 border border-light" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
-                <div className="slide">
-                    <div id="course-name" className={homePageClass} style={{ background: colorScheme.titleBoxColor}}>
-                        <h2 className="course-header">{title}</h2>
-                    <div className="course-bar" style={{ background: colorHelpers.shade(colorScheme.titleBoxColor, 0.45)}}></div>
-                    <h3 className="course-sub-header">
-                        <span>{subtitle}</span>
-                        <br/>
-                        <span>{date}</span>
-                        <br/>
-                        <span>COURSE ID: {courseId}</span>
-                    </h3>
+        <div id="course-objective-layout">
+            <div className="course-objective-container h-100 w-100 border border-light">
+                <div className="row">
+                    <div className="col-md-8">
+                        <h2 className="course-header">yes</h2>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="course-intro-wrapper" style={{ background: styles.courseIntroColor}}>
+                            <div className="mt-5">
+                                <div type="button" className="mt-3">Course Navigation</div>
+                                <div type="button" className="mt-3">Course Information</div>
+                                <div type="button" className="mt-3">Course Requirements</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
