@@ -1406,7 +1406,6 @@ class SlideHandler extends Component {
                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                         item.content['subColumnOne'].length > 0 ?
                                                                                             <div
-                                                                                                
                                                                                                 id={item.id}
                                                                                                 className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
                                                                                             >

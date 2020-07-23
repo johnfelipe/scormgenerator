@@ -13,16 +13,15 @@ function CourseObjLayout(props) {
             <div className="course-objective-container h-100 w-100 border border-light">
                 <div className="row">
                     <div className="col-md-8">
-                        {/* <Player className="course-obj-itro-video h-100 w-100">
+                        <Player className="course-obj-itro-video h-100 w-100">
                             <source src={introVideo} />
                             
                             <ControlBar autoHide={true}/>
-                        </Player> */}
-                        <video className="course-obj-itro-video h-100 w-100" controls>
+                        </Player>
+                        {/* <video className="course-obj-itro-video h-100 w-100" controls>
                             <source src={introVideo}/>
-                            {/* <source src="movie.ogg" type="video/ogg"/> */}
                             Your browser does not support the video tag.
-                        </video>
+                        </video> */}
                     </div>
                     <div className="col-md-4">
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
