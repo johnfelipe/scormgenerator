@@ -317,6 +317,10 @@ function QuizAccordion(props) {
                                                                                     </div>
                                                                                     <Accordion.Collapse eventKey="0">
                                                                                         <Card.Body className="p-1">
+                                                                                            {file.video && <label className="input-group-btn" style={{ cursor: 'pointer' }}><span type="button" className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
+                                                                                                Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
+                                                                                            </span></label>
+                                                                                            }
                                                                                             {file.label === "" &&
                                                                                                 <div className="quiz-question-action-button mt-3">
                                                                                                     {imgAddLabel ? 
@@ -449,10 +453,6 @@ function QuizAccordion(props) {
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                 </div>
-                                                                                            }
-                                                                                            {file.video && <label className="input-group-btn" style={{ cursor: 'pointer' }}><span type="button" className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
-                                                                                                Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
-                                                                                            </span></label>
                                                                                             }
                                                                                             {file.video && file.video.caption &&
                                                                                                 <ul className="quiz-question-file-item-list pl-4">
