@@ -3,15 +3,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { Player, ControlBar } from 'video-react';
 import { Modal } from 'react-bootstrap';
+import imageSrc from '../../../styles/img/wbt_nav_sscs.png';
 
 function CourseObjLayout(props) {
 
+    const [courseNavModalShow, setCourseNavModalShow] = useState(false);
     const [courseInfoModalShow, setCourseInfoModalShow] = useState(false);
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
     const introVideo = props.content.introVideo;
     const courseInfoContent = props.content.courseInfo;
 
+    const courseNavModal = (
+        <Modal
+            show={courseNavModalShow}
+            onHide={() => setCourseNavModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Course Navigation
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <img src={imageSrc} alt="Select Menu button for course options, Previous and Next buttons to navigate, Resources button for source materials, and glossary button for definitions, acronyms and abbreviations." className="w-100 h-100"/>
+            </Modal.Body>
+            {/* <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setCourseNavModalShow(false)}>Close</button>
+            </Modal.Footer> */}
+        </Modal>
+    );
     const courseInfoModal = (
         <Modal
             show={courseInfoModalShow}
@@ -74,7 +97,7 @@ function CourseObjLayout(props) {
                     <div className="col-md-4">
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
                             <div className="mt-3">
-                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseNavModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
@@ -88,6 +111,7 @@ function CourseObjLayout(props) {
                     </div>
                 </div>
             </div>
+            {courseNavModal}
             {courseInfoModal}
             {courseReqModal}
         </div>
