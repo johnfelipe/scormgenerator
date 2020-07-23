@@ -27,9 +27,9 @@ function TextEditor(props) {
                         className="sg-text-editor-html"
                         value={
                             contentFor === 'courseInfo' ?
-                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo
+                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
                             :
-                                contentFor === 'courseReq' && typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq
+                                contentFor === 'courseReq' && typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                         }
                         onChange={(event) => props.onChangeTextArea(event, contentIndex, { type: 'text', for: contentFor })}
                     />
