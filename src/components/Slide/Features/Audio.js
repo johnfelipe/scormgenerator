@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 function Audio(props) {
 
@@ -8,6 +8,10 @@ function Audio(props) {
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(props.contentIndex, 'audio')}>
+                        <FontAwesomeIcon icon={faUndo}/>
+                        <span>Reset</span>
+                    </button>
                     <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
