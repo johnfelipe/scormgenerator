@@ -614,31 +614,87 @@ function QuizAccordion(props) {
                                                                                             }
                                                                                             {file.label &&
                                                                                                 <ul className="quiz-question-file-item-list pl-4">
-                                                                                                    <li className="quiz-question-file-item-list-item">
-                                                                                                        <div className="row">
-                                                                                                            <div className="col-md-8">{file.label}</div>
-                                                                                                            <div
-                                                                                                                className="col-md-2 pl-2 pr-2"
-                                                                                                                onClick={() => {
-                                                                                                                    if (file.img) { 
-                                                                                                                        setImgAddLabel(true);
-                                                                                                                        setImgLabel(file.label);
-                                                                                                                    } else if (file.audio) { 
-                                                                                                                        setAudioAddLabel(true);
-                                                                                                                        setAudioLabel(file.label);
-                                                                                                                    } else if (file.video) { 
-                                                                                                                        setVideoAddLabel(true);
-                                                                                                                        setVideoLabel(file.label);
-                                                                                                                    }
-                                                                                                                }}
-                                                                                                            >
-                                                                                                                <span><FontAwesomeIcon icon={faEdit}/></span>
+                                                                                                    {file.img && imgAddLabel === false &&
+                                                                                                        <li className="quiz-question-file-item-list-item">
+                                                                                                            <div className="row">
+                                                                                                                <div className="col-md-8">{file.label}</div>
+                                                                                                                <div
+                                                                                                                    className="col-md-2 pl-2 pr-2"
+                                                                                                                    onClick={() => {
+                                                                                                                        if (file.img) { 
+                                                                                                                            setImgAddLabel(true);
+                                                                                                                            setImgLabel(file.label);
+                                                                                                                        } else if (file.audio) { 
+                                                                                                                            setAudioAddLabel(true);
+                                                                                                                            setAudioLabel(file.label);
+                                                                                                                        } else if (file.video) { 
+                                                                                                                            setVideoAddLabel(true);
+                                                                                                                            setVideoLabel(file.label);
+                                                                                                                        }
+                                                                                                                    }}
+                                                                                                                >
+                                                                                                                    <span><FontAwesomeIcon icon={faEdit}/></span>
+                                                                                                                </div>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                    <span><FontAwesomeIcon icon={faTrash}/></span>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                            <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
-                                                                                                                <span><FontAwesomeIcon icon={faTrash}/></span>
+                                                                                                        </li>
+                                                                                                    }
+                                                                                                    {file.audio && audioAddLabel === false &&
+                                                                                                        <li className="quiz-question-file-item-list-item">
+                                                                                                            <div className="row">
+                                                                                                                <div className="col-md-8">{file.label}</div>
+                                                                                                                <div
+                                                                                                                    className="col-md-2 pl-2 pr-2"
+                                                                                                                    onClick={() => {
+                                                                                                                        if (file.img) { 
+                                                                                                                            setImgAddLabel(true);
+                                                                                                                            setImgLabel(file.label);
+                                                                                                                        } else if (file.audio) { 
+                                                                                                                            setAudioAddLabel(true);
+                                                                                                                            setAudioLabel(file.label);
+                                                                                                                        } else if (file.video) { 
+                                                                                                                            setVideoAddLabel(true);
+                                                                                                                            setVideoLabel(file.label);
+                                                                                                                        }
+                                                                                                                    }}
+                                                                                                                >
+                                                                                                                    <span><FontAwesomeIcon icon={faEdit}/></span>
+                                                                                                                </div>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                    <span><FontAwesomeIcon icon={faTrash}/></span>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                    </li>
+                                                                                                        </li>
+                                                                                                    }
+                                                                                                    {file.video && videoAddLabel === false &&
+                                                                                                        <li className="quiz-question-file-item-list-item">
+                                                                                                            <div className="row">
+                                                                                                                <div className="col-md-8">{file.label}</div>
+                                                                                                                <div
+                                                                                                                    className="col-md-2 pl-2 pr-2"
+                                                                                                                    onClick={() => {
+                                                                                                                        if (file.img) { 
+                                                                                                                            setImgAddLabel(true);
+                                                                                                                            setImgLabel(file.label);
+                                                                                                                        } else if (file.audio) { 
+                                                                                                                            setAudioAddLabel(true);
+                                                                                                                            setAudioLabel(file.label);
+                                                                                                                        } else if (file.video) { 
+                                                                                                                            setVideoAddLabel(true);
+                                                                                                                            setVideoLabel(file.label);
+                                                                                                                        }
+                                                                                                                    }}
+                                                                                                                >
+                                                                                                                    <span><FontAwesomeIcon icon={faEdit}/></span>
+                                                                                                                </div>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                    <span><FontAwesomeIcon icon={faTrash}/></span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </li>
+                                                                                                    }
                                                                                                 </ul>
                                                                                             }
                                                                                         </Card.Body>
