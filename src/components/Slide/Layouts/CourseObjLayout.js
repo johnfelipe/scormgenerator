@@ -1,12 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { Player, ControlBar } from 'video-react';
+import { Modal } from 'react-bootstrap';
 
 function CourseObjLayout(props) {
 
+    const [courseInfoModalShow, setCourseInfoModalShow] = useState(false);
+    const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
     const introVideo = props.content.introVideo;
+    const courseInfoContent = props.content.courseInfo;
+
+    const courseInfoModal = (
+        <Modal
+            show={courseInfoModalShow}
+            onHide={() => setCourseInfoModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Course Information
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>{courseInfoContent}</p>
+            </Modal.Body>
+            {/* <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setCourseInfoModalShow(false)}>Close</button>
+            </Modal.Footer> */}
+        </Modal>
+    );
+
+    const courseReqModal = (
+        <Modal
+            show={courseReqModalShow}
+            onHide={() => setCourseReqModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Course Requirements
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>{courseInfoContent}</p>
+            </Modal.Body>
+            {/* <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setCourseReqModalShow(false)}>Close</button>
+            </Modal.Footer> */}
+        </Modal>
+    );
 
     return (
         <div id="course-objective-layout">
@@ -29,10 +77,10 @@ function CourseObjLayout(props) {
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
                                 </button>
-                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Information
                                 </button>
-                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14">
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseReqModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Requirements
                                 </button>
                             </div>
@@ -40,6 +88,8 @@ function CourseObjLayout(props) {
                     </div>
                 </div>
             </div>
+            {courseInfoModal}
+            {courseReqModal}
         </div>
     );
 }
