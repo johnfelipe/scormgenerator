@@ -86,6 +86,7 @@ class Editor extends Component {
                     mediaFilesObject={this.props.mediaFilesObject}
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
+                    resetFeature={this.props.resetFeature}
                 />
             );
         } else if (this.props.feature === "contentArea") {
@@ -99,6 +100,7 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
                 />
             );
         } else if (this.props.feature === "quiz") {
@@ -113,6 +115,7 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
                 />
             );
         } else if (this.props.feature === "homePage") {
@@ -127,6 +130,7 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
                 />
             );
         } else if (this.props.feature === "courseObjectives") {
@@ -142,6 +146,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
                 />
             );
         } else {
