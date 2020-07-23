@@ -214,6 +214,14 @@ function Quiz(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const deleteFileLabel = (questionIndex, fileIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = '';
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -266,6 +274,7 @@ function Quiz(props) {
                                                                         setQuestionFiles={setQuestionFiles}
                                                                         addFileLabel={addFileLabel}
                                                                         editFileLabel={editFileLabel}
+                                                                        deleteFileLabel={deleteFileLabel}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
