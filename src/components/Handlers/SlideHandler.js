@@ -1441,9 +1441,9 @@ class SlideHandler extends Component {
                                                                                                                 <>
                                                                                                                     {contentFirst.type === 'homePage' &&
                                                                                                                         <div 
-                                                                                                                            ref={provided.innerRef}
-                                                                                                                            {...provided.draggableProps}
-                                                                                                                            {...provided.dragHandleProps}
+                                                                                                                            // ref={provided.innerRef}
+                                                                                                                            // {...provided.draggableProps}
+                                                                                                                            // {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             className="content-output"
@@ -1474,9 +1474,9 @@ class SlideHandler extends Component {
                                                                                                                 
                                                                                                                     {contentFirst.type === 'quiz' &&
                                                                                                                         <div 
-                                                                                                                            ref={provided.innerRef}
-                                                                                                                            {...provided.draggableProps}
-                                                                                                                            {...provided.dragHandleProps}
+                                                                                                                            // ref={provided.innerRef}
+                                                                                                                            // {...provided.draggableProps}
+                                                                                                                            // {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             className="content-output"
@@ -1503,9 +1503,9 @@ class SlideHandler extends Component {
 
                                                                                                                     {contentFirst.type === 'courseObjectives' &&
                                                                                                                         <div 
-                                                                                                                            ref={provided.innerRef}
-                                                                                                                            {...provided.draggableProps}
-                                                                                                                            {...provided.dragHandleProps}
+                                                                                                                            // ref={provided.innerRef}
+                                                                                                                            // {...provided.draggableProps}
+                                                                                                                            // {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             className="content-output"
@@ -1528,9 +1528,9 @@ class SlideHandler extends Component {
                                                                                                                         
                                                                                                                     {contentFirst.type !== 'quiz' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
                                                                                                                             <div 
-                                                                                                                                ref={provided.innerRef}
-                                                                                                                                {...provided.draggableProps}
-                                                                                                                                {...provided.dragHandleProps}
+                                                                                                                                // ref={provided.innerRef}
+                                                                                                                                // {...provided.draggableProps}
+                                                                                                                                // {...provided.dragHandleProps}
 
                                                                                                                                 key={item.id + '-content-output-' + contentFirstIndex} 
                                                                                                                                 id={
