@@ -635,7 +635,7 @@ function QuizAccordion(props) {
                                                                                                                 >
                                                                                                                     <span><FontAwesomeIcon icon={faEdit}/></span>
                                                                                                                 </div>
-                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {props.deleteFileLabel(index, fileIndex)}}>
                                                                                                                     <span><FontAwesomeIcon icon={faTrash}/></span>
                                                                                                                 </div>
                                                                                                             </div>
@@ -662,7 +662,7 @@ function QuizAccordion(props) {
                                                                                                                 >
                                                                                                                     <span><FontAwesomeIcon icon={faEdit}/></span>
                                                                                                                 </div>
-                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {props.deleteFileLabel(index, fileIndex)}}>
                                                                                                                     <span><FontAwesomeIcon icon={faTrash}/></span>
                                                                                                                 </div>
                                                                                                             </div>
@@ -689,7 +689,7 @@ function QuizAccordion(props) {
                                                                                                                 >
                                                                                                                     <span><FontAwesomeIcon icon={faEdit}/></span>
                                                                                                                 </div>
-                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
+                                                                                                                <div className="col-md-2 pl-2 pr-2" onClick={() => {props.deleteFileLabel(index, fileIndex)}}>
                                                                                                                     <span><FontAwesomeIcon icon={faTrash}/></span>
                                                                                                                 </div>
                                                                                                             </div>
