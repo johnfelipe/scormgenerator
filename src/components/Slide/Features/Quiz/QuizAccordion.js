@@ -617,7 +617,21 @@ function QuizAccordion(props) {
                                                                                                     <li className="quiz-question-file-item-list-item">
                                                                                                         <div className="row">
                                                                                                             <div className="col-md-8">{file.label}</div>
-                                                                                                            <div className="col-md-2 pl-2 pr-2" onClick={() => {setImgAddLabel(true); setImgLabel(file.label);}}>
+                                                                                                            <div
+                                                                                                                className="col-md-2 pl-2 pr-2"
+                                                                                                                onClick={() => {
+                                                                                                                    if (file.img) { 
+                                                                                                                        setImgAddLabel(true);
+                                                                                                                        setImgLabel(file.label);
+                                                                                                                    } else if (file.audio) { 
+                                                                                                                        setAudioAddLabel(true);
+                                                                                                                        setAudioLabel(file.label);
+                                                                                                                    } else if (file.video) { 
+                                                                                                                        setVideoAddLabel(true);
+                                                                                                                        setVideoLabel(file.label);
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                            >
                                                                                                                 <span><FontAwesomeIcon icon={faEdit}/></span>
                                                                                                             </div>
                                                                                                             <div className="col-md-2 pl-2 pr-2" onClick={() => {console.log(index)}}>
