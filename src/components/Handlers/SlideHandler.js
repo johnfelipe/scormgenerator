@@ -79,6 +79,7 @@ class SlideHandler extends Component {
         this.setColumn = this.setColumn.bind(this);
         this.resetStates = this.resetStates.bind(this);
         this.setShowTextEditor = this.setShowTextEditor.bind(this);
+        this.resetFeature = this.resetFeature.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1129,6 +1130,30 @@ class SlideHandler extends Component {
         })
     }
 
+    resetFeature = (contentIndex, featureType) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
+
+        if (featureType === "audio") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'audio', output: 'No audio added.', class: '', id: '' };
+        } else if (featureType === "contentArea") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'contentArea', output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+        } else if (featureType === "quiz") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'quiz', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', quizTextColor: 'text-black' }, };
+        } else if (featureType === "homePage") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
+        } else if (featureType === "courseObjectives") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'courseObjectives', output: { courseInfo: '', courseReq: '', introVideo: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4' }, class: '', id: '', styles: { courseIntroColor: '#0069d9' } };
+        }
+
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
+
+        this.setState({
+            column: columns,
+        })
+    }
+
     onSave = (slide, subtitle, columns, slideId) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
@@ -1388,6 +1413,7 @@ class SlideHandler extends Component {
                                                             addMediaFiles={this.props.addMediaFiles}
                                                             galleryHandler={this.props.galleryHandler}
                                                             setShowTextEditor={this.setShowTextEditor}
+                                                            resetFeature={this.resetFeature}
                                                         />
                                                     </Tab>
                                                 </Tabs>
