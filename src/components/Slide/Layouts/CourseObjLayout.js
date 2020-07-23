@@ -12,7 +12,10 @@ function CourseObjLayout(props) {
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
     const introVideo = props.content.introVideo;
-    const courseInfoContent = props.content.courseInfo;
+    const courseInfoTitle = props.content.courseInfo.name;
+    const courseReqTitle = props.content.courseReq.name;
+    const courseInfoContent = props.content.courseInfo.content;
+    const courseReqContent = props.content.courseReq.content;
 
     const courseNavModal = (
         <Modal
@@ -45,7 +48,7 @@ function CourseObjLayout(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title>
-                    Course Information
+                    {courseInfoTitle}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -67,11 +70,11 @@ function CourseObjLayout(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title>
-                    Course Requirements
+                    {courseReqTitle}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>{courseInfoContent}</p>
+                <p>{courseReqContent}</p>
             </Modal.Body>
             {/* <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setCourseReqModalShow(false)}>Close</button>
