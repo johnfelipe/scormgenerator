@@ -199,30 +199,18 @@ function Quiz(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addImageLabel = (value, questionIndex) => {
+    const addFileLabel = (value, questionIndex, fileIndex) => {
         const currentColumnObj = currentColumn;
-        const imgIndex = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'img');
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[imgIndex].label = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
 
         props.setColumn(currentColumnObj);
     }
 
-    const addAudioLabel = (value, questionIndex) => {
+    const editFileLabel = (value, questionIndex, fileIndex) => {
         const currentColumnObj = currentColumn;
-        const audioIndex = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'audio');
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[audioIndex].label = value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    
-    const addVideoLabel = (value, questionIndex) => {
-        const currentColumnObj = currentColumn;
-        const videoIndex = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[videoIndex].label = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -276,9 +264,8 @@ function Quiz(props) {
                                                                         deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
                                                                         setFilesExist={setFilesExist}
                                                                         setQuestionFiles={setQuestionFiles}
-                                                                        addImageLabel={addImageLabel}
-                                                                        addAudioLabel={addAudioLabel}
-                                                                        addVideoLabel={addVideoLabel}
+                                                                        addFileLabel={addFileLabel}
+                                                                        editFileLabel={editFileLabel}
                                                                     />
                                                                 :
                                                                     <div className="quiz-control-input-wrapper">
