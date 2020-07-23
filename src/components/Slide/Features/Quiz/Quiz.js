@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { objectHelpers } from '../../../../helpers';
 
 // components
