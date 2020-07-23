@@ -1411,12 +1411,7 @@ class SlideHandler extends Component {
                                                                                             >
                                                                                                 {
                                                                                                     item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
-                                                                                                        <Draggable
-                                                                                                            key={Math.random()}
-                                                                                                            draggableId={'' + contentFirstIndex}
-                                                                                                            index={contentFirstIndex}
-                                                                                                        >
-                                                                                                            {(provided) => (
+                                                                                                        
                                                                                                                 <>
                                                                                                                     {contentFirst.type === 'homePage' &&
                                                                                                                         <div 
@@ -1555,8 +1550,7 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
                                                                                                                     </>
-                                                                                                            )}
-                                                                                                        </Draggable>
+                                                                                                            
                                                                                                     ))
                                                                                                 }
                                                                                             </div>
