@@ -150,6 +150,19 @@ function QuizAccordion(props) {
         }
     };
 
+    const resetLocalStates = (file) => {
+        if (file.img) {
+            setImgAddLabel(false);
+            setImgLabel('');
+        } else if (file.audio) {
+            setAudioAddLabel(false);
+            setAudioLabel('');
+        } else if (file.video) {
+            setVideoAddLabel(false);
+            setVideoLabel('');
+        }
+    }
+
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
             <Card>
@@ -310,7 +323,7 @@ function QuizAccordion(props) {
                                                                                         </div>
                                                                                         <div
                                                                                             className="col-md-1 p-0 quiz-question-file-item-delete"
-                                                                                            onClick={() => {props.deleteQuestionFile(fileIndex, index)}}
+                                                                                            onClick={() => {props.deleteQuestionFile(fileIndex, index); resetLocalStates(file);}}
                                                                                         >
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
@@ -322,7 +335,7 @@ function QuizAccordion(props) {
                                                                                             </span></label>
                                                                                             }
                                                                                             {file.label === "" &&
-                                                                                                <div className="quiz-question-action-button mt-3">
+                                                                                                <div className="quiz-question-action-button mt-1">
                                                                                                     {imgAddLabel ? 
                                                                                                         <div className="img-add-label-wrapper mt-2">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
