@@ -339,7 +339,7 @@ function QuizAccordion(props) {
                                                                         >
                                                                             {/* <Accordion key={Math.random()}>
                                                                                 <Card> */}
-                                                                                    <div id="quiz-question-file-item" className="row mb-0 border border-bottom-0 rounded-top" onClick={() => accordionClick(collapseAccordion, file)}>
+                                                                                    <div id="quiz-question-file-item" className="row mb-0 border rounded-top" onClick={() => accordionClick(collapseAccordion, file)}>
                                                                                         <div className="p-0 col-md-11 pl-0">
                                                                                             {/* <Accordion.Toggle
                                                                                                 as={Button}
@@ -368,7 +368,7 @@ function QuizAccordion(props) {
                                                                                             {file.label === "" ?
                                                                                                 <>
                                                                                                     {imgAddLabel && file.img ?
-                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -409,12 +409,12 @@ function QuizAccordion(props) {
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
                                                                                                     {audioAddLabel && file.audio ?
-                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
@@ -455,12 +455,12 @@ function QuizAccordion(props) {
                                                                                                         </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
                                                                                                     {videoAddLabel && file.video ?
-                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
@@ -502,7 +502,7 @@ function QuizAccordion(props) {
                                                                                                         </div>
                                                                                                     :
                                                                                                         file.label === "" && file.video &&
-                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
@@ -511,7 +511,7 @@ function QuizAccordion(props) {
                                                                                                 file.label !== "" &&
                                                                                                 <>
                                                                                                     {imgAddLabel && file.img ?
-                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -556,7 +556,7 @@ function QuizAccordion(props) {
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                     {audioAddLabel && file.audio ?
-                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -601,7 +601,7 @@ function QuizAccordion(props) {
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                     {videoAddLabel && file.video ?
-                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -648,7 +648,7 @@ function QuizAccordion(props) {
                                                                                                 </>
                                                                                             }
                                                                                             {file.video && file.video.caption &&
-                                                                                                <ul className={collapseAccordion ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                <ul className={collapseAccordion ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                     <li className="quiz-question-file-item-list-item">
                                                                                                         <div className="row">
                                                                                                             <div className="col-md-10">{file.video.caption.name}</div>
@@ -662,7 +662,7 @@ function QuizAccordion(props) {
                                                                                             {file.label &&
                                                                                                 <>
                                                                                                     {file.img && imgAddLabel === false &&
-                                                                                                    <ul className={imgCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                    <ul className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -691,7 +691,7 @@ function QuizAccordion(props) {
                                                                                                     </ul>
                                                                                                     }
                                                                                                     {file.audio && audioAddLabel === false &&
-                                                                                                    <ul className={audioCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                    <ul className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -720,7 +720,7 @@ function QuizAccordion(props) {
                                                                                                     </ul>
                                                                                                     }
                                                                                                     {file.video && videoAddLabel === false &&
-                                                                                                    <ul className={videoCollapse ? "sg-accordion quiz-question-action-button border py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                    <ul className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
