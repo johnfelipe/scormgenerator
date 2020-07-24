@@ -54,7 +54,7 @@ function CourseObj(props) {
                                                 {courseInfo.name}
                                             </Accordion.Toggle>
                                         </div>
-                                        <div className="col-md-2">
+                                        <div id="action-buttons-group" className="col-md-2">
                                             <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseInfoName(true); setCourseInfoName(courseInfo.name);}}>
                                                 <FontAwesomeIcon icon={faEdit}/>
                                             </button>
