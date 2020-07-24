@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faCheckCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
 function CourseObj(props) {
@@ -12,6 +12,14 @@ function CourseObj(props) {
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
     const [editCourseInfoName, setEditCourseInfoName] = useState(false);
     const [courseInfoName, setCourseInfoName] = useState('');
+
+    const updateCourseInfoName = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.name = value;
+
+        props.setColumn(currentColumnObj);
+    }
 
     return (
         <div className="sg-controls">
@@ -36,16 +44,23 @@ function CourseObj(props) {
                         <Card>
                             <Card.Header>
                                 {editCourseInfoName ?
-                                    <div>
-                                        <input
-                                            name="courseInfoName"
-                                            className="form-control"
-                                            value={courseInfoName}
-                                            onChange={(e) => setCourseInfoName(e.target.value)}
-                                        />
-                                        <button type="button" className="btn btn-success btn-sm"  onClick={() => {setEditCourseInfoName(false);}}>
-                                            <FontAwesomeIcon icon={faCheckCircle}/>
-                                        </button>
+                                    <div className="row m-0">
+                                        <div className="col-md-8 p-0">
+                                            <input
+                                                name="courseInfoName"
+                                                className="form-control"
+                                                value={courseInfoName}
+                                                onChange={(e) => setCourseInfoName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="edit-action-btn-grp" className="col-md-4">
+                                            <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseInfoName(false); updateCourseInfoName(courseInfoName)}}>
+                                                <FontAwesomeIcon icon={faCheckCircle}/>
+                                            </button>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2 mt-1"  onClick={() => {setEditCourseInfoName(false); setCourseInfoName('')}}>
+                                                <FontAwesomeIcon icon={faTimes}/>
+                                            </button>
+                                        </div>
                                     </div>
                                 :
                                     <div className="row m-0">
@@ -67,7 +82,7 @@ function CourseObj(props) {
                                     <ul className="sg-control-input-list">
                                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                                             <div className="sg-control-input-list-label">
-                                                <span>Course Info</span>
+                                                <span>Content</span>
                                             </div>
                                             <div className="sg-control-input-list-input">
                                                 <div className="sg-expandable-code-editor">
