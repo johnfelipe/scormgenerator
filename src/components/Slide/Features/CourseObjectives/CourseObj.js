@@ -49,7 +49,7 @@ function CourseObj(props) {
                                     </div>
                                 :
                                     <div className="row m-0">
-                                        <div className="col-md-10">
+                                        <div className="col-md-10 pl-0">
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                                 {courseInfo.name}
                                             </Accordion.Toggle>
