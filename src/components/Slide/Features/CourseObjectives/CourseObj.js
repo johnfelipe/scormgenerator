@@ -12,7 +12,10 @@ function CourseObj(props) {
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
     const [editCourseInfoName, setEditCourseInfoName] = useState(false);
     const [courseInfoName, setCourseInfoName] = useState('');
-    const [collapseId, setCollapseId] = useState(false);
+    const [editCourseReqName, setEditCourseReqName] = useState(false);
+    const [courseReqName, setCourseReqName] = useState('');
+    const [cInfoCollapseId, setCInfoCollapseId] = useState(false);
+    const [cReqCollapseId, setCReqCollapseId] = useState(false);
 
     const updateCourseInfoName = (value) => {
         const currentColumnObj = currentColumn;
@@ -22,7 +25,15 @@ function CourseObj(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const collapseListener = (currentCollapseId) => {
+    const updateCourseReqName = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.name = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const collapseListener = (currentCollapseId, type) => {
 
         if (currentCollapseId) {
             currentCollapseId = false;
@@ -30,7 +41,11 @@ function CourseObj(props) {
             currentCollapseId = true;
         }
 
-        setCollapseId(currentCollapseId);
+        if (type === 'cInfo') {
+            setCInfoCollapseId(currentCollapseId);
+        } else if (type === 'cReq') {
+            setCReqCollapseId(currentCollapseId);
+        }
     }
 
     return (
@@ -77,13 +92,13 @@ function CourseObj(props) {
                                 :
                                     <div className="row m-0">
                                         <div className="col-md-9 pl-0">
-                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(collapseId)}>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
                                                 {courseInfo.name}
                                             </Accordion.Toggle>
                                         </div>
-                                        <div id="action-buttons-group" className="col-md-3 pr-0">
+                                        <div id="action-buttons-group" className="col-md-3 p-0">
                                             <span className="float-right mr-2">
-                                                <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
+                                                <FontAwesomeIcon icon={cInfoCollapseId === true ? faCaretUp : faCaretDown}/>
                                             </span>
                                             <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseInfoName(true); setCourseInfoName(courseInfo.name);}}>
                                                 <FontAwesomeIcon icon={faEdit}/>
@@ -118,16 +133,49 @@ function CourseObj(props) {
                         </Card>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                    {courseReq.name}
-                                </Accordion.Toggle>
+                            {editCourseReqName ?
+                                    <div className="row m-0">
+                                        <div className="col-md-8 p-0">
+                                            <input
+                                                name="courseReqName"
+                                                className="form-control"
+                                                value={courseReqName}
+                                                onChange={(e) => setCourseReqName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
+                                            <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseReqName(false); updateCourseReqName(courseReqName)}}>
+                                                <FontAwesomeIcon icon={faCheckCircle}/>
+                                            </button>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2 mt-1"  onClick={() => {setEditCourseReqName(false); setCourseReqName('')}}>
+                                                <FontAwesomeIcon icon={faTimes}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                :
+                                    <div className="row m-0">
+                                        <div className="col-md-9 pl-0">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="1" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
+                                                {courseReq.name}
+                                            </Accordion.Toggle>
+                                        </div>
+                                        <div id="action-buttons-group" className="col-md-3 p-0">
+                                            <span className="float-right mr-2">
+                                                <FontAwesomeIcon icon={cReqCollapseId === true ? faCaretUp : faCaretDown}/>
+                                            </span>
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseReqName(true); setCourseReqName(courseInfo.name);}}>
+                                                <FontAwesomeIcon icon={faEdit}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
                                     <ul className="sg-control-input-list">
                                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                                             <div className="sg-control-input-list-label">
-                                                <span>Course Req's</span>
+                                                <span>Content</span>
                                             </div>
                                             <div className="sg-control-input-list-input">
                                                 <div className="sg-expandable-code-editor">
