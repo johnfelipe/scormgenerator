@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import EllipsisText from "react-ellipsis-text";
+import { Modal } from 'react-bootstrap';
 
 function QuizAccordion(props) {
 
@@ -12,7 +13,7 @@ function QuizAccordion(props) {
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
-    
+
     const [imgAddLabel, setImgAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
     const [audioAddLabel, setAudioAddLabel] = useState(false);
@@ -20,6 +21,8 @@ function QuizAccordion(props) {
     const [videoAddLabel, setVideoAddLabel] = useState(false);
     const [videoLabel, setVideoLabel] = useState('');
     const [collapseId, setCollapseId] = useState(false);
+    const [addLabelModalShow, setAddLabelModalShow] = useState(false);
+    const [fileIndex, setFileIndex] = useState(-1);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -162,6 +165,78 @@ function QuizAccordion(props) {
             setVideoLabel('');
         }
     }
+
+    const addLabelModal = (
+        <Modal
+            show={addLabelModalShow}
+            onHide={() => setAddLabelModalShow(false)}
+            size="sm"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Add Label
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {imgAddLabel &&
+                    <div className="img-add-label-wrapper mt-2">
+                        <div className="img-add-label-label d-inline mr-2">
+                            <span>Label:</span>
+                        </div>
+                        <div className="img-add-label-input d-inline">
+                            <input
+                                id="imgLabel"
+                                name="imgLabel"
+                                type="text"
+                                placeholder="Type label here. . ."
+                                onChange={(event) => setImgLabel(event.target.value)}
+                                value={imgLabel}
+                            />
+                        </div>
+                        <div className="img-add-label-button d-inline ml-2">
+                            <button
+                                type="button"
+                                className="btn btn-success btn-sm pl-1 pr-1"
+                                onClick={() => {
+                                    props.addFileLabel(imgLabel, index, fileIndex);
+                                    setImgAddLabel(false);
+                                    setImgLabel('');
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
+                                onClick={() => {
+                                    setImgAddLabel(false);
+                                    setImgLabel('');
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </Modal.Body>
+            <Modal.Footer>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        setAddLabelModalShow(false);
+                        props.addFileLabel(imgLabel, index, fileIndex);
+                        setImgAddLabel(false);
+                        setImgLabel('');
+                    }}
+                >
+                    Submit
+                </button>
+                <button className="btn btn-primary" onClick={() => setAddLabelModalShow(false)}>Cancel</button>
+            </Modal.Footer>
+        </Modal>
+    );
 
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
@@ -306,20 +381,21 @@ function QuizAccordion(props) {
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            <Accordion key={Math.random()}>
-                                                                                <Card>
+                                                                            {setFileIndex(fileIndex)}
+                                                                            {/* <Accordion key={Math.random()}>
+                                                                                <Card> */}
                                                                                     <div id="quiz-question-file-item" className="row mb-0">
                                                                                         <div className="p-0 col-md-11 pl-0">
-                                                                                            <Accordion.Toggle
+                                                                                            {/* <Accordion.Toggle
                                                                                                 as={Button}
                                                                                                 variant="link"
                                                                                                 eventKey="0"
                                                                                                 className="text-left p-0 font-15 quiz-question-file-item-label"
-                                                                                            >
+                                                                                            > */}
                                                                                                 {file.video && <EllipsisText text={file.video.name} length={20} />}
                                                                                                 {file.img && <EllipsisText text={file.img.name} length={20} />}
                                                                                                 {file.audio && <EllipsisText text={file.audio.name} length={20} />}
-                                                                                            </Accordion.Toggle>
+                                                                                            {/* </Accordion.Toggle> */}
                                                                                         </div>
                                                                                         <div
                                                                                             className="col-md-1 p-0 quiz-question-file-item-delete"
@@ -328,8 +404,8 @@ function QuizAccordion(props) {
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <Accordion.Collapse eventKey="0">
-                                                                                        <Card.Body className="p-1">
+                                                                                    {/* <Accordion.Collapse eventKey="0">
+                                                                                        <Card.Body className="p-1"> */}
                                                                                             {file.video && <label className="input-group-btn" style={{ cursor: 'pointer' }}><span type="button" className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                                                                                 Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
                                                                                             </span></label>
@@ -337,47 +413,10 @@ function QuizAccordion(props) {
                                                                                             {file.label === "" ?
                                                                                                 <div className="quiz-question-action-button mt-1">
                                                                                                     {imgAddLabel && file.img ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
-                                                                                                            <div className="img-add-label-label d-inline mr-2">
-                                                                                                                <span>Label:</span>
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-input d-inline">
-                                                                                                                <input
-                                                                                                                    id="imgLabel"
-                                                                                                                    name="imgLabel"
-                                                                                                                    type="text"
-                                                                                                                    placeholder="Type label here. . ."
-                                                                                                                    onChange={(event) => setImgLabel(event.target.value)}
-                                                                                                                    value={imgLabel}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-button d-inline ml-2">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        props.addFileLabel(imgLabel, index, fileIndex);
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                            </div>
-                                                                                                        </div>
+                                                                                                        addLabelModal
                                                                                                     :
                                                                                                         file.label === "" && file.img && 
-                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => {setImgAddLabel(true); setAddLabelModalShow(true);}}>Add Label</button>
                                                                                                     }
                                                                                                     {audioAddLabel && file.audio ? 
                                                                                                         <div className="img-add-label-wrapper mt-2">
@@ -697,10 +736,10 @@ function QuizAccordion(props) {
                                                                                                     }
                                                                                                 </ul>
                                                                                             }
-                                                                                        </Card.Body>
-                                                                                    </Accordion.Collapse>
-                                                                                </Card>
-                                                                            </Accordion>
+                                                                                        {/* </Card.Body> */}
+                                                                                    {/* </Accordion.Collapse> */}
+                                                                                {/* </Card> */}
+                                                                            {/* </Accordion> */}
                                                                         </li>
                                                                     )}
                                                                 </Draggable>
