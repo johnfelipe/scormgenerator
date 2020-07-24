@@ -3,7 +3,6 @@ import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import EllipsisText from "react-ellipsis-text";
 
 function QuizAccordion(props) {
 
@@ -316,9 +315,9 @@ function QuizAccordion(props) {
                                                                                                 eventKey="0"
                                                                                                 className="text-left p-0 font-15 quiz-question-file-item-label"
                                                                                             > */}
-                                                                                                {file.video && <EllipsisText text={file.video.name} length={20} />}
-                                                                                                {file.img && <EllipsisText text={file.img.name} length={20} />}
-                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={20} />}
+                                                                                                {file.video && file.video.name}
+                                                                                                {file.img && file.img.name}
+                                                                                                {file.audio && file.audio.name}
                                                                                             {/* </Accordion.Toggle> */}
                                                                                         </div>
                                                                                         <div
