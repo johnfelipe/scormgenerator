@@ -1429,4 +1429,14 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   list-style-type: none;
 }
 
+html body {
+  font-family: "Open Sans";
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 /*# sourceMappingURL=styles.css.map */
