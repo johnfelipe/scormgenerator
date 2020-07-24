@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
 function CourseObj(props) {
@@ -12,6 +12,7 @@ function CourseObj(props) {
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
     const [editCourseInfoName, setEditCourseInfoName] = useState(false);
     const [courseInfoName, setCourseInfoName] = useState('');
+    const [collapseId, setCollapseId] = useState(false);
 
     const updateCourseInfoName = (value) => {
         const currentColumnObj = currentColumn;
@@ -19,6 +20,17 @@ function CourseObj(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.name = value;
 
         props.setColumn(currentColumnObj);
+    }
+
+    const collapseListener = (currentCollapseId) => {
+
+        if (currentCollapseId) {
+            currentCollapseId = false;
+        } else {
+            currentCollapseId = true;
+        }
+
+        setCollapseId(currentCollapseId);
     }
 
     return (
@@ -53,7 +65,7 @@ function CourseObj(props) {
                                                 onChange={(e) => setCourseInfoName(e.target.value)}
                                             />
                                         </div>
-                                        <div id="edit-action-btn-grp" className="col-md-4">
+                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
                                             <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseInfoName(false); updateCourseInfoName(courseInfoName)}}>
                                                 <FontAwesomeIcon icon={faCheckCircle}/>
                                             </button>
@@ -64,12 +76,15 @@ function CourseObj(props) {
                                     </div>
                                 :
                                     <div className="row m-0">
-                                        <div className="col-md-10 pl-0">
-                                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        <div className="col-md-9 pl-0">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(collapseId)}>
                                                 {courseInfo.name}
                                             </Accordion.Toggle>
                                         </div>
-                                        <div id="action-buttons-group" className="col-md-2">
+                                        <div id="action-buttons-group" className="col-md-3 pr-0">
+                                            <span className="float-right mr-2">
+                                                <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
+                                            </span>
                                             <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseInfoName(true); setCourseInfoName(courseInfo.name);}}>
                                                 <FontAwesomeIcon icon={faEdit}/>
                                             </button>
