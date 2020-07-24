@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Accordion, Card, Tabs, Tab, Button } from 'react-bootstrap';
+import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import EllipsisText from "react-ellipsis-text";
 
 function QuizAccordion(props) {
 
@@ -12,7 +11,7 @@ function QuizAccordion(props) {
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
-    
+
     const [imgAddLabel, setImgAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
     const [audioAddLabel, setAudioAddLabel] = useState(false);
@@ -20,6 +19,10 @@ function QuizAccordion(props) {
     const [videoAddLabel, setVideoAddLabel] = useState(false);
     const [videoLabel, setVideoLabel] = useState('');
     const [collapseId, setCollapseId] = useState(false);
+    const [collapseAccordion,  setCollapseAccordion] = useState(false);
+    const [imgCollapse,  setImgCollapse] = useState(false);
+    const [audioCollapse,  setAudioCollapse] = useState(false);
+    const [videoCollapse,  setVideoCollapse] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -163,6 +166,34 @@ function QuizAccordion(props) {
         }
     }
 
+    const accordionClick = (value, file) => {
+
+        if (file.img) {
+            if (value) {
+                value = false;
+            } else {
+                value = true;
+            }
+            setImgCollapse(value);
+        } else if (file.audio) {
+            if (value) {
+                value = false;
+            } else {
+                value = true;
+            }
+            setAudioCollapse(value);
+        } else if (file.video) {
+            if (value) {
+                value = false;
+            } else {
+                value = true;
+            }
+            setVideoCollapse(value);
+        }
+
+        setCollapseAccordion(value);
+    }
+
     return (
         <Accordion key={'accordion-quiz-question-' + index}>
             <Card>
@@ -296,30 +327,30 @@ function QuizAccordion(props) {
                                                         <ul className="quiz-question-files-list list-unstyled">
                                                             {item.files.map((file, fileIndex) => (
                                                                 <Draggable
-                                                                    key={Math.random()}
-                                                                    draggableId={'' + fileIndex}
+                                                                    key={'quiz-question-files-list-item-key-' + fileIndex}
+                                                                    draggableId={'quiz-question-files-list-item-' + fileIndex}
                                                                     index={fileIndex}>
                                                                     {(provided) => (
                                                                         <li
-                                                                            className="quiz-question-files-list-item"
+                                                                            className="quiz-question-files-list-item mt-2"
                                                                             ref={provided.innerRef}
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            <Accordion key={Math.random()}>
-                                                                                <Card>
-                                                                                    <div id="quiz-question-file-item" className="row mb-0">
+                                                                            {/* <Accordion key={Math.random()}>
+                                                                                <Card> */}
+                                                                                    <div id="quiz-question-file-item" className="row mb-0 border rounded-top" onClick={() => accordionClick(collapseAccordion, file)}>
                                                                                         <div className="p-0 col-md-11 pl-0">
-                                                                                            <Accordion.Toggle
+                                                                                            {/* <Accordion.Toggle
                                                                                                 as={Button}
                                                                                                 variant="link"
                                                                                                 eventKey="0"
                                                                                                 className="text-left p-0 font-15 quiz-question-file-item-label"
-                                                                                            >
-                                                                                                {file.video && <EllipsisText text={file.video.name} length={20} />}
-                                                                                                {file.img && <EllipsisText text={file.img.name} length={20} />}
-                                                                                                {file.audio && <EllipsisText text={file.audio.name} length={20} />}
-                                                                                            </Accordion.Toggle>
+                                                                                            > */}
+                                                                                                {file.video && file.video.name}
+                                                                                                {file.img && file.img.name}
+                                                                                                {file.audio && file.audio.name}
+                                                                                            {/* </Accordion.Toggle> */}
                                                                                         </div>
                                                                                         <div
                                                                                             className="col-md-1 p-0 quiz-question-file-item-delete"
@@ -328,59 +359,63 @@ function QuizAccordion(props) {
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <Accordion.Collapse eventKey="0">
-                                                                                        <Card.Body className="p-1">
+                                                                                    {/* <Accordion.Collapse eventKey="0">
+                                                                                        <Card.Body className="p-1"> */}
                                                                                             {file.video && <label className="input-group-btn" style={{ cursor: 'pointer' }}><span type="button" className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                                                                                 Add vtt<input type="file" style={{ display: "none"}} onChange={(e) => uploadVtt(e, index)}/>
                                                                                             </span></label>
                                                                                             }
                                                                                             {file.label === "" ?
-                                                                                                <div className="quiz-question-action-button mt-1">
-                                                                                                    {imgAddLabel && file.img ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
-                                                                                                            <div className="img-add-label-label d-inline mr-2">
-                                                                                                                <span>Label:</span>
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-input d-inline">
-                                                                                                                <input
-                                                                                                                    id="imgLabel"
-                                                                                                                    name="imgLabel"
-                                                                                                                    type="text"
-                                                                                                                    placeholder="Type label here. . ."
-                                                                                                                    onChange={(event) => setImgLabel(event.target.value)}
-                                                                                                                    value={imgLabel}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-button d-inline ml-2">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        props.addFileLabel(imgLabel, index, fileIndex);
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
-                                                                                                                </button>
+                                                                                                <>
+                                                                                                    {imgAddLabel && file.img ?
+                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
+                                                                                                                <div className="img-add-label-label d-inline mr-2">
+                                                                                                                    <span>Label:</span>
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-input d-inline">
+                                                                                                                    <input
+                                                                                                                        id="imgLabel"
+                                                                                                                        name="imgLabel"
+                                                                                                                        type="text"
+                                                                                                                        placeholder="Type label here. . ."
+                                                                                                                        onChange={(event) => setImgLabel(event.target.value)}
+                                                                                                                        value={imgLabel}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-button d-inline ml-2">
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            props.addFileLabel(imgLabel, index, fileIndex);
+                                                                                                                            setImgAddLabel(false);
+                                                                                                                            setImgLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            setImgAddLabel(false);
+                                                                                                                            setImgLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.img && 
-                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                                                                                        file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                                                                                        </div>
                                                                                                     }
-                                                                                                    {audioAddLabel && file.audio ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
+                                                                                                    {audioAddLabel && file.audio ?
+                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
                                                                                                             </div>
@@ -418,12 +453,15 @@ function QuizAccordion(props) {
                                                                                                                 </button>
                                                                                                             </div>
                                                                                                         </div>
+                                                                                                        </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.audio && 
-                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                                                                                                        file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                                                                                                        </div>
                                                                                                     }
-                                                                                                    {videoAddLabel && file.video ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
+                                                                                                    {videoAddLabel && file.video ?
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
                                                                                                             </div>
@@ -461,147 +499,156 @@ function QuizAccordion(props) {
                                                                                                                 </button>
                                                                                                             </div>
                                                                                                         </div>
+                                                                                                        </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.video && 
-                                                                                                        <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                                                                                                        file.label === "" && file.video &&
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                                                                                                        </div>
                                                                                                     }
-                                                                                                </div>
+                                                                                                </>
                                                                                             :
                                                                                                 file.label !== "" &&
-                                                                                                <div className="quiz-question-action-button mt-1">
-                                                                                                    {imgAddLabel && file.img ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
-                                                                                                            <div className="img-add-label-label d-inline mr-2">
-                                                                                                                <span>Label:</span>
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-input d-inline">
-                                                                                                                <input
-                                                                                                                    id="imgLabel"
-                                                                                                                    name="imgLabel"
-                                                                                                                    type="text"
-                                                                                                                    placeholder="Type label here. . ."
-                                                                                                                    onChange={(event) => setImgLabel(event.target.value)}
-                                                                                                                    value={imgLabel}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-button d-inline ml-2">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        props.editFileLabel(imgLabel, index, fileIndex);
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        setImgAddLabel(false);
-                                                                                                                        setImgLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
-                                                                                                                </button>
+                                                                                                <>
+                                                                                                    {imgAddLabel && file.img ?
+                                                                                                        <div className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
+                                                                                                                <div className="img-add-label-label d-inline mr-2">
+                                                                                                                    <span>Label:</span>
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-input d-inline">
+                                                                                                                    <input
+                                                                                                                        id="imgLabel"
+                                                                                                                        name="imgLabel"
+                                                                                                                        type="text"
+                                                                                                                        placeholder="Type label here. . ."
+                                                                                                                        onChange={(event) => setImgLabel(event.target.value)}
+                                                                                                                        value={imgLabel}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-button d-inline ml-2">
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            props.editFileLabel(imgLabel, index, fileIndex);
+                                                                                                                            setImgAddLabel(false);
+                                                                                                                            setImgLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            setImgAddLabel(false);
+                                                                                                                            setImgLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
                                                                                                         file.label === "" && file.img && 
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                                     }
-                                                                                                    {audioAddLabel && file.audio ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
-                                                                                                            <div className="img-add-label-label d-inline mr-2">
-                                                                                                                <span>Label:</span>
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-input d-inline">
-                                                                                                                <input
-                                                                                                                    id="audioLabel"
-                                                                                                                    name="audioLabel"
-                                                                                                                    type="text"
-                                                                                                                    placeholder="Type label here. . ."
-                                                                                                                    onChange={(event) => setAudioLabel(event.target.value)}
-                                                                                                                    value={audioLabel}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-button d-inline ml-2">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        props.addFileLabel(audioLabel, index, fileIndex);
-                                                                                                                        setAudioAddLabel(false);
-                                                                                                                        setAudioLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        setAudioAddLabel(false);
-                                                                                                                        setAudioLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
-                                                                                                                </button>
+                                                                                                    {audioAddLabel && file.audio ?
+                                                                                                        <div className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
+                                                                                                                <div className="img-add-label-label d-inline mr-2">
+                                                                                                                    <span>Label:</span>
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-input d-inline">
+                                                                                                                    <input
+                                                                                                                        id="audioLabel"
+                                                                                                                        name="audioLabel"
+                                                                                                                        type="text"
+                                                                                                                        placeholder="Type label here. . ."
+                                                                                                                        onChange={(event) => setAudioLabel(event.target.value)}
+                                                                                                                        value={audioLabel}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-button d-inline ml-2">
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            props.addFileLabel(audioLabel, index, fileIndex);
+                                                                                                                            setAudioAddLabel(false);
+                                                                                                                            setAudioLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            setAudioAddLabel(false);
+                                                                                                                            setAudioLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
                                                                                                         file.label === "" && file.audio && 
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                                     }
-                                                                                                    {videoAddLabel && file.video ? 
-                                                                                                        <div className="img-add-label-wrapper mt-2">
-                                                                                                            <div className="img-add-label-label d-inline mr-2">
-                                                                                                                <span>Label:</span>
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-input d-inline">
-                                                                                                                <input
-                                                                                                                    id="videoLabel"
-                                                                                                                    name="videoLabel"
-                                                                                                                    type="text"
-                                                                                                                    placeholder="Type label here. . ."
-                                                                                                                    onChange={(event) => setVideoLabel(event.target.value)}
-                                                                                                                    value={videoLabel}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                            <div className="img-add-label-button d-inline ml-2">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        props.addFileLabel(videoLabel, index, fileIndex);
-                                                                                                                        setVideoAddLabel(false);
-                                                                                                                        setVideoLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
-                                                                                                                </button>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
-                                                                                                                    onClick={() => {
-                                                                                                                        setVideoAddLabel(false);
-                                                                                                                        setVideoLabel('');
-                                                                                                                    }}
-                                                                                                                >
-                                                                                                                    <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
-                                                                                                                </button>
+                                                                                                    {videoAddLabel && file.video ?
+                                                                                                        <div className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
+                                                                                                            <div className="img-add-label-wrapper text-center">
+                                                                                                                <div className="img-add-label-label d-inline mr-2">
+                                                                                                                    <span>Label:</span>
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-input d-inline">
+                                                                                                                    <input
+                                                                                                                        id="videoLabel"
+                                                                                                                        name="videoLabel"
+                                                                                                                        type="text"
+                                                                                                                        placeholder="Type label here. . ."
+                                                                                                                        onChange={(event) => setVideoLabel(event.target.value)}
+                                                                                                                        value={videoLabel}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                                <div className="img-add-label-button d-inline ml-2">
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            props.addFileLabel(videoLabel, index, fileIndex);
+                                                                                                                            setVideoAddLabel(false);
+                                                                                                                            setVideoLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        className="btn btn-danger btn-sm ml-2 pl-1 pr-1"
+                                                                                                                        onClick={() => {
+                                                                                                                            setVideoAddLabel(false);
+                                                                                                                            setVideoLabel('');
+                                                                                                                        }}
+                                                                                                                    >
+                                                                                                                        <FontAwesomeIcon icon={faTimes} className="fa-w-12"/>
+                                                                                                                    </button>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
                                                                                                         file.label === "" && file.video && 
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                                     }
-                                                                                                </div>
+                                                                                                </>
                                                                                             }
                                                                                             {file.video && file.video.caption &&
-                                                                                                <ul className="quiz-question-file-item-list pl-4">
+                                                                                                <ul className={collapseAccordion ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                     <li className="quiz-question-file-item-list-item">
                                                                                                         <div className="row">
                                                                                                             <div className="col-md-10">{file.video.caption.name}</div>
@@ -613,8 +660,9 @@ function QuizAccordion(props) {
                                                                                                 </ul>
                                                                                             }
                                                                                             {file.label &&
-                                                                                                <ul className="quiz-question-file-item-list pl-4">
+                                                                                                <>
                                                                                                     {file.img && imgAddLabel === false &&
+                                                                                                    <ul className={imgCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -640,8 +688,10 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
                                                                                                     {file.audio && audioAddLabel === false &&
+                                                                                                    <ul className={audioCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -667,8 +717,10 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
                                                                                                     {file.video && videoAddLabel === false &&
+                                                                                                    <ul className={videoCollapse ? "sg-accordion quiz-question-action-button border border-top-0 py-3 px-1" : "d-none quiz-question-action-button border py-3 px-1"}>
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -694,13 +746,14 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
-                                                                                                </ul>
+                                                                                                </>
                                                                                             }
-                                                                                        </Card.Body>
-                                                                                    </Accordion.Collapse>
-                                                                                </Card>
-                                                                            </Accordion>
+                                                                                        {/* </Card.Body> */}
+                                                                                    {/* </Accordion.Collapse> */}
+                                                                                {/* </Card> */}
+                                                                            {/* </Accordion> */}
                                                                         </li>
                                                                     )}
                                                                 </Draggable>

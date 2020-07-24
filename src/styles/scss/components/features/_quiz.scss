@@ -189,11 +189,25 @@
                                                                                         padding: 10px;
                                                                                         margin: 0px 0px 8px 0px;
                                                                                         background: whitesmoke;
-                                                                                        border-radius: 5px;
+                                                                                        // border-radius: 5px;
 
                                                                                         .quiz-question-file-item-delete {
                                                                                             cursor: pointer;
                                                                                         }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        #question-answers-files-tabs-tabpane-files {
+                                                                            ul.quiz-question-files-list {
+                                                                                li.quiz-question-files-list-item {
+                                                                                    #quiz-question-file-item {
+                                                                                        text-overflow: ellipsis;
+                                                                                    }
+
+                                                                                    .sg-accordion {
+                                                                                        list-style-type: none;
                                                                                     }
                                                                                 }
                                                                             }
