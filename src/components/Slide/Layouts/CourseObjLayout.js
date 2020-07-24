@@ -11,11 +11,11 @@ function CourseObjLayout(props) {
     const [courseInfoModalShow, setCourseInfoModalShow] = useState(false);
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
-    const introVideo = props.content.introVideo;
-    const courseInfoTitle = props.content.courseInfo.name;
-    const courseReqTitle = props.content.courseReq.name;
-    const courseInfoContent = props.content.courseInfo.content;
-    const courseReqContent = props.content.courseReq.content;
+    const introVideo = props.introVideo;
+    const courseInfoTitle = props.output.courseInfo.name;
+    const courseReqTitle = props.output.courseReq.name;
+    const courseInfoContent = props.output.courseInfo.content;
+    const courseReqContent = props.output.courseReq.content;
 
     const courseNavModal = (
         <Modal
@@ -104,10 +104,10 @@ function CourseObjLayout(props) {
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Information
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseInfoTitle}
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseReqModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Requirements
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseReqTitle}
                                 </button>
                             </div>
                         </div>

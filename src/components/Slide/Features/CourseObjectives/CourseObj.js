@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
 function CourseObj(props) {
@@ -8,6 +8,45 @@ function CourseObj(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
+    const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
+    const [editCourseInfoName, setEditCourseInfoName] = useState(false);
+    const [courseInfoName, setCourseInfoName] = useState('');
+    const [editCourseReqName, setEditCourseReqName] = useState(false);
+    const [courseReqName, setCourseReqName] = useState('');
+    const [cInfoCollapseId, setCInfoCollapseId] = useState(false);
+    const [cReqCollapseId, setCReqCollapseId] = useState(false);
+
+    const updateCourseInfoName = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.name = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const updateCourseReqName = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.name = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const collapseListener = (currentCollapseId, type) => {
+
+        if (currentCollapseId) {
+            currentCollapseId = false;
+        } else {
+            currentCollapseId = true;
+        }
+
+        if (type === 'cInfo') {
+            setCInfoCollapseId(currentCollapseId);
+        } else if (type === 'cReq') {
+            setCReqCollapseId(currentCollapseId);
+        }
+    }
 
     return (
         <div className="sg-controls">
@@ -27,34 +66,136 @@ function CourseObj(props) {
                 <div className="sg-control-header">
                     <label>Content</label>
                 </div>
-                <ul className="list-unstyled">
-                    <li>
-                        <Accordion>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        Click me!
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>Hello! I'm the body</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                        Click me!
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="1">
-                                    <Card.Body>Hello! I'm another body</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </li>
-                </ul>
                 <div className="sg-control-input">
-                    <ul className="sg-control-input-list">
+                    <Accordion>
+                        <Card>
+                            <Card.Header>
+                                {editCourseInfoName ?
+                                    <div className="row m-0">
+                                        <div className="col-md-8 p-0">
+                                            <input
+                                                name="courseInfoName"
+                                                className="form-control"
+                                                value={courseInfoName}
+                                                onChange={(e) => setCourseInfoName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
+                                            <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseInfoName(false); updateCourseInfoName(courseInfoName)}}>
+                                                <FontAwesomeIcon icon={faCheckCircle}/>
+                                            </button>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2 mt-1"  onClick={() => {setEditCourseInfoName(false); setCourseInfoName('')}}>
+                                                <FontAwesomeIcon icon={faTimes}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                :
+                                    <div className="row m-0">
+                                        <div className="col-md-9 pl-0">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
+                                                {courseInfo.name}
+                                            </Accordion.Toggle>
+                                        </div>
+                                        <div id="action-buttons-group" className="col-md-3 p-0">
+                                            <span className="float-right mr-2">
+                                                <FontAwesomeIcon icon={cInfoCollapseId === true ? faCaretUp : faCaretDown}/>
+                                            </span>
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseInfoName(true); setCourseInfoName(courseInfo.name);}}>
+                                                <FontAwesomeIcon icon={faEdit}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body>
+                                    <ul className="sg-control-input-list">
+                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                            <div className="sg-control-input-list-label">
+                                                <span>Content</span>
+                                            </div>
+                                            <div className="sg-control-input-list-input">
+                                                <div className="sg-expandable-code-editor">
+                                                    <div className="sg-workspace-expander">
+                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
+                                                                <span>Edit</span>
+                                                            </button>
+                                                            <input type="text" value="" disabled className="rounded"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                            {editCourseReqName ?
+                                    <div className="row m-0">
+                                        <div className="col-md-8 p-0">
+                                            <input
+                                                name="courseReqName"
+                                                className="form-control"
+                                                value={courseReqName}
+                                                onChange={(e) => setCourseReqName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
+                                            <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseReqName(false); updateCourseReqName(courseReqName)}}>
+                                                <FontAwesomeIcon icon={faCheckCircle}/>
+                                            </button>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2 mt-1"  onClick={() => {setEditCourseReqName(false); setCourseReqName('')}}>
+                                                <FontAwesomeIcon icon={faTimes}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                :
+                                    <div className="row m-0">
+                                        <div className="col-md-9 pl-0">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="1" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
+                                                {courseReq.name}
+                                            </Accordion.Toggle>
+                                        </div>
+                                        <div id="action-buttons-group" className="col-md-3 p-0">
+                                            <span className="float-right mr-2">
+                                                <FontAwesomeIcon icon={cReqCollapseId === true ? faCaretUp : faCaretDown}/>
+                                            </span>
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseReqName(true); setCourseReqName(courseInfo.name);}}>
+                                                <FontAwesomeIcon icon={faEdit}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="1">
+                                <Card.Body>
+                                    <ul className="sg-control-input-list">
+                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                            <div className="sg-control-input-list-label">
+                                                <span>Content</span>
+                                            </div>
+                                            <div className="sg-control-input-list-input">
+                                                <div className="sg-expandable-code-editor">
+                                                    <div className="sg-workspace-expander">
+                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseReq')}>
+                                                                <span>Edit</span>
+                                                            </button>
+                                                            <input type="text" value="" disabled className="rounded"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
+                    {/* <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Course Info</span>
@@ -89,7 +230,7 @@ function CourseObj(props) {
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
             <div className="sg-control sg-control-group">
