@@ -301,7 +301,7 @@ function QuizAccordion(props) {
                                                                     index={fileIndex}>
                                                                     {(provided) => (
                                                                         <li
-                                                                            className="quiz-question-files-list-item"
+                                                                            className="quiz-question-files-list-item mt-2"
                                                                             ref={provided.innerRef}
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
