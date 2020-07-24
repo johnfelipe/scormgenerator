@@ -104,10 +104,10 @@ function CourseObjLayout(props) {
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Information
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseInfoTitle}
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseReqModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Requirements
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseReqTitle}
                                 </button>
                             </div>
                         </div>
