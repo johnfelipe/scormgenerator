@@ -8,6 +8,8 @@ function CourseObj(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
+    const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
 
     return (
         <div className="sg-controls">
@@ -27,33 +29,29 @@ function CourseObj(props) {
                 <div className="sg-control-header">
                     <label>Content</label>
                 </div>
-                <ul className="list-unstyled">
-                    <li>
-                        <Accordion>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        Click me!
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>Hello! I'm the body</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                        Click me!
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="1">
-                                    <Card.Body>Hello! I'm another body</Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
-                    </li>
-                </ul>
                 <div className="sg-control-input">
+                    <Accordion>
+                        <Card>
+                            <Card.Header>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                    {courseInfo.name}
+                                </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body>Hello! I'm the body</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                    {courseReq.name}
+                                </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="1">
+                                <Card.Body>Hello! I'm another body</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    </Accordion>
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
