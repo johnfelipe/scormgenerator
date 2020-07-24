@@ -11,12 +11,11 @@ function CourseObjLayout(props) {
     const [courseInfoModalShow, setCourseInfoModalShow] = useState(false);
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
-    // const introVideo = props.introVideo;
-    // const courseInfoTitle = props.content.courseInfo.name;
-    // const courseReqTitle = props.content.courseReq.name;
-    // const courseInfoContent = props.content.courseInfo.content;
-    // const courseReqContent = props.content.courseReq.content;
-    const content = props.content;
+    const introVideo = props.introVideo;
+    const courseInfoTitle = props.output.courseInfo.name;
+    const courseReqTitle = props.output.courseReq.name;
+    const courseInfoContent = props.output.courseInfo.content;
+    const courseReqContent = props.output.courseReq.content;
 
     const courseNavModal = (
         <Modal
@@ -39,49 +38,49 @@ function CourseObjLayout(props) {
             </Modal.Footer> */}
         </Modal>
     );
-    // const courseInfoModal = (
-    //     <Modal
-    //         show={courseInfoModalShow}
-    //         onHide={() => setCourseInfoModalShow(false)}
-    //         size="lg"
-    //         aria-labelledby="contained-modal-title-vcenter"
-    //         centered
-    //     >
-    //         <Modal.Header closeButton>
-    //             <Modal.Title>
-    //                 {courseInfoTitle}
-    //             </Modal.Title>
-    //         </Modal.Header>
-    //         <Modal.Body>
-    //             <p>{courseInfoContent}</p>
-    //         </Modal.Body>
-    //         {/* <Modal.Footer>
-    //             <button className="btn btn-primary" onClick={() => setCourseInfoModalShow(false)}>Close</button>
-    //         </Modal.Footer> */}
-    //     </Modal>
-    // );
+    const courseInfoModal = (
+        <Modal
+            show={courseInfoModalShow}
+            onHide={() => setCourseInfoModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    {courseInfoTitle}
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>{courseInfoContent}</p>
+            </Modal.Body>
+            {/* <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setCourseInfoModalShow(false)}>Close</button>
+            </Modal.Footer> */}
+        </Modal>
+    );
 
-    // const courseReqModal = (
-    //     <Modal
-    //         show={courseReqModalShow}
-    //         onHide={() => setCourseReqModalShow(false)}
-    //         size="lg"
-    //         aria-labelledby="contained-modal-title-vcenter"
-    //         centered
-    //     >
-    //         <Modal.Header closeButton>
-    //             <Modal.Title>
-    //                 {courseReqTitle}
-    //             </Modal.Title>
-    //         </Modal.Header>
-    //         <Modal.Body>
-    //             <p>{courseReqContent}</p>
-    //         </Modal.Body>
-    //         {/* <Modal.Footer>
-    //             <button className="btn btn-primary" onClick={() => setCourseReqModalShow(false)}>Close</button>
-    //         </Modal.Footer> */}
-    //     </Modal>
-    // );
+    const courseReqModal = (
+        <Modal
+            show={courseReqModalShow}
+            onHide={() => setCourseReqModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    {courseReqTitle}
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>{courseReqContent}</p>
+            </Modal.Body>
+            {/* <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setCourseReqModalShow(false)}>Close</button>
+            </Modal.Footer> */}
+        </Modal>
+    );
 
     return (
         <div id="course-objective-layout">
@@ -104,42 +103,12 @@ function CourseObjLayout(props) {
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseNavModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
                                 </button>
-                                {
-                                    content.map((item, itemIndex) => (
-                                        <button
-                                            key={'courseObj-btn-' + itemIndex}
-                                            type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14"
-                                            onClick={() => setCourseInfoModalShow(true)}
-                                        >
-                                            <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{item.name}
-                                            <Modal
-                                                show={courseInfoModalShow}
-                                                onHide={() => setCourseInfoModalShow(false)}
-                                                size="lg"
-                                                aria-labelledby="contained-modal-title-vcenter"
-                                                centered
-                                            >
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>
-                                                        {item.name}
-                                                    </Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    <p>{item.content}</p>
-                                                </Modal.Body>
-                                                {/* <Modal.Footer>
-                                                    <button className="btn btn-primary" onClick={() => setCourseInfoModalShow(false)}>Close</button>
-                                                </Modal.Footer> */}
-                                            </Modal>
-                                        </button>
-                                    ))
-                                }
-                                {/* <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Information
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseReqModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Requirements
-                                </button> */}
+                                </button>
                             </div>
                         </div>
                     </div>
