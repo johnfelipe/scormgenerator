@@ -1211,8 +1211,6 @@ class SlideHandler extends Component {
                         validationSchema={Yup.object().shape({
                             slideName: Yup.string()
                             .required("Slide name required"),
-                            slideSubtitle: Yup.string()
-                            .required("Slide subtitle required"),
                         }
                     )}
                     >
@@ -1275,7 +1273,7 @@ class SlideHandler extends Component {
                                         id="slideSubtitle"
                                         name="slideSubtitle"
                                         type="text"
-                                        className={(errors.slideSubtitle && touched.slideSubtitle && "error form-control d-inline mb-2") || "form-control d-inline mb-2"}
+                                        className="form-control d-inline mb-2"
                                         onBlur={(e) => {
                                                 handleBlur(e)
 
@@ -1300,9 +1298,6 @@ class SlideHandler extends Component {
                                         }
                                         placeholder="Type subtitle here . . ."
                                     />
-                                    {errors.slideSubtitle && touched.slideSubtitle && (
-                                        <div className="input-feedback">{errors.slideSubtitle}</div>
-                                    )}
                                     <DragDropContext onDragEnd={this.onDragEnd}>
                                         <div className="row mt-2">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
