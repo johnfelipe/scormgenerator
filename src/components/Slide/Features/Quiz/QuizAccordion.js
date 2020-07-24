@@ -618,9 +618,10 @@ function QuizAccordion(props) {
                                                                                                     </li>
                                                                                                 </ul>
                                                                                             }
-                                                                                            {file.label && (imgAddLabel === false || audioAddLabel === false || videoAddLabel === false) &&
-                                                                                                <ul className="quiz-question-file-item-list pl-4 border p-3">
+                                                                                            {file.label &&
+                                                                                                <>
                                                                                                     {file.img && imgAddLabel === false &&
+                                                                                                    <ul className="quiz-question-file-item-list pl-4 border p-3">
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -646,8 +647,10 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
                                                                                                     {file.audio && audioAddLabel === false &&
+                                                                                                    <ul className="quiz-question-file-item-list pl-4 border p-3">
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -673,8 +676,10 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
                                                                                                     {file.video && videoAddLabel === false &&
+                                                                                                    <ul className="quiz-question-file-item-list pl-4 border p-3">
                                                                                                         <li className="quiz-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
@@ -700,8 +705,9 @@ function QuizAccordion(props) {
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </li>
+                                                                                                    </ul>
                                                                                                     }
-                                                                                                </ul>
+                                                                                                </>
                                                                                             }
                                                                                         {/* </Card.Body> */}
                                                                                     {/* </Accordion.Collapse> */}
