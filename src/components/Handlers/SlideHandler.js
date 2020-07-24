@@ -2847,6 +2847,7 @@ class SlideHandler extends Component {
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                 contentFor={this.state.contentFor}
+                                                setColumn={this.setColumn}
                                             />
                                         </div>
                                     </DragDropContext>

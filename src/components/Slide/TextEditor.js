@@ -9,6 +9,20 @@ function TextEditor(props) {
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentFor = props.contentFor;
 
+    const onChangeTextEditor = (value, contentIndex, editorType) => {
+        const currentColumnObj = currentColumn;
+
+        if (editorType.type === 'text') {
+            if (editorType.for === 'courseInfo') {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
+            } else if (editorType.for === 'courseReq') {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
+            }
+        }
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className={props.showTextEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
@@ -31,7 +45,7 @@ function TextEditor(props) {
                             :
                                 contentFor === 'courseReq' && typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                         }
-                        onChange={(event) => props.onChangeTextArea(event, contentIndex, { type: 'text', for: contentFor })}
+                        onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                     />
                 </div>
             </div>
