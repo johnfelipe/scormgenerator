@@ -957,39 +957,39 @@ class SlideHandler extends Component {
     }
 
     contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
-        // const elem = document.getElementById(elementId);
-        // const prevElemId = localStorage.getItem('prevElemId');
-        // const elemClasses = elem.getAttribute('class');
-        // const prevElem = document.getElementById(prevElemId);
-        // let prevElemClasses = '';
+        const elem = document.getElementById(elementId);
+        const prevElemId = localStorage.getItem('prevElemId');
+        const elemClasses = elem.getAttribute('class');
+        const prevElem = document.getElementById(prevElemId);
+        let prevElemClasses = '';
 
-        // if (prevElem !== null) {
-        //     prevElemClasses = prevElem.getAttribute('class');
-        // }
+        if (prevElem !== null) {
+            prevElemClasses = prevElem.getAttribute('class');
+        }
 
-        // if (((prevElemId === null) || (prevElemId !== null)) && (elem !== null)) {
-        //     localStorage.setItem('prevElemId', elementId);
-        //     elem.focus();
-        //     elem.classList.add("border");
-        //     elem.classList.add("border-dark");
+        if (((prevElemId === null) || (prevElemId !== null)) && (elem !== null)) {
+            localStorage.setItem('prevElemId', elementId);
+            elem.focus();
+            elem.classList.add("border");
+            elem.classList.add("border-dark");
 
-        //     if (elemClasses.includes("content-output")) {
-        //         elem.classList.add("active-column");
-        //     }
-        // } 
+            if (elemClasses.includes("content-output")) {
+                elem.classList.add("active-column");
+            }
+        } 
 
-        // if ((prevElemId !== elementId) && (prevElemId !== null)) {
-        //     const prevElem = document.getElementById(prevElemId);
+        if ((prevElemId !== elementId) && (prevElemId !== null)) {
+            const prevElem = document.getElementById(prevElemId);
 
-        //     if (prevElem !== null) {
-        //         prevElem.classList.remove("border");
-        //         prevElem.classList.remove("border-dark");
+            if (prevElem !== null) {
+                prevElem.classList.remove("border");
+                prevElem.classList.remove("border-dark");
 
-        //         if (prevElemClasses.includes("content-output")) {
-        //             prevElem.classList.remove("active-column");
-        //         }
-        //     }
-        // }
+                if (prevElemClasses.includes("content-output")) {
+                    prevElem.classList.remove("active-column");
+                }
+            }
+        }
 
         if ((this.state.column[index].content[currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[currentColumnContentIndex][contentIndex] !== "undefined")) {
             this.setState({
@@ -1447,6 +1447,7 @@ class SlideHandler extends Component {
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
