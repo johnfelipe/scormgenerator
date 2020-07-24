@@ -296,8 +296,8 @@ function QuizAccordion(props) {
                                                         <ul className="quiz-question-files-list list-unstyled">
                                                             {item.files.map((file, fileIndex) => (
                                                                 <Draggable
-                                                                    key={Math.random()}
-                                                                    draggableId={'' + fileIndex}
+                                                                    key={'quiz-question-files-list-item-key-' + fileIndex}
+                                                                    draggableId={'quiz-question-files-list-item-' + fileIndex}
                                                                     index={fileIndex}>
                                                                     {(provided) => (
                                                                         <li
