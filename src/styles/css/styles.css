@@ -1418,7 +1418,6 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
-  border-radius: 5px;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.quiz-question-list .quiz-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .quiz-question-files-list .quiz-question-files-list-item #quiz-question-file-item .quiz-question-file-item-delete {
   cursor: pointer;
