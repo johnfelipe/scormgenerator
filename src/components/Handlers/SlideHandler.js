@@ -1433,7 +1433,7 @@ class SlideHandler extends Component {
                                                                                                 {
                                                                                                     item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
                                                                                                         <Draggable
-                                                                                                            key={'feature-sample-' + contentFirstIndex}
+                                                                                                            key={'feature-' + contentFirst.type + '-' + contentFirstIndex}
                                                                                                             draggableId={contentFirst.type + '-' + contentFirstIndex + '-' + item.id}
                                                                                                             index={contentFirstIndex}
                                                                                                         >
