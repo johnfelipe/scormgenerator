@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faCheckCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
 function CourseObj(props) {
@@ -10,6 +10,8 @@ function CourseObj(props) {
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
+    const [editCourseInfoName, setEditCourseInfoName] = useState(false);
+    const [courseInfoName, setCourseInfoName] = useState('');
 
     return (
         <div className="sg-controls">
@@ -33,9 +35,32 @@ function CourseObj(props) {
                     <Accordion>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    {courseInfo.name}
-                                </Accordion.Toggle>
+                                {editCourseInfoName ?
+                                    <div>
+                                        <input
+                                            name="courseInfoName"
+                                            className="form-control"
+                                            value={courseInfoName}
+                                            onChange={(e) => setCourseInfoName(e.target.value)}
+                                        />
+                                        <button type="button" className="btn btn-success btn-sm"  onClick={() => {setEditCourseInfoName(false);}}>
+                                            <FontAwesomeIcon icon={faCheckCircle}/>
+                                        </button>
+                                    </div>
+                                :
+                                    <div className="row m-0">
+                                        <div className="col-md-10">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                                {courseInfo.name}
+                                            </Accordion.Toggle>
+                                        </div>
+                                        <div className="col-md-2">
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseInfoName(true); setCourseInfoName(courseInfo.name);}}>
+                                                <FontAwesomeIcon icon={faEdit}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
