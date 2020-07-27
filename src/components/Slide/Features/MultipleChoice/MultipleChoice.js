@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { objectHelpers } from '../../../../helpers';
@@ -18,7 +18,8 @@ function MultipleChoice(props) {
     const [filesExist, setFilesExist] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
     const [modalShow, setModalShow] = useState(false);
-    const [isFinalQuiz, setIsFinalQuiz] = useState(localStorage.getItem('isFinalQuizSet') ? localStorage.getItem('isFinalQuizSet') : false);
+    const [isFinalQuiz, setIsFinalQuiz] = useState(sessionStorage.getItem('isFinalQuizSet') ? sessionStorage.getItem('isFinalQuizSet') : false);
+    const slideItemIdWithFinalQuiz = sessionStorage.getItem('slideItemId') ? sessionStorage.getItem('slideItemId') : '';
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
@@ -242,13 +243,13 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setFeatureTypeMechanics = (value) => {
+    const setFeatureTypeMechanics = useCallback((value) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.specificType = value;
 
         props.setColumn(currentColumnObj);
-    }
+    }, [contentIndex, currentColumn, currentColumnContentIndex, props])
 
     const setReturnSlideMechanics = (value) => {
         const currentColumnObj = currentColumn;
@@ -257,6 +258,13 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    useEffect(() => {
+        if (isFinalQuiz && props.slideItemId === slideItemIdWithFinalQuiz) {
+            setFeatureTypeMechanics('finalQuiz');
+            setIsFinalQuiz(false);
+        }
+    }, [isFinalQuiz, props.slideItemId, slideItemIdWithFinalQuiz, setFeatureTypeMechanics]);
     
     return (
         <div className="sg-controls">
@@ -484,7 +492,11 @@ function MultipleChoice(props) {
                                     onChange={(event) => {
                                         if (event.target.value === 'finalQuiz') {
                                             setModalShow(true);
-                                            setFeatureTypeMechanics(event.target.value);
+
+                                            if (isFinalQuiz) {
+                                                setFeatureTypeMechanics(event.target.value);
+                                                console.log(currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.specificType)
+                                            }
                                         } else {
                                             setFeatureTypeMechanics(event.target.value);
                                         }
@@ -612,6 +624,7 @@ function MultipleChoice(props) {
                 modalShow={modalShow}
                 setModalShow={setModalShow}
                 setIsFinalQuiz={setIsFinalQuiz}
+                slideItemId={props.slideItemId}
             />
         </div>
     )
