@@ -384,7 +384,7 @@ class Main extends Component {
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     action="add"
                                                                                     slideId={this.state.slideItemIndex}
-                                                                                    lessonId={index}
+                                                                                    lessonIndex={index}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     addMediaFiles={this.props.addMediaFiles}
                                                                                     galleryHandler={this.galleryHandler}
@@ -405,7 +405,7 @@ class Main extends Component {
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 action="add"
                                                                                 slideId={this.state.slideItemIndex}
-                                                                                lessonId={index}
+                                                                                lessonIndex={index}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                 galleryHandler={this.galleryHandler}

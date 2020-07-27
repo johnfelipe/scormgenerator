@@ -1169,14 +1169,14 @@ class SlideHandler extends Component {
         });
     }
 
-    onSave = (slide, subtitle, columns, slideId) => {
+    onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.addSlideChange(slideObj, slideId);
+            this.props.addSlideChange(slideObj, lessonIndex);
             console.log("add");
         } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, slideId, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, lessonIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -1211,11 +1211,13 @@ class SlideHandler extends Component {
                         }}
 
                         onSubmit={values => {
-                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.slideId);
+                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
 
                             // create slide
                             // lid and uid are temporary
                             this.props.createSlide(1, values.slideName, 1, values.showTitle);
+
+                            this.props.setSlideItemIndex(this.props.slideId + 1);
 
                             // create column
                             // sid and uid are temporary
@@ -2901,7 +2903,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (lessonId, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonId, title: title, uid: userId, hide_title: hideShowTitle}),
+        createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
         createColumn: (slideId, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: slideId, uid: userId, columnArr: columnArr}),
     }
 }
