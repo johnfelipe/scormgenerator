@@ -4,10 +4,10 @@ import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-sol
 import { objectHelpers } from '../../../../helpers';
 
 // components
-import QuizAccordion from './QuizAccordion';
+import MultipleChoiceAccordion from './MultipleChoiceAccordion';
 import ColorPicker from '../../../Common/ColorPicker';
 
-function Quiz(props) {
+function MultipleChoice(props) {
 
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
@@ -182,10 +182,10 @@ function Quiz(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setQuizTextColor = (color) => {
+    const setMultipleChoiceTextColor = (color) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.quizTextColor = color;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -227,7 +227,7 @@ function Quiz(props) {
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'quiz')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'multipleChoice')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
@@ -248,15 +248,15 @@ function Quiz(props) {
                                 <span>Question/s</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <ul style={{ listStyle: 'none' }} className="list-group quiz-question-list">
+                                <ul style={{ listStyle: 'none' }} className="list-group multiple-choicequestion-list">
                                     {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
                                                 <>
                                                     {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="quiz-question-list-item">
+                                                        <li key={'number-' + index} className="multiple-choicequestion-list-item">
                                                             {
                                                                 isEditQuestion === false ?
-                                                                    <QuizAccordion
+                                                                    <MultipleChoiceAccordion
                                                                         index={index}
                                                                         item={item}
                                                                         deleteQuestion={deleteQuestion}
@@ -281,11 +281,11 @@ function Quiz(props) {
                                                                         deleteFileLabel={deleteFileLabel}
                                                                     />
                                                                 :
-                                                                    <div className="quiz-control-input-wrapper">
-                                                                        <div className="quiz-control-input-label">
+                                                                    <div className="multiple-choicecontrol-input-wrapper">
+                                                                        <div className="multiple-choicecontrol-input-label">
                                                                             <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length}.</span>
                                                                         </div>
-                                                                        <div className="quiz-control-input">
+                                                                        <div className="multiple-choicecontrol-input">
                                                                             <input
                                                                                 id="question"
                                                                                 name="question"
@@ -295,7 +295,7 @@ function Quiz(props) {
                                                                                 value={updateQuestion}
                                                                             />
                                                                         </div>
-                                                                        <div className="quiz-control-button">
+                                                                        <div className="multiple-choicecontrol-button">
                                                                             <button
                                                                                 type="button"
                                                                                 className="btn btn-success btn-sm"
@@ -316,12 +316,12 @@ function Quiz(props) {
                                                             }
                                                         </li>
                                                     ))}
-                                                    <li className="quiz-question-list-item mt-2">
-                                                        <div className="quiz-control-input-wrapper">
-                                                            <div className="quiz-control-input-label">
+                                                    <li className="multiple-choicequestion-list-item mt-2">
+                                                        <div className="multiple-choicecontrol-input-wrapper">
+                                                            <div className="multiple-choicecontrol-input-label">
                                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                             </div>
-                                                            <div className="quiz-control-input">
+                                                            <div className="multiple-choicecontrol-input">
                                                                 <input
                                                                     id="question"
                                                                     name="question"
@@ -331,7 +331,7 @@ function Quiz(props) {
                                                                     value={question}
                                                                 />
                                                             </div>
-                                                            <div className="quiz-control-button">
+                                                            <div className="multiple-choicecontrol-button">
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-success btn-sm"
@@ -351,12 +351,12 @@ function Quiz(props) {
                                                     </li>
                                                 </>
                                         :
-                                            <li className="quiz-question-list-item">
-                                                <div className="quiz-control-input-wrapper">
-                                                    <div className="quiz-control-input-label">
+                                            <li className="multiple-choicequestion-list-item">
+                                                <div className="multiple-choicecontrol-input-wrapper">
+                                                    <div className="multiple-choicecontrol-input-label">
                                                         <span>1.</span>
                                                     </div>
-                                                    <div className="quiz-control-input">
+                                                    <div className="multiple-choicecontrol-input">
                                                         <input
                                                             id="question"
                                                             name="question"
@@ -366,7 +366,7 @@ function Quiz(props) {
                                                             value={question}
                                                         />
                                                     </div>
-                                                    <div className="quiz-control-button">
+                                                    <div className="multiple-choicecontrol-button">
                                                         <button
                                                             type="button"
                                                             className="btn btn-success btn-sm"
@@ -419,8 +419,8 @@ function Quiz(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.quizTextColor}
-                                    onChange={(event) => setQuizTextColor(event.target.value)}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor}
+                                    onChange={(event) => setMultipleChoiceTextColor(event.target.value)}
                                     className="form-control-plaintext border border-dark rounded"
                                 >
                                     <option value="text-black">&nbsp;Black</option>
@@ -429,10 +429,10 @@ function Quiz(props) {
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label quiz-background-color-label">
+                            <div className="sg-control-input-list-label multiple-choicebackground-color-label">
                                 <span>Background Color</span>
                             </div>
-                            <div className="sg-control-input-list-input quiz-background-color-selector">
+                            <div className="sg-control-input-list-input multiple-choicebackground-color-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
                                     <span className="text-white h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor}</span>
                                 </div>
@@ -477,7 +477,7 @@ function Quiz(props) {
                 </div>
             </div>
             <ColorPicker
-                classNames="position-absolute quiz-color-picker"
+                classNames="position-absolute multiple-choicecolor-picker"
                 showPicker={showPicker}
                 setBackgroundColor={setQuestionBackgroundColor}
                 defaultColor={currentBackgroundColor}
@@ -486,4 +486,4 @@ function Quiz(props) {
     )
 }
 
-export default Quiz;
+export default MultipleChoice;
