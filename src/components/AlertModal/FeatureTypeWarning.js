@@ -27,8 +27,8 @@ function FeatureTypeWarning(props) {
                     onClick={() => {
                         props.setIsFinalQuiz(true);
                         props.setModalShow(false);
-                        localStorage.setItem('isFinalQuizSet', true);
-                        localStorage.setItem('slideItemId', props.slideItemId);
+                        sessionStorage.setItem('isFinalQuizSet', true);
+                        sessionStorage.setItem('slideItemId', props.slideItemId);
                     }}
                 >
                     Yes
