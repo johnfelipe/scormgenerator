@@ -841,7 +841,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=text] {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=text], html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=number] {
   position: relative;
   display: block;
   width: 100%;
