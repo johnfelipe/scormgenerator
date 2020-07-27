@@ -238,6 +238,8 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    
     
     return (
         <div className="sg-controls">
@@ -455,6 +457,21 @@ function MultipleChoice(props) {
                                 <span>&nbsp;%</span>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Feature Type</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.specificType}
+                                    onChange={(event) => setFeatureTypeMechanics(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="knowledgeCheck">&nbsp;Knowledge Check</option>
+                                    <option value="quiz">&nbsp;Quiz</option>
+                                </select>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -472,7 +489,7 @@ function MultipleChoice(props) {
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
                                     onChange={(event) => setQuestionLabelClass(event.target.value)}
-                                    className="form-control-plaintext border border-dark rounded"
+                                    className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="rounded-circle">&nbsp;Rounded Circle</option>
                                     <option value="rounded">&nbsp;Rounded</option>
@@ -488,7 +505,7 @@ function MultipleChoice(props) {
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor}
                                     onChange={(event) => setMultipleChoiceTextColor(event.target.value)}
-                                    className="form-control-plaintext border border-dark rounded"
+                                    className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="text-black">&nbsp;Black</option>
                                     <option value="text-white">&nbsp;White</option>
@@ -532,7 +549,7 @@ function MultipleChoice(props) {
                                     <select
                                         value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
                                         onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                        className="form-control-plaintext border border-dark rounded"
+                                        className="form-control-plaintext border border-secondary rounded"
                                     >
                                         <option value="question-files-left">&nbsp;Left</option>
                                         <option value="question-files-right">&nbsp;Right</option>
