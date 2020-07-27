@@ -32,6 +32,7 @@ class Main extends Component {
             glossaryEntryObject: [],
             mediaFilesObject: [],
             courseNameExist: false,
+            slideItemIndex: 0,
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -40,6 +41,7 @@ class Main extends Component {
         this.glossaryHandler = this.glossaryHandler.bind(this);
         this.galleryHandler = this.galleryHandler.bind(this);
         this.setCourseNameExist = this.setCourseNameExist.bind(this);
+        this.setSlideItemIndex = this.setSlideItemIndex.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -139,6 +141,12 @@ class Main extends Component {
     setCourseNameExist = (value) => {
         this.setState({
             courseNameExist: value,
+        })
+    }
+
+    setSlideItemIndex = (value) => {
+        this.setState({
+            slideItemIndex: value,
         })
     }
 
@@ -375,10 +383,13 @@ class Main extends Component {
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     action="add"
-                                                                                    slideId={index}
+                                                                                    slideId={this.state.slideItemIndex}
+                                                                                    lessonId={index}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     addMediaFiles={this.props.addMediaFiles}
                                                                                     galleryHandler={this.galleryHandler}
+                                                                                    slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                    setSlideItemIndex={this.setSlideItemIndex}
                                                                                 />
                                                                             :
                                                                                 <div id="slide-handler-container" className="d-inline">
@@ -393,10 +404,13 @@ class Main extends Component {
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 action="add"
-                                                                                slideId={index}
+                                                                                slideId={this.state.slideItemIndex}
+                                                                                lessonId={index}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                 galleryHandler={this.galleryHandler}
+                                                                                slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                setSlideItemIndex={this.setSlideItemIndex}
                                                                             />
                                                                     }
                                                                     {
@@ -436,7 +450,6 @@ class Main extends Component {
                                                                                                                 galleryHandler={this.galleryHandler}
                                                                                                                 slideItemId={"slide-item-" + index}
                                                                                                             />
-                                                                                                            
                                                                                                             <button 
                                                                                                                 className="btn btn-danger float-right lesson-item-remove-btn" 
                                                                                                                 title="Remove" 
