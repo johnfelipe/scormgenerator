@@ -129,7 +129,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, grid: 0, id: 'column' + currentCount, content: [] }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: 0, grid: 0, id: 'column' + currentCount, content: [] }
         // columnObj.content['subColumnOne'] = [];
         columnObj.content = {
             subColumnOne: []
