@@ -246,6 +246,8 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    
     
     return (
         <div className="sg-controls">
@@ -475,6 +477,22 @@ function MultipleChoice(props) {
                                 >
                                     <option value="knowledgeCheck">&nbsp;Knowledge Check</option>
                                     <option value="quiz">&nbsp;Quiz</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Feature Type</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.returnSlide}
+                                    onChange={(event) => setFeatureTypeMechanics(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="0">&nbsp;Sample Slide 1</option>
+                                    <option value="1">&nbsp;Sample Slide 2</option>
+                                    <option value="2">&nbsp;Sample Slide 3</option>
                                 </select>
                             </div>
                         </li>
