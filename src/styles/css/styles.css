@@ -807,6 +807,21 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   display: block;
   line-height: 1.3;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 35px;
+  position: relative;
+  height: 32px;
+  padding: 0 5px 0 5px;
+  font-size: 10px;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix > span {
+  display: block;
+  line-height: 1.3;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input {
   flex: 1;
   overflow: auto;
