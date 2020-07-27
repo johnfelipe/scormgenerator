@@ -222,6 +222,14 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setRepeatMechanics = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.repeat = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -386,6 +394,33 @@ function MultipleChoice(props) {
                                             </li>             
                                     }
                                 </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+                <div className="sg-control-header">
+                    <label>Mechanics</label>
+                </div>
+                <div className="sg-control-input sg-control-input mt-3">
+                    <ul className="sg-control-input-list">
+                    <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Repeat the </span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="number"
+                                    placeholder=""
+                                    min="0"
+                                    onChange={(event) => {
+                                        if (event.target.value >= 0 && event.target.value) {
+                                            setRepeatMechanics(parseInt(event.target.value))
+                                        }
+                                    }}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.repeat && currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.repeat}
+                                />
                             </div>
                         </li>
                     </ul>
