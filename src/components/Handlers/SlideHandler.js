@@ -19,7 +19,7 @@ import TextEditor from '../Slide/TextEditor';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
-import QuizMultipleLayout from '../Slide/Layouts/QuizLayout';
+import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 
 // modals
@@ -46,7 +46,7 @@ class SlideHandler extends Component {
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
-                { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
             activeFeature: '',
             activeTab: 'column',
@@ -292,8 +292,8 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', quizTextColor: 'text-black' }, };
+                    } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1138,8 +1138,8 @@ class SlideHandler extends Component {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'audio', output: 'No audio added.', class: '', id: '' };
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'contentArea', output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-        } else if (featureType === "quiz") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'quiz', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', quizTextColor: 'text-black' }, };
+        } else if (featureType === "multipleChoice") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'multipleChoice', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, };
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
         } else if (featureType === "courseObjectives") {
@@ -1473,7 +1473,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                 
-                                                                                                                    {contentFirst.type === 'quiz' &&
+                                                                                                                    {contentFirst.type === 'multipleChoice' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -1491,12 +1491,12 @@ class SlideHandler extends Component {
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         >
-                                                                                                                            <QuizMultipleLayout
-                                                                                                                                quiz={contentFirst.output}
-                                                                                                                                quizClass={contentFirst.class}
-                                                                                                                                quizId={contentFirst.id}
-                                                                                                                                quizStyles={contentFirst.styles}
-                                                                                                                                quizCss={contentFirst.css}
+                                                                                                                            <MultipleChoiceLayout
+                                                                                                                                multipleChoice={contentFirst.output}
+                                                                                                                                multipleChoiceClass={contentFirst.class}
+                                                                                                                                multipleChoiceId={contentFirst.id}
+                                                                                                                                multipleChoiceStyles={contentFirst.styles}
+                                                                                                                                multipleChoiceCss={contentFirst.css}
                                                                                                                                 cssApplier={this.cssApplier}
                                                                                                                             />
                                                                                                                         </div>
@@ -1528,7 +1528,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                         
-                                                                                                                    {contentFirst.type !== 'quiz' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
+                                                                                                                    {contentFirst.type !== 'multipleChoice' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
