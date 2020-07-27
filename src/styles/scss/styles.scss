@@ -14,7 +14,7 @@
 @import "components/media-library";
 @import "components/media-uploader";
 @import "components/features/homepage";
-@import "components/features/quiz";
+@import "components/features/multiple-choice";
 @import "components/features/course-obj";
 
 @include defaults;
@@ -33,5 +33,5 @@
 @include media-library;
 @include media-uploader;
 @include homepage;
-@include quiz;
+@include multiple-choice;
 @include course-obj;
