@@ -230,6 +230,14 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setPassRateMechanics = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.passingRate = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -405,14 +413,14 @@ function MultipleChoice(props) {
                 </div>
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
-                    <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Repeat the </span>
+                                <span>Repeat the {currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.specificType === 'knowledgeCheck' ? ' Knowledge Check' : ' Quiz' }</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <input
                                     type="number"
-                                    placeholder=""
+                                    name="repeatMechanics"
                                     min="0"
                                     onChange={(event) => {
                                         if (event.target.value >= 0 && event.target.value) {
@@ -421,6 +429,30 @@ function MultipleChoice(props) {
                                     }}
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.repeat && currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.repeat}
                                 />
+                            </div>
+                            <div className="sg-control-input-list-label-suffix">
+                                <span>&nbsp;times</span>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Passing Rate</span>
+                            </div>
+                            <div id="percentage-input" className="sg-control-input-list-input">
+                                <input
+                                    type="number"
+                                    name="passRateMechanics"
+                                    min="0"
+                                    onChange={(event) => {
+                                        if (event.target.value >= 0 && event.target.value) {
+                                            setPassRateMechanics(parseInt(event.target.value))
+                                        }
+                                    }}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.passingRate && currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.passingRate}
+                                />
+                            </div>
+                            <div className="sg-control-input-list-label-suffix font-15">
+                                <span>&nbsp;%</span>
                             </div>
                         </li>
                     </ul>
