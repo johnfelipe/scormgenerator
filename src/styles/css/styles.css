@@ -815,6 +815,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   flex: 0 0 35px;
   position: relative;
   height: 32px;
+  max-width: 35px !important;
   padding: 0 5px 0 5px;
   font-size: 10px;
 }
