@@ -230,11 +230,11 @@ function MultipleChoiceAccordion(props) {
                             <Tab eventKey="answers" title="Answers">
                                 {
                                     IsAddAnswer ?
-                                        <div className="multiple-choicecontrol-input-wrapper mb-1 mt-3 mb-3">
-                                            <div className="multiple-choicecontrol-input-label">
+                                        <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
+                                            <div className="multiple-choice-control-input-label">
                                                 <span>Add:&nbsp;</span>
                                             </div>
-                                            <div className="multiple-choicecontrol-input">
+                                            <div className="multiple-choice-control-input">
                                                 <input
                                                     id="answer"
                                                     name="answer"
@@ -244,7 +244,7 @@ function MultipleChoiceAccordion(props) {
                                                     value={answer}
                                                 />
                                             </div>
-                                            <div className="multiple-choicecontrol-button">
+                                            <div className="multiple-choice-control-button">
                                                 <button
                                                     type="button"
                                                     className="btn btn-success btn-sm"
@@ -277,9 +277,9 @@ function MultipleChoiceAccordion(props) {
                                 }
                                 {
                                     item.answers.length > 0 ?
-                                        <ul className="multiple-choicequestion-list">
+                                        <ul className="multiple-choice-question-list">
                                             {item.answers.map((item, answerIndex) => (
-                                                <li key={Math.random()} className="multiple-choicequestion-list-item mb-3">
+                                                <li key={Math.random()} className="multiple-choice-question-list-item mb-3">
                                                     <span key={'multiple-choicefeature-answer-list-item-span-' + answerIndex}>
                                                         <span key={'multiple-choicefeature-answer-list-item-' + answerIndex}>
                                                             {item.answer}&nbsp;
@@ -324,28 +324,28 @@ function MultipleChoiceAccordion(props) {
                                             >
                                                 {
                                                     item.files.length > 0 ?
-                                                        <ul className="multiple-choicequestion-files-list list-unstyled">
+                                                        <ul className="multiple-choice-question-files-list list-unstyled">
                                                             {item.files.map((file, fileIndex) => (
                                                                 <Draggable
-                                                                    key={'multiple-choicequestion-files-list-item-key-' + fileIndex}
-                                                                    draggableId={'multiple-choicequestion-files-list-item-' + fileIndex}
+                                                                    key={'multiple-choice-question-files-list-item-key-' + fileIndex}
+                                                                    draggableId={'multiple-choice-question-files-list-item-' + fileIndex}
                                                                     index={fileIndex}>
                                                                     {(provided) => (
                                                                         <li
-                                                                            className="multiple-choicequestion-files-list-item mt-2"
+                                                                            className="multiple-choice-question-files-list-item mt-2"
                                                                             ref={provided.innerRef}
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
                                                                             {/* <Accordion key={Math.random()}>
                                                                                 <Card> */}
-                                                                                    <div id="multiple-choicequestion-file-item" className="row mb-0 border rounded-top" onClick={() => accordionClick(collapseAccordion, file)}>
+                                                                                    <div id="multiple-choice-question-file-item" className="row mb-0 border rounded-top" onClick={() => accordionClick(collapseAccordion, file)}>
                                                                                         <div className="p-0 col-md-11 pl-0">
                                                                                             {/* <Accordion.Toggle
                                                                                                 as={Button}
                                                                                                 variant="link"
                                                                                                 eventKey="0"
-                                                                                                className="text-left p-0 font-15 multiple-choicequestion-file-item-label"
+                                                                                                className="text-left p-0 font-15 multiple-choice-question-file-item-label"
                                                                                             > */}
                                                                                                 {file.video && file.video.name}
                                                                                                 {file.img && file.img.name}
@@ -353,7 +353,7 @@ function MultipleChoiceAccordion(props) {
                                                                                             {/* </Accordion.Toggle> */}
                                                                                         </div>
                                                                                         <div
-                                                                                            className="col-md-1 p-0 multiple-choicequestion-file-item-delete"
+                                                                                            className="col-md-1 p-0 multiple-choice-question-file-item-delete"
                                                                                             onClick={() => {props.deleteQuestionFile(fileIndex, index); resetLocalStates(file);}}
                                                                                         >
                                                                                             <span><FontAwesomeIcon icon={faTimes}/></span>
@@ -368,7 +368,7 @@ function MultipleChoiceAccordion(props) {
                                                                                             {file.label === "" ?
                                                                                                 <>
                                                                                                     {imgAddLabel && file.img ?
-                                                                                                        <div className={imgCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={imgCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -409,12 +409,12 @@ function MultipleChoiceAccordion(props) {
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
                                                                                                     {audioAddLabel && file.audio ?
-                                                                                                        <div className={audioCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
@@ -455,12 +455,12 @@ function MultipleChoiceAccordion(props) {
                                                                                                         </div>
                                                                                                         </div>
                                                                                                     :
-                                                                                                        file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
                                                                                                     {videoAddLabel && file.video ?
-                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                             <div className="img-add-label-label d-inline mr-2">
                                                                                                                 <span>Label:</span>
@@ -502,7 +502,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                         </div>
                                                                                                     :
                                                                                                         file.label === "" && file.video &&
-                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                                         </div>
                                                                                                     }
@@ -511,7 +511,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                 file.label !== "" &&
                                                                                                 <>
                                                                                                     {imgAddLabel && file.img ?
-                                                                                                        <div className={imgCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={imgCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -556,7 +556,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                     {audioAddLabel && file.audio ?
-                                                                                                        <div className={audioCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -601,7 +601,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                         <button type="button" className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                                     }
                                                                                                     {videoAddLabel && file.video ?
-                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
+                                                                                                        <div className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
                                                                                                             <div className="img-add-label-wrapper text-center">
                                                                                                                 <div className="img-add-label-label d-inline mr-2">
                                                                                                                     <span>Label:</span>
@@ -648,8 +648,8 @@ function MultipleChoiceAccordion(props) {
                                                                                                 </>
                                                                                             }
                                                                                             {file.video && file.video.caption &&
-                                                                                                <ul className={collapseAccordion ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
-                                                                                                    <li className="multiple-choicequestion-file-item-list-item">
+                                                                                                <ul className={collapseAccordion ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
+                                                                                                    <li className="multiple-choice-question-file-item-list-item">
                                                                                                         <div className="row">
                                                                                                             <div className="col-md-10">{file.video.caption.name}</div>
                                                                                                             <div className="col-md-2 pl-2" onClick={() => {props.deleteQuestionVideoVttFile(index)}}>
@@ -662,8 +662,8 @@ function MultipleChoiceAccordion(props) {
                                                                                             {file.label &&
                                                                                                 <>
                                                                                                     {file.img && imgAddLabel === false &&
-                                                                                                    <ul className={imgCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
-                                                                                                        <li className="multiple-choicequestion-file-item-list-item">
+                                                                                                    <ul className={imgCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
+                                                                                                        <li className="multiple-choice-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
                                                                                                                 <div
@@ -691,8 +691,8 @@ function MultipleChoiceAccordion(props) {
                                                                                                     </ul>
                                                                                                     }
                                                                                                     {file.audio && audioAddLabel === false &&
-                                                                                                    <ul className={audioCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
-                                                                                                        <li className="multiple-choicequestion-file-item-list-item">
+                                                                                                    <ul className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
+                                                                                                        <li className="multiple-choice-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
                                                                                                                 <div
@@ -720,8 +720,8 @@ function MultipleChoiceAccordion(props) {
                                                                                                     </ul>
                                                                                                     }
                                                                                                     {file.video && videoAddLabel === false &&
-                                                                                                    <ul className={videoCollapse ? "sg-accordion multiple-choicequestion-action-button border border-top-0 py-3 px-1" : "d-none multiple-choicequestion-action-button border py-3 px-1"}>
-                                                                                                        <li className="multiple-choicequestion-file-item-list-item">
+                                                                                                    <ul className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-3 px-1" : "d-none multiple-choice-question-action-button border py-3 px-1"}>
+                                                                                                        <li className="multiple-choice-question-file-item-list-item">
                                                                                                             <div className="row">
                                                                                                                 <div className="col-md-8">{file.label}</div>
                                                                                                                 <div
