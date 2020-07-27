@@ -181,7 +181,7 @@ function HomePage(props) {
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    className="form-control-plaintext border border-dark rounded"
+                                    className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="course-title-top-left">Top-left</option>
                                     <option value="course-title-bottom-left">Bottom-left</option>

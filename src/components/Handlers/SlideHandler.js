@@ -19,7 +19,7 @@ import TextEditor from '../Slide/TextEditor';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
-import QuizMultipleLayout from '../Slide/Layouts/QuizLayout';
+import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 
 // modals
@@ -46,7 +46,7 @@ class SlideHandler extends Component {
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
-                { type: 'quiz', name: 'Quiz', icon: faQuestionCircle, },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
             activeFeature: '',
             activeTab: 'column',
@@ -80,6 +80,7 @@ class SlideHandler extends Component {
         this.resetStates = this.resetStates.bind(this);
         this.setShowTextEditor = this.setShowTextEditor.bind(this);
         this.resetFeature = this.resetFeature.bind(this);
+        this.setActiveColumId = this.setActiveColumId.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -128,7 +129,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: -1, grid: 0, id: 'column' + currentCount, content: [] }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: 0, grid: 0, id: 'column' + currentCount, content: [] }
         // columnObj.content['subColumnOne'] = [];
         columnObj.content = {
             subColumnOne: []
@@ -232,9 +233,17 @@ class SlideHandler extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
+        const activeColumnId = this.state.activeColumnId;
         
         console.log(source);
         console.log(destination);
+
+        if (activeColumnId === source.index) {
+            this.setActiveColumId(destination.index);
+        } else if (activeColumnId === destination.index) {
+            this.setActiveColumId(source.index);
+        }
+
         // dropped outside the list
         if (!destination) {
             return;
@@ -292,8 +301,8 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'quiz') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', quizTextColor: 'text-black' }, };
+                    } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, mechanics: { repeat: 0, passingRate: 80, specificType: 'knowledgeCheck', returnSlide: 0 } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -890,7 +899,7 @@ class SlideHandler extends Component {
             }
         }
 
-        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features")) {
+        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
             const currentColumnList = this.state.column;
             console.log(this.state.activeColumnId);
             console.log(this.state.currentColumnContentIndex);
@@ -1138,8 +1147,8 @@ class SlideHandler extends Component {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'audio', output: 'No audio added.', class: '', id: '' };
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'contentArea', output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
-        } else if (featureType === "quiz") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'quiz', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', quizTextColor: 'text-black' }, };
+        } else if (featureType === "multipleChoice") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'multipleChoice', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, mechanics: { repeat: 0, passingRate: 80, specificType: 'knowledgeCheck', returnSlide: 0 } };
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
         } else if (featureType === "courseObjectives") {
@@ -1154,14 +1163,20 @@ class SlideHandler extends Component {
         })
     }
 
-    onSave = (slide, subtitle, columns, slideId) => {
+    setActiveColumId = (value) => {
+        this.setState({
+            activeColumnId: value
+        });
+    }
+
+    onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.addSlideChange(slideObj, slideId);
+            this.props.addSlideChange(slideObj, lessonIndex);
             console.log("add");
         } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, slideId, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, lessonIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -1196,11 +1211,13 @@ class SlideHandler extends Component {
                         }}
 
                         onSubmit={values => {
-                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.slideId);
+                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
 
                             // create slide
                             // lid and uid are temporary
                             this.props.createSlide(1, values.slideName, 1, values.showTitle);
+
+                            this.props.setSlideItemIndex(this.props.slideId + 1);
 
                             // create column
                             // sid and uid are temporary
@@ -1409,6 +1426,7 @@ class SlideHandler extends Component {
                                                             galleryHandler={this.props.galleryHandler}
                                                             setShowTextEditor={this.setShowTextEditor}
                                                             resetFeature={this.resetFeature}
+                                                            slideItemId={this.props.slideItemId}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -1473,7 +1491,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                 
-                                                                                                                    {contentFirst.type === 'quiz' &&
+                                                                                                                    {contentFirst.type === 'multipleChoice' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -1491,12 +1509,12 @@ class SlideHandler extends Component {
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         >
-                                                                                                                            <QuizMultipleLayout
-                                                                                                                                quiz={contentFirst.output}
-                                                                                                                                quizClass={contentFirst.class}
-                                                                                                                                quizId={contentFirst.id}
-                                                                                                                                quizStyles={contentFirst.styles}
-                                                                                                                                quizCss={contentFirst.css}
+                                                                                                                            <MultipleChoiceLayout
+                                                                                                                                multipleChoice={contentFirst.output}
+                                                                                                                                multipleChoiceClass={contentFirst.class}
+                                                                                                                                multipleChoiceId={contentFirst.id}
+                                                                                                                                multipleChoiceStyles={contentFirst.styles}
+                                                                                                                                multipleChoiceCss={contentFirst.css}
                                                                                                                                 cssApplier={this.cssApplier}
                                                                                                                             />
                                                                                                                         </div>
@@ -1528,7 +1546,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                         
-                                                                                                                    {contentFirst.type !== 'quiz' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
+                                                                                                                    {contentFirst.type !== 'multipleChoice' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -2885,7 +2903,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (lessonId, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonId, title: title, uid: userId, hide_title: hideShowTitle}),
+        createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
         createColumn: (slideId, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: slideId, uid: userId, columnArr: columnArr}),
     }
 }

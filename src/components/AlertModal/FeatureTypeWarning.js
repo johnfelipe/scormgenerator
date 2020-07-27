@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 
-function ChangeGrid (props) {
+function FeatureTypeWarning(props) {
 
     const modalShow = props.modalShow;
 
@@ -19,14 +19,16 @@ function ChangeGrid (props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <span>Features exists in this column grid. Do you want to remove all features and change grid size?</span>
+                <span>You can only create 1 final quiz per course, do you want to continue?</span>
             </Modal.Body>
             <Modal.Footer>
                 <button
                     className="btn btn-primary"
                     onClick={() => {
-                        props.setRemoveFeaures(true);
+                        props.setIsFinalQuiz(true);
                         props.setModalShow(false);
+                        sessionStorage.setItem('isFinalQuizSet', true);
+                        sessionStorage.setItem('slideItemId', props.slideItemId);
                     }}
                 >
                     Yes
@@ -34,7 +36,7 @@ function ChangeGrid (props) {
                 <button
                     className="btn btn-danger"
                     onClick={() => {
-                        props.setRemoveFeaures(false);
+                        props.setIsFinalQuiz(false);
                         props.setModalShow(false);
                     }}
                 >
@@ -51,4 +53,4 @@ function ChangeGrid (props) {
     );
 }
 
-export default ChangeGrid;
+export default FeatureTypeWarning;

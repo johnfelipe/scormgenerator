@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Audio from './Features/Audio';
 import ContentArea from './Features/ContentArea';
 import HomePage from './Features/Homepage/HomePage';
-import Quiz from './Features/Quiz/Quiz';
+import MultipleChoice from './Features/MultipleChoice/MultipleChoice';
 import CourseObj from './Features/CourseObjectives/CourseObj';
 
 class Editor extends Component {
@@ -103,9 +103,9 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                 />
             );
-        } else if (this.props.feature === "quiz") {
+        } else if (this.props.feature === "multipleChoice") {
             editorContent = (
-                <Quiz
+                <MultipleChoice
                     setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
@@ -116,6 +116,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    slideItemId={this.props.slideItemId}
                 />
             );
         } else if (this.props.feature === "homePage") {

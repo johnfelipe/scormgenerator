@@ -1,4 +1,4 @@
-@mixin quiz {
+@mixin multiple-choice {
     html {
         body {
             font-family: 'Open Sans';
@@ -14,25 +14,25 @@
                                             .container {
                                                 .sg-column {
                                                     .content-output {
-                                                        #quiz-multiple-layout {
+                                                        #multiple-choice-layout {
                                                             text-align: left !important;
 
                                                             .question-group {
-                                                                ul.quiz-question-answers {
+                                                                ul.multiple-choice-question-answers {
                                                                     // columns: 2;
                                                                     // -webkit-columns: 2;
                                                                     // -moz-columns: 2;
                                                                     li {
-                                                                        div.quiz-choices {
+                                                                        div.multiple-choice {
                                                                             line-height: 45px;
                                                                             width: 100%;
                                                                             cursor: pointer;
 
-                                                                            .quiz-choice-label-selected {
+                                                                            .multiple-choice-label-selected {
                                                                                 background: #5eb75e;
                                                                             }
 
-                                                                            .quiz-label {
+                                                                            .multiple-choice-label {
                                                                                 width: 45px;
                                                                                 height: 45px;
                                                                                 background: #778395;
@@ -49,7 +49,7 @@
                                                                                 }
                                                                             }
 
-                                                                            .quiz-choice-text {
+                                                                            .multiple-choice-choice-text {
                                                                                 height: 45px;
                                                                                 font-size: 20px;
                                                                                 line-height: 45px;
@@ -92,7 +92,7 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
-                                                        .quiz-color-picker {
+                                                        .multiple-choice-color-picker {
                                                             z-index: 5000;
                                                             margin: 0 16px;
                                                             top: 55px;
@@ -110,20 +110,20 @@
                                                     }
                                                 }
 
-                                                ul.quiz-question-list {
-                                                    .quiz-question-list-item {
-                                                        // ul.quiz-question-list {
+                                                ul.multiple-choice-question-list {
+                                                    .multiple-choice-question-list-item {
+                                                        // ul.multiple-choice-question-list {
                                                         //     columns: 2;
                                                         //     -webkit-columns: 2;
                                                         //     -moz-columns: 2;
                                                         // }
                                                         
-                                                        .quiz-control-input-wrapper {
+                                                        .multiple-choice-control-input-wrapper {
                                                             display: flex;
                                                             align-items: flex-start;
                                                             margin: 7px 0 0;
                                                             
-                                                            .quiz-control-input-label {
+                                                            .multiple-choice-control-input-label {
                                                                 display: flex;
                                                                 flex-direction: column;
                                                                 justify-content: center;
@@ -135,7 +135,7 @@
                                                                 font-size: 10px;
                                                             }
 
-                                                            .quiz-control-input {
+                                                            .multiple-choice-control-input {
                                                                 flex: 1 1;
 
                                                                 input[type=text] {
@@ -160,7 +160,7 @@
                                                                 }
                                                             }
 
-                                                            .quiz-control-button {
+                                                            .multiple-choice-control-button {
                                                                 padding-left: 10px
                                                             }
                                                         }
@@ -182,16 +182,16 @@
                                                                         overflow: auto !important;
 
                                                                         #question-answers-files-tabs-tabpane-files {
-                                                                            .quiz-question-files-list {
-                                                                                .quiz-question-files-list-item {
-                                                                                    #quiz-question-file-item {
+                                                                            .multiple-choice-question-files-list {
+                                                                                .multiple-choice-question-files-list-item {
+                                                                                    #multiple-choice-question-file-item {
                                                                                         user-select: none;
                                                                                         padding: 10px;
                                                                                         margin: 0px 0px 8px 0px;
                                                                                         background: whitesmoke;
                                                                                         // border-radius: 5px;
 
-                                                                                        .quiz-question-file-item-delete {
+                                                                                        .multiple-choice-question-file-item-delete {
                                                                                             cursor: pointer;
                                                                                         }
                                                                                     }
@@ -200,9 +200,9 @@
                                                                         }
 
                                                                         #question-answers-files-tabs-tabpane-files {
-                                                                            ul.quiz-question-files-list {
-                                                                                li.quiz-question-files-list-item {
-                                                                                    #quiz-question-file-item {
+                                                                            ul.multiple-choice-question-files-list {
+                                                                                li.multiple-choice-question-files-list-item {
+                                                                                    #multiple-choice-question-file-item {
                                                                                         text-overflow: ellipsis;
                                                                                     }
 

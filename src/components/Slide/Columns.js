@@ -67,7 +67,6 @@ function Columns (props) {
                                     <li
                                         key={sizeIndex}
                                         onClick={() => {
-                                            console.log(currentColumnContentIndex);
                                             if (currentColumn.content[currentColumnContentIndex].length > 0) {
                                                 setModalShow(true);
                                                 setSizeIndex(sizeIndex);
@@ -77,7 +76,7 @@ function Columns (props) {
                                             }
                                         }}
                                     >
-                                        {props.columnSizes[sizeIndex].items.map((item, index) =>(
+                                        {props.columnSizes[sizeIndex].items.map((item, index) => (
                                             <span key={index} className={item.class}>
                                                 {item.size}
                                             </span>
