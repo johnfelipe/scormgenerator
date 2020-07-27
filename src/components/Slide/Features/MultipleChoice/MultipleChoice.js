@@ -499,6 +499,7 @@ function MultipleChoice(props) {
                                             }
                                         } else {
                                             setFeatureTypeMechanics(event.target.value);
+                                            sessionStorage.clear();
                                         }
                                     }}
                                     className="form-control-plaintext border border-secondary rounded"
