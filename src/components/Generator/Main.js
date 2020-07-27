@@ -415,6 +415,7 @@ class Main extends Component {
                                                                                                     index={index}>
                                                                                                     {(provided) => (
                                                                                                         <div
+                                                                                                            id={"slide-item-" + index}
                                                                                                             className="slide-item"
                                                                                                             ref={provided.innerRef}
                                                                                                             {...provided.draggableProps}
@@ -433,6 +434,7 @@ class Main extends Component {
                                                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                                                 galleryHandler={this.galleryHandler}
+                                                                                                                slideItemId={"slide-item-" + index}
                                                                                                             />
                                                                                                             
                                                                                                             <button 
