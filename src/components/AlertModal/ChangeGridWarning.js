@@ -48,7 +48,7 @@ function ChangeGrid (props) {
         <>
             {confirmationModal}
         </>
-    )
+    );
 }
 
 export default ChangeGrid;
