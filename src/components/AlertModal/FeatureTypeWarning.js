@@ -28,6 +28,7 @@ function FeatureTypeWarning(props) {
                         props.setIsFinalQuiz(true);
                         props.setModalShow(false);
                         localStorage.setItem('isFinalQuizSet', true);
+                        localStorage.setItem('slideItemId', props.slideItemId);
                     }}
                 >
                     Yes
