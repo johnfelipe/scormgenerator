@@ -239,7 +239,13 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    
+    const setFeatureTypeMechanics = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.specificType = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
