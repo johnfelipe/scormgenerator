@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { objectHelpers } from '../../../../helpers';
@@ -6,6 +6,7 @@ import { objectHelpers } from '../../../../helpers';
 // components
 import MultipleChoiceAccordion from './MultipleChoiceAccordion';
 import ColorPicker from '../../../Common/ColorPicker';
+import FeatureTypeWarning from '../../../AlertModal/FeatureTypeWarning';
 
 function MultipleChoice(props) {
 
@@ -16,6 +17,8 @@ function MultipleChoice(props) {
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
     const [filesExist, setFilesExist] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [isFinalQuiz, setIsFinalQuiz] = useState(localStorage.getItem('isFinalQuizSet') ? localStorage.getItem('isFinalQuizSet') : false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
@@ -239,13 +242,13 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setFeatureTypeMechanics = (value) => {
+    const setFeatureTypeMechanics = useCallback((value) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.specificType = value;
 
         props.setColumn(currentColumnObj);
-    }
+    }, [contentIndex, currentColumn, currentColumnContentIndex, props])
 
     const setReturnSlideMechanics = (value) => {
         const currentColumnObj = currentColumn;
@@ -254,6 +257,12 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    useEffect(() => {
+        if (isFinalQuiz) {
+            setFeatureTypeMechanics('finalQuiz');
+        }
+    }, [isFinalQuiz]);
     
     return (
         <div className="sg-controls">
@@ -478,11 +487,19 @@ function MultipleChoice(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.specificType}
-                                    onChange={(event) => setFeatureTypeMechanics(event.target.value)}
+                                    onChange={(event) => {
+                                        if (event.target.value === 'finalQuiz') {
+                                            setModalShow(true);
+                                        } else {
+                                            setFeatureTypeMechanics(event.target.value);
+                                        }
+                                    }}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="knowledgeCheck">&nbsp;Knowledge Check</option>
-                                    <option value="finalQuiz">&nbsp;Final Quiz</option>
+                                    {
+                                        !isFinalQuiz && <option value="finalQuiz">&nbsp;Final Quiz</option>
+                                    }
                                 </select>
                             </div>
                         </li>
@@ -595,6 +612,11 @@ function MultipleChoice(props) {
                 showPicker={showPicker}
                 setBackgroundColor={setQuestionBackgroundColor}
                 defaultColor={currentBackgroundColor}
+            />
+            <FeatureTypeWarning
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+                setIsFinalQuiz={setIsFinalQuiz}
             />
         </div>
     )
