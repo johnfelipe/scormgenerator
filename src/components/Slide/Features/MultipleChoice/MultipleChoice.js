@@ -482,7 +482,7 @@ function MultipleChoice(props) {
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="knowledgeCheck">&nbsp;Knowledge Check</option>
-                                    <option value="quiz">&nbsp;Quiz</option>
+                                    <option value="finalQuiz">&nbsp;Final Quiz</option>
                                 </select>
                             </div>
                         </li>
