@@ -25,8 +25,9 @@ function FeatureTypeWarning(props) {
                 <button
                     className="btn btn-primary"
                     onClick={() => {
-                        // props.setRemoveFeaures(true);
+                        props.setIsFinalQuiz(true);
                         props.setModalShow(false);
+                        localStorage.setItem('isFinalQuizSet', true);
                     }}
                 >
                     Yes
@@ -34,7 +35,7 @@ function FeatureTypeWarning(props) {
                 <button
                     className="btn btn-danger"
                     onClick={() => {
-                        // props.setRemoveFeaures(false);
+                        props.setIsFinalQuiz(false);
                         props.setModalShow(false);
                     }}
                 >
