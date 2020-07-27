@@ -14,25 +14,25 @@
                                             .container {
                                                 .sg-column {
                                                     .content-output {
-                                                        #multiple-choicemultiple-layout {
+                                                        #multiple-choice-layout {
                                                             text-align: left !important;
 
                                                             .question-group {
-                                                                ul.multiple-choicequestion-answers {
+                                                                ul.multiple-choice-question-answers {
                                                                     // columns: 2;
                                                                     // -webkit-columns: 2;
                                                                     // -moz-columns: 2;
                                                                     li {
-                                                                        div.multiple-choicechoices {
+                                                                        div.multiple-choice {
                                                                             line-height: 45px;
                                                                             width: 100%;
                                                                             cursor: pointer;
 
-                                                                            .multiple-choicechoice-label-selected {
+                                                                            .multiple-choice-label-selected {
                                                                                 background: #5eb75e;
                                                                             }
 
-                                                                            .multiple-choicelabel {
+                                                                            .multiple-choice-label {
                                                                                 width: 45px;
                                                                                 height: 45px;
                                                                                 background: #778395;
@@ -49,7 +49,7 @@
                                                                                 }
                                                                             }
 
-                                                                            .multiple-choicechoice-text {
+                                                                            .multiple-choice-choice-text {
                                                                                 height: 45px;
                                                                                 font-size: 20px;
                                                                                 line-height: 45px;
@@ -92,7 +92,7 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
-                                                        .multiple-choicecolor-picker {
+                                                        .multiple-choice-color-picker {
                                                             z-index: 5000;
                                                             margin: 0 16px;
                                                             top: 55px;
@@ -110,20 +110,20 @@
                                                     }
                                                 }
 
-                                                ul.multiple-choicequestion-list {
-                                                    .multiple-choicequestion-list-item {
-                                                        // ul.multiple-choicequestion-list {
+                                                ul.multiple-choice-question-list {
+                                                    .multiple-choice-question-list-item {
+                                                        // ul.multiple-choice-question-list {
                                                         //     columns: 2;
                                                         //     -webkit-columns: 2;
                                                         //     -moz-columns: 2;
                                                         // }
                                                         
-                                                        .multiple-choicecontrol-input-wrapper {
+                                                        .multiple-choice-control-input-wrapper {
                                                             display: flex;
                                                             align-items: flex-start;
                                                             margin: 7px 0 0;
                                                             
-                                                            .multiple-choicecontrol-input-label {
+                                                            .multiple-choice-control-input-label {
                                                                 display: flex;
                                                                 flex-direction: column;
                                                                 justify-content: center;
@@ -135,7 +135,7 @@
                                                                 font-size: 10px;
                                                             }
 
-                                                            .multiple-choicecontrol-input {
+                                                            .multiple-choice-control-input {
                                                                 flex: 1 1;
 
                                                                 input[type=text] {
@@ -160,7 +160,7 @@
                                                                 }
                                                             }
 
-                                                            .multiple-choicecontrol-button {
+                                                            .multiple-choice-control-button {
                                                                 padding-left: 10px
                                                             }
                                                         }
@@ -182,16 +182,16 @@
                                                                         overflow: auto !important;
 
                                                                         #question-answers-files-tabs-tabpane-files {
-                                                                            .multiple-choicequestion-files-list {
-                                                                                .multiple-choicequestion-files-list-item {
-                                                                                    #multiple-choicequestion-file-item {
+                                                                            .multiple-choice-question-files-list {
+                                                                                .multiple-choice-question-files-list-item {
+                                                                                    #multiple-choice-question-file-item {
                                                                                         user-select: none;
                                                                                         padding: 10px;
                                                                                         margin: 0px 0px 8px 0px;
                                                                                         background: whitesmoke;
                                                                                         // border-radius: 5px;
 
-                                                                                        .multiple-choicequestion-file-item-delete {
+                                                                                        .multiple-choice-question-file-item-delete {
                                                                                             cursor: pointer;
                                                                                         }
                                                                                     }
@@ -200,9 +200,9 @@
                                                                         }
 
                                                                         #question-answers-files-tabs-tabpane-files {
-                                                                            ul.multiple-choicequestion-files-list {
-                                                                                li.multiple-choicequestion-files-list-item {
-                                                                                    #multiple-choicequestion-file-item {
+                                                                            ul.multiple-choice-question-files-list {
+                                                                                li.multiple-choice-question-files-list-item {
+                                                                                    #multiple-choice-question-file-item {
                                                                                         text-overflow: ellipsis;
                                                                                     }
 
