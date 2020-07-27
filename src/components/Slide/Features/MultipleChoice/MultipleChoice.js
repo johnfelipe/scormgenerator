@@ -247,7 +247,13 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    
+    const setReturnSlideMechanics = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.returnSlide = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -487,7 +493,7 @@ function MultipleChoice(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].mechanics.returnSlide}
-                                    onChange={(event) => setFeatureTypeMechanics(event.target.value)}
+                                    onChange={(event) => setReturnSlideMechanics(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="0">&nbsp;Sample Slide 1</option>
