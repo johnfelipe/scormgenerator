@@ -80,6 +80,7 @@ class SlideHandler extends Component {
         this.resetStates = this.resetStates.bind(this);
         this.setShowTextEditor = this.setShowTextEditor.bind(this);
         this.resetFeature = this.resetFeature.bind(this);
+        this.setActiveColumId = this.setActiveColumId.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -232,9 +233,17 @@ class SlideHandler extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
+        const activeColumnId = this.state.activeColumnId;
         
         console.log(source);
         console.log(destination);
+
+        if (activeColumnId === source.index) {
+            this.setActiveColumId(destination.index);
+        } else if (activeColumnId === destination.index) {
+            this.setActiveColumId(source.index);
+        }
+
         // dropped outside the list
         if (!destination) {
             return;
@@ -890,7 +899,7 @@ class SlideHandler extends Component {
             }
         }
 
-        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features")) {
+        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
             const currentColumnList = this.state.column;
             console.log(this.state.activeColumnId);
             console.log(this.state.currentColumnContentIndex);
@@ -1152,6 +1161,12 @@ class SlideHandler extends Component {
         this.setState({
             column: columns,
         })
+    }
+
+    setActiveColumId = (value) => {
+        this.setState({
+            activeColumnId: value
+        });
     }
 
     onSave = (slide, subtitle, columns, slideId) => {
