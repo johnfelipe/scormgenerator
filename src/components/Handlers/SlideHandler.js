@@ -1424,6 +1424,7 @@ class SlideHandler extends Component {
                                                             galleryHandler={this.props.galleryHandler}
                                                             setShowTextEditor={this.setShowTextEditor}
                                                             resetFeature={this.resetFeature}
+                                                            slideItemId={this.props.slideItemId}
                                                         />
                                                     </Tab>
                                                 </Tabs>

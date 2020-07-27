@@ -116,6 +116,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    slideItemId={this.props.slideItemId}
                 />
             );
         } else if (this.props.feature === "homePage") {
