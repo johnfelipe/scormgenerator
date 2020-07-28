@@ -422,14 +422,14 @@ class Main extends Component {
                                                                                             className="slide-container mt-3"
                                                                                             ref={provided.innerRef}
                                                                                         >
-                                                                                            {this.props.courseLessons[index].slides.map((item, index) => (
+                                                                                            {this.props.courseLessons[index].slides.map((item, itemSlideIndex) => (
                                                                                                 <Draggable
-                                                                                                    key={index}
-                                                                                                    draggableId={'' + index}
-                                                                                                    index={index}>
+                                                                                                    key={itemSlideIndex}
+                                                                                                    draggableId={'' + itemSlideIndex}
+                                                                                                    index={itemSlideIndex}>
                                                                                                     {(provided) => (
                                                                                                         <div
-                                                                                                            id={"slide-item-" + index}
+                                                                                                            id={"slide-item-" + itemSlideIndex}
                                                                                                             className="slide-item"
                                                                                                             ref={provided.innerRef}
                                                                                                             {...provided.draggableProps}
@@ -443,12 +443,13 @@ class Main extends Component {
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                                 action="edit"
-                                                                                                                slideId={index}
+                                                                                                                slideId={itemSlideIndex}
                                                                                                                 showTitleValue={true}
                                                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                                                 galleryHandler={this.galleryHandler}
-                                                                                                                slideItemId={"slide-item-" + index}
+                                                                                                                slideItemId={"slide-item-" + itemSlideIndex}
+                                                                                                                lessonIndex={index}
                                                                                                             />
                                                                                                             <button 
                                                                                                                 className="btn btn-danger float-right lesson-item-remove-btn" 
