@@ -1349,6 +1349,7 @@ class SlideHandler extends Component {
                                                                                                     column={this.state.column}
                                                                                                     handleSizeActive={this.handleSizeActive}
                                                                                                     resetStates={this.resetStates}
+                                                                                                    handleContentEditable={this.handleContentEditable}
                                                                                                 />
                                                                                             </div>
                                                                                         )}
