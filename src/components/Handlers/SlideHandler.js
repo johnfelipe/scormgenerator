@@ -238,18 +238,19 @@ class SlideHandler extends Component {
         console.log(source);
         console.log(destination);
 
-        if (activeColumnId === source.index) {
-            this.setActiveColumId(destination.index);
-        } else if (activeColumnId === destination.index) {
-            this.setActiveColumId(source.index);
-        }
-
         // dropped outside the list
         if (!destination) {
             return;
         }
 
         if ((source.droppableId === "columns") && (destination.droppableId === "columns")) {
+
+            if (activeColumnId === source.index) {
+                this.setActiveColumId(destination.index);
+            } else if (activeColumnId === destination.index) {
+                this.setActiveColumId(source.index);
+            }
+            
             const currentColumnList = this.state.column;
 
             const reordered_slides = this.reorder(
