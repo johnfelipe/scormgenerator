@@ -16,7 +16,7 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.title = e.target.value;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     const setSubTitle = (e) => {
@@ -24,7 +24,7 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.subtitle = e.target.value;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     const setDate = (e) => {
@@ -32,7 +32,7 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.date = e.target.value;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     const setCourseId = (e) => {
@@ -40,7 +40,7 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseId = e.target.value;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     const handleImageChange = (e) => {
@@ -60,7 +60,7 @@ function HomePage(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name = name;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.url = url;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     const setTitleBoxColor = (color) => {
@@ -68,7 +68,7 @@ function HomePage(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].colorScheme.titleBoxColor = color;
 
-        props.setColumnInDirect(currentColumnObj);
+        props.setColumn(currentColumnObj);
     }
 
     return (
