@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { Modal, Tab, Tabs } from 'react-bootstrap';
-import { Formik, useFormikContext } from "formik";
+import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faHome, faListAlt } from '@fortawesome/free-solid-svg-icons';
@@ -25,107 +25,145 @@ import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 // modals
 import WarningModal from '../AlertModal/Warning';
 
-function SlideHandler (props) {
+class SlideHandler extends Component {
 
-    const [modalShow, setModalShow] = useState(false);
-    const [column, setColumn] = useState(props.currentColumns ? props.currentColumns : []);
-    const columnSizes = [
-        { id: 0,items: [{ size: "1/1", class: "sg-1-1"}]},
-        { id: 1,items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
-        { id: 2,items: [{ size: "1/3", class: "sg-1-3"}, { size: "2/3", class: "sg-2-3"}]},
-        { id: 3,items: [{ size: "2/3", class: "sg-2-3"}, { size: "1/3", class: "sg-1-3"}]},
-        { id: 4,items: [{ size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}]},
-        { id: 5,items: [{ size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}]},
-        { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
-    ];
-    const features = [
-        { type: 'audio', name: 'Audio', icon: faFileAudio, },
-        { type: 'contentArea', name: 'Content Area', icon: faSquare, },
-        { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
-        { type: 'homePage', name: 'Home Page', icon: faHome, },
-        { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
-    ];
-    const [activeFeature, setActiveFeature] = useState('');
-    const [activeTab, setActiveTab] = useState('column');
-    const [activeColumnId, setActiveColumnId] = useState(0);
-    const [showHtmlEditor, setShowHtmlEditor] = useState(false);
-    const [showCssEditor, setShowCssEditor] = useState(false);
-    const [showTextEditor, setShowTextEditor] = useState(false);
-    const [activeContentIndex, setActiveCotentIndex] = useState(0);
-    const [currentColumnContentIndex, setCurrentColumnContentIndex] = useState('subColumnOne');
-    const [isSlideNameNotEmpty, setIsSlideNameNotEmpty] = useState(props.currentSlideName ? true : false);
-    const [applyCss, setApplyCss] = useState(false);
-    const [contentFor, setContentFor] = useState('');
-    const { submitForm } = useFormikContext();
-
-    useEffect(() => {
-        console.log('state.columns: ');
-        console.log(column);
-        console.log('props.columns: ');
-        console.log(props.currentColumns);
-    }, [props.currentColumns, column]);
-
-    const handleSubmit = () => {
-        submitForm();
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalShow: false,
+            column: this.props.currentColumns ? this.props.currentColumns : [],
+            columnSizes: [
+                { id: 0,items: [{ size: "1/1", class: "sg-1-1"}]},
+                { id: 1,items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
+                { id: 2,items: [{ size: "1/3", class: "sg-1-3"}, { size: "2/3", class: "sg-2-3"}]},
+                { id: 3,items: [{ size: "2/3", class: "sg-2-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { id: 4,items: [{ size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}, { size: "1/3", class: "sg-1-3"}]},
+                { id: 5,items: [{ size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}, { size: "1/4", class: "sg-1-4"}]},
+                { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
+            ],
+            features: [
+                { type: 'audio', name: 'Audio', icon: faFileAudio, },
+                { type: 'contentArea', name: 'Content Area', icon: faSquare, },
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
+                { type: 'homePage', name: 'Home Page', icon: faHome, },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+            ],
+            activeFeature: '',
+            activeTab: 'column',
+            activeColumnId: 0,
+            showHtmlEditor: false,
+            showCssEditor: false,
+            showTextEditor: false,
+            activeContentIndex: 0,
+            currentColumnContentIndex: 'subColumnOne',
+            isSlideNameNotEmpty: false,
+            applyCss: false,
+            contentFor: '',
+        };
+        
+        this.setModalShow = this.setModalShow.bind(this);
+        this.addColumn = this.addColumn.bind(this);
+        this.deleteColumn = this.deleteColumn.bind(this);
+        this.handleSizeActive = this.handleSizeActive.bind(this);
+        this.setActiveTab = this.setActiveTab.bind(this);
+        this.setShowHtmlEditor = this.setShowHtmlEditor.bind(this);
+        this.onChangeTextArea = this.onChangeTextArea.bind(this);
+        this.contentPaneClick = this.contentPaneClick.bind(this);
+        this.deleteFeature = this.deleteFeature.bind(this);
+        this.setShowCssEditor = this.setShowCssEditor.bind(this);
+        this.setFeatureId = this.setFeatureId.bind(this);
+        this.setFeatureClass = this.setFeatureClass.bind(this);
+        this.onChangeRadio = this.onChangeRadio.bind(this);
+        this.cssApplier = this.cssApplier.bind(this);
+        this.setApplyCss = this.setApplyCss.bind(this);
+        this.setColumn = this.setColumn.bind(this);
+        this.resetStates = this.resetStates.bind(this);
+        this.setShowTextEditor = this.setShowTextEditor.bind(this);
+        this.resetFeature = this.resetFeature.bind(this);
+        this.setActiveColumId = this.setActiveColumId.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
-    const setShowModal = (value, action) => {
-        setModalShow(value);
+    componentDidUpdate() {
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
+        // console.log('props.action');
+        // console.log(this.props.action);
+        // console.log('state.activeFeature');
+        // console.log(this.state.activeFeature);
+        // console.log('this.props.slide');
+        // console.log(this.props.slide);
+        // console.log('this.props.column');
+        // console.log(this.props.columns);
+    }
+
+    setModalShow = (value, action) => {
+        
+        this.setState({
+            modalShow: value,
+        });
 
         if (action === "close" || action === "edit") {
             console.log('Edit here');
-
-            setColumn(props.currentColumns ? props.currentColumns : []);
-            setActiveFeature('');
-            setActiveColumnId(0);
-            setActiveTab('column');
-            setActiveCotentIndex(0);
+            this.setState({
+                column: this.props.currentColumns ? this.props.currentColumns : [],
+                activeFeature: '',
+                activeColumnId: 0,
+                activeTab: 'column',
+                activeContentIndex: 0,
+            });
         }
 
         if (action === "add") {
-            console.log('Add here');
-
-            setColumn([]);
-            setActiveFeature('');
-            setActiveColumnId(0);
-            setActiveTab('column');
-            setActiveCotentIndex(0);
+            this.setState({
+                column: [],
+                activeFeature: '',
+                activeColumnId: 0,
+                activeTab: 'column',
+                activeContentIndex: 0,
+            });
         }
     }
 
-    const addColumn = () => {
-        const currentCount = column.length + 1;
+    addColumn = () => {
+        const currentCount = this.state.column.length + 1
         const columnObj = { type: 'column', name: 'Column ' + currentCount, active: 0, grid: 0, id: 'column' + currentCount, content: [] }
+        // columnObj.content['subColumnOne'] = [];
         columnObj.content = {
             subColumnOne: []
         };
 
-        setColumn([...column, columnObj]);
-        setCurrentColumnContentIndex('subColumnOne');
-
-        handleSubmit();
+        this.setState({
+            column: [...this.state.column, columnObj],
+            currentColumnContentIndex: 'subColumnOne',
+        });
     }
 
-    const deleteColumn = (index) => {
+    deleteColumn = (index) => {
         console.log('index:');
         console.log(index);
-
-        const columnArr = [...column];
+        const columnArr = [...this.state.column];
         columnArr.splice(index, 1);
 
-        setColumn(columnArr);
+        this.setState({
+            column: columnArr,
+        })
     }
     
-    const handleContentEditable = (event, index) => {
-        const columnObj = column;
+    handleContentEditable = (event, index) => {
+        const columnObj = this.state.column;
 
         columnObj[index].name = event.target.value;
 
-        setColumn(columnObj);
+        this.setState({
+            column: columnObj,
+        })
     }
 
-    const handleSizeActive = (columnIndex, sizeIndex, grid) => {
-        const columnSizesObj = column;
+    handleSizeActive = (columnIndex, sizeIndex, grid) => {
+        const columnSizesObj = this.state.column;
 
         columnSizesObj[columnIndex].active = sizeIndex;
         columnSizesObj[columnIndex].grid = grid;
@@ -162,11 +200,13 @@ function SlideHandler (props) {
             };
         }
 
-        setColumn(columnSizesObj);
+        this.setState({
+            column: columnSizesObj,
+        })
     }
 
     // a little function to help us with reordering the result
-    const reorder = (list, startIndex, endIndex) => {
+    reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
@@ -177,22 +217,23 @@ function SlideHandler (props) {
     /**
      * Moves an item from one list to another list.
      */
-    // const move = (source, destination, droppableSource, droppableDestination) => {
-    //     const sourceClone = Array.from(source);
-    //     const destClone = Array.from(destination);
-    //     const [removed] = sourceClone.splice(droppableSource.index, 1);
+    move = (source, destination, droppableSource, droppableDestination) => {
+        const sourceClone = Array.from(source);
+        const destClone = Array.from(destination);
+        const [removed] = sourceClone.splice(droppableSource.index, 1);
 
-    //     destClone.splice(droppableDestination.index, 0, removed);
+        destClone.splice(droppableDestination.index, 0, removed);
 
-    //     const result = {};
-    //     result[droppableSource.droppableId] = sourceClone;
-    //     result[droppableDestination.droppableId] = destClone;
+        const result = {};
+        result[droppableSource.droppableId] = sourceClone;
+        result[droppableDestination.droppableId] = destClone;
 
-    //     return result;
-    // };
+        return result;
+    };
 
-    const onDragEnd = result => {
+    onDragEnd = result => {
         const { source, destination } = result;
+        const activeColumnId = this.state.activeColumnId;
         
         console.log(source);
         console.log(destination);
@@ -205,612 +246,703 @@ function SlideHandler (props) {
         if ((source.droppableId === "columns") && (destination.droppableId === "columns")) {
 
             if (activeColumnId === source.index) {
-                setActiveColumnId(destination.index);
+                this.setActiveColumId(destination.index);
             } else if (activeColumnId === destination.index) {
-                setActiveColumnId(source.index);
+                this.setActiveColumId(source.index);
             }
             
-            const currentColumnList = column;
+            const currentColumnList = this.state.column;
 
-            const reordered_slides = reorder(
+            const reordered_slides = this.reorder(
                 currentColumnList,
                 source.index,
                 destination.index
             );
             let columns = reordered_slides;
-            
-            setColumn(columns);
 
-            // setState({
-            //     column: columns,
-            // })
+            this.setState({
+                column: columns,
+            })
         }
 
         if ((source.droppableId === "features") && (destination.droppableId !== "features")) {
-            const currentColumns = column;
+            const currentColumns = this.state.column;
 
-            setActiveTab("editor");
+            this.setActiveTab("editor");
 
             for (var key in currentColumns) {
                 if (destination.droppableId === currentColumns[key]['id']) {
                     // First Size
-                    setCurrentColumnContentIndex('subColumnOne');
+
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
                     
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: 'No audio added.', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, mechanics: { repeat: 0, passingRate: 80, specificType: 'knowledgeCheck', returnSlide: 0 } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: { courseInfo: { name: 'Course Information', content: 'No information provided yet.'}, courseReq:  { name: 'Course Requirements', content: 'No requirements provided yet.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
                     // Second Size
 
-                    // setState({
-                    //     currentColumnContentIndex: 'subColumnOne',
-                    // });
-
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
-;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1')) {
                     // Third Size
 
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
-
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
-;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-1')) {
                     // Fourth Size
 
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-1')) {
                     // Fifth Size
 
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
-                   setCurrentColumnContentIndex('subColumnThree');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnThree',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-1')) {
                     // Sixth Size
 
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-3')) {
 
-                   setCurrentColumnContentIndex('subColumnThree');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnThree',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-4')) {
 
-                    setCurrentColumnContentIndex('subColumnFour');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnFour',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFour.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFour.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnFour.push(currentContent);
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFour.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-1')) {
                     // Seventh Size
 
-                    setCurrentColumnContentIndex('subColumnOne');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnOne.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnOne.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
-                    setCurrentColumnContentIndex('subColumnTwo');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnTwo',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnTwo.push(currentContent);
-                        
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnTwo.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-3')) {
 
-                   setCurrentColumnContentIndex('subColumnThree');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnThree',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnThree.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnThree.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
-                    setCurrentColumnContentIndex('subColumnFour');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnFour',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFour.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFour.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnFour.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFour.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
-                    setCurrentColumnContentIndex('subColumnFive');
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnFive',
+                    });
 
                     destination.index = parseInt(key);
                     console.log("Drag!");
                     console.log(source);
                     console.log(destination);
-                    const currentFeatures = features;
+                    const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
                         currentColumns[key].content.subColumnFive.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFive.length - 1));
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
+                        })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
                         currentColumns[key].content.subColumnFive.push(currentContent);
-
-                        setColumn(currentColumns);
-                        setActiveFeature(currentFeatures[source.index]['type']);
-                        setActiveColumnId(destination.index);
-                        setActiveCotentIndex((currentColumns[key].content.subColumnFive.length - 1));;
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
+                        });
                     }
                 }
             }
         }
 
         if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
-            const currentColumnList = column;
-            console.log(activeColumnId);
-            console.log(currentColumnContentIndex);
-            const reorderedFeatures = reorder(
-                currentColumnList[activeColumnId].content[currentColumnContentIndex],
+            const currentColumnList = this.state.column;
+            console.log(this.state.activeColumnId);
+            console.log(this.state.currentColumnContentIndex);
+            const reorderedFeatures = this.reorder(
+                currentColumnList[this.state.activeColumnId].content[this.state.currentColumnContentIndex],
                 source.index,
                 destination.index
             );
-            currentColumnList[activeColumnId].content[currentColumnContentIndex] = reorderedFeatures;
+            currentColumnList[this.state.activeColumnId].content[this.state.currentColumnContentIndex] = reorderedFeatures;
             let columns = currentColumnList;
             
-            if (activeContentIndex === source.index) {
-                setColumn(columns);
-                setActiveCotentIndex(destination.index);
-            } else if (activeContentIndex === destination.index) {
-                setColumn(columns);
-                setActiveCotentIndex(source.index);
+            if (this.state.activeContentIndex === source.index) {
+                this.setState({
+                    column: columns,
+                    activeContentIndex: destination.index,
+                });
+            } else if (this.state.activeContentIndex === destination.index) {
+                this.setState({
+                    column: columns,
+                    activeContentIndex: source.index,
+                });
             }
                 
         }
     }
 
-    const onChangeTextArea = (event, contentIndex, editorType) => {
-        const currentColumnObj = column[activeColumnId];
+    setActiveTab = (value) => {
+        this.setState({
+            activeTab: value,
+        })
+    }
+
+    setShowHtmlEditor = (value, contentIndex) => {
+        this.setState({
+            showHtmlEditor: value,
+            activeContentIndex: contentIndex,
+        })
+    }
+
+    onChangeTextArea = (event, contentIndex, editorType) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         if (editorType === 'html') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
@@ -826,13 +958,15 @@ function SlideHandler (props) {
             }
         }
 
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
-        setColumn(columns);
+        this.setState({
+            column: columns,
+        })
     }
 
-    const contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
+    contentPaneClick = (index, contentIndex, elementId, currentColumnContentIndex) => {
         const elem = document.getElementById(elementId);
         const prevElemId = localStorage.getItem('prevElemId');
         const elemClasses = elem.getAttribute('class');
@@ -867,78 +1001,88 @@ function SlideHandler (props) {
             }
         }
 
-        if ((column[index].content[currentColumnContentIndex].length > 0) && (typeof column[index].content[currentColumnContentIndex][contentIndex] !== "undefined")) {
-            
-            setActiveFeature(column[index].content[currentColumnContentIndex][contentIndex].type);
-            setActiveColumnId(index);
-            setActiveTab('editor');
-            setActiveCotentIndex(contentIndex);
-            setCurrentColumnContentIndex(currentColumnContentIndex);
-            setShowHtmlEditor(false);
+        if ((this.state.column[index].content[currentColumnContentIndex].length > 0) && (typeof this.state.column[index].content[currentColumnContentIndex][contentIndex] !== "undefined")) {
+            this.setState({
+                activeFeature: this.state.column[index].content[currentColumnContentIndex][contentIndex].type,
+                activeColumnId: index,
+                activeTab: 'editor',
+                activeContentIndex: contentIndex,
+                currentColumnContentIndex: currentColumnContentIndex,
+                showHtmlEditor: false,
+            });
         }
     }
 
-    const deleteFeature = (contentIndex) => {
-        const currentColumnContent = column[activeColumnId].content[currentColumnContentIndex];
+    deleteFeature = (contentIndex) => {
+        const currentColumnContent = this.state.column[this.state.activeColumnId].content[this.state.currentColumnContentIndex];
+        // delete currentColumnContent[contentIndex];
         currentColumnContent.splice(contentIndex, 1);
 
-        const columns = column;
-        columns[activeColumnId].content[currentColumnContentIndex] = currentColumnContent;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId].content[this.state.currentColumnContentIndex] = currentColumnContent;
 
-        setColumn(columns);
-        setActiveFeature('');
-        setActiveColumnId(0);
-        setActiveTab('column');
-        setActiveCotentIndex(0);
+        this.setState({
+            column: columns,
+            activeFeature: '',
+            activeColumnId: -1,
+            activeTab: 'column',
+            activeContentIndex: 0,
+        })
     }
 
-    const setHtmlEditorShow = (value, contentIndex) => {
-        setShowHtmlEditor(value);
-        setActiveCotentIndex(contentIndex);
+    setShowCssEditor = (value, contentIndex) => {
+        this.setState({
+            showCssEditor: value,
+            activeContentIndex: contentIndex,
+        })
     }
 
-    const setCssEditorShow = (value, contentIndex) => {
-        setShowCssEditor(value);
-        setActiveCotentIndex(contentIndex);
-    }
-
-    const setFeatureId = (event, contentIndex) => {
-        const currentColumnObj = column[activeColumnId];
+    setFeatureId = (event, contentIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].id = event.target.value;
 
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
-        setColumn(columns);
+        this.setState({
+            column: columns,
+        })
     }
 
-    const setFeatureClass = (event, contentIndex) => {
-        const currentColumnObj = column[activeColumnId];
+    setFeatureClass = (event, contentIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].class = event.target.value;
 
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
-        setColumn(columns);
+        this.setState({
+            column: columns,
+        })
     }
 
-    const onChangeRadio = (dataUrl, type, contentIndex) => {
-        const currentColumnObj = column[activeColumnId];
+    onChangeRadio = (dataUrl, type, contentIndex) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         const audioHtml = "<audio id='feature-audio' controls><source src='" + dataUrl +"' type='" + type +"'><p>Your browser doesn't support HTML5 audio. Here is a <a href='" + dataUrl +"'>link to the audio</a> instead.</p></audio>";
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output = audioHtml;
 
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
-        setColumn(columns);
+        this.setState({
+            column: columns,
+        })
     }
 
-    const cssApplier = (str, featureId) => {
-        if (applyCss) {
+    cssApplier = (str, featureId) => {
+        if (this.state.applyCss) {
             const res = str.replace("$elem", '#' + featureId);
             let css = '\n' + res + '\n',
                 head = document.head || document.getElementsByTagName('head')[0],
@@ -954,40 +1098,51 @@ function SlideHandler (props) {
                 style.appendChild(document.createTextNode(css));
             }
 
-            setApplyCss(false);
+            this.setApplyCss(false);
         }
     }
 
-    const setColumnInDirect = (currentColumnObj) => {
-
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
-
-        setColumn(columns);
+    setApplyCss = (value) => {
+        this.setState({
+            applyCss: value,
+        })
     }
 
-    const resetStates = () => {
+    setColumn = (column) => {
 
-        setActiveFeature('');
-        setActiveTab('column');
-        setActiveColumnId(0);
-        setShowHtmlEditor(false);
-        setShowCssEditor(false);
-        setActiveCotentIndex(0);
-        setCurrentColumnContentIndex('subColumnOne');
-        setIsSlideNameNotEmpty(false);
-        setApplyCss(false);
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = column;
+
+        this.setState({
+            column: columns,
+        })
     }
 
-    const setTextEditorShow = (value, contentIndex, contentFor) => {
-
-        setShowTextEditor(value);
-        setContentFor(contentFor);
-        setActiveCotentIndex(contentIndex);
+    resetStates = () => {
+        this.setState({
+            activeFeature: '',
+            activeTab: 'column',
+            activeColumnId: 0,
+            showHtmlEditor: false,
+            showCssEditor: false,
+            activeContentIndex: 0,
+            currentColumnContentIndex: 'subColumnOne',
+            isSlideNameNotEmpty: false,
+            applyCss: false,
+        });
     }
 
-    const resetFeature = (contentIndex, featureType) => {
-        const currentColumnObj = column[activeColumnId];
+    setShowTextEditor = (value, contentIndex, contentFor) => {
+        this.setState({
+            contentFor: contentFor,
+            showTextEditor: value,
+            activeContentIndex: contentIndex,
+        })
+    }
+
+    resetFeature = (contentIndex, featureType) => {
+        const currentColumnObj = this.state.column[this.state.activeColumnId];
+        const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         if (featureType === "audio") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'audio', output: 'No audio added.', class: '', id: '' };
@@ -1001,633 +1156,506 @@ function SlideHandler (props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'courseObjectives', output: { courseInfo: { name: 'Course Information', content: 'No information provided yet.'}, courseReq:  { name: 'Course Requirements', content: 'No requirements provided yet.'} }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4' };
         }
 
-        const columns = column;
-        columns[activeColumnId] = currentColumnObj;
+        const columns = this.state.column;
+        columns[this.state.activeColumnId] = currentColumnObj;
 
-        setColumn(columns);
+        this.setState({
+            column: columns,
+        })
     }
 
-    const onSave = (slide, subtitle, columns, lessonIndex) => {
-        if (props.action === "add") {
+    setActiveColumId = (value) => {
+        this.setState({
+            activeColumnId: value
+        });
+    }
+
+    onSave = (slide, subtitle, columns, lessonIndex) => {
+        if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            props.addSlideChange(slideObj, lessonIndex);
+            this.props.addSlideChange(slideObj, lessonIndex);
             console.log("add");
-        } else if (props.action === "edit") {
+        } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            props.editSlideChange(slideObj, lessonIndex, props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, lessonIndex, this.props.currentClickedLessonId);
             console.log("edit");
-            console.log(lessonIndex);
-            console.log(props.currentClickedLessonId);
-            console.log(slideObj);
         }
         
-        setShowModal(false, 'save');
+        this.setModalShow(false, 'save')
     }
 
-    const slideModal = (
-        <Modal
-            show={modalShow}
-            onHide={() => setShowModal(false, 'close')}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            dialogClassName="slide-modal-width"
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {props.action === "add" ?
-                        <span>Add Slide</span>
-                        :
-                        <span>Edit Slide</span>
-                    }
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Formik
-                    initialValues={{ 
-                        slideName: props.currentSlideName ? props.currentSlideName : '',
-                        slideSubtitle: props.currentSlideSubtitle ? props.currentSlideSubtitle : '',
-                        showTitle: props.slide.hide_title ? props.slide.hide_title : '',
-                    }}
+    render() {
+        const slideModal = (
+            <Modal
+                show={this.state.modalShow}
+                onHide={() => this.setModalShow(false, 'close')}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                dialogClassName="slide-modal-width"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {this.props.action === "add" ?
+                            <span>Add Slide</span>
+                            :
+                            <span>Edit Slide</span>
+                        }
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Formik
+                        initialValues={{ 
+                            slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
+                            slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
+                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : '',
+                        }}
 
-                    onSubmit={values => {
-                        
-                        console.log('Submitted');
-                        onSave(values.slideName, values.slideSubtitle, column, props.lessonIndex);
+                        onSubmit={values => {
+                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
 
-                        // create slide
-                        // lid and uid are temporary
-                        props.createSlide(1, values.slideName, 1, values.showTitle);
+                            // create slide
+                            // lid and uid are temporary
+                            this.props.createSlide(1, values.slideName, 1, values.showTitle);
 
-                        props.setSlideItemIndex(props.slideId + 1);
+                            this.props.setSlideItemIndex(this.props.slideId + 1);
 
-                        // create column
-                        // sid and uid are temporary
-                        props.createColumn(1, 1, column);
+                            // create column
+                            // sid and uid are temporary
+                            this.props.createColumn(1, 1, this.state.column);
 
-                    }}
+                        }}
 
-                    validationSchema={Yup.object().shape({
-                        slideName: Yup.string()
-                        .required("Slide name required"),
-                    }
-                )}
-                >
-                    {props => {
-                        const {
-                            values,
-                            touched,
-                            errors,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                        } = props;
-                        return (
-                            <form onSubmit={handleSubmit}>
-                                <label htmlFor="slideName">Title:</label>
-                                <input
-                                    id="slideName"
-                                    name="slideName"
-                                    type="text"
-                                    className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
-                                    onBlur={(e) => {
-                                            handleBlur(e)
+                        validationSchema={Yup.object().shape({
+                            slideName: Yup.string()
+                            .required("Slide name required"),
+                        }
+                    )}
+                    >
+                        {props => {
+                            const {
+                                values,
+                                touched,
+                                errors,
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                            } = props;
+                            return (
+                                <form onSubmit={handleSubmit}>
+                                    <label htmlFor="slideName">Title:</label>
+                                    <input
+                                        id="slideName"
+                                        name="slideName"
+                                        type="text"
+                                        className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
+                                        onBlur={(e) => {
+                                                handleBlur(e)
 
-                                            if (e.target.value.trim() === "") {
-                                                setIsSlideNameNotEmpty(false);
-                                            }
+                                                if (e.target.value.trim() === "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: false,
+                                                    })
+                                                }
 
-                                        }
-                                    }
-                                    value={values.slideName}
-                                    onChange={(e) => {
-                                            handleChange(e)
-
-                                            if (e.target.value.trim() !== "") {
-                                                setIsSlideNameNotEmpty(true);
                                             }
                                         }
-                                    }
-                                    placeholder="Type title here . . ."
-                                />
-                                {errors.slideName && touched.slideName && (
-                                    <div className="input-feedback">{errors.slideName}</div>
-                                )}
-                                <input
-                                    id="showTitle"
-                                    name="showTitle"
-                                    type="checkbox"
-                                    value={values.showTitle}
-                                    checked={values.showTitle}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
-                                <label htmlFor="slideSubtitle" className="d-block">Subtitle:</label>
-                                <input
-                                    id="slideSubtitle"
-                                    name="slideSubtitle"
-                                    type="text"
-                                    className="form-control d-inline mb-2"
-                                    onBlur={(e) => {
-                                            handleBlur(e)
+                                        value={values.slideName}
+                                        onChange={(e) => {
+                                                handleChange(e)
 
-                                            if (e.target.value.trim() === "") {
-                                                setIsSlideNameNotEmpty(false);
-                                            }
-
-                                        }
-                                    }
-                                    value={values.slideSubtitle}
-                                    onChange={(e) => {
-                                            handleChange(e)
-
-                                            if (e.target.value.trim() !== "") {
-                                                setIsSlideNameNotEmpty(true);
+                                                if (e.target.value.trim() !== "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: true,
+                                                    })
+                                                }
                                             }
                                         }
-                                    }
-                                    placeholder="Type subtitle here . . ."
-                                />
-                                <DragDropContext onDragEnd={onDragEnd}>
-                                    <div className="row mt-2">
-                                        <div id="slide-sidebar" className="col-md-3 pr-0">
-                                            <Tabs activeKey={activeTab} onSelect={setActiveTab} id="uncontrolled-tab" className="text-center">
-                                                <Tab eventKey="column" title="Column" className="mt-1">
-                                                    <div className="sg-workspace-content-section">
-                                                        {
-                                                            column.length !== 0 ?
-                                                                <Droppable droppableId="columns">
-                                                                    {(provided) => (
-                                                                        <div ref={provided.innerRef}>
-                                                                            {column.map((item, columnIndex) => (
-                                                                                <Draggable
-                                                                                    key={'column-draggable-' + columnIndex}
-                                                                                    draggableId={'column-' + columnIndex}
-                                                                                    index={columnIndex}>
-                                                                                    {(provided) => (
-                                                                                        <div
-                                                                                            ref={provided.innerRef}
-                                                                                            {...provided.draggableProps}
-                                                                                            {...provided.dragHandleProps}
-                                                                                            id={'column-' + columnIndex}
-                                                                                        >
-                                                                                            <SlideColumn 
-                                                                                                columnIndex={columnIndex}
-                                                                                                currentColumn={item}
-                                                                                                currentColumnContentIndex={currentColumnContentIndex}
-                                                                                                name={item.name}
-                                                                                                deleteColumn={deleteColumn}
-                                                                                                columnSizes={columnSizes}
-                                                                                                column={column}
-                                                                                                handleSizeActive={handleSizeActive}
-                                                                                                resetStates={resetStates}
-                                                                                                handleContentEditable={handleContentEditable}
-                                                                                            />
-                                                                                        </div>
-                                                                                    )}
-                                                                                </Draggable>
-                                                                            ))}
-                                                                            {provided.placeholder}
-                                                                        </div>
-                                                                    )}
-                                                                </Droppable>
-                                                            :
-                                                            <span></span>
-                                                        }
-                                                        {
-                                                            isSlideNameNotEmpty || props.currentSlideName ?
-                                                                <button type="button" className="sg-add-sortable-column-after" onClick={addColumn}>
-                                                                    <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
-                                                                </button>
-                                                            :
-                                                                <WarningModal 
-                                                                    fieldType="buttonWithIcon"
-                                                                    btnClasses="sg-add-sortable-column-after"
-                                                                    icon={faPlus}
-                                                                    btnLabel="Add Column"
-                                                                    modalMessage="Please enter a slide name first"
-                                                                />
-                                                        }
-                                                        
-                                                    </div>
-                                                </Tab>
-                                                <Tab eventKey="features" title="Features" className="mt-1">
-                                                    <Droppable droppableId="features">
-                                                        {(provided) => (
-                                                            <div ref={provided.innerRef} className="sg-feature-list">
-                                                                {features.map((item, featureIndex) => (
-                                                                    <Draggable
-                                                                        key={'feature-draggable-' + featureIndex}
-                                                                        draggableId={'feature-' + featureIndex}
-                                                                        index={featureIndex}
-                                                                    >
+                                        placeholder="Type title here . . ."
+                                    />
+                                    {errors.slideName && touched.slideName && (
+                                        <div className="input-feedback">{errors.slideName}</div>
+                                    )}
+                                    <input
+                                        id="showTitle"
+                                        name="showTitle"
+                                        type="checkbox"
+                                        value={values.showTitle}
+                                        checked={values.showTitle}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
+                                    <label htmlFor="slideSubtitle" className="d-block">Subtitle:</label>
+                                    <input
+                                        id="slideSubtitle"
+                                        name="slideSubtitle"
+                                        type="text"
+                                        className="form-control d-inline mb-2"
+                                        onBlur={(e) => {
+                                                handleBlur(e)
+
+                                                if (e.target.value.trim() === "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: false,
+                                                    })
+                                                }
+
+                                            }
+                                        }
+                                        value={values.slideSubtitle}
+                                        onChange={(e) => {
+                                                handleChange(e)
+
+                                                if (e.target.value.trim() !== "") {
+                                                    this.setState({
+                                                        isSlideNameNotEmpty: true,
+                                                    })
+                                                }
+                                            }
+                                        }
+                                        placeholder="Type subtitle here . . ."
+                                    />
+                                    <DragDropContext onDragEnd={this.onDragEnd}>
+                                        <div className="row mt-2">
+                                            <div id="slide-sidebar" className="col-md-3 pr-0">
+                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
+                                                    <Tab eventKey="column" title="Column" className="mt-1">
+                                                        <div className="sg-workspace-content-section">
+                                                            {
+                                                                this.state.column.length !== 0 ?
+                                                                    <Droppable droppableId="columns">
                                                                         {(provided) => (
-                                                                            <div
-                                                                                ref={provided.innerRef}
-                                                                                {...provided.draggableProps}
-                                                                                {...provided.dragHandleProps}
-                                                                                className="sg-feature-list-item"
-                                                                            >
-                                                                                <SlideFeature
-                                                                                    icon={item.icon}
-                                                                                    name={item.name}
-                                                                                />
+                                                                            <div ref={provided.innerRef}>
+                                                                                {this.state.column.map((item, columnIndex) => (
+                                                                                    <Draggable
+                                                                                        key={'column-draggable-' + columnIndex}
+                                                                                        draggableId={'column-' + columnIndex}
+                                                                                        index={columnIndex}>
+                                                                                        {(provided) => (
+                                                                                            <div
+                                                                                                ref={provided.innerRef}
+                                                                                                {...provided.draggableProps}
+                                                                                                {...provided.dragHandleProps}
+                                                                                                id={'column-' + columnIndex}
+                                                                                            >
+                                                                                                <SlideColumn 
+                                                                                                    columnIndex={columnIndex}
+                                                                                                    currentColumn={item}
+                                                                                                    currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                                                                    name={item.name}
+                                                                                                    deleteColumn={this.deleteColumn}
+                                                                                                    columnSizes={this.state.columnSizes}
+                                                                                                    column={this.state.column}
+                                                                                                    handleSizeActive={this.handleSizeActive}
+                                                                                                    resetStates={this.resetStates}
+                                                                                                />
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </Draggable>
+                                                                                ))}
+                                                                                {provided.placeholder}
                                                                             </div>
                                                                         )}
-                                                                    </Draggable>
-                                                                ))}
-                                                                {provided.placeholder}
-                                                            </div>
-                                                        )}
-                                                    </Droppable>
-                                                </Tab>
-                                                <Tab eventKey="editor" title="Editor" className="mt-1">
-                                                    <SlideEditor 
-                                                        setColumnInDirect={setColumnInDirect}
-                                                        feature={activeFeature} 
-                                                        currentColumn={column[activeColumnId]}
-                                                        contentIndex={activeContentIndex}
-                                                        setShowEditor={setHtmlEditorShow}
-                                                        deleteFeature={deleteFeature}
-                                                        setShowCssEditor={setCssEditorShow}
-                                                        setFeatureId={setFeatureId}
-                                                        setFeatureClass={setFeatureClass}
-                                                        currentColumnContentIndex={currentColumnContentIndex}
-                                                        onChangeTextArea={onChangeTextArea}
-                                                        mediaFilesObject={props.mediaFilesObject}
-                                                        onChangeRadio={onChangeRadio}
-                                                        addMediaFiles={props.addMediaFiles}
-                                                        galleryHandler={props.galleryHandler}
-                                                        setShowTextEditor={setTextEditorShow}
-                                                        resetFeature={resetFeature}
-                                                        slideItemId={props.slideItemId}
-                                                    />
-                                                </Tab>
-                                            </Tabs>
-                                        </div>
-                                        <div id="slide-content" className="col-md-9 pl-0">
-                                            <div id="slide-content-container" className="border p-3 h-100">
-                                                {
-                                                    column.length > 0 ?
-                                                        column.map((item, index) => (
-                                                            item.grid === 0 || item.grid === -1 ?
-                                                                <Droppable key={index} droppableId={item.id}>
-                                                                    {/* First Size */}
-                                                                    {(provided) => (
-                                                                        <div ref={provided.innerRef} className="container p-0 pb-3">
-                                                                            { 
-                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                                    item.content['subColumnOne'].length > 0 ?
-                                                                                        <div
-                                                                                            id={item.id}
-                                                                                            className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
-                                                                                        >
-                                                                                            {
-                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
-                                                                                                    <Draggable
-                                                                                                        key={'feature-' + contentFirst.type + '-' + contentFirstIndex}
-                                                                                                        draggableId={contentFirst.type + '-' + contentFirstIndex + '-' + item.id}
-                                                                                                        index={contentFirstIndex}
-                                                                                                    >
-                                                                                                        {(provided) => (
-                                                                                                            <>
-                                                                                                                {contentFirst.type === 'homePage' &&
-                                                                                                                    <div 
-                                                                                                                        ref={provided.innerRef}
-                                                                                                                        {...provided.draggableProps}
-                                                                                                                        {...provided.dragHandleProps}
+                                                                    </Droppable>
+                                                                :
+                                                                <span></span>
+                                                            }
+                                                            {
+                                                                this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                                    <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
+                                                                        <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
+                                                                    </button>
+                                                                :
+                                                                    <WarningModal 
+                                                                        fieldType="buttonWithIcon"
+                                                                        btnClasses="sg-add-sortable-column-after"
+                                                                        icon={faPlus}
+                                                                        btnLabel="Add Column"
+                                                                        modalMessage="Please enter a slide name first"
+                                                                    />
+                                                            }
+                                                            
+                                                        </div>
+                                                    </Tab>
+                                                    <Tab eventKey="features" title="Features" className="mt-1">
+                                                        <Droppable droppableId="features">
+                                                            {(provided) => (
+                                                                <div ref={provided.innerRef} className="sg-feature-list">
+                                                                    {this.state.features.map((item, featureIndex) => (
+                                                                        <Draggable
+                                                                            key={'feature-draggable-' + featureIndex}
+                                                                            draggableId={'feature-' + featureIndex}
+                                                                            index={featureIndex}
+                                                                        >
+                                                                            {(provided) => (
+                                                                                <div
+                                                                                    ref={provided.innerRef}
+                                                                                    {...provided.draggableProps}
+                                                                                    {...provided.dragHandleProps}
+                                                                                    className="sg-feature-list-item"
+                                                                                >
+                                                                                    <SlideFeature
+                                                                                        icon={item.icon}
+                                                                                        name={item.name}
+                                                                                    />
+                                                                                </div>
+                                                                            )}
+                                                                        </Draggable>
+                                                                    ))}
+                                                                    {provided.placeholder}
+                                                                </div>
+                                                            )}
+                                                        </Droppable>
+                                                    </Tab>
+                                                    <Tab eventKey="editor" title="Editor" className="mt-1">
+                                                        <SlideEditor 
+                                                            setColumn={this.setColumn}
+                                                            feature={this.state.activeFeature} 
+                                                            currentColumn={this.state.column[this.state.activeColumnId]}
+                                                            contentIndex={this.state.activeContentIndex}
+                                                            setShowEditor={this.setShowHtmlEditor}
+                                                            deleteFeature={this.deleteFeature}
+                                                            setShowCssEditor={this.setShowCssEditor}
+                                                            setFeatureId={this.setFeatureId}
+                                                            setFeatureClass={this.setFeatureClass}
+                                                            currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                            onChangeTextArea={this.onChangeTextArea}
+                                                            mediaFilesObject={this.props.mediaFilesObject}
+                                                            onChangeRadio={this.onChangeRadio}
+                                                            addMediaFiles={this.props.addMediaFiles}
+                                                            galleryHandler={this.props.galleryHandler}
+                                                            setShowTextEditor={this.setShowTextEditor}
+                                                            resetFeature={this.resetFeature}
+                                                            slideItemId={this.props.slideItemId}
+                                                        />
+                                                    </Tab>
+                                                </Tabs>
+                                            </div>
+                                            <div id="slide-content" className="col-md-9 pl-0">
+                                                <div id="slide-content-container" className="border p-3 h-100">
+                                                    {
+                                                        this.state.column.length > 0 ?
+                                                            this.state.column.map((item, index) => (
+                                                                item.grid === 0 || item.grid === -1 ?
+                                                                    <Droppable key={index} droppableId={item.id}>
+                                                                        {/* First Size */}
+                                                                        {(provided) => (
+                                                                            <div ref={provided.innerRef} className="container p-0 pb-3">
+                                                                                { 
+                                                                                    typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                        item.content['subColumnOne'].length > 0 ?
+                                                                                            <div
+                                                                                                id={item.id}
+                                                                                                className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
+                                                                                            >
+                                                                                                {
+                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
+                                                                                                        <Draggable
+                                                                                                            key={'feature-' + contentFirst.type + '-' + contentFirstIndex}
+                                                                                                            draggableId={contentFirst.type + '-' + contentFirstIndex + '-' + item.id}
+                                                                                                            index={contentFirstIndex}
+                                                                                                        >
+                                                                                                            {(provided) => (
+                                                                                                                <>
+                                                                                                                    {contentFirst.type === 'homePage' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        className="content-output"
-                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        onClick={() => 
-                                                                                                                            contentPaneClick(
-                                                                                                                                index, 
-                                                                                                                                contentFirstIndex, 
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <HomePageLayout
+                                                                                                                                title={contentFirst.output.title}
+                                                                                                                                subtitle={contentFirst.output.subtitle}
+                                                                                                                                date={contentFirst.output.date}
+                                                                                                                                courseId={contentFirst.output.courseId}
+                                                                                                                                backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                                homePageClass={contentFirst.class}
+                                                                                                                                colorScheme={contentFirst.colorScheme}
+                                                                                                                                homepageId={contentFirst.id}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+                                                                                                                
+                                                                                                                    {contentFirst.type === 'multipleChoice' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex,
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <MultipleChoiceLayout
+                                                                                                                                multipleChoice={contentFirst.output}
+                                                                                                                                multipleChoiceClass={contentFirst.class}
+                                                                                                                                multipleChoiceId={contentFirst.id}
+                                                                                                                                multipleChoiceStyles={contentFirst.styles}
+                                                                                                                                multipleChoiceCss={contentFirst.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+
+                                                                                                                    {contentFirst.type === 'courseObjectives' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex,
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <CourseObjLayout
+                                                                                                                                styles={contentFirst.styles}
+                                                                                                                                output={contentFirst.output}
+                                                                                                                                introVideo={contentFirst.introVideo}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+                                                                                                                        
+                                                                                                                    {contentFirst.type !== 'multipleChoice' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex} 
+                                                                                                                            id={
                                                                                                                                 contentFirst.id ? 
-                                                                                                                                contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                'subColumnOne'
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        <HomePageLayout
-                                                                                                                            title={contentFirst.output.title}
-                                                                                                                            subtitle={contentFirst.output.subtitle}
-                                                                                                                            date={contentFirst.output.date}
-                                                                                                                            courseId={contentFirst.output.courseId}
-                                                                                                                            backgroundImg={contentFirst.output.backgroundImg}
-                                                                                                                            homePageClass={contentFirst.class}
-                                                                                                                            colorScheme={contentFirst.colorScheme}
-                                                                                                                            homepageId={contentFirst.id}
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                }
-                                                                                                            
-                                                                                                                {contentFirst.type === 'multipleChoice' &&
-                                                                                                                    <div 
-                                                                                                                        ref={provided.innerRef}
-                                                                                                                        {...provided.draggableProps}
-                                                                                                                        {...provided.dragHandleProps}
-
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        className="content-output"
-                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        onClick={() => 
-                                                                                                                            contentPaneClick(
-                                                                                                                                index, 
-                                                                                                                                contentFirstIndex,
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                'subColumnOne'
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        <MultipleChoiceLayout
-                                                                                                                            multipleChoice={contentFirst.output}
-                                                                                                                            multipleChoiceClass={contentFirst.class}
-                                                                                                                            multipleChoiceId={contentFirst.id}
-                                                                                                                            multipleChoiceStyles={contentFirst.styles}
-                                                                                                                            multipleChoiceCss={contentFirst.css}
-                                                                                                                            cssApplier={cssApplier}
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                }
-
-                                                                                                                {contentFirst.type === 'courseObjectives' &&
-                                                                                                                    <div 
-                                                                                                                        ref={provided.innerRef}
-                                                                                                                        {...provided.draggableProps}
-                                                                                                                        {...provided.dragHandleProps}
-
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        className="content-output"
-                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        onClick={() => 
-                                                                                                                            contentPaneClick(
-                                                                                                                                index, 
-                                                                                                                                contentFirstIndex,
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                'subColumnOne'
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        <CourseObjLayout
-                                                                                                                            styles={contentFirst.styles}
-                                                                                                                            output={contentFirst.output}
-                                                                                                                            introVideo={contentFirst.introVideo}
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                }
-                                                                                                                    
-                                                                                                                {contentFirst.type !== 'multipleChoice' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
-                                                                                                                    <div 
-                                                                                                                        ref={provided.innerRef}
-                                                                                                                        {...provided.draggableProps}
-                                                                                                                        {...provided.dragHandleProps}
-
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex} 
-                                                                                                                        id={
-                                                                                                                            contentFirst.id ? 
-                                                                                                                                contentFirst.id
-                                                                                                                            : 
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex
-                                                                                                                        } 
-                                                                                                                        className={
-                                                                                                                            contentFirst.class ? 
-                                                                                                                                contentFirst.class + " content-output"
-                                                                                                                            : 
-                                                                                                                                "content-output"
-                                                                                                                        } 
-                                                                                                                        onClick={() => 
-                                                                                                                            contentPaneClick(
-                                                                                                                                index, 
-                                                                                                                                contentFirstIndex, 
-                                                                                                                                contentFirst.id ? 
-                                                                                                                                contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                'subColumnOne'
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        {
-                                                                                                                            contentFirst.css ? 
-                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                    cssApplier(
-                                                                                                                                        contentFirst.css, 
-                                                                                                                                        contentFirst.id ? 
-                                                                                                                                            contentFirst.id
-                                                                                                                                                : 
-                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
-                                                                                                                                    )
-                                                                                                                                :
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            {
+                                                                                                                                contentFirst.css ? 
+                                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                        this.cssApplier(
+                                                                                                                                            contentFirst.css, 
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                                contentFirst.id
+                                                                                                                                                    : 
+                                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                        )
+                                                                                                                                    :
+                                                                                                                                        null
+                                                                                                                                : 
                                                                                                                                     null
-                                                                                                                            : 
-                                                                                                                                null
-                                                                                                                        }
-                                                                                                                        {ReactHtmlParser(contentFirst.output)}
-                                                                                                                    </div>
-                                                                                                                }
-                                                                                                            </>
-                                                                                                        )}
-                                                                                                    </Draggable>
-                                                                                                ))
-                                                                                            }
-                                                                                        </div>
-                                                                                                
+                                                                                                                            }
+                                                                                                                            {ReactHtmlParser(contentFirst.output)}
+                                                                                                                        </div>
+                                                                                                                    }
+                                                                                                                </>
+                                                                                                            )}
+                                                                                                        </Draggable>
+                                                                                                    ))
+                                                                                                }
+                                                                                            </div>
+                                                                                                    
+                                                                                        :
+                                                                                            <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
+                                                                                                {item.name}
+                                                                                            </div>
                                                                                     :
+
                                                                                         <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                             {item.name}
                                                                                         </div>
-                                                                                :
-
-                                                                                    <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
-                                                                                        {item.name}
-                                                                                    </div>
-                                                                            }
-                                                                            {provided.placeholder}
-                                                                        </div>
-                                                                    )}
-                                                                </Droppable>
-                                                            :
-                                                                item.grid === 1 ?
-                                                                    <div key={Math.random()} className="container p-0 pb-3">
-                                                                        {/* Second Size */}
-                                                                        <div className="row w-100 m-0">
-                                                                            <Droppable droppableId={item.id + '-sg-1-2-1'}>
-                                                                                {(provided) => (
-                                                                                    <div 
-                                                                                    key={'sg-1-2-1-' + index} 
-                                                                                    ref={provided.innerRef} 
-                                                                                    id={'sg-1-2-1-' + index} 
-                                                                                    className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
-                                                                                >
-                                                                                        {
-                                                                                            typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                                                item.content['subColumnOne'].length > 0 ?
-                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                        <div 
-                                                                                                            key={'sg-1-2-1-content-output-' + contentFirstIndex} 
-                                                                                                            id={
-                                                                                                                contentFirst.id ? 
-                                                                                                                    contentFirst.id 
-                                                                                                                : 
-                                                                                                                    'sg-1-2-1-content-output-' + contentFirstIndex
-                                                                                                            } 
-                                                                                                            className={
-                                                                                                                contentFirst.class ? 
-                                                                                                                    contentFirst.class + " content-output"
-                                                                                                                : 
-                                                                                                                    "content-output"
-                                                                                                            }  
-                                                                                                            onClick={() => 
-                                                                                                                contentPaneClick(
-                                                                                                                    index, 
-                                                                                                                    contentFirstIndex, 
-                                                                                                                    contentFirst.id ? 
-                                                                                                                        contentFirst.id 
-                                                                                                                    : 
-                                                                                                                        'sg-1-2-1-content-output-' + contentFirstIndex, 
-                                                                                                                    'subColumnOne'
-                                                                                                                )
-                                                                                                            }
-                                                                                                        >
-                                                                                                            {
-                                                                                                                contentFirst.css ? 
-                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                        cssApplier(
-                                                                                                                            contentFirst.css, 
-                                                                                                                            contentFirst.id ? 
-                                                                                                                                contentFirst.id 
-                                                                                                                            : 
-                                                                                                                                'sg-1-2-1-content-output-' + contentFirstIndex  
-                                                                                                                    )
-                                                                                                                    :
-                                                                                                                        null
-                                                                                                                : 
-                                                                                                                    null
-                                                                                                            }
-                                                                                                            {ReactHtmlParser(contentFirst.output)}
-                                                                                                        </div>
-                                                                                                    ))
-                                                                                                :
-                                                                                                    item.name
-                                                                                            :
-                                                                                                item.name
-                                                                                        }
-                                                                                        {provided.placeholder}
-                                                                                    </div>
-                                                                                )}
-                                                                            </Droppable>
-                                                                            <Droppable droppableId={item.id + '-sg-1-2-2'}>
-                                                                                {(provided) => (
-                                                                                    <div 
-                                                                                        key={'sg-1-2-2-' + index} 
-                                                                                        ref={provided.innerRef} 
-                                                                                        id={'sg-1-2-2-' + index} 
-                                                                                        className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="1"
-                                                                                    >
-                                                                                        {
-                                                                                            typeof item.content['subColumnTwo'] != "undefined" ? 
-                                                                                                item.content['subColumnTwo'].length > 0 ?
-                                                                                                    item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                        <div 
-                                                                                                            key={'sg-1-2-2-content-output-' + contentSecondIndex} 
-                                                                                                            id={
-                                                                                                                contentSecond.id ? 
-                                                                                                                    contentSecond.id 
-                                                                                                                : 
-                                                                                                                    'sg-1-2-2-content-output-' + contentSecondIndex
-                                                                                                            } 
-                                                                                                            className={
-                                                                                                                contentSecond.class ? 
-                                                                                                                    contentSecond.class + " content-output"
-                                                                                                                : 
-                                                                                                                    "content-output"
-                                                                                                            } 
-                                                                                                            onClick={() => 
-                                                                                                                contentPaneClick(
-                                                                                                                    index, 
-                                                                                                                    contentSecondIndex, 
-                                                                                                                    contentSecond.id ? 
-                                                                                                                        contentSecond.id 
-                                                                                                                    : 
-                                                                                                                        'sg-1-2-2-content-output-' + contentSecondIndex, 
-                                                                                                                    'subColumnTwo'
-                                                                                                                )
-                                                                                                            }
-                                                                                                        >
-                                                                                                            {
-                                                                                                                contentSecond.css ? 
-                                                                                                                    contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                        cssApplier(
-                                                                                                                            contentSecond.css, 
-                                                                                                                            contentSecond.id ? 
-                                                                                                                                contentSecond.id 
-                                                                                                                            : 
-                                                                                                                                'sg-1-2-2-content-output-' + contentSecondIndex
-                                                                                                                        )
-                                                                                                                    :
-                                                                                                                        null
-                                                                                                                : 
-                                                                                                                    null
-                                                                                                            }
-                                                                                                            {ReactHtmlParser(contentSecond.output)}
-                                                                                                        </div>
-                                                                                                    ))
-                                                                                                :
-                                                                                                    item.name
-                                                                                            :
-                                                                                                item.name
-                                                                                        }
-                                                                                        {provided.placeholder}
-                                                                                    </div>
-                                                                                )}
-                                                                            </Droppable>
-                                                                        </div>
-                                                                    </div>
+                                                                                }
+                                                                                {provided.placeholder}
+                                                                            </div>
+                                                                        )}
+                                                                    </Droppable>
                                                                 :
-                                                                    item.grid === 2 ?
-                                                                        
+                                                                    item.grid === 1 ?
                                                                         <div key={Math.random()} className="container p-0 pb-3">
-                                                                            {/* Third Size */}
+                                                                            {/* Second Size */}
                                                                             <div className="row w-100 m-0">
-                                                                                <Droppable droppableId={item.id + '-sg-1-3-1'}>
+                                                                                <Droppable droppableId={item.id + '-sg-1-2-1'}>
                                                                                     {(provided) => (
                                                                                         <div 
-                                                                                            key={'sg-1-3-1-' + index} 
-                                                                                            ref={provided.innerRef} 
-                                                                                            id={'sg-1-3-1-' + index} 
-                                                                                            className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
-                                                                                        >
+                                                                                        key={'sg-1-2-1-' + index} 
+                                                                                        ref={provided.innerRef} 
+                                                                                        id={'sg-1-2-1-' + index} 
+                                                                                        className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
+                                                                                    >
                                                                                             {
                                                                                                 typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                                     item.content['subColumnOne'].length > 0 ?
                                                                                                         item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
                                                                                                             <div 
-                                                                                                                key={'sg-1-3-1-content-output-' + contentFirstIndex} 
+                                                                                                                key={'sg-1-2-1-content-output-' + contentFirstIndex} 
                                                                                                                 id={
                                                                                                                     contentFirst.id ? 
                                                                                                                         contentFirst.id 
                                                                                                                     : 
-                                                                                                                        'sg-1-3-1-content-output-' + contentFirstIndex
+                                                                                                                        'sg-1-2-1-content-output-' + contentFirstIndex
                                                                                                                 } 
                                                                                                                 className={
                                                                                                                     contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output" 
+                                                                                                                        contentFirst.class + " content-output"
                                                                                                                     : 
                                                                                                                         "content-output"
-                                                                                                                } 
+                                                                                                                }  
                                                                                                                 onClick={() => 
-                                                                                                                    contentPaneClick(
+                                                                                                                    this.contentPaneClick(
                                                                                                                         index, 
                                                                                                                         contentFirstIndex, 
                                                                                                                         contentFirst.id ? 
                                                                                                                             contentFirst.id 
                                                                                                                         : 
-                                                                                                                            'sg-1-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                            'sg-1-2-1-content-output-' + contentFirstIndex, 
                                                                                                                         'subColumnOne'
                                                                                                                     )
                                                                                                                 }
@@ -1635,13 +1663,13 @@ function SlideHandler (props) {
                                                                                                                 {
                                                                                                                     contentFirst.css ? 
                                                                                                                         contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                            cssApplier(
+                                                                                                                            this.cssApplier(
                                                                                                                                 contentFirst.css, 
                                                                                                                                 contentFirst.id ? 
                                                                                                                                     contentFirst.id 
                                                                                                                                 : 
-                                                                                                                                    'sg-1-3-1-content-output-' + contentFirstIndex
-                                                                                                                            )
+                                                                                                                                    'sg-1-2-1-content-output-' + contentFirstIndex  
+                                                                                                                        )
                                                                                                                         :
                                                                                                                             null
                                                                                                                     : 
@@ -1659,40 +1687,40 @@ function SlideHandler (props) {
                                                                                         </div>
                                                                                     )}
                                                                                 </Droppable>
-                                                                                <Droppable droppableId={item.id + '-sg-2-3-2'}>
+                                                                                <Droppable droppableId={item.id + '-sg-1-2-2'}>
                                                                                     {(provided) => (
                                                                                         <div 
-                                                                                            key={'sg-2-3-2-' + index} 
+                                                                                            key={'sg-1-2-2-' + index} 
                                                                                             ref={provided.innerRef} 
-                                                                                            id={'sg-2-3-2-' + index} 
-                                                                                            className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="1"
+                                                                                            id={'sg-1-2-2-' + index} 
+                                                                                            className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="1"
                                                                                         >
                                                                                             {
                                                                                                 typeof item.content['subColumnTwo'] != "undefined" ? 
                                                                                                     item.content['subColumnTwo'].length > 0 ?
                                                                                                         item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
                                                                                                             <div 
-                                                                                                                key={'sg-2-3-2-content-output-' + contentSecondIndex} 
+                                                                                                                key={'sg-1-2-2-content-output-' + contentSecondIndex} 
                                                                                                                 id={
                                                                                                                     contentSecond.id ? 
                                                                                                                         contentSecond.id 
                                                                                                                     : 
-                                                                                                                        'sg-2-3-2-content-output-' + contentSecondIndex
+                                                                                                                        'sg-1-2-2-content-output-' + contentSecondIndex
                                                                                                                 } 
                                                                                                                 className={
                                                                                                                     contentSecond.class ? 
-                                                                                                                        contentSecond.class + " content-output" 
+                                                                                                                        contentSecond.class + " content-output"
                                                                                                                     : 
                                                                                                                         "content-output"
                                                                                                                 } 
                                                                                                                 onClick={() => 
-                                                                                                                    contentPaneClick(
+                                                                                                                    this.contentPaneClick(
                                                                                                                         index, 
                                                                                                                         contentSecondIndex, 
                                                                                                                         contentSecond.id ? 
                                                                                                                             contentSecond.id 
                                                                                                                         : 
-                                                                                                                            'sg-2-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                            'sg-1-2-2-content-output-' + contentSecondIndex, 
                                                                                                                         'subColumnTwo'
                                                                                                                     )
                                                                                                                 }
@@ -1700,12 +1728,12 @@ function SlideHandler (props) {
                                                                                                                 {
                                                                                                                     contentSecond.css ? 
                                                                                                                         contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                            cssApplier(
+                                                                                                                            this.cssApplier(
                                                                                                                                 contentSecond.css, 
                                                                                                                                 contentSecond.id ? 
                                                                                                                                     contentSecond.id 
                                                                                                                                 : 
-                                                                                                                                    'sg-2-3-2-content-output-' + contentSecondIndex
+                                                                                                                                    'sg-1-2-2-content-output-' + contentSecondIndex
                                                                                                                             )
                                                                                                                         :
                                                                                                                             null
@@ -1727,30 +1755,30 @@ function SlideHandler (props) {
                                                                             </div>
                                                                         </div>
                                                                     :
-                                                                        item.grid === 3 ?
+                                                                        item.grid === 2 ?
                                                                             
                                                                             <div key={Math.random()} className="container p-0 pb-3">
-                                                                                {/* Fourth Size */}
+                                                                                {/* Third Size */}
                                                                                 <div className="row w-100 m-0">
-                                                                                    <Droppable droppableId={item.id + '-sg-2-3-1'}>
+                                                                                    <Droppable droppableId={item.id + '-sg-1-3-1'}>
                                                                                         {(provided) => (
                                                                                             <div 
-                                                                                                key={'sg-2-3-1-' + index} 
+                                                                                                key={'sg-1-3-1-' + index} 
                                                                                                 ref={provided.innerRef} 
-                                                                                                id={'sg-2-3-1-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="0"
+                                                                                                id={'sg-1-3-1-' + index} 
+                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                                         item.content['subColumnOne'].length > 0 ?
                                                                                                             item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
                                                                                                                 <div 
-                                                                                                                    key={'sg-2-3-1-content-output-' + contentFirstIndex} 
+                                                                                                                    key={'sg-1-3-1-content-output-' + contentFirstIndex} 
                                                                                                                     id={
                                                                                                                         contentFirst.id ? 
                                                                                                                             contentFirst.id 
                                                                                                                         : 
-                                                                                                                            'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                            'sg-1-3-1-content-output-' + contentFirstIndex
                                                                                                                     } 
                                                                                                                     className={
                                                                                                                         contentFirst.class ? 
@@ -1759,13 +1787,13 @@ function SlideHandler (props) {
                                                                                                                             "content-output"
                                                                                                                     } 
                                                                                                                     onClick={() => 
-                                                                                                                        contentPaneClick(
+                                                                                                                        this.contentPaneClick(
                                                                                                                             index, 
                                                                                                                             contentFirstIndex, 
                                                                                                                             contentFirst.id ? 
                                                                                                                                 contentFirst.id 
                                                                                                                             : 
-                                                                                                                                'sg-2-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                'sg-1-3-1-content-output-' + contentFirstIndex, 
                                                                                                                             'subColumnOne'
                                                                                                                         )
                                                                                                                     }
@@ -1773,12 +1801,12 @@ function SlideHandler (props) {
                                                                                                                     {
                                                                                                                         contentFirst.css ? 
                                                                                                                             contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                cssApplier(
+                                                                                                                                this.cssApplier(
                                                                                                                                     contentFirst.css, 
                                                                                                                                     contentFirst.id ? 
                                                                                                                                         contentFirst.id 
                                                                                                                                     : 
-                                                                                                                                        'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                                        'sg-1-3-1-content-output-' + contentFirstIndex
                                                                                                                                 )
                                                                                                                             :
                                                                                                                                 null
@@ -1797,25 +1825,25 @@ function SlideHandler (props) {
                                                                                             </div>
                                                                                         )}
                                                                                     </Droppable>
-                                                                                    <Droppable droppableId={item.id + '-sg-1-3-2'}>
+                                                                                    <Droppable droppableId={item.id + '-sg-2-3-2'}>
                                                                                         {(provided) => (
                                                                                             <div 
-                                                                                                key={'sg-1-3-2-' + index} 
+                                                                                                key={'sg-2-3-2-' + index} 
                                                                                                 ref={provided.innerRef} 
-                                                                                                id={'sg-1-3-2-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
+                                                                                                id={'sg-2-3-2-' + index} 
+                                                                                                className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="1"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnTwo'] != "undefined" ? 
                                                                                                         item.content['subColumnTwo'].length > 0 ?
                                                                                                             item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
                                                                                                                 <div 
-                                                                                                                    key={'sg-1-3-2-content-output-' + contentSecondIndex} 
+                                                                                                                    key={'sg-2-3-2-content-output-' + contentSecondIndex} 
                                                                                                                     id={
                                                                                                                         contentSecond.id ? 
                                                                                                                             contentSecond.id 
                                                                                                                         : 
-                                                                                                                            'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                            'sg-2-3-2-content-output-' + contentSecondIndex
                                                                                                                     } 
                                                                                                                     className={
                                                                                                                         contentSecond.class ? 
@@ -1824,13 +1852,13 @@ function SlideHandler (props) {
                                                                                                                             "content-output"
                                                                                                                     } 
                                                                                                                     onClick={() => 
-                                                                                                                        contentPaneClick(
+                                                                                                                        this.contentPaneClick(
                                                                                                                             index, 
                                                                                                                             contentSecondIndex, 
                                                                                                                             contentSecond.id ? 
                                                                                                                                 contentSecond.id 
                                                                                                                             : 
-                                                                                                                                'sg-1-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                'sg-2-3-2-content-output-' + contentSecondIndex, 
                                                                                                                             'subColumnTwo'
                                                                                                                         )
                                                                                                                     }
@@ -1838,12 +1866,12 @@ function SlideHandler (props) {
                                                                                                                     {
                                                                                                                         contentSecond.css ? 
                                                                                                                             contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                cssApplier(
+                                                                                                                                this.cssApplier(
                                                                                                                                     contentSecond.css, 
                                                                                                                                     contentSecond.id ? 
                                                                                                                                         contentSecond.id 
                                                                                                                                     : 
-                                                                                                                                        'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                                        'sg-2-3-2-content-output-' + contentSecondIndex
                                                                                                                                 )
                                                                                                                             :
                                                                                                                                 null
@@ -1864,868 +1892,1007 @@ function SlideHandler (props) {
                                                                                     </Droppable>
                                                                                 </div>
                                                                             </div>
-                                                                                
                                                                         :
-                                                                            item.grid === 4 ?
+                                                                            item.grid === 3 ?
                                                                                 
                                                                                 <div key={Math.random()} className="container p-0 pb-3">
-                                                                                    {/* Fifth Size */}
+                                                                                    {/* Fourth Size */}
                                                                                     <div className="row w-100 m-0">
-                                                                                    <Droppable droppableId={item.id + '-sg-1-3-1-1'}>
-                                                                                        {(provided) => (
-                                                                                            <div 
-                                                                                                key={'sg-1-3-1-1-' + index} 
-                                                                                                ref={provided.innerRef} 
-                                                                                                id={'sg-1-3-1-1-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
-                                                                                            >
-                                                                                                {
-                                                                                                    typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                                                        item.content['subColumnOne'].length > 0 ?
-                                                                                                            item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                <div 
-                                                                                                                    key={'sg-1-3-1-1-content-output-' + contentFirstIndex} 
-                                                                                                                    id={
-                                                                                                                        contentFirst.id ? 
-                                                                                                                            contentFirst.id
-                                                                                                                        : 
-                                                                                                                            'sg-1-3-1-1-content-output-' + contentFirstIndex
-                                                                                                                    } 
-                                                                                                                    className={
-                                                                                                                        contentFirst.class ? 
-                                                                                                                            contentFirst.class + " content-output" 
-                                                                                                                        : 
-                                                                                                                            "content-output"
-                                                                                                                    } 
-                                                                                                                    onClick={() => 
-                                                                                                                        contentPaneClick(
-                                                                                                                            index, 
-                                                                                                                            contentFirstIndex, 
+                                                                                        <Droppable droppableId={item.id + '-sg-2-3-1'}>
+                                                                                            {(provided) => (
+                                                                                                <div 
+                                                                                                    key={'sg-2-3-1-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-2-3-1-' + index} 
+                                                                                                    className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="0"
+                                                                                                >
+                                                                                                    {
+                                                                                                        typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                            item.content['subColumnOne'].length > 0 ?
+                                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                    <div 
+                                                                                                                        key={'sg-2-3-1-content-output-' + contentFirstIndex} 
+                                                                                                                        id={
                                                                                                                             contentFirst.id ? 
-                                                                                                                                contentFirst.id
+                                                                                                                                contentFirst.id 
                                                                                                                             : 
-                                                                                                                                'sg-1-3-1-1-content-output-' + contentFirstIndex, 
-                                                                                                                            'subColumnOne'
-                                                                                                                        )
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {
-                                                                                                                        contentFirst.css ? 
-                                                                                                                            contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                cssApplier(
-                                                                                                                                    contentFirst.css, 
-                                                                                                                                    contentFirst.id ? 
-                                                                                                                                        contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-3-1-1-content-output-' + contentFirstIndex
-                                                                                                                                )
-                                                                                                                            :
+                                                                                                                                'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output" 
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-2-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {
+                                                                                                                            contentFirst.css ? 
+                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentFirst.css, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id 
+                                                                                                                                        : 
+                                                                                                                                            'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                                    )
+                                                                                                                                :
+                                                                                                                                    null
+                                                                                                                            : 
                                                                                                                                 null
-                                                                                                                        : 
-                                                                                                                            null
-                                                                                                                    }
-                                                                                                                    {ReactHtmlParser(contentFirst.output)}
-                                                                                                                </div>
-                                                                                                            ))
+                                                                                                                        }
+                                                                                                                        {ReactHtmlParser(contentFirst.output)}
+                                                                                                                    </div>
+                                                                                                                ))
+                                                                                                            :
+                                                                                                                item.name
                                                                                                         :
                                                                                                             item.name
-                                                                                                    :
-                                                                                                        item.name
-                                                                                                }
-                                                                                                {provided.placeholder}
-                                                                                            </div>
-                                                                                        )}
-                                                                                    </Droppable>
-                                                                                    <Droppable droppableId={item.id + '-sg-1-3-1-2'}>
-                                                                                        {(provided) => (
-                                                                                            <div 
-                                                                                                key={'sg-1-3-1-2-' + index} 
-                                                                                                ref={provided.innerRef} 
-                                                                                                id={'sg-1-3-1-2-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
-                                                                                            >
-                                                                                                {
-                                                                                                    typeof item.content['subColumnTwo'] != "undefined" ? 
-                                                                                                        item.content['subColumnTwo'].length > 0 ?
-                                                                                                            item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                <div 
-                                                                                                                    key={'sg-1-3-1-2-content-output-' + contentSecondIndex} 
-                                                                                                                    id={
-                                                                                                                        contentSecond.id ? 
-                                                                                                                            contentSecond.id
-                                                                                                                        : 
-                                                                                                                            'sg-1-3-1-2-content-output-' + contentSecondIndex
-                                                                                                                    } 
-                                                                                                                    className={
-                                                                                                                        contentSecond.class ? 
-                                                                                                                            contentSecond.class + " content-output" 
-                                                                                                                        : 
-                                                                                                                            "content-output"
-                                                                                                                    } 
-                                                                                                                    onClick={() => 
-                                                                                                                        contentPaneClick(
-                                                                                                                            index, 
-                                                                                                                            contentSecondIndex, 
+                                                                                                    }
+                                                                                                    {provided.placeholder}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
+                                                                                        <Droppable droppableId={item.id + '-sg-1-3-2'}>
+                                                                                            {(provided) => (
+                                                                                                <div 
+                                                                                                    key={'sg-1-3-2-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-2-' + index} 
+                                                                                                    className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
+                                                                                                >
+                                                                                                    {
+                                                                                                        typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                            item.content['subColumnTwo'].length > 0 ?
+                                                                                                                item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                    <div 
+                                                                                                                        key={'sg-1-3-2-content-output-' + contentSecondIndex} 
+                                                                                                                        id={
                                                                                                                             contentSecond.id ? 
-                                                                                                                                contentSecond.id
+                                                                                                                                contentSecond.id 
                                                                                                                             : 
-                                                                                                                                'sg-1-3-1-2-content-output-' + contentSecondIndex, 
-                                                                                                                            'subColumnTwo'
-                                                                                                                        )
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {
-                                                                                                                        contentSecond.css ? 
-                                                                                                                            contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                cssApplier(
-                                                                                                                                    contentSecond.css, 
-                                                                                                                                    contentSecond.id ? 
-                                                                                                                                        contentSecond.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-3-1-2-content-output-' + contentSecondIndex
-                                                                                                                                )
-                                                                                                                            :
+                                                                                                                                'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentSecond.class ? 
+                                                                                                                                contentSecond.class + " content-output" 
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentSecondIndex, 
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id 
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                'subColumnTwo'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {
+                                                                                                                            contentSecond.css ? 
+                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' ?
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentSecond.css, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id 
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                                    )
+                                                                                                                                :
+                                                                                                                                    null
+                                                                                                                            : 
                                                                                                                                 null
-                                                                                                                        : 
-                                                                                                                            null
-                                                                                                                    }
-                                                                                                                    {ReactHtmlParser(contentSecond.output)}
-                                                                                                                </div>
-                                                                                                            ))
+                                                                                                                        }
+                                                                                                                        {ReactHtmlParser(contentSecond.output)}
+                                                                                                                    </div>
+                                                                                                                ))
+                                                                                                            :
+                                                                                                                item.name
                                                                                                         :
                                                                                                             item.name
-                                                                                                    :
-                                                                                                        item.name
-                                                                                                }
-                                                                                                {provided.placeholder}
-                                                                                            </div>
-                                                                                        )}
-                                                                                    </Droppable>
-                                                                                    <Droppable droppableId={item.id + '-sg-1-3-1-3'}>
-                                                                                        {(provided) => (
-                                                                                            <div 
-                                                                                                key={'sg-1-3-1-3-' + index} 
-                                                                                                ref={provided.innerRef} 
-                                                                                                id={'sg-1-3-1-3-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="2"
-                                                                                            >
-                                                                                                {
-                                                                                                    typeof item.content['subColumnThree'] != "undefined" ? 
-                                                                                                        item.content['subColumnThree'].length > 0 ?
-                                                                                                            item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                <div 
-                                                                                                                    key={'sg-1-3-1-3-content-output-' + contentThirdIndex} 
-                                                                                                                    id={
-                                                                                                                        contentThird.id ? 
-                                                                                                                            contentThird.id
-                                                                                                                        : 
-                                                                                                                            'sg-1-3-1-3-content-output-' + contentThirdIndex
-                                                                                                                    } 
-                                                                                                                    className={
-                                                                                                                        contentThird.class ? 
-                                                                                                                            contentThird.class + " content-output" 
-                                                                                                                        : 
-                                                                                                                            "content-output"
-                                                                                                                    } 
-                                                                                                                    onClick={() => 
-                                                                                                                        contentPaneClick(
-                                                                                                                            index, 
-                                                                                                                            contentThirdIndex, 
-                                                                                                                            contentThird.id ? 
-                                                                                                                                contentThird.id
-                                                                                                                            : 
-                                                                                                                                'sg-1-3-1-3-content-output-' + contentThirdIndex, 
-                                                                                                                            'subColumnThree'
-                                                                                                                        )
-                                                                                                                    }
-                                                                                                                >
-                                                                                                                    {
-                                                                                                                        contentThird.css ? 
-                                                                                                                            contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                cssApplier(
-                                                                                                                                    contentThird.css, 
-                                                                                                                                    contentThird.id ? 
-                                                                                                                                        contentThird.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-3-1-3-content-output-' + contentThirdIndex
-                                                                                                                                )
-                                                                                                                            :
-                                                                                                                                null
-                                                                                                                        : 
-                                                                                                                            null
-                                                                                                                    }
-                                                                                                                    {ReactHtmlParser(contentThird.output)}
-                                                                                                                </div>
-                                                                                                            ))
-                                                                                                        :
-                                                                                                            item.name
-                                                                                                    :
-                                                                                                        item.name
-                                                                                                }
-                                                                                                {provided.placeholder}
-                                                                                            </div>
-                                                                                        )}
-                                                                                    </Droppable>
+                                                                                                    }
+                                                                                                    {provided.placeholder}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
                                                                                     </div>
                                                                                 </div>
                                                                                     
                                                                             :
-                                                                                item.grid === 5 ?
+                                                                                item.grid === 4 ?
                                                                                     
                                                                                     <div key={Math.random()} className="container p-0 pb-3">
-                                                                                        {/* Sixth Size */}
+                                                                                        {/* Fifth Size */}
                                                                                         <div className="row w-100 m-0">
-                                                                                            <Droppable droppableId={item.id + '-sg-1-4-1'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-4-1-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-4-1-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="0"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                                                                item.content['subColumnOne'].length > 0 ?
-                                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-4-1-content-output-' + contentFirstIndex} 
-                                                                                                                            id={
+                                                                                        <Droppable droppableId={item.id + '-sg-1-3-1-1'}>
+                                                                                            {(provided) => (
+                                                                                                <div 
+                                                                                                    key={'sg-1-3-1-1-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-1-' + index} 
+                                                                                                    className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
+                                                                                                >
+                                                                                                    {
+                                                                                                        typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                            item.content['subColumnOne'].length > 0 ?
+                                                                                                                item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                    <div 
+                                                                                                                        key={'sg-1-3-1-1-content-output-' + contentFirstIndex} 
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                'sg-1-3-1-1-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output" 
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
                                                                                                                                 contentFirst.id ? 
                                                                                                                                     contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-1-content-output-' + contentFirstIndex, 
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {
+                                                                                                                            contentFirst.css ? 
+                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentFirst.css, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-1-content-output-' + contentFirstIndex
+                                                                                                                                    )
                                                                                                                                 :
-                                                                                                                                    'sg-1-4-1-content-output-' + contentFirstIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFirst.class ? 
-                                                                                                                                    contentFirst.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFirstIndex, 
-                                                                                                                                    contentFirst.id ? 
-                                                                                                                                        contentFirst.id
-                                                                                                                                    :
-                                                                                                                                        'sg-1-4-1-content-output-' + contentFirstIndex, 
-                                                                                                                                    'subColumnOne'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentFirst.css ? 
-                                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentFirst.css, 
-                                                                                                                                            contentFirst.id ? 
-                                                                                                                                                contentFirst.id
-                                                                                                                                            :
-                                                                                                                                                'sg-1-4-1-content-output-' + contentFirstIndex
-                                                                                                                                        )
-                                                                                                                                    :
-                                                                                                                                        null
-                                                                                                                                : 
                                                                                                                                     null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFirst.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
-                                                                                                                :
-                                                                                                                    item.name
+                                                                                                                            : 
+                                                                                                                                null
+                                                                                                                        }
+                                                                                                                        {ReactHtmlParser(contentFirst.output)}
+                                                                                                                    </div>
+                                                                                                                ))
                                                                                                             :
                                                                                                                 item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-4-2'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-4-2-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-4-2-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="1"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnTwo'] != "undefined" ? 
-                                                                                                                item.content['subColumnTwo'].length > 0 ?
-                                                                                                                    item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-4-2-content-output-' + contentSecondIndex} 
-                                                                                                                            id={
+                                                                                                        :
+                                                                                                            item.name
+                                                                                                    }
+                                                                                                    {provided.placeholder}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
+                                                                                        <Droppable droppableId={item.id + '-sg-1-3-1-2'}>
+                                                                                            {(provided) => (
+                                                                                                <div 
+                                                                                                    key={'sg-1-3-1-2-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-2-' + index} 
+                                                                                                    className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
+                                                                                                >
+                                                                                                    {
+                                                                                                        typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                            item.content['subColumnTwo'].length > 0 ?
+                                                                                                                item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                    <div 
+                                                                                                                        key={'sg-1-3-1-2-content-output-' + contentSecondIndex} 
+                                                                                                                        id={
+                                                                                                                            contentSecond.id ? 
+                                                                                                                                contentSecond.id
+                                                                                                                            : 
+                                                                                                                                'sg-1-3-1-2-content-output-' + contentSecondIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentSecond.class ? 
+                                                                                                                                contentSecond.class + " content-output" 
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentSecondIndex, 
                                                                                                                                 contentSecond.id ? 
                                                                                                                                     contentSecond.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-4-2-content-output-' + contentSecondIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentSecond.class ? 
-                                                                                                                                    contentSecond.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentSecondIndex, 
-                                                                                                                                    contentSecond.id ? 
-                                                                                                                                        contentSecond.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-4-2-content-output-' + contentSecondIndex, 
-                                                                                                                                    'subColumnTwo'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentSecond.css ? 
-                                                                                                                                    contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentSecond.css, 
-                                                                                                                                            contentSecond.id ? 
-                                                                                                                                                contentSecond.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-4-2-content-output-' + contentSecondIndex
-                                                                                                                                        )
-                                                                                                                                    :
-                                                                                                                                        null
-                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-2-content-output-' + contentSecondIndex, 
+                                                                                                                                'subColumnTwo'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {
+                                                                                                                            contentSecond.css ? 
+                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' ?
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentSecond.css, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-2-content-output-' + contentSecondIndex
+                                                                                                                                    )
+                                                                                                                                :
                                                                                                                                     null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentSecond.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
-                                                                                                                :
-                                                                                                                    item.name
+                                                                                                                            : 
+                                                                                                                                null
+                                                                                                                        }
+                                                                                                                        {ReactHtmlParser(contentSecond.output)}
+                                                                                                                    </div>
+                                                                                                                ))
                                                                                                             :
                                                                                                                 item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-4-3'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-4-3-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-4-3-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="2"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnThree'] != "undefined" ? 
-                                                                                                                item.content['subColumnThree'].length > 0 ?
-                                                                                                                    item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-4-3-content-output-' + contentThirdIndex} 
-                                                                                                                            id={
+                                                                                                        :
+                                                                                                            item.name
+                                                                                                    }
+                                                                                                    {provided.placeholder}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
+                                                                                        <Droppable droppableId={item.id + '-sg-1-3-1-3'}>
+                                                                                            {(provided) => (
+                                                                                                <div 
+                                                                                                    key={'sg-1-3-1-3-' + index} 
+                                                                                                    ref={provided.innerRef} 
+                                                                                                    id={'sg-1-3-1-3-' + index} 
+                                                                                                    className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="2"
+                                                                                                >
+                                                                                                    {
+                                                                                                        typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                            item.content['subColumnThree'].length > 0 ?
+                                                                                                                item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                    <div 
+                                                                                                                        key={'sg-1-3-1-3-content-output-' + contentThirdIndex} 
+                                                                                                                        id={
+                                                                                                                            contentThird.id ? 
+                                                                                                                                contentThird.id
+                                                                                                                            : 
+                                                                                                                                'sg-1-3-1-3-content-output-' + contentThirdIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentThird.class ? 
+                                                                                                                                contentThird.class + " content-output" 
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentThirdIndex, 
                                                                                                                                 contentThird.id ? 
                                                                                                                                     contentThird.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-4-3-content-output-' + contentThirdIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentThird.class ? 
-                                                                                                                                    contentThird.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentThirdIndex, 
-                                                                                                                                    contentThird.id ? 
-                                                                                                                                        contentThird.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-4-3-content-output-' + contentThirdIndex, 
-                                                                                                                                    'subColumnThree'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentThird.css ? 
-                                                                                                                                    contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentThird.css, 
-                                                                                                                                            contentThird.id ? 
-                                                                                                                                                contentThird.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-4-3-content-output-' + contentThirdIndex
-                                                                                                                                        )
-                                                                                                                                    :
-                                                                                                                                        null
-                                                                                                                                : 
+                                                                                                                                    'sg-1-3-1-3-content-output-' + contentThirdIndex, 
+                                                                                                                                'subColumnThree'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        {
+                                                                                                                            contentThird.css ? 
+                                                                                                                                contentThird.css[contentThird.css.length - 1] === '}' ?
+                                                                                                                                    this.cssApplier(
+                                                                                                                                        contentThird.css, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-3-1-3-content-output-' + contentThirdIndex
+                                                                                                                                    )
+                                                                                                                                :
                                                                                                                                     null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentThird.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
-                                                                                                                :
-                                                                                                                    item.name
+                                                                                                                            : 
+                                                                                                                                null
+                                                                                                                        }
+                                                                                                                        {ReactHtmlParser(contentThird.output)}
+                                                                                                                    </div>
+                                                                                                                ))
                                                                                                             :
                                                                                                                 item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-4-4'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-4-4-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-4-4-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="3"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnFour'] != "undefined" ? 
-                                                                                                                item.content['subColumnFour'].length > 0 ?
-                                                                                                                    item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-4-4-content-output-' + contentFourthIndex} 
-                                                                                                                            id={
-                                                                                                                                contentFourth.id ? 
-                                                                                                                                    contentFourth.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFourth.class ? 
-                                                                                                                                    contentFourth.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFourthIndex, 
-                                                                                                                                    contentFourth.id ? 
-                                                                                                                                        contentFourth.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex, 
-                                                                                                                                    'subColumnFour'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentFourth.css ? 
-                                                                                                                                    contentFourth.css[contentFourth.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentFourth.css, 
-                                                                                                                                            contentFourth.id ? 
-                                                                                                                                                contentFourth.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-4-4-content-output-' + contentFourthIndex
-                                                                                                                                        )
-                                                                                                                                    :
-                                                                                                                                        null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFourth.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
-                                                                                                                :
-                                                                                                                    item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
+                                                                                                        :
+                                                                                                            item.name
+                                                                                                    }
+                                                                                                    {provided.placeholder}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Droppable>
                                                                                         </div>
                                                                                     </div>
                                                                                         
                                                                                 :
-                                                                                    
-                                                                                    <div key={Math.random()} className="container p-0 pb-3">
-                                                                                        {/* Seventh Size */}
-                                                                                        <div className="row w-100 m-0">
-                                                                                            <Droppable droppableId={item.id + '-sg-1-5-1'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-5-1-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-5-1-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                                                                item.content['subColumnOne'].length > 0 ?
-                                                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-5-1-content-output-' + contentFirstIndex} 
-                                                                                                                            id={
-                                                                                                                                contentFirst.id ? 
-                                                                                                                                    contentFirst.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-5-1-content-output-' + contentFirstIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFirst.class ? 
-                                                                                                                                    contentFirst.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFirstIndex, 
+                                                                                    item.grid === 5 ?
+                                                                                        
+                                                                                        <div key={Math.random()} className="container p-0 pb-3">
+                                                                                            {/* Sixth Size */}
+                                                                                            <div className="row w-100 m-0">
+                                                                                                <Droppable droppableId={item.id + '-sg-1-4-1'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-4-1-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-1-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="0"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                                    item.content['subColumnOne'].length > 0 ?
+                                                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-4-1-content-output-' + contentFirstIndex} 
+                                                                                                                                id={
                                                                                                                                     contentFirst.id ? 
                                                                                                                                         contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex, 
-                                                                                                                                    'subColumnOne'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentFirst.css ? 
-                                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentFirst.css, 
-                                                                                                                                            contentFirst.id ? 
-                                                                                                                                                contentFirst.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-5-1-content-output-' + contentFirstIndex
-                                                                                                                                        )
                                                                                                                                     :
+                                                                                                                                        'sg-1-4-1-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        :
+                                                                                                                                            'sg-1-4-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentFirst.css ? 
+                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFirst.css, 
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                :
+                                                                                                                                                    'sg-1-4-1-content-output-' + contentFirstIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
                                                                                                                                         null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFirst.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentFirst.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-5-2'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-5-2-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-5-2-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnTwo'] != "undefined" ? 
-                                                                                                                item.content['subColumnTwo'].length > 0 ?
-                                                                                                                    item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-5-2-content-output-' + contentSecondIndex} 
-                                                                                                                            id={
-                                                                                                                                contentSecond.id ? 
-                                                                                                                                    contentSecond.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-5-2-content-output-' + contentSecondIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentSecond.class ? 
-                                                                                                                                    contentSecond.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentSecondIndex, 
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-4-2'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-4-2-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-2-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="1"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                                    item.content['subColumnTwo'].length > 0 ?
+                                                                                                                        item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-4-2-content-output-' + contentSecondIndex} 
+                                                                                                                                id={
                                                                                                                                     contentSecond.id ? 
                                                                                                                                         contentSecond.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-5-2-content-output-' + contentSecondIndex, 
-                                                                                                                                    'subColumnTwo'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentSecond.css ? 
-                                                                                                                                    contentSecond.css[contentSecond.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentSecond.css, 
-                                                                                                                                            contentSecond.id ? 
-                                                                                                                                                contentSecond.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-5-2-content-output-' + contentSecondIndex
-                                                                                                                                        )
-                                                                                                                                    :
+                                                                                                                                        'sg-1-4-2-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentSecond.css ? 
+                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentSecond.css, 
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-2-content-output-' + contentSecondIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
                                                                                                                                         null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentSecond.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentSecond.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-5-3'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-5-3-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-5-3-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnThree'] != "undefined" ? 
-                                                                                                                item.content['subColumnThree'].length > 0 ?
-                                                                                                                    item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-5-3-content-output-' + contentThirdIndex} 
-                                                                                                                            id={
-                                                                                                                                contentThird.id ? 
-                                                                                                                                    contentThird.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-5-3-content-output-' + contentThirdIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentThird.class ? 
-                                                                                                                                    contentThird.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentThirdIndex, 
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-4-3'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-4-3-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-3-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="2"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                                    item.content['subColumnThree'].length > 0 ?
+                                                                                                                        item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-4-3-content-output-' + contentThirdIndex} 
+                                                                                                                                id={
                                                                                                                                     contentThird.id ? 
                                                                                                                                         contentThird.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex, 
-                                                                                                                                    'subColumnThree'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentThird.css ? 
-                                                                                                                                    contentThird.css[contentThird.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentThird.css, 
-                                                                                                                                            contentThird.id ? 
-                                                                                                                                                contentThird.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-5-3-content-output-' + contentThirdIndex
-                                                                                                                                        )
-                                                                                                                                    :
+                                                                                                                                        'sg-1-4-3-content-output-' + contentThirdIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentThird.class ? 
+                                                                                                                                        contentThird.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentThirdIndex, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-3-content-output-' + contentThirdIndex, 
+                                                                                                                                        'subColumnThree'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentThird.css ? 
+                                                                                                                                        contentThird.css[contentThird.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentThird.css, 
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-3-content-output-' + contentThirdIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
                                                                                                                                         null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentThird.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentThird.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-5-4'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-5-4-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-5-4-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnFour'] != "undefined" ? 
-                                                                                                                item.content['subColumnFour'].length > 0 ?
-                                                                                                                    item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-5-4-content-output-' + contentFourthIndex} 
-                                                                                                                            id={
-                                                                                                                                contentFourth.id ? 
-                                                                                                                                    contentFourth.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-5-4-content-output-' + contentFourthIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFourth.class ? 
-                                                                                                                                    contentFourth.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFourthIndex, 
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-4-4'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-4-4-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-4-4-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="3"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnFour'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFour'].length > 0 ?
+                                                                                                                        item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-4-4-content-output-' + contentFourthIndex} 
+                                                                                                                                id={
                                                                                                                                     contentFourth.id ? 
                                                                                                                                         contentFourth.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-5-4-content-output-' + contentFourthIndex, 
-                                                                                                                                    'subColumnFour'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentFourth.css ? 
-                                                                                                                                    contentFourth.css[contentFourth.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentFourth.css, 
-                                                                                                                                            contentFourth.id ? 
-                                                                                                                                                contentFourth.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-5-4-content-output-' + contentFourthIndex
-                                                                                                                                        )
-                                                                                                                                    :
+                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFourth.class ? 
+                                                                                                                                        contentFourth.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFourthIndex, 
+                                                                                                                                        contentFourth.id ? 
+                                                                                                                                            contentFourth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-4-4-content-output-' + contentFourthIndex, 
+                                                                                                                                        'subColumnFour'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentFourth.css ? 
+                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFourth.css, 
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
                                                                                                                                         null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFourth.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentFourth.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
-                                                                                            <Droppable droppableId={item.id + '-sg-1-5-5'}>
-                                                                                                {(provided) => (
-                                                                                                    <div 
-                                                                                                        key={'sg-1-5-5-' + index} 
-                                                                                                        ref={provided.innerRef} 
-                                                                                                        id={'sg-1-5-5-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4"
-                                                                                                    >
-                                                                                                        {
-                                                                                                            typeof item.content['subColumnFive'] != "undefined" ? 
-                                                                                                                item.content['subColumnFive'].length > 0 ?
-                                                                                                                    item.content['subColumnFive'].map((contentFifth, contentFifthIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-5-5-content-output-' + contentFifthIndex} 
-                                                                                                                            id={
-                                                                                                                                contentFifth.id ? 
-                                                                                                                                    contentFifth.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-5-5-content-output-' + contentFifthIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFifth.class ? 
-                                                                                                                                    contentFifth.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFifthIndex, 
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                            
+                                                                                    :
+                                                                                        
+                                                                                        <div key={Math.random()} className="container p-0 pb-3">
+                                                                                            {/* Seventh Size */}
+                                                                                            <div className="row w-100 m-0">
+                                                                                                <Droppable droppableId={item.id + '-sg-1-5-1'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-1-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-1-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                                                                    item.content['subColumnOne'].length > 0 ?
+                                                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-1-content-output-' + contentFirstIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentFirst.css ? 
+                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFirst.css, 
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-1-content-output-' + contentFirstIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
+                                                                                                                                        null
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentFirst.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-5-2'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-2-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-2-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnTwo'] != "undefined" ? 
+                                                                                                                    item.content['subColumnTwo'].length > 0 ?
+                                                                                                                        item.content['subColumnTwo'].map((contentSecond, contentSecondIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-2-content-output-' + contentSecondIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-2-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentSecond.css ? 
+                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentSecond.css, 
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-2-content-output-' + contentSecondIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
+                                                                                                                                        null
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentSecond.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-5-3'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-3-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-3-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnThree'] != "undefined" ? 
+                                                                                                                    item.content['subColumnThree'].length > 0 ?
+                                                                                                                        item.content['subColumnThree'].map((contentThird, contentThirdIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-3-content-output-' + contentThirdIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentThird.id ? 
+                                                                                                                                        contentThird.id
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentThird.class ? 
+                                                                                                                                        contentThird.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentThirdIndex, 
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-3-content-output-' + contentThirdIndex, 
+                                                                                                                                        'subColumnThree'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentThird.css ? 
+                                                                                                                                        contentThird.css[contentThird.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentThird.css, 
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-3-content-output-' + contentThirdIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
+                                                                                                                                        null
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentThird.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-5-4'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-4-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-4-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnFour'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFour'].length > 0 ?
+                                                                                                                        item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-4-content-output-' + contentFourthIndex} 
+                                                                                                                                id={
+                                                                                                                                    contentFourth.id ? 
+                                                                                                                                        contentFourth.id
+                                                                                                                                    : 
+                                                                                                                                        'sg-1-5-4-content-output-' + contentFourthIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFourth.class ? 
+                                                                                                                                        contentFourth.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFourthIndex, 
+                                                                                                                                        contentFourth.id ? 
+                                                                                                                                            contentFourth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-4-content-output-' + contentFourthIndex, 
+                                                                                                                                        'subColumnFour'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentFourth.css ? 
+                                                                                                                                        contentFourth.css[contentFourth.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFourth.css, 
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-4-content-output-' + contentFourthIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
+                                                                                                                                        null
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentFourth.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
+                                                                                                                :
+                                                                                                                    item.name
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                                <Droppable droppableId={item.id + '-sg-1-5-5'}>
+                                                                                                    {(provided) => (
+                                                                                                        <div 
+                                                                                                            key={'sg-1-5-5-' + index} 
+                                                                                                            ref={provided.innerRef} 
+                                                                                                            id={'sg-1-5-5-' + index} 
+                                                                                                            className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4"
+                                                                                                        >
+                                                                                                            {
+                                                                                                                typeof item.content['subColumnFive'] != "undefined" ? 
+                                                                                                                    item.content['subColumnFive'].length > 0 ?
+                                                                                                                        item.content['subColumnFive'].map((contentFifth, contentFifthIndex) =>(
+                                                                                                                            <div 
+                                                                                                                                key={'sg-1-5-5-content-output-' + contentFifthIndex} 
+                                                                                                                                id={
                                                                                                                                     contentFifth.id ? 
                                                                                                                                         contentFifth.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-5-5-content-output-' + contentFifthIndex, 
-                                                                                                                                    'subColumnFive'
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                        >
-                                                                                                                            {
-                                                                                                                                contentFifth.css ? 
-                                                                                                                                    contentFifth.css[contentFifth.css.length - 1] === '}' ?
-                                                                                                                                        cssApplier(
-                                                                                                                                            contentFifth.css, 
-                                                                                                                                            contentFifth.id ? 
-                                                                                                                                                contentFifth.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-5-5-content-output-' + contentFifthIndex
-                                                                                                                                        )
-                                                                                                                                    :
+                                                                                                                                        'sg-1-5-5-content-output-' + contentFifthIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFifth.class ? 
+                                                                                                                                        contentFifth.class + " content-output" 
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFifthIndex, 
+                                                                                                                                        contentFifth.id ? 
+                                                                                                                                            contentFifth.id
+                                                                                                                                        : 
+                                                                                                                                            'sg-1-5-5-content-output-' + contentFifthIndex, 
+                                                                                                                                        'subColumnFive'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                {
+                                                                                                                                    contentFifth.css ? 
+                                                                                                                                        contentFifth.css[contentFifth.css.length - 1] === '}' ?
+                                                                                                                                            this.cssApplier(
+                                                                                                                                                contentFifth.css, 
+                                                                                                                                                contentFifth.id ? 
+                                                                                                                                                    contentFifth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-5-5-content-output-' + contentFifthIndex
+                                                                                                                                            )
+                                                                                                                                        :
+                                                                                                                                            null
+                                                                                                                                    : 
                                                                                                                                         null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFifth.output)}
-                                                                                                                        </div>
-                                                                                                                    ))
+                                                                                                                                }
+                                                                                                                                {ReactHtmlParser(contentFifth.output)}
+                                                                                                                            </div>
+                                                                                                                        ))
+                                                                                                                    :
+                                                                                                                        item.name
                                                                                                                 :
                                                                                                                     item.name
-                                                                                                            :
-                                                                                                                item.name
-                                                                                                        }
-                                                                                                        {provided.placeholder}
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Droppable>
+                                                                                                            }
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                        ))
-                                                    :
-                                                    <span></span>
-                                                }
+                                                            ))
+                                                        :
+                                                        <span></span>
+                                                    }
+                                                </div>
                                             </div>
+                                            <HtmlEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowEditor={this.setShowHtmlEditor}
+                                                showHtmlEditor={this.state.showHtmlEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
+                                                contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                            />
+                                            <CssEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowCssEditor={this.setShowCssEditor}
+                                                showCssEditor={this.state.showCssEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
+                                                contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                setApplyCss={this.setApplyCss}
+                                            />
+                                            <TextEditor 
+                                                currentColumn={this.state.column[this.state.activeColumnId]}
+                                                setShowTextEditor={this.setShowTextEditor}
+                                                showTextEditor={this.state.showTextEditor}
+                                                onChangeTextArea={this.onChangeTextArea}
+                                                contentIndex={this.state.activeContentIndex}
+                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                contentFor={this.state.contentFor}
+                                                setColumn={this.setColumn}
+                                            />
                                         </div>
-                                        <HtmlEditor 
-                                            currentColumn={column[activeColumnId]}
-                                            setShowEditor={setHtmlEditorShow}
-                                            showHtmlEditor={showHtmlEditor}
-                                            onChangeTextArea={onChangeTextArea}
-                                            contentIndex={activeContentIndex}
-                                            currentColumnContentIndex={currentColumnContentIndex}
-                                        />
-                                        <CssEditor 
-                                            currentColumn={column[activeColumnId]}
-                                            setShowCssEditor={setCssEditorShow}
-                                            showCssEditor={showCssEditor}
-                                            onChangeTextArea={onChangeTextArea}
-                                            contentIndex={activeContentIndex}
-                                            currentColumnContentIndex={currentColumnContentIndex}
-                                            setApplyCss={setApplyCss}
-                                        />
-                                        <TextEditor 
-                                            currentColumn={column[activeColumnId]}
-                                            setShowTextEditor={setTextEditorShow}
-                                            showTextEditor={showTextEditor}
-                                            onChangeTextArea={onChangeTextArea}
-                                            contentIndex={activeContentIndex}
-                                            currentColumnContentIndex={currentColumnContentIndex}
-                                            contentFor={contentFor}
-                                            setColumnInDirect={setColumnInDirect}
-                                        />
-                                    </div>
-                                </DragDropContext>
-                                <button type="submit" className="btn btn-success float-right mt-2">Save</button>
-                            </form>
-                        );
-                    }}
-                </Formik>
-            </Modal.Body>
-        </Modal>
-    );
+                                    </DragDropContext>
+                                    <button type="submit" className="btn btn-success float-right mt-2">Save</button>
+                                </form>
+                            );
+                        }}
+                    </Formik>
+                </Modal.Body>
+            </Modal>
+        );
 
-    return (
-        <div id="slide-handler-container" className="d-inline">
-            {props.action === "add" ?
-                <button type="button" className="btn btn-success" onClick={() => setShowModal(true, 'add')}>Add Slide</button>
-            :
-                <div id="edit-slide-btn" className="d-inline">
-                    <button type="button" className="btn btn-link pl-0" onClick={() => setShowModal(true, 'edit')}>| Edit</button>
-                </div>
-            }
-            {slideModal}
-        </div>
-    );
+        return (
+            <div id="slide-handler-container" className="d-inline">
+                {this.props.action === "add" ?
+                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
+                :
+                    <div id="edit-slide-btn" className="d-inline">
+                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true, 'edit')}>| Edit</button>
+                    </div>
+                }
+                {slideModal}
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
