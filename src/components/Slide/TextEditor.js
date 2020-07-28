@@ -20,7 +20,7 @@ function TextEditor(props) {
             }
         }
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     return (

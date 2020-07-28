@@ -106,7 +106,7 @@ class Editor extends Component {
         } else if (this.props.feature === "multipleChoice") {
             editorContent = (
                 <MultipleChoice
-                    setColumn={this.props.setColumn}
+                    setColumnInDirect={this.props.setColumnInDirect}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}
@@ -122,7 +122,7 @@ class Editor extends Component {
         } else if (this.props.feature === "homePage") {
             editorContent = (
                 <HomePage
-                    setColumn={this.props.setColumn}
+                    setColumnInDirect={this.props.setColumnInDirect}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}
@@ -137,7 +137,7 @@ class Editor extends Component {
         } else if (this.props.feature === "courseObjectives") {
             editorContent = (
                 <CourseObj
-                    setColumn={this.props.setColumn}
+                    setColumnInDirect={this.props.setColumnInDirect}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}

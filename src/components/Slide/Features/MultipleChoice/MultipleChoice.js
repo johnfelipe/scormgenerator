@@ -37,7 +37,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const editQuestion = (value, questionIndex) => {
@@ -45,7 +45,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const deleteQuestion = (questionIndex) => {
@@ -53,7 +53,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addAnswer = (value, questionIndex) => {
@@ -65,7 +65,7 @@ function MultipleChoice(props) {
         }
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setCorrectAnswer = (value, questionIndex, answerIndex) => {
@@ -81,7 +81,7 @@ function MultipleChoice(props) {
             }
         }
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addImageQuestion = (imgObj, questionIndex) => {
@@ -95,7 +95,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addAudioQuestion = (audioObj, questionIndex) => {
@@ -109,7 +109,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addVideoQuestion = (videoObj, questionIndex) => {
@@ -123,7 +123,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addVideoQuestionCaption = (captionObj, questionIndex) => {
@@ -137,7 +137,7 @@ function MultipleChoice(props) {
             alert('PLease upload a video first!');
         }
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const deleteQuestionFile = (index, questionIndex) => {
@@ -151,7 +151,7 @@ function MultipleChoice(props) {
             setFilesExist(false);
         }
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const deleteQuestionVideoVttFile = (questionIndex) => {
@@ -167,7 +167,7 @@ function MultipleChoice(props) {
             alert('PLease upload a video first!');
         }
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setQuestionLabelClass = (labelClass) => {
@@ -175,7 +175,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
 
-        props.setColumn(currentColumnObj);  
+        props.setColumnInDirect(currentColumnObj);  
     }
 
     const setQuestionBackgroundColor = (color) => {
@@ -183,7 +183,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor = color;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setMultipleChoiceTextColor = (color) => {
@@ -191,7 +191,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor = color;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setQuestionFiles = (questionFilesArray, questionIndex) => {
@@ -200,7 +200,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files = questionFilesArray;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const addFileLabel = (value, questionIndex, fileIndex) => {
@@ -208,7 +208,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const editFileLabel = (value, questionIndex, fileIndex) => {
@@ -216,7 +216,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const deleteFileLabel = (questionIndex, fileIndex) => {
@@ -224,7 +224,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = '';
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setRepeatMechanics = (value) => {
@@ -232,7 +232,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.repeat = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setPassRateMechanics = (value) => {
@@ -240,7 +240,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.passingRate = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const setFeatureTypeMechanics = useCallback((value) => {
@@ -248,7 +248,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.specificType = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }, [contentIndex, currentColumn, currentColumnContentIndex, props])
 
     const setReturnSlideMechanics = (value) => {
@@ -256,7 +256,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].mechanics.returnSlide = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     useEffect(() => {

@@ -22,7 +22,7 @@ function CourseObj(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.name = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const updateCourseReqName = (value) => {
@@ -30,7 +30,7 @@ function CourseObj(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.name = value;
 
-        props.setColumn(currentColumnObj);
+        props.setColumnInDirect(currentColumnObj);
     }
 
     const collapseListener = (currentCollapseId, type) => {
