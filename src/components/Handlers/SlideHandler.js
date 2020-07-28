@@ -958,10 +958,10 @@ function SlideHandler (props) {
         }
     }
 
-    const setColumnInDirect = (column) => {
+    const setColumnInDirect = (currentColumnObj) => {
 
         const columns = column;
-        columns[activeColumnId] = column;
+        columns[activeColumnId] = currentColumnObj;
 
         setColumn(columns);
     }
