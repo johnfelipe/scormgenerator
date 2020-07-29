@@ -11,6 +11,7 @@ function MultipleChoiceAccordion(props) {
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const IsAddAnswer = props.IsAddAnswer;
     const answer = props.answer;
+    const contentIndex = props.contentIndex;
 
     const [imgAddLabel, setImgAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
@@ -23,7 +24,7 @@ function MultipleChoiceAccordion(props) {
     const [imgCollapse,  setImgCollapse] = useState(false);
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
-    const [isAddExplanation, setIsAddExplanation] = useState(false);
+    // const [isAddExplanation, setIsAddExplanation] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -313,41 +314,12 @@ function MultipleChoiceAccordion(props) {
                                     item.explanation ?
                                         <span>{item.explanation}</span>
                                     :
-                                        isAddExplanation ?
-                                        <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
-                                            <div className="multiple-choice-control-input-label">
-                                                <span>Add:&nbsp;</span>
-                                            </div>
-                                            <div className="multiple-choice-control-input">
-                                                <input
-                                                    id="answer"
-                                                    name="answer"
-                                                    type="text"
-                                                    placeholder="Type answer here. . ."
-                                                    onChange={(event) => props.setAnswer(event.target.value)}
-                                                    value={answer}
-                                                />
-                                            </div>
-                                            <div className="multiple-choice-control-button">
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-success btn-sm"
-                                                    onClick={() => {
-                                                        const isEmpty = document.getElementById("answer");
-                                                        
-                                                        if (isEmpty.value !== "") {
-                                                            props.addAnswer(answer, index);
-                                                            props.setAnswer('');
-                                                            props.setIsAddAnswer(false);
-                                                        }
-                                                    }}
-                                                >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        :
+                                        <div>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
+                                                <span>Edit</span>
+                                            </button>
                                             <span>No explanation added.</span>
+                                        </div>
                                 }
                             </Tab>
                             <Tab eventKey="files" title="Files">
