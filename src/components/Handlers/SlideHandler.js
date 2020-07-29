@@ -902,8 +902,6 @@ class SlideHandler extends Component {
 
         if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
             const currentColumnList = this.state.column;
-            console.log(this.state.activeColumnId);
-            console.log(this.state.currentColumnContentIndex);
             const reorderedFeatures = this.reorder(
                 currentColumnList[this.state.activeColumnId].content[this.state.currentColumnContentIndex],
                 source.index,
