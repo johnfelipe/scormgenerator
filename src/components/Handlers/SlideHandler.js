@@ -59,6 +59,7 @@ class SlideHandler extends Component {
             isSlideNameNotEmpty: false,
             applyCss: false,
             contentFor: '',
+            mChoiceIndex: 0,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -81,6 +82,7 @@ class SlideHandler extends Component {
         this.setShowTextEditor = this.setShowTextEditor.bind(this);
         this.resetFeature = this.resetFeature.bind(this);
         this.setActiveColumnId = this.setActiveColumnId.bind(this);
+        this.setMChoiceIndex = this.setMChoiceIndex.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1168,6 +1170,12 @@ class SlideHandler extends Component {
         });
     }
 
+    setMChoiceIndex = (value) => {
+        this.setState({
+            mChoiceIndex: value,
+        })
+    }
+
     onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
@@ -1427,6 +1435,7 @@ class SlideHandler extends Component {
                                                             setShowTextEditor={this.setShowTextEditor}
                                                             resetFeature={this.resetFeature}
                                                             slideItemId={this.props.slideItemId}
+                                                            setMChoiceIndex={this.setMChoiceIndex}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -2867,6 +2876,7 @@ class SlideHandler extends Component {
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                 contentFor={this.state.contentFor}
                                                 setColumn={this.setColumn}
+                                                mChoiceIndex={this.state.mChoiceIndex}
                                             />
                                         </div>
                                     </DragDropContext>
