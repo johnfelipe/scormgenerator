@@ -10,14 +10,25 @@ function HomePageLayout(props) {
     const backgroundImg = props.backgroundImg.url;
     const homePageClass = props.homePageClass;
     const colorScheme = props.colorScheme;
+    const borderBottomColor = colorHelpers.shade(colorScheme.titleBoxColor, 0.45);
 
     return (
         <div id="home-page-layout">
             <div className="home-page-container h-100 w-100 border border-light" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
                 <div className="slide">
                     <div id="course-name" className={homePageClass} style={{ background: colorScheme.titleBoxColor}}>
-                        <h2 className="course-header border-bottom pb-3" style={{ borderBottomColor: colorHelpers.shade(colorScheme.titleBoxColor, 0.45) }}>
+                        <h2
+                            className="course-header border-bottom pb-3"
+                            // style={{ borderBottomColor: borderBottomColor }}
+                            ref={(el) => {
+                                if (el) {
+                                    el.style.setProperty('border-bottom-color', borderBottomColor, 'important');
+                                }
+                            }}
+                        >
                             {title}
+                            {console.log(borderBottomColor)}
+                            {console.log(typeof borderBottomColor)}
                         </h2>
                     {/* <div className="course-bar" style={{ background: colorHelpers.shade(colorScheme.titleBoxColor, 0.45)}}></div> */}
                     <h3 className="course-sub-header">
