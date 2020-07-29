@@ -1360,6 +1360,11 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   line-height: 32px;
   color: #444;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
+  background: #778395;
+  color: white;
+  text-indent: 50px;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
   z-index: 5000;
   margin: 0 16px;
