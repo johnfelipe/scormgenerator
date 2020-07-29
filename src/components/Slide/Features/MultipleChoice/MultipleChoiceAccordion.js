@@ -265,7 +265,7 @@ function MultipleChoiceAccordion(props) {
                                             </div>
                                         </div>
                                     :
-                                        <div className="multiple-choicequestion-action-button mt-3 mb-3">
+                                        <div className="multiple-choice-question-action-button mt-3 mb-3">
                                             <button
                                                 type="button"
                                                 className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
@@ -314,16 +314,24 @@ function MultipleChoiceAccordion(props) {
                                     item.explanation ?
                                         <span>{item.explanation}</span>
                                     :
-                                        <div>
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
-                                                <span>Edit</span>
+                                        <div className="multiple-choice-explanation-action-button mt-3 mb-3">
+                                            <button
+                                                type="button"
+                                                className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                onClick={() => {
+                                                    props.setShowTextEditor(true, contentIndex, 'mChoiceExplanation')
+                                                }}
+                                            >
+                                                Add explanation
                                             </button>
-                                            <span>No explanation added.</span>
+                                            <div>
+                                                <span>No explanation added.</span>
+                                            </div>
                                         </div>
                                 }
                             </Tab>
                             <Tab eventKey="files" title="Files">
-                                <div className="multiple-choicequestion-action-button mt-3">
+                                <div className="multiple-choice-question-action-button mt-3">
                                     <label className="input-group-btn" style={{ cursor: 'pointer' }}>
                                         <span className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1">
                                             Add files<input type="file" id="question-files-uploader" style={{ display: "none"}} onChange={(e) => handleFileChange(e, index)}/>
