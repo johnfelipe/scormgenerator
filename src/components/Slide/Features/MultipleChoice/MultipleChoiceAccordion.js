@@ -308,7 +308,12 @@ function MultipleChoiceAccordion(props) {
                                 }
                             </Tab>
                             <Tab eventKey="explanation" title="Explanation">
-                                <span>No explanation added.</span>
+                                {
+                                    item.explanation ?
+                                        <span>{item.explanation}</span>
+                                    :
+                                        <span>No explanation added.</span>
+                                }
                             </Tab>
                             <Tab eventKey="files" title="Files">
                                 <div className="multiple-choicequestion-action-button mt-3">
