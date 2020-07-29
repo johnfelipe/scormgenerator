@@ -314,7 +314,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', styles: { titleBoxColor: '#0069d9', titleBoxBorder: 'border-bottom' } };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1151,7 +1151,7 @@ class SlideHandler extends Component {
         } else if (featureType === "multipleChoice") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'multipleChoice', output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, mechanics: { repeat: 0, passingRate: 80, specificType: 'knowledgeCheck', returnSlide: 0 } };
         } else if (featureType === "homePage") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', colorScheme: { titleBoxColor: '#0069d9' } };
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', styles: { titleBoxColor: '#0069d9', titleBoxBorder: 'border-bottom' } };
         } else if (featureType === "courseObjectives") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'courseObjectives', output: { courseInfo: { name: 'Course Information', content: 'No information provided yet.'}, courseReq:  { name: 'Course Requirements', content: 'No requirements provided yet.'} }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4' };
         }
@@ -1494,7 +1494,7 @@ class SlideHandler extends Component {
                                                                                                                                 courseId={contentFirst.output.courseId}
                                                                                                                                 backgroundImg={contentFirst.output.backgroundImg}
                                                                                                                                 homePageClass={contentFirst.class}
-                                                                                                                                colorScheme={contentFirst.colorScheme}
+                                                                                                                                styles={contentFirst.styles}
                                                                                                                                 homepageId={contentFirst.id}
                                                                                                                             />
                                                                                                                         </div>
