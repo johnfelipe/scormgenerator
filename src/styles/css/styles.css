@@ -1248,6 +1248,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   font-size: 20px;
   line-height: 30px;
   margin: 0 0 10px 0;
+  border-bottom-width: medium !important;
+  border-left-width: medium !important;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name .course-bar {
   background: #278FFF;
