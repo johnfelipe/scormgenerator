@@ -71,6 +71,14 @@ function HomePage(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setTitleBorder = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -188,6 +196,21 @@ function HomePage(props) {
                                     <option value="course-title-top-right">Top-right</option>
                                     <option value="course-title-bottom-right">Bottom-right</option>
                                     <option value="course-title-center">Center</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title Border Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder}
+                                    onChange={(event) => setTitleBorder(event, contentIndex)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="border-bottom">Border-bottom</option>
+                                    <option value="border-left">Border-left</option>
                                 </select>
                             </div>
                         </li>
