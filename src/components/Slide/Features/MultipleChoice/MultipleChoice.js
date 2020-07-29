@@ -323,6 +323,7 @@ function MultipleChoice(props) {
                                                                         addFileLabel={addFileLabel}
                                                                         editFileLabel={editFileLabel}
                                                                         deleteFileLabel={deleteFileLabel}
+                                                                        contentIndex={contentIndex}
                                                                     />
                                                                 :
                                                                     <div className="multiple-choice-control-input-wrapper">
