@@ -449,6 +449,18 @@ function MultipleChoiceLayout(props) {
                             </div>
                             {content(item, multipleChoiceClass)}
                             {props.cssApplier(multipleChoiceCss, 'multiple-choice-layout')}
+                            {
+                                item.explanation &&
+                                <>
+                                    <div className="col-md-2"></div>
+                                    <div className="col-md-8 mt-3">
+                                        <p id="question-explanation" className="p-3 rounded">
+                                            {item.explanation}
+                                        </p>
+                                    </div>
+                                    <div className="col-md-2"></div>
+                                </>
+                            }
                         </div>
                     ))
                 :
