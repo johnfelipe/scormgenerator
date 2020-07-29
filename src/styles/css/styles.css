@@ -1370,18 +1370,18 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
   z-index: 5000;
   margin: 0 16px;
-  top: 55px;
+  top: 380px;
 }
 @media only screen and (min-width: 1920px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
     margin: 0 75px;
-    top: 55px;
+    top: 380px;
   }
 }
 @media only screen and (max-width: 1366px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
     margin: 0 16px;
-    top: 75px;
+    top: 380px;
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper {
