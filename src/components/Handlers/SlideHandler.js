@@ -80,7 +80,7 @@ class SlideHandler extends Component {
         this.resetStates = this.resetStates.bind(this);
         this.setShowTextEditor = this.setShowTextEditor.bind(this);
         this.resetFeature = this.resetFeature.bind(this);
-        this.setActiveColumId = this.setActiveColumId.bind(this);
+        this.setActiveColumnId = this.setActiveColumnId.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -246,9 +246,9 @@ class SlideHandler extends Component {
         if ((source.droppableId === "columns") && (destination.droppableId === "columns")) {
 
             if (activeColumnId === source.index) {
-                this.setActiveColumId(destination.index);
+                this.setActiveColumnId(destination.index);
             } else if (activeColumnId === destination.index) {
-                this.setActiveColumId(source.index);
+                this.setActiveColumnId(source.index);
             }
             
             const currentColumnList = this.state.column;
@@ -1162,7 +1162,7 @@ class SlideHandler extends Component {
         })
     }
 
-    setActiveColumId = (value) => {
+    setActiveColumnId = (value) => {
         this.setState({
             activeColumnId: value
         });
