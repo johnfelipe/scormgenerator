@@ -18,7 +18,7 @@ function HomePageLayout(props) {
                 <div className="slide">
                     <div id="course-name" className={homePageClass} style={{ background: styles.titleBoxColor}}>
                         <h2
-                            className={"course-header pb-3 " + styles.titleBoxBorder}
+                            className={"course-header p-2 pb-3 " + styles.titleBoxBorder}
                             // style={{ borderBottomColor: borderBottomColor }}
                             ref={(el) => {
                                 if (el) {
@@ -32,7 +32,7 @@ function HomePageLayout(props) {
                             {console.log(typeof borderBottomColor)}
                         </h2>
                     {/* <div className="course-bar" style={{ background: colorHelpers.shade(styles.titleBoxColor, 0.45)}}></div> */}
-                    <h3 className="course-sub-header">
+                    <h3 className="course-sub-header p-2">
                         <span>{subtitle}</span>
                         <br/>
                         <span>{date}</span>
