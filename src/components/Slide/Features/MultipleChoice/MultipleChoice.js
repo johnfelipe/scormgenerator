@@ -33,6 +33,7 @@ function MultipleChoice(props) {
             question: value,
             answers: [],
             files: [],
+            explanation: '',
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
