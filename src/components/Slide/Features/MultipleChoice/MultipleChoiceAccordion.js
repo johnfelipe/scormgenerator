@@ -314,38 +314,38 @@ function MultipleChoiceAccordion(props) {
                                         <span>{item.explanation}</span>
                                     :
                                         isAddExplanation ?
-                                            <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
-                                                <div className="multiple-choice-control-input-label">
-                                                    <span>Add:&nbsp;</span>
-                                                </div>
-                                                <div className="multiple-choice-control-input">
-                                                    <input
-                                                        id="answer"
-                                                        name="answer"
-                                                        type="text"
-                                                        placeholder="Type answer here. . ."
-                                                        onChange={(event) => props.setAnswer(event.target.value)}
-                                                        value={answer}
-                                                    />
-                                                </div>
-                                                <div className="multiple-choice-control-button">
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-success btn-sm"
-                                                        onClick={() => {
-                                                            const isEmpty = document.getElementById("answer");
-                                                            
-                                                            if (isEmpty.value !== "") {
-                                                                props.addAnswer(answer, index);
-                                                                props.setAnswer('');
-                                                                props.setIsAddAnswer(false);
-                                                            }
-                                                        }}
-                                                    >
-                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                    </button>
-                                                </div>
+                                        <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
+                                            <div className="multiple-choice-control-input-label">
+                                                <span>Add:&nbsp;</span>
                                             </div>
+                                            <div className="multiple-choice-control-input">
+                                                <input
+                                                    id="answer"
+                                                    name="answer"
+                                                    type="text"
+                                                    placeholder="Type answer here. . ."
+                                                    onChange={(event) => props.setAnswer(event.target.value)}
+                                                    value={answer}
+                                                />
+                                            </div>
+                                            <div className="multiple-choice-control-button">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        const isEmpty = document.getElementById("answer");
+                                                        
+                                                        if (isEmpty.value !== "") {
+                                                            props.addAnswer(answer, index);
+                                                            props.setAnswer('');
+                                                            props.setIsAddAnswer(false);
+                                                        }
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                </button>
+                                            </div>
+                                        </div>
                                         :
                                             <span>No explanation added.</span>
                                 }
