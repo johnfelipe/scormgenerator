@@ -8,6 +8,7 @@ function TextEditor(props) {
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentFor = props.contentFor;
+    const mChoiceIndex = props.mChoiceIndex;
 
     const onChangeTextEditor = (value, contentIndex, editorType) => {
         const currentColumnObj = currentColumn;
@@ -17,6 +18,8 @@ function TextEditor(props) {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
             } else if (editorType.for === 'courseReq') {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
+            } else if (editorType.for === 'mChoiceExplanation') {
+                currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation = value;
             }
         }
 
@@ -43,7 +46,10 @@ function TextEditor(props) {
                             contentFor === 'courseInfo' ?
                                 typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
                             :
-                                contentFor === 'courseReq' && typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
+                                contentFor === 'courseReq' ? 
+                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
+                                :
+                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex] && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation
                         }
                         onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                     />
