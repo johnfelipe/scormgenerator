@@ -9,16 +9,30 @@ function HomePageLayout(props) {
     const courseId = props.courseId;
     const backgroundImg = props.backgroundImg.url;
     const homePageClass = props.homePageClass;
-    const colorScheme = props.colorScheme;
+    const styles = props.styles;
+    const borderBottomColor = colorHelpers.shade(styles.titleBoxColor, 0.45);
 
     return (
         <div id="home-page-layout">
             <div className="home-page-container h-100 w-100 border border-light" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
                 <div className="slide">
-                    <div id="course-name" className={homePageClass} style={{ background: colorScheme.titleBoxColor}}>
-                        <h2 className="course-header">{title}</h2>
-                    <div className="course-bar" style={{ background: colorHelpers.shade(colorScheme.titleBoxColor, 0.45)}}></div>
-                    <h3 className="course-sub-header">
+                    <div id="course-name" className={homePageClass} style={{ background: styles.titleBoxColor}}>
+                        <h2
+                            className={"course-header p-2 pb-3 " + styles.titleBoxBorder}
+                            // style={{ borderBottomColor: borderBottomColor }}
+                            ref={(el) => {
+                                if (el) {
+                                    el.style.setProperty('border-bottom-color', borderBottomColor, 'important');
+                                    el.style.setProperty('border-left-color', borderBottomColor, 'important');
+                                }
+                            }}
+                        >
+                            {title}
+                            {console.log(borderBottomColor)}
+                            {console.log(typeof borderBottomColor)}
+                        </h2>
+                    {/* <div className="course-bar" style={{ background: colorHelpers.shade(styles.titleBoxColor, 0.45)}}></div> */}
+                    <h3 className="course-sub-header p-2">
                         <span>{subtitle}</span>
                         <br/>
                         <span>{date}</span>

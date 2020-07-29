@@ -101,16 +101,19 @@
                                                         .multiple-choice-color-picker {
                                                             z-index: 5000;
                                                             margin: 0 16px;
-                                                            top: 55px;
+                                                            // top: 55px;
+                                                            top: 380px;
 
                                                             @media only screen and (min-width: 1920px) {
                                                                 margin: 0 75px;
-                                                                top: 55px;
+                                                                // top: 55px;
+                                                                top: 380px;
                                                             }
 
                                                             @media only screen and (max-width: 1366px) {
                                                                 margin: 0 16px;
-                                                                top: 75px;
+                                                                // top: 75px;
+                                                                top: 380px;
                                                             }
                                                         }
                                                     }
