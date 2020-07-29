@@ -266,6 +266,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-top-right-radius: 0rem !important;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .card-header-tabs .active {
   background-color: rgba(112, 112, 112, 0.25);
@@ -1422,7 +1423,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   margin-top: 10px;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
-  width: calc(100%/2);
+  width: calc(100%/3);
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content {
   padding: 10px;
