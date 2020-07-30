@@ -33,6 +33,8 @@ class Main extends Component {
             mediaFilesObject: [],
             courseNameExist: false,
             slideItemIndex: 0,
+            addAction: 'add',
+            editAction: 'edit',
         };
         
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
@@ -42,6 +44,8 @@ class Main extends Component {
         this.galleryHandler = this.galleryHandler.bind(this);
         this.setCourseNameExist = this.setCourseNameExist.bind(this);
         this.setSlideItemIndex = this.setSlideItemIndex.bind(this);
+        this.setAddAction = this.setAddAction.bind(this);
+        this.setEditAction = this.setEditAction.bind(this);
     }
 
     componentDidUpdate = () => {
@@ -147,6 +151,18 @@ class Main extends Component {
     setSlideItemIndex = (value) => {
         this.setState({
             slideItemIndex: value,
+        })
+    }
+
+    setAddAction = (value) => {
+        this.setState({
+            addAction: value,
+        })
+    }
+
+    setEditAction = (value) => {
+        this.setState({
+            editAction: value,
         })
     }
 
@@ -382,7 +398,10 @@ class Main extends Component {
                                                                             this.props.courseLessons[index].slides.length < 5 ?
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
-                                                                                    action="add"
+                                                                                    editSlideChange={this.props.editLessonSlide}
+                                                                                    action={this.state.addAction}
+                                                                                    setAddAction={this.setAddAction}
+                                                                                    setEditAction={this.setEditAction}
                                                                                     slideId={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
@@ -403,7 +422,10 @@ class Main extends Component {
                                                                         :
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
-                                                                                action="add"
+                                                                                editSlideChange={this.props.editLessonSlide}
+                                                                                action={this.state.addAction}
+                                                                                setAddAction={this.setAddAction}
+                                                                                setEditAction={this.setEditAction}
                                                                                 slideId={this.state.slideItemIndex}
                                                                                 lessonIndex={index}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
@@ -437,12 +459,15 @@ class Main extends Component {
                                                                                                         >
                                                                                                             <span className="btn pr-1">{item.slideName}</span>
                                                                                                             <SlideHandler
+                                                                                                                addSlideChange={this.props.addLessonSlide}
                                                                                                                 editSlideChange={this.props.editLessonSlide}
                                                                                                                 currentSlideName={item.slideName}
                                                                                                                 currentSlideSubtitle={item.slideSubtitle}
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
-                                                                                                                action="edit"
+                                                                                                                action={this.state.editAction}
+                                                                                                                setAddAction={this.setAddAction}
+                                                                                                                setEditAction={this.setEditAction}
                                                                                                                 slideId={itemSlideIndex}
                                                                                                                 showTitleValue={true}
                                                                                                                 mediaFilesObject={this.state.mediaFilesObject}
