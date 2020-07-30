@@ -1496,6 +1496,7 @@ class SlideHandler extends Component {
                                                                                                                                 homePageClass={contentFirst.class}
                                                                                                                                 styles={contentFirst.styles}
                                                                                                                                 homepageId={contentFirst.id}
+                                                                                                                                homePageCss={contentFirst.css}
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
