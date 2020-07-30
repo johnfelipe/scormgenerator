@@ -60,6 +60,8 @@ class SlideHandler extends Component {
             applyCss: false,
             contentFor: '',
             mChoiceIndex: 0,
+            slideTitle: '',
+            slideSubtitle: '',
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -83,6 +85,8 @@ class SlideHandler extends Component {
         this.resetFeature = this.resetFeature.bind(this);
         this.setActiveColumnId = this.setActiveColumnId.bind(this);
         this.setMChoiceIndex = this.setMChoiceIndex.bind(this);
+        this.setSlideTitle = this.setSlideTitle.bind(this);
+        this.setSlideSubtitle = this.setSlideSubtitle.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -1173,6 +1177,18 @@ class SlideHandler extends Component {
     setMChoiceIndex = (value) => {
         this.setState({
             mChoiceIndex: value,
+        })
+    }
+
+    setSlideTitle = (value) => {
+        this.setState({
+            slideTitle: value,
+        })
+    }
+
+    setSlideSubtitle = (value) => {
+        this.setState({
+            slideSubtitle: value,
         })
     }
 
