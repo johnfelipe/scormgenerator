@@ -113,6 +113,8 @@ class SlideHandler extends Component {
 
         if (action === "close" || action === "edit") {
             console.log('Edit here');
+            
+            this.onSave(this.state.slideTitle, this.state.slideSubtitle, this.state.column, this.props.lessonIndex);
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
                 activeFeature: '',
@@ -145,6 +147,8 @@ class SlideHandler extends Component {
             column: [...this.state.column, columnObj],
             currentColumnContentIndex: 'subColumnOne',
         });
+
+        this.onSave(this.state.slideTitle, this.state.slideSubtitle, this.state.column, this.props.lessonIndex);
     }
 
     deleteColumn = (index) => {
@@ -1202,8 +1206,10 @@ class SlideHandler extends Component {
             this.props.editSlideChange(slideObj, lessonIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
+
+        console.log('Autosaved!');
         
-        this.setModalShow(false, 'save')
+        // this.setModalShow(false, 'save')
     }
 
     render() {
@@ -1251,8 +1257,7 @@ class SlideHandler extends Component {
                         validationSchema={Yup.object().shape({
                             slideName: Yup.string()
                             .required("Slide name required"),
-                        }
-                    )}
+                        })}
                     >
                         {props => {
                             const {
