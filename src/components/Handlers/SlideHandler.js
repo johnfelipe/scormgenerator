@@ -1284,7 +1284,9 @@ class SlideHandler extends Component {
                                         }
                                         value={values.slideName}
                                         onChange={(e) => {
-                                                handleChange(e)
+                                                handleChange(e);
+
+                                                this.setSlideTitle(e.target.value);
 
                                                 if (e.target.value.trim() !== "") {
                                                     this.setState({
@@ -1315,7 +1317,9 @@ class SlideHandler extends Component {
                                         type="text"
                                         className="form-control d-inline mb-2"
                                         onBlur={(e) => {
-                                                handleBlur(e)
+                                                handleBlur(e);
+
+                                                this.setSlideSubtitle(e.target.value);
 
                                                 if (e.target.value.trim() === "") {
                                                     this.setState({
