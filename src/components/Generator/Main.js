@@ -551,7 +551,7 @@ const mapDispatchToProps = (dispatch) => {
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
         addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, index: slideId, currentClickedLessonId: currentClickedLessonId}),
+        editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, slideId: slideId, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
         showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
