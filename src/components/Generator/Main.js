@@ -450,11 +450,12 @@ class Main extends Component {
                                                                                                                 galleryHandler={this.galleryHandler}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
+                                                                                                                setSlideItemIndex={this.setSlideItemIndex}
                                                                                                             />
                                                                                                             <button 
                                                                                                                 className="btn btn-danger float-right lesson-item-remove-btn" 
                                                                                                                 title="Remove" 
-                                                                                                                onClick={() => this.props.deleteSlide(index, this.state.currentClickedLessonId)}
+                                                                                                                onClick={() => this.props.deleteSlide(itemSlideIndex, this.state.currentClickedLessonId)}
                                                                                                             >
                                                                                                                 <FontAwesomeIcon icon={faWindowClose} />
                                                                                                             </button>
