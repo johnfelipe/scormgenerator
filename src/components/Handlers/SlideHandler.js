@@ -106,7 +106,7 @@ class SlideHandler extends Component {
     }
 
     setModalShow = (value, action) => {
-        
+
         this.setState({
             modalShow: value,
         });
@@ -145,6 +145,8 @@ class SlideHandler extends Component {
             column: [...this.state.column, columnObj],
             currentColumnContentIndex: 'subColumnOne',
         });
+
+        this.handleSubmitMyForm();
     }
 
     deleteColumn = (index) => {
@@ -1203,8 +1205,21 @@ class SlideHandler extends Component {
             console.log("edit");
         }
         
-        this.setModalShow(false, 'save')
+        // this.setModalShow(false, 'save')
     }
+
+    submitMyForm = null;
+
+    handleSubmitMyForm = (e) => {
+        if (this.submitMyForm) {
+            this.submitMyForm(e);
+            console.log('AUTOSAVE--AUTOSAVE--AUTOSAVE--AUTOSAVE')
+        }
+    };
+
+    bindSubmitForm = (submitForm) => {
+        this.submitMyForm = submitForm;
+    };
 
     render() {
         const slideModal = (
@@ -1253,7 +1268,7 @@ class SlideHandler extends Component {
                             .required("Slide name required"),
                         })}
                     >
-                        {props => {
+                        {formikProps => {
                             const {
                                 values,
                                 touched,
@@ -1261,7 +1276,10 @@ class SlideHandler extends Component {
                                 handleChange,
                                 handleBlur,
                                 handleSubmit,
-                            } = props;
+                            } = formikProps;
+                            
+                            this.bindSubmitForm(formikProps.submitForm);
+
                             return (
                                 <form onSubmit={handleSubmit}>
                                     <label htmlFor="slideName">Title:</label>
