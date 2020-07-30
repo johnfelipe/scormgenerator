@@ -113,8 +113,6 @@ class SlideHandler extends Component {
 
         if (action === "close" || action === "edit") {
             console.log('Edit here');
-            
-            this.onSave(this.state.slideTitle, this.state.slideSubtitle, this.state.column, this.props.lessonIndex);
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
                 activeFeature: '',
@@ -147,10 +145,6 @@ class SlideHandler extends Component {
             column: [...this.state.column, columnObj],
             currentColumnContentIndex: 'subColumnOne',
         });
-
-        this.onSave(this.state.slideTitle, this.state.slideSubtitle, this.state.column, this.props.lessonIndex);
-
-        this.props.setAddAction('edit');
     }
 
     deleteColumn = (index) => {
@@ -1200,20 +1194,16 @@ class SlideHandler extends Component {
 
     onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
-            console.log("add");
-            console.log('Autosaved!');
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.addSlideChange(slideObj, lessonIndex);
+            console.log("add");
         } else if (this.props.action === "edit") {
-            console.log("edit");
-            console.log('Autosaved!');
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, lessonIndex, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, this.props.slideId, this.props.currentClickedLessonId);
+            console.log("edit");
         }
-
-        this.props.onLessonClickListener(lessonIndex);
         
-        // this.setModalShow(false, 'save')
+        this.setModalShow(false, 'save')
     }
 
     render() {
@@ -2912,7 +2902,7 @@ class SlideHandler extends Component {
                                             />
                                         </div>
                                     </DragDropContext>
-                                    <button type="submit" className="btn btn-success float-right mt-2 d-none">Save</button>
+                                    <button type="submit" className="btn btn-success float-right mt-2">Save</button>
                                 </form>
                             );
                         }}
