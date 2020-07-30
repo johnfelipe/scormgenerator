@@ -11,6 +11,7 @@ function HomePageLayout(props) {
     const homePageClass = props.homePageClass;
     const styles = props.styles;
     const borderBottomColor = colorHelpers.shade(styles.titleBoxColor, 0.45);
+    const homePageCss = props.homePageCss;
 
     return (
         <div id="home-page-layout">
@@ -18,6 +19,7 @@ function HomePageLayout(props) {
                 <div className="slide">
                     <div id="course-name" className={homePageClass} style={{ background: styles.titleBoxColor}}>
                         <h2
+                            id="course-title"
                             className={"course-header p-2 pb-3 " + styles.titleBoxBorder}
                             // style={{ borderBottomColor: borderBottomColor }}
                             ref={(el) => {
@@ -28,16 +30,16 @@ function HomePageLayout(props) {
                             }}
                         >
                             {title}
-                            {console.log(borderBottomColor)}
-                            {console.log(typeof borderBottomColor)}
+                            {props.cssApplier(homePageCss, 'course-title')}
                         </h2>
                     {/* <div className="course-bar" style={{ background: colorHelpers.shade(styles.titleBoxColor, 0.45)}}></div> */}
-                    <h3 className="course-sub-header p-2">
+                    <h3 id="course-subtitle" className="course-sub-header p-2">
                         <span>{subtitle}</span>
-                        <br/>
+                            <br/>
                         <span>{date}</span>
-                        <br/>
+                            <br/>
                         <span>COURSE ID: {courseId}</span>
+                        {props.cssApplier(homePageCss, 'course-subtitle')}
                     </h3>
                     </div>
                 </div>
