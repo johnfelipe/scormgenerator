@@ -1267,6 +1267,16 @@ class SlideHandler extends Component {
                                 <form onSubmit={handleSubmit}>
                                     <label htmlFor="slideName">Title:</label>
                                     <input
+                                        id="showTitle"
+                                        name="showTitle"
+                                        type="checkbox"
+                                        value={values.showTitle}
+                                        checked={values.showTitle}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
+                                    <input
                                         id="slideName"
                                         name="slideName"
                                         type="text"
@@ -1300,16 +1310,6 @@ class SlideHandler extends Component {
                                     {errors.slideName && touched.slideName && (
                                         <div className="input-feedback">{errors.slideName}</div>
                                     )}
-                                    <input
-                                        id="showTitle"
-                                        name="showTitle"
-                                        type="checkbox"
-                                        value={values.showTitle}
-                                        checked={values.showTitle}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                    />
-                                    <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
                                     <label htmlFor="slideSubtitle" className="d-block">Subtitle:</label>
                                     <input
                                         id="slideSubtitle"
