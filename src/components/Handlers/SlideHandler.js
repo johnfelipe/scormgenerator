@@ -1274,13 +1274,14 @@ class SlideHandler extends Component {
                                         checked={values.showTitle}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        className="ml-3"
                                     />
-                                    <label htmlFor="showTitle" className="ml-1 mt-2"> Display Title</label>
+                                    <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
                                     <input
                                         id="slideName"
                                         name="slideName"
                                         type="text"
-                                        className={(errors.slideName && touched.slideName && "error form-control d-inline") || "form-control d-inline"}
+                                        className={(errors.slideName && touched.slideName && "error form-control d-inline mb-2") || "form-control d-inline mb-2"}
                                         onBlur={(e) => {
                                                 handleBlur(e)
 
