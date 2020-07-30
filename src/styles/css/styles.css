@@ -1241,7 +1241,9 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   background: #0069d9;
   padding: 25px;
   text-align: left !important;
-  width: 250px;
+  min-width: 250px;
+  max-width: 350px;
+  word-break: break-all;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name h2.course-header {
   color: #ffffff;
