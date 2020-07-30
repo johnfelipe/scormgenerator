@@ -399,6 +399,7 @@ class Main extends Component {
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     editSlideChange={this.props.editLessonSlide}
+                                                                                    currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                     action={this.state.addAction}
                                                                                     setAddAction={this.setAddAction}
                                                                                     setEditAction={this.setEditAction}
@@ -409,6 +410,7 @@ class Main extends Component {
                                                                                     galleryHandler={this.galleryHandler}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
+                                                                                    onLessonClickListener={this.onLessonClickListener}
                                                                                 />
                                                                             :
                                                                                 <div id="slide-handler-container" className="d-inline">
@@ -423,6 +425,7 @@ class Main extends Component {
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 editSlideChange={this.props.editLessonSlide}
+                                                                                currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                 action={this.state.addAction}
                                                                                 setAddAction={this.setAddAction}
                                                                                 setEditAction={this.setEditAction}
@@ -433,6 +436,7 @@ class Main extends Component {
                                                                                 galleryHandler={this.galleryHandler}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
+                                                                                onLessonClickListener={this.onLessonClickListener}
                                                                             />
                                                                     }
                                                                     {
@@ -475,6 +479,7 @@ class Main extends Component {
                                                                                                                 galleryHandler={this.galleryHandler}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
+                                                                                                                onLessonClickListener={this.onLessonClickListener}
                                                                                                             />
                                                                                                             <button 
                                                                                                                 className="btn btn-danger float-right lesson-item-remove-btn" 
