@@ -313,6 +313,18 @@ function MultipleChoiceAccordion(props) {
                                 {
                                     item.explanation ?
                                         <div className="mt-2">
+                                            <div id="explanation-action-buttons" className="mb-2">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        props.setShowTextEditor(true, contentIndex, 'mChoiceExplanation');
+                                                        props.setMChoiceIndex(index);
+                                                    }}
+                                                >
+                                                    Edit explanation
+                                                </button>
+                                            </div>
                                             <span>{item.explanation}</span>
                                         </div>
                                     :
