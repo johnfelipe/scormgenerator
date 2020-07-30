@@ -224,6 +224,23 @@ function HomePage(props) {
                                 </div>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Element CSS</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <div className="sg-expandable-code-editor">
+                                    <div className="sg-workspace-expander">
+                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
+                                                <span>Add CSS</span>
+                                            </button>
+                                            <input type="text" value="" disabled className="rounded"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
