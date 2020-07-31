@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { Player, ControlBar } from 'video-react';
 import { Modal } from 'react-bootstrap';
 import imageSrc from '../../../styles/img/wbt_nav_sscs.png';
 
@@ -12,6 +11,7 @@ function CourseObjLayout(props) {
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
     const introVideo = props.introVideo;
+    const courseNavTitle = props.output.courseNav.name;
     const courseInfoTitle = props.output.courseInfo.name;
     const courseReqTitle = props.output.courseReq.name;
     const courseInfoContent = props.output.courseInfo.content;
@@ -82,26 +82,25 @@ function CourseObjLayout(props) {
         </Modal>
     );
 
-    return (
-        <div id="course-objective-layout">
-            <div className="course-objective-container h-100 w-100 border border-light">
+    const content = (courseObjectiveClass) => {
+        if (courseObjectiveClass === 'course-objectives-video-left') {
+            return (
                 <div className="row">
                     <div className="col-md-8">
-                        <Player className="course-obj-itro-video h-100 w-100">
-                            <source src={introVideo} />
+                        {/* <Player className="course-obj-itro-video h-100 w-100">
+                            <source src={introVideo.url} />
                             
                             <ControlBar autoHide={true}/>
-                        </Player>
-                        {/* <video className="course-obj-itro-video h-100 w-100" controls>
-                            <source src={introVideo}/>
+                        </Player> */}
+                        <video className="course-obj-itro-video h-100 w-100" controls src={introVideo.url}>
                             Your browser does not support the video tag.
-                        </video> */}
+                        </video>
                     </div>
                     <div className="col-md-4">
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
                             <div className="mt-3">
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseNavModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseNavTitle}
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseInfoTitle}
@@ -113,6 +112,44 @@ function CourseObjLayout(props) {
                         </div>
                     </div>
                 </div>
+            );
+        } else if (courseObjectiveClass === 'course-objectives-video-right') {
+            return (
+                <div className="row">
+                    <div className="col-md-4">
+                        <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
+                            <div className="mt-3">
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseNavModalShow(true)}>
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseNavTitle}
+                                </button>
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseInfoTitle}
+                                </button>
+                                <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseReqModalShow(true)}>
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseReqTitle}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-8">
+                        {/* <Player className="course-obj-itro-video h-100 w-100">
+                            <source src={introVideo.url} />
+                            
+                            <ControlBar autoHide={true}/>
+                        </Player> */}
+                        <video className="course-obj-itro-video h-100 w-100" controls src={introVideo.url}>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    return (
+        <div id="course-objective-layout">
+            <div className="course-objective-container h-100 w-100 border border-light">
+                {content(introVideo.position)}
             </div>
             {courseNavModal}
             {courseInfoModal}
