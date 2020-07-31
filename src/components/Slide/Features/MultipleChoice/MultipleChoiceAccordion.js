@@ -422,6 +422,9 @@ function MultipleChoiceAccordion(props) {
                                                                                             <button
                                                                                                 className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                 type="button"
+                                                                                                onClick={() => {
+                                                                                                    props.deleteAnswer(index, answerIndex);
+                                                                                                }}
                                                                                             >
                                                                                                 <FontAwesomeIcon icon={faTrash}/>
                                                                                             </button>
