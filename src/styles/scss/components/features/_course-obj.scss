@@ -14,6 +14,25 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
+                                                        .course-objectives-color-picker {
+                                                            z-index: 5000;
+                                                            margin: 0 16px;
+                                                            // top: 55px;
+                                                            top: 135px;
+
+                                                            @media only screen and (min-width: 1920px) {
+                                                                margin: 0 70px;
+                                                                // top: 55px;
+                                                                top: 135px;
+                                                            }
+
+                                                            @media only screen and (max-width: 1366px) {
+                                                                margin: 0 16px;
+                                                                // top: 75px;
+                                                                top: 135px;
+                                                            }
+                                                        }
+
                                                         .sg-control {
                                                             .sg-control-input {
                                                                 .accordion {

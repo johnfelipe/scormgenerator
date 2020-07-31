@@ -1470,6 +1470,23 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+  z-index: 5000;
+  margin: 0 16px;
+  top: 135px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+    margin: 0 70px;
+    top: 135px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+    margin: 0 16px;
+    top: 135px;
+  }
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
   position: absolute;
   top: 50%;
