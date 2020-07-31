@@ -112,7 +112,7 @@ function CourseObj(props) {
                                         </div>
                                         <div id="action-buttons-group" className="col-md-3 p-0">
                                             <span className="float-right mr-2">
-                                                <FontAwesomeIcon icon={cInfoCollapseId === true ? faCaretUp : faCaretDown}/>
+                                                <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
                                             </span>
                                             <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseNavName(true); setCourseNavName(courseNav.name);}}>
                                                 <FontAwesomeIcon icon={faEdit}/>
