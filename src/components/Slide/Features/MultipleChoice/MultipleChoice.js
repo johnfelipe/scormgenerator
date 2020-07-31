@@ -260,6 +260,14 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setExplanationVisibility = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].explanation.visibility = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     useEffect(() => {
         if (isFinalQuiz && props.slideItemId === slideItemIdWithFinalQuiz) {
             setFeatureTypeMechanics('finalQuiz');
@@ -326,6 +334,7 @@ function MultipleChoice(props) {
                                                                         contentIndex={contentIndex}
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
+                                                                        setExplanationVisibility={setExplanationVisibility}
                                                                     />
                                                                 :
                                                                     <div className="multiple-choice-control-input-wrapper">
