@@ -163,7 +163,7 @@ function CourseObj(props) {
                                         :
                                             <div className="row m-0">
                                                 <div className="col-md-9 pl-0">
-                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
+                                                    <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
                                                         {courseNav.name}
                                                     </Accordion.Toggle>
                                                 </div>
@@ -226,7 +226,7 @@ function CourseObj(props) {
                                         :
                                             <div className="row m-0">
                                                 <div className="col-md-9 pl-0">
-                                                    <Accordion.Toggle as={Button} variant="link" eventKey="1" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
+                                                    <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="1" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
                                                         {courseInfo.name}
                                                     </Accordion.Toggle>
                                                 </div>
@@ -289,7 +289,7 @@ function CourseObj(props) {
                                         :
                                             <div className="row m-0">
                                                 <div className="col-md-9 pl-0">
-                                                    <Accordion.Toggle as={Button} variant="link" eventKey="2" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
+                                                    <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="2" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
                                                         {courseReq.name}
                                                     </Accordion.Toggle>
                                                 </div>
