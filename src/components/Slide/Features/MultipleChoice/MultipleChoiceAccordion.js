@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function MultipleChoiceAccordion(props) {
@@ -324,6 +324,30 @@ function MultipleChoiceAccordion(props) {
                                                 >
                                                     Edit explanation
                                                 </button>
+                                                {
+                                                    item.explanation.visibility === 'show' ?
+                                                        <button
+                                                            title="Hide"
+                                                            type="button"
+                                                            className="btn btn-primary btn-sm ml-2"
+                                                            onClick={() => {
+                                                                props.setExplanationVisibility('hide', index);
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon icon={faEyeSlash}/>
+                                                        </button>
+                                                    :
+                                                        <button
+                                                            title="Show"
+                                                            type="button"
+                                                            className="btn btn-primary btn-sm ml-2"
+                                                            onClick={() => {
+                                                                props.setExplanationVisibility('show', index);
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon icon={faEye}/>
+                                                        </button>
+                                                }
                                             </div>
                                             <span>{item.explanation.content}</span>
                                         </div>
@@ -331,7 +355,7 @@ function MultipleChoiceAccordion(props) {
                                         <div className="multiple-choice-explanation-action-button mt-2 mb-2">
                                             <button
                                                 type="button"
-                                                className="btn btn-success btn-sm"
+                                                className="btn btn-success btn-sm mb-2"
                                                 onClick={() => {
                                                     props.setShowTextEditor(true, contentIndex, 'mChoiceExplanation');
                                                     props.setMChoiceIndex(index);
