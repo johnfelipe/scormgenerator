@@ -13,6 +13,8 @@ function MultipleChoiceAccordion(props) {
     const answer = props.answer;
     const contentIndex = props.contentIndex;
 
+    const [editAnswer, setEditAnswer] = useState('');
+    const [isEditAnswer, setIsEditAnswer] = useState(false);
     const [imgAddLabel, setImgAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
     const [audioAddLabel, setAudioAddLabel] = useState(false);
@@ -296,61 +298,95 @@ function MultipleChoiceAccordion(props) {
                                         <ul className="multiple-choice-question-list list-unstyled">
                                             {item.answers.map((item, answerIndex) => (
                                                 <li key={Math.random()} className="multiple-choice-question-list-item mb-3">
-                                                    {/* <span key={'multiple-choice-feature-answer-list-item-span-' + answerIndex}>
-                                                        <span key={'multiple-choice-feature-answer-list-item-' + answerIndex}>
-                                                            {item.answer}&nbsp;
-                                                                {
-                                                                    item.correct === '' ?
-                                                                        <button
-                                                                            title="Mark as answer"
-                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                            onClick={() => {
-                                                                                props.setCorrectAnswer(true, index, answerIndex)
-                                                                            }}
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faCheck}/>
-                                                                        </button>
-                                                                    :
-                                                                        item.correct &&
-                                                                        <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                                }
-                                                        </span>
-                                                    </span> */}
-                                                    <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
-                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7">
-                                                            {item.answer}
-                                                        </div>
-                                                        <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
-                                                            {
-                                                                    item.correct === '' ?
-                                                                        <button
-                                                                            title="Mark as answer"
-                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                            type="button"
-                                                                            onClick={() => {
-                                                                                props.setCorrectAnswer(true, index, answerIndex)
-                                                                            }}
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faCheck}/>
-                                                                        </button>
-                                                                    :
-                                                                        item.correct &&
-                                                                        <span><FontAwesomeIcon icon={faCheck}/></span>
-                                                            }
-                                                            <button
-                                                                className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                type="button"
-                                                            >
-                                                                <FontAwesomeIcon icon={faEdit}/>
-                                                            </button>
-                                                            <button
-                                                                className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                type="button"
-                                                            >
-                                                                <FontAwesomeIcon icon={faTrash}/>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                    {
+                                                        isEditAnswer ?
+                                                            <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
+                                                                <div className="multiple-choice-control-input-label">
+                                                                    <span>Edit:&nbsp;</span>
+                                                                </div>
+                                                                <div className="multiple-choice-control-input">
+                                                                    <input
+                                                                        id="answer"
+                                                                        name="answer"
+                                                                        type="text"
+                                                                        placeholder="Type answer here. . ."
+                                                                        onChange={(event) => setEditAnswer(event.target.value)}
+                                                                        value={editAnswer}
+                                                                    />
+                                                                </div>
+                                                                <div className="multiple-choice-control-button">
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-success btn-sm mr-1"
+                                                                        onClick={() => {
+                                                                            const isEmpty = document.getElementById("answer");
+                                                                            
+                                                                            if (isEmpty.value !== "") {
+                                                                                props.editAnswer(answer, index, answerIndex);
+                                                                                setEditAnswer('');
+                                                                                setIsEditAnswer(false);
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                    </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-danger btn-sm"
+                                                                        onClick={() => {
+                                                                            const isEmpty = document.getElementById("answer");
+                                                                            
+                                                                            if (isEmpty.value !== "") {
+                                                                                setEditAnswer('');
+                                                                                setIsEditAnswer(false);
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faTimes}/>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        :
+                                                            <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
+                                                                <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7">
+                                                                    {item.answer}
+                                                                </div>
+                                                                <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
+                                                                    {
+                                                                            item.correct === '' ?
+                                                                                <button
+                                                                                    title="Mark as answer"
+                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                    type="button"
+                                                                                    onClick={() => {
+                                                                                        props.setCorrectAnswer(true, index, answerIndex)
+                                                                                    }}
+                                                                                >
+                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                </button>
+                                                                            :
+                                                                                item.correct &&
+                                                                                <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                    }
+                                                                    <button
+                                                                        className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                        type="button"
+                                                                        onClick={() => {
+                                                                            setEditAnswer(item.answer);
+                                                                            setIsEditAnswer(true);
+                                                                        }}
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faEdit}/>
+                                                                    </button>
+                                                                    <button
+                                                                        className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                        type="button"
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faTrash}/>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                    }
                                                 </li>
                                             ))}
                                         </ul>
