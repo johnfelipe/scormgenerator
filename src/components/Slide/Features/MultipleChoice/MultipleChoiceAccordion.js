@@ -303,13 +303,22 @@ function MultipleChoiceAccordion(props) {
                                                         </span>
                                                     </span> */}
                                                     <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
-                                                        <div className="p-0 col-md-11 pl-0">
+                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-8">
                                                             {item.answer}
                                                         </div>
                                                         <div
-                                                            className="col-md-1 p-0 multiple-choice-feature-answer-list-item-delete"
+                                                            className="col-md-4 p-0 multiple-choice-feature-answer-list-item-delete"
                                                         >
-                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                            <button
+                                                                className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                            >
+                                                                <FontAwesomeIcon icon={faEdit}/>
+                                                            </button>
+                                                            <button
+                                                                className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                            >
+                                                                <FontAwesomeIcon icon={faTrash}/>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </li>
