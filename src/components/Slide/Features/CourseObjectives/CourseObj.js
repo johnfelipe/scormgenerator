@@ -8,14 +8,25 @@ function CourseObj(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const courseNav = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseNav;
     const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
+    const [editCourseNavName, setEditCourseNavName] = useState(false);
+    const [courseNavName, setCourseNavName] = useState('');
     const [editCourseInfoName, setEditCourseInfoName] = useState(false);
     const [courseInfoName, setCourseInfoName] = useState('');
     const [editCourseReqName, setEditCourseReqName] = useState(false);
     const [courseReqName, setCourseReqName] = useState('');
     const [cInfoCollapseId, setCInfoCollapseId] = useState(false);
     const [cReqCollapseId, setCReqCollapseId] = useState(false);
+
+    const updateCourseNavName = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseNav.name = value;
+
+        props.setColumn(currentColumnObj);
+    }
 
     const updateCourseInfoName = (value) => {
         const currentColumnObj = currentColumn;
@@ -68,6 +79,69 @@ function CourseObj(props) {
                 </div>
                 <div className="sg-control-input">
                     <Accordion>
+                        <Card>
+                            <Card.Header>
+                                {editCourseNavName ?
+                                    <div className="row m-0">
+                                        <div className="col-md-8 p-0">
+                                            <input
+                                                name="courseInfoName"
+                                                className="form-control"
+                                                value={courseNavName}
+                                                onChange={(e) => setCourseNavName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
+                                            <button type="button" className="btn btn-success btn-sm mt-1"  onClick={() => {setEditCourseNavName(false); updateCourseNavName(courseNavName)}}>
+                                                <FontAwesomeIcon icon={faCheckCircle}/>
+                                            </button>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2 mt-1"  onClick={() => {setEditCourseNavName(false); setCourseInfoName('')}}>
+                                                <FontAwesomeIcon icon={faTimes}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                :
+                                    <div className="row m-0">
+                                        <div className="col-md-9 pl-0">
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
+                                                {courseNav.name}
+                                            </Accordion.Toggle>
+                                        </div>
+                                        <div id="action-buttons-group" className="col-md-3 p-0">
+                                            <span className="float-right mr-2">
+                                                <FontAwesomeIcon icon={cInfoCollapseId === true ? faCaretUp : faCaretDown}/>
+                                            </span>
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => {setEditCourseNavName(true); setCourseNavName(courseNav.name);}}>
+                                                <FontAwesomeIcon icon={faEdit}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body>
+                                    <ul className="sg-control-input-list">
+                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                            <div className="sg-control-input-list-label">
+                                                <span>Content</span>
+                                            </div>
+                                            <div className="sg-control-input-list-input">
+                                                <div className="sg-expandable-code-editor">
+                                                    <div className="sg-workspace-expander">
+                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')} disabled>
+                                                                <span>Edit</span>
+                                                            </button>
+                                                            <input type="text" value="" disabled className="rounded"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
                         <Card>
                             <Card.Header>
                                 {editCourseInfoName ?
