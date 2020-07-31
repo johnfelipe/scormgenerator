@@ -64,6 +64,7 @@ function CourseObj(props) {
 
     const setIntroVideo = (name, url, type) => {
         const currentColumnObj = currentColumn;
+
         currentColumnObj.content[currentColumnContentIndex][contentIndex].introVideo.name = name;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].introVideo.url = url;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].introVideo.type = type;
@@ -80,6 +81,14 @@ function CourseObj(props) {
         reader.onloadend = () => {
             setIntroVideo(files[0].name, reader.result, files[0].type);
         }
+    }
+
+    const setIntroVideoPosition = (value) => {
+        const currentColumnObj = currentColumn;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].introVideo.position = value;
+
+        props.setColumn(currentColumnObj);
     }
 
     return (
@@ -317,6 +326,21 @@ function CourseObj(props) {
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Video Position</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <select
+                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.position}
+                                        onChange={(event) => setIntroVideoPosition(event.target.value)}
+                                        className="form-control-plaintext border border-secondary rounded"
+                                    >
+                                        <option value="course-objectives-video-left">&nbsp;Left</option>
+                                        <option value="course-objectives-video-right">&nbsp;Right</option>
+                                    </select>
+                                </div>
+                            </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
