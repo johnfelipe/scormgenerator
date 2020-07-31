@@ -17,6 +17,7 @@ function CourseObj(props) {
     const [courseInfoName, setCourseInfoName] = useState('');
     const [editCourseReqName, setEditCourseReqName] = useState(false);
     const [courseReqName, setCourseReqName] = useState('');
+    const [cNavCollapseId, setCNavCollapseId] = useState(false);
     const [cInfoCollapseId, setCInfoCollapseId] = useState(false);
     const [cReqCollapseId, setCReqCollapseId] = useState(false);
 
@@ -56,6 +57,8 @@ function CourseObj(props) {
             setCInfoCollapseId(currentCollapseId);
         } else if (type === 'cReq') {
             setCReqCollapseId(currentCollapseId);
+        } else if (type === 'cNav') {
+            setCNavCollapseId(currentCollapseId);
         }
     }
 
@@ -103,7 +106,7 @@ function CourseObj(props) {
                                 :
                                     <div className="row m-0">
                                         <div className="col-md-9 pl-0">
-                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
                                                 {courseNav.name}
                                             </Accordion.Toggle>
                                         </div>
