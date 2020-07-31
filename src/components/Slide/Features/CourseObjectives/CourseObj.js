@@ -169,7 +169,7 @@ function CourseObj(props) {
                                 :
                                     <div className="row m-0">
                                         <div className="col-md-9 pl-0">
-                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="1" onClick={() => collapseListener(cInfoCollapseId, 'cInfo')}>
                                                 {courseInfo.name}
                                             </Accordion.Toggle>
                                         </div>
@@ -184,7 +184,7 @@ function CourseObj(props) {
                                     </div>
                                 }
                             </Card.Header>
-                            <Accordion.Collapse eventKey="0">
+                            <Accordion.Collapse eventKey="1">
                                 <Card.Body>
                                     <ul className="sg-control-input-list">
                                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -232,7 +232,7 @@ function CourseObj(props) {
                                 :
                                     <div className="row m-0">
                                         <div className="col-md-9 pl-0">
-                                            <Accordion.Toggle as={Button} variant="link" eventKey="1" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="2" onClick={() => collapseListener(cReqCollapseId, 'cReq')}>
                                                 {courseReq.name}
                                             </Accordion.Toggle>
                                         </div>
@@ -247,7 +247,7 @@ function CourseObj(props) {
                                     </div>
                                 }
                             </Card.Header>
-                            <Accordion.Collapse eventKey="1">
+                            <Accordion.Collapse eventKey="2">
                                 <Card.Body>
                                     <ul className="sg-control-input-list">
                                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
