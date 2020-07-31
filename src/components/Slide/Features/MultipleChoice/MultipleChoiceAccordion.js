@@ -279,11 +279,11 @@ function MultipleChoiceAccordion(props) {
                                 }
                                 {
                                     item.answers.length > 0 ?
-                                        <ul className="multiple-choice-question-list">
+                                        <ul className="multiple-choice-question-list list-unstyled">
                                             {item.answers.map((item, answerIndex) => (
                                                 <li key={Math.random()} className="multiple-choice-question-list-item mb-3">
-                                                    <span key={'multiple-choicefeature-answer-list-item-span-' + answerIndex}>
-                                                        <span key={'multiple-choicefeature-answer-list-item-' + answerIndex}>
+                                                    {/* <span key={'multiple-choice-feature-answer-list-item-span-' + answerIndex}>
+                                                        <span key={'multiple-choice-feature-answer-list-item-' + answerIndex}>
                                                             {item.answer}&nbsp;
                                                                 {
                                                                     item.correct === '' ?
@@ -301,7 +301,17 @@ function MultipleChoiceAccordion(props) {
                                                                         <span><FontAwesomeIcon icon={faCheck}/></span>
                                                                 }
                                                         </span>
-                                                    </span>
+                                                    </span> */}
+                                                    <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
+                                                        <div className="p-0 col-md-11 pl-0">
+                                                            {item.answer}
+                                                        </div>
+                                                        <div
+                                                            className="col-md-1 p-0 multiple-choice-feature-answer-list-item-delete"
+                                                        >
+                                                            <span><FontAwesomeIcon icon={faTimes}/></span>
+                                                        </div>
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>
