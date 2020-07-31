@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
+// components
+import ColorPicker from '../../../Common/ColorPicker';
+
 function CourseObj(props) {
     
     const currentColumn = props.currentColumn;
@@ -11,6 +14,7 @@ function CourseObj(props) {
     const courseNav = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseNav;
     const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
+    const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.courseIntroColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.courseIntroColor;
     const [editCourseNavName, setEditCourseNavName] = useState(false);
     const [courseNavName, setCourseNavName] = useState('');
     const [editCourseInfoName, setEditCourseInfoName] = useState(false);
@@ -20,6 +24,7 @@ function CourseObj(props) {
     const [cNavCollapseId, setCNavCollapseId] = useState(false);
     const [cInfoCollapseId, setCInfoCollapseId] = useState(false);
     const [cReqCollapseId, setCReqCollapseId] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
 
     const updateCourseNavName = (value) => {
         const currentColumnObj = currentColumn;
@@ -87,6 +92,14 @@ function CourseObj(props) {
         const currentColumnObj = currentColumn;
         
         currentColumnObj.content[currentColumnContentIndex][contentIndex].introVideo.position = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setCourseIntroColor = (value) => {
+        const currentColumnObj = currentColumn;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.courseIntroColor = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -378,6 +391,16 @@ function CourseObj(props) {
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label multiple-choice-background-color-label">
+                                <span>Background Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input multiple-choice-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Element CSS</span>
                             </div>
@@ -397,6 +420,12 @@ function CourseObj(props) {
                     </ul>
                 </div>
             </div>
+            <ColorPicker
+                classNames="position-absolute course-objectives-color-picker"
+                showPicker={showPicker}
+                setBackgroundColor={setCourseIntroColor}
+                defaultColor={currentBackgroundColor}
+            />
         </div>
     );
 }
