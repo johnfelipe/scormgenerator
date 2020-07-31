@@ -19,7 +19,7 @@ function TextEditor(props) {
             } else if (editorType.for === 'courseReq') {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
             } else if (editorType.for === 'mChoiceExplanation') {
-                currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation = value;
+                currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation.content = value;
             }
         }
 
@@ -49,7 +49,7 @@ function TextEditor(props) {
                                 contentFor === 'courseReq' ? 
                                     typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                                 :
-                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex] && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation
+                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation.content
                         }
                         onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                     />
