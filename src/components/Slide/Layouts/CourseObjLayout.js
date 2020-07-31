@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { Player, ControlBar } from 'video-react';
+// import { Player, ControlBar } from 'video-react';
 import { Modal } from 'react-bootstrap';
 import imageSrc from '../../../styles/img/wbt_nav_sscs.png';
 
@@ -88,15 +88,14 @@ function CourseObjLayout(props) {
             <div className="course-objective-container h-100 w-100 border border-light">
                 <div className="row">
                     <div className="col-md-8">
-                        <Player className="course-obj-itro-video h-100 w-100">
-                            <source src={introVideo} />
+                        {/* <Player className="course-obj-itro-video h-100 w-100">
+                            <source src={introVideo.url} />
                             
                             <ControlBar autoHide={true}/>
-                        </Player>
-                        {/* <video className="course-obj-itro-video h-100 w-100" controls>
-                            <source src={introVideo}/>
+                        </Player> */}
+                        <video className="course-obj-itro-video h-100 w-100" controls src={introVideo.url}>
                             Your browser does not support the video tag.
-                        </video> */}
+                        </video>
                     </div>
                     <div className="col-md-4">
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
