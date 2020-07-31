@@ -58,12 +58,12 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addAnswer = (value, questionIndex) => {
+    const addAnswer = (value, questionIndex, correctAnswer) => {
         const currentColumnObj = currentColumn;
 
         const answer = {
             answer: value,
-            correct: '',
+            correct: correctAnswer,
         }
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
 
