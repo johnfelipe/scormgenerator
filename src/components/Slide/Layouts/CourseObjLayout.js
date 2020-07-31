@@ -150,7 +150,6 @@ function CourseObjLayout(props) {
         <div id="course-objective-layout">
             <div className="course-objective-container h-100 w-100 border border-light">
                 {content(introVideo.position)}
-                
             </div>
             {courseNavModal}
             {courseInfoModal}
