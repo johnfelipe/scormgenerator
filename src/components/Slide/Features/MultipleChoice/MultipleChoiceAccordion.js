@@ -27,7 +27,7 @@ function MultipleChoiceAccordion(props) {
     const [imgCollapse,  setImgCollapse] = useState(false);
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
-    // const [isAddExplanation, setIsAddExplanation] = useState(false);
+    const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -273,7 +273,11 @@ function MultipleChoiceAccordion(props) {
                                                         const isEmpty = document.getElementById("answer");
                                                         
                                                         if (isEmpty.value !== "") {
-                                                            props.addAnswer(answer, index);
+                                                            if (isCorrectAnswerSet) {
+                                                                props.addAnswer(answer, index, false);
+                                                            } else {
+                                                                props.addAnswer(answer, index, '');
+                                                            }
                                                             props.setAnswer('');
                                                             props.setIsAddAnswer(false);
                                                         }
@@ -383,7 +387,7 @@ function MultipleChoiceAccordion(props) {
                                                                                     </div>
                                                                                 :
                                                                                     <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
-                                                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7">
+                                                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.answer}>
                                                                                             {item.answer}
                                                                                         </div>
                                                                                         <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
@@ -394,14 +398,15 @@ function MultipleChoiceAccordion(props) {
                                                                                                             className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                             type="button"
                                                                                                             onClick={() => {
-                                                                                                                props.setCorrectAnswer(true, index, answerIndex)
+                                                                                                                props.setCorrectAnswer(true, index, answerIndex);
+                                                                                                                setIsCorrectAnswerSet(true);
                                                                                                             }}
                                                                                                         >
                                                                                                             <FontAwesomeIcon icon={faCheck}/>
                                                                                                         </button>
                                                                                                     :
                                                                                                         item.correct &&
-                                                                                                        <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                                        <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
                                                                                             }
                                                                                             <button
                                                                                                 className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
