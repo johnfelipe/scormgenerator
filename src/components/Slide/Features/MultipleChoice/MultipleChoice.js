@@ -69,6 +69,14 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const editAnswer = (value, questionIndex, answerIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].answer = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     const setCorrectAnswer = (value, questionIndex, answerIndex) => {
         const currentColumnObj = currentColumn;
 
@@ -315,6 +323,7 @@ function MultipleChoice(props) {
                                                                         setIsEditQuestion={setIsEditQuestion}
                                                                         setUpdateQuestion={setUpdateQuestion}
                                                                         setAnswer={setAnswer}
+                                                                        editAnswer={editAnswer}
                                                                         addAnswer={addAnswer}
                                                                         setIsAddAnswer={setIsAddAnswer}
                                                                         setCorrectAnswer={setCorrectAnswer}
