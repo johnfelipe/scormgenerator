@@ -13,6 +13,7 @@ function MultipleChoice(props) {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
+    const [updateQuestionCompareIndex, setUpdateQuestionCompareIndex] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
     const [filesExist, setFilesExist] = useState(false);
@@ -33,7 +34,7 @@ function MultipleChoice(props) {
             question: value,
             answers: [],
             files: [],
-            explanation: '',
+            explanation: { content: '', visibility: 'show' },
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
@@ -57,14 +58,30 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addAnswer = (value, questionIndex) => {
+    const addAnswer = (value, questionIndex, correctAnswer) => {
         const currentColumnObj = currentColumn;
 
         const answer = {
             answer: value,
-            correct: '',
+            correct: correctAnswer,
         }
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editAnswer = (value, questionIndex, answerIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].answer = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteAnswer = (questionIndex, answerIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.splice(answerIndex, 1);
 
         props.setColumn(currentColumnObj);
     }
@@ -260,6 +277,22 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setExplanationVisibility = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].explanation.visibility = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setQuestionAnswers = (questionAnswersArray, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers = questionAnswersArray;
+
+        props.setColumn(currentColumnObj);
+    }
+
     useEffect(() => {
         if (isFinalQuiz && props.slideItemId === slideItemIdWithFinalQuiz) {
             setFeatureTypeMechanics('finalQuiz');
@@ -297,40 +330,12 @@ function MultipleChoice(props) {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
                                                 <>
                                                     {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="multiple-choice-question-list-item">
+                                                        <li key={'number-' + index} className="multiple-choice-question-list-item mb-2">
                                                             {
-                                                                isEditQuestion === false ?
-                                                                    <MultipleChoiceAccordion
-                                                                        index={index}
-                                                                        item={item}
-                                                                        deleteQuestion={deleteQuestion}
-                                                                        setIsEditQuestion={setIsEditQuestion}
-                                                                        setUpdateQuestion={setUpdateQuestion}
-                                                                        setAnswer={setAnswer}
-                                                                        addAnswer={addAnswer}
-                                                                        setIsAddAnswer={setIsAddAnswer}
-                                                                        setCorrectAnswer={setCorrectAnswer}
-                                                                        IsAddAnswer={IsAddAnswer}
-                                                                        answer={answer}
-                                                                        addImageQuestion={addImageQuestion}
-                                                                        addAudioQuestion={addAudioQuestion}
-                                                                        addVideoQuestion={addVideoQuestion}
-                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
-                                                                        deleteQuestionFile={deleteQuestionFile}
-                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
-                                                                        setFilesExist={setFilesExist}
-                                                                        setQuestionFiles={setQuestionFiles}
-                                                                        addFileLabel={addFileLabel}
-                                                                        editFileLabel={editFileLabel}
-                                                                        deleteFileLabel={deleteFileLabel}
-                                                                        contentIndex={contentIndex}
-                                                                        setShowTextEditor={props.setShowTextEditor}
-                                                                        setMChoiceIndex={props.setMChoiceIndex}
-                                                                    />
-                                                                :
+                                                                isEditQuestion && updateQuestionCompareIndex === index ?
                                                                     <div className="multiple-choice-control-input-wrapper">
                                                                         <div className="multiple-choice-control-input-label">
-                                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length}.</span>
+                                                                            <span>{index+1}.</span>
                                                                         </div>
                                                                         <div className="multiple-choice-control-input">
                                                                             <input
@@ -353,6 +358,7 @@ function MultipleChoice(props) {
                                                                                         editQuestion(updateQuestion, index);
                                                                                         setUpdateQuestion('');
                                                                                         setIsEditQuestion(false);
+                                                                                        setUpdateQuestionCompareIndex('');
                                                                                     }
                                                                                 }}
                                                                             >
@@ -360,10 +366,43 @@ function MultipleChoice(props) {
                                                                             </button>
                                                                         </div>
                                                                     </div>
+                                                                :
+                                                                    <MultipleChoiceAccordion
+                                                                        index={index}
+                                                                        item={item}
+                                                                        deleteQuestion={deleteQuestion}
+                                                                        setIsEditQuestion={setIsEditQuestion}
+                                                                        setUpdateQuestion={setUpdateQuestion}
+                                                                        setAnswer={setAnswer}
+                                                                        editAnswer={editAnswer}
+                                                                        deleteAnswer={deleteAnswer}
+                                                                        addAnswer={addAnswer}
+                                                                        setIsAddAnswer={setIsAddAnswer}
+                                                                        setCorrectAnswer={setCorrectAnswer}
+                                                                        IsAddAnswer={IsAddAnswer}
+                                                                        answer={answer}
+                                                                        addImageQuestion={addImageQuestion}
+                                                                        addAudioQuestion={addAudioQuestion}
+                                                                        addVideoQuestion={addVideoQuestion}
+                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
+                                                                        deleteQuestionFile={deleteQuestionFile}
+                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
+                                                                        setFilesExist={setFilesExist}
+                                                                        setQuestionFiles={setQuestionFiles}
+                                                                        addFileLabel={addFileLabel}
+                                                                        editFileLabel={editFileLabel}
+                                                                        deleteFileLabel={deleteFileLabel}
+                                                                        contentIndex={contentIndex}
+                                                                        setShowTextEditor={props.setShowTextEditor}
+                                                                        setMChoiceIndex={props.setMChoiceIndex}
+                                                                        setExplanationVisibility={setExplanationVisibility}
+                                                                        setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
+                                                                        setQuestionAnswers={setQuestionAnswers}
+                                                                    />
                                                             }
                                                         </li>
                                                     ))}
-                                                    <li className="multiple-choice-question-list-item mt-2">
+                                                    <li className="multiple-choice-question-list-item">
                                                         <div className="multiple-choice-control-input-wrapper">
                                                             <div className="multiple-choice-control-input-label">
                                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
