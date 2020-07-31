@@ -235,7 +235,7 @@ function MultipleChoiceAccordion(props) {
                         onClick={() => {
                             props.setIsEditQuestion(true);
                             props.setUpdateQuestion(item.question);
-                            props.setUpdateQuestionCompare(item.question);
+                            props.setUpdateQuestionCompareIndex(index);
                         }}
                     >
                         <FontAwesomeIcon icon={faEdit}/>
