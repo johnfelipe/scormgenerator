@@ -1284,34 +1284,27 @@ class SlideHandler extends Component {
 
                             return (
                                 <form onSubmit={handleSubmit}>
-                                    <div className="row m-0">
-                                        <div className="col-md-10 p-0">
-                                            <label htmlFor="slideName">Title:</label>
-                                        </div>
-                                        <div className="col-md-2 p-0">
-                                            <OverlayTrigger
-                                                key="top"
-                                                placement="top"
-                                                overlay={
-                                                    <Tooltip id='tooltip-top'>
-                                                        <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
-                                                    </Tooltip>
-                                                }
-                                            >
-                                                <input
-                                                    id="showTitle"
-                                                    name="showTitle"
-                                                    type="checkbox"
-                                                    value={values.showTitle}
-                                                    checked={values.showTitle}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    className="ml-3 float-right"
-                                                />
-                                            </OverlayTrigger>
-                                        </div>
-                                    </div>
-                                    {/* <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label> */}
+                                    <label htmlFor="slideName">Title:</label>
+                                    <OverlayTrigger
+                                        key="top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id='tooltip-top'>
+                                                <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <input
+                                            id="showTitle"
+                                            name="showTitle"
+                                            type="checkbox"
+                                            value={values.showTitle}
+                                            checked={values.showTitle}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            className="ml-3"
+                                        />
+                                    </OverlayTrigger>
                                     <input
                                         id="slideName"
                                         name="slideName"
