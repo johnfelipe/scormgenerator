@@ -277,6 +277,14 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setQuestionAnswers = (questionAnswersArray, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers = questionAnswersArray;
+
+        props.setColumn(currentColumnObj);
+    }
+
     useEffect(() => {
         if (isFinalQuiz && props.slideItemId === slideItemIdWithFinalQuiz) {
             setFeatureTypeMechanics('finalQuiz');
@@ -380,6 +388,7 @@ function MultipleChoice(props) {
                                                                         setMChoiceIndex={props.setMChoiceIndex}
                                                                         setExplanationVisibility={setExplanationVisibility}
                                                                         setUpdateQuestionCompare={setUpdateQuestionCompare}
+                                                                        setQuestionAnswers={setQuestionAnswers}
                                                                     />
                                                             }
                                                         </li>
