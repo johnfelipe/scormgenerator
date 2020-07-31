@@ -311,7 +311,7 @@ function MultipleChoiceAccordion(props) {
                             </Tab>
                             <Tab eventKey="explanation" title="Explanation">
                                 {
-                                    item.explanation ?
+                                    item.explanation.content ?
                                         <div className="mt-2">
                                             <div id="explanation-action-buttons" className="mb-2">
                                                 <button
@@ -325,7 +325,7 @@ function MultipleChoiceAccordion(props) {
                                                     Edit explanation
                                                 </button>
                                             </div>
-                                            <span>{item.explanation}</span>
+                                            <span>{item.explanation.content}</span>
                                         </div>
                                     :
                                         <div className="multiple-choice-explanation-action-button mt-2 mb-2">
