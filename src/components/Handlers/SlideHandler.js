@@ -8,6 +8,8 @@ import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regul
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -1282,18 +1284,34 @@ class SlideHandler extends Component {
 
                             return (
                                 <form onSubmit={handleSubmit}>
-                                    <label htmlFor="slideName">Title:</label>
-                                    <input
-                                        id="showTitle"
-                                        name="showTitle"
-                                        type="checkbox"
-                                        value={values.showTitle}
-                                        checked={values.showTitle}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className="ml-3"
-                                    />
-                                    <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
+                                    <div className="row m-0">
+                                        <div className="col-md-10 p-0">
+                                            <label htmlFor="slideName">Title:</label>
+                                        </div>
+                                        <div className="col-md-2 p-0">
+                                            <OverlayTrigger
+                                                key="top"
+                                                placement="top"
+                                                overlay={
+                                                    <Tooltip id='tooltip-top'>
+                                                        <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
+                                                    </Tooltip>
+                                                }
+                                            >
+                                                <input
+                                                    id="showTitle"
+                                                    name="showTitle"
+                                                    type="checkbox"
+                                                    value={values.showTitle}
+                                                    checked={values.showTitle}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    className="ml-3 float-right"
+                                                />
+                                            </OverlayTrigger>
+                                        </div>
+                                    </div>
+                                    {/* <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label> */}
                                     <input
                                         id="slideName"
                                         name="slideName"
