@@ -13,7 +13,7 @@ function MultipleChoice(props) {
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
-    const [updateQuestionCompare, setUpdateQuestionCompare] = useState('');
+    const [updateQuestionCompareIndex, setUpdateQuestionCompareIndex] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
     const [filesExist, setFilesExist] = useState(false);
@@ -332,7 +332,7 @@ function MultipleChoice(props) {
                                                     {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
                                                         <li key={'number-' + index} className="multiple-choice-question-list-item mb-2">
                                                             {
-                                                                isEditQuestion && updateQuestionCompare === item.question ?
+                                                                isEditQuestion && updateQuestionCompareIndex === index ?
                                                                     <div className="multiple-choice-control-input-wrapper">
                                                                         <div className="multiple-choice-control-input-label">
                                                                             <span>{index+1}.</span>
@@ -358,7 +358,7 @@ function MultipleChoice(props) {
                                                                                         editQuestion(updateQuestion, index);
                                                                                         setUpdateQuestion('');
                                                                                         setIsEditQuestion(false);
-                                                                                        setUpdateQuestionCompare('');
+                                                                                        setUpdateQuestionCompareIndex('');
                                                                                     }
                                                                                 }}
                                                                             >
@@ -396,7 +396,7 @@ function MultipleChoice(props) {
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
                                                                         setExplanationVisibility={setExplanationVisibility}
-                                                                        setUpdateQuestionCompare={setUpdateQuestionCompare}
+                                                                        setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
                                                                     />
                                                             }
