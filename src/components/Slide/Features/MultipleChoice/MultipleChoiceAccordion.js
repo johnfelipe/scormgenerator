@@ -329,7 +329,7 @@ function MultipleChoiceAccordion(props) {
                                                         <button
                                                             title="Hide"
                                                             type="button"
-                                                            className="btn btn-primary btn-sm ml-2"
+                                                            className="btn btn-primary btn-sm float-right"
                                                             onClick={() => {
                                                                 props.setExplanationVisibility('hide', index);
                                                             }}
@@ -340,7 +340,7 @@ function MultipleChoiceAccordion(props) {
                                                         <button
                                                             title="Show"
                                                             type="button"
-                                                            className="btn btn-primary btn-sm ml-2"
+                                                            className="btn btn-primary btn-sm float-right"
                                                             onClick={() => {
                                                                 props.setExplanationVisibility('show', index);
                                                             }}
