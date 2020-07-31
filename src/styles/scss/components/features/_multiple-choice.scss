@@ -235,6 +235,8 @@
 
                                                             #multiple-choice-feature-answer-list-item-answer {
                                                                 text-overflow: ellipsis !important;
+                                                                overflow: hidden;
+                                                                white-space: nowrap;
                                                             }
                                                         }
                                                     }

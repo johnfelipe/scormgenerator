@@ -1463,6 +1463,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item #multiple-choice-feature-answer-list-item-answer {
   text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 html body {
