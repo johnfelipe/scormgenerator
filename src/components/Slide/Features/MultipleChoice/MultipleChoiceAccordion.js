@@ -317,19 +317,35 @@ function MultipleChoiceAccordion(props) {
                                                         </span>
                                                     </span> */}
                                                     <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
-                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-8">
+                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7">
                                                             {item.answer}
                                                         </div>
-                                                        <div
-                                                            className="col-md-4 p-0 multiple-choice-feature-answer-list-item-delete"
-                                                        >
+                                                        <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
+                                                            {
+                                                                    item.correct === '' ?
+                                                                        <button
+                                                                            title="Mark as answer"
+                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                            type="button"
+                                                                            onClick={() => {
+                                                                                props.setCorrectAnswer(true, index, answerIndex)
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faCheck}/>
+                                                                        </button>
+                                                                    :
+                                                                        item.correct &&
+                                                                        <span><FontAwesomeIcon icon={faCheck}/></span>
+                                                            }
                                                             <button
                                                                 className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                type="button"
                                                             >
                                                                 <FontAwesomeIcon icon={faEdit}/>
                                                             </button>
                                                             <button
                                                                 className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                type="button"
                                                             >
                                                                 <FontAwesomeIcon icon={faTrash}/>
                                                             </button>
