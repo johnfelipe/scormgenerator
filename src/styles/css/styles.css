@@ -1454,6 +1454,13 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.multiple-choice-question-files-list li.multiple-choice-question-files-list-item .sg-accordion {
   list-style-type: none;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item {
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 10px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
 
 html body {
   font-family: "Open Sans";
