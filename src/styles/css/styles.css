@@ -1461,6 +1461,9 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item #multiple-choice-feature-answer-list-item-answer {
+  text-overflow: ellipsis !important;
+}
 
 html body {
   font-family: "Open Sans";

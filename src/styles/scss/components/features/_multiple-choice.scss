@@ -232,6 +232,10 @@
                                                             padding: 10px;
                                                             margin: 0px 0px 8px 0px;
                                                             background: whitesmoke;
+
+                                                            #multiple-choice-feature-answer-list-item-answer {
+                                                                text-overflow: ellipsis !important;
+                                                            }
                                                         }
                                                     }
                                                 }
