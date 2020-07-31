@@ -14,6 +14,7 @@ function MultipleChoiceAccordion(props) {
     const contentIndex = props.contentIndex;
 
     const [editAnswer, setEditAnswer] = useState('');
+    const [editAnswerCompare, setEditAnswerCompare] = useState('');
     const [isEditAnswer, setIsEditAnswer] = useState(false);
     const [imgAddLabel, setImgAddLabel] = useState(false);
     const [imgLabel, setImgLabel] = useState('');
@@ -219,6 +220,7 @@ function MultipleChoiceAccordion(props) {
                         onClick={() => {
                             props.setIsEditQuestion(true);
                             props.setUpdateQuestion(item.question);
+                            props.setUpdateQuestionCompare(item.question);
                         }}
                     >
                         <FontAwesomeIcon icon={faEdit}/>
@@ -299,7 +301,7 @@ function MultipleChoiceAccordion(props) {
                                             {item.answers.map((item, answerIndex) => (
                                                 <li key={Math.random()} className="multiple-choice-question-list-item mb-3">
                                                     {
-                                                        isEditAnswer ?
+                                                        isEditAnswer && editAnswerCompare === item.answer ?
                                                             <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
                                                                 <div className="multiple-choice-control-input-label">
                                                                     <span>Edit:&nbsp;</span>
@@ -322,7 +324,7 @@ function MultipleChoiceAccordion(props) {
                                                                             const isEmpty = document.getElementById("answer");
                                                                             
                                                                             if (isEmpty.value !== "") {
-                                                                                props.editAnswer(answer, index, answerIndex);
+                                                                                props.editAnswer(editAnswer, index, answerIndex);
                                                                                 setEditAnswer('');
                                                                                 setIsEditAnswer(false);
                                                                             }
@@ -374,6 +376,7 @@ function MultipleChoiceAccordion(props) {
                                                                         onClick={() => {
                                                                             setEditAnswer(item.answer);
                                                                             setIsEditAnswer(true);
+                                                                            setEditAnswerCompare(item.answer);
                                                                         }}
                                                                     >
                                                                         <FontAwesomeIcon icon={faEdit}/>
