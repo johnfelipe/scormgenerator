@@ -12,6 +12,7 @@ function CourseObjLayout(props) {
     const [courseReqModalShow, setCourseReqModalShow] = useState(false);
     const styles = props.styles;
     const introVideo = props.introVideo;
+    const courseNavTitle = props.output.courseNav.name;
     const courseInfoTitle = props.output.courseInfo.name;
     const courseReqTitle = props.output.courseReq.name;
     const courseInfoContent = props.output.courseInfo.content;
@@ -101,7 +102,7 @@ function CourseObjLayout(props) {
                         <div className="course-intro-wrapper w-100 h-100 p-4" style={{ background: styles.courseIntroColor}}>
                             <div className="mt-3">
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseNavModalShow(true)}>
-                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;Course Navigation
+                                    <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseNavTitle}
                                 </button>
                                 <button type="button" className="btn btn-light rounded-0 mt-3 w-100 font-14" onClick={() => setCourseInfoModalShow(true)}>
                                     <FontAwesomeIcon icon={faInfoCircle}/>&nbsp;{courseInfoTitle}
