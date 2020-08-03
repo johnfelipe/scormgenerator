@@ -289,12 +289,8 @@ function MultipleChoiceAccordion(props) {
                                                     type="button"
                                                     className="btn btn-danger btn-sm"
                                                     onClick={() => {
-                                                        const isEmpty = document.getElementById("answer");
-                                                        
-                                                        if (isEmpty.value !== "") {
-                                                            props.setAnswer('');
-                                                            props.setIsAddAnswer(false);
-                                                        }
+                                                        props.setAnswer('');
+                                                        props.setIsAddAnswer(false);
                                                     }}
                                                 >
                                                     <FontAwesomeIcon icon={faTimes}/>
@@ -302,16 +298,26 @@ function MultipleChoiceAccordion(props) {
                                             </div>
                                         </div>
                                     :
-                                        <div className="multiple-choice-question-action-button mt-2 mb-2">
-                                            <button
-                                                type="button"
-                                                className="btn btn-success btn-sm"
-                                                onClick={() => {
-                                                    props.setIsAddAnswer(true);
-                                                }}
-                                            >
-                                                Add answers
-                                            </button>
+                                        <div className="multiple-choice-question-action-button m-0 mt-2 mb-2 row">
+                                            <div className="col-md-6 p-0">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => {
+                                                        props.setIsAddAnswer(true);
+                                                    }}
+                                                >
+                                                    Add answers
+                                                </button>
+                                            </div>
+                                            <div className="col-md-6 p-0">
+                                                <select
+                                                    className="form-control-plaintext border border-secondary rounded"
+                                                >
+                                                    <option value="question-files-left">&nbsp;Left</option>
+                                                    <option value="question-files-right">&nbsp;Right</option>
+                                                </select>
+                                            </div>
                                         </div>
                                 }
                                 <DragDropContext onDragEnd={onDragEnd}>
