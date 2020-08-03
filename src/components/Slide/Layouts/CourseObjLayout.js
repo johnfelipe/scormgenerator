@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
-import imageSrc from '../../../styles/img/wbt_nav_sscs.png';
 import ReactHtmlParser from 'react-html-parser';
 
 // components
@@ -35,8 +34,9 @@ function CourseObjLayout(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <img src={imageSrc} alt="Select Menu button for course options, Previous and Next buttons to navigate, Resources button for source materials, and glossary button for definitions, acronyms and abbreviations." className="w-100 h-100"/>
-                <CourseNavContent />
+                <CourseNavContent 
+                    backgroundColor={styles.courseIntroColor}
+                />
             </Modal.Body>
             {/* <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setCourseNavModalShow(false)}>Close</button>
