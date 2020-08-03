@@ -10,7 +10,7 @@ img {
 
 .item-card {
     transition:0.5s;
-    cursor:pointer;
+    cursor:default;
 }
 
 /* .item-card-title {  
@@ -63,4 +63,10 @@ img {
 
 .item-card:hover::before, .item-card:hover::after, .item-card:focus::before, .item-card:focus::after {
     transform: scale3d(1, 1, 1);
+}
+
+/* custom css */
+.menu-btn:not(:disabled) {
+    pointer-events: none;
+    cursor: default;
 }
