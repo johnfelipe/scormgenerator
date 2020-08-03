@@ -1303,16 +1303,6 @@ class SlideHandler extends Component {
                                             </Tooltip>
                                         }
                                     >
-                                        {/* <input
-                                            id="showTitle"
-                                            name="showTitle"
-                                            type="checkbox"
-                                            value={values.showTitle}
-                                            checked={values.showTitle}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            className="ml-3"
-                                        /> */}
                                         <label className="check-text ml-3">
                                             <input
                                                 id="showTitle"
