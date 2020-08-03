@@ -148,7 +148,7 @@ class SlideHandler extends Component {
             currentColumnContentIndex: 'subColumnOne',
         });
 
-        this.handleSubmitMyForm();
+        // this.handleSubmitMyForm();
     }
 
     deleteColumn = (index) => {
@@ -1208,7 +1208,7 @@ class SlideHandler extends Component {
             console.log("edit");
         }
         
-        // this.setModalShow(false, 'save')
+        this.setModalShow(false, 'save')
     }
 
     submitMyForm = null;
