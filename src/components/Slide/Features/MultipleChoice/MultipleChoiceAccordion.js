@@ -276,7 +276,7 @@ function MultipleChoiceAccordion(props) {
                                                         
                                                         if (isEmpty.value !== "") {
                                                             // if (isCorrectAnswerSet) {
-                                                                props.addAnswer(answer, index, false);
+                                                                // props.addAnswer(answer, index, false);
                                                             // } else {
                                                                 props.addAnswer(answer, index, '');
                                                             // }
