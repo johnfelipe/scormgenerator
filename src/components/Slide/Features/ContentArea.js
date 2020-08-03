@@ -30,7 +30,7 @@ function ContentArea(props) {
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 { 
                                     isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, props.contentIndex)}>
+                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, props.contentIndex, '')}>
                                             <span>Click to Edit</span>
                                         </button>
                                     :

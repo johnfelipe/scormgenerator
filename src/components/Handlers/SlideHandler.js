@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -331,7 +331,7 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseNav: {name: 'Course Navigation',}, courseInfo: {name: 'Course Information', content: 'No information provided yet.'}, courseReq:  {name: 'Course Requirements', content: 'No requirements provided yet.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: {name: 'file_example_MP4_480_1_5MG', url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4', type: 'video/mp4', position: 'course-objectives-video-left'}, };
+                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseNav: {name: 'Course Navigation',}, courseInfo: {name: 'Course Information', content: '<span>No information provided yet.</span>'}, courseReq:  {name: 'Course Requirements', content: '<span>No requirements provided yet</span>.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: {name: 'file_example_MP4_480_1_5MG', url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4', type: 'video/mp4', position: 'course-objectives-video-left'}, };
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -941,10 +941,11 @@ class SlideHandler extends Component {
         })
     }
 
-    setShowHtmlEditor = (value, contentIndex) => {
+    setShowHtmlEditor = (value, contentIndex, contentFor) => {
         this.setState({
             showHtmlEditor: value,
             activeContentIndex: contentIndex,
+            contentFor: contentFor,
         })
     }
 
@@ -1161,7 +1162,7 @@ class SlideHandler extends Component {
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'homePage', output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', styles: { titleBoxColor: '#0069d9', titleBoxBorder: 'border-bottom' } };
         } else if (featureType === "courseObjectives") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'courseObjectives', output: { courseNav: {name: 'Course Navigation',}, courseInfo: {name: 'Course Information', content: 'No information provided yet.'}, courseReq:  {name: 'Course Requirements', content: 'No requirements provided yet.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: {name: 'file_example_MP4_480_1_5MG', url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4', type: 'video/mp4', position: 'course-objectives-video-left'}, };
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = { type: 'courseObjectives', output: { courseNav: {name: 'Course Navigation',}, courseInfo: {name: 'Course Information', content: '<span>No information provided yet.</span>'}, courseReq:  {name: 'Course Requirements', content: '<span>No requirements provided yet</span>.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: {name: 'file_example_MP4_480_1_5MG', url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4', type: 'video/mp4', position: 'course-objectives-video-left'}, };
         }
 
         const columns = this.state.column;
@@ -1247,7 +1248,7 @@ class SlideHandler extends Component {
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
                             slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
-                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : '',
+                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : false,
                         }}
 
                         onSubmit={values => {
@@ -1290,20 +1291,31 @@ class SlideHandler extends Component {
                                         placement="top"
                                         overlay={
                                             <Tooltip id='tooltip-top'>
-                                                <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
+                                                <label htmlFor="showTitle">
+                                                {
+                                                    values.showTitle ?
+                                                        <span>Title displayed</span>
+                                                    :
+                                                        <span>Title hidden</span>
+                                                }
+                                                    
+                                                </label>
                                             </Tooltip>
                                         }
                                     >
-                                        <input
-                                            id="showTitle"
-                                            name="showTitle"
-                                            type="checkbox"
-                                            value={values.showTitle}
-                                            checked={values.showTitle}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            className="ml-3"
-                                        />
+                                        <label className="check-text ml-3">
+                                            <input
+                                                id="showTitle"
+                                                name="showTitle"
+                                                type="checkbox"
+                                                value={values.showTitle}
+                                                checked={values.showTitle}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                className="ml-3"
+                                            />
+                                                <FontAwesomeIcon icon={values.showTitle ? faEye : faEyeSlash}/>
+                                        </label>
                                     </OverlayTrigger>
                                     <input
                                         id="slideName"
@@ -2908,6 +2920,8 @@ class SlideHandler extends Component {
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                contentFor={this.state.contentFor}
+                                                setColumn={this.setColumn}
                                             />
                                             <CssEditor 
                                                 currentColumn={this.state.column[this.state.activeColumnId]}

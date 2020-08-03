@@ -189,7 +189,17 @@ function CourseObj(props) {
                                                         <div className="sg-expandable-code-editor">
                                                             <div className="sg-workspace-expander">
                                                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                                    <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')} disabled>
+                                                                    {/* <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')} disabled>
+                                                                        <span>Edit</span>
+                                                                    </button> */}
+                                                                    <button
+                                                                        type="button"
+                                                                        className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                        onClick={() => {
+                                                                            props.setShowEditor(true, contentIndex, 'courseNav');
+                                                                        }}
+                                                                        disabled
+                                                                    >
                                                                         <span>Edit</span>
                                                                     </button>
                                                                     <input type="text" value="" disabled className="rounded"/>
@@ -252,7 +262,16 @@ function CourseObj(props) {
                                                         <div className="sg-expandable-code-editor">
                                                             <div className="sg-workspace-expander">
                                                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                                    <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
+                                                                    {/* <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseInfo')}>
+                                                                        <span>Edit</span>
+                                                                    </button> */}
+                                                                    <button
+                                                                        type="button"
+                                                                        className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                        onClick={() => {
+                                                                            props.setShowEditor(true, contentIndex, 'courseInfo');
+                                                                        }}
+                                                                    >
                                                                         <span>Edit</span>
                                                                     </button>
                                                                     <input type="text" value="" disabled className="rounded"/>
@@ -315,7 +334,16 @@ function CourseObj(props) {
                                                         <div className="sg-expandable-code-editor">
                                                             <div className="sg-workspace-expander">
                                                                 <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                                    <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseReq')}>
+                                                                    {/* <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowTextEditor(true, contentIndex, 'courseReq')}>
+                                                                        <span>Edit</span>
+                                                                    </button> */}
+                                                                    <button
+                                                                        type="button"
+                                                                        className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                        onClick={() => {
+                                                                            props.setShowEditor(true, contentIndex, 'courseReq');
+                                                                        }}
+                                                                    >
                                                                         <span>Edit</span>
                                                                     </button>
                                                                     <input type="text" value="" disabled className="rounded"/>
