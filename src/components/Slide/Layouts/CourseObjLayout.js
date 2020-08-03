@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import imageSrc from '../../../styles/img/wbt_nav_sscs.png';
+import ReactHtmlParser from 'react-html-parser';
 
 function CourseObjLayout(props) {
 
@@ -52,7 +53,7 @@ function CourseObjLayout(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>{courseInfoContent}</p>
+                {ReactHtmlParser(courseInfoContent)}
             </Modal.Body>
             {/* <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setCourseInfoModalShow(false)}>Close</button>
@@ -74,7 +75,7 @@ function CourseObjLayout(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>{courseReqContent}</p>
+                {ReactHtmlParser(courseReqContent)}
             </Modal.Body>
             {/* <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setCourseReqModalShow(false)}>Close</button>
