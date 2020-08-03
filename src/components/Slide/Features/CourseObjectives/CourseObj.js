@@ -271,7 +271,6 @@ function CourseObj(props) {
                                                                         onClick={() => {
                                                                             props.setShowEditor(true, contentIndex, 'courseInfo');
                                                                         }}
-                                                                        disabled
                                                                     >
                                                                         <span>Edit</span>
                                                                     </button>
@@ -344,7 +343,6 @@ function CourseObj(props) {
                                                                         onClick={() => {
                                                                             props.setShowEditor(true, contentIndex, 'courseReq');
                                                                         }}
-                                                                        disabled
                                                                     >
                                                                         <span>Edit</span>
                                                                     </button>
