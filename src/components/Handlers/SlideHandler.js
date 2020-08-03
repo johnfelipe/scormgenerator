@@ -941,10 +941,11 @@ class SlideHandler extends Component {
         })
     }
 
-    setShowHtmlEditor = (value, contentIndex) => {
+    setShowHtmlEditor = (value, contentIndex, contentFor) => {
         this.setState({
             showHtmlEditor: value,
             activeContentIndex: contentIndex,
+            contentFor: contentFor,
         })
     }
 
@@ -2908,6 +2909,8 @@ class SlideHandler extends Component {
                                                 onChangeTextArea={this.onChangeTextArea}
                                                 contentIndex={this.state.activeContentIndex}
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                contentFor={this.state.contentFor}
+                                                setColumn={this.setColumn}
                                             />
                                             <CssEditor 
                                                 currentColumn={this.state.column[this.state.activeColumnId]}
