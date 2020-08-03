@@ -10,13 +10,13 @@ function CourseNav() {
             <div class="container mt-2">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 item">
-                        <div class="border border-secondary rounded item-card card-block">
+                        <div class="border border-secondary rounded item-card card-block p-3">
                             <div className="h-100 w-100 text-center">
-                                <button className="btn btn-light border border-secondary rounded-0">
+                                <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0">
                                     <FontAwesomeIcon icon={faBars}/>&nbsp;Menu
                                 </button>
                             </div>
-                            <p class="card-text">Select to view course slide.</p> 
+                            <p class="card-text text-center mt-3">Select to view course slide.</p> 
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 item">
