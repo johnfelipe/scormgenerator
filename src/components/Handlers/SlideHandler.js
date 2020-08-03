@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -1248,7 +1248,7 @@ class SlideHandler extends Component {
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
                             slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
-                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : '',
+                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : false,
                         }}
 
                         onSubmit={values => {
@@ -1291,11 +1291,19 @@ class SlideHandler extends Component {
                                         placement="top"
                                         overlay={
                                             <Tooltip id='tooltip-top'>
-                                                <label htmlFor="showTitle" className="ml-2 mt-2"> Display Title</label>
+                                                <label htmlFor="showTitle">
+                                                {
+                                                    values.showTitle ?
+                                                        <span>Title displayed</span>
+                                                    :
+                                                        <span>Title hidden</span>
+                                                }
+                                                    
+                                                </label>
                                             </Tooltip>
                                         }
                                     >
-                                        <input
+                                        {/* <input
                                             id="showTitle"
                                             name="showTitle"
                                             type="checkbox"
@@ -1304,7 +1312,20 @@ class SlideHandler extends Component {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             className="ml-3"
-                                        />
+                                        /> */}
+                                        <label className="check-text ml-3">
+                                            <input
+                                                id="showTitle"
+                                                name="showTitle"
+                                                type="checkbox"
+                                                value={values.showTitle}
+                                                checked={values.showTitle}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                className="ml-3"
+                                            />
+                                                <FontAwesomeIcon icon={values.showTitle ? faEye : faEyeSlash}/>
+                                        </label>
                                     </OverlayTrigger>
                                     <input
                                         id="slideName"
