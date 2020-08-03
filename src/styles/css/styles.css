@@ -151,6 +151,55 @@
   font-size: 25px !important;
 }
 
+@media (min-width: 1200px) {
+  .pl-xl-6, .px-xl-6 {
+    padding-left: 4.5rem !important;
+  }
+
+  .pl-xl-7, .px-xl-7 {
+    padding-left: 6rem !important;
+  }
+
+  .pl-xl-8, .px-xl-8 {
+    padding-left: 7.5rem !important;
+  }
+
+  .pr-xl-6, .px-xl-6 {
+    padding-right: 4.5rem !important;
+  }
+
+  .pr-xl-7, .px-xl-7 {
+    padding-right: 6rem !important;
+  }
+
+  .pr-xl-8, .px-xl-8 {
+    padding-right: 7.5rem !important;
+  }
+
+  .pl-6 {
+    padding-left: 4.5rem !important;
+  }
+
+  .pl-7 {
+    padding-left: 6rem !important;
+  }
+
+  .pl-8 {
+    padding-left: 7.5rem !important;
+  }
+
+  .pr-6 {
+    padding-right: 4.5rem !important;
+  }
+
+  .pr-7 {
+    padding-right: 6rem !important;
+  }
+
+  .pr-8 {
+    padding-right: 7.5rem !important;
+  }
+}
 html body #root .App .App-header p {
   color: red;
 }
