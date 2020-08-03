@@ -29,7 +29,7 @@ function MultipleChoiceAccordion(props) {
     const [imgCollapse,  setImgCollapse] = useState(false);
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
-    const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
+    // const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -275,11 +275,11 @@ function MultipleChoiceAccordion(props) {
                                                         const isEmpty = document.getElementById("answer");
                                                         
                                                         if (isEmpty.value !== "") {
-                                                            if (isCorrectAnswerSet) {
+                                                            // if (isCorrectAnswerSet) {
                                                                 props.addAnswer(answer, index, false);
-                                                            } else {
+                                                            // } else {
                                                                 props.addAnswer(answer, index, '');
-                                                            }
+                                                            // }
                                                             props.setAnswer('');
                                                             props.setIsAddAnswer(false);
                                                         }
@@ -325,9 +325,15 @@ function MultipleChoiceAccordion(props) {
                                                     >
                                                         <select
                                                             className="form-control-plaintext border border-secondary rounded"
+                                                            onClick={(e) => {
+                                                                console.log(e.target.value);
+                                                                props.setCorrectAnswer(true, index, parseInt(e.target.value));
+                                                            }}
                                                         >
                                                             {item.answers.map((answerItem, answerItemIndex) => (
-                                                                <option value={answerItemIndex}>&nbsp;{answerItem.answer}&nbsp;{item.correct && item.correct}</option>
+                                                                <option value={answerItemIndex}>
+                                                                    &nbsp;{answerItem.answer}
+                                                                </option>
                                                             ))}
                                                         </select>
                                                     </OverlayTrigger>
@@ -414,22 +420,25 @@ function MultipleChoiceAccordion(props) {
                                                                                             {item.answer}
                                                                                         </div>
                                                                                         <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
-                                                                                            {
-                                                                                                    item.correct === '' ?
-                                                                                                        <button
-                                                                                                            title="Mark as answer"
-                                                                                                            className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                                            type="button"
-                                                                                                            onClick={() => {
-                                                                                                                props.setCorrectAnswer(true, index, answerIndex);
-                                                                                                                setIsCorrectAnswerSet(true);
-                                                                                                            }}
-                                                                                                        >
-                                                                                                            <FontAwesomeIcon icon={faCheck}/>
-                                                                                                        </button>
-                                                                                                    :
-                                                                                                        item.correct &&
-                                                                                                        <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                            {/* {
+                                                                                                item.correct === '' ?
+                                                                                                    <button
+                                                                                                        title="Mark as answer"
+                                                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                        type="button"
+                                                                                                        onClick={() => {
+                                                                                                            props.setCorrectAnswer(true, index, answerIndex);
+                                                                                                            setIsCorrectAnswerSet(true);
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        <FontAwesomeIcon icon={faCheck}/>
+                                                                                                    </button>
+                                                                                                :
+                                                                                                    item.correct &&
+                                                                                                    <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                            } */}
+                                                                                            {item.correct &&
+                                                                                                <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
                                                                                             }
                                                                                             <button
                                                                                                 className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
