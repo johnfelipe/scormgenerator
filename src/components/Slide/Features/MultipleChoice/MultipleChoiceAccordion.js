@@ -3,6 +3,8 @@ import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 function MultipleChoiceAccordion(props) {
 
@@ -311,12 +313,25 @@ function MultipleChoiceAccordion(props) {
                                                 </button>
                                             </div>
                                             <div className="col-md-6 p-0">
-                                                <select
-                                                    className="form-control-plaintext border border-secondary rounded"
-                                                >
-                                                    <option value="question-files-left">&nbsp;Left</option>
-                                                    <option value="question-files-right">&nbsp;Right</option>
-                                                </select>
+                                                {item.answers.length > 0 &&
+                                                    <OverlayTrigger
+                                                        key="top"
+                                                        placement="top"
+                                                        overlay={
+                                                            <Tooltip id='tooltip-top'>
+                                                                <span>Select one or more correct answer.</span>
+                                                            </Tooltip>
+                                                        }
+                                                    >
+                                                        <select
+                                                            className="form-control-plaintext border border-secondary rounded"
+                                                        >
+                                                            {item.answers.map((answerItem, answerItemIndex) => (
+                                                                <option value={answerItemIndex}>&nbsp;{answerItem.answer}&nbsp;{item.correct && item.correct}</option>
+                                                            ))}
+                                                        </select>
+                                                    </OverlayTrigger>
+                                                }
                                             </div>
                                         </div>
                                 }
