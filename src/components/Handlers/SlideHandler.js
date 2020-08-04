@@ -1387,7 +1387,8 @@ class SlideHandler extends Component {
                                             />
                                         </div>
                                         <div className="col-md-2 pr-0">
-
+                                            <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
+                                            <button type="button" className="btn btn-primary w-100">Open Library</button>
                                         </div>
                                     </div>
                                     <DragDropContext onDragEnd={this.onDragEnd}>
