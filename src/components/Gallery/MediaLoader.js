@@ -4,6 +4,7 @@ import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-i
 import { Modal } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar } from 'video-react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function MediaLoader (props) {
 
@@ -13,6 +14,7 @@ function MediaLoader (props) {
     const [mediaUrl, setMediaUrl] = useState('');
     const [mediaAlt, setMediaAlt] = useState('');
     const [mediaType, setMediaType] = useState('');
+    const [copied, setCopied] = useState(false);
 
     const itemClick = (itemId) => {
         const elem = document.getElementById(itemId);
@@ -220,6 +222,24 @@ function MediaLoader (props) {
             <Modal.Body>
                 {mediaType.includes("image") ?
                     <div className="text-center">
+                    {/* <div className="row m-0">
+                        <div className="col-md-8">
+
+                        </div>
+                    </div> */}
+                    <div className="form-inline justify-content-center">
+                        <input
+                            type="text"
+                            value={mediaUrl}
+                            className="form-control mb-2 mr-sm-2"
+                        />
+                        <CopyToClipboard onCopy={setCopied} text={mediaUrl}>
+                            <button type="button" className="btn btn-primary mb-2">Copy to clipboard with button</button>
+                        </CopyToClipboard>
+                        {/* <button type="submit" className="btn btn-primary mb-2">Submit</button> */}
+                    </div>
+                        
+                        
                         <img src={mediaUrl} alt={mediaAlt} className="w-70 h-auto" />
                     </div>
                 :
