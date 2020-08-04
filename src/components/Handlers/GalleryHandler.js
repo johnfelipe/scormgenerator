@@ -125,11 +125,11 @@ class GalleryHandler extends Component {
                 {this.props.location === "home" ?
                     <>
                         <label htmlFor="galleryBtn" className="mr-2">Add Gallery Files:</label>
-                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Gallery</button>
+                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>{this.props.buttonName}</button>
                     </>
                 :
                     <>
-                        <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Gallery</button>
+                        <button type="button" className="btn btn-primary w-100" onClick={() => this.setModalShow(true)}>{this.props.buttonName}</button>
                     </>
                 }
                 {galleryModal}

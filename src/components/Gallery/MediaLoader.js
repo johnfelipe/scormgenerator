@@ -243,7 +243,7 @@ function MediaLoader (props) {
                         <input
                             type="text"
                             defaultValue={mediaUrl}
-                            className="form-control mr-sm-2"
+                            className="form-control mr-sm-2 w-40"
                             readOnly
                         />
                         <CopyToClipboard onCopy={setCopied} text={mediaUrl}>
