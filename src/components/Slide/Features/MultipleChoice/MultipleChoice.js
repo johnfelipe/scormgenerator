@@ -91,7 +91,7 @@ function MultipleChoice(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
 
-        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
+        // const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
 
         // for (let i = 0; i < arrayLength; i++) {
         //     if (i !== answerIndex && currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct !== true) {
