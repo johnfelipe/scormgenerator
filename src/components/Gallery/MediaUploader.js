@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { galleryService } from '../../services';
 
 // https://codepen.io/hartzis/pen/VvNGZP
 class MediaUploader extends Component {
@@ -17,6 +18,7 @@ class MediaUploader extends Component {
     handleImageChange = (e) => {
         e.preventDefault();
         let files = e.target.files;
+        console.log(files);
 
         this.setState({
             showSuccessMsg: true,
@@ -25,22 +27,37 @@ class MediaUploader extends Component {
         // eslint-disable-next-line
         Object.keys(files).map((fileIndex) => {
 
-            let reader = new FileReader();
+            const formData = new FormData();
 
-            const fileObject = {
-                name: files[fileIndex].name.split(".")[0],
-                extension: files[fileIndex].name.split(".")[1],
-                size: files[fileIndex].size,
-                type: files[fileIndex].type,
-                lastModified: files[fileIndex].lastModified,
-                lastModifiedDate: files[fileIndex].lastModifiedDate,
-            };
+            formData.append('file', files[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', files[fileIndex].name);
 
-            reader.readAsDataURL(files[fileIndex])
-            reader.onloadend = () => {
-                fileObject.dataUrl = reader.result;
-                this.props.setMediaFiles(fileObject);
-            }
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    this.props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
+
+            // let reader = new FileReader();
+
+            // const fileObject = {
+            //     name: files[fileIndex].name.split(".")[0],
+            //     extension: files[fileIndex].name.split(".")[1],
+            //     size: files[fileIndex].size,
+            //     type: files[fileIndex].type,
+            //     lastModified: files[fileIndex].lastModified,
+            //     lastModifiedDate: files[fileIndex].lastModifiedDate,
+            // };
+
+            // reader.readAsDataURL(files[fileIndex])
+            // reader.onloadend = () => {
+            //     fileObject.url = reader.result;
+            //     this.props.setMediaFiles(fileObject);
+            // }
         });
     }
 
