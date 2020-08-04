@@ -9,12 +9,9 @@ import MultiSelect from "react-multi-select-component";
 
 function MultipleChoiceAccordion(props) {
 
-    const index = props.index;
     let item = props.item;
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
-    const IsAddAnswer = props.IsAddAnswer;
-    const answer = props.answer;
-    const contentIndex = props.contentIndex;
+    const { index, IsAddAnswer, answer, contentIndex } = props;
 
     const [editAnswer, setEditAnswer] = useState('');
     const [editAnswerCompareIndex, setEditAnswerCompareIndex] = useState('');
@@ -295,7 +292,7 @@ function MultipleChoiceAccordion(props) {
                                                             // if (isCorrectAnswerSet) {
                                                                 // props.addAnswer(answer, index, false);
                                                             // } else {
-                                                                props.addAnswer(answer, index, '');
+                                                                props.addAnswer(answer, index, false);
                                                             // }
                                                             props.setAnswer('');
                                                             props.setIsAddAnswer(false);
@@ -343,7 +340,13 @@ function MultipleChoiceAccordion(props) {
                                                         <MultiSelect
                                                             options={selectOptions}
                                                             value={selectedAnswers}
-                                                            onChange={setSelectedAnswers}
+                                                            onChange={(e) => {
+                                                                setSelectedAnswers(e);
+
+                                                                e.forEach((item) => {
+                                                                    props.setCorrectAnswer(true, index, parseInt(item.value));
+                                                                });
+                                                            }}
                                                             labelledBy={"Select"}
                                                         />
                                                     </OverlayTrigger>
