@@ -279,8 +279,10 @@ class Main extends Component {
                                         <div className="text-center">
                                             <GalleryHandler
                                                 addMediaFiles={this.props.addMediaFiles}
-                                                mediaFilesObject={this.state.mediaFilesObject} location="home"
+                                                mediaFilesObject={this.state.mediaFilesObject}
+                                                location="home"
                                                 setMediaFilesObject={this.setMediaFilesObject}
+                                                buttonName="Gallery"
                                             />
                                         </div>
                                     </div>
@@ -399,11 +401,11 @@ class Main extends Component {
                                                                                     action="add"
                                                                                     slideId={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
-                                                                                    mediaFilesObject={this.state.mediaFilesObject}
-                                                                                    addMediaFiles={this.props.addMediaFiles}
-                                                                                    setMediaFilesObject={this.setMediaFilesObject}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
+                                                                                    addMediaFiles={this.props.addMediaFiles}
+                                                                                    mediaFilesObject={this.state.mediaFilesObject}
+                                                                                    setMediaFilesObject={this.setMediaFilesObject}
                                                                                 />
                                                                             :
                                                                                 <div id="slide-handler-container" className="d-inline">
@@ -420,11 +422,11 @@ class Main extends Component {
                                                                                 action="add"
                                                                                 slideId={this.state.slideItemIndex}
                                                                                 lessonIndex={index}
-                                                                                mediaFilesObject={this.state.mediaFilesObject}
-                                                                                addMediaFiles={this.props.addMediaFiles}
-                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
+                                                                                addMediaFiles={this.props.addMediaFiles}
+                                                                                mediaFilesObject={this.state.mediaFilesObject}
+                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                             />
                                                                     }
                                                                     {
@@ -459,12 +461,12 @@ class Main extends Component {
                                                                                                                 action="edit"
                                                                                                                 slideId={itemSlideIndex}
                                                                                                                 showTitleValue={true}
-                                                                                                                mediaFilesObject={this.state.mediaFilesObject}
-                                                                                                                addMediaFiles={this.props.addMediaFiles}
-                                                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
                                                                                                                 setSlideItemIndex={this.setSlideItemIndex}
+                                                                                                                addMediaFiles={this.props.addMediaFiles}
+                                                                                                                mediaFilesObject={this.state.mediaFilesObject}
+                                                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                                             />
                                                                                                             <button 
                                                                                                                 className="btn btn-danger float-right lesson-item-remove-btn" 
