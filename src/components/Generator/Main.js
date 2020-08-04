@@ -20,6 +20,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 //modal
 // import ConfirmationModal from '../AlertModal/Confirmation';
 import WarningModal from '../AlertModal/Warning';
+import { galleryService } from '../../services';
 
 class Main extends Component {
 
@@ -42,6 +43,16 @@ class Main extends Component {
         this.galleryHandler = this.galleryHandler.bind(this);
         this.setCourseNameExist = this.setCourseNameExist.bind(this);
         this.setSlideItemIndex = this.setSlideItemIndex.bind(this);
+        this.setMediaFilesObject = this.setMediaFilesObject.bind(this);
+    }
+
+    componentDidMount = () => {
+        galleryService.getAllFiles().then(
+            mediaFiles => {
+                console.log(mediaFiles);
+                this.setMediaFilesObject(mediaFiles);
+            }
+        );
     }
 
     componentDidUpdate = () => {
@@ -147,6 +158,12 @@ class Main extends Component {
     setSlideItemIndex = (value) => {
         this.setState({
             slideItemIndex: value,
+        })
+    }
+
+    setMediaFilesObject = (value) => {
+        this.setState({
+            mediaFilesObject: value,
         })
     }
 
