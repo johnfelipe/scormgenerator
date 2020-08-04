@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
+import ReactAudioPlayer from 'react-audio-player';
+import { Player, ControlBar } from 'video-react';
 
 function MediaLoader (props) {
 
@@ -47,6 +49,7 @@ function MediaLoader (props) {
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
+                                    setMediaType(fileData.type);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -70,6 +73,7 @@ function MediaLoader (props) {
                                         setMediaUrl(fileData.url);
                                         setMediaAlt(fileData.alt);
                                         setModalShow(true);
+                                        setMediaType(fileData.type);
                                     }}
                                 >
                                     <div className="thumbnail">
@@ -93,6 +97,7 @@ function MediaLoader (props) {
                                         setMediaUrl(fileData.url);
                                         setMediaAlt(fileData.alt);
                                         setModalShow(true);
+                                        setMediaType(fileData.type);
                                     }}
                                 >
                                     <div className="thumbnail">
@@ -122,6 +127,7 @@ function MediaLoader (props) {
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
+                                    setMediaType(fileData.type);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -149,6 +155,7 @@ function MediaLoader (props) {
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
+                                    setMediaType(fileData.type);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -177,6 +184,7 @@ function MediaLoader (props) {
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
+                                    setMediaType(fileData.type);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -210,9 +218,28 @@ function MediaLoader (props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="text-center">
-                    <img src={mediaUrl} alt={mediaAlt} className="w-70 h-auto" />
-                </div>
+                {mediaType.includes("image") ?
+                    <div className="text-center">
+                        <img src={mediaUrl} alt={mediaAlt} className="w-70 h-auto" />
+                    </div>
+                :
+                    mediaType.includes("audio") ?
+                        <div className="text-center">
+                            <ReactAudioPlayer
+                                src={mediaUrl}
+                                controls
+                                title={mediaName}
+                            />
+                        </div>
+                    :
+                        mediaType.includes("video") &&
+                            <div className="text-center">
+                                <Player>
+                                    <source src={mediaUrl} />
+                                    <ControlBar autoHide={true}/>
+                                </Player>
+                            </div>
+                }
             </Modal.Body>
             <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setModalShow(false)}>Close</button>
