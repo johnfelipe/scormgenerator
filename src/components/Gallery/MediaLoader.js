@@ -201,6 +201,7 @@ function MediaLoader (props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            dialogClassName="gallery-preview-modal w-80"
         >
             <Modal.Header closeButton>
                 <Modal.Title>
