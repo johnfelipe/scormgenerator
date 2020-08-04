@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCheck, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import MultiSelect from "react-multi-select-component";
 
 function MultipleChoiceAccordion(props) {
 
@@ -30,6 +31,7 @@ function MultipleChoiceAccordion(props) {
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
     // const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
+    const [selectedAnswers, setSelectedAnswers] = useState([]);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -216,6 +218,21 @@ function MultipleChoiceAccordion(props) {
         setCollapseAccordion(value);
     }
 
+    const answerOptions = () => {
+        const options = [];
+        const answerArray = item.answers;
+
+        for (let key in answerArray) {
+            options.push({label: answerArray[key].answer, value: key});
+        }
+
+        return options;
+
+        // setSelectOptions(options);
+    }
+    
+    const selectOptions = answerOptions();
+
     return (
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
@@ -323,19 +340,12 @@ function MultipleChoiceAccordion(props) {
                                                             </Tooltip>
                                                         }
                                                     >
-                                                        <select
-                                                            className="form-control-plaintext border border-secondary rounded"
-                                                            onClick={(e) => {
-                                                                console.log(e.target.value);
-                                                                props.setCorrectAnswer(true, index, parseInt(e.target.value));
-                                                            }}
-                                                        >
-                                                            {item.answers.map((answerItem, answerItemIndex) => (
-                                                                <option value={answerItemIndex}>
-                                                                    &nbsp;{answerItem.answer}
-                                                                </option>
-                                                            ))}
-                                                        </select>
+                                                        <MultiSelect
+                                                            options={selectOptions}
+                                                            value={selectedAnswers}
+                                                            onChange={setSelectedAnswers}
+                                                            labelledBy={"Select"}
+                                                        />
                                                     </OverlayTrigger>
                                                 }
                                             </div>
