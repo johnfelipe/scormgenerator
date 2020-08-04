@@ -18,6 +18,7 @@ import SlideEditor from '../Slide/Editor';
 import HtmlEditor from '../Slide/HtmlEditor';
 import CssEditor from '../Slide/CssEditor';
 import TextEditor from '../Slide/TextEditor';
+import GalleryHandler from '../Handlers/GalleryHandler';
 
 // feature layouts
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
@@ -1388,7 +1389,13 @@ class SlideHandler extends Component {
                                         </div>
                                         <div className="col-md-2 pr-0">
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
-                                            <button type="button" className="btn btn-primary w-100">Open Library</button>
+                                            {/* <button type="button" className="btn btn-primary w-100">Open Library</button> */}
+                                            <GalleryHandler
+                                                addMediaFiles={this.props.addMediaFiles}
+                                                mediaFilesObject={this.props.mediaFilesObject}
+                                                setMediaFilesObject={this.props.setMediaFilesObject}
+                                                buttonName="Open Library"
+                                            />
                                         </div>
                                     </div>
                                     <DragDropContext onDragEnd={this.onDragEnd}>
