@@ -47,7 +47,7 @@ class MediaLoader extends Component {
                                     <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
                                         <div className="thumbnail">
                                             <div className="centered">
-                                                <img src={fileData.dataUrl} alt={fileData.name}/>
+                                                <img src={fileData.url} alt={fileData.name}/>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@ class MediaLoader extends Component {
                                         <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
                                             <div className="thumbnail">
                                                 <div className="centered">
-                                                    <img src={fileData.dataUrl} alt={fileData.name}/>
+                                                    <img src={fileData.url} alt={fileData.name}/>
                                                 </div>
                                             </div>
                                         </div>
