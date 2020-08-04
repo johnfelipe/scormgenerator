@@ -10,6 +10,7 @@ function MediaLoader (props) {
     const [mediaName, setMediaName] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
     const [mediaAlt, setMediaAlt] = useState('');
+    const [mediaType, setMediaType] = useState('');
 
     const itemClick = (itemId) => {
         const elem = document.getElementById(itemId);
@@ -201,7 +202,7 @@ function MediaLoader (props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            dialogClassName="gallery-preview-modal w-80"
+            dialogClassName="gallery-preview-modal w-50"
         >
             <Modal.Header closeButton>
                 <Modal.Title>
@@ -209,7 +210,9 @@ function MediaLoader (props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <img src={mediaUrl} alt={mediaAlt} />
+                <div className="text-center">
+                    <img src={mediaUrl} alt={mediaAlt} className="w-70 h-auto" />
+                </div>
             </Modal.Body>
             <Modal.Footer>
                 <button className="btn btn-primary" onClick={() => setModalShow(false)}>Close</button>
