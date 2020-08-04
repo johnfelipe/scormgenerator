@@ -1351,38 +1351,45 @@ class SlideHandler extends Component {
                                     {errors.slideName && touched.slideName && (
                                         <div className="input-feedback">{errors.slideName}</div>
                                     )}
-                                    <label htmlFor="slideSubtitle" className="d-block">Subtitle:</label>
-                                    <input
-                                        id="slideSubtitle"
-                                        name="slideSubtitle"
-                                        type="text"
-                                        className="form-control d-inline mb-2"
-                                        onBlur={(e) => {
-                                                handleBlur(e);
+                                    <div className="row m-0">
+                                        <div className="col-md-10 pl-0">
+                                            <label htmlFor="slideSubtitle" className="d-block">Subtitle:</label>
+                                            <input
+                                                id="slideSubtitle"
+                                                name="slideSubtitle"
+                                                type="text"
+                                                className="form-control d-inline mb-2"
+                                                onBlur={(e) => {
+                                                        handleBlur(e);
 
-                                                this.setSlideSubtitle(e.target.value);
+                                                        this.setSlideSubtitle(e.target.value);
 
-                                                if (e.target.value.trim() === "") {
-                                                    this.setState({
-                                                        isSlideNameNotEmpty: false,
-                                                    })
+                                                        if (e.target.value.trim() === "") {
+                                                            this.setState({
+                                                                isSlideNameNotEmpty: false,
+                                                            })
+                                                        }
+
+                                                    }
                                                 }
+                                                value={values.slideSubtitle}
+                                                onChange={(e) => {
+                                                        handleChange(e)
 
-                                            }
-                                        }
-                                        value={values.slideSubtitle}
-                                        onChange={(e) => {
-                                                handleChange(e)
-
-                                                if (e.target.value.trim() !== "") {
-                                                    this.setState({
-                                                        isSlideNameNotEmpty: true,
-                                                    })
+                                                        if (e.target.value.trim() !== "") {
+                                                            this.setState({
+                                                                isSlideNameNotEmpty: true,
+                                                            })
+                                                        }
+                                                    }
                                                 }
-                                            }
-                                        }
-                                        placeholder="Type subtitle here . . ."
-                                    />
+                                                placeholder="Type subtitle here . . ."
+                                            />
+                                        </div>
+                                        <div className="col-md-2 pr-0">
+
+                                        </div>
+                                    </div>
                                     <DragDropContext onDragEnd={this.onDragEnd}>
                                         <div className="row mt-2">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
