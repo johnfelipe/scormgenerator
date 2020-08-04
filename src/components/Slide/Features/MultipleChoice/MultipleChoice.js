@@ -93,11 +93,11 @@ function MultipleChoice(props) {
 
         const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
 
-        for (let i = 0; i < arrayLength; i++) {
-            if (i !== answerIndex) {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
-            }
-        }
+        // for (let i = 0; i < arrayLength; i++) {
+        //     if (i !== answerIndex && currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct !== true) {
+        //         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
+        //     }
+        // }
 
         props.setColumn(currentColumnObj);
     }
