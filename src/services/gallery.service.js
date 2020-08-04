@@ -1,6 +1,6 @@
 import API from "../utils/api";
 
-export const userService = {
+export const galleryService = {
     getAllFiles,
 };
 
