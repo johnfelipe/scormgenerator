@@ -64,7 +64,7 @@ class Main extends Component {
         console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
         this.props.course['lessons'] = this.props.courseLessons;
-        console.log(this.props.course);  
+        console.log(this.props.course);
     }
 
     // a little function to help us with reordering the result

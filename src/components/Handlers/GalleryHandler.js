@@ -48,7 +48,7 @@ class GalleryHandler extends Component {
         const mediaFile = fileObject;
         let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
 
-        this.props.galleryHandler(mediaFiles);
+        this.props.setMediaFilesObject(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
     }
 
@@ -56,7 +56,7 @@ class GalleryHandler extends Component {
         const mediaFiles = this.props.mediaFilesObject;
         mediaFiles.splice(mediaIndex, 1);
 
-        this.props.galleryHandler(mediaFiles);
+        this.props.setMediaFilesObject(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
     }
 
@@ -89,7 +89,10 @@ class GalleryHandler extends Component {
                         onSelect={(k) => this.setKey(k)}
                     >
                         <Tab eventKey="uploadFiles" title="Upload Files">
-                            <MediaUploader setMediaFiles={this.setMediaFiles} />
+                            <MediaUploader
+                                setMediaFiles={this.setMediaFiles}
+                                setMediaFilesObject={this.props.setMediaFilesObject}
+                                />
                         </Tab>
                         <Tab eventKey="mediaLibrary" title="Media Library">
                             {
