@@ -437,9 +437,6 @@ function MultipleChoiceAccordion(props) {
                                                                                                     item.correct &&
                                                                                                     <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
                                                                                             } */}
-                                                                                            {item.correct &&
-                                                                                                <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
-                                                                                            }
                                                                                             <button
                                                                                                 className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                 type="button"
