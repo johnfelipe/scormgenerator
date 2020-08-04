@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Modal } from 'react-bootstrap';
 
 function MediaLoader (props) {
 
     const {filterType, mediaFiles} = props;
+    const [modalSHow, setModalShow] = useState(false);
+    const [mediaName, setMediaName] = useState('');
+    const [mediaUrl, setMediaUrl] = useState('');
+    const [mediaAlt, setMediaAlt] = useState('');
 
     const itemClick = (itemId) => {
         const elem = document.getElementById(itemId);
@@ -33,7 +38,15 @@ function MediaLoader (props) {
                 mediaFiles.map((fileData, fileIndex) => (
                     fileData.type.includes("image") ?
                         <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                            <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                            <div
+                                className="media-preview"
+                                onClick={() => {
+                                    itemClick('item-' + fileIndex);
+                                    setMediaName(fileData.name);
+                                    setMediaUrl(fileData.url);
+                                    setMediaAlt(fileData.alt);
+                                }}
+                            >
                                 <div className="thumbnail">
                                     <div className="centered">
                                         <img src={fileData.url} alt={fileData.name}/>
@@ -47,7 +60,15 @@ function MediaLoader (props) {
                     :
                         fileData.type.includes("audio") ?
                             <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                                <div
+                                    className="media-preview"
+                                    onClick={() => {
+                                        itemClick('item-' + fileIndex);
+                                        setMediaName(fileData.name);
+                                        setMediaUrl(fileData.url);
+                                        setMediaAlt(fileData.alt);
+                                    }}
+                                >
                                     <div className="thumbnail">
                                         <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
                                         <div className="audio">
@@ -61,7 +82,15 @@ function MediaLoader (props) {
                             </li>
                         :
                             <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                                <div
+                                    className="media-preview"
+                                    onClick={() => {
+                                        itemClick('item-' + fileIndex);
+                                        setMediaName(fileData.name);
+                                        setMediaUrl(fileData.url);
+                                        setMediaAlt(fileData.alt);
+                                    }}
+                                >
                                     <div className="thumbnail">
                                         <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
                                         <div className="video">
@@ -81,7 +110,15 @@ function MediaLoader (props) {
                 mediaFiles.map((fileData, fileIndex) => (
                     fileData.type.includes("image") &&
                         <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                            <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                            <div
+                                className="media-preview"
+                                onClick={() => {
+                                    itemClick('item-' + fileIndex);
+                                    setMediaName(fileData.name);
+                                    setMediaUrl(fileData.url);
+                                    setMediaAlt(fileData.alt);
+                                }}
+                            >
                                 <div className="thumbnail">
                                     <div className="centered">
                                         <img src={fileData.url} alt={fileData.name}/>
@@ -99,7 +136,15 @@ function MediaLoader (props) {
                 mediaFiles.map((fileData, fileIndex) => (
                     fileData.type.includes("audio") &&
                         <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                            <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                            <div
+                                className="media-preview"
+                                onClick={() => {
+                                    itemClick('item-' + fileIndex);
+                                    setMediaName(fileData.name);
+                                    setMediaUrl(fileData.url);
+                                    setMediaAlt(fileData.alt);
+                                }}
+                            >
                                 <div className="thumbnail">
                                     <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
                                     <div className="audio">
@@ -118,7 +163,15 @@ function MediaLoader (props) {
                 mediaFiles.map((fileData, fileIndex) => (
                     fileData.type.includes("video") &&
                         <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                            <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                            <div
+                                className="media-preview"
+                                onClick={() => {
+                                    itemClick('item-' + fileIndex);
+                                    setMediaName(fileData.name);
+                                    setMediaUrl(fileData.url);
+                                    setMediaAlt(fileData.alt);
+                                }}
+                            >
                                 <div className="thumbnail">
                                     <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
                                     <div className="video">
@@ -135,9 +188,32 @@ function MediaLoader (props) {
         }
     }
 
+    const mediaModal = (
+        <Modal
+            show={modalSHow}
+            onHide={() => setModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    {mediaName}
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <img src={mediaUrl} alt={mediaAlt} />
+            </Modal.Body>
+            <Modal.Footer>
+                <button className="btn btn-primary" onClick={() => setModalShow(false)}>Close</button>
+            </Modal.Footer>
+        </Modal>
+    );
+
     return (
         <ul className="media-library-list w-100">
             {content(filterType, mediaFiles)}
+            {mediaModal}
         </ul>
     )
 }
