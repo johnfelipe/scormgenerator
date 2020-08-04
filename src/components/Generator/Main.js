@@ -40,7 +40,6 @@ class Main extends Component {
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
         this.glossaryHandler = this.glossaryHandler.bind(this);
-        this.galleryHandler = this.galleryHandler.bind(this);
         this.setCourseNameExist = this.setCourseNameExist.bind(this);
         this.setSlideItemIndex = this.setSlideItemIndex.bind(this);
         this.setMediaFilesObject = this.setMediaFilesObject.bind(this);
@@ -65,7 +64,7 @@ class Main extends Component {
         console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
         this.props.course['lessons'] = this.props.courseLessons;
-        console.log(this.props.course);
+        console.log(this.props.course);  
     }
 
     // a little function to help us with reordering the result
@@ -140,12 +139,6 @@ class Main extends Component {
     glossaryHandler = (object) => {
         this.setState({
             glossaryObject: object,
-        })
-    }
-
-    galleryHandler = (object) => {
-        this.setState({
-            mediaFilesObject: object,
         })
     }
 
@@ -284,7 +277,11 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler addMediaFiles={this.props.addMediaFiles} galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject} location="home"/>
+                                            <GalleryHandler
+                                                addMediaFiles={this.props.addMediaFiles}
+                                                mediaFilesObject={this.state.mediaFilesObject} location="home"
+                                                setMediaFilesObject={this.setMediaFilesObject}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
@@ -404,7 +401,7 @@ class Main extends Component {
                                                                                     lessonIndex={index}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     addMediaFiles={this.props.addMediaFiles}
-                                                                                    galleryHandler={this.galleryHandler}
+                                                                                    setMediaFilesObject={this.setMediaFilesObject}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
                                                                                 />
@@ -425,7 +422,7 @@ class Main extends Component {
                                                                                 lessonIndex={index}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 addMediaFiles={this.props.addMediaFiles}
-                                                                                galleryHandler={this.galleryHandler}
+                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
                                                                             />
@@ -464,7 +461,7 @@ class Main extends Component {
                                                                                                                 showTitleValue={true}
                                                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                                                 addMediaFiles={this.props.addMediaFiles}
-                                                                                                                galleryHandler={this.galleryHandler}
+                                                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
                                                                                                                 setSlideItemIndex={this.setSlideItemIndex}
