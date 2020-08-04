@@ -1315,6 +1315,9 @@ html body div.modal .gallery-modal .modal-content .modal-body .tab-content #cont
   outline: 2px solid transparent;
   outline-offset: -6px;
 }
+html body div.modal .gallery-preview-modal {
+  max-width: none;
+}
 
 html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab-example-tabpane-uploadFiles .custom-file {
   cursor: pointer;

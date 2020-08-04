@@ -20,6 +20,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 //modal
 // import ConfirmationModal from '../AlertModal/Confirmation';
 import WarningModal from '../AlertModal/Warning';
+import { galleryService } from '../../services';
 
 class Main extends Component {
 
@@ -39,9 +40,18 @@ class Main extends Component {
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
         this.glossaryHandler = this.glossaryHandler.bind(this);
-        this.galleryHandler = this.galleryHandler.bind(this);
         this.setCourseNameExist = this.setCourseNameExist.bind(this);
         this.setSlideItemIndex = this.setSlideItemIndex.bind(this);
+        this.setMediaFilesObject = this.setMediaFilesObject.bind(this);
+    }
+
+    componentDidMount = () => {
+        galleryService.getAllFiles().then(
+            mediaFiles => {
+                console.log(mediaFiles);
+                this.setMediaFilesObject(mediaFiles);
+            }
+        );
     }
 
     componentDidUpdate = () => {
@@ -132,12 +142,6 @@ class Main extends Component {
         })
     }
 
-    galleryHandler = (object) => {
-        this.setState({
-            mediaFilesObject: object,
-        })
-    }
-
     setCourseNameExist = (value) => {
         this.setState({
             courseNameExist: value,
@@ -147,6 +151,12 @@ class Main extends Component {
     setSlideItemIndex = (value) => {
         this.setState({
             slideItemIndex: value,
+        })
+    }
+
+    setMediaFilesObject = (value) => {
+        this.setState({
+            mediaFilesObject: value,
         })
     }
 
@@ -267,7 +277,11 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="text-center">
-                                            <GalleryHandler addMediaFiles={this.props.addMediaFiles} galleryHandler={this.galleryHandler} mediaFilesObject={this.state.mediaFilesObject} location="home"/>
+                                            <GalleryHandler
+                                                addMediaFiles={this.props.addMediaFiles}
+                                                mediaFilesObject={this.state.mediaFilesObject} location="home"
+                                                setMediaFilesObject={this.setMediaFilesObject}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-4 mt-2">
@@ -387,7 +401,7 @@ class Main extends Component {
                                                                                     lessonIndex={index}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     addMediaFiles={this.props.addMediaFiles}
-                                                                                    galleryHandler={this.galleryHandler}
+                                                                                    setMediaFilesObject={this.setMediaFilesObject}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
                                                                                 />
@@ -408,7 +422,7 @@ class Main extends Component {
                                                                                 lessonIndex={index}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 addMediaFiles={this.props.addMediaFiles}
-                                                                                galleryHandler={this.galleryHandler}
+                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
                                                                             />
@@ -447,7 +461,7 @@ class Main extends Component {
                                                                                                                 showTitleValue={true}
                                                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                                                 addMediaFiles={this.props.addMediaFiles}
-                                                                                                                galleryHandler={this.galleryHandler}
+                                                                                                                setMediaFilesObject={this.setMediaFilesObject}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
                                                                                                                 setSlideItemIndex={this.setSlideItemIndex}
