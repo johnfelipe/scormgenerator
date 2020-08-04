@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-class MediaLoader extends Component {
+function MediaLoader (props) {
 
-    constructor(props) {
-        super(props);
-        
-        this.itemClick = this.itemClick.bind(this);
-    }
+    const {filterType, mediaFiles} = props;
 
-    componentDidUpdate = () => {
-        console.log(this.props.filterType);
-    }
-
-    itemClick = (itemId) => {
+    const itemClick = (itemId) => {
         const elem = document.getElementById(itemId);
         const prevItemId = localStorage.getItem('prevItemId');
 
@@ -35,30 +27,80 @@ class MediaLoader extends Component {
         }
     }
 
-    render() {
-
-        return (
-            <ul className="media-library-list w-100">
-                {
-                    this.props.filterType === "all" ?
-                        this.props.mediaFiles.map((fileData, fileIndex) => (
+    return (
+        <ul className="media-library-list w-100">
+            {
+                filterType === "all" ?
+                    mediaFiles.map((fileData, fileIndex) => (
+                        fileData.type.includes("image") ?
+                            <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                                    <div className="thumbnail">
+                                        <div className="centered">
+                                            <img src={fileData.url} alt={fileData.name}/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
+                                    <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                </button>
+                            </li>
+                        :
+                            fileData.type.includes("audio") ?
+                                <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                    <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                                        <div className="thumbnail">
+                                            <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                            <div className="audio">
+                                                <div>{fileData.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
+                                        <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                    </button>
+                                </li>
+                            :
+                                <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
+                                    <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
+                                        <div className="thumbnail">
+                                            <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
+                                            <div className="video">
+                                                <div>{fileData.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
+                                        <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                                    </button>
+                                </li>
+                    
+                    ))
+                :
+                    filterType === "image" ?
+                        mediaFiles.map((fileData, fileIndex) => (
                             fileData.type.includes("image") ?
                                 <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                    <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                    <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
                                         <div className="thumbnail">
                                             <div className="centered">
                                                 <img src={fileData.url} alt={fileData.name}/>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
+                                    <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
                                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                     </button>
                                 </li>
                             :
+                                null
+                        ))
+                    :
+                        filterType === "audio" ?
+                            mediaFiles.map((fileData, fileIndex) => (
                                 fileData.type.includes("audio") ?
                                     <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                        <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                        <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
                                             <div className="thumbnail">
                                                 <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
                                                 <div className="audio">
@@ -66,39 +108,7 @@ class MediaLoader extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
-                                            <FontAwesomeIcon icon={faTrash} className="text-danger"/>
-                                        </button>
-                                    </li>
-                                :
-                                    <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                        <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
-                                            <div className="thumbnail">
-                                                <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
-                                                <div className="video">
-                                                    <div>{fileData.name}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
-                                            <FontAwesomeIcon icon={faTrash} className="text-danger"/>
-                                        </button>
-                                    </li>
-                        
-                        ))
-                    :
-                        this.props.filterType === "image" ?
-                            this.props.mediaFiles.map((fileData, fileIndex) => (
-                                fileData.type.includes("image") ?
-                                    <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                        <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
-                                            <div className="thumbnail">
-                                                <div className="centered">
-                                                    <img src={fileData.url} alt={fileData.name}/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
+                                        <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
                                             <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                         </button>
                                     </li>
@@ -106,19 +116,19 @@ class MediaLoader extends Component {
                                     null
                             ))
                         :
-                            this.props.filterType === "audio" ?
-                                this.props.mediaFiles.map((fileData, fileIndex) => (
-                                    fileData.type.includes("audio") ?
+                            filterType === "video" ?
+                                mediaFiles.map((fileData, fileIndex) => (
+                                    fileData.type.includes("video") ?
                                         <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                            <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
+                                            <div className="media-preview" onClick={() => itemClick('item-' + fileIndex)}>
                                                 <div className="thumbnail">
                                                     <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
-                                                    <div className="audio">
+                                                    <div className="video">
                                                         <div>{fileData.name}</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
+                                            <button type="button" className="check" onClick={() => props.deleteMedia(fileIndex)}>
                                                 <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                                             </button>
                                         </li>
@@ -126,32 +136,10 @@ class MediaLoader extends Component {
                                         null
                                 ))
                             :
-                                this.props.filterType === "video" ?
-                                    this.props.mediaFiles.map((fileData, fileIndex) => (
-                                        fileData.type.includes("video") ?
-                                            <li key={fileIndex} id={'item-' + fileIndex} className="media-library-list-item">
-                                                <div className="media-preview" onClick={() => this.itemClick('item-' + fileIndex)}>
-                                                    <div className="thumbnail">
-                                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
-                                                        <div className="video">
-                                                            <div>{fileData.name}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="button" className="check" onClick={() => this.props.deleteMedia(fileIndex)}>
-                                                    <FontAwesomeIcon icon={faTrash} className="text-danger"/>
-                                                </button>
-                                            </li>
-                                        :
-                                            null
-                                    ))
-                                :
-                                    null
-                }
-            </ul>
-        )
-    }
-
+                                null
+            }
+        </ul>
+    )
 }
 
 export default MediaLoader;
