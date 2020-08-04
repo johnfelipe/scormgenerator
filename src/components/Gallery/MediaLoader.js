@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAudio, faFileVideo, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faFileAudio, faFileVideo, faTrash, faClone } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar } from 'video-react';
@@ -205,6 +205,15 @@ function MediaLoader (props) {
         }
     }
 
+    const clearCopiedMessage = () => {
+        setTimeout(
+            function() {
+                setCopied(false);
+            },
+            5000
+        );
+    }
+
     const mediaModal = (
         <Modal
             show={modalSHow}
@@ -227,16 +236,27 @@ function MediaLoader (props) {
 
                         </div>
                     </div> */}
-                    <div className="form-inline justify-content-center">
+                    <div className="form-inline justify-content-center mb-2">
+                        {copied &&
+                            <label className="form-check-label text-success mr-2">Url copied to clipboard!</label>
+                        }
                         <input
                             type="text"
-                            value={mediaUrl}
-                            className="form-control mb-2 mr-sm-2"
+                            defaultValue={mediaUrl}
+                            className="form-control mr-sm-2"
+                            readOnly
                         />
                         <CopyToClipboard onCopy={setCopied} text={mediaUrl}>
-                            <button type="button" className="btn btn-primary mb-2">Copy to clipboard with button</button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() => {
+                                    clearCopiedMessage();
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faClone}/>
+                            </button>
                         </CopyToClipboard>
-                        {/* <button type="submit" className="btn btn-primary mb-2">Submit</button> */}
                     </div>
                         
                         
