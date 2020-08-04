@@ -272,7 +272,7 @@ class Main extends Component {
                                     </div>
                                     <div className="col-md-4 mt-2">
                                         <div className="float-right mt-2">
-                                            <CheckBoxInput currentCbValue={values.showProgressbar} name="showProgressbar" label="Show/Hide Progress Bar" handleChange={handleChange} onBlur={handleBlur} courseNameExist={this.state.courseNameExist}/>
+                                            <CheckBoxInput currentCbValue={values.showProgressbar} name="showProgressbar" label="Progress Bar" handleChange={handleChange} onBlur={handleBlur} courseNameExist={this.state.courseNameExist}/>
                                         </div>
                                     </div>
                                 </div>
