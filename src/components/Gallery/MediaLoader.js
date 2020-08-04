@@ -45,6 +45,7 @@ function MediaLoader (props) {
                                     setMediaName(fileData.name);
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
+                                    setModalShow(true);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -67,6 +68,7 @@ function MediaLoader (props) {
                                         setMediaName(fileData.name);
                                         setMediaUrl(fileData.url);
                                         setMediaAlt(fileData.alt);
+                                        setModalShow(true);
                                     }}
                                 >
                                     <div className="thumbnail">
@@ -89,6 +91,7 @@ function MediaLoader (props) {
                                         setMediaName(fileData.name);
                                         setMediaUrl(fileData.url);
                                         setMediaAlt(fileData.alt);
+                                        setModalShow(true);
                                     }}
                                 >
                                     <div className="thumbnail">
@@ -117,6 +120,7 @@ function MediaLoader (props) {
                                     setMediaName(fileData.name);
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
+                                    setModalShow(true);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -143,6 +147,7 @@ function MediaLoader (props) {
                                     setMediaName(fileData.name);
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
+                                    setModalShow(true);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -170,6 +175,7 @@ function MediaLoader (props) {
                                     setMediaName(fileData.name);
                                     setMediaUrl(fileData.url);
                                     setMediaAlt(fileData.alt);
+                                    setModalShow(true);
                                 }}
                             >
                                 <div className="thumbnail">
