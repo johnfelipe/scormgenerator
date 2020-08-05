@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -230,6 +230,13 @@ function MultipleChoiceAccordion(props) {
     
     const selectOptions = answerOptions();
 
+    useEffect(() => {
+        let list = document.getElementsByClassName("dropdown-heading-value");
+        if (list[0]) {
+            list[0].innerHTML = "Select answer";
+        }
+    });
+
     return (
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
@@ -344,8 +351,6 @@ function MultipleChoiceAccordion(props) {
                                                                 setSelectedAnswers(e);
                                                                 props.setCorrectAnswer(true, index, e);
                                                                 sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
-                                                                let list = document.getElementsByClassName("dropdown-heading-value");
-                                                                list.innerHTML = "Select answer";
                                                             }}
                                                             labelledBy={"Select"}
                                                             disableSearch={true}
