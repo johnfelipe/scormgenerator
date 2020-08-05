@@ -50,6 +50,9 @@ class Main extends Component {
             mediaFiles => {
                 console.log(mediaFiles);
                 this.setMediaFilesObject(mediaFiles);
+            },
+            error => {
+                console.log(error);
             }
         );
     }

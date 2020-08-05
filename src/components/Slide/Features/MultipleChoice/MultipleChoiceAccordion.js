@@ -342,12 +342,11 @@ function MultipleChoiceAccordion(props) {
                                                             value={selectedAnswers}
                                                             onChange={(e) => {
                                                                 setSelectedAnswers(e);
-
-                                                                e.forEach((item) => {
-                                                                    props.setCorrectAnswer(true, index, parseInt(item.value));
-                                                                });
+                                                                props.setCorrectAnswer(true, index, e);
+                                                                sessionStorage.setItem("selectedAnswers", e);
                                                             }}
                                                             labelledBy={"Select"}
+                                                            disableSearch={true}
                                                         />
                                                     </OverlayTrigger>
                                                 }
