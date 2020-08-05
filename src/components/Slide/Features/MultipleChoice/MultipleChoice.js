@@ -86,18 +86,22 @@ function MultipleChoice(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setCorrectAnswer = (value, questionIndex, answerIndex) => {
+    const setCorrectAnswer = (value, questionIndex, answerArray) => {
         const currentColumnObj = currentColumn;
+        const selectCorrectAnswers = []
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].correct = value;
+        answerArray.forEach((item) => {
+            selectCorrectAnswers.push(parseInt(item.value));
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[parseInt(item.value)].correct = value;
+        });
 
-        // const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
+        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
 
-        // for (let i = 0; i < arrayLength; i++) {
-        //     if (i !== answerIndex && currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct !== true) {
-        //         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
-        //     }
-        // }
+        for (let i = 0; i < arrayLength; i++) {
+            if (!selectCorrectAnswers.includes(i)) {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
+            } 
+        }
 
         props.setColumn(currentColumnObj);
     }
