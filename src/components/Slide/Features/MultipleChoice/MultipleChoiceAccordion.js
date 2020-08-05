@@ -343,6 +343,7 @@ function MultipleChoiceAccordion(props) {
                                                             onChange={(e) => {
                                                                 setSelectedAnswers(e);
                                                                 props.setCorrectAnswer(true, index, e);
+                                                                sessionStorage.setItem("selectedAnswers", e);
                                                             }}
                                                             labelledBy={"Select"}
                                                             disableSearch={true}
