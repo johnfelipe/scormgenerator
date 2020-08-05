@@ -26,6 +26,7 @@ function MultipleChoice(props) {
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
+    const correctAnswers = props.correctAnswers;
 
     const addQuestion = (value) => {
         const currentColumnObj = currentColumn;
@@ -402,6 +403,7 @@ function MultipleChoice(props) {
                                                                         setExplanationVisibility={setExplanationVisibility}
                                                                         setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
+                                                                        correctAnswers={correctAnswers}
                                                                     />
                                                             }
                                                         </li>

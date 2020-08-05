@@ -65,6 +65,7 @@ class SlideHandler extends Component {
             mChoiceIndex: 0,
             slideTitle: '',
             slideSubtitle: '',
+            correctAnswers: [],
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -90,16 +91,23 @@ class SlideHandler extends Component {
         this.setMChoiceIndex = this.setMChoiceIndex.bind(this);
         this.setSlideTitle = this.setSlideTitle.bind(this);
         this.setSlideSubtitle = this.setSlideSubtitle.bind(this);
+        this.setCorrectAnswers = this.setCorrectAnswers.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
     componentDidMount = () => {
         if(sessionStorage.getItem("selectedAnswers")) {
+            this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
         }
     }
 
     componentDidUpdate() {
+        if(sessionStorage.getItem("selectedAnswers")) {
+            this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
+            sessionStorage.removeItem("selectedAnswers");
+        }
+        
         console.log('state.columns: ');
         console.log(this.state.column);
         console.log('props.columns: ');
@@ -1204,6 +1212,12 @@ class SlideHandler extends Component {
         })
     }
 
+    setCorrectAnswers = (value) => {
+        this.setState({
+            correctAnswers: value,
+        })
+    }
+
     onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
@@ -1518,6 +1532,7 @@ class SlideHandler extends Component {
                                                             resetFeature={this.resetFeature}
                                                             slideItemId={this.props.slideItemId}
                                                             setMChoiceIndex={this.setMChoiceIndex}
+                                                            correctAnswers={this.state.correctAnswers}
                                                         />
                                                     </Tab>
                                                 </Tabs>

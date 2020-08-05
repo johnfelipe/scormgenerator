@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +11,7 @@ function MultipleChoiceAccordion(props) {
 
     let item = props.item;
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
-    const { index, IsAddAnswer, answer, contentIndex } = props;
+    const { index, IsAddAnswer, answer, contentIndex, correctAnswers } = props;
 
     const [editAnswer, setEditAnswer] = useState('');
     const [editAnswerCompareIndex, setEditAnswerCompareIndex] = useState('');
@@ -28,7 +28,7 @@ function MultipleChoiceAccordion(props) {
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
     // const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
-    const [selectedAnswers, setSelectedAnswers] = useState([]);
+    const [selectedAnswers, setSelectedAnswers] = useState(correctAnswers ? correctAnswers : []);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -230,11 +230,18 @@ function MultipleChoiceAccordion(props) {
     
     const selectOptions = answerOptions();
 
+    useEffect(() => {
+        let list = document.getElementsByClassName("dropdown-heading-value");
+        if (list[0]) {
+            list[0].innerHTML = "Select answer";
+        }
+    });
+
     return (
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
                 <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
-                    <span>Question no.</span>
+                    <span>Question </span>
                     <span>&nbsp;{index+1}</span>
                     <button
                         type="button"
@@ -343,7 +350,7 @@ function MultipleChoiceAccordion(props) {
                                                             onChange={(e) => {
                                                                 setSelectedAnswers(e);
                                                                 props.setCorrectAnswer(true, index, e);
-                                                                sessionStorage.setItem("selectedAnswers", e);
+                                                                sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
                                                             }}
                                                             labelledBy={"Select"}
                                                             disableSearch={true}
