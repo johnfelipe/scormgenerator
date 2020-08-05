@@ -6,7 +6,7 @@ export const galleryService = {
 };
 
 async function getAllFiles() {
-    const response = await API.get('/user/1/files?pageNo=0&pageSize=10&sortBy=updated',);
+    const response = await API.get('/user/1/files?pageNo=0&pageSize=1000&sortBy=updated',);
     return handleResponse(response);
 }
 

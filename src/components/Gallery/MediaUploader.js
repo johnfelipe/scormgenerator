@@ -1,46 +1,63 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../services';
+import { Modal } from 'react-bootstrap';
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 // https://codepen.io/hartzis/pen/VvNGZP
-class MediaUploader extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showSuccessMsg: false,
-        };
-        this.handleImageChange = this.handleImageChange.bind(this);
-        this.clearSuccessMessage = this.clearSuccessMessage.bind(this);
-    }
+function MediaUploader(props) {
 
-    handleImageChange = (e) => {
+    const [showSuccessMsg, setShowSuccessMsg] = useState(false);
+    const [showErrorMsg, setShowErrorMsg] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
+
+    const handleFileUpload = (e) => {
         e.preventDefault();
         let files = e.target.files;
         console.log(files);
 
-        this.setState({
-            showSuccessMsg: true,
-        })
-
         // eslint-disable-next-line
         Object.keys(files).map((fileIndex) => {
 
-            const formData = new FormData();
+            if(files[fileIndex].type.includes('video') || files[fileIndex].type.includes('audio')) {
+                const formData = new FormData();
 
-            formData.append('file', files[fileIndex]);
-            formData.append('uid', 1);
-            formData.append('alt', files[fileIndex].name);
+                formData.append('file', files[fileIndex]);
+                formData.append('uid', 1);
+                formData.append('alt', files[fileIndex].name);
 
-            galleryService.uploadFiles(formData)
-            .then(
-                fileObject => {
-                    console.log(fileObject);
-                    this.props.setMediaFiles(fileObject);
-                },
-                error => console.log(error)
-            );
+                galleryService.uploadFiles(formData)
+                .then(
+                    fileObject => {
+                        console.log(fileObject);
+                        props.setMediaFiles(fileObject);
+                    },
+                    error => console.log(error)
+                );
+
+                setShowSuccessMsg(true);
+            } else if (files[fileIndex].type.includes('image')) {
+                setModalShow(true);
+                setFile(files);
+                setFileIndex(fileIndex);
+
+                let reader = new FileReader();
+
+                reader.readAsDataURL(files[fileIndex])
+                reader.onloadend = () => {
+                    setImgUrlPreview(reader.result);
+                }
+            } else {
+                document.getElementById("inputGroupFile01").value = "";
+                setShowErrorMsg(true);
+            }
+            
 
             // let reader = new FileReader();
 
@@ -56,58 +73,155 @@ class MediaUploader extends Component {
             // reader.readAsDataURL(files[fileIndex])
             // reader.onloadend = () => {
             //     fileObject.url = reader.result;
-            //     this.props.setMediaFiles(fileObject);
+            //     props.setMediaFiles(fileObject);
             // }
         });
     }
 
-    clearSuccessMessage = () => {
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            console.log('tapos na');
+            console.log(mediaAlt);
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
+
+            setShowSuccessMsg(true);
+        }
+    }
+
+    const clearSuccessMessage = () => {
         setTimeout(
             function() {
-                this.setState({showSuccessMsg: false});
-            }
-            .bind(this),
+                
+                setShowSuccessMsg(false);
+                setShowErrorMsg(false);
+            },
             5000
         );
     }
 
-    render() {
+    const uploadFormModal = (
+        <Modal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            dialogClassName="gallery-preview-modal w-50"
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    <span>Enter alt tag for image</span>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Formik
+                    initialValues={{ 
+                        alt: '',
+                    }}
 
-        return (
-            <div className="row mt-5">
-                <div className="col-md-4"></div>
-                <div className="text-center col-md-4">
-                    <div className="input-group">
-                        <div className="custom-file">
-                            <input
-                                type="file"
-                                className="custom-file-input"
-                                id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01"
-                                onChange={this.handleImageChange}
-                                onBlur={this.clearSuccessMessage}
-                                multiple
-                            />
-                            <label className="custom-file-label pr-6" htmlFor="inputGroupFile01">
-                                {
-                                    this.state.showSuccessMsg ?
-                                        <span className="text-success">Files are successfully uploaded!</span>
+                    onSubmit={values => {
+                        // setMediaAlt(values.alt);
+                        setModalShow(false);
+                        handleImageUpload(values.alt, file, fileIndex);
+                    }}
+
+                    validationSchema={Yup.object().shape({
+                        alt: Yup.string()
+                            .required("Alt is required"),
+                        }
+                    )}
+                >
+                    {props => {
+                        const {
+                            values,
+                            touched,
+                            errors,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                        } = props;
+                        return (
+                            <form onSubmit={handleSubmit} className="text-center">
+                                <img src={imgUrlPreview} alt={values.alt} className="w-50 h-auto mb-3"/>
+                                <input
+                                    id="alt"
+                                    name="alt"
+                                    type="text"
+                                    className={(errors.alt && touched.alt && "error form-control") || "form-control"}
+                                    onChange={handleChange}
+                                    value={values.alt}
+                                    onBlur={handleBlur}
+                                    placeholder="Type lesson name here . . ."
+                                />
+                                {errors.alt && touched.alt && (
+                                    <div className="input-feedback">{errors.alt}</div>
+                                )}
+                                <button type="submit" className="btn btn-success float-right mt-4" disabled={isSubmitting}>Submit</button>
+                            </form>
+                        );
+                    }}
+                </Formik>
+            </Modal.Body>
+        </Modal>
+    );
+
+    return (
+        <div className="row mt-5">
+            <div className="col-md-4"></div>
+            <div className="text-center col-md-4">
+                <div className="input-group">
+                    <div className="custom-file">
+                        <input
+                            type="file"
+                            className="custom-file-input"
+                            id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01"
+                            onChange={handleFileUpload}
+                            onBlur={clearSuccessMessage}
+                            // multiple
+                        />
+                        <label className="custom-file-label pr-6" htmlFor="inputGroupFile01">
+                            {
+                                showSuccessMsg ?
+                                    <span className="text-success">File are successfully uploaded!</span>
+                                :
+                                    showErrorMsg ?
+                                        <span className="text-danger">File are not uploaded!</span>
                                     :
                                         <span>Choose file/s</span>
-                                }
-                            </label>
-                        </div>
-                    </div>
-                    <div id="success-message" className={this.state.showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
-                        <Alert variant='success'>
-                            <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
-                        </Alert>
+                            }
+                        </label>
                     </div>
                 </div>
-                <div className="col-md-4"></div>
+                <div id="success-message" className={showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
+                    <Alert variant='success'>
+                        <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
+                    </Alert>
+                </div>
+                <div id="error-message" className={showErrorMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
+                    <Alert variant='danger'>
+                        <span><FontAwesomeIcon icon={faTimes}/> Cannot upload selected file!</span>
+                    </Alert>
+                </div>
             </div>
-        )
-    }
+            <div className="col-md-4"></div>
+            {uploadFormModal}
+        </div>
+    );
 
 }
 
