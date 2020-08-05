@@ -1491,6 +1491,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
     top: 380px;
   }
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .multiple-choice-question-action-button .col-md-6 .multi-select {
+  --rmsc-h: 29.4px;
+  /* Height */
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper {
   display: flex;
   align-items: flex-start;
