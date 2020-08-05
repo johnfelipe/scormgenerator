@@ -93,6 +93,12 @@ class SlideHandler extends Component {
         this.onSave = this.onSave.bind(this);
     }
 
+    componentDidMount = () => {
+        if(sessionStorage.getItem("selectedAnswers")) {
+            sessionStorage.removeItem("selectedAnswers");
+        }
+    }
+
     componentDidUpdate() {
         console.log('state.columns: ');
         console.log(this.state.column);
