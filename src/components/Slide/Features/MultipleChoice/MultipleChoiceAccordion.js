@@ -342,9 +342,8 @@ function MultipleChoiceAccordion(props) {
                                                             value={selectedAnswers}
                                                             onChange={(e) => {
                                                                 setSelectedAnswers(e);
-
                                                                 e.forEach((item) => {
-                                                                    props.setCorrectAnswer(true, index, parseInt(item.value));
+                                                                    props.setCorrectAnswer(true, index, e);
                                                                 });
                                                             }}
                                                             labelledBy={"Select"}
