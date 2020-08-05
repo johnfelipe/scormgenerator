@@ -9,7 +9,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 function MediaLoader (props) {
 
     const {filterType, mediaFiles} = props;
-    const [modalSHow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const [mediaName, setMediaName] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
     const [mediaAlt, setMediaAlt] = useState('');
@@ -216,7 +216,7 @@ function MediaLoader (props) {
 
     const mediaModal = (
         <Modal
-            show={modalSHow}
+            show={modalShow}
             onHide={() => setModalShow(false)}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
@@ -236,30 +236,48 @@ function MediaLoader (props) {
 
                         </div>
                     </div> */}
-                    <div className="form-inline justify-content-center mb-2">
-                        {copied &&
-                            <label className="form-check-label text-success mr-2">Url copied to clipboard!</label>
-                        }
-                        <input
-                            type="text"
-                            defaultValue={mediaUrl}
-                            className="form-control mr-sm-2 w-40"
-                            readOnly
-                        />
-                        <CopyToClipboard onCopy={setCopied} text={mediaUrl}>
+                        <div className="form-inline justify-content-center mb-2">
+                            {copied &&
+                                <label className="form-check-label text-success mr-2">Url copied to clipboard!</label>
+                            }
+                            <input
+                                type="text"
+                                defaultValue={mediaUrl}
+                                className="form-control mr-sm-2 w-40"
+                                readOnly
+                            />
+                            <CopyToClipboard onCopy={setCopied} text={mediaUrl}>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                        clearCopiedMessage();
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faClone}/>
+                                </button>
+                            </CopyToClipboard>
+                        </div>
+                        <div className="form-inline justify-content-center mb-2">
+                            <label className="form-check-label mr-2">Alt: </label>
+                            <input
+                                type="text"
+                                defaultValue={mediaAlt}
+                                className="form-control w-40"
+                                readOnly
+                                style={{ marginRight: '40px' }}
+                            />
                             <button
                                 type="button"
                                 className="btn btn-primary"
                                 onClick={() => {
                                     clearCopiedMessage();
                                 }}
+                                style={{ visibility: 'hidden' }}
                             >
                                 <FontAwesomeIcon icon={faClone}/>
                             </button>
-                        </CopyToClipboard>
-                    </div>
-                        
-                        
+                        </div>
                         <img src={mediaUrl} alt={mediaAlt} className="w-70 h-auto" />
                     </div>
                 :
