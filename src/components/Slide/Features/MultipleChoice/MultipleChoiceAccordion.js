@@ -234,7 +234,7 @@ function MultipleChoiceAccordion(props) {
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
                 <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
-                    <span>Question no.</span>
+                    <span>Question </span>
                     <span>&nbsp;{index+1}</span>
                     <button
                         type="button"
