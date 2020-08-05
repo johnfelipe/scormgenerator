@@ -264,7 +264,6 @@ function MediaLoader (props) {
                                 type="text"
                                 defaultValue={mediaAlt}
                                 className="form-control w-40"
-                                readOnly
                                 style={{ marginRight: '40px' }}
                             />
                             <button
