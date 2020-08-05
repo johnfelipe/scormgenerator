@@ -3,12 +3,17 @@ import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../services';
+import { Modal } from 'react-bootstrap';
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 // https://codepen.io/hartzis/pen/VvNGZP
 function MediaUploader(props) {
 
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [mediaAlt, setMediaAlt] = useState('');
 
     const handleImageChange = (e) => {
         e.preventDefault();
@@ -18,7 +23,7 @@ function MediaUploader(props) {
         // eslint-disable-next-line
         Object.keys(files).map((fileIndex) => {
 
-            if(files[fileIndex].type.includes('image') || files[fileIndex].type.includes('video') || files[fileIndex].type.includes('audio')) {
+            if(files[fileIndex].type.includes('video') || files[fileIndex].type.includes('audio')) {
                 const formData = new FormData();
 
                 formData.append('file', files[fileIndex]);
@@ -35,6 +40,30 @@ function MediaUploader(props) {
                 );
 
                 setShowSuccessMsg(true);
+            } else if (files[fileIndex].type.includes('image')) {
+
+                setModalShow(true);
+
+                if (!modalShow) { 
+                    console.log('tapos na');
+                    console.log(mediaAlt);
+                    const formData = new FormData();
+
+                    formData.append('file', files[fileIndex]);
+                    formData.append('uid', 1);
+                    formData.append('alt', mediaAlt);
+
+                    galleryService.uploadFiles(formData)
+                    .then(
+                        fileObject => {
+                            console.log(fileObject);
+                            props.setMediaFiles(fileObject);
+                        },
+                        error => console.log(error)
+                    );
+
+                    setShowSuccessMsg(true);
+                }
             } else {
                 document.getElementById("inputGroupFile01").value = "";
                 setShowErrorMsg(true);
@@ -70,6 +99,71 @@ function MediaUploader(props) {
             5000
         );
     }
+
+    const uploadFormModal = (
+        <Modal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            dialogClassName="gallery-preview-modal w-50"
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    <span>Enter alt tag for image</span>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Formik
+                    initialValues={{ 
+                        alt: '',
+                    }}
+
+                    onSubmit={values => {
+                        setMediaAlt(values.alt);
+                        setModalShow(false);
+                    }}
+
+                    validationSchema={Yup.object().shape({
+                        alt: Yup.string()
+                            .required("Alt is required"),
+                        }
+                    )}
+                >
+                    {props => {
+                        const {
+                            values,
+                            touched,
+                            errors,
+                            isSubmitting,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                        } = props;
+                        return (
+                            <form onSubmit={handleSubmit}>
+                                <input
+                                    id="alt"
+                                    name="alt"
+                                    type="text"
+                                    className={(errors.alt && touched.alt && "error form-control") || "form-control"}
+                                    onChange={handleChange}
+                                    value={values.alt}
+                                    onBlur={handleBlur}
+                                    placeholder="Type lesson name here . . ."
+                                />
+                                {errors.alt && touched.alt && (
+                                    <div className="input-feedback">{errors.alt}</div>
+                                )}
+                                <button type="submit" className="btn btn-success float-right mt-4" disabled={isSubmitting}>Submit</button>
+                            </form>
+                        );
+                    }}
+                </Formik>
+            </Modal.Body>
+        </Modal>
+    );
 
     return (
         <div className="row mt-5">
@@ -111,6 +205,7 @@ function MediaUploader(props) {
                 </div>
             </div>
             <div className="col-md-4"></div>
+            {uploadFormModal}
         </div>
     );
 
