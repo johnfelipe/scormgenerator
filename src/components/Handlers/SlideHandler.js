@@ -103,6 +103,11 @@ class SlideHandler extends Component {
     }
 
     componentDidUpdate() {
+        if(sessionStorage.getItem("selectedAnswers")) {
+            this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
+            sessionStorage.removeItem("selectedAnswers");
+        }
+        
         console.log('state.columns: ');
         console.log(this.state.column);
         console.log('props.columns: ');
