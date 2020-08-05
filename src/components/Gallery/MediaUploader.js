@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../services';
 
 // https://codepen.io/hartzis/pen/VvNGZP
@@ -10,6 +10,7 @@ class MediaUploader extends Component {
         super(props);
         this.state = {
             showSuccessMsg: false,
+            showErrorMsg: false,
         };
         this.handleImageChange = this.handleImageChange.bind(this);
         this.clearSuccessMessage = this.clearSuccessMessage.bind(this);
@@ -20,27 +21,35 @@ class MediaUploader extends Component {
         let files = e.target.files;
         console.log(files);
 
-        this.setState({
-            showSuccessMsg: true,
-        })
-
         // eslint-disable-next-line
         Object.keys(files).map((fileIndex) => {
 
-            const formData = new FormData();
+            if(files[fileIndex].type.includes('image') || files[fileIndex].type.includes('video') || files[fileIndex].type.includes('audio')) {
+                const formData = new FormData();
 
-            formData.append('file', files[fileIndex]);
-            formData.append('uid', 1);
-            formData.append('alt', files[fileIndex].name);
+                formData.append('file', files[fileIndex]);
+                formData.append('uid', 1);
+                formData.append('alt', files[fileIndex].name);
 
-            galleryService.uploadFiles(formData)
-            .then(
-                fileObject => {
-                    console.log(fileObject);
-                    this.props.setMediaFiles(fileObject);
-                },
-                error => console.log(error)
-            );
+                galleryService.uploadFiles(formData)
+                .then(
+                    fileObject => {
+                        console.log(fileObject);
+                        this.props.setMediaFiles(fileObject);
+                    },
+                    error => console.log(error)
+                );
+
+                this.setState({
+                    showSuccessMsg: true,
+                })
+            } else {
+                document.getElementById("inputGroupFile01").value = "";
+                this.setState({
+                    showErrorMsg: true,
+                })
+            }
+            
 
             // let reader = new FileReader();
 
@@ -64,7 +73,7 @@ class MediaUploader extends Component {
     clearSuccessMessage = () => {
         setTimeout(
             function() {
-                this.setState({showSuccessMsg: false});
+                this.setState({showSuccessMsg: false, showErrorMsg: false});
             }
             .bind(this),
             5000
@@ -86,14 +95,17 @@ class MediaUploader extends Component {
                                 aria-describedby="inputGroupFileAddon01"
                                 onChange={this.handleImageChange}
                                 onBlur={this.clearSuccessMessage}
-                                multiple
+                                // multiple
                             />
                             <label className="custom-file-label pr-6" htmlFor="inputGroupFile01">
                                 {
                                     this.state.showSuccessMsg ?
-                                        <span className="text-success">Files are successfully uploaded!</span>
+                                        <span className="text-success">File are successfully uploaded!</span>
                                     :
-                                        <span>Choose file/s</span>
+                                        this.state.showErrorMsg ?
+                                            <span className="text-danger">File are not uploaded!</span>
+                                        :
+                                            <span>Choose file/s</span>
                                 }
                             </label>
                         </div>
@@ -101,6 +113,11 @@ class MediaUploader extends Component {
                     <div id="success-message" className={this.state.showSuccessMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
                         <Alert variant='success'>
                             <span><FontAwesomeIcon icon={faCheck}/> Successfully uploaded!</span>
+                        </Alert>
+                    </div>
+                    <div id="error-message" className={this.state.showErrorMsg ? 'fadeIn mt-5' : 'fadeOut mt-5'}>
+                        <Alert variant='danger'>
+                            <span><FontAwesomeIcon icon={faTimes}/> Cannot upload selected file!</span>
                         </Alert>
                     </div>
                 </div>
