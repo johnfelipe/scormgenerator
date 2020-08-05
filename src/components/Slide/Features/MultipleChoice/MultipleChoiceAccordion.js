@@ -347,6 +347,7 @@ function MultipleChoiceAccordion(props) {
                                                                 });
                                                             }}
                                                             labelledBy={"Select"}
+                                                            disableSearch={true}
                                                         />
                                                     </OverlayTrigger>
                                                 }

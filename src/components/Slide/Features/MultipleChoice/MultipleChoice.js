@@ -88,7 +88,7 @@ function MultipleChoice(props) {
 
     const setCorrectAnswer = (value, questionIndex, answerArray) => {
         const currentColumnObj = currentColumn;
-        const selectCorrectAnswers = []
+        const selectCorrectAnswers = [];
 
         answerArray.forEach((item) => {
             selectCorrectAnswers.push(parseInt(item.value));
