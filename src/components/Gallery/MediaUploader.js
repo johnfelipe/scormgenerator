@@ -13,9 +13,11 @@ function MediaUploader(props) {
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
     const [modalShow, setModalShow] = useState(false);
-    const [mediaAlt, setMediaAlt] = useState('');
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
-    const handleImageChange = (e) => {
+    const handleFileUpload = (e) => {
         e.preventDefault();
         let files = e.target.files;
         console.log(files);
@@ -41,28 +43,15 @@ function MediaUploader(props) {
 
                 setShowSuccessMsg(true);
             } else if (files[fileIndex].type.includes('image')) {
-
                 setModalShow(true);
+                setFile(files);
+                setFileIndex(fileIndex);
 
-                if (!modalShow) { 
-                    console.log('tapos na');
-                    console.log(mediaAlt);
-                    const formData = new FormData();
+                let reader = new FileReader();
 
-                    formData.append('file', files[fileIndex]);
-                    formData.append('uid', 1);
-                    formData.append('alt', mediaAlt);
-
-                    galleryService.uploadFiles(formData)
-                    .then(
-                        fileObject => {
-                            console.log(fileObject);
-                            props.setMediaFiles(fileObject);
-                        },
-                        error => console.log(error)
-                    );
-
-                    setShowSuccessMsg(true);
+                reader.readAsDataURL(files[fileIndex])
+                reader.onloadend = () => {
+                    setImgUrlPreview(reader.result);
                 }
             } else {
                 document.getElementById("inputGroupFile01").value = "";
@@ -87,6 +76,29 @@ function MediaUploader(props) {
             //     props.setMediaFiles(fileObject);
             // }
         });
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            console.log('tapos na');
+            console.log(mediaAlt);
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
+
+            setShowSuccessMsg(true);
+        }
     }
 
     const clearSuccessMessage = () => {
@@ -121,8 +133,9 @@ function MediaUploader(props) {
                     }}
 
                     onSubmit={values => {
-                        setMediaAlt(values.alt);
+                        // setMediaAlt(values.alt);
                         setModalShow(false);
+                        handleImageUpload(values.alt, file, fileIndex);
                     }}
 
                     validationSchema={Yup.object().shape({
@@ -142,7 +155,8 @@ function MediaUploader(props) {
                             handleSubmit,
                         } = props;
                         return (
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} className="text-center">
+                                <img src={imgUrlPreview} alt={values.alt} className="w-50 h-auto mb-3"/>
                                 <input
                                     id="alt"
                                     name="alt"
@@ -176,7 +190,7 @@ function MediaUploader(props) {
                             className="custom-file-input"
                             id="inputGroupFile01"
                             aria-describedby="inputGroupFileAddon01"
-                            onChange={handleImageChange}
+                            onChange={handleFileUpload}
                             onBlur={clearSuccessMessage}
                             // multiple
                         />
