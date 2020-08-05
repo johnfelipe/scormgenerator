@@ -11,7 +11,7 @@ function MultipleChoiceAccordion(props) {
 
     let item = props.item;
     item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
-    const { index, IsAddAnswer, answer, contentIndex } = props;
+    const { index, IsAddAnswer, answer, contentIndex, correctAnswers } = props;
 
     const [editAnswer, setEditAnswer] = useState('');
     const [editAnswerCompareIndex, setEditAnswerCompareIndex] = useState('');
@@ -28,7 +28,7 @@ function MultipleChoiceAccordion(props) {
     const [audioCollapse,  setAudioCollapse] = useState(false);
     const [videoCollapse,  setVideoCollapse] = useState(false);
     // const [isCorrectAnswerSet, setIsCorrectAnswerSet] = useState(false);
-    const [selectedAnswers, setSelectedAnswers] = useState([]);
+    const [selectedAnswers, setSelectedAnswers] = useState(correctAnswers ? correctAnswers : []);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -343,7 +343,9 @@ function MultipleChoiceAccordion(props) {
                                                             onChange={(e) => {
                                                                 setSelectedAnswers(e);
                                                                 props.setCorrectAnswer(true, index, e);
-                                                                sessionStorage.setItem("selectedAnswers", e);
+                                                                sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
+                                                                let list = document.getElementsByClassName("dropdown-heading-value");
+                                                                list.innerHTML = "Select answer";
                                                             }}
                                                             labelledBy={"Select"}
                                                             disableSearch={true}

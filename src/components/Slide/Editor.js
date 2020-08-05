@@ -119,6 +119,7 @@ class Editor extends Component {
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
                     setMChoiceIndex={this.props.setMChoiceIndex}
+                    correctAnswers={this.props.correctAnswers}
                 />
             );
         } else if (this.props.feature === "homePage") {
