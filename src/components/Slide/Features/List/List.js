@@ -30,26 +30,7 @@ function List(props) {
                             <div className="sg-control-input-list-label">
                                 <span>Embed Code</span>
                             </div>
-                            <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                <textarea
-                                    placeholder="Put embed code here . . ."
-                                    className="sg-input-code"
-                                    style={{fontSize: 10}}
-                                    value={ 
-                                        typeof currentColumn != "undefined" ? 
-                                            'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                                currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0 ?
-                                                    currentColumn.content[currentColumnContentIndex][contentIndex].output 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
-                                    }
-                                    onChange={(event) => props.onChangeTextArea(event, contentIndex, 'html')}
-                                />
-                            </div>
+                            
                         </li>
                     </ul>
                 </div>

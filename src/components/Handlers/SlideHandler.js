@@ -534,7 +534,7 @@ class SlideHandler extends Component {
                         });
                     } else if (currentFeatures[source.index]['type'] === 'list') {
                         let currentContent = {
-                            type: 'list',
+                            type: currentFeatures[source.index]['type'],
                             output: [],
                             class: '',
                             id: '',
