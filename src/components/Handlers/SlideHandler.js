@@ -2089,7 +2089,10 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                         
-                                                                                                                    {contentFirst.type !== 'multipleChoice' && contentFirst.type !== 'homePage' && contentFirst.type !== 'courseObjectives' &&
+                                                                                                                    {contentFirst.type !== 'multipleChoice' &&
+                                                                                                                    contentFirst.type !== 'homePage' &&
+                                                                                                                    contentFirst.type !== 'courseObjectives' &&
+                                                                                                                    contentFirst.type !== 'list' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
