@@ -233,7 +233,7 @@ function MultipleChoiceAccordion(props) {
     useEffect(() => {
         let list = document.getElementsByClassName("dropdown-heading-value");
         if (list[0]) {
-            list[0].innerHTML = "Select answer";
+            list[0].innerHTML = "Select";
         }
     });
 
