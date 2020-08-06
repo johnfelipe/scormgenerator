@@ -2074,16 +2074,7 @@ class SlideHandler extends Component {
                                                                                                                             }
                                                                                                                         >
                                                                                                                             <ListLayout
-                                                                                                                                title={contentFirst.output.title}
-                                                                                                                                subtitle={contentFirst.output.subtitle}
-                                                                                                                                date={contentFirst.output.date}
-                                                                                                                                courseId={contentFirst.output.courseId}
-                                                                                                                                backgroundImg={contentFirst.output.backgroundImg}
-                                                                                                                                homePageClass={contentFirst.class}
-                                                                                                                                styles={contentFirst.styles}
-                                                                                                                                homepageId={contentFirst.id}
-                                                                                                                                homePageCss={contentFirst.css}
-                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                output={contentFirst.output}
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
