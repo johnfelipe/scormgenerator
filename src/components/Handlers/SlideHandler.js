@@ -404,7 +404,13 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
                     
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<span>This content will show up directly in its container.</span>',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -413,7 +419,13 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: 'No audio added.', class: '', id: ''  };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: 'No audio added.',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -422,7 +434,24 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: [], class: 'question-files-left', id: '', styles: { questionLabelClass: 'rounded-circle', questionBackgroundColor: '#fff', multipleChoiceTextColor: 'text-black' }, mechanics: { repeat: 0, passingRate: 80, specificType: 'knowledgeCheck', returnSlide: 0 } };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: 'question-files-left',
+                            id: '',
+                            styles: {
+                                questionLabelClass: 'rounded-circle',
+                                questionBackgroundColor: '#fff',
+                                multipleChoiceTextColor: 'text-black'
+                            },
+                            mechanics: {
+                                repeat: 0,
+                                passingRate: 80,
+                                specificType: 'knowledgeCheck',
+                                returnSlide: 0
+                            }
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -431,7 +460,26 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { title: 'Title', subtitle: 'Subtitle', date: 'January 1970', courseId: '1234567890', backgroundImg: { name: '', url: '' } }, class: 'course-title-bottom-left', id: '', styles: { titleBoxColor: '#0069d9', titleBoxBorder: 'border-bottom' } };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                title: 'Title',
+                                subtitle: 'Subtitle',
+                                date: 'January 1970',
+                                courseId: '1234567890',
+                                backgroundImg: {
+                                    name: '',
+                                    url: ''
+                                }
+                            },
+                            class: 'course-title-bottom-left',
+                            id: '',
+                            styles: {
+                                titleBoxColor: '#0069d9',
+                                titleBoxBorder: 'border-bottom'
+                            }
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -440,7 +488,34 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: { courseNav: {name: 'Course Navigation',}, courseInfo: {name: 'Course Information', content: '<span>No information provided yet.</span>'}, courseReq:  {name: 'Course Requirements', content: '<span>No requirements provided yet</span>.'}, }, class: '', id: '', styles: { courseIntroColor: '#0069d9' }, introVideo: {name: 'file_example_MP4_480_1_5MG', url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4', type: 'video/mp4', position: 'course-objectives-video-left'}, };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                courseNav: {
+                                    name: 'Course Navigation',
+                                },
+                                courseInfo: {
+                                    name: 'Course Information',
+                                    content: '<span>No information provided yet.</span>'
+                                },
+                                courseReq: {
+                                    name: 'Course Requirements',
+                                    content: '<span>No requirements provided yet</span>.'
+                                },
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                courseIntroColor: '#0069d9'
+                            },
+                            introVideo: {
+                                name: 'file_example_MP4_480_1_5MG',
+                                url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
+                                type: 'video/mp4',
+                                position: 'course-objectives-video-left'
+                            },
+                        };
+                        
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
