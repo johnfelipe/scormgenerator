@@ -118,7 +118,7 @@ function CourseObj(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-text-editor">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Content</label>
                 </div>
@@ -137,6 +137,15 @@ function CourseObj(props) {
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name && currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name} readOnly/>
                             </div>
                         </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+                <div className="sg-control-header">
+                    <label>Buttons</label>
+                </div>
+                <div className="sg-control-input">
+                <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <Accordion className="w-100">
                                 <Card>
