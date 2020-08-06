@@ -2059,8 +2059,18 @@ class SlideHandler extends Component {
                                                                                                                             {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                            className="content-output"
-                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            id={
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
