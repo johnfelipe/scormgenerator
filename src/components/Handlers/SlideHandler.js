@@ -908,7 +908,7 @@ class SlideHandler extends Component {
                             class: '',
                             id: ''
                         };
-                        
+
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -931,7 +931,13 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<span>This content will show up directly in its container.</span>',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -940,7 +946,13 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -962,7 +974,13 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<span>This content will show up directly in its container.</span>',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -971,7 +989,13 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -993,7 +1017,13 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<span>This content will show up directly in its container.</span>',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1002,7 +1032,13 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '',
+                            class: '',
+                            id: '' 
+                        };
+
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1024,7 +1060,13 @@ class SlideHandler extends Component {
                     const currentFeatures = this.state.features;
 
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '<span>This content will show up directly in its container.</span>', class: '', id: '' };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<span>This content will show up directly in its container.</span>',
+                            class: '',
+                            id: ''
+                        };
+
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1033,7 +1075,13 @@ class SlideHandler extends Component {
                             activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
                         })
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = { type: currentFeatures[source.index]['type'], output: '', class: '', id: ''  };
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '',
+                            class: '',
+                            id: '' 
+                        };
+
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
                             column: currentColumns,
