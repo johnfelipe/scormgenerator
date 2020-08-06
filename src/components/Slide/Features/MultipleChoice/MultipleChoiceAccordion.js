@@ -344,17 +344,19 @@ function MultipleChoiceAccordion(props) {
                                                             </Tooltip>
                                                         }
                                                     >
-                                                        <MultiSelect
-                                                            options={selectOptions}
-                                                            value={selectedAnswers}
-                                                            onChange={(e) => {
-                                                                setSelectedAnswers(e);
-                                                                props.setCorrectAnswer(true, index, e);
-                                                                sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
-                                                            }}
-                                                            labelledBy={"Select"}
-                                                            disableSearch={true}
-                                                        />
+                                                        <span>
+                                                            <MultiSelect
+                                                                options={selectOptions}
+                                                                value={selectedAnswers}
+                                                                onChange={(e) => {
+                                                                    setSelectedAnswers(e);
+                                                                    props.setCorrectAnswer(true, index, e);
+                                                                    sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
+                                                                }}
+                                                                labelledBy={"Select"}
+                                                                disableSearch={true}
+                                                            />
+                                                        </span>
                                                     </OverlayTrigger>
                                                 }
                                             </div>
