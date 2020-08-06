@@ -70,10 +70,11 @@ function List(props) {
                                     placeholder=""
                                     onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content.length > 0 &&
-                                        currentColumn.content[contentIndex].id
+                                        // typeof currentColumn != "undefined" &&
+                                        // 'content' in currentColumn &&
+                                        // currentColumn.content.length > 0 &&
+                                        // currentColumn.content[contentIndex].id
+                                        currentColumn.content[contentIndex] && currentColumn.content[contentIndex].id
                                     }
                                 />
                             </div>
@@ -88,10 +89,11 @@ function List(props) {
                                     placeholder=""
                                     onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content.length > 0 &&
-                                        currentColumn.content[contentIndex].class
+                                        // typeof currentColumn != "undefined" &&
+                                        // 'content' in currentColumn &&
+                                        // currentColumn.content.length > 0 &&
+                                        // currentColumn.content[contentIndex].class
+                                        currentColumn.content[contentIndex] && currentColumn.content[contentIndex].class
                                     }
                                 />
                             </div>
