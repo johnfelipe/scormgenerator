@@ -341,6 +341,13 @@ class SlideHandler extends Component {
                     position: 'course-objectives-video-left'
                 }, 
             };
+        } else if (featureType === "list") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'list',
+                output: [],
+                class: '',
+                id: '',
+            };
         }
 
         const columns = this.state.column;
@@ -515,6 +522,21 @@ class SlideHandler extends Component {
                                 type: 'video/mp4',
                                 position: 'course-objectives-video-left'
                             },
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'list') {
+                        let currentContent = {
+                            type: 'list',
+                            output: [],
+                            class: '',
+                            id: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
