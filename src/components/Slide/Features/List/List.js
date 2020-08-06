@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
 
 function List(props) {
@@ -12,6 +12,19 @@ function List(props) {
     const [cNavCollapseId, setCNavCollapseId] = useState(false);
     const [isEditButtonName, setIsEditButtonName] = useState(false);
     const [isEditButtonNameCompareIndex, setIsEditButtonNameCompareIndex] = useState(-1);
+
+    const addButtonObj = (value) => {
+        const currentColumnObj = currentColumn;
+
+        const buttonObj = {
+            name: value,
+            type: 'button',
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(buttonObj);
+
+        props.setColumn(currentColumnObj);
+    }
 
     const updateButtonName = (value) => {
         const currentColumnObj = currentColumn;
@@ -170,9 +183,9 @@ function List(props) {
                                                             id="buttonName"
                                                             name="buttonName"
                                                             type="text"
-                                                            placeholder="Type question here. . ."
-                                                            onChange={(event) => setQuestion(event.target.value)}
-                                                            value={question}
+                                                            placeholder="Type name here. . ."
+                                                            onChange={(event) => setAddedButtonName(event.target.value)}
+                                                            value={addedButtonName}
                                                         />
                                                     </div>
                                                     <div className="multiple-choice-control-button">
@@ -180,11 +193,11 @@ function List(props) {
                                                             type="button"
                                                             className="btn btn-success btn-sm"
                                                             onClick={() => {
-                                                                const isEmpty = document.getElementById("question");
+                                                                const isEmpty = document.getElementById("buttonName");
                                                                 
                                                                 if (isEmpty.value !== "") {
-                                                                    addQuestion(question);
-                                                                    setQuestion('');
+                                                                    addButtonObj(addedButtonName);
+                                                                    setAddedButtonName('');
                                                                 }
                                                             }}
                                                         >
