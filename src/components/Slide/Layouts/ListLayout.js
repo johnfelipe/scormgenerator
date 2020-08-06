@@ -13,7 +13,7 @@ function ListLayout(props) {
                             <button
                                 key={'list-button-object-' + index}
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary d-block mb-2"
                             >
                                 {item.name}
                             </button>
