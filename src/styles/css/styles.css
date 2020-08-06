@@ -383,27 +383,27 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   max-height: 545px;
   overflow: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-1-2 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-2 {
   width: 48%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-1-3 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-3 {
   width: 30.66666%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-2-3 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-2-3 {
   width: 65.33332%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-1-4 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-4 {
   width: 22%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-1-5 {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-5 {
   width: 16.8%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column {
   margin-right: 4%;
   border: 2px dashed #e2e2e2;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .container .sg-column:last-of-type {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column:last-of-type {
   margin-right: 0 !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .active-column {
@@ -414,7 +414,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form .chec
 }
 html body div.modal .slide-modal-width {
   max-width: none;
-  width: 80%;
+  width: 95%;
 }
 
 html body div.modal div.resources-modal div.modal-content div.modal-body form .custom-file-label {
@@ -1335,13 +1335,13 @@ html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab
   transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }
 
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 450px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #0069d9;
   padding: 25px;
@@ -1350,7 +1350,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   max-width: 350px;
   word-break: break-all;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name h2.course-header {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h2.course-header {
   color: #ffffff;
   font-size: 20px;
   line-height: 30px;
@@ -1358,40 +1358,40 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   border-bottom-width: medium !important;
   border-left-width: medium !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name .course-bar {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name .course-bar {
   background: #278FFF;
   display: inline-block;
   width: 75px;
   height: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout #course-name h3.course-sub-header {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h3.course-sub-header {
   color: #ffffff;
   font-size: 15px;
   line-height: 25px;
   margin: 10px 0 0 0;
   word-break: break-all;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-bottom-left {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-left {
   position: absolute;
   bottom: 50px;
   left: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-top-left {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-left {
   position: absolute;
   top: 50px;
   left: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-bottom-right {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-right {
   position: absolute;
   bottom: 50px;
   right: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-top-right {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-right {
   position: absolute;
   top: 50px;
   right: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #home-page-layout .course-title-center {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1418,18 +1418,18 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
   line-height: 45px;
   width: 100%;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
   background: #5eb75e;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
   width: 45px;
   height: 45px;
   background: #778395;
@@ -1439,14 +1439,14 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   float: left;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
     width: 35px;
     height: 35px;
     font-size: 20px;
     line-height: 35px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
   height: 45px;
   font-size: 20px;
   line-height: 45px;
@@ -1454,11 +1454,11 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding-left: 20px;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
     font-size: 14px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
   height: 32px;
   margin: 0;
   border: 1px solid #ddd;
@@ -1469,7 +1469,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   line-height: 32px;
   color: #444;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
   background: #778395;
   color: white;
   text-indent: 50px;
