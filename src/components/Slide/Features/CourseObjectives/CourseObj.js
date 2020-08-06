@@ -120,7 +120,7 @@ function CourseObj(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Content</label>
+                    <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
                 <ul className="sg-control-input-list">

@@ -22,7 +22,7 @@ function ContentArea(props) {
             </div>
             <div className="sg-control sg-control-text-editor">
                 <div className="sg-control-header">
-                    <label>Content</label>
+                    <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
                     <div className="sg-expandable-rich-text">

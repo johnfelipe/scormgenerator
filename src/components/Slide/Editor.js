@@ -6,6 +6,7 @@ import ContentArea from './Features/ContentArea';
 import HomePage from './Features/Homepage/HomePage';
 import MultipleChoice from './Features/MultipleChoice/MultipleChoice';
 import CourseObj from './Features/CourseObjectives/CourseObj';
+import List from './Features/List/List';
 
 class Editor extends Component {
 
@@ -140,6 +141,22 @@ class Editor extends Component {
         } else if (this.props.feature === "courseObjectives") {
             editorContent = (
                 <CourseObj
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
+                />
+            );
+        } else if (this.props.feature === "list") {
+            editorContent = (
+                <List
                     setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
