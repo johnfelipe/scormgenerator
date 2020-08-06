@@ -24,6 +24,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
+import ListLayout from '../Slide/Layouts/ListLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -2019,12 +2020,25 @@ class SlideHandler extends Component {
                                                                                                                             {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                            className="content-output"
-                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            id={
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
-                                                                                                                                    contentFirstIndex,
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
                                                                                                                                     item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                     'subColumnOne'
                                                                                                                                 )
@@ -2034,6 +2048,42 @@ class SlideHandler extends Component {
                                                                                                                                 styles={contentFirst.styles}
                                                                                                                                 output={contentFirst.output}
                                                                                                                                 introVideo={contentFirst.introVideo}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+
+                                                                                                                    {contentFirst.type === 'list' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <ListLayout
+                                                                                                                                title={contentFirst.output.title}
+                                                                                                                                subtitle={contentFirst.output.subtitle}
+                                                                                                                                date={contentFirst.output.date}
+                                                                                                                                courseId={contentFirst.output.courseId}
+                                                                                                                                backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                                homePageClass={contentFirst.class}
+                                                                                                                                styles={contentFirst.styles}
+                                                                                                                                homepageId={contentFirst.id}
+                                                                                                                                homePageCss={contentFirst.css}
+                                                                                                                                cssApplier={this.cssApplier}
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
