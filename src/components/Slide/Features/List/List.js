@@ -26,10 +26,10 @@ function List(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const updateButtonName = (value) => {
+    const updateButtonName = (value, buttonIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseNav.name = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[buttonIndex].name = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -73,7 +73,7 @@ function List(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group multiple-choice-question-list">
-                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 &&
+                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ?
                                         <>
                                             {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
                                                 <li key={'number-' + index} className="multiple-choice-question-list-item mb-2">
@@ -90,13 +90,13 @@ function List(props) {
                                                                                 onChange={(e) => setUpdatedButtonName(e.target.value)}
                                                                             />
                                                                         </div>
-                                                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0">
+                                                                        <div id="edit-action-btn-grp" className="col-md-4 pr-0 text-right">
                                                                             <button
                                                                                 type="button"
                                                                                 className="btn btn-success btn-sm mt-1" 
                                                                                 onClick={() => {
                                                                                     setIsEditButtonName(false);
-                                                                                    updateButtonName(updatedButtonName);
+                                                                                    updateButtonName(updatedButtonName, index);
                                                                                 }}
                                                                             >
                                                                                 <FontAwesomeIcon icon={faCheckCircle}/>
@@ -120,8 +120,8 @@ function List(props) {
                                                                                 {item.name}
                                                                             </Accordion.Toggle>
                                                                         </div>
-                                                                        <div id="action-buttons-group" className="col-md-3 p-0">
-                                                                            <span className="float-right mr-2">
+                                                                        <div id="action-buttons-group" className="col-md-3 p-0 text-right">
+                                                                            <span className="float-right mr-2 ml-2">
                                                                                 <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
                                                                             </span>
                                                                             <button
@@ -207,6 +207,40 @@ function List(props) {
                                                 </div>
                                             </li>
                                         </>
+                                    :
+                                        <li className="multiple-choice-question-list-item">
+                                            <div className="multiple-choice-control-input-wrapper">
+                                                <div className="multiple-choice-control-input-label">
+                                                    <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                </div>
+                                                <div className="multiple-choice-control-input">
+                                                    <input
+                                                        id="buttonName"
+                                                        name="buttonName"
+                                                        type="text"
+                                                        placeholder="Type name here. . ."
+                                                        onChange={(event) => setAddedButtonName(event.target.value)}
+                                                        value={addedButtonName}
+                                                    />
+                                                </div>
+                                                <div className="multiple-choice-control-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-success btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("buttonName");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                addButtonObj(addedButtonName);
+                                                                setAddedButtonName('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
                                     }
                                 </ul>
                             </div>
