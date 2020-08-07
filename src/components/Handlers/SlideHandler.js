@@ -2052,7 +2052,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
 
-                                                                                                                    {contentFirst.type === 'list' &&
+                                                                                                                    {contentFirst.type === 'listModal' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -2092,7 +2092,7 @@ class SlideHandler extends Component {
                                                                                                                     {contentFirst.type !== 'multipleChoice' &&
                                                                                                                     contentFirst.type !== 'homePage' &&
                                                                                                                     contentFirst.type !== 'courseObjectives' &&
-                                                                                                                    contentFirst.type !== 'list' &&
+                                                                                                                    contentFirst.type !== 'listModal' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}

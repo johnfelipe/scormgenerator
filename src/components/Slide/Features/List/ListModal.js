@@ -114,7 +114,7 @@ function ListModal(props) {
                                                 ref={provided.innerRef}
                                             >
                                                 <ul style={{ listStyle: 'none' }} className="list-group list-modal-button-list">
-                                                    {listButtonModal.length > 0 ?
+                                                    {listButtonModal.length > 0 &&
                                                         <>
                                                             {listButtonModal.map((item, index) => (
                                                                 <Draggable
@@ -141,74 +141,7 @@ function ListModal(props) {
                                                                     )}
                                                                 </Draggable>
                                                             ))}
-                                                            <li className="list-modal-button-list-item">
-                                                                <div className="list-modal-control-input-wrapper">
-                                                                    <div className="list-modal-control-input-label">
-                                                                        <span>{listButtonModal.length+1}.</span>
-                                                                    </div>
-                                                                    <div className="list-modal-control-input">
-                                                                        <input
-                                                                            id="buttonName"
-                                                                            name="buttonName"
-                                                                            type="text"
-                                                                            placeholder="Type name here. . ."
-                                                                            onChange={(event) => setAddedButtonName(event.target.value)}
-                                                                            value={addedButtonName}
-                                                                        />
-                                                                    </div>
-                                                                    <div className="list-modal-control-button">
-                                                                        <button
-                                                                            type="button"
-                                                                            className="btn btn-success btn-sm"
-                                                                            onClick={() => {
-                                                                                const isEmpty = document.getElementById("buttonName");
-                                                                                
-                                                                                if (isEmpty.value !== "") {
-                                                                                    addButtonObj(addedButtonName);
-                                                                                    setAddedButtonName('');
-                                                                                }
-                                                                            }}
-                                                                        >
-                                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
                                                         </>
-                                                    :
-                                                        <li className="list-modal-button-list-item">
-                                                            <div className="list-modal-control-input-wrapper">
-                                                                <div className="list-modal-control-input-label">
-                                                                    <span>{listButtonModal.length+1}.</span>
-                                                                </div>
-                                                                <div className="list-modal-control-input">
-                                                                    <input
-                                                                        id="buttonName"
-                                                                        name="buttonName"
-                                                                        type="text"
-                                                                        placeholder="Type name here. . ."
-                                                                        onChange={(event) => setAddedButtonName(event.target.value)}
-                                                                        value={addedButtonName}
-                                                                    />
-                                                                </div>
-                                                                <div className="list-modal-control-button">
-                                                                    <button
-                                                                        type="button"
-                                                                        className="btn btn-success btn-sm"
-                                                                        onClick={() => {
-                                                                            const isEmpty = document.getElementById("buttonName");
-                                                                            
-                                                                            if (isEmpty.value !== "") {
-                                                                                addButtonObj(addedButtonName);
-                                                                                setAddedButtonName('');
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
                                                     }
                                                 </ul>
                                                 {provided.placeholder}
@@ -216,6 +149,39 @@ function ListModal(props) {
                                         )}
                                     </Droppable>
                                 </DragDropContext>
+                                <div className="list-modal-button-list-item">
+                                    <div className="list-modal-control-input-wrapper">
+                                        <div className="list-modal-control-input-label">
+                                            <span>{listButtonModal.length+1}.</span>
+                                        </div>
+                                        <div className="list-modal-control-input">
+                                            <input
+                                                id="buttonName"
+                                                name="buttonName"
+                                                type="text"
+                                                placeholder="Type name here. . ."
+                                                onChange={(event) => setAddedButtonName(event.target.value)}
+                                                value={addedButtonName}
+                                            />
+                                        </div>
+                                        <div className="list-modal-control-button">
+                                            <button
+                                                type="button"
+                                                className="btn btn-success btn-sm"
+                                                onClick={() => {
+                                                    const isEmpty = document.getElementById("buttonName");
+                                                    
+                                                    if (isEmpty.value !== "") {
+                                                        addButtonObj(addedButtonName);
+                                                        setAddedButtonName('');
+                                                    }
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
