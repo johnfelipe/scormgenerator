@@ -17,7 +17,7 @@ function ListModalLayout(props) {
                                 >
                                     <button
                                         type="button"
-                                        className="btn btn-primary mb-2 w-100"
+                                        className={"btn btn-primary mb-2 w-100 " + styles.btnLabelAlignment}
                                     >
                                         {item.name}
                                     </button>
@@ -29,10 +29,12 @@ function ListModalLayout(props) {
                                 >
                                     <button
                                         type="button"
-                                        className="btn btn-primary mb-2"
+                                        className={"btn btn-primary mb-2 " + styles.btnLabelAlignment}
                                         style={{ width: styles.btnWidth + '%' }}
                                     >
-                                        {item.name}
+                                        <span>
+                                            {item.name}
+                                        </span>
                                     </button>
                                 </div>
                         ))}

@@ -90,6 +90,14 @@ function ListModal(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setBtnLabelAlignment = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.btnLabelAlignment = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -272,6 +280,32 @@ function ListModal(props) {
                             </div>
                             <div className="sg-control-input-list-label-suffix">
                                 <span>&nbsp;%</span>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set button label position.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Label Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnLabelAlignment}
+                                    onChange={(event) => setBtnLabelAlignment(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="text-center">Center</option>
+                                    <option value="text-left">Left</option>
+                                    <option value="text-right">Right</option>
+                                </select>
                             </div>
                         </li>
                     </ul>
