@@ -98,7 +98,7 @@ function ListModal(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setBtnLabelAlignment = (value) => {
+    const setBtnPosition = (value) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.btnPosition = value;
@@ -333,7 +333,7 @@ function ListModal(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnPosition}
-                                    onChange={(event) => setBtnLabelAlignment(event.target.value)}
+                                    onChange={(event) => setBtnPosition(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="text-center">Center</option>
