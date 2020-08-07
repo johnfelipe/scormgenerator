@@ -1,0 +1,128 @@
+@mixin list-modal {
+    html {
+        body {
+            font-family: 'Open Sans';
+
+            div.modal {
+                div.modal-dialog {
+                    .modal-content {
+                        .modal-body {
+                            form {
+                                .row {
+                                    #slide-sidebar {
+                                        .tab-content {
+                                            #uncontrolled-tab-tabpane-editor {
+                                                ul.list-modal-button-list {
+                                                    .list-modal-button-list-item {
+                                                        .list-modal-control-input-wrapper {
+                                                            display: flex;
+                                                            align-items: flex-start;
+                                                            margin: 7px 0 0;
+                                                            
+                                                            .list-modal-control-input-label {
+                                                                display: flex;
+                                                                flex-direction: column;
+                                                                justify-content: center;
+                                                                align-items: flex-start;
+                                                                flex: 0 0 20px;
+                                                                position: relative;
+                                                                height: 32px;
+                                                                padding: 0 5px 0 0;
+                                                                font-size: 10px;
+                                                            }
+
+                                                            .list-modal-control-input {
+                                                                flex: 1 1;
+
+                                                                input[type=text] {
+                                                                    position: relative;
+                                                                    display: block;
+                                                                    width: 100%;
+                                                                    min-width: 1px;
+                                                                    height: 32px;
+                                                                    margin: 0;
+                                                                    border: 1px solid #ddd;
+                                                                    padding: 5px 7px;
+                                                                    font-family: inherit;
+                                                                    font-size: 14px;
+                                                                    font-weight: 400;
+                                                                    line-height: 32px;
+                                                                    color: #444;
+                                                                    background-color: #fff;
+                                                                    outline: 0;
+                                                                    border-radius: 0;
+                                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+                                                                    z-index: 5;
+                                                                }
+                                                            }
+
+                                                            .list-modal-control-button {
+                                                                padding-left: 5px
+                                                            }
+                                                        }
+
+                                                        .accordion {
+                                                            .card {
+                                                                .card-body {
+                                                                    .card-header-tabs {
+                                                                        margin-top: 10px;
+
+                                                                        .nav-link {
+                                                                            width: calc(100%/3);
+                                                                        }
+                                                                    }
+
+                                                                    .tab-content {
+                                                                        padding: 10px;
+                                                                        height: 200px;
+                                                                        overflow: auto !important;
+
+                                                                        #question-answers-files-tabs-tabpane-files {
+                                                                            .list-modal-button-files-list {
+                                                                                .list-modal-button-files-list-item {
+                                                                                    #list-modal-button-file-item {
+                                                                                        user-select: none;
+                                                                                        padding: 10px;
+                                                                                        margin: 0px 0px 8px 0px;
+                                                                                        background: whitesmoke;
+                                                                                        // border-radius: 5px;
+
+                                                                                        .list-modal-button-file-item-delete {
+                                                                                            cursor: pointer;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        #question-answers-files-tabs-tabpane-files {
+                                                                            ul.list-modal-button-files-list {
+                                                                                li.list-modal-button-files-list-item {
+                                                                                    #list-modal-button-file-item {
+                                                                                        text-overflow: ellipsis;
+                                                                                    }
+
+                                                                                    .sg-accordion {
+                                                                                        list-style-type: none;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
