@@ -68,6 +68,7 @@ class SlideHandler extends Component {
             slideTitle: '',
             slideSubtitle: '',
             correctAnswers: [],
+            activeListModalOutputIndex: -1,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -1481,11 +1482,12 @@ class SlideHandler extends Component {
         })
     }
 
-    setShowHtmlEditor = (value, contentIndex, contentFor) => {
+    setShowHtmlEditor = (value, contentIndex, contentFor, activeListModalOutputIndex) => {
         this.setState({
             showHtmlEditor: value,
             activeContentIndex: contentIndex,
             contentFor: contentFor,
+            activeListModalOutputIndex: activeListModalOutputIndex,
         })
     }
 
