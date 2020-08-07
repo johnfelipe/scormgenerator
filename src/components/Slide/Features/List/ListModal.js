@@ -4,7 +4,7 @@ import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretD
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function List(props) {
+function ListModal(props) {
 
     const { contentIndex, currentColumn, currentColumnContentIndex,  } = props;
     const listButtonModal = currentColumn.content[currentColumnContentIndex][contentIndex].output;
@@ -382,4 +382,4 @@ function List(props) {
     )
 }
 
-export default List;
+export default ListModal;
