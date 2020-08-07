@@ -12,7 +12,7 @@
                                     #slide-sidebar {
                                         .tab-content {
                                             #uncontrolled-tab-tabpane-editor {
-                                                ul.list-modal-button-list {
+                                                // ul.list-modal-button-list {
                                                     .list-modal-button-list-item {
                                                         .list-modal-control-input-wrapper {
                                                             display: flex;
@@ -60,60 +60,8 @@
                                                                 padding-left: 5px
                                                             }
                                                         }
-
-                                                        .accordion {
-                                                            .card {
-                                                                .card-body {
-                                                                    .card-header-tabs {
-                                                                        margin-top: 10px;
-
-                                                                        .nav-link {
-                                                                            width: calc(100%/3);
-                                                                        }
-                                                                    }
-
-                                                                    .tab-content {
-                                                                        padding: 10px;
-                                                                        height: 200px;
-                                                                        overflow: auto !important;
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            .list-modal-button-files-list {
-                                                                                .list-modal-button-files-list-item {
-                                                                                    #list-modal-button-file-item {
-                                                                                        user-select: none;
-                                                                                        padding: 10px;
-                                                                                        margin: 0px 0px 8px 0px;
-                                                                                        background: whitesmoke;
-                                                                                        // border-radius: 5px;
-
-                                                                                        .list-modal-button-file-item-delete {
-                                                                                            cursor: pointer;
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            ul.list-modal-button-files-list {
-                                                                                li.list-modal-button-files-list-item {
-                                                                                    #list-modal-button-file-item {
-                                                                                        text-overflow: ellipsis;
-                                                                                    }
-
-                                                                                    .sg-accordion {
-                                                                                        list-style-type: none;
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
                                                     }
-                                                }
+                                                // }
                                             }
                                         }
                                     }
