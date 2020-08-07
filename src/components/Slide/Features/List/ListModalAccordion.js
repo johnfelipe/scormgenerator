@@ -64,18 +64,18 @@ function MultipleChoiceAccordion(props) {
                         </div>
                     :
                         <div className="row m-0">
-                            <div className="col-md-8 pl-0">
+                            <div className="col-md-7 pl-0">
                                 <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
                                     {item.name}
                                 </Accordion.Toggle>
                             </div>
-                            <div id="action-buttons-group" className="col-md-4 p-0 text-right">
+                            <div id="action-buttons-group" className="col-md-5 p-0 text-right">
                                 <span className="mr-2 ml-2">
                                     <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
                                 </span>
                                 <button
                                     type="button"
-                                    className="btn btn-success btn-sm"
+                                    className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                     onClick={() => {
                                         setUpdatedButtonName(item.name);
                                         setIsEditButtonName(true);
@@ -86,7 +86,7 @@ function MultipleChoiceAccordion(props) {
                                 </button>
                                 <button
                                     type="button"
-                                    className="btn btn-danger btn-sm ml-2"
+                                    className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                     onClick={() => {
                                         props.deleteQuestion(index);
                                     }}
