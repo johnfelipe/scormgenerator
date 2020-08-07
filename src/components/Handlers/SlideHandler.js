@@ -24,7 +24,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
-import ListLayout from '../Slide/Layouts/ListLayout';
+import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -2083,7 +2083,7 @@ class SlideHandler extends Component {
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         >
-                                                                                                                            <ListLayout
+                                                                                                                            <ListModalLayout
                                                                                                                                 output={contentFirst.output}
                                                                                                                             />
                                                                                                                         </div>
