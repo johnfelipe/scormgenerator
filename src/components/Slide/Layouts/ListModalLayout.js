@@ -2,7 +2,7 @@ import React from 'react';
 
 function ListModalLayout(props) {
 
-    const { output } = props;
+    const { output, styles } = props;
     
     return (
         <div id="list-layout">
@@ -10,13 +10,31 @@ function ListModalLayout(props) {
                 {output.length > 0 ?
                     <>
                         {output.map((item, index) => (
-                            <button
-                                key={'list-button-object-' + index}
-                                type="button"
-                                className="btn btn-primary d-block mb-2"
-                            >
-                                {item.name}
-                            </button>
+                            styles.btnWidth === 0 ?
+                                <div
+                                    key={'list-button-object-' + index}
+                                    className="list-modal-button-object"
+                                >
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary mb-2 w-100"
+                                    >
+                                        {item.name}
+                                    </button>
+                                </div>
+                            :
+                                <div
+                                    key={'list-button-object-' + index}
+                                    className="list-modal-button-object"
+                                >
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary mb-2"
+                                        style={{ width: styles.btnWidth + '%' }}
+                                    >
+                                        {item.name}
+                                    </button>
+                                </div>
                         ))}
                     </>
                 :

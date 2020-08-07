@@ -2093,6 +2093,7 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <ListModalLayout
                                                                                                                             output={contentFirst.output}
+                                                                                                                            styles={contentFirst.styles}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }

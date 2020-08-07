@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // components
 import ListModalAccordion from './ListModalAccordion';
@@ -79,6 +80,14 @@ function ListModal(props) {
                 setListButtonModal(reorderedFiles);
             }
         }
+    }
+
+    const setBtnWidth = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.btnWidth = value;
+
+        props.setColumn(currentColumnObj);
     }
 
     return (
@@ -229,6 +238,40 @@ function ListModal(props) {
                                         currentColumn.content[contentIndex] && currentColumn.content[contentIndex].class
                                     }
                                 />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set button width in percentage.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Button Width</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="number"
+                                    name="btnWidth"
+                                    min="0"
+                                    onChange={(event) => {
+                                        if (parseInt(event.target.value) >= 0 && parseInt(event.target.value)) {
+                                            setBtnWidth(parseInt(event.target.value))
+                                        }
+                                    }}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnWidth &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnWidth
+                                    }
+                                />
+                            </div>
+                            <div className="sg-control-input-list-label-suffix">
+                                <span>&nbsp;%</span>
                             </div>
                         </li>
                     </ul>
