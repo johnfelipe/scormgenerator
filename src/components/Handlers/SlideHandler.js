@@ -2240,17 +2240,17 @@ class SlideHandler extends Component {
                                                                 </Droppable>
                                                             :
                                                                 item.grid === 1 ?
-                                                                    <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                    <div key={index} className="feature-preview-container p-0 pb-3">
                                                                         {/* Second Size */}
                                                                         <div className="row w-100 m-0">
                                                                             <Droppable droppableId={item.id + '-sg-1-2-1'}>
                                                                                 {(provided) => (
                                                                                     <div 
-                                                                                    key={'sg-1-2-1-' + index} 
-                                                                                    ref={provided.innerRef} 
-                                                                                    id={'sg-1-2-1-' + index} 
-                                                                                    className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
-                                                                                >
+                                                                                        key={'sg-1-2-1-' + index} 
+                                                                                        ref={provided.innerRef} 
+                                                                                        id={'sg-1-2-1-' + index} 
+                                                                                        className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
+                                                                                    >
                                                                                         {
                                                                                             typeof item.content['subColumnOne'] != "undefined" ? 
                                                                                                 item.content['subColumnOne'].length > 0 ?
@@ -2478,7 +2478,7 @@ class SlideHandler extends Component {
                                                                 :
                                                                     item.grid === 2 ?
                                                                         
-                                                                        <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                        <div key={index} className="feature-preview-container p-0 pb-3">
                                                                             {/* Third Size */}
                                                                             <div className="row w-100 m-0">
                                                                                 <Droppable droppableId={item.id + '-sg-1-3-1'}>
@@ -2656,7 +2656,7 @@ class SlideHandler extends Component {
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
                                                                                                                                 {...provided.dragHandleProps}
-                                                                                                                                
+
                                                                                                                                 key={'sg-2-3-2-content-output-' + contentSecondIndex} 
                                                                                                                                 id={
                                                                                                                                     contentSecond.id ? 
@@ -2714,7 +2714,7 @@ class SlideHandler extends Component {
                                                                     :
                                                                         item.grid === 3 ?
                                                                             
-                                                                            <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                            <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                 {/* Fourth Size */}
                                                                                 <div className="row w-100 m-0">
                                                                                     <Droppable droppableId={item.id + '-sg-2-3-1'}>
@@ -2853,7 +2853,7 @@ class SlideHandler extends Component {
                                                                         :
                                                                             item.grid === 4 ?
                                                                                 
-                                                                                <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                                <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                     {/* Fifth Size */}
                                                                                     <div className="row w-100 m-0">
                                                                                     <Droppable droppableId={item.id + '-sg-1-3-1-1'}>
@@ -3057,7 +3057,7 @@ class SlideHandler extends Component {
                                                                             :
                                                                                 item.grid === 5 ?
                                                                                     
-                                                                                    <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                                    <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                         {/* Sixth Size */}
                                                                                         <div className="row w-100 m-0">
                                                                                             <Droppable droppableId={item.id + '-sg-1-4-1'}>
@@ -3325,7 +3325,7 @@ class SlideHandler extends Component {
                                                                                         
                                                                                 :
                                                                                     
-                                                                                    <div key={Math.random()} className="feature-preview-container p-0 pb-3">
+                                                                                    <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                         {/* Seventh Size */}
                                                                                         <div className="row w-100 m-0">
                                                                                             <Droppable droppableId={item.id + '-sg-1-5-1'}>
