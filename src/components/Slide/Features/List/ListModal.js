@@ -18,6 +18,7 @@ function ListModal(props) {
         const buttonObj = {
             name: value,
             type: 'button',
+            content: ''
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(buttonObj);
