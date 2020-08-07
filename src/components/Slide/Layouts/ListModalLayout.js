@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ListLayout(props) {
+function ListModalLayout(props) {
 
     const { output } = props;
     
@@ -27,4 +27,4 @@ function ListLayout(props) {
     );
 }
 
-export default ListLayout;
+export default ListModalLayout;
