@@ -6,7 +6,7 @@ function ListModalLayout(props) {
     
     return (
         <div id="list-layout">
-            <div className="list-container h-100 w-100 border border-light p-3">
+            <div className={"list-container h-100 w-100 border border-light p-3" + styles.btnPosition}>
                 {output.length > 0 ?
                     <>
                         {output.map((item, index) => (
