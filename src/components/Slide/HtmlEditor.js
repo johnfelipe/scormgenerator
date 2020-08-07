@@ -62,8 +62,11 @@ function HtmlEditor(props) {
                                     contentFor === 'courseInfo' ?
                                         typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
                                     :
-                                        contentFor === 'courseReq' && 
+                                        contentFor === 'courseReq' ?
                                             typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
+                                        :
+                                            contentFor === 'listModal' &&
+                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                                 }
                                 onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                             />
