@@ -901,6 +901,26 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-1')) {
                     // Fifth Size
