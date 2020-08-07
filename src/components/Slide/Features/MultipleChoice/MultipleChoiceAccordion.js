@@ -131,7 +131,7 @@ function MultipleChoiceAccordion(props) {
         result.splice(endIndex, 0, removed);
     
         return result;
-    };
+    }
 
     const onDragEnd = result => {
         const { source, destination } = result;
@@ -172,7 +172,7 @@ function MultipleChoiceAccordion(props) {
 
             
         }
-    };
+    }
 
     const resetLocalStates = (file) => {
         if (file.img) {

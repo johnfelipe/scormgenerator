@@ -8,6 +8,7 @@ function HtmlEditor(props) {
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentFor = props.contentFor;
+    const activeListModalOutputIndex = props.activeListModalOutputIndex;
 
     const onChangeTextEditor = (value, contentIndex, editorType) => {
         const currentColumnObj = currentColumn;
@@ -17,6 +18,8 @@ function HtmlEditor(props) {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
             } else if (editorType.for === 'courseReq') {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
+            } else if (editorType.for === 'listModal') {
+                currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = value;
             }
         }
 
@@ -62,8 +65,11 @@ function HtmlEditor(props) {
                                     contentFor === 'courseInfo' ?
                                         typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
                                     :
-                                        contentFor === 'courseReq' && 
+                                        contentFor === 'courseReq' ?
                                             typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
+                                        :
+                                            contentFor === 'listModal' &&
+                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content
                                 }
                                 onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                             />

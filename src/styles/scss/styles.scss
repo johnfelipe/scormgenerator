@@ -16,6 +16,7 @@
 @import "components/features/homepage";
 @import "components/features/multiple-choice";
 @import "components/features/course-obj";
+@import "components/features/list-modal";
 
 @include defaults;
 @include header;
@@ -35,3 +36,4 @@
 @include homepage;
 @include multiple-choice;
 @include course-obj;
+@include list-modal;

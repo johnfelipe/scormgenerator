@@ -6,7 +6,7 @@ import ContentArea from './Features/ContentArea';
 import HomePage from './Features/Homepage/HomePage';
 import MultipleChoice from './Features/MultipleChoice/MultipleChoice';
 import CourseObj from './Features/CourseObjectives/CourseObj';
-import List from './Features/List/List';
+import ListModal from './Features/List/ListModal';
 
 class Editor extends Component {
 
@@ -154,9 +154,9 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                 />
             );
-        } else if (this.props.feature === "list") {
+        } else if (this.props.feature === "listModal") {
             editorContent = (
-                <List
+                <ListModal
                     setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
