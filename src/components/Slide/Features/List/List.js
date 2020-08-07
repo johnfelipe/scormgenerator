@@ -34,6 +34,14 @@ function List(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const deleteQuestion = (buttonIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(buttonIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
+
     const collapseListener = (currentCollapseId, type) => {
 
         if (currentCollapseId) {
@@ -115,13 +123,13 @@ function List(props) {
                                                                     </div>
                                                                 :
                                                                     <div className="row m-0">
-                                                                        <div className="col-md-9 pl-0">
+                                                                        <div className="col-md-8 pl-0">
                                                                             <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
                                                                                 {item.name}
                                                                             </Accordion.Toggle>
                                                                         </div>
-                                                                        <div id="action-buttons-group" className="col-md-3 p-0 text-right">
-                                                                            <span className="float-right mr-2 ml-2">
+                                                                        <div id="action-buttons-group" className="col-md-4 p-0 text-right">
+                                                                            <span className="mr-2 ml-2">
                                                                                 <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
                                                                             </span>
                                                                             <button
@@ -134,6 +142,15 @@ function List(props) {
                                                                                 }}
                                                                             >
                                                                                 <FontAwesomeIcon icon={faEdit}/>
+                                                                            </button>
+                                                                            <button
+                                                                                type="button"
+                                                                                className="btn btn-danger btn-sm ml-2"
+                                                                                onClick={() => {
+                                                                                    deleteQuestion(index);
+                                                                                }}
+                                                                            >
+                                                                                <FontAwesomeIcon icon={faTrashAlt}/>
                                                                             </button>
                                                                         </div>
                                                                     </div>
