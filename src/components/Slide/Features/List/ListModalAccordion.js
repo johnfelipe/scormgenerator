@@ -112,9 +112,8 @@ function MultipleChoiceAccordion(props) {
                                                     type="button"
                                                     className="input-hover-btn btn btn-light border border-secondary p-1"
                                                     onClick={() => {
-                                                        props.setShowEditor(true, contentIndex, 'courseNav');
+                                                        props.setShowEditor(true, contentIndex, 'listModal', index);
                                                     }}
-                                                    disabled
                                                 >
                                                     <span>Edit</span>
                                                 </button>
