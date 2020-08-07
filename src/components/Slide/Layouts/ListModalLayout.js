@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 
 function ListModalLayout(props) {
 
     const { output, styles } = props;
+
+    const [modalShow, setModalShow] = useState(false);
+
+    const buttonModal = (
+        <Modal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Sample title
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Sample content
+            </Modal.Body>
+        </Modal>
+    );
     
     return (
         <div id="list-layout">
@@ -18,6 +40,9 @@ function ListModalLayout(props) {
                                     <button
                                         type="button"
                                         className={"btn btn-primary mb-2 w-100 " + styles.btnLabelAlignment}
+                                        onClick={() => {
+                                            setModalShow(true);
+                                        }}
                                     >
                                         {item.name}
                                     </button>
@@ -31,6 +56,9 @@ function ListModalLayout(props) {
                                         type="button"
                                         className={"btn btn-primary mb-2 " + styles.btnLabelAlignment}
                                         style={{ width: styles.btnWidth + '%' }}
+                                        onClick={() => {
+                                            setModalShow(true);
+                                        }}
                                     >
                                         <span>
                                             {item.name}
@@ -43,6 +71,7 @@ function ListModalLayout(props) {
                     <span>No content added yet.</span>
                 }
             </div>
+            {buttonModal}
         </div>
     );
 }
