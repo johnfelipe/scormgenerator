@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
+// components
+import ListModalAccordion from './ListModalAccordion';
 
 function ListModal(props) {
 
     const { contentIndex, currentColumn, currentColumnContentIndex,  } = props;
     const listButtonModal = currentColumn.content[currentColumnContentIndex][contentIndex].output;
-    const [addedButtonName, setAddedButtonName] = useState('')
-    const [updatedButtonName, setUpdatedButtonName] = useState('');
-    const [cNavCollapseId, setCNavCollapseId] = useState(false);
-    const [isEditButtonName, setIsEditButtonName] = useState(false);
-    const [isEditButtonNameCompareIndex, setIsEditButtonNameCompareIndex] = useState(-1);
+    const [addedButtonName, setAddedButtonName] = useState('');
 
     const addButtonObj = (value) => {
         const currentColumnObj = currentColumn;
@@ -41,19 +39,6 @@ function ListModal(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(buttonIndex, 1);
 
         props.setColumn(currentColumnObj);
-    }
-
-    const collapseListener = (currentCollapseId, type) => {
-
-        if (currentCollapseId) {
-            currentCollapseId = false;
-        } else {
-            currentCollapseId = true;
-        }
-
-       if (type === 'cNav') {
-            setCNavCollapseId(currentCollapseId);
-        }
     }
 
     const reorder = (list, startIndex, endIndex) => {
@@ -144,109 +129,13 @@ function ListModal(props) {
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            <Accordion className="w-100">
-                                                                                <Card>
-                                                                                    <Card.Header>
-                                                                                        {isEditButtonName && isEditButtonNameCompareIndex === index ?
-                                                                                            <div className="row m-0">
-                                                                                                <div className="col-md-8 p-0">
-                                                                                                    <input
-                                                                                                        name="courseInfoName"
-                                                                                                        className="form-control"
-                                                                                                        value={updatedButtonName}
-                                                                                                        onChange={(e) => setUpdatedButtonName(e.target.value)}
-                                                                                                    />
-                                                                                                </div>
-                                                                                                <div id="edit-action-btn-grp" className="col-md-4 pr-0 text-right">
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        className="btn btn-success btn-sm mt-1" 
-                                                                                                        onClick={() => {
-                                                                                                            setIsEditButtonName(false);
-                                                                                                            updateButtonName(updatedButtonName, index);
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faCheckCircle}/>
-                                                                                                    </button>
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        className="btn btn-danger btn-sm ml-2 mt-1"
-                                                                                                        onClick={() => {
-                                                                                                            setIsEditButtonName(false);
-                                                                                                            setUpdatedButtonName('')
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faTimes}/>
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        :
-                                                                                            <div className="row m-0">
-                                                                                                <div className="col-md-8 pl-0">
-                                                                                                    <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
-                                                                                                        {item.name}
-                                                                                                    </Accordion.Toggle>
-                                                                                                </div>
-                                                                                                <div id="action-buttons-group" className="col-md-4 p-0 text-right">
-                                                                                                    <span className="mr-2 ml-2">
-                                                                                                        <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
-                                                                                                    </span>
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        className="btn btn-success btn-sm"
-                                                                                                        onClick={() => {
-                                                                                                            setUpdatedButtonName(item.name);
-                                                                                                            setIsEditButtonName(true);
-                                                                                                            setIsEditButtonNameCompareIndex(index);
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faEdit}/>
-                                                                                                    </button>
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        className="btn btn-danger btn-sm ml-2"
-                                                                                                        onClick={() => {
-                                                                                                            deleteQuestion(index);
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faTrashAlt}/>
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        }
-                                                                                    </Card.Header>
-                                                                                    <Accordion.Collapse eventKey="0">
-                                                                                        <Card.Body>
-                                                                                            <ul className="sg-control-input-list">
-                                                                                                <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                                                                                    <div className="sg-control-input-list-label">
-                                                                                                        <span>Content</span>
-                                                                                                    </div>
-                                                                                                    <div className="sg-control-input-list-input">
-                                                                                                        <div className="sg-expandable-code-editor">
-                                                                                                            <div className="sg-workspace-expander">
-                                                                                                                <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                                                                                    <button
-                                                                                                                        type="button"
-                                                                                                                        className="input-hover-btn btn btn-light border border-secondary p-1"
-                                                                                                                        onClick={() => {
-                                                                                                                            props.setShowEditor(true, contentIndex, 'courseNav');
-                                                                                                                        }}
-                                                                                                                        disabled
-                                                                                                                    >
-                                                                                                                        <span>Edit</span>
-                                                                                                                    </button>
-                                                                                                                    <input type="text" value="" disabled className="rounded"/>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </Card.Body>
-                                                                                    </Accordion.Collapse>
-                                                                                </Card>
-                                                                            </Accordion>
+                                                                            <ListModalAccordion
+                                                                                item={item}
+                                                                                index={index}
+                                                                                updateButtonName={updateButtonName}
+                                                                                deleteQuestion={deleteQuestion}
+                                                                                contentIndex={contentIndex}
+                                                                            />
                                                                         </li>
                                                                     )}
                                                                 </Draggable>
