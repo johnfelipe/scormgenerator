@@ -161,6 +161,7 @@ function ListModal(props) {
                                                                                 updateButtonName={updateButtonName}
                                                                                 deleteQuestion={deleteQuestion}
                                                                                 contentIndex={contentIndex}
+                                                                                setShowEditor={props.setShowEditor}
                                                                             />
                                                                         </li>
                                                                     )}
