@@ -50,7 +50,7 @@ class SlideHandler extends Component {
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
-                { type: 'list', name: 'List Modal', icon: faList, },
+                { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
             activeFeature: '',
@@ -342,9 +342,9 @@ class SlideHandler extends Component {
                     position: 'course-objectives-video-left'
                 }, 
             };
-        } else if (featureType === "list") {
+        } else if (featureType === "listModal") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'list',
+                type: 'listModal',
                 output: [],
                 class: '',
                 id: '',
@@ -532,7 +532,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'list') {
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: [],

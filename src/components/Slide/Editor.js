@@ -154,7 +154,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                 />
             );
-        } else if (this.props.feature === "list") {
+        } else if (this.props.feature === "listModal") {
             editorContent = (
                 <ListModal
                     setColumn={this.props.setColumn}
