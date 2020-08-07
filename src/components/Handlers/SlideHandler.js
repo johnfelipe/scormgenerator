@@ -3810,6 +3810,7 @@ class SlideHandler extends Component {
                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                 contentFor={this.state.contentFor}
                                                 setColumn={this.setColumn}
+                                                activeListModalOutputIndex={this.state.activeListModalOutputIndex}
                                             />
                                             <CssEditor 
                                                 currentColumn={this.state.column[this.state.activeColumnId]}
