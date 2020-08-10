@@ -3941,49 +3941,98 @@ class SlideHandler extends Component {
                                                                                                             typeof item.content['subColumnFour'] != "undefined" ? 
                                                                                                                 item.content['subColumnFour'].length > 0 ?
                                                                                                                     item.content['subColumnFour'].map((contentFourth, contentFourthIndex) =>(
-                                                                                                                        <div 
-                                                                                                                            key={'sg-1-4-4-content-output-' + contentFourthIndex} 
-                                                                                                                            id={
-                                                                                                                                contentFourth.id ? 
-                                                                                                                                    contentFourth.id
-                                                                                                                                : 
-                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
-                                                                                                                            } 
-                                                                                                                            className={
-                                                                                                                                contentFourth.class ? 
-                                                                                                                                    contentFourth.class + " content-output" 
-                                                                                                                                : 
-                                                                                                                                    "content-output"
-                                                                                                                            } 
-                                                                                                                            onClick={() => 
-                                                                                                                                this.contentPaneClick(
-                                                                                                                                    index, 
-                                                                                                                                    contentFourthIndex, 
-                                                                                                                                    contentFourth.id ? 
-                                                                                                                                        contentFourth.id
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex, 
-                                                                                                                                    'subColumnFour'
-                                                                                                                                )
-                                                                                                                            }
+                                                                                                                        <Draggable
+                                                                                                                            key={'feature-' + contentFourth.type + '-' + contentFourthIndex}
+                                                                                                                            draggableId={contentFourth.type + '-' + contentFourthIndex + '-sg-1-4-4'}
+                                                                                                                            index={contentFourthIndex}
                                                                                                                         >
-                                                                                                                            {
-                                                                                                                                contentFourth.css ? 
-                                                                                                                                    contentFourth.css[contentFourth.css.length - 1] === '}' ?
-                                                                                                                                        this.cssApplier(
-                                                                                                                                            contentFourth.css, 
-                                                                                                                                            contentFourth.id ? 
-                                                                                                                                                contentFourth.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-4-4-content-output-' + contentFourthIndex
-                                                                                                                                        )
-                                                                                                                                    :
-                                                                                                                                        null
-                                                                                                                                : 
-                                                                                                                                    null
-                                                                                                                            }
-                                                                                                                            {ReactHtmlParser(contentFourth.output)}
-                                                                                                                        </div>
+                                                                                                                            {(provided) => (
+                                                                                                                                <>
+                                                                                                                                    {contentFourth.type === 'listModal' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFourth.class ? 
+                                                                                                                                                    contentFourth.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex, 
+                                                                                                                                                    contentFourth.id ? 
+                                                                                                                                                        contentFourth.id 
+                                                                                                                                                    : 
+                                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex, 
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <ListModalLayout
+                                                                                                                                                output={contentFourth.output}
+                                                                                                                                                styles={contentFourth.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+                                                                                                                                    {contentFourth.type !== 'listModal' &&
+                                                                                                                                        <div
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={'sg-1-4-4-content-output-' + contentFourthIndex} 
+                                                                                                                                            id={
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFourth.class ? 
+                                                                                                                                                    contentFourth.class + " content-output" 
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex, 
+                                                                                                                                                    contentFourth.id ? 
+                                                                                                                                                        contentFourth.id
+                                                                                                                                                    : 
+                                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex, 
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            {
+                                                                                                                                                contentFourth.css &&
+                                                                                                                                                contentFourth.css[contentFourth.css.length - 1] === '}' &&
+                                                                                                                                                    this.cssApplier(
+                                                                                                                                                        contentFourth.css, 
+                                                                                                                                                        contentFourth.id ? 
+                                                                                                                                                            contentFourth.id
+                                                                                                                                                        : 
+                                                                                                                                                            'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                                    )
+                                                                                                                                            }
+                                                                                                                                            {ReactHtmlParser(contentFourth.output)}
+                                                                                                                                        </div>
+                                                                                                                                    }
+                                                                                                                                </>
+                                                                                                                            )}
+                                                                                                                        </Draggable>
                                                                                                                     ))
                                                                                                                 :
                                                                                                                     item.name
