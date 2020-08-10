@@ -34,8 +34,10 @@ class Main extends Component {
             mediaFilesObject: [],
             courseNameExist: false,
             slideItemIndex: 0,
+            lessonId: -1,
         };
         
+        this.setLessonId = this.setLessonId.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
@@ -68,6 +70,12 @@ class Main extends Component {
         // console.log(this.state.glossaryEntryObject);
         this.props.course['lessons'] = this.props.courseLessons;
         console.log(this.props.course);
+    }
+
+    setLessonId = (value) => {
+        this.setState({
+            lessonId: value,
+        })
     }
 
     // a little function to help us with reordering the result
@@ -409,6 +417,7 @@ class Main extends Component {
                                                                                     addMediaFiles={this.props.addMediaFiles}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     setMediaFilesObject={this.setMediaFilesObject}
+                                                                                    lessonId={this.state.lessonId}
                                                                                 />
                                                                             :
                                                                                 <div id="slide-handler-container" className="d-inline">
@@ -430,6 +439,7 @@ class Main extends Component {
                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 setMediaFilesObject={this.setMediaFilesObject}
+                                                                                lessonId={this.state.lessonId}
                                                                             />
                                                                     }
                                                                     {
@@ -505,7 +515,7 @@ class Main extends Component {
                                             <div className="col-md-6 mt-2">
                                                 {        
                                                     this.props.courseLessons.length < 2 ?
-                                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
+                                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add" setLessonId={this.setLessonId}/>
                                                     :
                                                         <WarningModal 
                                                             fieldType="addLessonBtn"
