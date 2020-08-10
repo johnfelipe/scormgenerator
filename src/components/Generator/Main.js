@@ -387,8 +387,8 @@ class Main extends Component {
                                                     >
                                                         <Card>
                                                             <Card.Header>
-                                                                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                                    <span onClick={() => this.onLessonClickListener(index)}>{item.lessonName}</span>
+                                                                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0" onClick={() => this.onLessonClickListener(index)}>
+                                                                    <span>{item.lessonName}</span>
                                                                 </Accordion.Toggle>
                                                                 <LessonHandler editLessonNameChange={this.props.editCourseLessonName} action="edit" currentLessonName={item.lessonName} id={index}/>
 
@@ -403,9 +403,9 @@ class Main extends Component {
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     editSlideChange={this.props.editLessonSlide}
                                                                                     action="add"
-                                                                                    slideId={this.state.slideItemIndex}
+                                                                                    currentSlideIndex={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
-                                                                                    slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                    slideItemId={"slide-item-" + (this.state.slideItemIndex+1)}
                                                                                     currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
                                                                                     addMediaFiles={this.props.addMediaFiles}
@@ -426,9 +426,9 @@ class Main extends Component {
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 editSlideChange={this.props.editLessonSlide}
                                                                                 action="add"
-                                                                                slideId={this.state.slideItemIndex}
+                                                                                currentSlideIndex={0}
                                                                                 lessonIndex={index}
-                                                                                slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                slideItemId={"slide-item-" + (this.state.slideItemIndex+1)}
                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
                                                                                 addMediaFiles={this.props.addMediaFiles}
@@ -466,7 +466,7 @@ class Main extends Component {
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                                 action="edit"
-                                                                                                                slideId={itemSlideIndex}
+                                                                                                                currentSlideIndex={itemSlideIndex}
                                                                                                                 showTitleValue={true}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
