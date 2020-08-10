@@ -63,7 +63,12 @@ class LessonHandler extends Component {
 
                             // create lesson
                             // uid and cid are temporary
-                            lessonService.createLesson(1, 1, values.lessonName)
+                            const data = {
+                                cid: 1,
+                                title: values.lessonName,
+                                uid: 1,
+                            }
+                            lessonService.createLesson(data)
                             .then(
                                 lessonObj => {
                                     this.props.createLesson(lessonObj.cid, lessonObj.uid, lessonObj.title);
