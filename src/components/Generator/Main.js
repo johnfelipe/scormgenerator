@@ -410,7 +410,7 @@ class Main extends Component {
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     action="add"
-                                                                                    slideId={this.state.slideItemIndex}
+                                                                                    currentSlideIndex={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
@@ -432,7 +432,7 @@ class Main extends Component {
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 action="add"
-                                                                                slideId={this.state.slideItemIndex}
+                                                                                currentSlideIndex={this.state.slideItemIndex}
                                                                                 lessonIndex={index}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
@@ -472,7 +472,7 @@ class Main extends Component {
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                                 action="edit"
-                                                                                                                slideId={itemSlideIndex}
+                                                                                                                currentSlideIndex={itemSlideIndex}
                                                                                                                 showTitleValue={true}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
@@ -581,8 +581,8 @@ const mapDispatchToProps = (dispatch) => {
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
         addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, slideId: slideId, currentClickedLessonId: currentClickedLessonId}),
-        deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
+        editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
+        deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
         showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
         addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),

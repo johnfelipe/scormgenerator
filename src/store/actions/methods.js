@@ -81,7 +81,7 @@ export const editLessonSlide = (state, action) => {
         ...state.courseLessons[action.currentClickedLessonId]
     };
 
-    lessonObj.slides[action.slideId] = action.slideObj;
+    lessonObj.slides[action.currentSlideIndex] = action.slideObj;
 
     const lessons = [...state.courseLessons];
     lessons[action.currentClickedLessonId] = lessonObj;
