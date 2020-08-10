@@ -117,6 +117,8 @@ class SlideHandler extends Component {
         console.log(this.state.column);
         console.log('props.columns: ');
         console.log(this.props.currentColumns);
+        console.log('props.currentSlideIndex: ');
+        console.log(this.props.currentSlideIndex);
         // console.log('props.action');
         // console.log(this.props.action);
         // console.log('state.activeFeature');
@@ -144,6 +146,11 @@ class SlideHandler extends Component {
         //     });
         // }
 
+        if (action === "close") {
+            this.setSlideAction(this.props.action);
+            // this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
+        }
+
         if (action === "edit") {
             console.log('Edit here');
             this.setState({
@@ -165,7 +172,7 @@ class SlideHandler extends Component {
             });
         }
         
-        // this.autoSave();
+        this.autoSave();
     }
 
     addColumn = () => {
@@ -1982,9 +1989,9 @@ class SlideHandler extends Component {
         })
     }
 
-    setSlideAction = () => {
+    setSlideAction = (value) => {
         this.setState({
-            slideAction: 'edit',
+            slideAction: value,
         })
     }
 
@@ -1993,10 +2000,11 @@ class SlideHandler extends Component {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.addSlideChange(slideObj, lessonIndex);
             console.log("add");
-            this.setSlideAction();
+            this.setSlideAction("edit");
+            this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
         } else if (this.state.slideAction === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, this.props.slideId, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -2050,8 +2058,8 @@ class SlideHandler extends Component {
                             // lid and uid are temporary
                             this.props.createSlide(1, values.slideName, 1, values.showTitle);
 
-                            // this.props.setSlideItemIndex(this.props.slideId + 1);
-                            // this.props.setSlideItemIndex(this.props.slideId);
+                            // this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
+                            // this.props.setSlideItemIndex(this.props.currentSlideIndex);
 
                             // create column
                             // sid and uid are temporary
