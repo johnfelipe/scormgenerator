@@ -1476,18 +1476,18 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
   z-index: 5000;
-  margin: 0 16px;
+  margin: 0 40px;
   top: 380px;
 }
 @media only screen and (min-width: 1920px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
-    margin: 0 75px;
+    margin: 0 110px;
     top: 380px;
   }
 }
 @media only screen and (max-width: 1366px) {
   html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
-    margin: 0 16px;
+    margin: 0 40px;
     top: 380px;
   }
 }
