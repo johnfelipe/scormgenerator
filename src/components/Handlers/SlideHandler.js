@@ -29,6 +29,10 @@ import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 // modals
 import WarningModal from '../AlertModal/Warning';
 
+// services
+import { slideService } from '../../services';
+import { columnService } from '../../services';
+
 class SlideHandler extends Component {
 
     constructor(props) {
@@ -69,8 +73,11 @@ class SlideHandler extends Component {
             slideSubtitle: '',
             correctAnswers: [],
             activeListModalOutputIndex: -1,
+            slideId: -1,
         };
         
+        this.createColumn = this.createColumn.bind(this);
+        this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
         this.deleteColumn = this.deleteColumn.bind(this);
@@ -123,6 +130,68 @@ class SlideHandler extends Component {
         // console.log(this.props.slide);
         // console.log('this.props.column');
         // console.log(this.props.columns);
+    }
+
+    createColumn = (slideId, userId, columnArr) => {
+        let columnObject = [];
+
+        for (let index in columnArr) {
+
+            let featuresJson = [];
+
+            if (columnArr[index].grid === 0) {
+                featuresJson = JSON.stringify(columnArr[index].content['subColumnOne']);
+            } else if (columnArr[index].grid === 1 || columnArr[index].grid === 2 || columnArr[index].grid === 3) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo']
+                });
+            } else if (columnArr[index].grid === 4) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                });
+            } else if (columnArr[index].grid === 5) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                    subColumnFour: columnArr[index].content['subColumnFour'],
+                });
+            } else if (columnArr[index].grid === 6) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                    subColumnFour: columnArr[index].content['subColumnFour'],
+                    subColumnFive: columnArr[index].content['subColumnFive'],
+                });
+            }
+
+            const data = {
+                sid: slideId,
+                uid: userId,
+                grid: columnArr[index].grid,
+                features: featuresJson
+            }
+
+            columnObject.push(data);
+
+            columnService.createColumn(data)
+            .then(
+                slideObj => {
+                    console.log(slideObj);
+                },
+                error => console.log(error)
+            );
+        }
+    }
+
+    setSlideId = (value) => {
+        this.setState({
+            slideId: value
+        })
     }
 
     setModalShow = (value, action) => {
@@ -1966,7 +2035,7 @@ class SlideHandler extends Component {
             console.log("add");
         } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, this.props.slideId, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -2005,13 +2074,29 @@ class SlideHandler extends Component {
 
                             // create slide
                             // lid and uid are temporary
-                            this.props.createSlide(1, values.slideName, 1, values.showTitle);
+                            const data = {
+                                lid: this.props.lessonId,
+                                title: values.slideName,
+                                uid: 1,
+                                hide_title: values.showTitle ? 1 : 0,
+                            }
 
-                            this.props.setSlideItemIndex(this.props.slideId + 1);
+                            slideService.createSlide(data)
+                            .then(
+                                slideObj => {
+                                    this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
+                                    this.setSlideId(slideObj.sid);
+                                    console.log(slideObj);
+                                },
+                                error => console.log(error)
+                            );
+
+                            this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
 
                             // create column
                             // sid and uid are temporary
                             this.props.createColumn(1, 1, this.state.column);
+                            this.createColumn(1, 1, this.state.column);
 
                         }}
 
@@ -2029,8 +2114,6 @@ class SlideHandler extends Component {
                                 handleBlur,
                                 handleSubmit,
                             } = formikProps;
-                            
-                            this.bindSubmitForm(formikProps.submitForm);
 
                             return (
                                 <form onSubmit={handleSubmit}>
@@ -4681,7 +4764,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
-        createColumn: (slideId, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: slideId, uid: userId, columnArr: columnArr}),
+        createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
     }
 }
 

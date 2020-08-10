@@ -34,8 +34,10 @@ class Main extends Component {
             mediaFilesObject: [],
             courseNameExist: false,
             slideItemIndex: 0,
+            lessonId: -1,
         };
         
+        this.setLessonId = this.setLessonId.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
@@ -68,6 +70,12 @@ class Main extends Component {
         // console.log(this.state.glossaryEntryObject);
         this.props.course['lessons'] = this.props.courseLessons;
         console.log(this.props.course);
+    }
+
+    setLessonId = (value) => {
+        this.setState({
+            lessonId: value,
+        })
     }
 
     // a little function to help us with reordering the result
@@ -402,13 +410,14 @@ class Main extends Component {
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
                                                                                     action="add"
-                                                                                    slideId={this.state.slideItemIndex}
+                                                                                    currentSlideIndex={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
                                                                                     addMediaFiles={this.props.addMediaFiles}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
                                                                                     setMediaFilesObject={this.setMediaFilesObject}
+                                                                                    lessonId={this.state.lessonId}
                                                                                 />
                                                                             :
                                                                                 <div id="slide-handler-container" className="d-inline">
@@ -423,13 +432,14 @@ class Main extends Component {
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
                                                                                 action="add"
-                                                                                slideId={this.state.slideItemIndex}
+                                                                                currentSlideIndex={this.state.slideItemIndex}
                                                                                 lessonIndex={index}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
                                                                                 setMediaFilesObject={this.setMediaFilesObject}
+                                                                                lessonId={this.state.lessonId}
                                                                             />
                                                                     }
                                                                     {
@@ -462,7 +472,7 @@ class Main extends Component {
                                                                                                                 currentColumns={item.columns}
                                                                                                                 currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                                                 action="edit"
-                                                                                                                slideId={itemSlideIndex}
+                                                                                                                currentSlideIndex={itemSlideIndex}
                                                                                                                 showTitleValue={true}
                                                                                                                 slideItemId={"slide-item-" + itemSlideIndex}
                                                                                                                 lessonIndex={index}
@@ -505,7 +515,7 @@ class Main extends Component {
                                             <div className="col-md-6 mt-2">
                                                 {        
                                                     this.props.courseLessons.length < 2 ?
-                                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add"/>
+                                                        <LessonHandler addLessonNameChange={this.props.addCourseLessons} action="add" setLessonId={this.setLessonId}/>
                                                     :
                                                         <WarningModal 
                                                             fieldType="addLessonBtn"
@@ -571,8 +581,8 @@ const mapDispatchToProps = (dispatch) => {
         editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
         deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
         addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlide: (slideObj, slideId, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, slideId: slideId, currentClickedLessonId: currentClickedLessonId}),
-        deleteSlide: (slideId, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: slideId, currentClickedLessonId: currentClickedLessonId}),
+        editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
+        deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
         showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
         addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
