@@ -69,6 +69,7 @@ class SlideHandler extends Component {
             slideSubtitle: '',
             correctAnswers: [],
             activeListModalOutputIndex: -1,
+            slideAction: this.props.action,
         };
         
         this.setModalShow = this.setModalShow.bind(this);
@@ -95,6 +96,7 @@ class SlideHandler extends Component {
         this.setSlideTitle = this.setSlideTitle.bind(this);
         this.setSlideSubtitle = this.setSlideSubtitle.bind(this);
         this.setCorrectAnswers = this.setCorrectAnswers.bind(this);
+        this.setSlideAction = this.setSlideAction.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -131,7 +133,18 @@ class SlideHandler extends Component {
             modalShow: value,
         });
 
-        if (action === "close" || action === "edit") {
+        // if (action === "close") {
+        //     console.log('MODAL CLOSED');
+        //     this.setState({
+        //         column: this.props.currentColumns ? this.props.currentColumns : [],
+        //         activeFeature: '',
+        //         activeColumnId: 0,
+        //         activeTab: 'column',
+        //         activeContentIndex: 0,
+        //     });
+        // }
+
+        if (action === "edit") {
             console.log('Edit here');
             this.setState({
                 column: this.props.currentColumns ? this.props.currentColumns : [],
@@ -151,6 +164,8 @@ class SlideHandler extends Component {
                 activeContentIndex: 0,
             });
         }
+        
+        // this.autoSave();
     }
 
     addColumn = () => {
@@ -166,7 +181,7 @@ class SlideHandler extends Component {
             currentColumnContentIndex: 'subColumnOne',
         });
 
-        // this.autoSave();
+        this.autoSave();
     }
 
     deleteColumn = (index) => {
@@ -177,7 +192,9 @@ class SlideHandler extends Component {
 
         this.setState({
             column: columnArr,
-        })
+        });
+
+        this.autoSave();
     }
     
     handleContentEditable = (event, index) => {
@@ -230,7 +247,9 @@ class SlideHandler extends Component {
 
         this.setState({
             column: columnSizesObj,
-        })
+        });
+
+        this.autoSave();
     }
 
     // a little function to help us with reordering the result
@@ -361,7 +380,9 @@ class SlideHandler extends Component {
 
         this.setState({
             column: columns,
-        })
+        });
+
+        this.autoSave();
     }
 
     onDragEnd = result => {
@@ -1961,18 +1982,25 @@ class SlideHandler extends Component {
         })
     }
 
+    setSlideAction = () => {
+        this.setState({
+            slideAction: 'edit',
+        })
+    }
+
     onSave = (slide, subtitle, columns, lessonIndex) => {
-        if (this.props.action === "add") {
+        if (this.state.slideAction === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.addSlideChange(slideObj, lessonIndex);
             console.log("add");
-        } else if (this.props.action === "edit") {
+            this.setSlideAction();
+        } else if (this.state.slideAction === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
             this.props.editSlideChange(slideObj, this.props.slideId, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
-        this.setModalShow(false, 'save')
+        // this.setModalShow(false, 'save')
     }
 
     submitMyForm = null;
@@ -2022,7 +2050,8 @@ class SlideHandler extends Component {
                             // lid and uid are temporary
                             this.props.createSlide(1, values.slideName, 1, values.showTitle);
 
-                            this.props.setSlideItemIndex(this.props.slideId + 1);
+                            // this.props.setSlideItemIndex(this.props.slideId + 1);
+                            // this.props.setSlideItemIndex(this.props.slideId);
 
                             // create column
                             // sid and uid are temporary
