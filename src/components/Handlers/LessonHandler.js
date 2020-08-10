@@ -68,12 +68,13 @@ class LessonHandler extends Component {
                                 title: values.lessonName,
                                 uid: 1,
                             }
-                            
+
                             lessonService.createLesson(data)
                             .then(
                                 lessonObj => {
                                     this.props.createLesson(lessonObj.cid, lessonObj.uid, lessonObj.title);
                                     this.props.setLessonId(lessonObj.lid);
+                                    console.log(lessonObj);
                                 },
                                 error => console.log(error)
                             );

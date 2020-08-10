@@ -2078,7 +2078,7 @@ class SlideHandler extends Component {
                                 lid: this.props.lessonId,
                                 title: values.slideName,
                                 uid: 1,
-                                hide_title: values.showTitle,
+                                hide_title: values.showTitle ? 1 : 0,
                             }
 
                             slideService.createSlide(data)
@@ -2086,6 +2086,7 @@ class SlideHandler extends Component {
                                 slideObj => {
                                     this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
                                     this.setSlideId(slideObj.sid);
+                                    console.log(slideObj);
                                 },
                                 error => console.log(error)
                             );
@@ -2095,6 +2096,7 @@ class SlideHandler extends Component {
                             // create column
                             // sid and uid are temporary
                             this.props.createColumn(1, 1, this.state.column);
+                            this.createColumn(1, 1, this.state.column);
 
                         }}
 
@@ -2112,8 +2114,6 @@ class SlideHandler extends Component {
                                 handleBlur,
                                 handleSubmit,
                             } = formikProps;
-                            
-                            this.bindSubmitForm(formikProps.submitForm);
 
                             return (
                                 <form onSubmit={handleSubmit}>
