@@ -39,7 +39,8 @@ function ListModalLayout(props) {
                                 >
                                     <button
                                         type="button"
-                                        className={"btn btn-primary mb-2 w-100 " + styles.btnLabelAlignment}
+                                        className={"btn btn-secondary mb-2 w-100 " + styles.btnLabelAlignment}
+                                        style={{ background: styles.btnColor }}
                                         onClick={() => {
                                             setModalShow(true);
                                         }}
@@ -54,8 +55,8 @@ function ListModalLayout(props) {
                                 >
                                     <button
                                         type="button"
-                                        className={"btn btn-primary mb-2 " + styles.btnLabelAlignment}
-                                        style={{ width: styles.btnWidth + '%' }}
+                                        className={"btn btn-secondary mb-2 " + styles.btnLabelAlignment}
+                                        style={{ width: styles.btnWidth + '%', background: styles.btnColor }}
                                         onClick={() => {
                                             setModalShow(true);
                                         }}
