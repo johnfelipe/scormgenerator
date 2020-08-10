@@ -4,6 +4,9 @@ import { Formik } from "formik";
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 
+// services
+import { lessonService } from '../../services';
+
 class LessonHandler extends Component {
 
     constructor(props) {
@@ -56,12 +59,18 @@ class LessonHandler extends Component {
                         }}
 
                         onSubmit={values => {
-                            console.log(values.lessonName);
                             this.onSave(values.lessonName, this.props.id);
 
                             // create lesson
                             // uid and cid are temporary
-                            this.props.createLesson(1, 1, values.lessonName);
+                            lessonService.createLesson(1, 1, values.lessonName)
+                            .then(
+                                lessonObj => {
+                                    this.props.createLesson(lessonObj.cid, lessonObj.uid, lessonObj.title);
+                                    this.props.setLessonId(lessonObj.lid);
+                                },
+                                error => console.log(error)
+                            );
                         }}
 
                         validationSchema={Yup.object().shape({
