@@ -1409,6 +1409,26 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
@@ -1445,6 +1465,26 @@ class SlideHandler extends Component {
                             id: ''
                         };
 
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1495,6 +1535,26 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
@@ -1538,6 +1598,26 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
+                        currentColumns[key].content.subColumnFour.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
@@ -1574,6 +1654,26 @@ class SlideHandler extends Component {
                             id: ''
                         };
 
+                        currentColumns[key].content.subColumnFive.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'listModal') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                btnWidth: 0,
+                                btnLabelAlignment: 'text-center',
+                                btnPosition: 'text-center',
+                            }
+                        };
+                        
                         currentColumns[key].content.subColumnFive.push(currentContent);
                         this.setState({
                             column: currentColumns,
