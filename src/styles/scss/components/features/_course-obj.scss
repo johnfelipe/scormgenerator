@@ -16,20 +16,20 @@
                                                     .sg-controls {
                                                         .course-objectives-color-picker {
                                                             z-index: 5000;
-                                                            margin: 0 16px;
+                                                            margin: 0 40px;
                                                             // top: 55px;
-                                                            top: 135px;
+                                                            top: 180px;
 
                                                             @media only screen and (min-width: 1920px) {
-                                                                margin: 0 70px;
+                                                                margin: 0 110px;
                                                                 // top: 55px;
-                                                                top: 135px;
+                                                                top: 180px;
                                                             }
 
                                                             @media only screen and (max-width: 1366px) {
-                                                                margin: 0 16px;
+                                                                margin: 0 40px;
                                                                 // top: 75px;
-                                                                top: 135px;
+                                                                top: 180px;
                                                             }
                                                         }
 

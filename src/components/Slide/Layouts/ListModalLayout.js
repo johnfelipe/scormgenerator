@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
+// components
+import ListModals from '../Features/List/ListModals';
+
 function ListModalLayout(props) {
 
     const { output, styles } = props;
@@ -32,39 +35,11 @@ function ListModalLayout(props) {
                 {output.length > 0 ?
                     <>
                         {output.map((item, index) => (
-                            styles.btnWidth === 0 ?
-                                <div
-                                    key={'list-button-object-' + index}
-                                    className="list-modal-button-object"
-                                >
-                                    <button
-                                        type="button"
-                                        className={"btn btn-primary mb-2 w-100 " + styles.btnLabelAlignment}
-                                        onClick={() => {
-                                            setModalShow(true);
-                                        }}
-                                    >
-                                        {item.name}
-                                    </button>
-                                </div>
-                            :
-                                <div
-                                    key={'list-button-object-' + index}
-                                    className="list-modal-button-object"
-                                >
-                                    <button
-                                        type="button"
-                                        className={"btn btn-primary mb-2 " + styles.btnLabelAlignment}
-                                        style={{ width: styles.btnWidth + '%' }}
-                                        onClick={() => {
-                                            setModalShow(true);
-                                        }}
-                                    >
-                                        <span>
-                                            {item.name}
-                                        </span>
-                                    </button>
-                                </div>
+                            <ListModals
+                                item={item}
+                                index={index}
+                                styles={styles}
+                            />
                         ))}
                     </>
                 :

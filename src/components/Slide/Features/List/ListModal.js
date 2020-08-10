@@ -6,12 +6,15 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // components
 import ListModalAccordion from './ListModalAccordion';
+import ColorPicker from '../../../Common/ColorPicker';
 
 function ListModal(props) {
 
     const { contentIndex, currentColumn, currentColumnContentIndex,  } = props;
     const listButtonModal = currentColumn.content[currentColumnContentIndex][contentIndex].output;
+    const listButtonColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnColor;
     const [addedButtonName, setAddedButtonName] = useState('');
+    const [showPicker, setShowPicker] = useState(false);
 
     const addButtonObj = (value) => {
         const currentColumnObj = currentColumn;
@@ -102,6 +105,14 @@ function ListModal(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.btnPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setBtnColor = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.btnColor = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -343,9 +354,25 @@ function ListModal(props) {
                                 </select>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label multiple-choice-background-color-label">
+                                <span>Background Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input multiple-choice-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: listButtonColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{listButtonColor}</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <ColorPicker
+                classNames="position-absolute list-modal-color-picker"
+                showPicker={showPicker}
+                setBackgroundColor={setBtnColor}
+                defaultColor={listButtonColor}
+            />
         </div>
     )
 }
