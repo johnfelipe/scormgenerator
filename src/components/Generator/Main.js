@@ -401,10 +401,12 @@ class Main extends Component {
                                                                             this.props.courseLessons[index].slides.length < 5 ?
                                                                                 <SlideHandler
                                                                                     addSlideChange={this.props.addLessonSlide}
+                                                                                    editSlideChange={this.props.editLessonSlide}
                                                                                     action="add"
                                                                                     slideId={this.state.slideItemIndex}
                                                                                     lessonIndex={index}
                                                                                     slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                    currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                     setSlideItemIndex={this.setSlideItemIndex}
                                                                                     addMediaFiles={this.props.addMediaFiles}
                                                                                     mediaFilesObject={this.state.mediaFilesObject}
@@ -422,10 +424,12 @@ class Main extends Component {
                                                                         :
                                                                             <SlideHandler
                                                                                 addSlideChange={this.props.addLessonSlide}
+                                                                                editSlideChange={this.props.editLessonSlide}
                                                                                 action="add"
                                                                                 slideId={this.state.slideItemIndex}
                                                                                 lessonIndex={index}
                                                                                 slideItemId={"slide-item-" + this.state.slideItemIndex}
+                                                                                currentClickedLessonId={this.state.currentClickedLessonId}
                                                                                 setSlideItemIndex={this.setSlideItemIndex}
                                                                                 addMediaFiles={this.props.addMediaFiles}
                                                                                 mediaFilesObject={this.state.mediaFilesObject}
