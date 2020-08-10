@@ -419,7 +419,7 @@ class SlideHandler extends Component {
                     btnWidth: 0,
                     btnLabelAlignment: 'text-center',
                     btnPosition: 'text-center',
-                    btnColor: '',
+                    btnColor: '#0069d9',
                 }
             };
         }
@@ -609,7 +609,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -672,7 +672,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -734,7 +734,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -796,7 +796,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -857,7 +857,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -922,7 +922,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -986,7 +986,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1051,7 +1051,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1115,7 +1115,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1179,7 +1179,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1244,7 +1244,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1308,7 +1308,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1372,7 +1372,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1436,7 +1436,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1501,7 +1501,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1565,7 +1565,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1629,7 +1629,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1693,7 +1693,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
@@ -1757,7 +1757,7 @@ class SlideHandler extends Component {
                                 btnWidth: 0,
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
-                                btnColor: '',
+                                btnColor: '#0069d9',
                             }
                         };
                         
