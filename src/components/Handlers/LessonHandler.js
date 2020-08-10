@@ -68,6 +68,7 @@ class LessonHandler extends Component {
                                 title: values.lessonName,
                                 uid: 1,
                             }
+                            
                             lessonService.createLesson(data)
                             .then(
                                 lessonObj => {

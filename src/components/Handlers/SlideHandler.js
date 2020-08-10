@@ -29,6 +29,9 @@ import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 // modals
 import WarningModal from '../AlertModal/Warning';
 
+// services
+import { slideService } from '../../services';
+
 class SlideHandler extends Component {
 
     constructor(props) {
@@ -69,8 +72,10 @@ class SlideHandler extends Component {
             slideSubtitle: '',
             correctAnswers: [],
             activeListModalOutputIndex: -1,
+            slideId: -1,
         };
         
+        this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
         this.deleteColumn = this.deleteColumn.bind(this);
@@ -123,6 +128,12 @@ class SlideHandler extends Component {
         // console.log(this.props.slide);
         // console.log('this.props.column');
         // console.log(this.props.columns);
+    }
+
+    setSlideId = (value) => {
+        this.setState({
+            slideId: value
+        })
     }
 
     setModalShow = (value, action) => {
@@ -1966,7 +1977,7 @@ class SlideHandler extends Component {
             console.log("add");
         } else if (this.props.action === "edit") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, this.props.slideId, this.props.currentClickedLessonId);
+            this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
             console.log("edit");
         }
         
@@ -2005,9 +2016,23 @@ class SlideHandler extends Component {
 
                             // create slide
                             // lid and uid are temporary
-                            this.props.createSlide(1, values.slideName, 1, values.showTitle);
+                            const data = {
+                                lid: this.props.lessonId,
+                                title: values.slideName,
+                                uid: 1,
+                                hide_title: values.showTitle,
+                            }
 
-                            this.props.setSlideItemIndex(this.props.slideId + 1);
+                            slideService.createSlide(data)
+                            .then(
+                                slideObj => {
+                                    this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
+                                    this.setSlideId(slideObj.sid);
+                                },
+                                error => console.log(error)
+                            );
+
+                            this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
 
                             // create column
                             // sid and uid are temporary
@@ -4681,7 +4706,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
-        createColumn: (slideId, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: slideId, uid: userId, columnArr: columnArr}),
+        createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
     }
 }
 
