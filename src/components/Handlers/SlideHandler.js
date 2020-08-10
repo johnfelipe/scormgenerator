@@ -31,6 +31,7 @@ import WarningModal from '../AlertModal/Warning';
 
 // services
 import { slideService } from '../../services';
+import { columnService } from '../../services';
 
 class SlideHandler extends Component {
 
@@ -75,6 +76,7 @@ class SlideHandler extends Component {
             slideId: -1,
         };
         
+        this.createColumn = this.createColumn.bind(this);
         this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
@@ -128,6 +130,62 @@ class SlideHandler extends Component {
         // console.log(this.props.slide);
         // console.log('this.props.column');
         // console.log(this.props.columns);
+    }
+
+    createColumn = (slideId, userId, columnArr) => {
+        let columnObject = [];
+
+        for (let index in columnArr) {
+
+            let featuresJson = [];
+
+            if (columnArr[index].grid === 0) {
+                featuresJson = JSON.stringify(columnArr[index].content['subColumnOne']);
+            } else if (columnArr[index].grid === 1 || columnArr[index].grid === 2 || columnArr[index].grid === 3) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo']
+                });
+            } else if (columnArr[index].grid === 4) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                });
+            } else if (columnArr[index].grid === 5) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                    subColumnFour: columnArr[index].content['subColumnFour'],
+                });
+            } else if (columnArr[index].grid === 6) {
+                featuresJson = JSON.stringify({
+                    subColumnOne: columnArr[index].content['subColumnOne'], 
+                    subColumnTwo: columnArr[index].content['subColumnTwo'],
+                    subColumnThree: columnArr[index].content['subColumnThree'],
+                    subColumnFour: columnArr[index].content['subColumnFour'],
+                    subColumnFive: columnArr[index].content['subColumnFive'],
+                });
+            }
+
+            const data = {
+                sid: slideId,
+                uid: userId,
+                grid: columnArr[index].grid,
+                features: featuresJson
+            }
+
+            columnObject.push(data);
+
+            columnService.createColumn(data)
+            .then(
+                slideObj => {
+                    console.log(slideObj);
+                },
+                error => console.log(error)
+            );
+        }
     }
 
     setSlideId = (value) => {
