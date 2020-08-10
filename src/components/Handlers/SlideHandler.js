@@ -165,8 +165,6 @@ class SlideHandler extends Component {
             column: [...this.state.column, columnObj],
             currentColumnContentIndex: 'subColumnOne',
         });
-
-        // this.handleSubmitMyForm();
     }
 
     deleteColumn = (index) => {
@@ -1974,19 +1972,6 @@ class SlideHandler extends Component {
         
         this.setModalShow(false, 'save')
     }
-
-    submitMyForm = null;
-
-    handleSubmitMyForm = (e) => {
-        if (this.submitMyForm) {
-            this.submitMyForm(e);
-            console.log('AUTOSAVE--AUTOSAVE--AUTOSAVE--AUTOSAVE')
-        }
-    };
-
-    bindSubmitForm = (submitForm) => {
-        this.submitMyForm = submitForm;
-    };
 
     render() {
         const slideModal = (
