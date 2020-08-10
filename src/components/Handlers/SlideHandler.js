@@ -166,7 +166,7 @@ class SlideHandler extends Component {
             currentColumnContentIndex: 'subColumnOne',
         });
 
-        // this.handleSubmitMyForm();
+        // this.autoSave();
     }
 
     deleteColumn = (index) => {
@@ -1977,7 +1977,7 @@ class SlideHandler extends Component {
 
     submitMyForm = null;
 
-    handleSubmitMyForm = (e) => {
+    autoSave = (e) => {
         if (this.submitMyForm) {
             this.submitMyForm(e);
             console.log('AUTOSAVE--AUTOSAVE--AUTOSAVE--AUTOSAVE')
