@@ -102,7 +102,7 @@ function DragDrop(props) {
     const setDragDropLabelClass = (labelClass) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.dragDropLabelClass = labelClass;
 
         props.setColumn(currentColumnObj);  
     }
@@ -110,7 +110,7 @@ function DragDrop(props) {
     const setQuestionBackgroundColor = (color) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor = color;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -118,7 +118,7 @@ function DragDrop(props) {
     const setDragDropTextColor = (color) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor = color;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.dragDropTextColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -308,7 +308,7 @@ function DragDrop(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropLabelClass}
                                     onChange={(event) => setDragDropLabelClass(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
@@ -324,7 +324,7 @@ function DragDrop(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropTextColor}
                                     onChange={(event) => setDragDropTextColor(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
