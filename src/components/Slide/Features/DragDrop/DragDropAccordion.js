@@ -10,7 +10,6 @@ import MultiSelect from "react-multi-select-component";
 function DragDropAccordion(props) {
 
     let item = props.item;
-    item.files = item.files.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
     const { index, IsAddAnswer, answer, correctAnswers } = props;
 
     const [editAnswer, setEditAnswer] = useState('');
