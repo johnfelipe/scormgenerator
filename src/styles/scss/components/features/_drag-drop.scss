@@ -64,26 +64,11 @@
                                                                     }
                                                                 }
 
-                                                                .img-add-label-wrapper, .audio-add-label-wrapper, .video-add-label-wrapper {
-                                                                    .img-add-label-input, .audio-add-label-input, .video-add-label-input {
-                                                                        #imgLabel, #audioLabel, #videoLabel {
-                                                                            height: 32px;
-                                                                            margin: 0;
-                                                                            border: 1px solid #ddd;
-                                                                            padding: 5px 7px;
-                                                                            font-family: inherit;
-                                                                            font-size: 14px;
-                                                                            font-weight: 400;
-                                                                            line-height: 32px;
-                                                                            color: #444;
-                                                                        }
-                                                                    }
-                                                                }
-
-                                                                #question-explanation {
-                                                                    background: #778395;
-                                                                    color: white;
-                                                                    text-indent: 50px;
+                                                                .drag-drop-answer-here {
+                                                                    position: absolute;
+                                                                    top: 50%;
+                                                                    left: 50%;
+                                                                    transform: translate(-50%, -50%);
                                                                 }
                                                             }
                                                         }
