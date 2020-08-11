@@ -1,6 +1,8 @@
+// import React, { useState } from 'react';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+// import RichTextEditor from 'react-rte';
 
 function HtmlEditor(props) {
 
@@ -9,6 +11,7 @@ function HtmlEditor(props) {
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentFor = props.contentFor;
     const activeListModalOutputIndex = props.activeListModalOutputIndex;
+    // const [value, setValue] = useState(RichTextEditor.createEmptyValue());
 
     const onChangeTextEditor = (value, contentIndex, editorType) => {
         const currentColumnObj = currentColumn;
@@ -27,6 +30,16 @@ function HtmlEditor(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    // const onChange = (value) => {
+    //     setValue(value);
+
+    //     if (contentFor === '') {
+    //         props.onChangeTextArea(value, contentIndex, 'html');
+    //     } else {
+    //         onChangeTextEditor(value, contentIndex, { type: 'text', for: contentFor });
+    //     }
+    // };
 
     return (
         <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
@@ -47,18 +60,12 @@ function HtmlEditor(props) {
                             <textarea
                                 className="sg-text-editor-html"
                                 value={ 
-                                    typeof currentColumn !== "undefined" ? 
-                                        'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 ? 
-                                            currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  ?
-                                                currentColumn.content[currentColumnContentIndex][contentIndex].output 
-                                            :
-                                                ''
-                                        : 
-                                            '' 
-                                    : 
-                                        ''
+                                    typeof currentColumn !== "undefined" &&
+                                    'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  &&
+                                    currentColumn.content[currentColumnContentIndex][contentIndex].output
                                 }
-                                onChange={(event) => props.onChangeTextArea(event, contentIndex, 'html')}
+                                onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
                             />
                         :
                             <textarea
@@ -79,6 +86,11 @@ function HtmlEditor(props) {
                                 onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                             />
                     }
+                    {/* <RichTextEditor
+                        className="sg-text-editor-html h-100"
+                        value={value}
+                        onChange={onChange}
+                    /> */}
                 </div>
             </div>
         </div>

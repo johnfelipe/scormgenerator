@@ -76,7 +76,7 @@ class CssEditor extends Component {
                             onLoad={this.onLoad}
                             onChange={(event) => {
                                     // this.setCssValue(event);
-                                    this.props.onChangeTextArea(event, this.props.contentIndex, 'css');
+                                    this.props.onChangeTextArea(event.target.value, this.props.contentIndex, 'css');
                                 }
                             }
                             fontSize={14}
