@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
-import { objectHelpers } from '../../../../helpers';
 
 // components
 import DragDropAccordion from './DragDropAccordion';
@@ -15,7 +14,6 @@ function DragDrop(props) {
     const [updateQuestionCompareIndex, setUpdateQuestionCompareIndex] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [IsAddAnswer, setIsAddAnswer] = useState(false);
-    const [filesExist, setFilesExist] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
 
     const currentColumn = props.currentColumn;
@@ -30,8 +28,6 @@ function DragDrop(props) {
         const question = {
             question: value,
             answers: [],
-            files: [],
-            explanation: { content: '', visibility: 'show' },
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
@@ -103,93 +99,7 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addImageQuestion = (imgObj, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        const object = {
-            img: imgObj,
-            label: '',
-            weight: 0,
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addAudioQuestion = (audioObj, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        const object = {
-            audio: audioObj,
-            label: '',
-            weight: 1,
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addVideoQuestion = (videoObj, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        const object = {
-            video: videoObj,
-            label: '',
-            weight: 2,
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.push(object);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addVideoQuestionCaption = (captionObj, questionIndex) => {
-        const currentColumnObj = currentColumn;
-        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-
-        if (doesExist) {
-            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption = captionObj;
-        } else {
-            alert('PLease upload a video first!');
-        }
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const deleteQuestionFile = (index, questionIndex) => {
-        document.getElementById("question-files-uploader").value = "";
-
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.splice(index, 1);
-
-        if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files.length === 0) {
-            setFilesExist(false);
-        }
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const deleteQuestionVideoVttFile = (questionIndex) => {
-        document.getElementById("question-files-uploader").value = "";
-
-        const currentColumnObj = currentColumn;
-        const doesExist = objectHelpers.doesObjectInArrayExist(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-
-        if (doesExist) {
-            const index = objectHelpers.findObjectIndexInArray(currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files, 'video');
-            delete currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[index].video.caption;
-        } else {
-            alert('PLease upload a video first!');
-        }
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setQuestionLabelClass = (labelClass) => {
+    const setDragDropLabelClass = (labelClass) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass = labelClass;
@@ -205,51 +115,10 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setMultipleChoiceTextColor = (color) => {
+    const setDragDropTextColor = (color) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor = color;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setQuestionFiles = (questionFilesArray, questionIndex) => {
-        const currentColumnObj = currentColumn;
-        console.log(questionFilesArray);
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files = questionFilesArray;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addFileLabel = (value, questionIndex, fileIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const editFileLabel = (value, questionIndex, fileIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const deleteFileLabel = (questionIndex, fileIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].files[fileIndex].label = '';
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setExplanationVisibility = (value, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].explanation.visibility = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -343,20 +212,8 @@ function DragDrop(props) {
                                                                         setCorrectAnswer={setCorrectAnswer}
                                                                         IsAddAnswer={IsAddAnswer}
                                                                         answer={answer}
-                                                                        addImageQuestion={addImageQuestion}
-                                                                        addAudioQuestion={addAudioQuestion}
-                                                                        addVideoQuestion={addVideoQuestion}
-                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
-                                                                        deleteQuestionFile={deleteQuestionFile}
-                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
-                                                                        setFilesExist={setFilesExist}
-                                                                        setQuestionFiles={setQuestionFiles}
-                                                                        addFileLabel={addFileLabel}
-                                                                        editFileLabel={editFileLabel}
-                                                                        deleteFileLabel={deleteFileLabel}
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
-                                                                        setExplanationVisibility={setExplanationVisibility}
                                                                         setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
                                                                         correctAnswers={correctAnswers}
@@ -452,7 +309,7 @@ function DragDrop(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionLabelClass}
-                                    onChange={(event) => setQuestionLabelClass(event.target.value)}
+                                    onChange={(event) => setDragDropLabelClass(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="rounded-circle">&nbsp;Rounded Circle</option>
@@ -468,7 +325,7 @@ function DragDrop(props) {
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.multipleChoiceTextColor}
-                                    onChange={(event) => setMultipleChoiceTextColor(event.target.value)}
+                                    onChange={(event) => setDragDropTextColor(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     <option value="text-black">&nbsp;Black</option>
@@ -503,24 +360,6 @@ function DragDrop(props) {
                                 </div>
                             </div>
                         </li>
-                        {
-                            filesExist &&
-                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                <div className="sg-control-input-list-label">
-                                    <span>Files Position</span>
-                                </div>
-                                <div className="sg-control-input-list-input">
-                                    <select
-                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                        onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                        className="form-control-plaintext border border-secondary rounded"
-                                    >
-                                        <option value="question-files-left">&nbsp;Left</option>
-                                        <option value="question-files-right">&nbsp;Right</option>
-                                    </select>
-                                </div>
-                            </li>
-                        }
                     </ul>
                 </div>
             </div>
