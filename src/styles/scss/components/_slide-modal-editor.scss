@@ -427,7 +427,12 @@
                                             position: relative;
                                             z-index: 1;
 
-                                            textarea.sg-text-editor-html {
+                                            .RichTextEditor__editor___1QqIU, .DraftEditor-root {
+                                                width: 100%;
+                                                height: 100%;
+                                            }
+
+                                            textarea.sg-text-editor-html, .DraftEditor-editorContainer {
                                                 width: 100%;
                                                 height: 100%;
                                                 margin: 0;
