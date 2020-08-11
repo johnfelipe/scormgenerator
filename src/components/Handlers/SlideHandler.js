@@ -442,7 +442,7 @@ class SlideHandler extends Component {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'dragDrop',
                 output: [],
-                class: 'drag-drop-files-left',
+                class: '',
                 id: '',
                 styles: {
                     dragDropLabelClass: 'rounded-circle',
@@ -672,7 +672,7 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: [],
-                            class: 'drag-drop-files-left',
+                            class: '',
                             id: '',
                             styles: {
                                 dragDropLabelClass: 'rounded-circle',
