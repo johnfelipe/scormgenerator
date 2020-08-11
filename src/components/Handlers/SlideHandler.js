@@ -26,6 +26,7 @@ import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 import VideoLayout from '../Slide/Layouts/VideoLayout';
+import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -667,7 +668,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                    } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: [],
@@ -2638,12 +2639,42 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'dragDrop' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        className="content-output"
+                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex,
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <DragDropLayout
+                                                                                                                            dragDrop={contentFirst.output}
+                                                                                                                            dragDropClass={contentFirst.class}
+                                                                                                                            dragDropId={contentFirst.id}
+                                                                                                                            dragDropStyles={contentFirst.styles}
+                                                                                                                            dragDropCss={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
                                                                                                                 contentFirst.type !== 'courseObjectives' &&
                                                                                                                 contentFirst.type !== 'listModal' &&
                                                                                                                 contentFirst.type !== 'video' &&
+                                                                                                                contentFirst.type !== 'dragDrop' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
