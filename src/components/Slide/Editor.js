@@ -183,6 +183,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    setShowEditor={this.props.setShowEditor}
                 />
             );
         } else {

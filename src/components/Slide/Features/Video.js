@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +7,7 @@ function Video(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const [isShownTextArea, setIsShownTextArea] = useState(false);
 
     const setVideo = (name, url, type) => {
         const currentColumnObj = currentColumn;
@@ -48,7 +49,7 @@ function Video(props) {
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
-                <ul className="sg-control-input-list">
+                    <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Video</span>
@@ -63,6 +64,38 @@ function Video(props) {
                             </div>
                         </li>
                     </ul>
+                </div>
+            </div>
+            <div className="sg-control sg-control-text-editor">
+                <div className="sg-control-header">
+                    <label>Content Setup</label>
+                </div>
+                <div className="sg-control-input">
+                    <div className="sg-expandable-rich-text">
+                        <div className="sg-workspace-expander">
+                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                { 
+                                    isShownTextArea ? 
+                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, contentIndex, 'video')}>
+                                            <span>Click to Edit</span>
+                                        </button>
+                                    :
+                                        <span></span>
+                                }
+                                <textarea 
+                                    onMouseOver={() => setIsShownTextArea(true)} 
+                                    disabled 
+                                    value={ 
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
