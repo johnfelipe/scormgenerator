@@ -20,6 +20,8 @@ function HtmlEditor(props) {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
             } else if (editorType.for === 'listModal') {
                 currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = value;
+            } else if (editorType.for === 'video') {
+                currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph = value;
             }
         }
 
@@ -68,8 +70,11 @@ function HtmlEditor(props) {
                                         contentFor === 'courseReq' ?
                                             typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                                         :
-                                            contentFor === 'listModal' &&
+                                            contentFor === 'listModal' ?
                                                 typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content
+                                            :
+                                                contentFor === 'video' &&
+                                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
                                 }
                                 onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                             />

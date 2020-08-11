@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 
-function ListModals(props) {
+function ListButtonModals(props) {
 
     const { item, index, styles } = props;
     const [modalShow, setModalShow] = useState(false);
@@ -68,4 +68,4 @@ function ListModals(props) {
     );
 }
 
-export default ListModals;
+export default ListButtonModals;

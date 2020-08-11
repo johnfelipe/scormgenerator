@@ -7,6 +7,7 @@ import HomePage from './Features/Homepage/HomePage';
 import MultipleChoice from './Features/MultipleChoice/MultipleChoice';
 import CourseObj from './Features/CourseObjectives/CourseObj';
 import ListModal from './Features/List/ListModal';
+import Video from './Features/Video';
 
 class Editor extends Component {
 
@@ -168,6 +169,21 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                />
+            );
+        } else if (this.props.feature === "video") {
+            editorContent = (
+                <Video
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
+                    setShowEditor={this.props.setShowEditor}
                 />
             );
         } else {

@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -25,6 +25,7 @@ import HomePageLayout from '../Slide/Layouts/HomePageLayout';
 import MultipleChoiceLayout from '../Slide/Layouts/MultipleChoiceLayout';
 import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 import ListModalLayout from '../Slide/Layouts/ListModalLayout';
+import VideoLayout from '../Slide/Layouts/VideoLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -56,6 +57,7 @@ class SlideHandler extends Component {
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+                { type: 'video', name: 'Video', icon: faVideo, },
             ],
             activeFeature: '',
             activeTab: 'column',
@@ -422,6 +424,18 @@ class SlideHandler extends Component {
                     btnColor: '#0069d9',
                 }
             };
+        } else if (featureType === "video") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'video',
+                output: {
+                    name: '',
+                    url: '',
+                    type: '',
+                    paragraph: '',
+                },
+                class: '',
+                id: '',
+            };
         }
 
         const columns = this.state.column;
@@ -611,6 +625,26 @@ class SlideHandler extends Component {
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
                             }
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'video') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                name: '',
+                                url: '',
+                                type: '',
+                                paragraph: '',
+                            },
+                            class: '',
+                            id: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2534,11 +2568,49 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'video' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <VideoLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
                                                                                                                 contentFirst.type !== 'courseObjectives' &&
                                                                                                                 contentFirst.type !== 'listModal' &&
+                                                                                                                contentFirst.type !== 'video' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
