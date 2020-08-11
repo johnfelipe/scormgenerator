@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import ReactHtmlParser from 'react-html-parser';
 
 function ListModals(props) {
 
@@ -20,7 +21,7 @@ function ListModals(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {item.content}
+                {ReactHtmlParser(item.content)}
             </Modal.Body>
         </Modal>
     );
