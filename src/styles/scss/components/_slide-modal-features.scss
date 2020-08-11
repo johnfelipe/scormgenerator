@@ -255,8 +255,8 @@
                                                                 resize: none;
                                                             }
 
-                                                            .multiple-choice-question-list {
-                                                                li.multiple-choice-question-list-item {
+                                                            .multiple-choice-question-list, .drag-drop-question-list {
+                                                                li.multiple-choice-question-list-item, li.drag-drop-question-list-item {
                                                                     font-size: 12px;
 
                                                                     // button {
