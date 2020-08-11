@@ -354,7 +354,6 @@ function DragDrop(props) {
                                                                         addFileLabel={addFileLabel}
                                                                         editFileLabel={editFileLabel}
                                                                         deleteFileLabel={deleteFileLabel}
-                                                                        contentIndex={contentIndex}
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
                                                                         setExplanationVisibility={setExplanationVisibility}
