@@ -1885,21 +1885,21 @@ class SlideHandler extends Component {
         })
     }
 
-    onChangeTextArea = (event, contentIndex, editorType) => {
+    onChangeTextArea = (value, contentIndex, editorType) => {
         const currentColumnObj = this.state.column[this.state.activeColumnId];
         const currentColumnContentIndex = this.state.currentColumnContentIndex;
 
         if (editorType === 'html') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = event.target.value;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value;
         } else if (editorType === 'css') {
             try {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].css = event;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].css = value;
             } catch (err) { console.log(err) }
         } else if (editorType.type === 'text') {
             if (editorType.for === 'courseInfo') {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = event.target.value;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
             } else if (editorType.for === 'courseReq') {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = event.target.value;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
             }
         }
 
