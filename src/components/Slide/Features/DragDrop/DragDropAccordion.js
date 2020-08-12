@@ -15,6 +15,8 @@ function DragDropAccordion(props) {
     const [collapseId, setCollapseId] = useState(false);
     const [collapseAccordion, setCollapseAccordion] = useState(false);
     const [currentCollapseAccordion, setCurrentCollapseAccordion] = useState(-1);
+    const [addAnswer, setAddAnswer] = useState(false);
+    const [answer, setAnswer] = useState('');
 
     const collapseListener = (currentCollapseId) => {
 
@@ -133,7 +135,7 @@ function DragDropAccordion(props) {
                                                 const isEmpty = document.getElementById("question");
                                                 
                                                 if (isEmpty.value !== "") {
-                                                    props.addQuestion(question, index, false);
+                                                    props.addQuestion(question, index);
                                                     props.setQuestion('');
                                                     props.setIsAddQuestion(false);
                                                 }
@@ -275,7 +277,65 @@ function DragDropAccordion(props) {
                                                                                         "d-none multiple-choice-question-action-button border py-2 px-1"
                                                                                     }
                                                                                 >
-                                                                                    <span>Sample</span>
+                                                                                    {item.answer ?
+                                                                                        <span className="p-3">Answer: <strong>{item.answer}</strong></span>
+                                                                                    :
+                                                                                        addAnswer ?
+                                                                                            <div className="drag-drop-control-input-wrapper mt-2 mb-2">
+                                                                                                <div className="drag-drop-control-input-label">
+                                                                                                    <span>Add:&nbsp;</span>
+                                                                                                </div>
+                                                                                                <div className="drag-drop-control-input">
+                                                                                                    <input
+                                                                                                        id="answer"
+                                                                                                        name="answer"
+                                                                                                        type="text"
+                                                                                                        placeholder="Type answer here. . ."
+                                                                                                        onChange={(event) => setAnswer(event.target.value)}
+                                                                                                        value={answer}
+                                                                                                    />
+                                                                                                </div>
+                                                                                                <div className="drag-drop-control-button">
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        className="btn btn-success btn-sm mr-1"
+                                                                                                        onClick={() => {
+                                                                                                            const isEmpty = document.getElementById("answer");
+                                                                                                            
+                                                                                                            if (isEmpty.value !== "") {
+                                                                                                                props.addAnswer(answer, index, questionIndex);
+                                                                                                                setAnswer('');
+                                                                                                                setAddAnswer(false);
+                                                                                                            }
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        className="btn btn-danger btn-sm"
+                                                                                                        onClick={() => {
+                                                                                                            setAnswer('');
+                                                                                                            setAddAnswer(false);
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        <FontAwesomeIcon icon={faTimes}/>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        :
+                                                                                            <div className="drag-drop-answer-add-button mt-2 mb-2">
+                                                                                                <button
+                                                                                                    type="button"
+                                                                                                    className="btn btn-success btn-sm"
+                                                                                                    onClick={() => {
+                                                                                                        setAddAnswer(true);
+                                                                                                    }}
+                                                                                                >
+                                                                                                    Add answer
+                                                                                                </button>
+                                                                                            </div>
+                                                                                    }
                                                                                 </div>
                                                                             </>
                                                                     }
