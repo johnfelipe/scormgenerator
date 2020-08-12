@@ -13,6 +13,8 @@ function DragDropAccordion(props) {
     const [editQuestionCompareIndex, setEditQuestionCompareIndex] = useState('');
     const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [collapseId, setCollapseId] = useState(false);
+    const [collapseAccordion, setCollapseAccordion] = useState(false);
+    const [currentCollapseAccordion, setCurrentCollapseAccordion] = useState(-1);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -23,6 +25,19 @@ function DragDropAccordion(props) {
         }
 
         setCollapseId(currentCollapseId);
+    }
+
+    const accordionClick = (currentCollapseAccordion, index) => {
+
+        if (index === currentCollapseAccordion) {
+            currentCollapseAccordion = false;
+            setCurrentCollapseAccordion(-1);
+        } else {
+            setCurrentCollapseAccordion(index);
+            currentCollapseAccordion = true;
+        }
+
+        setCollapseAccordion(currentCollapseAccordion);
     }
 
     // a little function to help us with reordering the result
@@ -43,18 +58,18 @@ function DragDropAccordion(props) {
         }
 
         if (source.droppableId === destination.droppableId) {
-            let reorderedFiles;
+            let reorderedArray;
 
-            if ((source.droppableId === 'answers-droppable') && (destination.droppableId === 'answers-droppable')) {
-                reorderedFiles = reorder(
-                    item.answers,
+            if ((source.droppableId === 'questions-droppable') && (destination.droppableId === 'questions-droppable')) {
+                reorderedArray = reorder(
+                    item.questions,
                     source.index,
                     destination.index
                 );
 
-                let answers = reorderedFiles;
+                let questions = reorderedArray;
 
-                props.setQuestionAnswers(answers, index);
+                props.setQuestionAnswers(questions, index);
             }
 
             
@@ -152,7 +167,7 @@ function DragDropAccordion(props) {
                                 </div>
                         }
                         <DragDropContext onDragEnd={onDragEnd}>
-                            <Droppable droppableId="answers-droppable">
+                            <Droppable droppableId="questions-droppable">
                                 {(provided) => (
                                     <div
                                         {...provided.droppableProps}
@@ -210,33 +225,59 @@ function DragDropAccordion(props) {
                                                                                 </div>
                                                                             </div>
                                                                         :
-                                                                            <div id="drag-drop-feature-answer-list-item" className="row mb-0 border rounded">
-                                                                                <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-8" title={item.question}>
-                                                                                    {item.question}
+                                                                            <>
+                                                                                <div
+                                                                                    id="drag-drop-feature-answer-list-item"
+                                                                                    className="row mb-0 border rounded-top"
+                                                                                    onClick={() => {
+                                                                                        accordionClick(currentCollapseAccordion, questionIndex);
+                                                                                    }}
+                                                                                >
+                                                                                    <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-8" title={item.question}>
+                                                                                        {item.question}
+                                                                                    </div>
+                                                                                    <div className="col-md-4 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
+                                                                                        <span className="mr-2">
+                                                                                            <FontAwesomeIcon
+                                                                                                icon={collapseAccordion && currentCollapseAccordion === questionIndex ?
+                                                                                                    faCaretUp
+                                                                                                :
+                                                                                                    faCaretDown
+                                                                                                }
+                                                                                            />
+                                                                                        </span>
+                                                                                        <button
+                                                                                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                            type="button"
+                                                                                            onClick={() => {
+                                                                                                setEditQuestion(item.question);
+                                                                                                setIsEditQuestion(true);
+                                                                                                setEditQuestionCompareIndex(questionIndex);
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faEdit}/>
+                                                                                        </button>
+                                                                                        <button
+                                                                                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                            type="button"
+                                                                                            onClick={() => {
+                                                                                                props.deleteQuestion(index, questionIndex);
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faTrash}/>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div className="col-md-4 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
-                                                                                    <button
-                                                                                        className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                        type="button"
-                                                                                        onClick={() => {
-                                                                                            setEditQuestion(item.question);
-                                                                                            setIsEditQuestion(true);
-                                                                                            setEditQuestionCompareIndex(questionIndex);
-                                                                                        }}
-                                                                                    >
-                                                                                        <FontAwesomeIcon icon={faEdit}/>
-                                                                                    </button>
-                                                                                    <button
-                                                                                        className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                        type="button"
-                                                                                        onClick={() => {
-                                                                                            props.deleteQuestion(index, questionIndex);
-                                                                                        }}
-                                                                                    >
-                                                                                        <FontAwesomeIcon icon={faTrash}/>
-                                                                                    </button>
+                                                                                <div
+                                                                                    className={collapseAccordion && currentCollapseAccordion === questionIndex ?
+                                                                                        "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1"
+                                                                                    :
+                                                                                        "d-none multiple-choice-question-action-button border py-2 px-1"
+                                                                                    }
+                                                                                >
+                                                                                    <span>Sample</span>
                                                                                 </div>
-                                                                            </div>
+                                                                            </>
                                                                     }
                                                                 </li>
                                                             )}
