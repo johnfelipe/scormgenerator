@@ -445,7 +445,6 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 styles: {
-                    dragDropLabelClass: 'rounded-circle',
                     dragDropBackgroundColor: '#fff',
                     dragDropTextColor: 'text-black'
                 },
@@ -675,7 +674,6 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             styles: {
-                                dragDropLabelClass: 'rounded-circle',
                                 dragDropBackgroundColor: '#fff',
                                 dragDropTextColor: 'text-black'
                             },
