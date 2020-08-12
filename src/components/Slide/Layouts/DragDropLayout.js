@@ -1,6 +1,6 @@
 import React from 'react';
 import { arrayHelpers } from '../../../helpers';
-// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function DragDropLayout(props) {
     
@@ -9,50 +9,53 @@ function DragDropLayout(props) {
     const dragDropStyles = props.dragDropStyles;
     const dragDropCss = props.dragDropCss;
 
-    // const reorder = (list, startIndex, endIndex) => {
-    //     const result = Array.from(list);
-    //     const [removed] = result.splice(startIndex, 1);
-    //     result.splice(endIndex, 0, removed);
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
     
-    //     return result;
-    // }
+        return result;
+    }
 
-    // const onDragEnd = (result) => {
-    //     const { source, destination } = result;
+    const onDragEnd = (result) => {
+        const { source, destination } = result;
         
-    //     // dropped outside the list
-    //     if (!destination) {
-    //         return;
-    //     }
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
 
-    //     if (source.droppableId === destination.droppableId) {
-    //         let reorderedArray;
+        console.log(source);
+        console.log(destination);
 
-    //         if ((source.droppableId === 'questions-droppable') && (destination.droppableId === 'questions-droppable')) {
-    //             reorderedArray = reorder(
-    //                 item.questions,
-    //                 source.index,
-    //                 destination.index
-    //             );
+        // if (source.droppableId === destination.droppableId) {
+        //     let reorderedArray;
 
-    //             let questions = reorderedArray;
+        //     if ((source.droppableId === 'questions-droppable') && (destination.droppableId === 'questions-droppable')) {
+        //         reorderedArray = reorder(
+        //             item.questions,
+        //             source.index,
+        //             destination.index
+        //         );
 
-    //             props.setQuestionAnswers(questions, index);
-    //         }
-    //     }
-    // }
+        //         let questions = reorderedArray;
+
+        //         props.setQuestionAnswers(questions, index);
+        //     }
+        // }
+    }
 
     const content = (item) => {
 
         const options = arrayHelpers.shuffle(item.options);
 
         return (
-            // <DragDropContext onDragEnd={onDragEnd}>
-            //     <Droppable droppableId="questions-droppable">
-            //         {(provided) => (
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="questions-droppable">
+                    {(provided) => (
                         <div
-                            // {...provided.droppableProps}
-                            // ref={provided.innerRef}
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
                             className="col-md-12 pl-3 row m-0"
                         >
                             <div className="col-md-6 text-center">
@@ -66,7 +69,25 @@ function DragDropLayout(props) {
                                 >
                                     <li className="title" style={{ background: dragDropStyles.themeColor }}>Options</li>
                                     {options.map((option, optionIndex) => (
-                                        <li key={'drag-drop-option-' + optionIndex} className="option" data-target={option.name}>{option.name}</li>
+                                        <Draggable
+                                            key={'drag-drop-question-answers-list-item-key-' + optionIndex}
+                                            draggableId={'drag-drop-question-answers-list-item-' + optionIndex}
+                                            index={optionIndex}
+                                        >
+                                            {(provided) => (
+                                                <li
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    
+                                                    key={'drag-drop-option-' + optionIndex}
+                                                    className="option"
+                                                    data-target={option.name}
+                                                >
+                                                    {option.name}
+                                                </li>
+                                            )}
+                                        </Draggable>
                                     ))}
                                 </ul>
                             </div>
@@ -84,19 +105,19 @@ function DragDropLayout(props) {
                                     ))}
                                 </ol>
                             </div>
-                            {/* {provided.placeholder} */}
+                            {provided.placeholder}
                         </div>
-            //         )}
-            //     </Droppable>
-            // </DragDropContext>
+                    )}
+                </Droppable>
+            </DragDropContext>
         );
     }
     
     return (
-        <div id="drag-drop-layout" className={"w-100 h-100 p-3 border border-light " + dragDropStyles.dragDropTextColor} style={{ background: dragDropStyles.dragDropBackgroundColor, }}>
+        <div id="drag-drop-layout" className={"w-100 h-100 border border-light " + dragDropStyles.dragDropTextColor} style={{ background: dragDropStyles.dragDropBackgroundColor, }}>
             {dragDrop.length > 0 ?
                 dragDrop.map((item, itemIndex) => (
-                    <div key={"drag-drop-question-" + itemIndex} className={"question-group row mb-4 " + dragDropClass}>
+                    <div key={"drag-drop-question-" + itemIndex} className={"question-group row m-0 mb-4 " + dragDropClass}>
                         <div className="col-md-12 mb-3 p-4 text-white" style={{ background: dragDropStyles.themeColor }}>
                             <p className="font-20 m-0"><span>{(itemIndex+1) + '. ' + item.instruction}</span></p>
                         </div>
