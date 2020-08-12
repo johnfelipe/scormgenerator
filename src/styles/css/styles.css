@@ -1742,21 +1742,38 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   z-index: 50;
   font-size: 13px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
   z-index: 5000;
   margin: 0 40px;
-  top: 380px;
+  top: 130px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
     margin: 0 110px;
-    top: 380px;
+    top: 130px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
     margin: 0 40px;
-    top: 380px;
+    top: 130px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 175px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+    margin: 0 110px;
+    top: 175px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+    margin: 0 40px;
+    top: 175px;
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .drag-drop-question-list .drag-drop-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .drag-drop-question-action-button .col-md-6 .multi-select {

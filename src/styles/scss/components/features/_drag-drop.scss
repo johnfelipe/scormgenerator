@@ -119,22 +119,41 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
-                                                        .drag-drop-color-picker {
+                                                        .drag-drop-color-picker-bg {
                                                             z-index: 5000;
                                                             margin: 0 40px;
                                                             // top: 55px;
-                                                            top: 380px;
+                                                            top: 130px;
 
                                                             @media only screen and (min-width: 1920px) {
                                                                 margin: 0 110px;
                                                                 // top: 55px;
-                                                                top: 380px;
+                                                                top: 130px;
                                                             }
 
                                                             @media only screen and (max-width: 1366px) {
                                                                 margin: 0 40px;
                                                                 // top: 75px;
-                                                                top: 380px;
+                                                                top: 130px;
+                                                            }
+                                                        }
+
+                                                        .drag-drop-color-picker-tc {
+                                                            z-index: 5000;
+                                                            margin: 0 40px;
+                                                            // top: 55px;
+                                                            top: 175px;
+
+                                                            @media only screen and (min-width: 1920px) {
+                                                                margin: 0 110px;
+                                                                // top: 55px;
+                                                                top: 175px;
+                                                            }
+
+                                                            @media only screen and (max-width: 1366px) {
+                                                                margin: 0 40px;
+                                                                // top: 75px;
+                                                                top: 175px;
                                                             }
                                                         }
 
