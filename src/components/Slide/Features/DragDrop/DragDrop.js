@@ -8,93 +8,72 @@ import ColorPicker from '../../../Common/ColorPicker';
 
 function DragDrop(props) {
 
+    const [instruction, setInstruction] = useState('');
     const [question, setQuestion] = useState('');
-    const [answer, setAnswer] = useState('');
-    const [updateQuestion, setUpdateQuestion] = useState('');
-    const [updateQuestionCompareIndex, setUpdateQuestionCompareIndex] = useState('');
-    const [isEditQuestion, setIsEditQuestion] = useState(false);
-    const [IsAddAnswer, setIsAddAnswer] = useState(false);
+    const [updateInstruction, setUpdateInstruction] = useState('');
+    const [updateInstructionCompareIndex, setUpdateInstructionCompareIndex] = useState('');
+    const [isEditInstruction, setIsEditInstruction] = useState(false);
+    const [isAddQuestion, setIsAddQuestion] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor;
-    const correctAnswers = props.correctAnswers;
 
-    const addQuestion = (value) => {
+    const addInstruction = (value) => {
+        const currentColumnObj = currentColumn;
+
+        const instruction = {
+            instruction: value,
+            questions: [],
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(instruction);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editInstruction = (value, instructionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].instruction = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteInstruction = (instructionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(instructionIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addQuestion = (value, instructionIndex, correctAnswer) => {
         const currentColumnObj = currentColumn;
 
         const question = {
             question: value,
-            answers: [],
-        }
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(question);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const editQuestion = (value, questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const deleteQuestion = (questionIndex) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addAnswer = (value, questionIndex, correctAnswer) => {
-        const currentColumnObj = currentColumn;
-
-        const answer = {
-            answer: value,
             correct: correctAnswer,
         }
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.push(answer);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions.push(question);
 
         props.setColumn(currentColumnObj);
     }
 
-    const editAnswer = (value, questionIndex, answerIndex) => {
+    const editQuestion = (value, instructionIndex, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[answerIndex].answer = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions[questionIndex].question = value;
 
         props.setColumn(currentColumnObj);
     }
 
-    const deleteAnswer = (questionIndex, answerIndex) => {
+    const deleteQuestion = (instructionIndex, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.splice(answerIndex, 1);
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setCorrectAnswer = (value, questionIndex, answerArray) => {
-        const currentColumnObj = currentColumn;
-        const selectCorrectAnswers = [];
-
-        answerArray.forEach((item) => {
-            selectCorrectAnswers.push(parseInt(item.value));
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[parseInt(item.value)].correct = value;
-        });
-
-        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers.length;
-
-        for (let i = 0; i < arrayLength; i++) {
-            if (!selectCorrectAnswers.includes(i)) {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers[i].correct = false;
-            } 
-        }
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions.splice(questionIndex, 1);
 
         props.setColumn(currentColumnObj);
     }
@@ -107,7 +86,7 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);  
     }
 
-    const setQuestionBackgroundColor = (color) => {
+    const setDragDropBackgroundColor = (color) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor = color;
@@ -123,10 +102,10 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setQuestionAnswers = (questionAnswersArray, questionIndex) => {
+    const setQuestionAnswers = (questionAnswersArray, instructionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].answers = questionAnswersArray;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions = questionAnswersArray;
 
         props.setColumn(currentColumnObj);
     }
@@ -163,19 +142,19 @@ function DragDrop(props) {
                                                     {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
                                                         <li key={'number-' + index} className="drag-drop-question-list-item mb-2">
                                                             {
-                                                                isEditQuestion && updateQuestionCompareIndex === index ?
+                                                                isEditInstruction && updateInstructionCompareIndex === index ?
                                                                     <div className="drag-drop-control-input-wrapper">
                                                                         <div className="drag-drop-control-input-label">
                                                                             <span>{index+1}.</span>
                                                                         </div>
                                                                         <div className="drag-drop-control-input">
                                                                             <input
-                                                                                id="question"
-                                                                                name="question"
+                                                                                id="instruction"
+                                                                                name="instruction"
                                                                                 type="text"
-                                                                                placeholder="Type question here. . ."
-                                                                                onChange={(event) => setUpdateQuestion(event.target.value)}
-                                                                                value={updateQuestion}
+                                                                                placeholder="Type instruction here. . ."
+                                                                                onChange={(event) => setUpdateInstruction(event.target.value)}
+                                                                                value={updateInstruction}
                                                                             />
                                                                         </div>
                                                                         <div className="drag-drop-control-button">
@@ -183,13 +162,13 @@ function DragDrop(props) {
                                                                                 type="button"
                                                                                 className="btn btn-success btn-sm"
                                                                                 onClick={() => {
-                                                                                    const isEmpty = document.getElementById("question");
+                                                                                    const isEmpty = document.getElementById("instruction");
                                                                                     
                                                                                     if (isEmpty.value !== "") {
-                                                                                        editQuestion(updateQuestion, index);
-                                                                                        setUpdateQuestion('');
-                                                                                        setIsEditQuestion(false);
-                                                                                        setUpdateQuestionCompareIndex('');
+                                                                                        editInstruction(updateInstruction, index);
+                                                                                        setUpdateInstruction('');
+                                                                                        setIsEditInstruction(false);
+                                                                                        setUpdateInstructionCompareIndex('');
                                                                                     }
                                                                                 }}
                                                                             >
@@ -201,22 +180,20 @@ function DragDrop(props) {
                                                                     <DragDropAccordion
                                                                         index={index}
                                                                         item={item}
+                                                                        deleteInstruction={deleteInstruction}
+                                                                        setIsEditInstruction={setIsEditInstruction}
+                                                                        setUpdateInstruction={setUpdateInstruction}
+                                                                        setQuestion={setQuestion}
+                                                                        editQuestion={editQuestion}
                                                                         deleteQuestion={deleteQuestion}
-                                                                        setIsEditQuestion={setIsEditQuestion}
-                                                                        setUpdateQuestion={setUpdateQuestion}
-                                                                        setAnswer={setAnswer}
-                                                                        editAnswer={editAnswer}
-                                                                        deleteAnswer={deleteAnswer}
-                                                                        addAnswer={addAnswer}
-                                                                        setIsAddAnswer={setIsAddAnswer}
-                                                                        setCorrectAnswer={setCorrectAnswer}
-                                                                        IsAddAnswer={IsAddAnswer}
-                                                                        answer={answer}
+                                                                        addQuestion={addQuestion}
+                                                                        setIsAddQuestion={setIsAddQuestion}
+                                                                        isAddQuestion={isAddQuestion}
+                                                                        question={question}
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
-                                                                        setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
+                                                                        setUpdateInstructionCompareIndex={setUpdateInstructionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
-                                                                        correctAnswers={correctAnswers}
                                                                     />
                                                             }
                                                         </li>
@@ -228,12 +205,12 @@ function DragDrop(props) {
                                                             </div>
                                                             <div className="drag-drop-control-input">
                                                                 <input
-                                                                    id="question"
-                                                                    name="question"
+                                                                    id="instruction"
+                                                                    name="instruction"
                                                                     type="text"
-                                                                    placeholder="Type question here. . ."
-                                                                    onChange={(event) => setQuestion(event.target.value)}
-                                                                    value={question}
+                                                                    placeholder="Type instruction here. . ."
+                                                                    onChange={(event) => setInstruction(event.target.value)}
+                                                                    value={instruction}
                                                                 />
                                                             </div>
                                                             <div className="drag-drop-control-button">
@@ -241,11 +218,11 @@ function DragDrop(props) {
                                                                     type="button"
                                                                     className="btn btn-success btn-sm"
                                                                     onClick={() => {
-                                                                        const isEmpty = document.getElementById("question");
+                                                                        const isEmpty = document.getElementById("instruction");
                                                                         
                                                                         if (isEmpty.value !== "") {
-                                                                            addQuestion(question);
-                                                                            setQuestion('');
+                                                                            addInstruction(instruction);
+                                                                            setInstruction('');
                                                                         }
                                                                     }}
                                                                 >
@@ -263,12 +240,12 @@ function DragDrop(props) {
                                                     </div>
                                                     <div className="drag-drop-control-input">
                                                         <input
-                                                            id="question"
-                                                            name="question"
+                                                            id="instruction"
+                                                            name="instruction"
                                                             type="text"
-                                                            placeholder="Type question here. . ."
-                                                            onChange={(event) => setQuestion(event.target.value)}
-                                                            value={question}
+                                                            placeholder="Type instruction here. . ."
+                                                            onChange={(event) => setInstruction(event.target.value)}
+                                                            value={instruction}
                                                         />
                                                     </div>
                                                     <div className="drag-drop-control-button">
@@ -276,11 +253,11 @@ function DragDrop(props) {
                                                             type="button"
                                                             className="btn btn-success btn-sm"
                                                             onClick={() => {
-                                                                const isEmpty = document.getElementById("question");
+                                                                const isEmpty = document.getElementById("instruction");
                                                                 
                                                                 if (isEmpty.value !== "") {
-                                                                    addQuestion(question);
-                                                                    setQuestion('');
+                                                                    addInstruction(instruction);
+                                                                    setInstruction('');
                                                                 }
                                                             }}
                                                         >
@@ -366,7 +343,7 @@ function DragDrop(props) {
             <ColorPicker
                 classNames="position-absolute drag-drop-color-picker"
                 showPicker={showPicker}
-                setBackgroundColor={setQuestionBackgroundColor}
+                setBackgroundColor={setDragDropBackgroundColor}
                 defaultColor={currentBackgroundColor}
             />
         </div>
