@@ -1681,7 +1681,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   text-align: left !important;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop {
-  line-height: 45px;
+  line-height: 25px;
   width: 100%;
   cursor: pointer;
 }
@@ -1706,9 +1706,8 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
-  height: 45px;
-  font-size: 20px;
-  line-height: 45px;
+  height: 25px;
+  line-height: 25px;
   float: left;
   padding-left: 20px;
 }
