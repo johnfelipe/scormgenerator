@@ -76,6 +76,14 @@ function DragDrop(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions.splice(questionIndex, 1);
 
+        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.length;
+
+        for (let i = 0; i < arrayLength; i++) {
+            if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options[i].questionIndex === questionIndex) {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.splice(i, 1);
+            } 
+        }
+
         props.setColumn(currentColumnObj);
     }
 
@@ -108,15 +116,20 @@ function DragDrop(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions[questionIndex].answer = value;
 
-        addAnswerOptions(value, instructionIndex)
+        addAnswerOptions(value, instructionIndex, questionIndex)
 
         props.setColumn(currentColumnObj);
     }
 
-    const addAnswerOptions = (value, instructionIndex) => {
+    const addAnswerOptions = (value, instructionIndex, questionIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.push(value);
+        const optionObj = {
+            name: value,
+            questionIndex: questionIndex,
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.push(optionObj);
 
         props.setColumn(currentColumnObj);
     }
@@ -210,7 +223,7 @@ function DragDrop(props) {
                                                             }
                                                         </li>
                                                     ))}
-                                                    <li className="drag-drop-question-list-item">
+                                                    <li className="drag-drop-question-list-item mb-2">
                                                         <div className="drag-drop-control-input-wrapper">
                                                             <div className="drag-drop-control-input-label">
                                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
@@ -245,7 +258,7 @@ function DragDrop(props) {
                                                     </li>
                                                 </>
                                         :
-                                            <li className="drag-drop-question-list-item">
+                                            <li className="drag-drop-question-list-item mb-2">
                                                 <div className="drag-drop-control-input-wrapper">
                                                     <div className="drag-drop-control-input-label">
                                                         <span>1.</span>
