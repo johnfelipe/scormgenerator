@@ -69,6 +69,35 @@
                                                                     left: 50%;
                                                                     transform: translate(-50%, -50%);
                                                                 }
+
+                                                                ul.options {
+                                                                    position: relative;
+                                                                    display: inline-block;
+                                                                    vertical-align: top;
+                                                                    width: 165px;
+                                                                    list-style: none;
+                                                                    border: 1px solid #19286C;
+                                                                    text-align: center;
+                                                                    padding: 0;
+                                                                    margin: 0;
+
+                                                                    li {
+                                                                        border: 1px solid transparent;
+                                                                        padding: 6px 8px;
+                                                                    }
+
+                                                                    li.title {
+                                                                        background: #19286C;
+                                                                        color: white;
+                                                                    }
+
+                                                                    li.option { 
+                                                                        display: block;
+                                                                        position: relative;
+                                                                        z-index: 50;
+                                                                        font-size: 13px;
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }

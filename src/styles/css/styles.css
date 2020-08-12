@@ -1722,6 +1722,31 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   left: 50%;
   transform: translate(-50%, -50%);
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 165px;
+  list-style: none;
+  border: 1px solid #19286C;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li {
+  border: 1px solid transparent;
+  padding: 6px 8px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.title {
+  background: #19286C;
+  color: white;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.option {
+  display: block;
+  position: relative;
+  z-index: 50;
+  font-size: 13px;
+}
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker {
   z-index: 5000;
   margin: 0 40px;
