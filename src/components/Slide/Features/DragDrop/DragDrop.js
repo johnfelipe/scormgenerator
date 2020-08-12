@@ -371,13 +371,13 @@ function DragDrop(props) {
                 </div>
             </div>
             <ColorPickerBg
-                classNames="position-absolute drag-drop-color-picker"
+                classNames="position-absolute drag-drop-color-picker-bg"
                 showPicker={showPickerBg}
                 setBackgroundColor={setDragDropBackgroundColor}
                 defaultColor={currentBackgroundColor}
             />
             <ColorPickerTc
-                classNames="position-absolute drag-drop-color-picker"
+                classNames="position-absolute drag-drop-color-picker-tc"
                 showPicker={showPickerTc}
                 setBackgroundColor={setDragDropThemeColor}
                 defaultColor={currentThemeColor}
