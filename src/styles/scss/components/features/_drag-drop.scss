@@ -18,7 +18,7 @@
                                                             text-align: left !important;
 
                                                             .question-group {
-                                                                ul.drag-drop-question-answers {
+                                                                .drag-drop-question-answers {
                                                                     // columns: 2;
                                                                     // -webkit-columns: 2;
                                                                     // -moz-columns: 2;
@@ -32,31 +32,39 @@
                                                                                 background: #5eb75e;
                                                                             }
 
-                                                                            .drag-drop-label {
-                                                                                width: 45px;
-                                                                                height: 45px;
-                                                                                background: #778395;
-                                                                                color: white;
-                                                                                font-size: 28px;
-                                                                                line-height: 45px;
-                                                                                float: left;
+                                                                            // .drag-drop-label {
+                                                                            //     width: 45px;
+                                                                            //     height: 45px;
+                                                                            //     background: #778395;
+                                                                            //     color: white;
+                                                                            //     font-size: 28px;
+                                                                            //     line-height: 45px;
+                                                                            //     float: left;
 
-                                                                                @media only screen and (max-width: 1366px) {
-                                                                                    width: 35px;
-                                                                                    height: 35px;
-                                                                                    font-size: 20px;
-                                                                                    line-height: 35px;
-                                                                                }
-                                                                            }
+                                                                            //     @media only screen and (max-width: 1366px) {
+                                                                            //         width: 35px;
+                                                                            //         height: 35px;
+                                                                            //         font-size: 20px;
+                                                                            //         line-height: 35px;
+                                                                            //     }
+                                                                            // }
 
                                                                             .drag-drop-choice-text {
-                                                                                height: 25px;
+                                                                                height: 50px;
                                                                                 line-height: 25px;
                                                                                 float: left;
-                                                                                padding-left: 20px;
+                                                                                // padding-left: 20px;
 
                                                                                 @media only screen and (max-width: 1366px) {
                                                                                     font-size: 14px;
+                                                                                }
+
+                                                                                .target {
+                                                                                    display: inline-block;
+                                                                                    width: 110px;
+                                                                                    background: lightblue;
+                                                                                    margin: 0 3px;
+                                                                                    text-align:center;
                                                                                 }
                                                                             }
                                                                         }

@@ -250,6 +250,13 @@
   padding-right: 7.5rem !important;
 }
 
+.power-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 html body #root .App .App-header p {
   color: red;
 }
@@ -1680,41 +1687,30 @@ html body {
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop {
   line-height: 25px;
   width: 100%;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-label-selected {
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-label-selected {
   background: #5eb75e;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-label {
-  width: 45px;
-  height: 45px;
-  background: #778395;
-  color: white;
-  font-size: 28px;
-  line-height: 45px;
-  float: left;
-}
-@media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-label {
-    width: 35px;
-    height: 35px;
-    font-size: 20px;
-    line-height: 35px;
-  }
-}
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
-  height: 25px;
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
+  height: 50px;
   line-height: 25px;
   float: left;
-  padding-left: 20px;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
     font-size: 14px;
   }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text .target {
+  display: inline-block;
+  width: 110px;
+  background: lightblue;
+  margin: 0 3px;
+  text-align: center;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-answer-here {
   position: absolute;
