@@ -1,4 +1,5 @@
 import React from 'react';
+import { arrayHelpers } from '../../../helpers';
 // import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function DragDropLayout(props) {
@@ -42,6 +43,9 @@ function DragDropLayout(props) {
     // }
 
     const content = (item) => {
+
+        const options = arrayHelpers.shuffle(item.options);
+
         return (
             // <DragDropContext onDragEnd={onDragEnd}>
             //     <Droppable droppableId="questions-droppable">
@@ -61,7 +65,7 @@ function DragDropLayout(props) {
                                     }}
                                 >
                                     <li className="title" style={{ background: dragDropStyles.themeColor }}>Options</li>
-                                    {item.options.map((option, optionIndex) => (
+                                    {options.map((option, optionIndex) => (
                                         <li key={'drag-drop-option-' + optionIndex} className="option" data-target={option.name}>{option.name}</li>
                                     ))}
                                 </ul>
