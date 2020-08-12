@@ -10,21 +10,26 @@ function DragDropLayout(props) {
     const content = (item) => {
         return (
             <div className="col-md-12 pl-3 row m-0">
-                <div className="col-md-8">
+                <div className="col-md-6">
+                    <ul class="options text-break">
+                        <li class="title">Options</li>
+                        {item.options.map((option, optionIndex) => (
+                            <li key={'drag-drop-option-' + optionIndex}>{option.name}</li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="col-md-6">
                     <ul className="drag-drop-question-answers list-unstyled">
                         {item.questions.map((question, questionIndex) => (
                             <li key={"drag-drop-question-answer" + questionIndex}>
                                 <div className="drag-drop mb-2 m-0 row">
-                                    <div className="drag-drop-choice-text">
+                                    <div className="drag-drop-choice-text font-15">
                                         <span>{question.question}</span>
                                     </div>
                                 </div>
                             </li>
                         ))}
                     </ul>
-                </div>
-                <div className="col-md-4 border border-dark">
-                    <span className="drag-drop-answer-here">Drag Answer here</span>
                 </div>
             </div>
         );
