@@ -4,7 +4,8 @@ import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-sol
 
 // components
 import DragDropAccordion from './DragDropAccordion';
-import ColorPicker from '../../../Common/ColorPicker';
+import ColorPickerBg from '../../../Common/ColorPicker';
+import ColorPickerTc from '../../../Common/ColorPicker';
 
 function DragDrop(props) {
 
@@ -14,12 +15,14 @@ function DragDrop(props) {
     const [updateInstructionCompareIndex, setUpdateInstructionCompareIndex] = useState('');
     const [isEditInstruction, setIsEditInstruction] = useState(false);
     const [isAddQuestion, setIsAddQuestion] = useState(false);
-    const [showPicker, setShowPicker] = useState(false);
+    const [showPickerBg, setShowPickerBg] = useState(false);
+    const [showPickerTc, setShowPickerTc] = useState(false);
 
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor;
+    const currentThemeColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.themeColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.themeColor;
 
     const addInstruction = (value) => {
         const currentColumnObj = currentColumn;
@@ -130,6 +133,14 @@ function DragDrop(props) {
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.push(optionObj);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setDragDropThemeColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.themeColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -300,7 +311,7 @@ function DragDrop(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Customize Question</label>
+                    <label>Customize</label>
                 </div>
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
@@ -324,8 +335,18 @@ function DragDrop(props) {
                                 <span>Background Color</span>
                             </div>
                             <div className="sg-control-input-list-input drag-drop-background-color-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
-                                    <span className="text-white h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor}</span>
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerBg ? setShowPickerBg(false) : setShowPickerBg(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label drag-drop-background-color-label">
+                                <span>Theme Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input drag-drop-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerTc ? setShowPickerTc(false) : setShowPickerTc(true)} style={{ background: currentThemeColor, cursor: 'pointer' }}>
+                                    <span className="text-white h-100 w-100">{currentThemeColor}</span>
                                 </div>
                             </div>
                         </li>
@@ -349,11 +370,17 @@ function DragDrop(props) {
                     </ul>
                 </div>
             </div>
-            <ColorPicker
+            <ColorPickerBg
                 classNames="position-absolute drag-drop-color-picker"
-                showPicker={showPicker}
+                showPicker={showPickerBg}
                 setBackgroundColor={setDragDropBackgroundColor}
                 defaultColor={currentBackgroundColor}
+            />
+            <ColorPickerTc
+                classNames="position-absolute drag-drop-color-picker"
+                showPicker={showPickerTc}
+                setBackgroundColor={setDragDropThemeColor}
+                defaultColor={currentThemeColor}
             />
         </div>
     )
