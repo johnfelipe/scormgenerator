@@ -445,9 +445,9 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 styles: {
-                    dragDropLabelClass: 'rounded-circle',
                     dragDropBackgroundColor: '#fff',
-                    dragDropTextColor: 'text-black'
+                    dragDropTextColor: 'text-black',
+                    themeColor: '#0069d9',
                 },
             };
         }
@@ -675,9 +675,9 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             styles: {
-                                dragDropLabelClass: 'rounded-circle',
                                 dragDropBackgroundColor: '#fff',
-                                dragDropTextColor: 'text-black'
+                                dragDropTextColor: 'text-black',
+                                themeColor: '#0069d9',
                             },
                         };
 

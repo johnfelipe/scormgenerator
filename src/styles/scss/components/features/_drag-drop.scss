@@ -18,13 +18,13 @@
                                                             text-align: left !important;
 
                                                             .question-group {
-                                                                ul.drag-drop-question-answers {
+                                                                .drag-drop-question-answers {
                                                                     // columns: 2;
                                                                     // -webkit-columns: 2;
                                                                     // -moz-columns: 2;
                                                                     li {
                                                                         div.drag-drop {
-                                                                            line-height: 45px;
+                                                                            line-height: 25px;
                                                                             width: 100%;
                                                                             cursor: pointer;
 
@@ -32,32 +32,39 @@
                                                                                 background: #5eb75e;
                                                                             }
 
-                                                                            .drag-drop-label {
-                                                                                width: 45px;
-                                                                                height: 45px;
-                                                                                background: #778395;
-                                                                                color: white;
-                                                                                font-size: 28px;
-                                                                                line-height: 45px;
-                                                                                float: left;
+                                                                            // .drag-drop-label {
+                                                                            //     width: 45px;
+                                                                            //     height: 45px;
+                                                                            //     background: #778395;
+                                                                            //     color: white;
+                                                                            //     font-size: 28px;
+                                                                            //     line-height: 45px;
+                                                                            //     float: left;
 
-                                                                                @media only screen and (max-width: 1366px) {
-                                                                                    width: 35px;
-                                                                                    height: 35px;
-                                                                                    font-size: 20px;
-                                                                                    line-height: 35px;
-                                                                                }
-                                                                            }
+                                                                            //     @media only screen and (max-width: 1366px) {
+                                                                            //         width: 35px;
+                                                                            //         height: 35px;
+                                                                            //         font-size: 20px;
+                                                                            //         line-height: 35px;
+                                                                            //     }
+                                                                            // }
 
                                                                             .drag-drop-choice-text {
-                                                                                height: 45px;
-                                                                                font-size: 20px;
-                                                                                line-height: 45px;
+                                                                                height: 50px;
+                                                                                line-height: 25px;
                                                                                 float: left;
-                                                                                padding-left: 20px;
+                                                                                // padding-left: 20px;
 
                                                                                 @media only screen and (max-width: 1366px) {
                                                                                     font-size: 14px;
+                                                                                }
+
+                                                                                .target {
+                                                                                    display: inline-block;
+                                                                                    width: 110px;
+                                                                                    background: lightblue;
+                                                                                    margin: 0 3px;
+                                                                                    text-align:center;
                                                                                 }
                                                                             }
                                                                         }
@@ -69,6 +76,35 @@
                                                                     top: 50%;
                                                                     left: 50%;
                                                                     transform: translate(-50%, -50%);
+                                                                }
+
+                                                                ul.options {
+                                                                    position: relative;
+                                                                    display: inline-block;
+                                                                    vertical-align: top;
+                                                                    width: 165px;
+                                                                    list-style: none;
+                                                                    border: 1px solid #19286C;
+                                                                    text-align: center;
+                                                                    padding: 0;
+                                                                    margin: 0;
+
+                                                                    li {
+                                                                        border: 1px solid transparent;
+                                                                        padding: 6px 8px;
+                                                                    }
+
+                                                                    li.title {
+                                                                        // background: #19286C;
+                                                                        color: white;
+                                                                    }
+
+                                                                    li.option { 
+                                                                        display: block;
+                                                                        position: relative;
+                                                                        z-index: 50;
+                                                                        font-size: 13px;
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -83,22 +119,41 @@
                                             #uncontrolled-tab-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
-                                                        .drag-drop-color-picker {
+                                                        .drag-drop-color-picker-bg {
                                                             z-index: 5000;
                                                             margin: 0 40px;
                                                             // top: 55px;
-                                                            top: 380px;
+                                                            top: 130px;
 
                                                             @media only screen and (min-width: 1920px) {
                                                                 margin: 0 110px;
                                                                 // top: 55px;
-                                                                top: 380px;
+                                                                top: 130px;
                                                             }
 
                                                             @media only screen and (max-width: 1366px) {
                                                                 margin: 0 40px;
                                                                 // top: 75px;
-                                                                top: 380px;
+                                                                top: 130px;
+                                                            }
+                                                        }
+
+                                                        .drag-drop-color-picker-tc {
+                                                            z-index: 5000;
+                                                            margin: 0 40px;
+                                                            // top: 55px;
+                                                            top: 175px;
+
+                                                            @media only screen and (min-width: 1920px) {
+                                                                margin: 0 110px;
+                                                                // top: 55px;
+                                                                top: 175px;
+                                                            }
+
+                                                            @media only screen and (max-width: 1366px) {
+                                                                margin: 0 40px;
+                                                                // top: 75px;
+                                                                top: 175px;
                                                             }
                                                         }
 
