@@ -78,14 +78,6 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setDragDropLabelClass = (labelClass) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.dragDropLabelClass = labelClass;
-
-        props.setColumn(currentColumnObj);  
-    }
-
     const setDragDropBackgroundColor = (color) => {
         const currentColumnObj = currentColumn;
 
@@ -279,22 +271,6 @@ function DragDrop(props) {
                 </div>
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Label Border</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropLabelClass}
-                                    onChange={(event) => setDragDropLabelClass(event.target.value)}
-                                    className="form-control-plaintext border border-secondary rounded"
-                                >
-                                    <option value="rounded-circle">&nbsp;Rounded Circle</option>
-                                    <option value="rounded">&nbsp;Rounded</option>
-                                    <option value="rounded-0">&nbsp;None</option>
-                                </select>
-                            </div>
-                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Text Color</span>

@@ -16,7 +16,7 @@ function DragDropLayout(props) {
                         {item.questions.map((question, questionIndex) => (
                             <li key={"drag-drop-question-answer" + questionIndex}>
                                 <div className="drag-drop mb-2 m-0 row">
-                                    <div className={"drag-drop-label text-center " + dragDropStyles.dragDropLabelClass}>
+                                    <div className={"drag-drop-label text-center"}>
                                         <span><strong>{alpbahet[questionIndex]}</strong></span>
                                     </div>
                                     <div className="drag-drop-choice-text">

@@ -161,7 +161,7 @@ function DragDropAccordion(props) {
                                         {
                                             item.questions.length > 0 ?
                                                 <ul className="drag-drop-question-list list-unstyled">
-                                                    {item.answers.map((item, questionIndex) => (
+                                                    {item.questions.map((item, questionIndex) => (
                                                         <Draggable
                                                             key={'drag-drop-question-answers-list-item-key-' + questionIndex}
                                                             draggableId={'drag-drop-question-answers-list-item-' + questionIndex}
@@ -211,10 +211,10 @@ function DragDropAccordion(props) {
                                                                             </div>
                                                                         :
                                                                             <div id="drag-drop-feature-answer-list-item" className="row mb-0 border rounded">
-                                                                                <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.question}>
+                                                                                <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-8" title={item.question}>
                                                                                     {item.question}
                                                                                 </div>
-                                                                                <div className="col-md-5 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
+                                                                                <div className="col-md-4 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
                                                                                     <button
                                                                                         className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                         type="button"
