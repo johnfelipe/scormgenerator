@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import MultiSelect from "react-multi-select-component";
 
 function DragDropAccordion(props) {
 
     let item = props.item;
-    const { index, IsAddAnswer, answer, correctAnswers } = props;
+    const { index, isAddQuestion, question } = props;
 
-    const [editAnswer, setEditAnswer] = useState('');
-    const [editAnswerCompareIndex, setEditAnswerCompareIndex] = useState('');
-    const [isEditAnswer, setIsEditAnswer] = useState(false);
+    const [editQuestion, setEditQuestion] = useState('');
+    const [editQuestionCompareIndex, setEditQuestionCompareIndex] = useState('');
+    const [isEditQuestion, setIsEditQuestion] = useState(false);
     const [collapseId, setCollapseId] = useState(false);
-    const [selectedAnswers, setSelectedAnswers] = useState(correctAnswers ? correctAnswers : []);
 
     const collapseListener = (currentCollapseId) => {
 
@@ -65,26 +61,6 @@ function DragDropAccordion(props) {
         }
     }
 
-    const answerOptions = () => {
-        const options = [];
-        const answerArray = item.answers;
-
-        for (let key in answerArray) {
-            options.push({label: answerArray[key].answer, value: key});
-        }
-
-        return options;
-    }
-    
-    const selectOptions = answerOptions();
-
-    useEffect(() => {
-        let list = document.getElementsByClassName("dropdown-heading-value");
-        if (list[0]) {
-            list[0].innerHTML = "Select";
-        }
-    });
-
     return (
         <Accordion key={'accordion-drag-drop-question-' + index}>
             <Card>
@@ -95,7 +71,7 @@ function DragDropAccordion(props) {
                         type="button"
                         className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
-                            props.deleteQuestion(index)
+                            props.deleteInstruction(index)
                         }}
                     >
                         <FontAwesomeIcon icon={faTrash}/>
@@ -104,9 +80,9 @@ function DragDropAccordion(props) {
                         type="button"
                         className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
-                            props.setIsEditQuestion(true);
-                            props.setUpdateQuestion(item.question);
-                            props.setUpdateQuestionCompareIndex(index);
+                            props.setIsEditInstruction(true);
+                            props.setUpdateInstruction(item.question);
+                            props.setUpdateInstructionCompareIndex(index);
                         }}
                     >
                         <FontAwesomeIcon icon={faEdit}/>
@@ -119,19 +95,19 @@ function DragDropAccordion(props) {
                     <Card.Body className="p-2">
                         <span>Question: <strong>{item.question}</strong></span>
                         {
-                            IsAddAnswer ?
+                            isAddQuestion ?
                                 <div className="drag-drop-control-input-wrapper mb-1 mt-3 mb-3">
                                     <div className="drag-drop-control-input-label">
                                         <span>Add:&nbsp;</span>
                                     </div>
                                     <div className="drag-drop-control-input">
                                         <input
-                                            id="answer"
-                                            name="answer"
+                                            id="question"
+                                            name="question"
                                             type="text"
-                                            placeholder="Type answer here. . ."
-                                            onChange={(event) => props.setAnswer(event.target.value)}
-                                            value={answer}
+                                            placeholder="Type question here. . ."
+                                            onChange={(event) => props.setQuestion(event.target.value)}
+                                            value={question}
                                         />
                                     </div>
                                     <div className="drag-drop-control-button">
@@ -139,12 +115,12 @@ function DragDropAccordion(props) {
                                             type="button"
                                             className="btn btn-success btn-sm mr-1"
                                             onClick={() => {
-                                                const isEmpty = document.getElementById("answer");
+                                                const isEmpty = document.getElementById("question");
                                                 
                                                 if (isEmpty.value !== "") {
-                                                    props.addAnswer(answer, index, false);
-                                                    props.setAnswer('');
-                                                    props.setIsAddAnswer(false);
+                                                    props.addQuestion(question, index, false);
+                                                    props.setQuestion('');
+                                                    props.setIsAddQuestion(false);
                                                 }
                                             }}
                                         >
@@ -154,8 +130,8 @@ function DragDropAccordion(props) {
                                             type="button"
                                             className="btn btn-danger btn-sm"
                                             onClick={() => {
-                                                props.setAnswer('');
-                                                props.setIsAddAnswer(false);
+                                                props.setQuestion('');
+                                                props.setIsAddQuestion(false);
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faTimes}/>
@@ -163,45 +139,16 @@ function DragDropAccordion(props) {
                                     </div>
                                 </div>
                             :
-                                <div className="drag-drop-question-action-button m-0 mt-2 mb-2 row">
-                                    <div className="col-md-6 p-0">
-                                        <button
-                                            type="button"
-                                            className="btn btn-success btn-sm"
-                                            onClick={() => {
-                                                props.setIsAddAnswer(true);
-                                            }}
-                                        >
-                                            Add answers
-                                        </button>
-                                    </div>
-                                    <div className="col-md-6 p-0">
-                                        {item.answers.length > 0 &&
-                                            <OverlayTrigger
-                                                key="top"
-                                                placement="top"
-                                                overlay={
-                                                    <Tooltip id='tooltip-top'>
-                                                        <span>Select one or more correct answer.</span>
-                                                    </Tooltip>
-                                                }
-                                            >
-                                                <span>
-                                                    <MultiSelect
-                                                        options={selectOptions}
-                                                        value={selectedAnswers}
-                                                        onChange={(e) => {
-                                                            setSelectedAnswers(e);
-                                                            props.setCorrectAnswer(true, index, e);
-                                                            sessionStorage.setItem("selectedAnswers", JSON.stringify(e));
-                                                        }}
-                                                        labelledBy={"Select"}
-                                                        disableSearch={true}
-                                                    />
-                                                </span>
-                                            </OverlayTrigger>
-                                        }
-                                    </div>
+                                <div className="drag-drop-question-action-button m-0 mt-2 mb-2">
+                                    <button
+                                        type="button"
+                                        className="btn btn-success btn-sm"
+                                        onClick={() => {
+                                            props.setIsAddQuestion(true);
+                                        }}
+                                    >
+                                        Add questions
+                                    </button>
                                 </div>
                         }
                         <DragDropContext onDragEnd={onDragEnd}>
@@ -212,13 +159,13 @@ function DragDropAccordion(props) {
                                         ref={provided.innerRef}
                                     >
                                         {
-                                            item.answers.length > 0 ?
+                                            item.questions.length > 0 ?
                                                 <ul className="drag-drop-question-list list-unstyled">
-                                                    {item.answers.map((item, answerIndex) => (
+                                                    {item.answers.map((item, questionIndex) => (
                                                         <Draggable
-                                                            key={'drag-drop-question-answers-list-item-key-' + answerIndex}
-                                                            draggableId={'drag-drop-question-answers-list-item-' + answerIndex}
-                                                            index={answerIndex}
+                                                            key={'drag-drop-question-answers-list-item-key-' + questionIndex}
+                                                            draggableId={'drag-drop-question-answers-list-item-' + questionIndex}
+                                                            index={questionIndex}
                                                         >
                                                             {(provided) => (
                                                                 <li
@@ -228,19 +175,19 @@ function DragDropAccordion(props) {
                                                                     {...provided.dragHandleProps}
                                                                 >
                                                                     {
-                                                                        isEditAnswer && editAnswerCompareIndex === answerIndex ?
+                                                                        isEditQuestion && editQuestionCompareIndex === questionIndex ?
                                                                             <div className="drag-drop-control-input-wrapper mb-1 mt-3 mb-3">
                                                                                 <div className="drag-drop-control-input-label">
                                                                                     <span>Edit:&nbsp;</span>
                                                                                 </div>
                                                                                 <div className="drag-drop-control-input">
                                                                                     <input
-                                                                                        id="answer"
-                                                                                        name="answer"
+                                                                                        id="question"
+                                                                                        name="question"
                                                                                         type="text"
-                                                                                        placeholder="Type answer here. . ."
-                                                                                        onChange={(event) => setEditAnswer(event.target.value)}
-                                                                                        value={editAnswer}
+                                                                                        placeholder="Type question here. . ."
+                                                                                        onChange={(event) => setEditQuestion(event.target.value)}
+                                                                                        value={editQuestion}
                                                                                     />
                                                                                 </div>
                                                                                 <div className="drag-drop-control-button">
@@ -248,13 +195,13 @@ function DragDropAccordion(props) {
                                                                                         type="button"
                                                                                         className="btn btn-success btn-sm mr-1"
                                                                                         onClick={() => {
-                                                                                            const isEmpty = document.getElementById("answer");
+                                                                                            const isEmpty = document.getElementById("question");
                                                                                             
                                                                                             if (isEmpty.value !== "") {
-                                                                                                props.editAnswer(editAnswer, index, answerIndex);
-                                                                                                setEditAnswer('');
-                                                                                                setIsEditAnswer(false);
-                                                                                                setEditAnswerCompareIndex('');
+                                                                                                props.editQuestion(editQuestion, index, questionIndex);
+                                                                                                setEditQuestion('');
+                                                                                                setIsEditQuestion(false);
+                                                                                                setEditQuestionCompareIndex('');
                                                                                             }
                                                                                         }}
                                                                                     >
@@ -264,17 +211,17 @@ function DragDropAccordion(props) {
                                                                             </div>
                                                                         :
                                                                             <div id="drag-drop-feature-answer-list-item" className="row mb-0 border rounded">
-                                                                                <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.answer}>
-                                                                                    {item.answer}
+                                                                                <div id="drag-drop-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.question}>
+                                                                                    {item.question}
                                                                                 </div>
                                                                                 <div className="col-md-5 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
                                                                                     <button
                                                                                         className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                         type="button"
                                                                                         onClick={() => {
-                                                                                            setEditAnswer(item.answer);
-                                                                                            setIsEditAnswer(true);
-                                                                                            setEditAnswerCompareIndex(answerIndex);
+                                                                                            setEditQuestion(item.question);
+                                                                                            setIsEditQuestion(true);
+                                                                                            setEditQuestionCompareIndex(questionIndex);
                                                                                         }}
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faEdit}/>
@@ -283,7 +230,7 @@ function DragDropAccordion(props) {
                                                                                         className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                         type="button"
                                                                                         onClick={() => {
-                                                                                            props.deleteAnswer(index, answerIndex);
+                                                                                            props.deleteQuestion(index, questionIndex);
                                                                                         }}
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faTrash}/>
@@ -297,7 +244,7 @@ function DragDropAccordion(props) {
                                                     ))}
                                                 </ul>
                                             :
-                                                <div><span>No answer/s added.</span></div>
+                                                <div><span>No question/s added.</span></div>
                                         }
                                         {provided.placeholder}
                                     </div>
