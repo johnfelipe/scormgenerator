@@ -50,12 +50,12 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const addQuestion = (value, instructionIndex, correctAnswer) => {
+    const addQuestion = (value, instructionIndex) => {
         const currentColumnObj = currentColumn;
 
         const question = {
             question: value,
-            correct: correctAnswer,
+            answer: '',
         }
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions.push(question);
 
@@ -98,6 +98,14 @@ function DragDrop(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions = questionAnswersArray;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addAnswer = (value, instructionIndex, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions[questionIndex].answer = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -186,6 +194,7 @@ function DragDrop(props) {
                                                                         setMChoiceIndex={props.setMChoiceIndex}
                                                                         setUpdateInstructionCompareIndex={setUpdateInstructionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
+                                                                        addAnswer={addAnswer}
                                                                     />
                                                             }
                                                         </li>
