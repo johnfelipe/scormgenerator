@@ -65,7 +65,7 @@ function DragDropAccordion(props) {
         <Accordion key={'accordion-drag-drop-question-' + index}>
             <Card>
                 <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
-                    <span>Question </span>
+                    <span>Instruction </span>
                     <span>&nbsp;{index+1}</span>
                     <button
                         type="button"
@@ -81,7 +81,7 @@ function DragDropAccordion(props) {
                         className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
                             props.setIsEditInstruction(true);
-                            props.setUpdateInstruction(item.question);
+                            props.setUpdateInstruction(item.instruction);
                             props.setUpdateInstructionCompareIndex(index);
                         }}
                     >
@@ -93,7 +93,7 @@ function DragDropAccordion(props) {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={index}>
                     <Card.Body className="p-2">
-                        <span>Question: <strong>{item.question}</strong></span>
+                        <span>Instruction: <strong>{item.instruction}</strong></span>
                         {
                             isAddQuestion ?
                                 <div className="drag-drop-control-input-wrapper mb-1 mt-3 mb-3">

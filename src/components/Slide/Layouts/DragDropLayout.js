@@ -13,14 +13,14 @@ function DragDropLayout(props) {
             <div className="col-md-12 pl-3 row m-0">
                 <div className="col-md-8">
                     <ul className="drag-drop-question-answers list-unstyled">
-                        {item.answers.map((answer, answerIndex) => (
-                            <li key={"drag-drop-question-answer" + answerIndex}>
+                        {item.questions.map((question, questionIndex) => (
+                            <li key={"drag-drop-question-answer" + questionIndex}>
                                 <div className="drag-drop mb-2 m-0 row">
                                     <div className={"drag-drop-label text-center " + dragDropStyles.dragDropLabelClass}>
-                                        <span><strong>{alpbahet[answerIndex]}</strong></span>
+                                        <span><strong>{alpbahet[questionIndex]}</strong></span>
                                     </div>
                                     <div className="drag-drop-choice-text">
-                                        <span>{answer.answer}</span>
+                                        <span>{question.question}</span>
                                     </div>
                                 </div>
                             </li>
@@ -40,7 +40,7 @@ function DragDropLayout(props) {
                 dragDrop.map((item, itemIndex) => (
                     <div key={"drag-drop-question-" + itemIndex} className={"question-group row mb-4 " + dragDropClass}>
                         <div className="col-md-12">
-                            <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
+                            <p className="font-20"><span>{(itemIndex+1) + '. ' + item.instruction}</span></p>
                         </div>
                         {content(item)}
                         {props.cssApplier(dragDropCss, 'drag-drop-layout')}
