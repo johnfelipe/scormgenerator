@@ -73,8 +73,6 @@ function DragDropAccordion(props) {
 
                 props.setQuestionAnswers(questions, index);
             }
-
-            
         }
     }
 
