@@ -27,6 +27,7 @@ function DragDrop(props) {
         const instruction = {
             instruction: value,
             questions: [],
+            options: [],
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(instruction);
@@ -106,6 +107,16 @@ function DragDrop(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions[questionIndex].answer = value;
+
+        addAnswerOptions(value, instructionIndex)
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const addAnswerOptions = (value, instructionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.push(value);
 
         props.setColumn(currentColumnObj);
     }
