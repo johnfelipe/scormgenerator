@@ -23,15 +23,16 @@ function Card(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setImg(files[0].name, reader.result);
+            setImg(files[0].name, reader.result, files[0].type);
         }
     }
 
-    const setImg = (name, url) => {
+    const setImg = (name, url, type) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.name = name;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.type = type;
 
         props.setColumn(currentColumnObj);
     }
