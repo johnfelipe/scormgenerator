@@ -459,6 +459,13 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                         type: '',
+                        alt: '',
+                    },
+                    title: '',
+                    content: '',
+                    button: {
+                        label: '',
+                        url: '',
                     }
                 },
                 class: '',
