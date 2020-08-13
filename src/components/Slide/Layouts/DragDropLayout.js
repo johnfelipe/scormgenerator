@@ -100,7 +100,20 @@ function DragDropLayout(props) {
                                 <li key={"drag-drop-question-answer" + questionIndex}>
                                     <div className="drag-drop mb-2 m-0 row">
                                         <div className="drag-drop-choice-text font-15">
-                                            <span className="target" data-accept={question.answer}>&nbsp;</span>
+                                            <Droppable droppableId="answer-droppable">
+                                                {(provided) => (
+                                                    <span
+                                                        {...provided.droppableProps}
+                                                        ref={provided.innerRef}
+
+                                                        className="target"
+                                                        data-accept={question.answer}
+                                                    >
+                                                        &nbsp;
+                                                        {provided.placeholder}
+                                                    </span>
+                                                )}
+                                            </Droppable>
                                             <span>,&nbsp;{question.question}</span>
                                         </div>
                                     </div>
