@@ -51,16 +51,16 @@ function DragDropLayout(props) {
 
         return (
             <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="questions-droppable">
-                    {(provided) => (
-                        <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            className="col-md-12 pl-3 row m-0"
-                        >
-                            <div className="col-md-6 text-center">
+                <div className="col-md-12 p-0 row m-0">
+                    <Droppable droppableId="options-droppable">
+                        {(provided) => (
+                            <div
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                                className="col-md-4 p-0"
+                            >
                                 <ul
-                                    className="options text-break"
+                                    className="options text-break w-100"
                                     ref={(el) => {
                                         if (el) {
                                             el.style.setProperty('border-color', dragDropStyles.themeColor, 'important');
@@ -90,25 +90,38 @@ function DragDropLayout(props) {
                                         </Draggable>
                                     ))}
                                 </ul>
+                                {provided.placeholder}
                             </div>
-                            <div className="col-md-6">
-                                <ol className="drag-drop-question-answers">
-                                    {item.questions.map((question, questionIndex) => (
-                                        <li key={"drag-drop-question-answer" + questionIndex}>
-                                            <div className="drag-drop mb-2 m-0 row">
-                                                <div className="drag-drop-choice-text font-15">
-                                                    <span className="target" data-accept={question.answer}>&nbsp;</span>
-                                                    <span>,&nbsp;{question.question}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+                        )}
+                    </Droppable>
+                    <div className="col-md-8 p-0">
+                        <ol className="drag-drop-question-answers">
+                            {item.questions.map((question, questionIndex) => (
+                                <li key={"drag-drop-question-answer" + questionIndex}>
+                                    <div className="drag-drop mb-2 m-0 row">
+                                        <div className="drag-drop-choice-text font-15">
+                                            <Droppable droppableId="answer-droppable">
+                                                {(provided) => (
+                                                    <span
+                                                        {...provided.droppableProps}
+                                                        ref={provided.innerRef}
+
+                                                        className="target"
+                                                        data-accept={question.answer}
+                                                    >
+                                                        &nbsp;
+                                                        {provided.placeholder}
+                                                    </span>
+                                                )}
+                                            </Droppable>
+                                            <span>,&nbsp;{question.question}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
             </DragDropContext>
         );
     }
