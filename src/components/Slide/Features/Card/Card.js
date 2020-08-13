@@ -36,6 +36,13 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setImgAlt = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.alt = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     const setButtonLabel = (e) => {
         const currentColumnObj = currentColumn;
@@ -45,7 +52,6 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
-    
     const setButtonUrl = (e) => {
         const currentColumnObj = currentColumn;
 
@@ -85,6 +91,21 @@ function Card(props) {
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Alt</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(e) => setImgAlt(e.target.value)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.img.alt && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.alt
+                                    }
+                                />
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
