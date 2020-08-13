@@ -1,33 +1,11 @@
-import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import React from 'react';
 
 // components
-import ListModals from '../Features/List/ListModals';
+import ListButtonModals from '../Features/List/ListButtonModals';
 
 function ListModalLayout(props) {
 
     const { output, styles } = props;
-
-    const [modalShow, setModalShow] = useState(false);
-
-    const buttonModal = (
-        <Modal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>
-                    Sample title
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                Sample content
-            </Modal.Body>
-        </Modal>
-    );
     
     return (
         <div id="list-layout">
@@ -35,7 +13,7 @@ function ListModalLayout(props) {
                 {output.length > 0 ?
                     <>
                         {output.map((item, index) => (
-                            <ListModals
+                            <ListButtonModals
                                 item={item}
                                 index={index}
                                 styles={styles}
@@ -46,7 +24,6 @@ function ListModalLayout(props) {
                     <span>No content added yet.</span>
                 }
             </div>
-            {buttonModal}
         </div>
     );
 }

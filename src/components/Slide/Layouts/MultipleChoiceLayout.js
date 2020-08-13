@@ -204,8 +204,8 @@ function MultipleChoiceLayout(props) {
                 );
             } else {
                 return (
-                    <div className="col-md-12 ml-2">
-                        <ul className="multiple-choice-question-answers list-unstyled">
+                    <div className="col-md-12 pl-3 row m-0">
+                        <ul className="multiple-choice-question-answers list-unstyled ml-3">
                             {
                                 item.answers.map((answer, answerIndex) => (
                                     <li key={"multiple-choice-question-answer" + answerIndex}>
@@ -415,22 +415,20 @@ function MultipleChoiceLayout(props) {
                 );
             } else {
                 return (
-                    <div className="col-md-12 ml-2">
-                        <ul className="multiple-choice-question-answers list-unstyled">
-                            {
-                                item.answers.map((answer, answerIndex) => (
-                                    <li key={"multiple-choice-question-answer" + answerIndex}>
-                                        <div className="multiple-choice mb-2 row m-0">
-                                            <div className={"multiple-choice-label text-center " + multipleChoiceStyles.questionLabelClass}>
-                                                <span><strong>{alpbahet[answerIndex]}</strong></span>
-                                            </div>
-                                            <div className="multiple-choice-choice-text">
-                                                <span>{answer.answer}</span>
-                                            </div>
+                    <div className="col-md-12 pl-3 row m-0">
+                        <ul className="multiple-choice-question-answers list-unstyled ml-3">
+                            {item.answers.map((answer, answerIndex) => (
+                                <li key={"multiple-choice-question-answer" + answerIndex}>
+                                    <div className="multiple-choice mb-2 row m-0">
+                                        <div className={"multiple-choice-label text-center " + multipleChoiceStyles.questionLabelClass}>
+                                            <span><strong>{alpbahet[answerIndex]}</strong></span>
                                         </div>
-                                    </li>
-                                ))
-                            }
+                                        <div className="multiple-choice-choice-text">
+                                            <span>{answer.answer}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 );

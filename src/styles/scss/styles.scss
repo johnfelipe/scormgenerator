@@ -17,6 +17,7 @@
 @import "components/features/multiple-choice";
 @import "components/features/course-obj";
 @import "components/features/list-modal";
+@import "components/features/drag-drop";
 
 @include defaults;
 @include header;
@@ -37,3 +38,4 @@
 @include multiple-choice;
 @include course-obj;
 @include list-modal;
+@include drag-drop;
