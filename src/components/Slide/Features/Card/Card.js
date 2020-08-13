@@ -16,14 +16,6 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setSubTitle = (e) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.subtitle = e.target.value;
-
-        props.setColumn(currentColumnObj);
-    }
-
     const handleImageChange = (e) => {
         e.preventDefault();
         let files = e.target.files;
@@ -64,6 +56,19 @@ function Card(props) {
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Image</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                    </span>
+                                </label>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Title</span>
@@ -84,27 +89,22 @@ function Card(props) {
                                 <span>Content</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(e) => setSubTitle(e)}
-                                    value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.subtitle && currentColumn.content[currentColumnContentIndex][contentIndex].output.subtitle
-                                    }
-                                />
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
-                            <div className="sg-control-input-list-label">
-                                <span>Image</span>
-                            </div>
-                            <div className="sg-control-input-list-input input-group">
-                                <label className="input-group-btn">
-                                    <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
-                                    </span>
-                                </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
+                                <div className="sg-expandable-code-editor">
+                                    <div className="sg-workspace-expander">
+                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                            <button
+                                                type="button"
+                                                className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                onClick={() => {
+                                                    props.setShowTextEditor(true, contentIndex, 'card');
+                                                }}
+                                            >
+                                                <span>Edit</span>
+                                            </button>
+                                            <input type="text" value="" disabled className="rounded"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
