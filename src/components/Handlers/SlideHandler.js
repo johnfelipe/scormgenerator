@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -53,6 +53,7 @@ class SlideHandler extends Component {
             ],
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
@@ -447,6 +448,22 @@ class SlideHandler extends Component {
                 styles: {
                     dragDropBackgroundColor: '#fff',
                     dragDropTextColor: 'text-black',
+                    themeColor: '#0069d9',
+                },
+            };
+        } else if (featureType === "dragDrop") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'card',
+                output: {
+                    img: {
+                        name: '',
+                        url: '',
+                        type: '',
+                    }
+                },
+                class: '',
+                id: '',
+                styles: {
                     themeColor: '#0069d9',
                 },
             };
