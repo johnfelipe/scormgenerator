@@ -276,7 +276,33 @@ function DragDropAccordion(props) {
                                                                                     }
                                                                                 >
                                                                                     {item.answer ?
-                                                                                        <span className="p-3">Answer: <strong>{item.answer}</strong></span>
+                                                                                        <div className="row m-0 px-2">
+                                                                                            <div className="p-0 col-md-8" title={item.answer}>
+                                                                                                {item.answer}
+                                                                                            </div>
+                                                                                            <div className="col-md-4 p-0 drag-drop-feature-answer-list-item-action-buttons text-right">
+                                                                                                <button
+                                                                                                    className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                    type="button"
+                                                                                                    // onClick={() => {
+                                                                                                    //     setEditQuestion(item.question);
+                                                                                                    //     setIsEditQuestion(true);
+                                                                                                    //     setEditQuestionCompareIndex(questionIndex);
+                                                                                                    // }}
+                                                                                                >
+                                                                                                    <FontAwesomeIcon icon={faEdit}/>
+                                                                                                </button>
+                                                                                                <button
+                                                                                                    className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                    type="button"
+                                                                                                    // onClick={() => {
+                                                                                                    //     props.deleteQuestion(index, questionIndex);
+                                                                                                    // }}
+                                                                                                >
+                                                                                                    <FontAwesomeIcon icon={faTrash}/>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     :
                                                                                         addAnswer ?
                                                                                             <div className="drag-drop-control-input-wrapper mt-2 mb-2">
