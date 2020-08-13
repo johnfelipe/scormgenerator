@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
-import ColorPicker from '../../../Common/ColorPicker';
 
 function Card(props) {
 
     const currentColumn = props.currentColumn;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentIndex = props.contentIndex;
-    const [showPicker, setShowPicker] = useState(false);
-    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor;
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -47,22 +44,6 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setTitleBoxColor = (color) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor = color;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setTitleBorder = (e) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder = e.target.value;
-
-        props.setColumn(currentColumnObj);
-    }
-
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -77,7 +58,7 @@ function Card(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-text-editor">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
@@ -115,7 +96,7 @@ function Card(props) {
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
-                                <span>Background</span>
+                                <span>Image</span>
                             </div>
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
@@ -123,7 +104,7 @@ function Card(props) {
                                         <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name} readOnly/>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
                             </div>
                         </li>
                     </ul>
@@ -137,45 +118,34 @@ function Card(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Title Position</span>
+                                <span>ID</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].class}
-                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
-                                    className="form-control-plaintext border border-secondary rounded"
-                                >
-                                    <option value="course-title-top-left">Top-left</option>
-                                    <option value="course-title-bottom-left">Bottom-left</option>
-                                    <option value="course-title-top-right">Top-right</option>
-                                    <option value="course-title-bottom-right">Bottom-right</option>
-                                    <option value="course-title-center">Center</option>
-                                </select>
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id
+                                    }
+                                />
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Title Border Position</span>
+                                <span>Class</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder}
-                                    onChange={(event) => setTitleBorder(event, contentIndex)}
-                                    className="form-control-plaintext border border-secondary rounded"
-                                >
-                                    <option value="border-bottom">Border-bottom</option>
-                                    <option value="border-left">Border-left</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label homepage-color-scheme-label">
-                                <span>Color Scheme</span>
-                            </div>
-                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
-                                    <span className="h-100 w-100 text-white">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor}</span>
-                                </div>
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].class &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].class
+                                    }
+                                />
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -186,7 +156,7 @@ function Card(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
@@ -198,12 +168,6 @@ function Card(props) {
                     </ul>
                 </div>
             </div>
-            <ColorPicker
-                classNames="position-absolute homepage-color-picker"
-                showPicker={showPicker}
-                setBackgroundColor={setTitleBoxColor}
-                defaultColor={titleBoxColor}
-            />
         </div>
     )
 }
