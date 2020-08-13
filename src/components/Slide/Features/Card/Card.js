@@ -27,22 +27,6 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setDate = (e) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.date = e.target.value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const setCourseId = (e) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseId = e.target.value;
-
-        props.setColumn(currentColumnObj);
-    }
-
     const handleImageChange = (e) => {
         e.preventDefault();
         let files = e.target.files;
@@ -50,15 +34,15 @@ function Card(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            setImg(files[0].name, reader.result);
         }
     }
 
-    const setBackgroundImg = (name, url) => {
+    const setImg = (name, url) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name = name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.url = url;
 
         props.setColumn(currentColumnObj);
     }
