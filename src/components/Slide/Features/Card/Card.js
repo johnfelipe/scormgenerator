@@ -144,7 +144,7 @@ function Card(props) {
                                     placeholder=""
                                     onChange={(e) => setButtonLabel(e)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label &
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label &&
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label
                                     }
                                 />
@@ -160,7 +160,7 @@ function Card(props) {
                                     placeholder=""
                                     onChange={(e) => setButtonUrl(e)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url &
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url &&
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url
                                     }
                                 />
