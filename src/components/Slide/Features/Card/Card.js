@@ -36,6 +36,24 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
+    
+    const setButtonLabel = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    
+    const setButtonUrl = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -105,6 +123,47 @@ function Card(props) {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+                <div className="sg-control-header">
+                    <label>Button Setup</label>
+                </div>
+                <div className="sg-control-input">
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Label</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(e) => setButtonLabel(e)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label &
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label
+                                    }
+                                />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>URL</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(e) => setButtonUrl(e)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url &
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url
+                                    }
+                                />
                             </div>
                         </li>
                     </ul>
