@@ -452,7 +452,7 @@ class SlideHandler extends Component {
                     themeColor: '#0069d9',
                 },
             };
-        } else if (featureType === "dragDrop") {
+        } else if (featureType === "card") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'card',
                 output: {
