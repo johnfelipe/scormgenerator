@@ -6,7 +6,7 @@ function CardLayout(props) {
 
     return (
         <div id={cardId ? cardId : "card-layout"} className={"card " + cardClass}>
-            <img className="card-img-top" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
+            <img className="card-img-top border border-secondary" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
             <div className="card-body">
                 <h5 className="card-title">{cardOutput.title}</h5>
                 <p className="card-text">{cardOutput.content}</p>
