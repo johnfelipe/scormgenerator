@@ -462,8 +462,8 @@ class SlideHandler extends Component {
                         type: '',
                         alt: '',
                     },
-                    title: '',
-                    content: '',
+                    title: 'Card title',
+                    content: 'No content provided yet.',
                     button: {
                         label: '',
                         url: '',
@@ -723,8 +723,8 @@ class SlideHandler extends Component {
                                     type: '',
                                     alt: '',
                                 },
-                                title: '',
-                                content: '',
+                                title: 'Card title',
+                                content: 'No content provided yet.',
                                 button: {
                                     label: '',
                                     url: '',
