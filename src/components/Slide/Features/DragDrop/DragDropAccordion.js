@@ -300,7 +300,7 @@ function DragDropAccordion(props) {
                                                                                                             const isEmpty = document.getElementById("answer");
                                                                                                             
                                                                                                             if (isEmpty.value !== "") {
-                                                                                                                props.addAnswer(answer, index, questionIndex);
+                                                                                                                props.editAnswer(answer, index, questionIndex);
                                                                                                                 setAnswer('');
                                                                                                                 setEditAnswer(false);
                                                                                                             }
