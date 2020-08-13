@@ -712,6 +712,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: '',
+                                content: '',
+                                button: {
+                                    label: '',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
