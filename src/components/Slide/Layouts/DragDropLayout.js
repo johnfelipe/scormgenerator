@@ -56,11 +56,11 @@ function DragDropLayout(props) {
                         <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
-                            className="col-md-12 pl-3 row m-0"
+                            className="col-md-12 p-0 row m-0"
                         >
-                            <div className="col-md-6 text-center">
+                            <div className="col-md-4 p-0">
                                 <ul
-                                    className="options text-break"
+                                    className="options text-break w-100"
                                     ref={(el) => {
                                         if (el) {
                                             el.style.setProperty('border-color', dragDropStyles.themeColor, 'important');
@@ -91,7 +91,7 @@ function DragDropLayout(props) {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-8 p-0">
                                 <ol className="drag-drop-question-answers">
                                     {item.questions.map((question, questionIndex) => (
                                         <li key={"drag-drop-question-answer" + questionIndex}>
