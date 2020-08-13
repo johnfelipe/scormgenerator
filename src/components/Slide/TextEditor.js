@@ -20,6 +20,8 @@ function TextEditor(props) {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
             } else if (editorType.for === 'mChoiceExplanation') {
                 currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation.content = value;
+            } else if (editorType.for === 'card') {
+                currentColumn.content[currentColumnContentIndex][contentIndex].output.content = value;
             }
         }
 
@@ -49,7 +51,10 @@ function TextEditor(props) {
                                 contentFor === 'courseReq' ? 
                                     typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                                 :
-                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation.content
+                                    contentFor === 'card' ? 
+                                        typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.content
+                                    :
+                                        typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation && currentColumn.content[currentColumnContentIndex][contentIndex].output[mChoiceIndex].explanation.content
                         }
                         onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                     />
