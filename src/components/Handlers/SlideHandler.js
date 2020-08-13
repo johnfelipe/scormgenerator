@@ -27,6 +27,7 @@ import CourseObjLayout from '../Slide/Layouts/CourseObjLayout';
 import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 import VideoLayout from '../Slide/Layouts/VideoLayout';
 import DragDropLayout from '../Slide/Layouts/DragDropLayout';
+import CardLayout from '../Slide/Layouts/CardLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -2718,8 +2719,33 @@ class SlideHandler extends Component {
                                                                                                                             dragDropClass={contentFirst.class}
                                                                                                                             dragDropId={contentFirst.id}
                                                                                                                             dragDropStyles={contentFirst.styles}
-                                                                                                                            dragDropCss={contentFirst.css}
-                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'card' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        className="content-output"
+                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex,
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <CardLayout
+                                                                                                                            cardOutput={contentFirst.output}
+                                                                                                                            cardClass={contentFirst.class}
+                                                                                                                            cardId={contentFirst.id}
+                                                                                                                            cardStyles={contentFirst.styles}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -2730,6 +2756,7 @@ class SlideHandler extends Component {
                                                                                                                 contentFirst.type !== 'listModal' &&
                                                                                                                 contentFirst.type !== 'video' &&
                                                                                                                 contentFirst.type !== 'dragDrop' &&
+                                                                                                                contentFirst.type !== 'card' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
