@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faPowerOff, faFileImage } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -61,6 +61,7 @@ class SlideHandler extends Component {
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
                 { type: 'ending', name: 'Ending', icon: faPowerOff, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
+                { type: 'image', name: 'Image', icon: faFileImage, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
                 { type: 'video', name: 'Video', icon: faVideo, },
@@ -495,6 +496,18 @@ class SlideHandler extends Component {
                     titleBoxBorder: 'border-bottom'
                 }
             };
+        } else if (featureType === "image") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'image',
+                output: {
+                    name: '',
+                    url: '',
+                    type: '',
+                    paragraph: '',
+                },
+                class: '',
+                id: '',
+            };
         }
 
         const columns = this.state.column;
@@ -783,6 +796,26 @@ class SlideHandler extends Component {
                             }
                         };
 
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'image') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                name: '',
+                                url: '',
+                                type: '',
+                                paragraph: '',
+                            },
+                            class: '',
+                            id: '',
+                        };
+                        
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
