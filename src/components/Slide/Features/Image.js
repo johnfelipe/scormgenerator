@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 
-function Video(props) {
+function Image(props) {
     
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
 
-    const setVideo = (name, url, type) => {
+    const setImage = (name, url, type) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.name = name;
@@ -19,34 +19,22 @@ function Video(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setVtt = (name, url, type) => {
+    const handleImageChange = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setImage(files[0].name, reader.result, files[0].type);
+        }
+    }
+
+    const setImgAlt = (value) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.name = name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.url = url;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.type = type;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.alt = value;
 
         props.setColumn(currentColumnObj);
-    }
-
-    const handleVideoChange = (e) => {
-        let files = e.target.files;
-        let reader = new FileReader();
-
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-            setVideo(files[0].name, reader.result, files[0].type);
-        }
-    }
-
-    const handleVttUpload = (e) => {
-        let files = e.target.files;
-        let reader = new FileReader();
-
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-            setVtt(files[0].name, reader.result, files[0].type);
-        }
     }
     
     return (
@@ -71,28 +59,31 @@ function Video(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
-                                <span>Video</span>
+                                <span>Image</span>
                             </div>
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleVideoChange} accept="video/*"/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Upload video" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.name} readOnly/>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.name} readOnly/>
                             </div>
                         </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Vtt file</span>
+                                <span>Alt</span>
                             </div>
-                            <div className="sg-control-input-list-input input-group">
-                                <label className="input-group-btn">
-                                    <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleVttUpload}/>
-                                    </span>
-                                </label>
-                                <input type="text" placeholder="Upload subtitle" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name} readOnly/>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(e) => setImgAlt(e.target.value)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.alt &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.alt
+                                    }
+                                />
                             </div>
                         </li>
                     </ul>
@@ -196,4 +187,4 @@ function Video(props) {
     );
 }
 
-export default Video;
+export default Image;

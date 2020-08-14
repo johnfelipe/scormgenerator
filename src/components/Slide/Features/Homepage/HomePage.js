@@ -44,7 +44,6 @@ function HomePage(props) {
     }
 
     const handleImageChange = (e) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 

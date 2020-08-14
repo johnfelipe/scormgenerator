@@ -18,7 +18,6 @@ function MediaUploader(props) {
     const [fileIndex, setFileIndex] = useState('');
 
     const handleFileUpload = (e) => {
-        e.preventDefault();
         let files = e.target.files;
         console.log(files);
 
