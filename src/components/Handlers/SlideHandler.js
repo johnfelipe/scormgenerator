@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -28,6 +28,7 @@ import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 import VideoLayout from '../Slide/Layouts/VideoLayout';
 import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 import CardLayout from '../Slide/Layouts/CardLayout';
+import EndingLayout from '../Slide/Layouts/EndingLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -58,6 +59,7 @@ class SlideHandler extends Component {
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
+                { type: 'ending', name: 'Ending', icon: faPowerOff, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
@@ -475,6 +477,24 @@ class SlideHandler extends Component {
                     themeColor: '#0069d9',
                 },
             };
+        } else if (featureType === "ending") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'ending',
+                output: {
+                    title: 'Ending Title',
+                    subtitle: 'Ending Subtitle',
+                    backgroundImg: {
+                        name: '',
+                        url: ''
+                    }
+                },
+                class: 'course-title-bottom-left',
+                id: '',
+                styles: {
+                    titleBoxColor: '#0069d9',
+                    titleBoxBorder: 'border-bottom'
+                }
+            };
         }
 
         const columns = this.state.column;
@@ -735,6 +755,32 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'ending') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                title: 'Ending Title',
+                                subtitle: 'Ending Subtitle',
+                                backgroundImg: {
+                                    name: '',
+                                    url: ''
+                                }
+                            },
+                            class: 'course-title-bottom-left',
+                            id: '',
+                            styles: {
+                                titleBoxColor: '#0069d9',
+                                titleBoxBorder: 'border-bottom'
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -3308,6 +3354,42 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'ending' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        className="content-output"
+                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <EndingLayout
+                                                                                                                            title={contentFirst.output.title}
+                                                                                                                            subtitle={contentFirst.output.subtitle}
+                                                                                                                            date={contentFirst.output.date}
+                                                                                                                            courseId={contentFirst.output.courseId}
+                                                                                                                            backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                            homePageClass={contentFirst.class}
+                                                                                                                            styles={contentFirst.styles}
+                                                                                                                            homepageId={contentFirst.id}
+                                                                                                                            homePageCss={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
@@ -3316,6 +3398,7 @@ class SlideHandler extends Component {
                                                                                                                 contentFirst.type !== 'video' &&
                                                                                                                 contentFirst.type !== 'dragDrop' &&
                                                                                                                 contentFirst.type !== 'card' &&
+                                                                                                                contentFirst.type !== 'ending' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
