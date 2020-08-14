@@ -10,7 +10,7 @@ function CardLayout(props) {
             <div className="card-body">
                 <h5 className="card-title">{cardOutput.title}</h5>
                 <p className="card-text">{cardOutput.content}</p>
-                {cardOutput.button.label &&
+                {cardOutput.button.url &&
                     <a
                         href={cardOutput.button.url}
                         className="btn btn-primary"
