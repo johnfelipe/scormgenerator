@@ -807,6 +807,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
@@ -862,6 +893,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -931,6 +993,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
@@ -985,6 +1078,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1057,6 +1181,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
@@ -1114,6 +1269,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1186,6 +1372,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
@@ -1250,6 +1467,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
@@ -1307,6 +1555,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1379,6 +1658,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-2')) {
 
@@ -1436,6 +1746,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1507,6 +1848,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-4')) {
 
@@ -1564,6 +1936,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnFour.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1636,6 +2039,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
@@ -1693,6 +2127,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1764,6 +2229,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
@@ -1828,6 +2324,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnFour.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
@@ -1885,6 +2412,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnFive.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnFive.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -2838,7 +3396,7 @@ class SlideHandler extends Component {
                                                                                         key={'sg-1-2-1-' + index} 
                                                                                         ref={provided.innerRef} 
                                                                                         id={'sg-1-2-1-' + index} 
-                                                                                        className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="0"
+                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-2" tabIndex="0"
                                                                                     >
                                                                                         {
                                                                                             typeof item.content['subColumnOne'] != "undefined" ? 
@@ -2888,8 +3446,36 @@ class SlideHandler extends Component {
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
+
+                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex,
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <CardLayout
+                                                                                                                                cardOutput={contentFirst.output}
+                                                                                                                                cardClass={contentFirst.class}
+                                                                                                                                cardId={contentFirst.id}
+                                                                                                                                cardStyles={contentFirst.styles}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
                                                                                                                         
                                                                                                                     {contentFirst.type !== 'listModal' &&
+                                                                                                                    contentFirst.type !== 'card' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -2953,7 +3539,7 @@ class SlideHandler extends Component {
                                                                                         key={'sg-1-2-2-' + index} 
                                                                                         ref={provided.innerRef} 
                                                                                         id={'sg-1-2-2-' + index} 
-                                                                                        className="d-inline p-5 text-center sg-column sg-1-2" tabIndex="1"
+                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-2" tabIndex="1"
                                                                                     >
                                                                                         {
                                                                                             typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -3003,8 +3589,36 @@ class SlideHandler extends Component {
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
+
+                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                            className="content-output"
+                                                                                                                            id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentSecondIndex,
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                    'subColumnTwo'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <CardLayout
+                                                                                                                                cardOutput={contentSecond.output}
+                                                                                                                                cardClass={contentSecond.class}
+                                                                                                                                cardId={contentSecond.id}
+                                                                                                                                cardStyles={contentSecond.styles}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
                                                                                                                         
                                                                                                                     {contentSecond.type !== 'listModal' &&
+                                                                                                                    contentSecond.type !== 'card' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -3076,7 +3690,7 @@ class SlideHandler extends Component {
                                                                                             key={'sg-1-3-1-' + index} 
                                                                                             ref={provided.innerRef} 
                                                                                             id={'sg-1-3-1-' + index} 
-                                                                                            className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
+                                                                                            className="d-inline p-3 text-center sg-column h-100 sg-1-3" tabIndex="0"
                                                                                         >
                                                                                             {
                                                                                                 typeof item.content['subColumnOne'] != "undefined" ? 
@@ -3116,7 +3730,7 @@ class SlideHandler extends Component {
                                                                                                                                             contentFirst.id 
                                                                                                                                         : 
                                                                                                                                             'sg-1-3-1-content-output-' + contentFirstIndex, 
-                                                                                                                                        'subColumnTwo'
+                                                                                                                                        'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
                                                                                                                             >
@@ -3126,7 +3740,36 @@ class SlideHandler extends Component {
                                                                                                                                 />
                                                                                                                             </div>
                                                                                                                         }
+
+                                                                                                                        {contentFirst.type === 'card' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                className="content-output"
+                                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex,
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                <CardLayout
+                                                                                                                                    cardOutput={contentFirst.output}
+                                                                                                                                    cardClass={contentFirst.class}
+                                                                                                                                    cardId={contentFirst.id}
+                                                                                                                                    cardStyles={contentFirst.styles}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
+
                                                                                                                         {contentFirst.type !== 'listModal' &&
+                                                                                                                        contentFirst.type !== 'card' &&
                                                                                                                             <div
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
@@ -3190,7 +3833,7 @@ class SlideHandler extends Component {
                                                                                             key={'sg-2-3-2-' + index} 
                                                                                             ref={provided.innerRef} 
                                                                                             id={'sg-2-3-2-' + index} 
-                                                                                            className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="1"
+                                                                                            className="d-inline p-3 text-center sg-column h-100 sg-2-3" tabIndex="1"
                                                                                         >
                                                                                             {
                                                                                                 typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -3240,7 +3883,36 @@ class SlideHandler extends Component {
                                                                                                                                 />
                                                                                                                             </div>
                                                                                                                         }
+
+                                                                                                                        {contentSecond.type === 'card' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                className="content-output"
+                                                                                                                                id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex,
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                <CardLayout
+                                                                                                                                    cardOutput={contentSecond.output}
+                                                                                                                                    cardClass={contentSecond.class}
+                                                                                                                                    cardId={contentSecond.id}
+                                                                                                                                    cardStyles={contentSecond.styles}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
+
                                                                                                                         {contentSecond.type !== 'listModal' &&
+                                                                                                                        contentSecond.type !== 'card' &&
                                                                                                                             <div
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
@@ -3312,7 +3984,7 @@ class SlideHandler extends Component {
                                                                                                 key={'sg-2-3-1-' + index} 
                                                                                                 ref={provided.innerRef} 
                                                                                                 id={'sg-2-3-1-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-2-3" tabIndex="0"
+                                                                                                className="d-inline p-3 text-center sg-column h-100 sg-2-3" tabIndex="0"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
@@ -3352,7 +4024,7 @@ class SlideHandler extends Component {
                                                                                                                                                 contentFirst.id 
                                                                                                                                             : 
                                                                                                                                                 'sg-2-3-1-content-output-' + contentFirstIndex, 
-                                                                                                                                            'subColumnTwo'
+                                                                                                                                            'subColumnOne'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
@@ -3362,7 +4034,36 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentFirst.type === 'card' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    className="content-output"
+                                                                                                                                    id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex,
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <CardLayout
+                                                                                                                                        cardOutput={contentFirst.output}
+                                                                                                                                        cardClass={contentFirst.class}
+                                                                                                                                        cardId={contentFirst.id}
+                                                                                                                                        cardStyles={contentFirst.styles}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
                                                                                                                             {contentFirst.type !== 'listModal' &&
+                                                                                                                            contentFirst.type !== 'card' &&
                                                                                                                                 <div
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -3426,7 +4127,7 @@ class SlideHandler extends Component {
                                                                                                 key={'sg-1-3-2-' + index} 
                                                                                                 ref={provided.innerRef} 
                                                                                                 id={'sg-1-3-2-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
+                                                                                                className="d-inline p-3 text-center sg-column h-100 sg-1-3" tabIndex="1"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -3476,7 +4177,36 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentSecond.type === 'card' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    className="content-output"
+                                                                                                                                    id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex,
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <CardLayout
+                                                                                                                                        cardOutput={contentSecond.output}
+                                                                                                                                        cardClass={contentSecond.class}
+                                                                                                                                        cardId={contentSecond.id}
+                                                                                                                                        cardStyles={contentSecond.styles}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
                                                                                                                             {contentSecond.type !== 'listModal' &&
+                                                                                                                            contentSecond.type !== 'card' &&
                                                                                                                                 <div
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -3549,7 +4279,7 @@ class SlideHandler extends Component {
                                                                                                 key={'sg-1-3-1-1-' + index} 
                                                                                                 ref={provided.innerRef} 
                                                                                                 id={'sg-1-3-1-1-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="0"
+                                                                                                className="d-inline p-3 text-center sg-column h-100 sg-1-3" tabIndex="0"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnOne'] != "undefined" ? 
@@ -3599,7 +4329,36 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentFirst.type === 'card' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    className="content-output"
+                                                                                                                                    id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex,
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <CardLayout
+                                                                                                                                        cardOutput={contentFirst.output}
+                                                                                                                                        cardClass={contentFirst.class}
+                                                                                                                                        cardId={contentFirst.id}
+                                                                                                                                        cardStyles={contentFirst.styles}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
                                                                                                                             {contentFirst.type !== 'listModal' &&
+                                                                                                                            contentFirst.type !== 'card' &&
                                                                                                                                 <div
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -3663,7 +4422,7 @@ class SlideHandler extends Component {
                                                                                                 key={'sg-1-3-1-2-' + index} 
                                                                                                 ref={provided.innerRef} 
                                                                                                 id={'sg-1-3-1-2-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="1"
+                                                                                                className="d-inline p-3 text-center sg-column h-100 sg-1-3" tabIndex="1"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -3713,7 +4472,36 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentSecond.type === 'card' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    className="content-output"
+                                                                                                                                    id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex,
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <CardLayout
+                                                                                                                                        cardOutput={contentSecond.output}
+                                                                                                                                        cardClass={contentSecond.class}
+                                                                                                                                        cardId={contentSecond.id}
+                                                                                                                                        cardStyles={contentSecond.styles}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
                                                                                                                             {contentSecond.type !== 'listModal' &&
+                                                                                                                            contentSecond.type !== 'card' &&
                                                                                                                                 <div
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -3777,7 +4565,7 @@ class SlideHandler extends Component {
                                                                                                 key={'sg-1-3-1-3-' + index} 
                                                                                                 ref={provided.innerRef} 
                                                                                                 id={'sg-1-3-1-3-' + index} 
-                                                                                                className="d-inline p-5 text-center sg-column sg-1-3" tabIndex="2"
+                                                                                                className="d-inline p-3 text-center sg-column h-100 sg-1-3" tabIndex="2"
                                                                                             >
                                                                                                 {
                                                                                                     typeof item.content['subColumnThree'] != "undefined" ? 
@@ -3827,7 +4615,36 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentThird.type === 'card' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                    className="content-output"
+                                                                                                                                    id={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentThirdIndex,
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                            'subColumnThree'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <CardLayout
+                                                                                                                                        cardOutput={contentThird.output}
+                                                                                                                                        cardClass={contentThird.class}
+                                                                                                                                        cardId={contentThird.id}
+                                                                                                                                        cardStyles={contentThird.styles}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
                                                                                                                             {contentThird.type !== 'listModal' &&
+                                                                                                                            contentThird.type !== 'card' &&
                                                                                                                                 <div
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -3900,7 +4717,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-4-1-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-4-1-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="0"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-4" tabIndex="0"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnOne'] != "undefined" ? 
@@ -3950,7 +4767,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFirstIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                                    'subColumnOne'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentFirst.output}
+                                                                                                                                                cardClass={contentFirst.class}
+                                                                                                                                                cardId={contentFirst.id}
+                                                                                                                                                cardStyles={contentFirst.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentFirst.type !== 'listModal' &&
+                                                                                                                                    contentFirst.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4014,7 +4860,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-4-2-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-4-2-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="1"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-4" tabIndex="1"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -4064,7 +4910,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentSecondIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                                    'subColumnTwo'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentSecond.output}
+                                                                                                                                                cardClass={contentSecond.class}
+                                                                                                                                                cardId={contentSecond.id}
+                                                                                                                                                cardStyles={contentSecond.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentSecond.type !== 'listModal' &&
+                                                                                                                                    contentSecond.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4128,7 +5003,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-4-3-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-4-3-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="2"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-4" tabIndex="2"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnThree'] != "undefined" ? 
@@ -4178,7 +5053,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentThird.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentThirdIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                                    'subColumnThree'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentThird.output}
+                                                                                                                                                cardClass={contentThird.class}
+                                                                                                                                                cardId={contentThird.id}
+                                                                                                                                                cardStyles={contentThird.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentThird.type !== 'listModal' &&
+                                                                                                                                    contentThird.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4242,7 +5146,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-4-4-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-4-4-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-4" tabIndex="3"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-4" tabIndex="3"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnFour'] != "undefined" ? 
@@ -4292,7 +5196,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentFourth.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentFourth.output}
+                                                                                                                                                cardClass={contentFourth.class}
+                                                                                                                                                cardId={contentFourth.id}
+                                                                                                                                                cardStyles={contentFourth.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentFourth.type !== 'listModal' &&
+                                                                                                                                    contentFourth.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4364,7 +5297,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-5-1-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-5-1-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="0"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-5" tabIndex="0"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnOne'] != "undefined" ? 
@@ -4414,7 +5347,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFirstIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                                    'subColumnOne'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentFirst.output}
+                                                                                                                                                cardClass={contentFirst.class}
+                                                                                                                                                cardId={contentFirst.id}
+                                                                                                                                                cardStyles={contentFirst.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentFirst.type !== 'listModal' &&
+                                                                                                                                    contentFirst.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4478,7 +5440,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-5-2-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-5-2-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="1"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-5" tabIndex="1"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnTwo'] != "undefined" ? 
@@ -4528,7 +5490,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentSecondIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                                    'subColumnTwo'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentSecond.output}
+                                                                                                                                                cardClass={contentSecond.class}
+                                                                                                                                                cardId={contentSecond.id}
+                                                                                                                                                cardStyles={contentSecond.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentSecond.type !== 'listModal' &&
+                                                                                                                                    contentSecond.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4592,7 +5583,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-5-3-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-5-3-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="2"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-5" tabIndex="2"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnThree'] != "undefined" ? 
@@ -4642,7 +5633,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentThird.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentThirdIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                                    'subColumnThree'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentThird.output}
+                                                                                                                                                cardClass={contentThird.class}
+                                                                                                                                                cardId={contentThird.id}
+                                                                                                                                                cardStyles={contentThird.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentThird.type !== 'listModal' &&
+                                                                                                                                    contentThird.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4706,7 +5726,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-5-4-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-5-4-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="3"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-5" tabIndex="3"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnFour'] != "undefined" ? 
@@ -4756,7 +5776,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentFourth.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentFourth.output}
+                                                                                                                                                cardClass={contentFourth.class}
+                                                                                                                                                cardId={contentFourth.id}
+                                                                                                                                                cardStyles={contentFourth.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+                                                                                                                                    
                                                                                                                                     {contentFourth.type !== 'listModal' &&
+                                                                                                                                    contentFourth.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -4820,7 +5869,7 @@ class SlideHandler extends Component {
                                                                                                         key={'sg-1-5-5-' + index} 
                                                                                                         ref={provided.innerRef} 
                                                                                                         id={'sg-1-5-5-' + index} 
-                                                                                                        className="d-inline p-5 text-center sg-column sg-1-5" tabIndex="4"
+                                                                                                        className="d-inline p-3 text-center sg-column h-100 sg-1-5" tabIndex="4"
                                                                                                     >
                                                                                                         {
                                                                                                             typeof item.content['subColumnFive'] != "undefined" ? 
@@ -4870,7 +5919,36 @@ class SlideHandler extends Component {
                                                                                                                                             />
                                                                                                                                         </div>
                                                                                                                                     }
+
+                                                                                                                                    {contentFifth.type === 'card' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFifthIndex}
+                                                                                                                                            className="content-output"
+                                                                                                                                            id={item.id + '-content-output-' + contentFifthIndex}
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFifthIndex,
+                                                                                                                                                    item.id + '-content-output-' + contentFifthIndex,
+                                                                                                                                                    'subColumnFive'
+                                                                                                                                                )
+                                                                                                                                            }
+                                                                                                                                        >
+                                                                                                                                            <CardLayout
+                                                                                                                                                cardOutput={contentFifth.output}
+                                                                                                                                                cardClass={contentFifth.class}
+                                                                                                                                                cardId={contentFifth.id}
+                                                                                                                                                cardStyles={contentFifth.styles}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
                                                                                                                                     {contentFifth.type !== 'listModal' &&
+                                                                                                                                    contentFifth.type !== 'card' &&
                                                                                                                                         <div
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
