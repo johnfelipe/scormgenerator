@@ -11,6 +11,7 @@ import Video from './Features/Video';
 import DragDrop from './Features/DragDrop/DragDrop';
 import Card from './Features/Card/Card';
 import Ending from './Features/End/Ending';
+import Image from './Features/Image';
 
 class Editor extends Component {
 
@@ -40,7 +41,6 @@ class Editor extends Component {
     }
 
     handleFileUpload = (e) => {
-        e.preventDefault();
         let files = e.target.files;
 
         this.setState({
@@ -236,6 +236,21 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                />
+            );
+        } else if (this.props.feature === "image") {
+            editorContent = (
+                <Image
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
+                    setShowEditor={this.props.setShowEditor}
                 />
             );
         } else {
