@@ -220,7 +220,11 @@ function HomePage(props) {
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
-                                    <span className="h-100 w-100 text-white">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor}</span>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
                                 </div>
                             </div>
                         </li>
