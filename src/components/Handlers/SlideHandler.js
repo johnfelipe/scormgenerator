@@ -807,6 +807,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
@@ -862,6 +893,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -931,6 +993,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
@@ -985,6 +1078,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1057,6 +1181,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
@@ -1114,6 +1269,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1186,6 +1372,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
@@ -1250,6 +1467,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
@@ -1307,6 +1555,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1379,6 +1658,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-2')) {
 
@@ -1436,6 +1746,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1507,6 +1848,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-4-4')) {
 
@@ -1564,6 +1936,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnFour.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnFour.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1636,6 +2039,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-2')) {
 
@@ -1693,6 +2127,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1764,6 +2229,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-4')) {
 
@@ -1828,6 +2324,37 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
+                        currentColumns[key].content.subColumnFour.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFour.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-5-5')) {
 
@@ -1885,6 +2412,37 @@ class SlideHandler extends Component {
                             }
                         };
                         
+                        currentColumns[key].content.subColumnFive.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnFive.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                        };
+
                         currentColumns[key].content.subColumnFive.push(currentContent);
                         this.setState({
                             column: currentColumns,
