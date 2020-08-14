@@ -9,7 +9,7 @@ function Image(props) {
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
 
-    const setVideo = (name, url, type) => {
+    const setImage = (name, url, type) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.name = name;
@@ -25,7 +25,7 @@ function Image(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setVideo(files[0].name, reader.result, files[0].type);
+            setImage(files[0].name, reader.result, files[0].type);
         }
     }
     
