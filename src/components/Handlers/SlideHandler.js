@@ -465,7 +465,7 @@ class SlideHandler extends Component {
                     title: 'Card title',
                     content: 'No content provided yet.',
                     button: {
-                        label: '',
+                        label: 'Click me',
                         url: '',
                     }
                 },
@@ -726,7 +726,7 @@ class SlideHandler extends Component {
                                 title: 'Card title',
                                 content: 'No content provided yet.',
                                 button: {
-                                    label: '',
+                                    label: 'Click me',
                                     url: '',
                                 }
                             },
