@@ -9,7 +9,7 @@ function CardLayout(props) {
             <img className="card-img-top border border-secondary h-auto" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
             <div className="card-body">
                 <h5 className="card-title">{cardOutput.title}</h5>
-                <p className="card-text">{cardOutput.content}</p>
+                <p className="card-text h-100">{cardOutput.content}</p>
                 {cardOutput.button.url &&
                     <a
                         href={cardOutput.button.url}
