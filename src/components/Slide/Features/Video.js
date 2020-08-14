@@ -19,6 +19,16 @@ function Video(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setVtt = (name, url, type) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.vtt.type = type;
+
+        props.setColumn(currentColumnObj);
+    }
+
     const handleVideoChange = (e) => {
         let files = e.target.files;
         let reader = new FileReader();
@@ -26,6 +36,16 @@ function Video(props) {
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
             setVideo(files[0].name, reader.result, files[0].type);
+        }
+    }
+
+    const handleVttUpload = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setVtt(files[0].name, reader.result, files[0].type);
         }
     }
     
@@ -60,6 +80,19 @@ function Video(props) {
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.name} readOnly/>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Vtt file</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleVttUpload} accept="vtt/*"/>
+                                    </span>
+                                </label>
+                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name} readOnly/>
                             </div>
                         </li>
                     </ul>
