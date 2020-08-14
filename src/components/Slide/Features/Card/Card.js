@@ -17,7 +17,6 @@ function Card(props) {
     }
 
     const handleImageChange = (e) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 
@@ -88,7 +87,7 @@ function Card(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}}/>
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
