@@ -2719,6 +2719,7 @@ class SlideHandler extends Component {
                                                                                                                             dragDropClass={contentFirst.class}
                                                                                                                             dragDropId={contentFirst.id}
                                                                                                                             dragDropStyles={contentFirst.styles}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
