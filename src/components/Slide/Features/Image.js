@@ -28,6 +28,14 @@ function Image(props) {
             setImage(files[0].name, reader.result, files[0].type);
         }
     }
+
+    const setImgAlt = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.alt = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -60,6 +68,22 @@ function Image(props) {
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.name} readOnly/>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Alt</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(e) => setImgAlt(e.target.value)}
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.alt &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.alt
+                                    }
+                                />
                             </div>
                         </li>
                     </ul>
