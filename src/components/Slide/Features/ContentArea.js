@@ -30,7 +30,7 @@ function ContentArea(props) {
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 { 
                                     isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, props.contentIndex, '')}>
+                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, props.contentIndex, 'contentArea')}>
                                             <span>Click to Edit</span>
                                         </button>
                                     :
@@ -119,7 +119,7 @@ function ContentArea(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex, 'contentArea')}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
