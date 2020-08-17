@@ -57,7 +57,7 @@ function ListUlAccordion(props) {
 
             if ((source.droppableId === 'sub-entry-droppable') && (destination.droppableId === 'sub-entry-droppable')) {
                 reorderedArray = reorder(
-                    item.answers,
+                    item.subEntry,
                     source.index,
                     destination.index
                 );
