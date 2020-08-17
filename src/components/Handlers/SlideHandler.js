@@ -3,7 +3,7 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faPowerOff, faFileImage } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
@@ -28,8 +28,8 @@ import ListModalLayout from '../Slide/Layouts/ListModalLayout';
 import VideoLayout from '../Slide/Layouts/VideoLayout';
 import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 import CardLayout from '../Slide/Layouts/CardLayout';
-import EndingLayout from '../Slide/Layouts/EndingLayout';
 import ImageLayout from '../Slide/Layouts/ImageLayout';
+import ListLayout from '../Slide/Layouts/ListLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -60,9 +60,9 @@ class SlideHandler extends Component {
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
-                { type: 'ending', name: 'Ending', icon: faPowerOff, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'image', name: 'Image', icon: faFileImage, },
+                { type: 'list', name: 'List', icon: faListUl, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
                 { type: 'video', name: 'Video', icon: faVideo, },
@@ -378,8 +378,8 @@ class SlideHandler extends Component {
                 output: {
                     title: 'Title',
                     subtitle: 'Subtitle',
-                    date: 'January 1970',
-                    courseId: '1234567890',
+                    date: '',
+                    courseId: '',
                     backgroundImg: {
                         name: '',
                         url: ''
@@ -484,24 +484,6 @@ class SlideHandler extends Component {
                     themeColor: '#0069d9',
                 },
             };
-        } else if (featureType === "ending") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'ending',
-                output: {
-                    title: 'Ending Title',
-                    subtitle: 'Ending Subtitle',
-                    backgroundImg: {
-                        name: '',
-                        url: ''
-                    }
-                },
-                class: 'course-title-bottom-left',
-                id: '',
-                styles: {
-                    titleBoxColor: '#0069d9',
-                    titleBoxBorder: 'border-bottom'
-                }
-            };
         } else if (featureType === "image") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'image',
@@ -514,6 +496,19 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+            };
+        } else if (featureType === "list") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'list',
+                output: {
+                    title: '',
+                    entries: [],
+                },
+                class: '',
+                id: '',
+                style: {
+                    listStyle: '',
+                }
             };
         }
 
@@ -634,8 +629,8 @@ class SlideHandler extends Component {
                             output: {
                                 title: 'Title',
                                 subtitle: 'Subtitle',
-                                date: 'January 1970',
-                                courseId: '1234567890',
+                                date: '',
+                                courseId: '',
                                 backgroundImg: {
                                     name: '',
                                     url: ''
@@ -789,32 +784,6 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'ending') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: {
-                                title: 'Ending Title',
-                                subtitle: 'Ending Subtitle',
-                                backgroundImg: {
-                                    name: '',
-                                    url: ''
-                                }
-                            },
-                            class: 'course-title-bottom-left',
-                            id: '',
-                            styles: {
-                                titleBoxColor: '#0069d9',
-                                titleBoxBorder: 'border-bottom'
-                            }
-                        };
-
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
                     } else if (currentFeatures[source.index]['type'] === 'image') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
@@ -827,6 +796,27 @@ class SlideHandler extends Component {
                             },
                             class: '',
                             id: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'list') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                title: '',
+                                entries: [],
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                listStyle: '',
+                            }
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -3400,42 +3390,6 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {contentFirst.type === 'ending' &&
-                                                                                                                    <div 
-                                                                                                                        ref={provided.innerRef}
-                                                                                                                        {...provided.draggableProps}
-                                                                                                                        {...provided.dragHandleProps}
-
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        className="content-output"
-                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                        onClick={() => 
-                                                                                                                            this.contentPaneClick(
-                                                                                                                                index, 
-                                                                                                                                contentFirstIndex, 
-                                                                                                                                contentFirst.id ? 
-                                                                                                                                contentFirst.id
-                                                                                                                                    : 
-                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                                'subColumnOne'
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        <EndingLayout
-                                                                                                                            title={contentFirst.output.title}
-                                                                                                                            subtitle={contentFirst.output.subtitle}
-                                                                                                                            date={contentFirst.output.date}
-                                                                                                                            courseId={contentFirst.output.courseId}
-                                                                                                                            backgroundImg={contentFirst.output.backgroundImg}
-                                                                                                                            homePageClass={contentFirst.class}
-                                                                                                                            styles={contentFirst.styles}
-                                                                                                                            homepageId={contentFirst.id}
-                                                                                                                            homePageCss={contentFirst.css}
-                                                                                                                            cssApplier={this.cssApplier}
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                }
-
                                                                                                                 {contentFirst.type === 'image' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
@@ -3472,6 +3426,44 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'list' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <ListLayout
+                                                                                                                            list={contentFirst.output}
+                                                                                                                            listStyles={contentFirst.styles}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
@@ -3480,8 +3472,8 @@ class SlideHandler extends Component {
                                                                                                                 contentFirst.type !== 'video' &&
                                                                                                                 contentFirst.type !== 'dragDrop' &&
                                                                                                                 contentFirst.type !== 'card' &&
-                                                                                                                contentFirst.type !== 'ending' &&
                                                                                                                 contentFirst.type !== 'image' &&
+                                                                                                                contentFirst.type !== 'list' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}

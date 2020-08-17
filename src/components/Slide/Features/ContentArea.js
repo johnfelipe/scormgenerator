@@ -40,16 +40,12 @@ function ContentArea(props) {
                                     onMouseOver={() => setIsShownTextArea(true)} 
                                     disabled 
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                        typeof props.currentColumn != "undefined" &&
+                                        'content' in props.currentColumn &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumnContentIndex in props.currentColumn.content &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output
                                     }
                                 />
                             </div>
@@ -73,16 +69,12 @@ function ContentArea(props) {
                                     placeholder=""
                                     onChange={(event) => props.setFeatureId(event, props.contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                        typeof props.currentColumn != "undefined" &&
+                                        'content' in props.currentColumn &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumnContentIndex in props.currentColumn.content &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id
                                     }
                                 />
                             </div>
@@ -97,16 +89,12 @@ function ContentArea(props) {
                                     placeholder=""
                                     onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                        typeof props.currentColumn != "undefined" &&
+                                        'content' in props.currentColumn &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumnContentIndex in props.currentColumn.content &&
+                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
+                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class
                                     }
                                 />
                             </div>

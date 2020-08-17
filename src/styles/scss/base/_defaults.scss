@@ -271,4 +271,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    .text-ellipsis {
+        text-overflow: ellipsis !important;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
