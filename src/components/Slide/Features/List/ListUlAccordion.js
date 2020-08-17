@@ -84,7 +84,7 @@ function ListUlAccordion(props) {
                         type="button"
                         className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
-                            props.deleteQuestion(index)
+                            props.deleteEntry(index)
                         }}
                     >
                         <FontAwesomeIcon icon={faTrash}/>
@@ -93,9 +93,9 @@ function ListUlAccordion(props) {
                         type="button"
                         className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
-                            props.setIsEditQuestion(true);
-                            props.setUpdateQuestion(item.question);
-                            props.setUpdateQuestionCompareIndex(index);
+                            props.setIsEditEntry(true);
+                            props.setUpdateEntry(item.entry);
+                            props.setUpdateEntryCompareIndex(index);
                         }}
                     >
                         <FontAwesomeIcon icon={faEdit}/>

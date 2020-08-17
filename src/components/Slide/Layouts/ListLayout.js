@@ -13,7 +13,7 @@ function ListLayout(props) {
                             <li key={itemIndex}>
                                 {item.entry}
                                 <ul className="list-ul-sub-entries">
-                                    {list.map((subItem, subItemIndex) => (
+                                    {item.subEntry.map((subItem, subItemIndex) => (
                                         <li key={subItemIndex}>
                                             {subItem.entry}
                                         </li>
