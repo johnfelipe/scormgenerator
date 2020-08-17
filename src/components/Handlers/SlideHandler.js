@@ -3029,44 +3029,43 @@ class SlideHandler extends Component {
                                                 <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
                                                     <Tab eventKey="column" title="Column" className="mt-1">
                                                         <div className="sg-workspace-content-section">
-                                                            {
-                                                                this.state.column.length !== 0 ?
-                                                                    <Droppable droppableId="columns">
-                                                                        {(provided) => (
-                                                                            <div ref={provided.innerRef}>
-                                                                                {this.state.column.map((item, columnIndex) => (
-                                                                                    <Draggable
-                                                                                        key={'column-draggable-' + columnIndex}
-                                                                                        draggableId={'column-' + columnIndex}
-                                                                                        index={columnIndex}>
-                                                                                        {(provided) => (
-                                                                                            <div
-                                                                                                ref={provided.innerRef}
-                                                                                                {...provided.draggableProps}
-                                                                                                {...provided.dragHandleProps}
-                                                                                                id={'column-' + columnIndex}
-                                                                                            >
-                                                                                                <SlideColumn 
-                                                                                                    columnIndex={columnIndex}
-                                                                                                    currentColumn={item}
-                                                                                                    currentColumnContentIndex={this.state.currentColumnContentIndex}
-                                                                                                    name={item.name}
-                                                                                                    deleteColumn={this.deleteColumn}
-                                                                                                    columnSizes={this.state.columnSizes}
-                                                                                                    column={this.state.column}
-                                                                                                    handleSizeActive={this.handleSizeActive}
-                                                                                                    resetStates={this.resetStates}
-                                                                                                    handleContentEditable={this.handleContentEditable}
-                                                                                                />
-                                                                                            </div>
-                                                                                        )}
-                                                                                    </Draggable>
-                                                                                ))}
-                                                                                {provided.placeholder}
-                                                                            </div>
-                                                                        )}
-                                                                    </Droppable>
-                                                                :
+                                                            {this.state.column.length !== 0 ?
+                                                                <Droppable droppableId="columns">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef}>
+                                                                            {this.state.column.map((item, columnIndex) => (
+                                                                                <Draggable
+                                                                                    key={'column-draggable-' + columnIndex}
+                                                                                    draggableId={'column-' + columnIndex}
+                                                                                    index={columnIndex}>
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                            id={'column-' + columnIndex}
+                                                                                        >
+                                                                                            <SlideColumn 
+                                                                                                columnIndex={columnIndex}
+                                                                                                currentColumn={item}
+                                                                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                                                                name={item.name}
+                                                                                                deleteColumn={this.deleteColumn}
+                                                                                                columnSizes={this.state.columnSizes}
+                                                                                                column={this.state.column}
+                                                                                                handleSizeActive={this.handleSizeActive}
+                                                                                                resetStates={this.resetStates}
+                                                                                                handleContentEditable={this.handleContentEditable}
+                                                                                            />
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            :
                                                                 <span></span>
                                                             }
                                                             {
@@ -6181,37 +6180,41 @@ class SlideHandler extends Component {
                                                     }
                                                 </div>
                                             </div>
-                                            <HtmlEditor 
-                                                currentColumn={this.state.column[this.state.activeColumnId]}
-                                                setShowEditor={this.setShowHtmlEditor}
-                                                showHtmlEditor={this.state.showHtmlEditor}
-                                                onChangeTextArea={this.onChangeTextArea}
-                                                contentIndex={this.state.activeContentIndex}
-                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
-                                                contentFor={this.state.contentFor}
-                                                setColumn={this.setColumn}
-                                                activeListModalOutputIndex={this.state.activeListModalOutputIndex}
-                                            />
-                                            <CssEditor 
-                                                currentColumn={this.state.column[this.state.activeColumnId]}
-                                                setShowCssEditor={this.setShowCssEditor}
-                                                showCssEditor={this.state.showCssEditor}
-                                                onChangeTextArea={this.onChangeTextArea}
-                                                contentIndex={this.state.activeContentIndex}
-                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
-                                                setApplyCss={this.setApplyCss}
-                                            />
-                                            <TextEditor 
-                                                currentColumn={this.state.column[this.state.activeColumnId]}
-                                                setShowTextEditor={this.setShowTextEditor}
-                                                showTextEditor={this.state.showTextEditor}
-                                                onChangeTextArea={this.onChangeTextArea}
-                                                contentIndex={this.state.activeContentIndex}
-                                                currentColumnContentIndex={this.state.currentColumnContentIndex}
-                                                contentFor={this.state.contentFor}
-                                                setColumn={this.setColumn}
-                                                mChoiceIndex={this.state.mChoiceIndex}
-                                            />
+                                            {this.state.column.length !== 0 &&
+                                                <>
+                                                    <HtmlEditor 
+                                                        currentColumn={this.state.column[this.state.activeColumnId]}
+                                                        setShowEditor={this.setShowHtmlEditor}
+                                                        showHtmlEditor={this.state.showHtmlEditor}
+                                                        onChangeTextArea={this.onChangeTextArea}
+                                                        contentIndex={this.state.activeContentIndex}
+                                                        currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                        contentFor={this.state.contentFor}
+                                                        setColumn={this.setColumn}
+                                                        activeListModalOutputIndex={this.state.activeListModalOutputIndex}
+                                                    />
+                                                    <CssEditor 
+                                                        currentColumn={this.state.column[this.state.activeColumnId]}
+                                                        setShowCssEditor={this.setShowCssEditor}
+                                                        showCssEditor={this.state.showCssEditor}
+                                                        onChangeTextArea={this.onChangeTextArea}
+                                                        contentIndex={this.state.activeContentIndex}
+                                                        currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                        setApplyCss={this.setApplyCss}
+                                                    />
+                                                    <TextEditor 
+                                                        currentColumn={this.state.column[this.state.activeColumnId]}
+                                                        setShowTextEditor={this.setShowTextEditor}
+                                                        showTextEditor={this.state.showTextEditor}
+                                                        onChangeTextArea={this.onChangeTextArea}
+                                                        contentIndex={this.state.activeContentIndex}
+                                                        currentColumnContentIndex={this.state.currentColumnContentIndex}
+                                                        contentFor={this.state.contentFor}
+                                                        setColumn={this.setColumn}
+                                                        mChoiceIndex={this.state.mChoiceIndex}
+                                                    />
+                                                </>
+                                            }
                                         </div>
                                     </DragDropContext>
                                     <button type="submit" className="btn btn-success float-right mt-2">Save</button>
