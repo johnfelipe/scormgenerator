@@ -427,9 +427,20 @@
                                             position: relative;
                                             z-index: 1;
 
-                                            .RichTextEditor__editor___1QqIU, .DraftEditor-root {
+                                            .DraftEditor-root {
                                                 width: 100%;
                                                 height: 100%;
+                                            }
+
+                                            .RichTextEditor__editor___1QqIU {
+                                                width: 100%;
+                                                height: 45%;
+
+                                                .DraftEditor-editorContainer {
+                                                    padding: 0;
+                                                    // padding-top: 12px;
+                                                    padding-right: 10px;
+                                                }
                                             }
 
                                             textarea.sg-text-editor-html, .DraftEditor-editorContainer {
