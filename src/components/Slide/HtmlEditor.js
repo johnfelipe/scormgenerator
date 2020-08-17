@@ -17,7 +17,6 @@ function HtmlEditor(props) {
     const handleChange = value => {
         setEditorValue(value);
         setValue(value.toString("html"));
-        console.log(value.toString("html"));
 
         const currentColumnObj = currentColumn;
 
@@ -58,7 +57,7 @@ function HtmlEditor(props) {
         <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
                 <div className="sg-workspace-expander-head-label">
-                    <span>HTML</span>
+                    <span>Rich Text Editor</span>
                 </div>
                 <div className="sg-workspace-expander-head-actions">
                     <button type="button" className="sg-close" onClick={() => props.setShowEditor(false, contentIndex)}>
@@ -100,9 +99,18 @@ function HtmlEditor(props) {
                             />
                     } */}
                     <RichTextEditor
-                        className="sg-text-editor-html h-100"
+                        className="sg-text-editor-html h-55"
                         value={editorValue}
                         onChange={handleChange}
+                    />
+                    <div className="sg-workspace-expander-head-label mt-1">
+                        <span>HTML</span>
+                    </div>
+                    <textarea
+                        className="sg-text-editor-html mt-1 h-40 border-top"
+                        value={value}
+                        onChange={handleChange}
+                        readOnly
                     />
                 </div>
             </div>
