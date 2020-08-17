@@ -774,7 +774,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor {
-  height: 100%;
+  height: 99.25%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-controls .sg-workspace-expander-toggle:hover > span {
   opacity: 1;
