@@ -29,6 +29,7 @@ import VideoLayout from '../Slide/Layouts/VideoLayout';
 import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 import CardLayout from '../Slide/Layouts/CardLayout';
 import ImageLayout from '../Slide/Layouts/ImageLayout';
+import ListLayout from '../Slide/Layouts/ListLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -3419,6 +3420,44 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'list' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <ListLayout
+                                                                                                                            list={contentFirst.output}
+                                                                                                                            listStyles={contentFirst.styles}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
@@ -3428,6 +3467,7 @@ class SlideHandler extends Component {
                                                                                                                 contentFirst.type !== 'dragDrop' &&
                                                                                                                 contentFirst.type !== 'card' &&
                                                                                                                 contentFirst.type !== 'image' &&
+                                                                                                                contentFirst.type !== 'list' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}

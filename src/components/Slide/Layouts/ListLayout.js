@@ -2,7 +2,7 @@ import React from 'react';
 
 function ListLayout(props) {
 
-    const { list } = props;
+    const { list, listStyles } = props;
 
     return (
         <div id="list-ul-layout" className={"w-100 h-100 p-3 " + multipleChoiceStyles.multipleChoiceTextColor} style={{ background: multipleChoiceStyles.questionBackgroundColor, }}>
