@@ -500,7 +500,10 @@ class SlideHandler extends Component {
         } else if (featureType === "list") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'list',
-                output: [],
+                output: {
+                    title: '',
+                    entries: [],
+                },
                 class: '',
                 id: '',
                 style: {
@@ -805,7 +808,10 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'list') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: [],
+                            output: {
+                                title: '',
+                                entries: [],
+                            },
                             class: '',
                             id: '',
                             style: {
