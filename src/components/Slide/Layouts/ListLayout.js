@@ -5,7 +5,7 @@ function ListLayout(props) {
     const { list, listStyles } = props;
 
     return (
-        <div id="list-ul-layout" className={"w-100 h-100 p-3 border border-light"}>
+        <div id="list-ul-layout" className="w-100 h-100 p-3 border border-light text-left">
             <ul className="list-ul-entries">
                 {
                     list.length > 0 ?

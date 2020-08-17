@@ -75,7 +75,7 @@ function List(props) {
                                                         <li key={'number-' + index} className="list-ul-list-item mb-2">
                                                             {
                                                                 isEditEntry && updateEntryCompareIndex === index ?
-                                                                    <div className="list-ul-control-input-wrapper">
+                                                                    <div className="list-ul-control-input-wrapper mb-2">
                                                                         <div className="list-ul-control-input-label">
                                                                             <span>{index+1}.</span>
                                                                         </div>
@@ -123,7 +123,7 @@ function List(props) {
                                                         </li>
                                                     ))}
                                                     <li className="list-ul-list-item">
-                                                        <div className="list-ul-control-input-wrapper">
+                                                        <div className="list-ul-control-input-wrapper mb-2">
                                                             <div className="list-ul-control-input-label">
                                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                             </div>
@@ -158,7 +158,7 @@ function List(props) {
                                                 </>
                                         :
                                             <li className="list-ul-list-item">
-                                                <div className="list-ul-control-input-wrapper">
+                                                <div className="list-ul-control-input-wrapper mb-2">
                                                     <div className="list-ul-control-input-label">
                                                         <span>1.</span>
                                                     </div>
