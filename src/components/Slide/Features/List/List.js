@@ -26,18 +26,18 @@ function List(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const editEntry = (value, questionIndex) => {
+    const editEntry = (value, entryIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[entryIndex].entry = value;
 
         props.setColumn(currentColumnObj);
     }
 
-    const deleteEntry = (questionIndex) => {
+    const deleteEntry = (entryIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(entryIndex, 1);
 
         props.setColumn(currentColumnObj);
     }
