@@ -10,7 +10,6 @@ import ListModal from './Features/List/ListModal';
 import Video from './Features/Video';
 import DragDrop from './Features/DragDrop/DragDrop';
 import Card from './Features/Card/Card';
-import Ending from './Features/End/Ending';
 import Image from './Features/Image';
 
 class Editor extends Component {
@@ -221,21 +220,6 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
-                />
-            );
-        } else if (this.props.feature === "ending") {
-            editorContent = (
-                <Ending
-                    setColumn={this.props.setColumn}
-                    deleteFeature={this.props.deleteFeature}
-                    contentIndex={this.props.contentIndex}
-                    setShowEditor={this.props.setShowEditor}
-                    currentColumn={this.props.currentColumn}
-                    currentColumnContentIndex={this.props.currentColumnContentIndex}
-                    setFeatureId={this.props.setFeatureId}
-                    setFeatureClass={this.props.setFeatureClass}
-                    setShowCssEditor={this.props.setShowCssEditor}
-                    resetFeature={this.props.resetFeature}
                 />
             );
         } else if (this.props.feature === "image") {
