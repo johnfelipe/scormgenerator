@@ -35,10 +35,18 @@ function HomePageLayout(props) {
                     {/* <div className="course-bar" style={{ background: colorHelpers.shade(styles.titleBoxColor, 0.45)}}></div> */}
                     <h3 id="course-subtitle" className="course-sub-header p-2">
                         <span>{subtitle}</span>
-                            <br/>
-                        <span>{date}</span>
-                            <br/>
-                        <span>COURSE ID: {courseId}</span>
+                        {date &&
+                            <>
+                                <br/>
+                                <span>{date}</span>
+                            </>
+                        }
+                        {courseId &&
+                            <>
+                                <br/>
+                                <span>COURSE ID: {courseId}</span>
+                            </>
+                        }
                         {props.cssApplier(homePageCss, 'course-subtitle')}
                     </h3>
                     </div>
