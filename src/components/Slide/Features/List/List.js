@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+
+// components
+import ListUlAccordion from './ListUlAccordion';
 
 function List(props) {
 
     const { contentIndex, currentColumn, currentColumnContentIndex } = props;
+    const [entry, setEntry] = useState('');
+    const [updateEntry, setUpdateEntry] = useState('');
+    const [updateEntryCompareIndex, setUpdateEntryCompareIndex] = useState('');
+    const [isEditEntry, setIsEditEntry] = useState(false);
+
+    const addEntry = (value) => {
+        const currentColumnObj = currentColumn;
+
+        const entry = {
+            entry: value,
+            subEntry: [],
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(entry);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editEntry = (value, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[questionIndex].question = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const deleteEntry = (questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(questionIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
 
     return (
         <div className="sg-controls">
@@ -25,25 +61,137 @@ function List(props) {
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
-                <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>ID</span>
+                                <span>Question/s</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
-                                    value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumnContentIndex in currentColumn.content &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].id
+                            <ul style={{ listStyle: 'none' }} className="list-group list-ul-list">
+                                    {
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                                <>
+                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                        <li key={'number-' + index} className="list-ul-list-item mb-2">
+                                                            {
+                                                                isEditEntry && updateEntryCompareIndex === index ?
+                                                                    <div className="list-ul-control-input-wrapper">
+                                                                        <div className="list-ul-control-input-label">
+                                                                            <span>{index+1}.</span>
+                                                                        </div>
+                                                                        <div className="list-ul-control-input">
+                                                                            <input
+                                                                                id="entry"
+                                                                                name="entry"
+                                                                                type="text"
+                                                                                placeholder="Type entry here. . ."
+                                                                                onChange={(event) => setUpdateEntry(event.target.value)}
+                                                                                value={updateEntry}
+                                                                            />
+                                                                        </div>
+                                                                        <div className="list-ul-control-button">
+                                                                            <button
+                                                                                type="button"
+                                                                                className="btn btn-success btn-sm"
+                                                                                onClick={() => {
+                                                                                    const isEmpty = document.getElementById("entry");
+                                                                                    
+                                                                                    if (isEmpty.value !== "") {
+                                                                                        editEntry(updateEntry, index);
+                                                                                        setUpdateEntry('');
+                                                                                        setIsEditEntry(false);
+                                                                                        setUpdateEntryCompareIndex('');
+                                                                                    }
+                                                                                }}
+                                                                            >
+                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                :
+                                                                    <ListUlAccordion
+                                                                        index={index}
+                                                                        item={item}
+                                                                        deleteEntry={deleteEntry}
+                                                                        setIsEditEntry={setIsEditEntry}
+                                                                        setUpdateEntry={setUpdateEntry}
+                                                                        contentIndex={contentIndex}
+                                                                        setShowTextEditor={props.setShowTextEditor}
+                                                                        setUpdateEntryCompareIndex={setUpdateEntryCompareIndex}
+                                                                    />
+                                                            }
+                                                        </li>
+                                                    ))}
+                                                    <li className="list-ul-list-item">
+                                                        <div className="list-ul-control-input-wrapper">
+                                                            <div className="list-ul-control-input-label">
+                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                            </div>
+                                                            <div className="list-ul-control-input">
+                                                                <input
+                                                                    id="entry"
+                                                                    name="entry"
+                                                                    type="text"
+                                                                    placeholder="Type entry here. . ."
+                                                                    onChange={(event) => setEntry(event.target.value)}
+                                                                    value={entry}
+                                                                />
+                                                            </div>
+                                                            <div className="list-ul-control-button">
+                                                                <button
+                                                                    type="button"
+                                                                    className="btn btn-success btn-sm"
+                                                                    onClick={() => {
+                                                                        const isEmpty = document.getElementById("entry");
+                                                                        
+                                                                        if (isEmpty.value !== "") {
+                                                                            addEntry(entry);
+                                                                            setEntry('');
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </>
+                                        :
+                                            <li className="list-ul-list-item">
+                                                <div className="list-ul-control-input-wrapper">
+                                                    <div className="list-ul-control-input-label">
+                                                        <span>1.</span>
+                                                    </div>
+                                                    <div className="list-ul-control-input">
+                                                        <input
+                                                            id="entry"
+                                                            name="entry"
+                                                            type="text"
+                                                            placeholder="Type entry here. . ."
+                                                            onChange={(event) => setEntry(event.target.value)}
+                                                            value={entry}
+                                                        />
+                                                    </div>
+                                                    <div className="list-ul-control-button">
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-success btn-sm"
+                                                            onClick={() => {
+                                                                const isEmpty = document.getElementById("entry");
+                                                                
+                                                                if (isEmpty.value !== "") {
+                                                                    addEntry(entry);
+                                                                    setEntry('');
+                                                                }
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>             
                                     }
-                                />
+                                </ul>
                             </div>
                         </li>
                     </ul>
