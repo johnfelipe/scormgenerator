@@ -1,100 +1,107 @@
-// import React, { useState } from 'react';
-import React from 'react';
+import React, {Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-// import RichTextEditor from 'react-rte';
+import RichTextEditor from 'react-rte';
 
-function HtmlEditor(props) {
+class HtmlEditor extends Component {
 
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const contentFor = props.contentFor;
-    const activeListModalOutputIndex = props.activeListModalOutputIndex;
+    state = {
+        value: RichTextEditor.createEmptyValue()
+    }
+    
+    // const currentColumn = props.currentColumn;
+    // const contentIndex = props.contentIndex;
+    // const currentColumnContentIndex = props.currentColumnContentIndex;
+    // const contentFor = props.contentFor;
+    // const activeListModalOutputIndex = props.activeListModalOutputIndex;
     // const [value, setValue] = useState(RichTextEditor.createEmptyValue());
 
-    const onChangeTextEditor = (value, contentIndex, editorType) => {
-        const currentColumnObj = currentColumn;
+    onChangeTextEditor = (value, contentIndex, editorType) => {
+        const currentColumnObj = this.props.currentColumn;
 
         if (editorType.type === 'text') {
             if (editorType.for === 'courseInfo') {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
+                currentColumnObj.content[this.props.currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
             } else if (editorType.for === 'courseReq') {
-                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
+                currentColumnObj.content[this.props.currentColumnContentIndex][contentIndex].output.courseReq.content = value;
             } else if (editorType.for === 'listModal') {
-                currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = value;
+                currentColumnObj.content[this.props.currentColumnContentIndex][contentIndex].output[this.props.activeListModalOutputIndex].content = value;
             } else if (editorType.for === 'video') {
-                currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph = value;
+                currentColumnObj.content[this.props.currentColumnContentIndex][contentIndex].output.paragraph = value;
             }
         }
 
-        props.setColumn(currentColumnObj);
+        this.props.setColumn(currentColumnObj);
     }
 
-    // const onChange = (value) => {
-    //     setValue(value);
+    onChange = (value) => {
+        this.setState({value});
+        // if (this.props.onChange) {
+        //   // Send the changes up to the parent component as an HTML string.
+        //   // This is here to demonstrate using `.toString()` but in a real app it
+        //   // would be better to avoid generating a string on each change.
+        //   this.props.onChange(
+        //     value.toString('html')
+        //   );
+        // }
+    };
 
-    //     if (contentFor === '') {
-    //         props.onChangeTextArea(value, contentIndex, 'html');
-    //     } else {
-    //         onChangeTextEditor(value, contentIndex, { type: 'text', for: contentFor });
-    //     }
-    // };
-
-    return (
-        <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
-            <div className="sg-workspace-expander-head">
-                <div className="sg-workspace-expander-head-label">
-                    <span>HTML</span>
+    render() {
+        return (
+            <div className={this.props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
+                <div className="sg-workspace-expander-head">
+                    <div className="sg-workspace-expander-head-label">
+                        <span>HTML</span>
+                    </div>
+                    <div className="sg-workspace-expander-head-actions">
+                        <button type="button" className="sg-close" onClick={() => this.props.setShowEditor(false, this.props.contentIndex)}>
+                            <FontAwesomeIcon icon={faTimes}/>
+                        </button>
+                    </div>
                 </div>
-                <div className="sg-workspace-expander-head-actions">
-                    <button type="button" className="sg-close" onClick={() => props.setShowEditor(false, contentIndex)}>
-                        <FontAwesomeIcon icon={faTimes}/>
-                    </button>
-                </div>
-            </div>
-            <div className="sg-workspace-expander-body">
-                <div className="sg-text-editor sg-text-editor-mode-html h-100">
-                    {
-                        contentFor === '' ?
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={ 
-                                    typeof currentColumn !== "undefined" &&
-                                    'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                    currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  &&
-                                    currentColumn.content[currentColumnContentIndex][contentIndex].output
-                                }
-                                onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
-                            />
-                        :
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={
-                                    contentFor === 'courseInfo' ?
-                                        typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
-                                    :
-                                        contentFor === 'courseReq' ?
-                                            typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
+                <div className="sg-workspace-expander-body">
+                    <div className="sg-text-editor sg-text-editor-mode-html h-100">
+                        {/* {
+                            this.props.contentFor === '' ?
+                                <textarea
+                                    className="sg-text-editor-html"
+                                    value={ 
+                                        typeof this.props.currentColumn !== "undefined" &&
+                                        'content' in this.props.currentColumn && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0 &&
+                                        this.props.currentColumnContentIndex in this.props.currentColumn.content && this.props.currentColumn.content[this.props.currentColumnContentIndex].length > 0  &&
+                                        this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output
+                                    }
+                                    onChange={(event) => this.props.onChangeTextArea(event.target.value, this.props.contentIndex, 'html')}
+                                />
+                            :
+                                <textarea
+                                    className="sg-text-editor-html"
+                                    value={
+                                        this.props.contentFor === 'courseInfo' ?
+                                            typeof this.props.currentColumn !== "undefined" && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex] && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output.courseInfo.content
                                         :
-                                            contentFor === 'listModal' ?
-                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content
+                                            this.props.contentFor === 'courseReq' ?
+                                                typeof this.props.currentColumn !== "undefined" && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex] && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output.courseReq.content
                                             :
-                                                contentFor === 'video' &&
-                                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
-                                }
-                                onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
-                            />
-                    }
-                    {/* <RichTextEditor
-                        className="sg-text-editor-html h-100"
-                        value={value}
-                        onChange={onChange}
-                    /> */}
+                                                this.props.contentFor === 'listModal' ?
+                                                    typeof this.props.currentColumn !== "undefined" && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex] && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output[this.props.activeListModalOutputIndex].content
+                                                :
+                                                    this.props.contentFor === 'video' &&
+                                                        typeof this.props.currentColumn !== "undefined" && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex] && this.props.currentColumn.content[this.props.currentColumnContentIndex][this.props.contentIndex].output.paragraph
+                                    }
+                                    onChange={(event) => this.onChangeTextEditor(event.target.value, this.props.contentIndex, { type: 'text', for: this.props.contentFor })}
+                                />
+                        } */}
+                        <RichTextEditor
+                            className="sg-text-editor-html h-100"
+                            value={this.state.value}
+                            onChange={this.onChange}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default HtmlEditor;
