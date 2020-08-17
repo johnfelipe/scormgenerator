@@ -13,6 +13,14 @@ function List(props) {
     const [updateEntryCompareIndex, setUpdateEntryCompareIndex] = useState('');
     const [isEditEntry, setIsEditEntry] = useState(false);
 
+    const addTitle = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.title = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     const addEntry = (value) => {
         const currentColumnObj = currentColumn;
 
@@ -21,7 +29,7 @@ function List(props) {
             subEntry: [],
         }
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(entry);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries.push(entry);
 
         props.setColumn(currentColumnObj);
     }
@@ -29,7 +37,7 @@ function List(props) {
     const editEntry = (value, entryIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[entryIndex].entry = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries[entryIndex].entry = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -37,7 +45,7 @@ function List(props) {
     const deleteEntry = (entryIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(entryIndex, 1);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries.splice(entryIndex, 1);
 
         props.setColumn(currentColumnObj);
     }
@@ -62,16 +70,32 @@ function List(props) {
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(event) => addTitle(event.target.value)}
+                                    value={ 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.title &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.title
+                                    }
+                                />
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Question/s</span>
+                                <span>Entry/ies</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group list-ul-list">
                                     {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.entries.length > 0 ? 
                                                 <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.entries.map((item, index) => (
                                                         <li key={'number-' + index} className="list-ul-list-item mb-2">
                                                             {
                                                                 isEditEntry && updateEntryCompareIndex === index ?
