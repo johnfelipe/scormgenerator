@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 function List(props) {
 
-    const [isShownTextArea, setIsShownTextArea] = useState(false);
+    const { contentIndex, currentColumn, currentColumnContentIndex } = props;
 
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(props.contentIndex, 'contentArea')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'contentArea')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
-                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
                     </button>
@@ -34,14 +34,14 @@ function List(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id
                                     }
                                 />
                             </div>
@@ -63,14 +63,14 @@ function List(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id
                                     }
                                 />
                             </div>
@@ -83,14 +83,14 @@ function List(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].class
                                     }
                                 />
                             </div>
@@ -103,7 +103,7 @@ function List(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
