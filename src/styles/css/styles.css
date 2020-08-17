@@ -265,6 +265,12 @@
   transform: translate(-50%, -50%);
 }
 
+.text-ellipsis {
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
