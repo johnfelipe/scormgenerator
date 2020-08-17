@@ -119,7 +119,7 @@ function ContentArea(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex, 'contentArea')}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
