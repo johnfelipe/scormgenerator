@@ -36,6 +36,14 @@ function ListUlAccordion(props) {
         return result;
     }
 
+    const setEntries = (subEntriesArray, entryIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries[entryIndex].subEntry = subEntriesArray;
+
+        props.setColumn(currentColumnObj);
+    }
+
     const onDragEnd = result => {
         const { source, destination } = result;
         
@@ -45,18 +53,18 @@ function ListUlAccordion(props) {
         }
 
         if (source.droppableId === destination.droppableId) {
-            let reorderedFiles;
+            let reorderedArray;
 
-            if ((source.droppableId === 'answers-droppable') && (destination.droppableId === 'answers-droppable')) {
-                reorderedFiles = reorder(
+            if ((source.droppableId === 'sub-entry-droppable') && (destination.droppableId === 'sub-entry-droppable')) {
+                reorderedArray = reorder(
                     item.answers,
                     source.index,
                     destination.index
                 );
 
-                let answers = reorderedFiles;
+                let subEntries = reorderedArray;
 
-                props.setQuestionAnswers(answers, index);
+                setEntries(subEntries, index);
             }
 
             
@@ -192,98 +200,97 @@ function ListUlAccordion(props) {
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                     >
-                                        {
-                                            item.entries.length > 0 ?
-                                                <ul className="list-ul-list list-unstyled">
-                                                    {item.subEntry.map((subEntry, subEntryIndex) => (
-                                                        <Draggable
-                                                            key={'list-ul-answers-list-item-key-' + subEntryIndex}
-                                                            draggableId={'list-ul-answers-list-item-' + subEntryIndex}
-                                                            index={subEntryIndex}
-                                                        >
-                                                            {(provided) => (
-                                                                <li
-                                                                    className="list-ul-list-item mb-3"
-                                                                    ref={provided.innerRef}
-                                                                    {...provided.draggableProps}
-                                                                    {...provided.dragHandleProps}
-                                                                >
-                                                                    {
-                                                                        isEditSubEntry && editSubEntryCompareIndex === subEntryIndex ?
-                                                                            <div className="list-ul-control-input-wrapper mb-1 mt-3 mb-3">
-                                                                                <div className="list-ul-control-input-label">
-                                                                                    <span>Edit:&nbsp;</span>
+                                        {item.subEntry.length > 0 ?
+                                            <ul className="list-ul-list list-unstyled">
+                                                {item.subEntry.map((subEntry, subEntryIndex) => (
+                                                    <Draggable
+                                                        key={'list-ul-answers-list-item-key-' + subEntryIndex}
+                                                        draggableId={'list-ul-answers-list-item-' + subEntryIndex}
+                                                        index={subEntryIndex}
+                                                    >
+                                                        {(provided) => (
+                                                            <li
+                                                                className="list-ul-list-item mb-3"
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                            >
+                                                                {
+                                                                    isEditSubEntry && editSubEntryCompareIndex === subEntryIndex ?
+                                                                        <div className="list-ul-control-input-wrapper mb-1 mt-3 mb-3">
+                                                                            <div className="list-ul-control-input-label">
+                                                                                <span>Edit:&nbsp;</span>
+                                                                            </div>
+                                                                            <div className="list-ul-control-input">
+                                                                                <input
+                                                                                    id="question"
+                                                                                    name="question"
+                                                                                    type="text"
+                                                                                    placeholder="Type question here. . ."
+                                                                                    onChange={(event) => setEditingSubentry(event.target.value)}
+                                                                                    value={editingSubentry}
+                                                                                />
+                                                                            </div>
+                                                                            <div className="list-ul-control-button">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-success btn-sm mr-1"
+                                                                                    onClick={() => {
+                                                                                        const isEmpty = document.getElementById("question");
+                                                                                        
+                                                                                        if (isEmpty.value !== "") {
+                                                                                            editSubEntry(editingSubentry, index, subEntryIndex);
+                                                                                            setEditingSubentry('');
+                                                                                            setIsEditSubEntry(false);
+                                                                                            setEditSubEntryCompareIndex('');
+                                                                                        }
+                                                                                    }}
+                                                                                >
+                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    :
+                                                                        <>
+                                                                            <div
+                                                                                id="list-ul-list-item-sub-entry"
+                                                                                className="row mb-0 border rounded-top"
+                                                                            >
+                                                                                <div id="list-ul-list-item-sub-entry" className="p-0 col-md-8" title={subEntry}>
+                                                                                    {subEntry}
                                                                                 </div>
-                                                                                <div className="list-ul-control-input">
-                                                                                    <input
-                                                                                        id="question"
-                                                                                        name="question"
-                                                                                        type="text"
-                                                                                        placeholder="Type question here. . ."
-                                                                                        onChange={(event) => setEditingSubentry(event.target.value)}
-                                                                                        value={editingSubentry}
-                                                                                    />
-                                                                                </div>
-                                                                                <div className="list-ul-control-button">
+                                                                                <div className="col-md-4 p-0 list-ul-list-item-action-buttons text-right">
                                                                                     <button
+                                                                                        className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                         type="button"
-                                                                                        className="btn btn-success btn-sm mr-1"
                                                                                         onClick={() => {
-                                                                                            const isEmpty = document.getElementById("question");
-                                                                                            
-                                                                                            if (isEmpty.value !== "") {
-                                                                                                editSubEntry(editingSubentry, index, subEntryIndex);
-                                                                                                setEditingSubentry('');
-                                                                                                setIsEditSubEntry(false);
-                                                                                                setEditSubEntryCompareIndex('');
-                                                                                            }
+                                                                                            setEditingSubentry(subEntry);
+                                                                                            setIsEditSubEntry(true);
+                                                                                            setEditSubEntryCompareIndex(subEntryIndex);
                                                                                         }}
                                                                                     >
-                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                        <FontAwesomeIcon icon={faEdit}/>
+                                                                                    </button>
+                                                                                    <button
+                                                                                        className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                        type="button"
+                                                                                        onClick={() => {
+                                                                                            deleteSubEntry(index, subEntryIndex);
+                                                                                        }}
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faTrash}/>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
-                                                                        :
-                                                                            <>
-                                                                                <div
-                                                                                    id="list-ul-list-item"
-                                                                                    className="row mb-0 border rounded-top"
-                                                                                >
-                                                                                    <div id="list-ul-list-item-answer" className="p-0 col-md-8" title={subEntry}>
-                                                                                        {subEntry}
-                                                                                    </div>
-                                                                                    <div className="col-md-4 p-0 list-ul-list-item-action-buttons text-right">
-                                                                                        <button
-                                                                                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                            type="button"
-                                                                                            onClick={() => {
-                                                                                                setEditingSubentry(subEntry);
-                                                                                                setIsEditSubEntry(true);
-                                                                                                setEditSubEntryCompareIndex(subEntryIndex);
-                                                                                            }}
-                                                                                        >
-                                                                                            <FontAwesomeIcon icon={faEdit}/>
-                                                                                        </button>
-                                                                                        <button
-                                                                                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                            type="button"
-                                                                                            onClick={() => {
-                                                                                                deleteSubEntry(index, subEntryIndex);
-                                                                                            }}
-                                                                                        >
-                                                                                            <FontAwesomeIcon icon={faTrash}/>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </>
-                                                                    }
-                                                                </li>
-                                                            )}
-                                                        </Draggable>
-                                                    ))}
-                                                </ul>
-                                            :
-                                                <div><span>No question/s added.</span></div>
+                                                                        </>
+                                                                }
+                                                            </li>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                            </ul>
+                                        :
+                                            <div><span>No question/s added.</span></div>
                                         }
                                         {provided.placeholder}
                                     </div>
