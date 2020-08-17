@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import RichTextEditor from 'react-rte';
@@ -35,6 +35,20 @@ function HtmlEditor(props) {
         props.setColumn(currentColumnObj);
     };
 
+    useEffect(() => {
+        if (contentFor === 'courseInfo') {
+            setEditorValue(RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content, 'html'));
+        } else if (contentFor === 'courseReq') {
+            setEditorValue(RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.contentFor, 'html'));
+        } else if (contentFor === 'listModal') {
+            setEditorValue(RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content, 'html'));
+        } else if (contentFor === 'video') {
+            setEditorValue(RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
+        } else if (contentFor === 'contentArea') {
+            setEditorValue(RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html'));
+        }
+    }, [contentFor, currentColumnContentIndex, contentIndex, activeListModalOutputIndex, currentColumn.content]);
+
     // const onChangeTextEditor = (value, contentIndex, editorType) => {
     //     const currentColumnObj = currentColumn;
 
@@ -60,7 +74,14 @@ function HtmlEditor(props) {
                     <span>Rich Text Editor</span>
                 </div>
                 <div className="sg-workspace-expander-head-actions">
-                    <button type="button" className="sg-close" onClick={() => props.setShowEditor(false, contentIndex)}>
+                    <button
+                        type="button"
+                        className="sg-close"
+                        onClick={() => {
+                            props.setShowEditor(false, contentIndex);
+                            setValue('')
+                        }}
+                    >
                         <FontAwesomeIcon icon={faTimes}/>
                     </button>
                 </div>
@@ -100,25 +121,25 @@ function HtmlEditor(props) {
                     } */}
                     <RichTextEditor
                         className="sg-text-editor-html h-55"
-                        // value={editorValue}
-                        value={
-                            contentFor === 'courseInfo' ?
-                                RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content, 'html')
-                            :
-                                contentFor === 'courseReq' ?
-                                    RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content, 'html')
-                                :
-                                    contentFor === 'listModal' ?
-                                        RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content, 'html')
-                                    :
-                                        contentFor === 'video' ?
-                                            RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html')
-                                        :
-                                            contentFor === 'contentArea' ?
-                                            RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html')
-                                        :
-                                            editorValue
-                        }
+                        value={editorValue}
+                        // value={
+                        //     contentFor === 'courseInfo' ?
+                        //         RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content, 'html')
+                        //     :
+                        //         contentFor === 'courseReq' ?
+                        //             RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content, 'html')
+                        //         :
+                        //             contentFor === 'listModal' ?
+                        //                 RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content, 'html')
+                        //             :
+                        //                 contentFor === 'video' ?
+                        //                     RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html')
+                        //                 :
+                        //                     contentFor === 'contentArea' ?
+                        //                     RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html')
+                        //                 :
+                        //                     editorValue
+                        // }
                         onChange={handleChange}
                     />
                     <div className="sg-workspace-expander-head-label mt-1">
