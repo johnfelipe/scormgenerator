@@ -350,7 +350,7 @@ class SlideHandler extends Component {
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'contentArea',
-                output: '<span>This content will show up directly in its container.</span>',
+                output: '<p>This content will show up directly in its container.</p>',
                 class: '',
                 id: ''
             };
@@ -575,7 +575,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -851,7 +851,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -944,7 +944,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1037,7 +1037,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1129,7 +1129,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1225,7 +1225,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1320,7 +1320,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1416,7 +1416,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1511,7 +1511,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1606,7 +1606,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1702,7 +1702,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1797,7 +1797,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1892,7 +1892,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -1987,7 +1987,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -2083,7 +2083,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -2178,7 +2178,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -2273,7 +2273,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -2368,7 +2368,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
@@ -2463,7 +2463,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '<span>This content will show up directly in its container.</span>',
+                            output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: ''
                         };
