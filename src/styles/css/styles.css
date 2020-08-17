@@ -1930,5 +1930,17 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry {
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 10px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry #list-ul-list-item-sub-entry {
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
 /*# sourceMappingURL=styles.css.map */

@@ -85,6 +85,20 @@
                                                                 }
                                                             }
                                                         }
+
+                                                        #list-ul-list-item-sub-entry {
+                                                            -webkit-user-select: none;
+                                                            user-select: none;
+                                                            padding: 10px;
+                                                            margin: 0px 0px 8px 0px;
+                                                            background: whitesmoke;
+
+                                                            #list-ul-list-item-sub-entry {
+                                                                text-overflow: ellipsis !important;
+                                                                overflow: hidden;
+                                                                white-space: nowrap;
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
