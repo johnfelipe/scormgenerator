@@ -6,10 +6,11 @@ function ListLayout(props) {
 
     return (
         <div id="list-ul-layout" className="w-100 h-100 p-3 border border-light text-left">
+            <h1>{list.title}</h1>
             <ul className="list-ul-entries">
                 {
-                    list.length > 0 ?
-                        list.map((item, itemIndex) => (
+                    list.entries.length > 0 ?
+                        list.entries.map((item, itemIndex) => (
                             <li key={itemIndex}>
                                 {item.entry}
                                 <ul className="list-ul-sub-entries">
@@ -23,7 +24,7 @@ function ListLayout(props) {
                         ))
                     :
                         <div>
-                            <span>No content added.</span>
+                            <span>No entries added.</span>
                         </div>
                 }
             </ul>
