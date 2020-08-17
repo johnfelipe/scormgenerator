@@ -75,6 +75,14 @@
   height: 40% !important;
 }
 
+.h-45 {
+  height: 45% !important;
+}
+
+.h-46-75 {
+  height: 46.75% !important;
+}
+
 .h-55 {
   height: 55% !important;
 }
@@ -1119,11 +1127,10 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU {
   width: 100%;
-  height: 45%;
+  height: 64%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU .DraftEditor-editorContainer {
   padding: 0;
-  padding-right: 10px;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor textarea.sg-text-editor-html, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-editorContainer {
   width: 100%;
