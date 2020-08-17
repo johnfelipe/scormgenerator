@@ -100,7 +100,25 @@ function HtmlEditor(props) {
                     } */}
                     <RichTextEditor
                         className="sg-text-editor-html h-55"
-                        value={editorValue}
+                        // value={editorValue}
+                        value={
+                            contentFor === 'courseInfo' ?
+                                RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content, 'html')
+                            :
+                                contentFor === 'courseReq' ?
+                                    RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content, 'html')
+                                :
+                                    contentFor === 'listModal' ?
+                                        RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content, 'html')
+                                    :
+                                        contentFor === 'video' ?
+                                            RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html')
+                                        :
+                                            contentFor === 'contentArea' ?
+                                            RichTextEditor.createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html')
+                                        :
+                                            editorValue
+                        }
                         onChange={handleChange}
                     />
                     <div className="sg-workspace-expander-head-label mt-1">
