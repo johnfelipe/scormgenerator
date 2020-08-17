@@ -142,6 +142,9 @@ function List(props) {
                                                                         contentIndex={contentIndex}
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setUpdateEntryCompareIndex={setUpdateEntryCompareIndex}
+                                                                        setColumn={props.setColumn}
+                                                                        currentColumn={currentColumn}
+                                                                        currentColumnContentIndex={currentColumnContentIndex}
                                                                     />
                                                             }
                                                         </li>
