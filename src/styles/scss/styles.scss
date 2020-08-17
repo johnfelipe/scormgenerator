@@ -18,7 +18,7 @@
 @import "components/features/course-obj";
 @import "components/features/list-modal";
 @import "components/features/drag-drop";
-@import "components/features/ending";
+@import "components/features/list-ul";
 
 @include defaults;
 @include header;
@@ -40,4 +40,4 @@
 @include course-obj;
 @include list-modal;
 @include drag-drop;
-@include ending;
+@include list-ul;
