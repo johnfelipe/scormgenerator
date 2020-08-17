@@ -67,7 +67,7 @@ function List(props) {
                                 <span>Question/s</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                            <ul style={{ listStyle: 'none' }} className="list-group list-ul-list">
+                                <ul style={{ listStyle: 'none' }} className="list-group list-ul-list">
                                     {
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
                                                 <>

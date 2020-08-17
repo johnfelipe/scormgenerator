@@ -79,34 +79,43 @@ function ListUlAccordion(props) {
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
                 <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
-                    <span>{item.entry}</span>
-                    <button
-                        type="button"
-                        className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
-                        onClick={() => {
-                            props.deleteEntry(index)
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faTrash}/>
-                    </button>
-                    <button
-                        type="button"
-                        className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
-                        onClick={() => {
-                            props.setIsEditEntry(true);
-                            props.setUpdateEntry(item.entry);
-                            props.setUpdateEntryCompareIndex(index);
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faEdit}/>
-                    </button>
-                    <span className="float-right mr-2">
-                        <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
-                    </span>
+                <div
+                    id="list-ul-list-item"
+                    className="row m-0"
+                >
+                    <div id="list-ul-list-item-answer" className="text-ellipsis p-0 col-md-8" title={item.entry}>
+                        {item.entry}
+                    </div>
+                    <div className="col-md-4 p-0 list-ul-list-item-action-buttons text-right">
+                        <span className="mr-2">
+                            <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
+                        </span>
+                        <button
+                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                            type="button"
+                            onClick={() => {
+                                props.setUpdateEntry(item.entry);
+                                props.setIsEditEntry(true);
+                                props.setUpdateEntryCompareIndex(index);
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faEdit}/>
+                        </button>
+                        <button
+                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                            type="button"
+                            onClick={() => {
+                                props.deleteEntry(index);
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faTrash}/>
+                        </button>
+                    </div>
+                </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={index}>
                     <Card.Body className="p-2">
-                        <span>Question: <strong>{item.entry}</strong></span>
+                        <span>Entry: <strong>{item.entry}</strong></span>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
