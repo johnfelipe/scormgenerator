@@ -3673,6 +3673,8 @@ class SlideHandler extends Component {
                                                                                                                             styles={contentFirst.styles}
                                                                                                                             output={contentFirst.output}
                                                                                                                             introVideo={contentFirst.introVideo}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3711,6 +3713,8 @@ class SlideHandler extends Component {
                                                                                                                         <ListModalLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             styles={contentFirst.styles}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3748,6 +3752,8 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <VideoLayout
                                                                                                                             output={contentFirst.output}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3804,6 +3810,8 @@ class SlideHandler extends Component {
                                                                                                                             cardClass={contentFirst.class}
                                                                                                                             cardId={contentFirst.id}
                                                                                                                             cardStyles={contentFirst.styles}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3841,6 +3849,8 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <ImageLayout
                                                                                                                             output={contentFirst.output}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3879,6 +3889,8 @@ class SlideHandler extends Component {
                                                                                                                         <ListLayout
                                                                                                                             list={contentFirst.output}
                                                                                                                             listStyles={contentFirst.styles}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
