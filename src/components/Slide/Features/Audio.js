@@ -56,14 +56,9 @@ function Audio(props) {
                                     className="sg-input-code"
                                     style={{fontSize: 10}}
                                     value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumnContentIndex in currentColumn.content &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
                                     }
-                                    onChange={(event) => props.onChangeTextArea(event, contentIndex, 'html')}
+                                    onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
                                 />
                                 {/* <ul className="audio-feature-value-list pl-0">
                                     {
