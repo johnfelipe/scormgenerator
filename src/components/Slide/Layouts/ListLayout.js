@@ -5,7 +5,7 @@ function ListLayout(props) {
     const { list, listStyles } = props;
 
     return (
-        <div id="list-ul-layout" className="w-100 h-100 p-3 border border-light text-left">
+        <div id="list-ul-layout" className="w-100 h-100 p-3 border border-light text-left" style={{ backgroundImage: 'url("' + listStyles.backgroundImg.url + '")', backgroundSize: 'cover' }}>
             <h1>{list.title}</h1>
             <ul className="list-ul-entries">
                 {

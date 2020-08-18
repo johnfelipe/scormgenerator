@@ -127,7 +127,7 @@ function DragDropLayout(props) {
     }
     
     return (
-        <div id="drag-drop-layout" className={"w-100 h-100 border border-light " + dragDropStyles.dragDropTextColor} style={{ background: dragDropStyles.dragDropBackgroundColor, }}>
+        <div id="drag-drop-layout" className={"w-100 h-100 border border-light " + dragDropStyles.dragDropTextColor} style={{ background: dragDropStyles.dragDropBackgroundColor, backgroundImage: 'url("' + dragDropStyles.backgroundImg.url + '")', backgroundSize: 'cover' }}>
             {dragDrop.length > 0 ?
                 dragDrop.map((item, itemIndex) => (
                     <div key={"drag-drop-question-" + itemIndex} className={"question-group row m-0 mb-4 " + dragDropClass}>

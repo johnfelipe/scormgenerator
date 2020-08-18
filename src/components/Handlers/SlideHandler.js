@@ -3888,7 +3888,7 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <ListLayout
                                                                                                                             list={contentFirst.output}
-                                                                                                                            listStyles={contentFirst.styles}
+                                                                                                                            listStyles={contentFirst.style}
                                                                                                                             css={contentFirst.css}
                                                                                                                             cssApplier={this.cssApplier}
                                                                                                                         />
