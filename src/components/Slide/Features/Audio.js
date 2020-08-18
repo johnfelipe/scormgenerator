@@ -1,18 +1,39 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 function Audio(props) {
+
+    const { contentIndex, currentColumnContentIndex, currentColumn } = props;
+
+    const handleImageChange = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setBackgroundImg(files[0].name, reader.result);
+        }
+    }
+
+    const setBackgroundImg = (name, url) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+
+        props.setColumn(currentColumnObj);
+    }
 
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(props.contentIndex, 'audio')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'audio')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
-                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
                     </button>
@@ -35,18 +56,9 @@ function Audio(props) {
                                     className="sg-input-code"
                                     style={{fontSize: 10}}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ? 
-                                                props.currentColumnContentIndex in props.currentColumn.content && props.currentColumn.content[props.currentColumnContentIndex].length > 0 ?
-                                                    props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output 
-                                                :
-                                                    ''
-                                            : 
-                                                ''
-                                        : 
-                                            ''
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
                                     }
-                                    onChange={(event) => props.onChangeTextArea(event, props.contentIndex, 'html')}
+                                    onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
                                 />
                                 {/* <ul className="audio-feature-value-list pl-0">
                                     {
@@ -82,6 +94,28 @@ function Audio(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Background</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name
+                                    }
+                                    readOnly
+                                />
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
@@ -90,11 +124,11 @@ function Audio(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content.length > 0 ? 
-                                            props.currentColumn.content[props.contentIndex].id 
+                                        typeof currentColumn != "undefined" ? 
+                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
+                                            currentColumn.content[contentIndex].id 
                                             : 
                                             ''
                                         : 
@@ -111,11 +145,11 @@ function Audio(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" ? 
-                                            'content' in props.currentColumn && props.currentColumn.content.length > 0 ? 
-                                            props.currentColumn.content[props.contentIndex].class 
+                                        typeof currentColumn != "undefined" ? 
+                                            'content' in currentColumn && currentColumn.content.length > 0 ? 
+                                            currentColumn.content[contentIndex].class 
                                             : 
                                             ''
                                         : 

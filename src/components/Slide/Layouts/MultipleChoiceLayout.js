@@ -437,7 +437,7 @@ function MultipleChoiceLayout(props) {
     }
     
     return (
-        <div id="multiple-choice-layout" className={"w-100 h-100 p-3 " + multipleChoiceStyles.multipleChoiceTextColor} style={{ background: multipleChoiceStyles.questionBackgroundColor, }}>
+        <div id="multiple-choice-layout" className={"w-100 h-100 p-3 " + multipleChoiceStyles.multipleChoiceTextColor} style={{ background: multipleChoiceStyles.questionBackgroundColor, backgroundImage: 'url("' + multipleChoiceStyles.backgroundImg.url + '")', backgroundSize: 'cover' }}>
             {
                 multipleChoice.length > 0 ?
                     multipleChoice.map((item, itemIndex) => (

@@ -3,9 +3,8 @@ import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Formik } from "formik";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import ReactHtmlParser from 'react-html-parser';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -30,6 +29,8 @@ import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 import CardLayout from '../Slide/Layouts/CardLayout';
 import ImageLayout from '../Slide/Layouts/ImageLayout';
 import ListLayout from '../Slide/Layouts/ListLayout';
+import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
+import AudioLayout from '../Slide/Layouts/AudioLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -65,6 +66,7 @@ class SlideHandler extends Component {
                 { type: 'list', name: 'List', icon: faListUl, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+                { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             activeFeature: '',
@@ -345,14 +347,28 @@ class SlideHandler extends Component {
                 type: 'audio',
                 output: 'No audio added.',
                 class: '',
-                id: ''
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
             };
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'contentArea',
                 output: '<p>This content will show up directly in its container.</p>',
                 class: '',
-                id: ''
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
             };
         } else if (featureType === "multipleChoice") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -363,14 +379,19 @@ class SlideHandler extends Component {
                 styles: {
                     questionLabelClass: 'rounded-circle',
                     questionBackgroundColor: '#fff',
-                    multipleChoiceTextColor: 'text-black'
+                    multipleChoiceTextColor: 'text-black',
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                 },
                 mechanics: {
                     repeat: 0,
                     passingRate: 80,
                     specificType: 'knowledgeCheck',
                     returnSlide: 0
-                }
+                },
+                css: '',
             };
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -390,7 +411,8 @@ class SlideHandler extends Component {
                 styles: {
                     titleBoxColor: '#0069d9',
                     titleBoxBorder: 'border-bottom'
-                }
+                },
+                css: '',
             };
         } else if (featureType === "courseObjectives") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -417,7 +439,8 @@ class SlideHandler extends Component {
                     url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
                     type: 'video/mp4',
                     position: 'course-objectives-video-left'
-                }, 
+                },
+                css: '', 
             };
         } else if (featureType === "listModal") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -430,7 +453,12 @@ class SlideHandler extends Component {
                     btnLabelAlignment: 'text-center',
                     btnPosition: 'text-center',
                     btnColor: '#0069d9',
-                }
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
             };
         } else if (featureType === "video") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -448,6 +476,7 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+                css: '',
             };
         } else if (featureType === "dragDrop") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -460,6 +489,7 @@ class SlideHandler extends Component {
                     dragDropTextColor: 'text-black',
                     themeColor: '#0069d9',
                 },
+                css: '',
             };
         } else if (featureType === "card") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -483,6 +513,7 @@ class SlideHandler extends Component {
                 styles: {
                     themeColor: '#0069d9',
                 },
+                css: '',
             };
         } else if (featureType === "image") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -496,6 +527,7 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+                css: '',
             };
         } else if (featureType === "list") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -508,7 +540,26 @@ class SlideHandler extends Component {
                 id: '',
                 style: {
                     listStyle: '',
-                }
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
+            };
+        } else if (featureType === "tabs") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'tabs',
+                output: [],
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
             };
         }
 
@@ -572,7 +623,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -587,7 +645,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -606,14 +671,19 @@ class SlideHandler extends Component {
                             styles: {
                                 questionLabelClass: 'rounded-circle',
                                 questionBackgroundColor: '#fff',
-                                multipleChoiceTextColor: 'text-black'
+                                multipleChoiceTextColor: 'text-black',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             },
                             mechanics: {
                                 repeat: 0,
                                 passingRate: 80,
                                 specificType: 'knowledgeCheck',
                                 returnSlide: 0
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -641,7 +711,8 @@ class SlideHandler extends Component {
                             styles: {
                                 titleBoxColor: '#0069d9',
                                 titleBoxBorder: 'border-bottom'
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -678,6 +749,7 @@ class SlideHandler extends Component {
                                 type: 'video/mp4',
                                 position: 'course-objectives-video-left'
                             },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -698,7 +770,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -724,6 +801,7 @@ class SlideHandler extends Component {
                             },
                             class: '',
                             id: '',
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -744,6 +822,7 @@ class SlideHandler extends Component {
                                 dragDropTextColor: 'text-black',
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -775,6 +854,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -796,6 +876,7 @@ class SlideHandler extends Component {
                             },
                             class: '',
                             id: '',
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -816,7 +897,34 @@ class SlideHandler extends Component {
                             id: '',
                             style: {
                                 listStyle: '',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'tabs') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -843,7 +951,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -856,9 +971,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -879,7 +1001,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -911,6 +1038,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -936,7 +1064,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -949,9 +1084,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -972,7 +1114,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1004,6 +1151,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1029,7 +1177,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1042,9 +1197,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1065,7 +1227,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1097,6 +1264,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1121,7 +1289,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1134,9 +1309,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1157,7 +1339,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1189,6 +1376,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1217,7 +1405,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1230,9 +1425,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1253,7 +1455,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1285,6 +1492,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1312,7 +1520,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1325,9 +1540,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1348,7 +1570,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1380,6 +1607,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1408,7 +1636,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1421,9 +1656,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1444,7 +1686,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1476,6 +1723,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1503,7 +1751,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1516,9 +1771,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1539,7 +1801,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1571,6 +1838,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1598,7 +1866,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1611,9 +1886,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1634,7 +1916,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1666,6 +1953,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1694,7 +1982,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1707,9 +2002,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1730,7 +2032,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1762,6 +2069,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1789,7 +2097,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1802,9 +2117,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1825,7 +2147,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1857,6 +2184,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1884,7 +2212,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1920,7 +2255,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1952,6 +2292,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1979,7 +2320,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2015,7 +2363,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2047,6 +2400,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2075,7 +2429,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2088,9 +2449,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2111,7 +2479,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2143,6 +2516,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2170,7 +2544,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2183,9 +2564,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2206,7 +2594,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2238,6 +2631,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2265,7 +2659,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2278,9 +2679,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2301,7 +2709,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2333,6 +2746,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2360,7 +2774,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2373,9 +2794,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2396,7 +2824,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2428,6 +2861,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2455,7 +2889,14 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2468,9 +2909,16 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2491,7 +2939,12 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                            }
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2523,6 +2976,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -3256,6 +3710,8 @@ class SlideHandler extends Component {
                                                                                                                             styles={contentFirst.styles}
                                                                                                                             output={contentFirst.output}
                                                                                                                             introVideo={contentFirst.introVideo}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3294,6 +3750,8 @@ class SlideHandler extends Component {
                                                                                                                         <ListModalLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             styles={contentFirst.styles}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3331,6 +3789,8 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <VideoLayout
                                                                                                                             output={contentFirst.output}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3358,6 +3818,7 @@ class SlideHandler extends Component {
                                                                                                                             dragDropClass={contentFirst.class}
                                                                                                                             dragDropId={contentFirst.id}
                                                                                                                             dragDropStyles={contentFirst.styles}
+                                                                                                                            dragDropCss={contentFirst.css}
                                                                                                                             cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
@@ -3386,6 +3847,8 @@ class SlideHandler extends Component {
                                                                                                                             cardClass={contentFirst.class}
                                                                                                                             cardId={contentFirst.id}
                                                                                                                             cardStyles={contentFirst.styles}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3423,6 +3886,8 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <ImageLayout
                                                                                                                             output={contentFirst.output}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
@@ -3460,26 +3925,20 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <ListLayout
                                                                                                                             list={contentFirst.output}
-                                                                                                                            listStyles={contentFirst.styles}
+                                                                                                                            listStyles={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
-                                                                                                                    
-                                                                                                                {contentFirst.type !== 'multipleChoice' &&
-                                                                                                                contentFirst.type !== 'homePage' &&
-                                                                                                                contentFirst.type !== 'courseObjectives' &&
-                                                                                                                contentFirst.type !== 'listModal' &&
-                                                                                                                contentFirst.type !== 'video' &&
-                                                                                                                contentFirst.type !== 'dragDrop' &&
-                                                                                                                contentFirst.type !== 'card' &&
-                                                                                                                contentFirst.type !== 'image' &&
-                                                                                                                contentFirst.type !== 'list' &&
+
+                                                                                                                {contentFirst.type === 'contentArea' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
                                                                                                                         {...provided.dragHandleProps}
 
-                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex} 
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                         id={
                                                                                                                             contentFirst.id ? 
                                                                                                                                 contentFirst.id
@@ -3504,22 +3963,52 @@ class SlideHandler extends Component {
                                                                                                                             )
                                                                                                                         }
                                                                                                                     >
-                                                                                                                        {
-                                                                                                                            contentFirst.css ? 
-                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' ?
-                                                                                                                                    this.cssApplier(
-                                                                                                                                        contentFirst.css, 
-                                                                                                                                        contentFirst.id ? 
-                                                                                                                                            contentFirst.id
-                                                                                                                                                : 
-                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
-                                                                                                                                    )
-                                                                                                                                :
-                                                                                                                                    null
+                                                                                                                        <ContentAreaLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'audio' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
                                                                                                                             : 
-                                                                                                                                null
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
                                                                                                                         }
-                                                                                                                        {ReactHtmlParser(contentFirst.output)}
+                                                                                                                    >
+                                                                                                                        <AudioLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
                                                                                                                     </div>
                                                                                                                 }
                                                                                                             </>
@@ -3632,50 +4121,83 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                         
-                                                                                                                    {contentFirst.type !== 'listModal' &&
-                                                                                                                    contentFirst.type !== 'card' &&
+                                                                                                                    {contentFirst.type === 'contentArea' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                            key={'sg-1-2-1-content-output-' + contentFirstIndex} 
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                             id={
                                                                                                                                 contentFirst.id ? 
-                                                                                                                                    contentFirst.id 
+                                                                                                                                    contentFirst.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-2-1-content-output-' + contentFirstIndex
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
                                                                                                                             } 
                                                                                                                             className={
                                                                                                                                 contentFirst.class ? 
                                                                                                                                     contentFirst.class + " content-output"
                                                                                                                                 : 
                                                                                                                                     "content-output"
-                                                                                                                            }  
+                                                                                                                            } 
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
                                                                                                                                     contentFirstIndex, 
                                                                                                                                     contentFirst.id ? 
-                                                                                                                                        contentFirst.id 
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-2-1-content-output-' + contentFirstIndex, 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                     'subColumnOne'
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         >
-                                                                                                                            {
-                                                                                                                                contentFirst.css && 
-                                                                                                                                    contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                    this.cssApplier(
-                                                                                                                                        contentFirst.css, 
-                                                                                                                                        contentFirst.id ? 
-                                                                                                                                            contentFirst.id 
+                                                                                                                            <ContentAreaLayout
+                                                                                                                                output={contentFirst.output}
+                                                                                                                                style={contentFirst.style}
+                                                                                                                                css={contentFirst.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+
+                                                                                                                    {contentFirst.type === 'audio' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            id={
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-2-1-content-output-' + contentFirstIndex
-                                                                                                                                    )
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
                                                                                                                             }
-                                                                                                                            {ReactHtmlParser(contentFirst.output)}
+                                                                                                                        >
+                                                                                                                            <AudioLayout
+                                                                                                                                output={contentFirst.output}
+                                                                                                                                style={contentFirst.style}
+                                                                                                                                css={contentFirst.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                 </>
@@ -3775,50 +4297,83 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                         
-                                                                                                                    {contentSecond.type !== 'listModal' &&
-                                                                                                                    contentSecond.type !== 'card' &&
+                                                                                                                    {contentSecond.type === 'contentArea' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                            key={'sg-1-2-2-content-output-' + contentSecondIndex} 
+                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                             id={
                                                                                                                                 contentSecond.id ? 
-                                                                                                                                    contentSecond.id 
+                                                                                                                                    contentSecond.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-2-2-content-output-' + contentSecondIndex
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
                                                                                                                             } 
                                                                                                                             className={
                                                                                                                                 contentSecond.class ? 
                                                                                                                                     contentSecond.class + " content-output"
                                                                                                                                 : 
                                                                                                                                     "content-output"
-                                                                                                                            }  
+                                                                                                                            } 
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
                                                                                                                                     contentSecondIndex, 
                                                                                                                                     contentSecond.id ? 
-                                                                                                                                        contentSecond.id 
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-2-2-content-output-' + contentSecondIndex, 
+                                                                                                                                    contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                     'subColumnTwo'
                                                                                                                                 )
                                                                                                                             }
                                                                                                                         >
-                                                                                                                            {
-                                                                                                                                contentSecond.css && 
-                                                                                                                                    contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                    this.cssApplier(
-                                                                                                                                        contentSecond.css, 
-                                                                                                                                        contentSecond.id ? 
-                                                                                                                                            contentSecond.id 
+                                                                                                                            <ContentAreaLayout
+                                                                                                                                output={contentSecond.output}
+                                                                                                                                style={contentSecond.style}
+                                                                                                                                css={contentSecond.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
+
+                                                                                                                    {contentSecond.type === 'audio' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                            id={
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentSecond.class ? 
+                                                                                                                                    contentSecond.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentSecondIndex, 
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                    contentSecond.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-2-2-content-output-' + contentSecondIndex
-                                                                                                                                    )
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                    'subColumnTwo'
+                                                                                                                                )
                                                                                                                             }
-                                                                                                                            {ReactHtmlParser(contentSecond.output)}
+                                                                                                                        >
+                                                                                                                            <AudioLayout
+                                                                                                                                output={contentSecond.output}
+                                                                                                                                style={contentSecond.style}
+                                                                                                                                css={contentSecond.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
                                                                                                                         </div>
                                                                                                                     }
                                                                                                                 </>
@@ -3926,23 +4481,22 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {contentFirst.type !== 'listModal' &&
-                                                                                                                        contentFirst.type !== 'card' &&
-                                                                                                                            <div
+                                                                                                                        {contentFirst.type === 'contentArea' &&
+                                                                                                                            <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
                                                                                                                                 {...provided.dragHandleProps}
 
-                                                                                                                                key={'sg-1-3-1-content-output-' + contentFirstIndex} 
+                                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                                 id={
                                                                                                                                     contentFirst.id ? 
-                                                                                                                                        contentFirst.id 
+                                                                                                                                        contentFirst.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-3-1-content-output-' + contentFirstIndex
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFirst.class ? 
-                                                                                                                                        contentFirst.class + " content-output" 
+                                                                                                                                        contentFirst.class + " content-output"
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -3951,25 +4505,59 @@ class SlideHandler extends Component {
                                                                                                                                         index, 
                                                                                                                                         contentFirstIndex, 
                                                                                                                                         contentFirst.id ? 
-                                                                                                                                            contentFirst.id 
-                                                                                                                                        : 
-                                                                                                                                            'sg-1-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        contentFirst.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
                                                                                                                             >
-                                                                                                                                {
-                                                                                                                                    contentFirst.css && 
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                        this.cssApplier(
-                                                                                                                                            contentFirst.css, 
-                                                                                                                                            contentFirst.id ? 
-                                                                                                                                                contentFirst.id 
+                                                                                                                                <ContentAreaLayout
+                                                                                                                                    output={contentFirst.output}
+                                                                                                                                    style={contentFirst.style}
+                                                                                                                                    css={contentFirst.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
+
+                                                                                                                        {contentFirst.type === 'audio' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                id={
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                        contentFirst.id
                                                                                                                                             : 
-                                                                                                                                                'sg-1-3-1-content-output-' + contentFirstIndex
-                                                                                                                                        )
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
                                                                                                                                 }
-                                                                                                                                {ReactHtmlParser(contentFirst.output)}
+                                                                                                                            >
+                                                                                                                                <AudioLayout
+                                                                                                                                    output={contentFirst.output}
+                                                                                                                                    style={contentFirst.style}
+                                                                                                                                    css={contentFirst.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
                                                                                                                             </div>
                                                                                                                         }
                                                                                                                     </>
@@ -4069,23 +4657,22 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {contentSecond.type !== 'listModal' &&
-                                                                                                                        contentSecond.type !== 'card' &&
-                                                                                                                            <div
+                                                                                                                        {contentSecond.type === 'contentArea' &&
+                                                                                                                            <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
                                                                                                                                 {...provided.dragHandleProps}
 
-                                                                                                                                key={'sg-2-3-2-content-output-' + contentSecondIndex} 
+                                                                                                                                key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                                 id={
                                                                                                                                     contentSecond.id ? 
-                                                                                                                                        contentSecond.id 
+                                                                                                                                        contentSecond.id
                                                                                                                                     : 
-                                                                                                                                        'sg-2-3-2-content-output-' + contentSecondIndex
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentSecond.class ? 
-                                                                                                                                        contentSecond.class + " content-output" 
+                                                                                                                                        contentSecond.class + " content-output"
                                                                                                                                     : 
                                                                                                                                         "content-output"
                                                                                                                                 } 
@@ -4094,25 +4681,59 @@ class SlideHandler extends Component {
                                                                                                                                         index, 
                                                                                                                                         contentSecondIndex, 
                                                                                                                                         contentSecond.id ? 
-                                                                                                                                            contentSecond.id 
-                                                                                                                                        : 
-                                                                                                                                            'sg-2-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        contentSecond.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                         'subColumnTwo'
                                                                                                                                     )
                                                                                                                                 }
                                                                                                                             >
-                                                                                                                                {
-                                                                                                                                    contentSecond.css &&
-                                                                                                                                    contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                        this.cssApplier(
-                                                                                                                                            contentSecond.css, 
-                                                                                                                                            contentSecond.id ? 
-                                                                                                                                                contentSecond.id 
+                                                                                                                                <ContentAreaLayout
+                                                                                                                                    output={contentSecond.output}
+                                                                                                                                    style={contentSecond.style}
+                                                                                                                                    css={contentSecond.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
+
+                                                                                                                        {contentSecond.type === 'audio' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                id={
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                        contentSecond.id
                                                                                                                                             : 
-                                                                                                                                                'sg-2-3-2-content-output-' + contentSecondIndex
-                                                                                                                                        )
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
                                                                                                                                 }
-                                                                                                                                {ReactHtmlParser(contentSecond.output)}
+                                                                                                                            >
+                                                                                                                                <AudioLayout
+                                                                                                                                    output={contentSecond.output}
+                                                                                                                                    style={contentSecond.style}
+                                                                                                                                    css={contentSecond.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
                                                                                                                             </div>
                                                                                                                         }
                                                                                                                     </>
@@ -4220,23 +4841,22 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentFirst.type !== 'listModal' &&
-                                                                                                                            contentFirst.type !== 'card' &&
-                                                                                                                                <div
+                                                                                                                            {contentFirst.type === 'contentArea' &&
+                                                                                                                                <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
-                                                                                                                                    key={'sg-2-3-1-content-output-' + contentFirstIndex} 
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                                     id={
                                                                                                                                         contentFirst.id ? 
-                                                                                                                                            contentFirst.id 
+                                                                                                                                            contentFirst.id
                                                                                                                                         : 
-                                                                                                                                            'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentFirst.class ? 
-                                                                                                                                            contentFirst.class + " content-output" 
+                                                                                                                                            contentFirst.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
                                                                                                                                     } 
@@ -4245,25 +4865,59 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex, 
                                                                                                                                             contentFirst.id ? 
-                                                                                                                                                contentFirst.id 
-                                                                                                                                            : 
-                                                                                                                                                'sg-2-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
-                                                                                                                                    {
-                                                                                                                                        contentFirst.css &&
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentFirst.css, 
-                                                                                                                                                contentFirst.id ? 
-                                                                                                                                                    contentFirst.id 
+                                                                                                                                    <ContentAreaLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentFirst.type === 'audio' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                            contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex, 
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-2-3-1-content-output-' + contentFirstIndex
-                                                                                                                                            )
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
                                                                                                                                     }
-                                                                                                                                    {ReactHtmlParser(contentFirst.output)}
+                                                                                                                                >
+                                                                                                                                    <AudioLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
                                                                                                                                 </div>
                                                                                                                             }
                                                                                                                         </>
@@ -4363,23 +5017,22 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentSecond.type !== 'listModal' &&
-                                                                                                                            contentSecond.type !== 'card' &&
-                                                                                                                                <div
+                                                                                                                            {contentSecond.type === 'contentArea' &&
+                                                                                                                                <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
-                                                                                                                                    key={'sg-1-3-2-content-output-' + contentSecondIndex} 
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                                     id={
                                                                                                                                         contentSecond.id ? 
-                                                                                                                                            contentSecond.id 
+                                                                                                                                            contentSecond.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentSecond.class ? 
-                                                                                                                                            contentSecond.class + " content-output" 
+                                                                                                                                            contentSecond.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
                                                                                                                                     } 
@@ -4388,25 +5041,59 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex, 
                                                                                                                                             contentSecond.id ? 
-                                                                                                                                                contentSecond.id 
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
-                                                                                                                                    {
-                                                                                                                                        contentSecond.css &&
-                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentSecond.css, 
-                                                                                                                                                contentSecond.id ? 
-                                                                                                                                                    contentSecond.id 
+                                                                                                                                    <ContentAreaLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentSecond.type === 'audio' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                            contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex, 
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-3-2-content-output-' + contentSecondIndex
-                                                                                                                                            )
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
                                                                                                                                     }
-                                                                                                                                    {ReactHtmlParser(contentSecond.output)}
+                                                                                                                                >
+                                                                                                                                    <AudioLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
                                                                                                                                 </div>
                                                                                                                             }
                                                                                                                         </>
@@ -4515,23 +5202,22 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentFirst.type !== 'listModal' &&
-                                                                                                                            contentFirst.type !== 'card' &&
-                                                                                                                                <div
+                                                                                                                            {contentFirst.type === 'contentArea' &&
+                                                                                                                                <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
-                                                                                                                                    key={'sg-1-3-1-1-content-output-' + contentFirstIndex} 
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                                     id={
                                                                                                                                         contentFirst.id ? 
                                                                                                                                             contentFirst.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-1-content-output-' + contentFirstIndex
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentFirst.class ? 
-                                                                                                                                            contentFirst.class + " content-output" 
+                                                                                                                                            contentFirst.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
                                                                                                                                     } 
@@ -4540,25 +5226,59 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex, 
                                                                                                                                             contentFirst.id ? 
-                                                                                                                                                contentFirst.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-1-1-content-output-' + contentFirstIndex, 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
-                                                                                                                                    {
-                                                                                                                                        contentFirst.css &&
-                                                                                                                                        contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentFirst.css, 
-                                                                                                                                                contentFirst.id ? 
-                                                                                                                                                    contentFirst.id
+                                                                                                                                    <ContentAreaLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentFirst.type === 'audio' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                            contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex, 
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-3-1-1-content-output-' + contentFirstIndex
-                                                                                                                                            )
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
                                                                                                                                     }
-                                                                                                                                    {ReactHtmlParser(contentFirst.output)}
+                                                                                                                                >
+                                                                                                                                    <AudioLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
                                                                                                                                 </div>
                                                                                                                             }
                                                                                                                         </>
@@ -4658,23 +5378,22 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentSecond.type !== 'listModal' &&
-                                                                                                                            contentSecond.type !== 'card' &&
-                                                                                                                                <div
+                                                                                                                            {contentSecond.type === 'contentArea' &&
+                                                                                                                                <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
-                                                                                                                                    key={'sg-1-3-1-2-content-output-' + contentSecondIndex} 
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                                     id={
                                                                                                                                         contentSecond.id ? 
                                                                                                                                             contentSecond.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-2-content-output-' + contentSecondIndex
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentSecond.class ? 
-                                                                                                                                            contentSecond.class + " content-output" 
+                                                                                                                                            contentSecond.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
                                                                                                                                     } 
@@ -4683,25 +5402,59 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex, 
                                                                                                                                             contentSecond.id ? 
-                                                                                                                                                contentSecond.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-1-2-content-output-' + contentSecondIndex, 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
-                                                                                                                                    {
-                                                                                                                                        contentSecond.css &&
-                                                                                                                                        contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentSecond.css, 
-                                                                                                                                                contentSecond.id ? 
-                                                                                                                                                    contentSecond.id
+                                                                                                                                    <ContentAreaLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentSecond.type === 'audio' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                            contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex, 
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-3-1-2-content-output-' + contentSecondIndex
-                                                                                                                                            )
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
                                                                                                                                     }
-                                                                                                                                    {ReactHtmlParser(contentSecond.output)}
+                                                                                                                                >
+                                                                                                                                    <AudioLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
                                                                                                                                 </div>
                                                                                                                             }
                                                                                                                         </>
@@ -4801,23 +5554,22 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentThird.type !== 'listModal' &&
-                                                                                                                            contentThird.type !== 'card' &&
-                                                                                                                                <div
+                                                                                                                            {contentThird.type === 'contentArea' &&
+                                                                                                                                <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
-                                                                                                                                    key={'sg-1-3-1-3-content-output-' + contentThirdIndex} 
+                                                                                                                                    key={item.id + '-content-output-' + contentThirdIndex}
                                                                                                                                     id={
                                                                                                                                         contentThird.id ? 
                                                                                                                                             contentThird.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-3-content-output-' + contentThirdIndex
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentThird.class ? 
-                                                                                                                                            contentThird.class + " content-output" 
+                                                                                                                                            contentThird.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
                                                                                                                                     } 
@@ -4826,25 +5578,59 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentThirdIndex, 
                                                                                                                                             contentThird.id ? 
-                                                                                                                                                contentThird.id
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-1-3-content-output-' + contentThirdIndex, 
+                                                                                                                                            contentThird.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex,
                                                                                                                                             'subColumnThree'
                                                                                                                                         )
                                                                                                                                     }
                                                                                                                                 >
-                                                                                                                                    {
-                                                                                                                                        contentThird.css &&
-                                                                                                                                        contentThird.css[contentThird.css.length - 1] === '}' &&
-                                                                                                                                            this.cssApplier(
-                                                                                                                                                contentThird.css, 
-                                                                                                                                                contentThird.id ? 
-                                                                                                                                                    contentThird.id
+                                                                                                                                    <ContentAreaLayout
+                                                                                                                                        output={contentThird.output}
+                                                                                                                                        style={contentThird.style}
+                                                                                                                                        css={contentThird.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentThird.type === 'audio' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentThird.class ? 
+                                                                                                                                            contentThird.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentThirdIndex, 
+                                                                                                                                            contentThird.id ? 
+                                                                                                                                            contentThird.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-3-1-3-content-output-' + contentThirdIndex
-                                                                                                                                            )
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                            'subColumnThree'
+                                                                                                                                        )
                                                                                                                                     }
-                                                                                                                                    {ReactHtmlParser(contentThird.output)}
+                                                                                                                                >
+                                                                                                                                    <AudioLayout
+                                                                                                                                        output={contentThird.output}
+                                                                                                                                        style={contentThird.style}
+                                                                                                                                        css={contentThird.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
                                                                                                                                 </div>
                                                                                                                             }
                                                                                                                         </>
@@ -4953,23 +5739,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFirst.type !== 'listModal' &&
-                                                                                                                                    contentFirst.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentFirst.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-4-1-content-output-' + contentFirstIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                                             id={
                                                                                                                                                 contentFirst.id ? 
                                                                                                                                                     contentFirst.id
-                                                                                                                                                :
-                                                                                                                                                    'sg-1-4-1-content-output-' + contentFirstIndex
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentFirst.class ? 
-                                                                                                                                                    contentFirst.class + " content-output" 
+                                                                                                                                                    contentFirst.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -4978,25 +5763,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentFirstIndex, 
                                                                                                                                                     contentFirst.id ? 
-                                                                                                                                                        contentFirst.id
-                                                                                                                                                    :
-                                                                                                                                                        'sg-1-4-1-content-output-' + contentFirstIndex, 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                                     'subColumnOne'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentFirst.css &&
-                                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentFirst.css, 
-                                                                                                                                                        contentFirst.id ? 
-                                                                                                                                                            contentFirst.id
-                                                                                                                                                        :
-                                                                                                                                                            'sg-1-4-1-content-output-' + contentFirstIndex
-                                                                                                                                                    )
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentFirst.output}
+                                                                                                                                                style={contentFirst.style}
+                                                                                                                                                css={contentFirst.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentFirst.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFirst.class ? 
+                                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFirstIndex, 
+                                                                                                                                                    contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                                    'subColumnOne'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentFirst.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentFirst.output}
+                                                                                                                                                style={contentFirst.style}
+                                                                                                                                                css={contentFirst.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5096,23 +5915,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentSecond.type !== 'listModal' &&
-                                                                                                                                    contentSecond.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentSecond.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-4-2-content-output-' + contentSecondIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                                             id={
                                                                                                                                                 contentSecond.id ? 
                                                                                                                                                     contentSecond.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-4-2-content-output-' + contentSecondIndex
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentSecond.class ? 
-                                                                                                                                                    contentSecond.class + " content-output" 
+                                                                                                                                                    contentSecond.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5121,25 +5939,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentSecondIndex, 
                                                                                                                                                     contentSecond.id ? 
-                                                                                                                                                        contentSecond.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-4-2-content-output-' + contentSecondIndex, 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                                     'subColumnTwo'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentSecond.css &&
-                                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentSecond.css, 
-                                                                                                                                                        contentSecond.id ? 
-                                                                                                                                                            contentSecond.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentSecond.output}
+                                                                                                                                                style={contentSecond.style}
+                                                                                                                                                css={contentSecond.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentSecond.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentSecond.class ? 
+                                                                                                                                                    contentSecond.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentSecondIndex, 
+                                                                                                                                                    contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-4-2-content-output-' + contentSecondIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                                    'subColumnTwo'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentSecond.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentSecond.output}
+                                                                                                                                                style={contentSecond.style}
+                                                                                                                                                css={contentSecond.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5239,23 +6091,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentThird.type !== 'listModal' &&
-                                                                                                                                    contentThird.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentThird.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-4-3-content-output-' + contentThirdIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
                                                                                                                                             id={
                                                                                                                                                 contentThird.id ? 
                                                                                                                                                     contentThird.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-4-3-content-output-' + contentThirdIndex
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentThird.class ? 
-                                                                                                                                                    contentThird.class + " content-output" 
+                                                                                                                                                    contentThird.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5264,25 +6115,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentThirdIndex, 
                                                                                                                                                     contentThird.id ? 
-                                                                                                                                                        contentThird.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-4-3-content-output-' + contentThirdIndex, 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
                                                                                                                                                     'subColumnThree'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentThird.css &&
-                                                                                                                                                contentThird.css[contentThird.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentThird.css, 
-                                                                                                                                                        contentThird.id ? 
-                                                                                                                                                            contentThird.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentThird.output}
+                                                                                                                                                style={contentThird.style}
+                                                                                                                                                css={contentThird.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentThird.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentThird.class ? 
+                                                                                                                                                    contentThird.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentThirdIndex, 
+                                                                                                                                                    contentThird.id ? 
+                                                                                                                                                    contentThird.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-4-3-content-output-' + contentThirdIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                                    'subColumnThree'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentThird.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentThird.output}
+                                                                                                                                                style={contentThird.style}
+                                                                                                                                                css={contentThird.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5382,23 +6267,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFourth.type !== 'listModal' &&
-                                                                                                                                    contentFourth.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentFourth.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-4-4-content-output-' + contentFourthIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
                                                                                                                                             id={
                                                                                                                                                 contentFourth.id ? 
                                                                                                                                                     contentFourth.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-4-4-content-output-' + contentFourthIndex
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentFourth.class ? 
-                                                                                                                                                    contentFourth.class + " content-output" 
+                                                                                                                                                    contentFourth.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5407,25 +6291,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentFourthIndex, 
                                                                                                                                                     contentFourth.id ? 
-                                                                                                                                                        contentFourth.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-4-4-content-output-' + contentFourthIndex, 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
                                                                                                                                                     'subColumnFour'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentFourth.css &&
-                                                                                                                                                contentFourth.css[contentFourth.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentFourth.css, 
-                                                                                                                                                        contentFourth.id ? 
-                                                                                                                                                            contentFourth.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentFourth.output}
+                                                                                                                                                style={contentFourth.style}
+                                                                                                                                                css={contentFourth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentFourth.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFourth.class ? 
+                                                                                                                                                    contentFourth.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex, 
+                                                                                                                                                    contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-4-4-content-output-' + contentFourthIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentFourth.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentFourth.output}
+                                                                                                                                                style={contentFourth.style}
+                                                                                                                                                css={contentFourth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5533,23 +6451,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFirst.type !== 'listModal' &&
-                                                                                                                                    contentFirst.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentFirst.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-5-1-content-output-' + contentFirstIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
                                                                                                                                             id={
                                                                                                                                                 contentFirst.id ? 
                                                                                                                                                     contentFirst.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-5-1-content-output-' + contentFirstIndex
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentFirst.class ? 
-                                                                                                                                                    contentFirst.class + " content-output" 
+                                                                                                                                                    contentFirst.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5558,25 +6475,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentFirstIndex, 
                                                                                                                                                     contentFirst.id ? 
-                                                                                                                                                        contentFirst.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-5-1-content-output-' + contentFirstIndex, 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                                     'subColumnOne'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentFirst.css &&
-                                                                                                                                                contentFirst.css[contentFirst.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentFirst.css, 
-                                                                                                                                                        contentFirst.id ? 
-                                                                                                                                                            contentFirst.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentFirst.output}
+                                                                                                                                                style={contentFirst.style}
+                                                                                                                                                css={contentFirst.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentFirst.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFirst.class ? 
+                                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFirstIndex, 
+                                                                                                                                                    contentFirst.id ? 
+                                                                                                                                                    contentFirst.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-5-1-content-output-' + contentFirstIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                                    'subColumnOne'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentFirst.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentFirst.output}
+                                                                                                                                                style={contentFirst.style}
+                                                                                                                                                css={contentFirst.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5676,23 +6627,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentSecond.type !== 'listModal' &&
-                                                                                                                                    contentSecond.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentSecond.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-5-2-content-output-' + contentSecondIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
                                                                                                                                             id={
                                                                                                                                                 contentSecond.id ? 
                                                                                                                                                     contentSecond.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-5-2-content-output-' + contentSecondIndex
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentSecond.class ? 
-                                                                                                                                                    contentSecond.class + " content-output" 
+                                                                                                                                                    contentSecond.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5701,25 +6651,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentSecondIndex, 
                                                                                                                                                     contentSecond.id ? 
-                                                                                                                                                        contentSecond.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-5-2-content-output-' + contentSecondIndex, 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                                     'subColumnTwo'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentSecond.css &&
-                                                                                                                                                contentSecond.css[contentSecond.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentSecond.css, 
-                                                                                                                                                        contentSecond.id ? 
-                                                                                                                                                            contentSecond.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentSecond.output}
+                                                                                                                                                style={contentSecond.style}
+                                                                                                                                                css={contentSecond.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentSecond.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentSecond.class ? 
+                                                                                                                                                    contentSecond.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentSecondIndex, 
+                                                                                                                                                    contentSecond.id ? 
+                                                                                                                                                    contentSecond.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-5-2-content-output-' + contentSecondIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                                    'subColumnTwo'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentSecond.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentSecond.output}
+                                                                                                                                                style={contentSecond.style}
+                                                                                                                                                css={contentSecond.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5819,23 +6803,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentThird.type !== 'listModal' &&
-                                                                                                                                    contentThird.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentThird.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-5-3-content-output-' + contentThirdIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
                                                                                                                                             id={
                                                                                                                                                 contentThird.id ? 
                                                                                                                                                     contentThird.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-5-3-content-output-' + contentThirdIndex
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentThird.class ? 
-                                                                                                                                                    contentThird.class + " content-output" 
+                                                                                                                                                    contentThird.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5844,25 +6827,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentThirdIndex, 
                                                                                                                                                     contentThird.id ? 
-                                                                                                                                                        contentThird.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-5-3-content-output-' + contentThirdIndex, 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
                                                                                                                                                     'subColumnThree'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentThird.css &&
-                                                                                                                                                contentThird.css[contentThird.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentThird.css, 
-                                                                                                                                                        contentThird.id ? 
-                                                                                                                                                            contentThird.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentThird.output}
+                                                                                                                                                style={contentThird.style}
+                                                                                                                                                css={contentThird.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentThird.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentThird.id ? 
+                                                                                                                                                    contentThird.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentThird.class ? 
+                                                                                                                                                    contentThird.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentThirdIndex, 
+                                                                                                                                                    contentThird.id ? 
+                                                                                                                                                    contentThird.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-5-3-content-output-' + contentThirdIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                                    'subColumnThree'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentThird.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentThird.output}
+                                                                                                                                                style={contentThird.style}
+                                                                                                                                                css={contentThird.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -5962,23 +6979,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                     
-                                                                                                                                    {contentFourth.type !== 'listModal' &&
-                                                                                                                                    contentFourth.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentFourth.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-5-4-content-output-' + contentFourthIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
                                                                                                                                             id={
                                                                                                                                                 contentFourth.id ? 
                                                                                                                                                     contentFourth.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-5-4-content-output-' + contentFourthIndex
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentFourth.class ? 
-                                                                                                                                                    contentFourth.class + " content-output" 
+                                                                                                                                                    contentFourth.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -5987,25 +7003,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentFourthIndex, 
                                                                                                                                                     contentFourth.id ? 
-                                                                                                                                                        contentFourth.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-5-4-content-output-' + contentFourthIndex, 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
                                                                                                                                                     'subColumnFour'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentFourth.css &&
-                                                                                                                                                contentFourth.css[contentFourth.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentFourth.css, 
-                                                                                                                                                        contentFourth.id ? 
-                                                                                                                                                            contentFourth.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentFourth.output}
+                                                                                                                                                style={contentFourth.style}
+                                                                                                                                                css={contentFourth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentFourth.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFourthIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFourth.class ? 
+                                                                                                                                                    contentFourth.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFourthIndex, 
+                                                                                                                                                    contentFourth.id ? 
+                                                                                                                                                    contentFourth.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-5-4-content-output-' + contentFourthIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentFourthIndex,
+                                                                                                                                                    'subColumnFour'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentFourth.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentFourth.output}
+                                                                                                                                                style={contentFourth.style}
+                                                                                                                                                css={contentFourth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>
@@ -6105,23 +7155,22 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFifth.type !== 'listModal' &&
-                                                                                                                                    contentFifth.type !== 'card' &&
-                                                                                                                                        <div
+                                                                                                                                    {contentFifth.type === 'contentArea' &&
+                                                                                                                                        <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
                                                                                                                                             {...provided.dragHandleProps}
 
-                                                                                                                                            key={'sg-1-5-5-content-output-' + contentFifthIndex} 
+                                                                                                                                            key={item.id + '-content-output-' + contentFifthIndex}
                                                                                                                                             id={
                                                                                                                                                 contentFifth.id ? 
                                                                                                                                                     contentFifth.id
                                                                                                                                                 : 
-                                                                                                                                                    'sg-1-5-5-content-output-' + contentFifthIndex
+                                                                                                                                                    item.id + '-content-output-' + contentFifthIndex
                                                                                                                                             } 
                                                                                                                                             className={
                                                                                                                                                 contentFifth.class ? 
-                                                                                                                                                    contentFifth.class + " content-output" 
+                                                                                                                                                    contentFifth.class + " content-output"
                                                                                                                                                 : 
                                                                                                                                                     "content-output"
                                                                                                                                             } 
@@ -6130,25 +7179,59 @@ class SlideHandler extends Component {
                                                                                                                                                     index, 
                                                                                                                                                     contentFifthIndex, 
                                                                                                                                                     contentFifth.id ? 
-                                                                                                                                                        contentFifth.id
-                                                                                                                                                    : 
-                                                                                                                                                        'sg-1-5-5-content-output-' + contentFifthIndex, 
+                                                                                                                                                    contentFifth.id
+                                                                                                                                                        : 
+                                                                                                                                                    item.id + '-content-output-' + contentFifthIndex,
                                                                                                                                                     'subColumnFive'
                                                                                                                                                 )
                                                                                                                                             }
                                                                                                                                         >
-                                                                                                                                            {
-                                                                                                                                                contentFifth.css &&
-                                                                                                                                                contentFifth.css[contentFifth.css.length - 1] === '}' &&
-                                                                                                                                                    this.cssApplier(
-                                                                                                                                                        contentFifth.css, 
-                                                                                                                                                        contentFifth.id ? 
-                                                                                                                                                            contentFifth.id
+                                                                                                                                            <ContentAreaLayout
+                                                                                                                                                output={contentFifth.output}
+                                                                                                                                                style={contentFifth.style}
+                                                                                                                                                css={contentFifth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
+                                                                                                                                        </div>
+                                                                                                                                    }
+
+                                                                                                                                    {contentFifth.type === 'audio' &&
+                                                                                                                                        <div 
+                                                                                                                                            ref={provided.innerRef}
+                                                                                                                                            {...provided.draggableProps}
+                                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                                            key={item.id + '-content-output-' + contentFifthIndex}
+                                                                                                                                            id={
+                                                                                                                                                contentFifth.id ? 
+                                                                                                                                                    contentFifth.id
+                                                                                                                                                : 
+                                                                                                                                                    item.id + '-content-output-' + contentFifthIndex
+                                                                                                                                            } 
+                                                                                                                                            className={
+                                                                                                                                                contentFifth.class ? 
+                                                                                                                                                    contentFifth.class + " content-output"
+                                                                                                                                                : 
+                                                                                                                                                    "content-output"
+                                                                                                                                            } 
+                                                                                                                                            onClick={() => 
+                                                                                                                                                this.contentPaneClick(
+                                                                                                                                                    index, 
+                                                                                                                                                    contentFifthIndex, 
+                                                                                                                                                    contentFifth.id ? 
+                                                                                                                                                    contentFifth.id
                                                                                                                                                         : 
-                                                                                                                                                            'sg-1-5-5-content-output-' + contentFifthIndex
-                                                                                                                                                    )
+                                                                                                                                                    item.id + '-content-output-' + contentFifthIndex,
+                                                                                                                                                    'subColumnFive'
+                                                                                                                                                )
                                                                                                                                             }
-                                                                                                                                            {ReactHtmlParser(contentFifth.output)}
+                                                                                                                                        >
+                                                                                                                                            <AudioLayout
+                                                                                                                                                output={contentFifth.output}
+                                                                                                                                                style={contentFifth.style}
+                                                                                                                                                css={contentFifth.css}
+                                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                                            />
                                                                                                                                         </div>
                                                                                                                                     }
                                                                                                                                 </>

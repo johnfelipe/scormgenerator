@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import ListUlAccordion from './ListUlAccordion';
@@ -46,6 +46,25 @@ function List(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries.splice(entryIndex, 1);
+
+        props.setColumn(currentColumnObj);
+    }
+    
+    const handleImageChange = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setBackgroundImg(files[0].name, reader.result);
+        }
+    }
+
+    const setBackgroundImg = (name, url) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
 
         props.setColumn(currentColumnObj);
     }
@@ -230,6 +249,28 @@ function List(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Background</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name
+                                    }
+                                    readOnly
+                                />
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
