@@ -82,6 +82,7 @@ class Editor extends Component {
         if (this.props.feature === "audio") {
             editorContent = (
                 <Audio
+                    setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     currentColumn={this.props.currentColumn}
@@ -96,6 +97,7 @@ class Editor extends Component {
         } else if (this.props.feature === "contentArea") {
             editorContent = (
                 <ContentArea
+                    setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}
                     setShowEditor={this.props.setShowEditor}
