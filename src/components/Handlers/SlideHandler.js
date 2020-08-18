@@ -347,7 +347,10 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 style: {
-                    backgroundImg: '',
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                 }
             };
         } else if (featureType === "contentArea") {
@@ -357,7 +360,10 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 style: {
-                    backgroundImg: '',
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                 }
             };
         } else if (featureType === "multipleChoice") {
@@ -437,7 +443,10 @@ class SlideHandler extends Component {
                     btnLabelAlignment: 'text-center',
                     btnPosition: 'text-center',
                     btnColor: '#0069d9',
-                    backgroundImg: '',
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                 }
             };
         } else if (featureType === "video") {
@@ -516,7 +525,10 @@ class SlideHandler extends Component {
                 id: '',
                 style: {
                     listStyle: '',
-                    backgroundImg: '',
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                 }
             };
         }
@@ -583,7 +595,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -601,7 +616,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -714,7 +732,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -833,7 +854,10 @@ class SlideHandler extends Component {
                             id: '',
                             style: {
                                 listStyle: '',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -863,7 +887,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -881,7 +908,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -903,7 +933,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -963,7 +996,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -981,7 +1017,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1003,7 +1042,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1063,7 +1105,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1081,7 +1126,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1103,7 +1151,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1162,7 +1213,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1180,7 +1234,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1202,7 +1259,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1265,7 +1325,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1283,7 +1346,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1305,7 +1371,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1367,7 +1436,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1385,7 +1457,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1407,7 +1482,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1470,7 +1548,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1488,7 +1569,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1510,7 +1594,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1572,7 +1659,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1590,7 +1680,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1612,7 +1705,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1674,7 +1770,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1692,7 +1791,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1714,7 +1816,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1777,7 +1882,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1795,7 +1903,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1817,7 +1928,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1879,7 +1993,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1897,7 +2014,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -1919,7 +2039,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -1981,7 +2104,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2018,7 +2144,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2080,7 +2209,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2117,7 +2249,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2180,7 +2315,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2198,7 +2336,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2220,7 +2361,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2282,7 +2426,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2300,7 +2447,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2322,7 +2472,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2384,7 +2537,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2402,7 +2558,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2424,7 +2583,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2486,7 +2648,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2504,7 +2669,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2526,7 +2694,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
@@ -2588,7 +2759,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2606,7 +2780,10 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             style: {
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
 
@@ -2628,7 +2805,10 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
-                                backgroundImg: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             }
                         };
                         
