@@ -437,6 +437,7 @@ class SlideHandler extends Component {
                     btnLabelAlignment: 'text-center',
                     btnPosition: 'text-center',
                     btnColor: '#0069d9',
+                    backgroundImg: '',
                 }
             };
         } else if (featureType === "video") {
@@ -712,6 +713,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -899,6 +901,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -998,6 +1001,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1097,6 +1101,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1195,6 +1200,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1297,6 +1303,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1398,6 +1405,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1500,6 +1508,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1601,6 +1610,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1702,6 +1712,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1804,6 +1815,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -1905,6 +1917,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2003,6 +2016,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2101,6 +2115,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2203,6 +2218,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2304,6 +2320,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2405,6 +2422,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2506,6 +2524,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
@@ -2607,6 +2626,7 @@ class SlideHandler extends Component {
                                 btnLabelAlignment: 'text-center',
                                 btnPosition: 'text-center',
                                 btnColor: '#0069d9',
+                                backgroundImg: '',
                             }
                         };
                         
