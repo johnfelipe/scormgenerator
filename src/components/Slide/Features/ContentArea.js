@@ -13,14 +13,15 @@ function ContentArea(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(reader.result);
+            setBackgroundImg(files[0].name, reader.result);
         }
     }
 
-    const setBackgroundImg = (url) => {
+    const setBackgroundImg = (name, url) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
 
         props.setColumn(currentColumnObj);
     }
@@ -90,7 +91,7 @@ function ContentArea(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
                                     </span>
                                 </label>
                                 <input
@@ -98,8 +99,8 @@ function ContentArea(props) {
                                     placeholder="Choose image"
                                     className="form-control w-50"
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name
                                     }
                                     readOnly
                                 />
