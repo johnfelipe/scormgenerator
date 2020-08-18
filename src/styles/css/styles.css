@@ -95,6 +95,10 @@
   height: 65% !important;
 }
 
+.h-67 {
+  height: 67% !important;
+}
+
 .h-70 {
   height: 70% !important;
 }
@@ -105,6 +109,10 @@
 
 .h-80 {
   height: 80% !important;
+}
+
+.h-82 {
+  height: 82% !important;
 }
 
 .h-85 {
@@ -1094,7 +1102,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   color: #444;
   background-color: #fff;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions .sg-workspace-expander-head-button {
   position: relative;
   display: block;
   width: 40px;
