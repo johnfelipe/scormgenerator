@@ -516,6 +516,7 @@ class SlideHandler extends Component {
                 id: '',
                 style: {
                     listStyle: '',
+                    backgroundImg: '',
                 }
             };
         }
@@ -832,6 +833,7 @@ class SlideHandler extends Component {
                             id: '',
                             style: {
                                 listStyle: '',
+                                backgroundImg: '',
                             }
                         };
                         
