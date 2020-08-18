@@ -345,7 +345,10 @@ class SlideHandler extends Component {
                 type: 'audio',
                 output: 'No audio added.',
                 class: '',
-                id: ''
+                id: '',
+                style: {
+                    backgroundImg: '',
+                }
             };
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -593,7 +596,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -865,9 +871,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -961,9 +970,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1057,9 +1069,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1152,9 +1167,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1251,9 +1269,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1349,9 +1370,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1448,9 +1472,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1546,9 +1573,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1644,9 +1674,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1743,9 +1776,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1841,9 +1877,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2136,9 +2175,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2234,9 +2276,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2332,9 +2377,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2430,9 +2478,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2528,9 +2579,12 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            output: 'No audio added.',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
