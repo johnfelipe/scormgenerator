@@ -352,7 +352,10 @@ class SlideHandler extends Component {
                 type: 'contentArea',
                 output: '<p>This content will show up directly in its container.</p>',
                 class: '',
-                id: ''
+                id: '',
+                style: {
+                    backgroundImg: '',
+                }
             };
         } else if (featureType === "multipleChoice") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -572,7 +575,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -843,7 +849,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -936,7 +945,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1029,7 +1041,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1121,7 +1136,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1217,7 +1235,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1312,7 +1333,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1408,7 +1432,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1503,7 +1530,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1598,7 +1628,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1694,7 +1727,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1789,7 +1825,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1884,7 +1923,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1979,7 +2021,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2075,7 +2120,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2170,7 +2218,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2265,7 +2316,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2360,7 +2414,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2455,7 +2512,10 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
-                            id: ''
+                            id: '',
+                            style: {
+                                backgroundImg: '',
+                            }
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
