@@ -369,7 +369,8 @@ class SlideHandler extends Component {
                 styles: {
                     questionLabelClass: 'rounded-circle',
                     questionBackgroundColor: '#fff',
-                    multipleChoiceTextColor: 'text-black'
+                    multipleChoiceTextColor: 'text-black',
+                    backgroundImg: '',
                 },
                 mechanics: {
                     repeat: 0,
@@ -618,7 +619,8 @@ class SlideHandler extends Component {
                             styles: {
                                 questionLabelClass: 'rounded-circle',
                                 questionBackgroundColor: '#fff',
-                                multipleChoiceTextColor: 'text-black'
+                                multipleChoiceTextColor: 'text-black',
+                                backgroundImg: '',
                             },
                             mechanics: {
                                 repeat: 0,
