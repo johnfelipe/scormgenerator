@@ -30,6 +30,7 @@ import DragDropLayout from '../Slide/Layouts/DragDropLayout';
 import CardLayout from '../Slide/Layouts/CardLayout';
 import ImageLayout from '../Slide/Layouts/ImageLayout';
 import ListLayout from '../Slide/Layouts/ListLayout';
+import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -351,7 +352,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
-                }
+                },
+                css: '',
             };
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -364,7 +366,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
-                }
+                },
+                css: '',
             };
         } else if (featureType === "multipleChoice") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -386,7 +389,8 @@ class SlideHandler extends Component {
                     passingRate: 80,
                     specificType: 'knowledgeCheck',
                     returnSlide: 0
-                }
+                },
+                css: '',
             };
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -406,7 +410,8 @@ class SlideHandler extends Component {
                 styles: {
                     titleBoxColor: '#0069d9',
                     titleBoxBorder: 'border-bottom'
-                }
+                },
+                css: '',
             };
         } else if (featureType === "courseObjectives") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -433,7 +438,8 @@ class SlideHandler extends Component {
                     url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
                     type: 'video/mp4',
                     position: 'course-objectives-video-left'
-                }, 
+                },
+                css: '', 
             };
         } else if (featureType === "listModal") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -450,7 +456,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
-                }
+                },
+                css: '',
             };
         } else if (featureType === "video") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -468,6 +475,7 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+                css: '',
             };
         } else if (featureType === "dragDrop") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -480,6 +488,7 @@ class SlideHandler extends Component {
                     dragDropTextColor: 'text-black',
                     themeColor: '#0069d9',
                 },
+                css: '',
             };
         } else if (featureType === "card") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -503,6 +512,7 @@ class SlideHandler extends Component {
                 styles: {
                     themeColor: '#0069d9',
                 },
+                css: '',
             };
         } else if (featureType === "image") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -516,6 +526,7 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+                css: '',
             };
         } else if (featureType === "list") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
@@ -532,7 +543,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
-                }
+                },
+                css: '',
             };
         }
 
@@ -602,7 +614,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -623,7 +636,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -653,7 +667,8 @@ class SlideHandler extends Component {
                                 passingRate: 80,
                                 specificType: 'knowledgeCheck',
                                 returnSlide: 0
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -681,7 +696,8 @@ class SlideHandler extends Component {
                             styles: {
                                 titleBoxColor: '#0069d9',
                                 titleBoxBorder: 'border-bottom'
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -718,6 +734,7 @@ class SlideHandler extends Component {
                                 type: 'video/mp4',
                                 position: 'course-objectives-video-left'
                             },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -742,7 +759,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -768,6 +786,7 @@ class SlideHandler extends Component {
                             },
                             class: '',
                             id: '',
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -788,6 +807,7 @@ class SlideHandler extends Component {
                                 dragDropTextColor: 'text-black',
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -819,6 +839,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -840,6 +861,7 @@ class SlideHandler extends Component {
                             },
                             class: '',
                             id: '',
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -864,7 +886,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -897,7 +920,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -918,7 +942,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -943,7 +968,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -975,6 +1001,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1006,7 +1033,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1027,7 +1055,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1052,7 +1081,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1084,6 +1114,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1115,7 +1146,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1136,7 +1168,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1161,7 +1194,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1193,6 +1227,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1223,7 +1258,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1244,7 +1280,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1269,7 +1306,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1301,6 +1339,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1335,7 +1374,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1356,7 +1396,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1381,7 +1422,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1413,6 +1455,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1446,7 +1489,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1467,7 +1511,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1492,7 +1537,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1524,6 +1570,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1558,7 +1605,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1579,7 +1627,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1604,7 +1653,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1636,6 +1686,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1669,7 +1720,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1690,7 +1742,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1715,7 +1768,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1747,6 +1801,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -1780,7 +1835,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1801,7 +1857,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1826,7 +1883,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1858,6 +1916,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -1892,7 +1951,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1913,7 +1973,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1938,7 +1999,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -1970,6 +2032,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2003,7 +2066,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2024,7 +2088,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2049,7 +2114,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2081,6 +2147,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2114,7 +2181,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2154,7 +2222,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2186,6 +2255,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2219,7 +2289,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2259,7 +2330,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2291,6 +2363,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2325,7 +2398,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2346,7 +2420,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2371,7 +2446,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2403,6 +2479,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnOne.push(currentContent);
@@ -2436,7 +2513,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2457,7 +2535,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2482,7 +2561,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2514,6 +2594,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnTwo.push(currentContent);
@@ -2547,7 +2628,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2568,7 +2650,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2593,7 +2676,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2625,6 +2709,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2658,7 +2743,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2679,7 +2765,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2704,7 +2791,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2736,6 +2824,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2769,7 +2858,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2790,7 +2880,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2815,7 +2906,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                            }
+                            },
+                            css: '',
                         };
                         
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -2847,6 +2939,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                             },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFive.push(currentContent);
@@ -3682,6 +3775,7 @@ class SlideHandler extends Component {
                                                                                                                             dragDropClass={contentFirst.class}
                                                                                                                             dragDropId={contentFirst.id}
                                                                                                                             dragDropStyles={contentFirst.styles}
+                                                                                                                            dragDropCss={contentFirst.css}
                                                                                                                             cssApplier={this.cssApplier}
                                                                                                                         />
                                                                                                                     </div>
@@ -3788,6 +3882,46 @@ class SlideHandler extends Component {
                                                                                                                         />
                                                                                                                     </div>
                                                                                                                 }
+
+                                                                                                                {contentFirst.type === 'contentArea' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <ContentAreaLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
                                                                                                                     
                                                                                                                 {contentFirst.type !== 'multipleChoice' &&
                                                                                                                 contentFirst.type !== 'homePage' &&
@@ -3798,6 +3932,7 @@ class SlideHandler extends Component {
                                                                                                                 contentFirst.type !== 'card' &&
                                                                                                                 contentFirst.type !== 'image' &&
                                                                                                                 contentFirst.type !== 'list' &&
+                                                                                                                contentFirst.type !== 'contentArea' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
