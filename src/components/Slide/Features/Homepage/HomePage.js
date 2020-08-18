@@ -163,7 +163,7 @@ function HomePage(props) {
                                 <span>Background</span>
                             </div>
                             <div className="sg-control-input-list-input input-group">
-                                <label className="input-group-btn">
+                                <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
                                         <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
                                     </span>

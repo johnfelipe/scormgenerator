@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 function ContentArea(props) {
 
+    const { contentIndex, currentColumnContentIndex, currentColumn } = props;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
+
+    const handleImageChange = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setBackgroundImg(reader.result);
+        }
+    }
+
+    const setBackgroundImg = (url) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg = url;
+
+        props.setColumn(currentColumnObj);
+    }
 
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(props.contentIndex, 'contentArea')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'contentArea')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
-                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(props.contentIndex)}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link" onClick={() => props.deleteFeature(contentIndex)}>
                         <FontAwesomeIcon icon={faTrashAlt}/>
                         <span>Delete</span>
                     </button>
@@ -30,7 +49,12 @@ function ContentArea(props) {
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 { 
                                     isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, props.contentIndex, 'contentArea')}>
+                                        <button
+                                            type="button"
+                                            className="textarea-hover-btn btn btn-light"
+                                            onMouseLeave={() => setIsShownTextArea(false)}
+                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentArea')}
+                                        >
                                             <span>Click to Edit</span>
                                         </button>
                                     :
@@ -40,12 +64,12 @@ function ContentArea(props) {
                                     onMouseOver={() => setIsShownTextArea(true)} 
                                     disabled 
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].output
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
                                     }
                                 />
                             </div>
@@ -59,6 +83,28 @@ function ContentArea(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Background</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg
+                                    }
+                                    readOnly
+                                />
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
@@ -67,14 +113,14 @@ function ContentArea(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureId(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureId(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].id
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].id
                                     }
                                 />
                             </div>
@@ -87,14 +133,14 @@ function ContentArea(props) {
                                 <input
                                     type="text"
                                     placeholder=""
-                                    onChange={(event) => props.setFeatureClass(event, props.contentIndex)}
+                                    onChange={(event) => props.setFeatureClass(event, contentIndex)}
                                     value={ 
-                                        typeof props.currentColumn != "undefined" &&
-                                        'content' in props.currentColumn &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumnContentIndex in props.currentColumn.content &&
-                                        props.currentColumn.content[props.currentColumnContentIndex].length > 0 &&
-                                        props.currentColumn.content[props.currentColumnContentIndex][props.contentIndex].class
+                                        typeof currentColumn != "undefined" &&
+                                        'content' in currentColumn &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumnContentIndex in currentColumn.content &&
+                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].class
                                     }
                                 />
                             </div>
@@ -107,7 +153,7 @@ function ContentArea(props) {
                                 <div className="sg-expandable-code-editor">
                                     <div className="sg-workspace-expander">
                                         <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, props.contentIndex)}>
+                                            <button type="button" className="input-hover-btn btn btn-light border border-secondary p-1" onClick={() => props.setShowCssEditor(true, contentIndex)}>
                                                 <span>Add CSS</span>
                                             </button>
                                             <input type="text" value="" disabled className="rounded"/>
