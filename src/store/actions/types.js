@@ -17,3 +17,4 @@ export const CREATE_COURSE = 'CREATE_COURSE';
 export const CREATE_LESSON = 'CREATE_LESSON';
 export const CREATE_SLIDE = 'CREATE_SLIDE';
 export const CREATE_COLUMN = 'CREATE_COLUMN';
+export const GET_ALL_FILES = 'GET_ALL_FILES';

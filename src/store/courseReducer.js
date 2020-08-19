@@ -1,5 +1,6 @@
 import * as types from './actions/types';
 import * as methods from './actions/methods';
+import { galleryActions } from '../actions';
 
 const initialState = {
     courseTitle: '',
@@ -56,6 +57,8 @@ export default function courseReducer (state = initialState, action) {
         case types.CREATE_SLIDE: return methods.createSlide(state, action);
 
         case types.CREATE_COLUMN: return methods.createColumn(state, action);
+
+        case types.GET_ALL_FILES: return galleryActions.getAllFiles();
 
         default: {
             return state;
