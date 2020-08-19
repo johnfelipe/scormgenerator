@@ -488,6 +488,7 @@ class SlideHandler extends Component {
                     dragDropBackgroundColor: '#fff',
                     dragDropTextColor: 'text-black',
                     themeColor: '#0069d9',
+                    backgroundImg: '',
                 },
                 css: '',
             };
@@ -821,6 +822,7 @@ class SlideHandler extends Component {
                                 dragDropBackgroundColor: '#fff',
                                 dragDropTextColor: 'text-black',
                                 themeColor: '#0069d9',
+                                backgroundImg: '',
                             },
                             css: '',
                         };
@@ -3581,6 +3583,7 @@ class SlideHandler extends Component {
                                                             slideItemId={this.props.slideItemId}
                                                             setMChoiceIndex={this.setMChoiceIndex}
                                                             correctAnswers={this.state.correctAnswers}
+                                                            setMediaFilesObject={this.props.setMediaFilesObject}
                                                         />
                                                     </Tab>
                                                 </Tabs>
