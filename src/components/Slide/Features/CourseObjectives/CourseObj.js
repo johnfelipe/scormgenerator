@@ -138,7 +138,7 @@ function CourseObj(props) {
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
-                <ul className="sg-control-input-list">
+                    <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Video</span>
@@ -160,7 +160,7 @@ function CourseObj(props) {
                     <label>Buttons</label>
                 </div>
                 <div className="sg-control-input">
-                <ul className="sg-control-input-list">
+                    <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <Accordion className="w-100">
                                 <Card>

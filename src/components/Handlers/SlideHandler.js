@@ -31,6 +31,7 @@ import ImageLayout from '../Slide/Layouts/ImageLayout';
 import ListLayout from '../Slide/Layouts/ListLayout';
 import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
 import AudioLayout from '../Slide/Layouts/AudioLayout';
+import TabsLayout from '../Slide/Layouts/TabsLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -84,7 +85,7 @@ class SlideHandler extends Component {
             slideTitle: '',
             slideSubtitle: '',
             correctAnswers: [],
-            activeListModalOutputIndex: -1,
+            activeOutputIndex: -1,
             slideId: -1,
         };
         
@@ -114,6 +115,7 @@ class SlideHandler extends Component {
         this.setSlideTitle = this.setSlideTitle.bind(this);
         this.setSlideSubtitle = this.setSlideSubtitle.bind(this);
         this.setCorrectAnswers = this.setCorrectAnswers.bind(this);
+        this.setActiveOutputIndex = this.setActiveOutputIndex.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -559,6 +561,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
+                    tabStyle: 'tabs',
+                    tabPosition: 'top',
                 },
                 css: '',
             };
@@ -925,6 +929,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
+                                tabStyle: 'tabs',
+                                tabPosition: 'top',
                             },
                             css: '',
                         };
@@ -3029,12 +3035,12 @@ class SlideHandler extends Component {
         })
     }
 
-    setShowHtmlEditor = (value, contentIndex, contentFor, activeListModalOutputIndex) => {
+    setShowHtmlEditor = (value, contentIndex, contentFor, activeOutputIndex) => {
         this.setState({
             showHtmlEditor: value,
             activeContentIndex: contentIndex,
             contentFor: contentFor,
-            activeListModalOutputIndex: activeListModalOutputIndex,
+            activeOutputIndex: activeOutputIndex,
         })
     }
 
@@ -3265,6 +3271,12 @@ class SlideHandler extends Component {
     setCorrectAnswers = (value) => {
         this.setState({
             correctAnswers: value,
+        })
+    }
+
+    setActiveOutputIndex = (value) => {
+        this.setState({
+            activeOutputIndex: value,
         })
     }
 
@@ -3584,6 +3596,7 @@ class SlideHandler extends Component {
                                                             setMChoiceIndex={this.setMChoiceIndex}
                                                             correctAnswers={this.state.correctAnswers}
                                                             setMediaFilesObject={this.props.setMediaFilesObject}
+                                                            setActiveOutputIndex={this.setActiveOutputIndex}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -4007,6 +4020,46 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <AudioLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'tabs' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <TabsLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
@@ -7269,7 +7322,7 @@ class SlideHandler extends Component {
                                                         currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                         contentFor={this.state.contentFor}
                                                         setColumn={this.setColumn}
-                                                        activeListModalOutputIndex={this.state.activeListModalOutputIndex}
+                                                        activeOutputIndex={this.state.activeOutputIndex}
                                                     />
                                                     <CssEditor 
                                                         currentColumn={this.state.column[this.state.activeColumnId]}
