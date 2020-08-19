@@ -131,7 +131,7 @@ function ListModal(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            // setBackgroundImg(files[0].name, reader.result);
             setImgUrlPreview(reader.result);
         }
 

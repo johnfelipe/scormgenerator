@@ -7,9 +7,16 @@ import { objectHelpers } from '../../../../helpers';
 import MultipleChoiceAccordion from './MultipleChoiceAccordion';
 import ColorPicker from '../../../Common/ColorPicker';
 import FeatureTypeWarning from '../../../AlertModal/FeatureTypeWarning';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function MultipleChoice(props) {
 
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [updateQuestion, setUpdateQuestion] = useState('');
@@ -304,7 +311,32 @@ function MultipleChoice(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            // setBackgroundImg(files[0].name, reader.result);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
@@ -620,8 +652,8 @@ function MultipleChoice(props) {
                                     placeholder="Choose image"
                                     className="form-control w-50"
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.name
                                     }
                                     readOnly
                                 />
@@ -717,6 +749,14 @@ function MultipleChoice(props) {
                 setModalShow={setModalShow}
                 setIsFinalQuiz={setIsFinalQuiz}
                 slideItemId={props.slideItemId}
+            />
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
             />
         </div>
     )

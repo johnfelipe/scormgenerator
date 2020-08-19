@@ -127,6 +127,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     setMChoiceIndex={this.props.setMChoiceIndex}
                     correctAnswers={this.props.correctAnswers}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "homePage") {
