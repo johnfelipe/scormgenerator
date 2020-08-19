@@ -77,6 +77,14 @@
         height: 40% !important;
     }
 
+    .h-45 {
+        height: 45% !important;
+    }
+
+    .h-46-75 {
+        height: 46.75% !important;
+    }
+
     .h-55 {
         height: 55% !important;
     }
@@ -89,6 +97,10 @@
         height: 65% !important;
     }
 
+    .h-67 {
+        height: 67% !important;
+    }
+
     .h-70 {
         height: 70% !important;
     }
@@ -99,6 +111,10 @@
 
     .h-80 {
         height: 80% !important;
+    }
+
+    .h-82 {
+        height: 82% !important;
     }
 
     .h-85 {
@@ -262,5 +278,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .text-ellipsis {
+        text-overflow: ellipsis !important;
+        overflow: hidden;
+        white-space: nowrap;
     }
 }

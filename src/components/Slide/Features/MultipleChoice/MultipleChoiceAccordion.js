@@ -42,7 +42,6 @@ function MultipleChoiceAccordion(props) {
     }
 
     const handleFileChange = (e, index) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 
@@ -99,7 +98,6 @@ function MultipleChoiceAccordion(props) {
     }
 
     const uploadVtt = (e, index) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 

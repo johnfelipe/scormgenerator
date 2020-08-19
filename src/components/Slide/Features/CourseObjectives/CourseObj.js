@@ -78,7 +78,6 @@ function CourseObj(props) {
     }
 
     const handleVideoChange = (e) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 
@@ -134,7 +133,7 @@ function CourseObj(props) {
                                         <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleVideoChange} accept="video/*"/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name && currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name} readOnly/>
+                                <input type="text" placeholder="Upload video" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name && currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.name} readOnly/>
                             </div>
                         </li>
                     </ul>

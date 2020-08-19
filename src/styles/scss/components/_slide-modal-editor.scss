@@ -12,7 +12,7 @@
                                         .tab-content {
     
                                             div#uncontrolled-tab-tabpane-editor {
-                                                height: 100%;
+                                                height: 99.25%;
 
                                                 .sg-controls {
                                                     .sg-workspace-expander-toggle:hover {
@@ -389,7 +389,8 @@
                                                 background-color: #fff;
                                             }
 
-                                            button {
+                                            // button {
+                                            .sg-workspace-expander-head-button {
                                                 position: relative;
                                                 display: block;
                                                 width: 40px;
@@ -427,10 +428,25 @@
                                             position: relative;
                                             z-index: 1;
 
-                                            .RichTextEditor__editor___1QqIU, .DraftEditor-root {
+                                            .DraftEditor-root {
                                                 width: 100%;
                                                 height: 100%;
                                             }
+
+                                            .RichTextEditor__editor___1QqIU {
+                                                width: 100%;
+                                                height: 64%;
+
+                                                .DraftEditor-editorContainer {
+                                                    padding: 0;
+                                                    // padding-top: 12px;
+                                                    // padding-right: 10px;
+                                                }
+                                            }
+
+                                            // .EditorToolbar__root___3_Aqz {
+                                            //     margin: 0 !important;
+                                            // }
 
                                             textarea.sg-text-editor-html, .DraftEditor-editorContainer {
                                                 width: 100%;

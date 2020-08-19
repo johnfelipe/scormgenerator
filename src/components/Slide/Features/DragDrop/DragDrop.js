@@ -137,6 +137,30 @@ function DragDrop(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const editAnswer = (value, instructionIndex, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].questions[questionIndex].answer = value;
+
+        editAnswerOptions(value, instructionIndex, questionIndex)
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editAnswerOptions = (value, instructionIndex, questionIndex) => {
+        const currentColumnObj = currentColumn;
+
+        const arrayLength = currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options.length;
+
+        for (let i = 0; i < arrayLength; i++) {
+            if (currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options[i].questionIndex === questionIndex) {
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output[instructionIndex].options[i].name = value
+            } 
+        }
+
+        props.setColumn(currentColumnObj);
+    }
+
     const setDragDropThemeColor = (color) => {
         const currentColumnObj = currentColumn;
 
@@ -149,7 +173,7 @@ function DragDrop(props) {
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'multipleChoice')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'dragDrop')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
@@ -230,6 +254,7 @@ function DragDrop(props) {
                                                                         setUpdateInstructionCompareIndex={setUpdateInstructionCompareIndex}
                                                                         setQuestionAnswers={setQuestionAnswers}
                                                                         addAnswer={addAnswer}
+                                                                        editAnswer={editAnswer}
                                                                     />
                                                             }
                                                         </li>

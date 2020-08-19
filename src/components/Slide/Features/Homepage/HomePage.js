@@ -44,7 +44,6 @@ function HomePage(props) {
     }
 
     const handleImageChange = (e) => {
-        e.preventDefault();
         let files = e.target.files;
         let reader = new FileReader();
 
@@ -164,9 +163,9 @@ function HomePage(props) {
                                 <span>Background</span>
                             </div>
                             <div className="sg-control-input-list-input input-group">
-                                <label className="input-group-btn">
+                                <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange}/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name} readOnly/>
@@ -220,7 +219,11 @@ function HomePage(props) {
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
-                                    <span className="h-100 w-100 text-white">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor}</span>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
                                 </div>
                             </div>
                         </li>

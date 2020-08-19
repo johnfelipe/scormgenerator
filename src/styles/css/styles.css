@@ -75,6 +75,14 @@
   height: 40% !important;
 }
 
+.h-45 {
+  height: 45% !important;
+}
+
+.h-46-75 {
+  height: 46.75% !important;
+}
+
 .h-55 {
   height: 55% !important;
 }
@@ -87,6 +95,10 @@
   height: 65% !important;
 }
 
+.h-67 {
+  height: 67% !important;
+}
+
 .h-70 {
   height: 70% !important;
 }
@@ -97,6 +109,10 @@
 
 .h-80 {
   height: 80% !important;
+}
+
+.h-82 {
+  height: 82% !important;
 }
 
 .h-85 {
@@ -257,6 +273,12 @@
   transform: translate(-50%, -50%);
 }
 
+.text-ellipsis {
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
@@ -382,7 +404,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: 503.21px;
-  overflow: hidden !important;
+  overflow: auto !important;
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
@@ -740,13 +762,13 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item {
   font-size: 12px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field input.error {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field input.error {
   border-color: red;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field .input-feedback {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field .input-feedback {
   color: #eb3636;
   margin-top: -5px;
   font-size: 12px;
@@ -766,7 +788,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 }
 
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor {
-  height: 100%;
+  height: 99.25%;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#uncontrolled-tab-tabpane-editor .sg-controls .sg-workspace-expander-toggle:hover > span {
   opacity: 1;
@@ -1080,7 +1102,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   color: #444;
   background-color: #fff;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions .sg-workspace-expander-head-button {
   position: relative;
   display: block;
   width: 40px;
@@ -1113,9 +1135,16 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   position: relative;
   z-index: 1;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-root {
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-root {
   width: 100%;
   height: 100%;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU {
+  width: 100%;
+  height: 64%;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU .DraftEditor-editorContainer {
+  padding: 0;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor textarea.sg-text-editor-html, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-editorContainer {
   width: 100%;
@@ -1856,6 +1885,67 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   background: whitesmoke;
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item #drag-drop-feature-answer-list-item #drag-drop-feature-answer-list-item-answer {
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+html body {
+  font-family: "Open Sans";
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin: 7px 0 0;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 20px;
+  position: relative;
+  height: 32px;
+  padding: 0 5px 0 0;
+  font-size: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input {
+  flex: 1 1;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input input[type=text] {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 1px;
+  height: 32px;
+  margin: 0;
+  border: 1px solid #ddd;
+  padding: 5px 7px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #444;
+  background-color: #fff;
+  outline: 0;
+  border-radius: 0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  z-index: 5;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-button {
+  padding-left: 5px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item .accordion .card .card-body .card-header-tabs {
+  margin-top: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry {
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 10px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry #list-ul-list-item-sub-entry {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
