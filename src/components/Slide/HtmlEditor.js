@@ -25,6 +25,8 @@ function HtmlEditor(props) {
         } else if (contentFor === 'video') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
         } else if (contentFor === 'contentArea') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html");
+        } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
         }
 
@@ -50,7 +52,7 @@ function HtmlEditor(props) {
         } else if (contentFor === 'contentArea') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
         } else if (contentFor === 'tabsContent') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -67,6 +69,8 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
         } else if (contentFor === 'contentArea') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html'));
+        } else if (contentFor === 'tabsContent') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 
