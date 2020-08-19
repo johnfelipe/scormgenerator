@@ -561,6 +561,8 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
+                    tabStyle: 'tabs',
+                    tabPosition: 'top',
                 },
                 css: '',
             };
@@ -927,6 +929,8 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
+                                tabStyle: 'tabs',
+                                tabPosition: 'top',
                             },
                             css: '',
                         };
