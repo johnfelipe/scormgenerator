@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faCheckCircle, faEdit, faTimes, faCaretUp, faCaretDown, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Accordion, Card, Button } from 'react-bootstrap';
+import { galleryService } from '../../../../services';
 
 // components
 import ColorPicker from '../../../Common/ColorPicker';
@@ -79,12 +80,27 @@ function CourseObj(props) {
 
     const handleVideoChange = (e) => {
         let files = e.target.files;
-        let reader = new FileReader();
+        // let reader = new FileReader();
+        const formData = new FormData();
 
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-            setIntroVideo(files[0].name, reader.result, files[0].type);
-        }
+        // reader.readAsDataURL(files[0])
+        // reader.onloadend = () => {
+        //     setIntroVideo(files[0].name, reader.result, files[0].type);
+        // }
+
+        formData.append('file', files[0]);
+        formData.append('uid', 1);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setIntroVideo(fileObject.name, fileObject.image, fileObject.type);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
     }
 
     const setIntroVideoPosition = (value) => {
