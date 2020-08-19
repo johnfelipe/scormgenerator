@@ -26,7 +26,7 @@ function Tabs(props) {
 
         const tabHeader = {
             tabHeader: value,
-            tabContent: [],
+            tabContent: '',
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(tabHeader);
@@ -170,6 +170,7 @@ function Tabs(props) {
                                                                         contentIndex={contentIndex}
                                                                         setShowEditor={props.setShowEditor}
                                                                         setUpdateTabHeaderCompareIndex={setUpdateTabHeaderCompareIndex}
+                                                                        setActiveOutputIndex={props.setActiveOutputIndex}
                                                                     />
                                                             }
                                                         </li>

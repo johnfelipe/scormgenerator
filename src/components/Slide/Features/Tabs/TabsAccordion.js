@@ -22,15 +22,24 @@ function TabsAccordion(props) {
     }
 
     return (
-        <Accordion key={'accordion-tabs-entry-' + index}>
+        <Accordion key={'accordion-tabs-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
+                <Accordion.Toggle
+                    as={Card.Header}
+                    eventKey={index}
+                    className="p-2"
+                    onClick={() => {
+                        collapseListener(collapseId);
+                        props.setActiveOutputIndex(index);
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div
                         id="tabs-list-item"
                         className="row m-0"
                     >
                         <div id="tabs-list-item-answer" className="text-ellipsis p-0 col-md-8" title={item.entry}>
-                            {item.entry}
+                            {item.tabHeader}
                         </div>
                         <div className="col-md-4 p-0 tabs-list-item-action-buttons text-right">
                             <span className="mr-2">
@@ -40,7 +49,7 @@ function TabsAccordion(props) {
                                 className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                 type="button"
                                 onClick={() => {
-                                    props.setUpdateTabHeader(item.entry);
+                                    props.setUpdateTabHeader(item.tabHeader);
                                     props.setIsEditTabHeader(true);
                                     props.setUpdateTabHeaderCompareIndex(index);
                                 }}

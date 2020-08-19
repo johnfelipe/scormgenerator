@@ -280,6 +280,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
                     setMediaFiles={this.setMediaFiles}
+                    setActiveOutputIndex={this.props.setActiveOutputIndex}
                 />
             );
         } else {
