@@ -84,7 +84,7 @@ class SlideHandler extends Component {
             slideTitle: '',
             slideSubtitle: '',
             correctAnswers: [],
-            activeListModalOutputIndex: -1,
+            activeOutputIndex: -1,
             slideId: -1,
         };
         
@@ -3029,12 +3029,12 @@ class SlideHandler extends Component {
         })
     }
 
-    setShowHtmlEditor = (value, contentIndex, contentFor, activeListModalOutputIndex) => {
+    setShowHtmlEditor = (value, contentIndex, contentFor, activeOutputIndex) => {
         this.setState({
             showHtmlEditor: value,
             activeContentIndex: contentIndex,
             contentFor: contentFor,
-            activeListModalOutputIndex: activeListModalOutputIndex,
+            activeOutputIndex: activeOutputIndex,
         })
     }
 
@@ -7269,7 +7269,7 @@ class SlideHandler extends Component {
                                                         currentColumnContentIndex={this.state.currentColumnContentIndex}
                                                         contentFor={this.state.contentFor}
                                                         setColumn={this.setColumn}
-                                                        activeListModalOutputIndex={this.state.activeListModalOutputIndex}
+                                                        activeOutputIndex={this.state.activeOutputIndex}
                                                     />
                                                     <CssEditor 
                                                         currentColumn={this.state.column[this.state.activeColumnId]}
