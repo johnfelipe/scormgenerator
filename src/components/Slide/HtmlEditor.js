@@ -7,11 +7,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 function HtmlEditor(props) {
 
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const contentFor = props.contentFor;
-    const activeListModalOutputIndex = props.activeListModalOutputIndex;
+    const { currentColumn, contentIndex, currentColumnContentIndex, contentFor, activeOutputIndex } = props;
     const [editorValue, setEditorValue] = useState(createEmptyValue());
     const [htmlOnly, setHtmlOnly] = useState("false");
 
@@ -25,11 +21,11 @@ function HtmlEditor(props) {
         } else if (contentFor === 'courseReq') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value.toString("html");
         } else if (contentFor === 'listModal') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
         } else if (contentFor === 'video') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
         } else if (contentFor === 'contentArea') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -48,10 +44,12 @@ function HtmlEditor(props) {
         } else if (contentFor === 'courseReq') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = source;
         } else if (contentFor === 'listModal') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = source;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
         } else if (contentFor === 'video') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = source;
         } else if (contentFor === 'contentArea') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
+        } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
         }
 
@@ -64,13 +62,13 @@ function HtmlEditor(props) {
         } else if (contentFor === 'courseReq') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.contentFor, 'html'));
         } else if (contentFor === 'listModal') {
-            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content, 'html'));
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
         } else if (contentFor === 'video') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
         } else if (contentFor === 'contentArea') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html'));
         }
-    }, [contentFor, currentColumnContentIndex, contentIndex, activeListModalOutputIndex, currentColumn]);
+    }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 
     // const onChangeTextEditor = (value, contentIndex, editorType) => {
     //     const currentColumnObj = currentColumn;
@@ -81,7 +79,7 @@ function HtmlEditor(props) {
     //         } else if (editorType.for === 'courseReq') {
     //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
     //         } else if (editorType.for === 'listModal') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = value;
+    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value;
     //         } else if (editorType.for === 'video') {
     //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value;
     //         }
@@ -179,7 +177,7 @@ function HtmlEditor(props) {
                                             typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
                                         :
                                             contentFor === 'listModal' ?
-                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content
+                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content
                                             :
                                                 contentFor === 'video' &&
                                                     typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
