@@ -257,6 +257,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else {

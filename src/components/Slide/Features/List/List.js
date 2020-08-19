@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 // components
 import ListUlAccordion from './ListUlAccordion';
@@ -12,6 +16,10 @@ function List(props) {
     const [updateEntry, setUpdateEntry] = useState('');
     const [updateEntryCompareIndex, setUpdateEntryCompareIndex] = useState('');
     const [isEditEntry, setIsEditEntry] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const addTitle = (value) => {
         const currentColumnObj = currentColumn;
@@ -56,7 +64,32 @@ function List(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            // setBackgroundImg(files[0].name, reader.result);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
@@ -331,6 +364,14 @@ function List(props) {
                     </ul>
                 </div>
             </div>
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+            />
         </div>
     )
 }
