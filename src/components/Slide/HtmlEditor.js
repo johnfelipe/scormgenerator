@@ -13,7 +13,7 @@ function HtmlEditor(props) {
     const contentFor = props.contentFor;
     const activeListModalOutputIndex = props.activeListModalOutputIndex;
     const [editorValue, setEditorValue] = useState(createEmptyValue());
-    const [editorOnly, setEditorOnly] = useState("false");
+    const [htmlOnly, setHtmlOnly] = useState("false");
 
     const handleChange = value => {
         setEditorValue(value);
@@ -40,6 +40,22 @@ function HtmlEditor(props) {
         let oldValue = editorValue;
 
         setEditorValue(oldValue.setContentFromString(source, 'html', {customBlockFn: getTextAlignBlockMetadata}));
+
+        const currentColumnObj = currentColumn;
+
+        if (contentFor === 'courseInfo') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = source;
+        } else if (contentFor === 'courseReq') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = source;
+        } else if (contentFor === 'listModal') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeListModalOutputIndex].content = source;
+        } else if (contentFor === 'video') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = source;
+        } else if (contentFor === 'contentArea') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
+        }
+
+        props.setColumn(currentColumnObj);
     }
 
     useEffect(() => {
@@ -78,7 +94,11 @@ function HtmlEditor(props) {
         <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
                 <div className="sg-workspace-expander-head-label">
-                    <span>Rich Text Editor</span>
+                    {htmlOnly === "false" ?
+                        <span>Rich Text Editor/HTML</span>
+                    :
+                        <span>HTML</span>
+                    }
                 </div>
                 <div className="sg-workspace-expander-head-actions">
                     <OverlayTrigger
@@ -92,10 +112,10 @@ function HtmlEditor(props) {
                     >
                         <button
                             type="button"
-                            className={editorOnly === "true" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={htmlOnly === "true" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
-                                if (editorOnly !== "true") {
-                                    setEditorOnly("true");
+                                if (htmlOnly !== "true") {
+                                    setHtmlOnly("true");
                                 }
                             }}
                         >
@@ -113,10 +133,10 @@ function HtmlEditor(props) {
                     >
                         <button
                             type="button"
-                            className={editorOnly === "false" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={htmlOnly === "false" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
-                                if (editorOnly !== "false") {
-                                    setEditorOnly("false");
+                                if (htmlOnly !== "false") {
+                                    setHtmlOnly("false");
                                 }
                             }}
                         >
@@ -167,26 +187,26 @@ function HtmlEditor(props) {
                                 onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
                             />
                     } */}
-                    <RichTextEditor
-                        className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
-                        editorClassName={editorOnly === "true" ? "sg-text-editor-html h-82" : "sg-text-editor-html h-67"}
-                        value={editorValue}
-                        onChange={handleChange}
-                        autoFocus={true}
-                        blockStyleFn={getTextAlignClassName}
-                    />
-                    {editorOnly === "false" &&
-                        <>
-                            <div className="sg-workspace-expander-head-label mt-1">
-                                <span>HTML</span>
-                            </div>
-                            <textarea
-                                className="sg-text-editor-html mt-1 h-40 border-top"
-                                value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
-                                onChange={onChangeSource}
-                            />
-                        </>
+                    {htmlOnly === "false" &&
+                        <RichTextEditor
+                            className={htmlOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
+                            editorClassName={htmlOnly === "true" ? "sg-text-editor-html h-82" : "sg-text-editor-html h-67"}
+                            value={editorValue}
+                            onChange={handleChange}
+                            autoFocus={true}
+                            blockStyleFn={getTextAlignClassName}
+                        />
                     }
+                    {htmlOnly === "false" &&
+                        <div className="sg-workspace-expander-head-label mt-1 mb-1">
+                            <span>HTML</span>
+                        </div>
+                    }
+                    <textarea
+                        className={htmlOnly === "true" ? "sg-text-editor-html h-100 border-top" : "sg-text-editor-html h-40 border-top"}
+                        value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
+                        onChange={onChangeSource}
+                    />
                 </div>
             </div>
         </div>
