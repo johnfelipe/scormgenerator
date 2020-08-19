@@ -102,7 +102,7 @@ function HtmlEditor(props) {
                 </div>
                 <div className="sg-workspace-expander-head-actions">
                     <OverlayTrigger
-                        key="top"
+                        key="top-editor"
                         placement="top"
                         overlay={
                             <Tooltip id='tooltip-top'>
@@ -123,7 +123,7 @@ function HtmlEditor(props) {
                         </button>
                     </OverlayTrigger>
                     <OverlayTrigger
-                        key="top"
+                        key="top-html"
                         placement="top"
                         overlay={
                             <Tooltip id='tooltip-top'>
