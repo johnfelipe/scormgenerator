@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { galleryService } from '../../../services';
 
 function Video(props) {
     
@@ -31,12 +32,27 @@ function Video(props) {
 
     const handleVideoChange = (e) => {
         let files = e.target.files;
-        let reader = new FileReader();
+        const formData = new FormData();
+        // let reader = new FileReader();
 
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-            setVideo(files[0].name, reader.result, files[0].type);
-        }
+        // reader.readAsDataURL(files[0])
+        // reader.onloadend = () => {
+        //     setVideo(files[0].name, reader.result, files[0].type);
+        // }
+
+        formData.append('file', files[0]);
+        formData.append('uid', 1);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+                setVideo(fileObject.name, fileObject.image, fileObject.type);
+                props.setMediaFiles(fileObject);
+            },
+            error => console.log(error)
+        );
     }
 
     const handleVttUpload = (e) => {

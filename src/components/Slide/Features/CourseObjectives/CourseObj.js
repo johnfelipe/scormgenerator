@@ -93,14 +93,14 @@ function CourseObj(props) {
         formData.append('alt', files[0].name);
 
         galleryService.uploadFiles(formData)
-            .then(
-                fileObject => {
-                    console.log(fileObject);
-                    setIntroVideo(fileObject.name, fileObject.image, fileObject.type);
-                    props.setMediaFiles(fileObject);
-                },
-                error => console.log(error)
-            );
+        .then(
+            fileObject => {
+                console.log(fileObject);
+                setIntroVideo(fileObject.name, fileObject.image, fileObject.type);
+                props.setMediaFiles(fileObject);
+            },
+            error => console.log(error)
+        );
     }
 
     const setIntroVideoPosition = (value) => {

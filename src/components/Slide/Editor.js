@@ -192,6 +192,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "dragDrop") {
