@@ -79,8 +79,6 @@ function MediaUploader(props) {
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
         if (modalShow ) { 
-            console.log('tapos na');
-            console.log(mediaAlt);
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
@@ -90,7 +88,6 @@ function MediaUploader(props) {
             galleryService.uploadFiles(formData)
             .then(
                 fileObject => {
-                    console.log(fileObject);
                     props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
