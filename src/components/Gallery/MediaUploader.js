@@ -3,9 +3,6 @@ import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../services';
-import { Modal } from 'react-bootstrap';
-import { Formik } from "formik";
-import * as Yup from 'yup';
 
 // modal
 import AltTagForm from '../AlertModal/AltTagForm';

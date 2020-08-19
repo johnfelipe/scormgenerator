@@ -222,6 +222,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "image") {
