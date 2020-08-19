@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { galleryService } from '../../../services';
+
+// modal
+import AltTagForm from '../../AlertModal/AltTagForm';
 
 function Image(props) {
     
@@ -8,6 +12,10 @@ function Image(props) {
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const setImage = (name, url, type) => {
         const currentColumnObj = currentColumn;
@@ -25,7 +33,33 @@ function Image(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setImage(files[0].name, reader.result, files[0].type);
+            // setImage(files[0].name, reader.result, files[0].type);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setImage(fileObject.name, fileObject.image, fileObject.image);
+                    setImgAlt(fileObject.alt);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
@@ -70,7 +104,7 @@ function Image(props) {
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.name} readOnly/>
                             </div>
                         </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Alt</span>
                             </div>
@@ -85,7 +119,7 @@ function Image(props) {
                                     }
                                 />
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -183,6 +217,14 @@ function Image(props) {
                     </ul>
                 </div>
             </div>
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+            />
         </div>
     );
 }
