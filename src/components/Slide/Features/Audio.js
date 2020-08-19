@@ -39,6 +39,7 @@ function Audio(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );

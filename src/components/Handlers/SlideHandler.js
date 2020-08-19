@@ -3581,6 +3581,7 @@ class SlideHandler extends Component {
                                                             slideItemId={this.props.slideItemId}
                                                             setMChoiceIndex={this.setMChoiceIndex}
                                                             correctAnswers={this.state.correctAnswers}
+                                                            setMediaFilesObject={this.props.setMediaFilesObject}
                                                         />
                                                     </Tab>
                                                 </Tabs>

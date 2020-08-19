@@ -72,7 +72,7 @@ class Editor extends Component {
         const mediaFile = fileObject;
         let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
 
-        this.props.galleryHandler(mediaFiles);
+        this.props.setMediaFilesObject(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
     }
 
@@ -88,10 +88,10 @@ class Editor extends Component {
                     currentColumn={this.props.currentColumn}
                     currentColumnContentIndex={this.props.currentColumnContentIndex}
                     onChangeTextArea={this.props.onChangeTextArea}
-                    mediaFilesObject={this.props.mediaFilesObject}
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "contentArea") {
