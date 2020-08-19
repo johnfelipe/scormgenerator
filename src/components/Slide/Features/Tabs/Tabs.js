@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
@@ -90,6 +91,22 @@ function Tabs(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTabStyle = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.tabStyle = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTabPosition = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.tabPosition = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -256,7 +273,7 @@ function Tabs(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Background</span>
                             </div>
@@ -276,6 +293,56 @@ function Tabs(props) {
                                     }
                                     readOnly
                                 />
+                            </div>
+                        </li> */}
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set tabs style.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Tabs Style</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.tabStyle}
+                                    onChange={(event) => setTabStyle(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="tabs">Tabs</option>
+                                    <option value="pills">Pills</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set tabs position.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Tabs Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.tabPosition}
+                                    onChange={(event) => setTabPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="top">Top</option>
+                                    <option value="left">Left</option>
+                                </select>
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
