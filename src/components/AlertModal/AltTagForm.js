@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 function AltTagForm (props) {
 
-    const { modalShow, imgUrlPreview, file } = props;
+    const { modalShow, imgUrlPreview, file, fileIndex } = props;
 
     const altTagFormModal = (
         <Modal
@@ -30,7 +30,7 @@ function AltTagForm (props) {
                     onSubmit={values => {
                         // setMediaAlt(values.alt);
                         props.setModalShow(false);
-                        props.handleImageUpload(values.alt, file);
+                        props.handleImageUpload(values.alt, file, fileIndex);
                     }}
 
                     validationSchema={Yup.object().shape({
