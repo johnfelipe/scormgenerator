@@ -31,6 +31,7 @@ import ImageLayout from '../Slide/Layouts/ImageLayout';
 import ListLayout from '../Slide/Layouts/ListLayout';
 import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
 import AudioLayout from '../Slide/Layouts/AudioLayout';
+import TabsLayout from '../Slide/Layouts/TabsLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -114,6 +115,7 @@ class SlideHandler extends Component {
         this.setSlideTitle = this.setSlideTitle.bind(this);
         this.setSlideSubtitle = this.setSlideSubtitle.bind(this);
         this.setCorrectAnswers = this.setCorrectAnswers.bind(this);
+        this.setActiveOutputIndex = this.setActiveOutputIndex.bind(this);
         this.onSave = this.onSave.bind(this);
     }
 
@@ -3268,6 +3270,12 @@ class SlideHandler extends Component {
         })
     }
 
+    setActiveOutputIndex = (value) => {
+        this.setState({
+            activeOutputIndex: value,
+        })
+    }
+
     onSave = (slide, subtitle, columns, lessonIndex) => {
         if (this.props.action === "add") {
             const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
@@ -3584,6 +3592,7 @@ class SlideHandler extends Component {
                                                             setMChoiceIndex={this.setMChoiceIndex}
                                                             correctAnswers={this.state.correctAnswers}
                                                             setMediaFilesObject={this.props.setMediaFilesObject}
+                                                            setActiveOutputIndex={this.setActiveOutputIndex}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -4007,6 +4016,46 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <AudioLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'tabs' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <TabsLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
