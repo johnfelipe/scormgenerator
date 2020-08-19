@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
 import ColorPicker from '../../../Common/ColorPicker';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function HomePage(props) {
 
@@ -10,6 +14,10 @@ function HomePage(props) {
     const contentIndex = props.contentIndex;
     const [showPicker, setShowPicker] = useState(false);
     const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor;
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -49,7 +57,32 @@ function HomePage(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            // setBackgroundImg(files[0].name, reader.result);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
@@ -252,6 +285,14 @@ function HomePage(props) {
                 showPicker={showPicker}
                 setBackgroundColor={setTitleBoxColor}
                 defaultColor={titleBoxColor}
+            />
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
             />
         </div>
     )

@@ -142,6 +142,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "courseObjectives") {
