@@ -12,6 +12,7 @@ function Audio(props) {
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const handleImageChange = (e) => {
         let files = e.target.files;
@@ -24,13 +25,14 @@ function Audio(props) {
 
         setModalShow(true);
         setFile(files);
+        setFileIndex(0);
     }
 
-    const handleImageUpload = (mediaAlt, file) => {
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[0]);
+            formData.append('file', file[fileIndex]);
             formData.append('uid', 1);
             formData.append('alt', mediaAlt);
 
@@ -194,6 +196,7 @@ function Audio(props) {
             <AltTagForm
                 imgUrlPreview={imgUrlPreview}
                 file={file}
+                fileIndex={fileIndex}
                 handleImageUpload={handleImageUpload}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
