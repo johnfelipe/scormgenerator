@@ -9,19 +9,22 @@
                         .modal-body {
                             form {
                                 .row {
-                                    // #slide-content {
-                                    //     #slide-content-container {
-                                    //         .feature-preview-container {
-                                    //             .sg-column {
-                                    //                 .content-output {
-                                    //                     #tabs-layout {
-                                                            
-                                    //                     }
-                                    //                 }
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }
+                                    #slide-content {
+                                        #slide-content-container {
+                                            .feature-preview-container {
+                                                .sg-column {
+                                                    .content-output {
+                                                        #tabs-layout {
+                                                            .card-header-tabs {
+                                                                border-bottom: 1px solid #dee2e6 !important;
+                                                                margin-bottom: 0 !important;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
 
                                     #slide-sidebar {
                                         .tab-content {
