@@ -369,6 +369,11 @@ html body #root #generator-container .row #lesson-container .lesson-container di
   background: whitesmoke;
   border-radius: 5px;
 }
+html body #root #generator-container .row #lesson-container .lesson-container .course-item, html body #root #generator-container .row #lesson-container .course-container .course-item, html body #root #generator-container .row #course-container .lesson-container .course-item, html body #root #generator-container .row #course-container .course-container .course-item {
+  user-select: none;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
 html body #root .container-fluid {
   background-color: #70707021;
 }
