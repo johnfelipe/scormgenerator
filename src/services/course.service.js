@@ -3,6 +3,8 @@ import API from "../utils/api";
 export const courseService = {
     getAll,
     addCourse,
+    getCourse,
+    getCourseLessons,
 };
 
 async function getAll() {
@@ -12,6 +14,16 @@ async function getAll() {
 
 async function addCourse(data) {
     const response = await API.post('/courses', data);
+    return handleResponse(response);
+}
+
+async function getCourse(id) {
+    const response = await API.get('/courses/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=lid');
+    return handleResponse(response);
+}
+
+async function getCourseLessons(id) {
+    const response = await API.get('/courses/' + id);
     return handleResponse(response);
 }
 
