@@ -20,9 +20,12 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 //modal
 // import ConfirmationModal from '../AlertModal/Confirmation';
 import WarningModal from '../AlertModal/Warning';
-import { galleryService } from '../../services';
 
-class Main extends Component {
+// services
+import { galleryService } from '../../services';
+import { courseService } from '../../services';
+
+class CourseEditor extends Component {
 
     constructor(props) {
         super(props);
@@ -52,11 +55,43 @@ class Main extends Component {
             mediaFiles => {
                 console.log(mediaFiles);
                 this.setMediaFilesObject(mediaFiles);
+                this.props.addMediaFiles(mediaFiles);
             },
             error => {
                 console.log(error);
             }
         );
+
+        const url = window.location.pathname;
+        const cid = url.split('/')[2];
+
+        console.log('cid:');
+        console.log(cid);
+
+        courseService.getCourse(cid).then(
+            course => {
+                console.log(course);
+                this.props.addCourseTitle(course.title);
+                this.props.addCourseLogo(course.logo);
+                this.props.chooseNavigationType(course.navigation);
+                this.props.showHideProgressbar(course.progressbar);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+
+        // courseService.getCourseLessons(cid).then(
+        //     lessons => {
+        //         console.log(lessons);
+        //         lessons.map((lesson, lessonIndex) => (
+        //             console.log(lesson)
+        //         ))
+        //     },
+        //     error => {
+        //         console.log(error);
+        //     }
+        // );
     }
 
     componentDidUpdate = () => {
@@ -584,7 +619,7 @@ const mapDispatchToProps = (dispatch) => {
         editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
-        showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
+        showHideProgressbar: (value) => dispatch({type: 'SHOW_HIDE_PROGRESSBAR', value: value}),
         addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
         addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
         addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
@@ -593,4 +628,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseEditor);
