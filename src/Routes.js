@@ -3,11 +3,13 @@ import { Route, Switch } from "react-router-dom";
 
 // components
 import Home from './containers/Home';
+import Course from './containers/Course';
 
 export default function Routes() {
   return (
     <Switch>
-        <Route path='/' exact component={ Home } />
+        <Route exact path='/' component={ Home } />
+        <Route exact path='/course/:cid' component={ Course } />
     </Switch>
   );
 }
