@@ -9,7 +9,7 @@ function HtmlEditor(props) {
 
     const { currentColumn, contentIndex, currentColumnContentIndex, contentFor, activeOutputIndex } = props;
     const [editorValue, setEditorValue] = useState(createEmptyValue());
-    const [htmlOnly, setHtmlOnly] = useState("false");
+    const [htmlOnly, setHtmlOnly] = useState("true");
 
     const handleChange = value => {
         setEditorValue(value);
