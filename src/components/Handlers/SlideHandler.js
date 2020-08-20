@@ -187,10 +187,11 @@ class SlideHandler extends Component {
                 sid: slideId,
                 uid: userId,
                 grid: columnArr[index].grid,
-                features: featuresJson
+                features: btoa(featuresJson)
             }
 
             columnObject.push(data);
+            console.log(data);
 
             columnService.createColumn(data)
             .then(
