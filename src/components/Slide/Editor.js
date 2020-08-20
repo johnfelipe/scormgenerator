@@ -12,6 +12,8 @@ import DragDrop from './Features/DragDrop/DragDrop';
 import Card from './Features/Card/Card';
 import Image from './Features/Image';
 import List from './Features/List/List';
+import Tabs from './Features/Tabs/Tabs';
+
 class Editor extends Component {
 
     constructor(props) {
@@ -72,7 +74,7 @@ class Editor extends Component {
         const mediaFile = fileObject;
         let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
 
-        this.props.galleryHandler(mediaFiles);
+        this.props.setMediaFilesObject(mediaFiles);
         this.props.addMediaFiles(mediaFiles);
     }
 
@@ -88,10 +90,10 @@ class Editor extends Component {
                     currentColumn={this.props.currentColumn}
                     currentColumnContentIndex={this.props.currentColumnContentIndex}
                     onChangeTextArea={this.props.onChangeTextArea}
-                    mediaFilesObject={this.props.mediaFilesObject}
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "contentArea") {
@@ -107,6 +109,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "multipleChoice") {
@@ -126,6 +129,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     setMChoiceIndex={this.props.setMChoiceIndex}
                     correctAnswers={this.props.correctAnswers}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "homePage") {
@@ -141,6 +145,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "courseObjectives") {
@@ -173,6 +178,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "video") {
@@ -188,6 +194,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "dragDrop") {
@@ -222,6 +229,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "image") {
@@ -237,6 +245,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
+                    setMediaFiles={this.setMediaFiles}
                 />
             );
         } else if (this.props.feature === "list") {
@@ -253,6 +262,25 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
+                />
+            );
+        } else if (this.props.feature === "tabs") {
+            editorContent = (
+                <Tabs
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
+                    setMediaFiles={this.setMediaFiles}
+                    setActiveOutputIndex={this.props.setActiveOutputIndex}
                 />
             );
         } else {

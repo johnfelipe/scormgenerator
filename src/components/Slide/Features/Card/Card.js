@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function Card(props) {
 
     const currentColumn = props.currentColumn;
     const currentColumnContentIndex = props.currentColumnContentIndex;
     const contentIndex = props.contentIndex;
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -22,7 +30,32 @@ function Card(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setImg(files[0].name, reader.result, files[0].type);
+            // setImg(files[0].name, reader.result, files[0].type);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setImg(fileObject.name, fileObject.image, fileObject.type);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
@@ -248,6 +281,14 @@ function Card(props) {
                     </ul>
                 </div>
             </div>
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+            />
         </div>
     )
 }

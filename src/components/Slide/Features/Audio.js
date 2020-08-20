@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
-import { Modal } from 'react-bootstrap';
-import { Formik } from "formik";
-import * as Yup from 'yup';
+
+// modal
+import AltTagForm from '../../AlertModal/AltTagForm';
 
 function Audio(props) {
 
@@ -12,6 +12,7 @@ function Audio(props) {
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const handleImageChange = (e) => {
         let files = e.target.files;
@@ -24,13 +25,14 @@ function Audio(props) {
 
         setModalShow(true);
         setFile(files);
+        setFileIndex(0);
     }
 
-    const handleImageUpload = (mediaAlt, file) => {
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[0]);
+            formData.append('file', file[fileIndex]);
             formData.append('uid', 1);
             formData.append('alt', mediaAlt);
 
@@ -39,79 +41,13 @@ function Audio(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );
         }
     }
-
-    const uploadFormModal = (
-        <Modal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            dialogClassName="gallery-preview-modal w-50"
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>
-                    <span>Enter alt tag for image</span>
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Formik
-                    initialValues={{ 
-                        alt: '',
-                    }}
-
-                    onSubmit={values => {
-                        // setMediaAlt(values.alt);
-                        setModalShow(false);
-                        handleImageUpload(values.alt, file);
-                    }}
-
-                    validationSchema={Yup.object().shape({
-                        alt: Yup.string()
-                            .required("Alt is required"),
-                        }
-                    )}
-                >
-                    {props => {
-                        const {
-                            values,
-                            touched,
-                            errors,
-                            isSubmitting,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                        } = props;
-                        return (
-                            <form onSubmit={handleSubmit} className="text-center">
-                                <img src={imgUrlPreview} alt={values.alt} className="w-50 h-auto mb-3"/>
-                                <input
-                                    id="alt"
-                                    name="alt"
-                                    type="text"
-                                    className={(errors.alt && touched.alt && "error form-control") || "form-control"}
-                                    onChange={handleChange}
-                                    value={values.alt}
-                                    onBlur={handleBlur}
-                                    placeholder="Type lesson name here . . ."
-                                />
-                                {errors.alt && touched.alt && (
-                                    <div className="input-feedback">{errors.alt}</div>
-                                )}
-                                <button type="submit" className="btn btn-success float-right mt-4" disabled={isSubmitting}>Submit</button>
-                            </form>
-                        );
-                    }}
-                </Formik>
-            </Modal.Body>
-        </Modal>
-    );
-
+    
     const setBackgroundImg = (name, url) => {
         const currentColumnObj = currentColumn;
 
@@ -257,7 +193,14 @@ function Audio(props) {
                     </ul>
                 </div>
             </div>
-            {uploadFormModal}
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+            />
         </div>
     )
 }

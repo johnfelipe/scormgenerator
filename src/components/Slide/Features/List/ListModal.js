@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 // components
 import ListModalAccordion from './ListModalAccordion';
@@ -15,6 +19,10 @@ function ListModal(props) {
     const listButtonColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnColor;
     const [addedButtonName, setAddedButtonName] = useState('');
     const [showPicker, setShowPicker] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
     const addButtonObj = (value) => {
         const currentColumnObj = currentColumn;
@@ -123,15 +131,40 @@ function ListModal(props) {
 
         reader.readAsDataURL(files[0])
         reader.onloadend = () => {
-            setBackgroundImg(files[0].name, reader.result);
+            // setBackgroundImg(files[0].name, reader.result);
+            setImgUrlPreview(reader.result);
+        }
+
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
         }
     }
 
     const setBackgroundImg = (name, url) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.name = name;
 
         props.setColumn(currentColumnObj);
     }
@@ -264,8 +297,8 @@ function ListModal(props) {
                                     placeholder="Choose image"
                                     className="form-control w-50"
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].styles.backgroundImg.name
                                     }
                                     readOnly
                                 />
@@ -413,6 +446,14 @@ function ListModal(props) {
                 showPicker={showPicker}
                 setBackgroundColor={setBtnColor}
                 defaultColor={listButtonColor}
+            />
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
             />
         </div>
     )

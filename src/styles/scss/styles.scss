@@ -19,6 +19,7 @@
 @import "components/features/list-modal";
 @import "components/features/drag-drop";
 @import "components/features/list-ul";
+@import "components/features/tabs";
 
 @include defaults;
 @include header;
@@ -41,3 +42,4 @@
 @include list-modal;
 @include drag-drop;
 @include list-ul;
+@include tabs;

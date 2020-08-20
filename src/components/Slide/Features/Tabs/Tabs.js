@@ -2,58 +2,51 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
 
 // components
-import ListUlAccordion from './ListUlAccordion';
+import TabsAccordion from './TabsAccordion';
 
-function List(props) {
+function Tabs(props) {
 
     const { contentIndex, currentColumn, currentColumnContentIndex } = props;
-    const [entry, setEntry] = useState('');
-    const [updateEntry, setUpdateEntry] = useState('');
-    const [updateEntryCompareIndex, setUpdateEntryCompareIndex] = useState('');
-    const [isEditEntry, setIsEditEntry] = useState(false);
+    const [tabHeader, setTabHeader] = useState('');
+    const [updateTabHeader, setUpdateTabHeader] = useState('');
+    const [updateTabHeaderCompareIndex, setUpdateTabHeaderCompareIndex] = useState('');
+    const [isEditTabHeader, setIsEditTabHeader] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
 
-    const addTitle = (value) => {
+    const addTabHeader = (value) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.title = value;
-
-        props.setColumn(currentColumnObj);
-    }
-
-    const addEntry = (value) => {
-        const currentColumnObj = currentColumn;
-
-        const entry = {
-            entry: value,
-            subEntry: [],
+        const tabHeader = {
+            tabHeader: value,
+            tabContent: '',
         }
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries.push(entry);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.push(tabHeader);
 
         props.setColumn(currentColumnObj);
     }
 
-    const editEntry = (value, entryIndex) => {
+    const editTabHeader = (value, tabHeaderIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries[entryIndex].entry = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output[tabHeaderIndex].tabHeader = value;
 
         props.setColumn(currentColumnObj);
     }
 
-    const deleteEntry = (entryIndex) => {
+    const deleteTabHeader = (tabHeaderIndex) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.entries.splice(entryIndex, 1);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.splice(tabHeaderIndex, 1);
 
         props.setColumn(currentColumnObj);
     }
@@ -102,6 +95,22 @@ function List(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setTabStyle = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.tabStyle = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTabPosition = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.tabPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -122,61 +131,45 @@ function List(props) {
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Title</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    onChange={(event) => addTitle(event.target.value)}
-                                    value={ 
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.title &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.title
-                                    }
-                                />
-                            </div>
-                        </li>
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Entry/ies</span>
                             </div>
                             <div className="sg-control-input-list-input">
-                                <ul style={{ listStyle: 'none' }} className="list-group list-ul-list">
+                                <ul style={{ listStyle: 'none' }} className="list-group tabs-list">
                                     {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.entries.length > 0 ? 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
                                                 <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.entries.map((item, index) => (
-                                                        <li key={'number-' + index} className="list-ul-list-item mb-2">
+                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                        <li key={'number-' + index} className="tabs-list-item mb-2">
                                                             {
-                                                                isEditEntry && updateEntryCompareIndex === index ?
-                                                                    <div className="list-ul-control-input-wrapper mb-2">
-                                                                        <div className="list-ul-control-input-label">
+                                                                isEditTabHeader && updateTabHeaderCompareIndex === index ?
+                                                                    <div className="tabs-control-input-wrapper mb-2">
+                                                                        <div className="tabs-control-input-label">
                                                                             <span>{index+1}.</span>
                                                                         </div>
-                                                                        <div className="list-ul-control-input">
+                                                                        <div className="tabs-control-input">
                                                                             <input
-                                                                                id="entry"
-                                                                                name="entry"
+                                                                                id="tabHeader"
+                                                                                name="tabHeader"
                                                                                 type="text"
-                                                                                placeholder="Type entry here. . ."
-                                                                                onChange={(event) => setUpdateEntry(event.target.value)}
-                                                                                value={updateEntry}
+                                                                                placeholder="Type header name here. . ."
+                                                                                onChange={(event) => setUpdateTabHeader(event.target.value)}
+                                                                                value={updateTabHeader}
                                                                             />
                                                                         </div>
-                                                                        <div className="list-ul-control-button">
+                                                                        <div className="tabs-control-button">
                                                                             <button
                                                                                 type="button"
                                                                                 className="btn btn-success btn-sm"
                                                                                 onClick={() => {
-                                                                                    const isEmpty = document.getElementById("entry");
+                                                                                    const isEmpty = document.getElementById("tabHeader");
                                                                                     
                                                                                     if (isEmpty.value !== "") {
-                                                                                        editEntry(updateEntry, index);
-                                                                                        setUpdateEntry('');
-                                                                                        setIsEditEntry(false);
-                                                                                        setUpdateEntryCompareIndex('');
+                                                                                        editTabHeader(updateTabHeader, index);
+                                                                                        setUpdateTabHeader('');
+                                                                                        setIsEditTabHeader(false);
+                                                                                        setUpdateTabHeaderCompareIndex('');
                                                                                     }
                                                                                 }}
                                                                             >
@@ -185,47 +178,45 @@ function List(props) {
                                                                         </div>
                                                                     </div>
                                                                 :
-                                                                    <ListUlAccordion
+                                                                    <TabsAccordion
                                                                         index={index}
                                                                         item={item}
-                                                                        deleteEntry={deleteEntry}
-                                                                        setIsEditEntry={setIsEditEntry}
-                                                                        setUpdateEntry={setUpdateEntry}
+                                                                        deleteTabHeader={deleteTabHeader}
+                                                                        setIsEditTabHeader={setIsEditTabHeader}
+                                                                        setUpdateTabHeader={setUpdateTabHeader}
                                                                         contentIndex={contentIndex}
-                                                                        setShowTextEditor={props.setShowTextEditor}
-                                                                        setUpdateEntryCompareIndex={setUpdateEntryCompareIndex}
-                                                                        setColumn={props.setColumn}
-                                                                        currentColumn={currentColumn}
-                                                                        currentColumnContentIndex={currentColumnContentIndex}
+                                                                        setShowEditor={props.setShowEditor}
+                                                                        setUpdateTabHeaderCompareIndex={setUpdateTabHeaderCompareIndex}
+                                                                        setActiveOutputIndex={props.setActiveOutputIndex}
                                                                     />
                                                             }
                                                         </li>
                                                     ))}
-                                                    <li className="list-ul-list-item">
-                                                        <div className="list-ul-control-input-wrapper mb-2">
-                                                            <div className="list-ul-control-input-label">
+                                                    <li className="tabs-list-item">
+                                                        <div className="tabs-control-input-wrapper mb-2">
+                                                            <div className="tabs-control-input-label">
                                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                             </div>
-                                                            <div className="list-ul-control-input">
+                                                            <div className="tabs-control-input">
                                                                 <input
-                                                                    id="entry"
-                                                                    name="entry"
+                                                                    id="tabHeader"
+                                                                    name="tabHeader"
                                                                     type="text"
-                                                                    placeholder="Type entry here. . ."
-                                                                    onChange={(event) => setEntry(event.target.value)}
-                                                                    value={entry}
+                                                                    placeholder="Type header name here. . ."
+                                                                    onChange={(event) => setTabHeader(event.target.value)}
+                                                                    value={tabHeader}
                                                                 />
                                                             </div>
-                                                            <div className="list-ul-control-button">
+                                                            <div className="tabs-control-button">
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-success btn-sm"
                                                                     onClick={() => {
-                                                                        const isEmpty = document.getElementById("entry");
+                                                                        const isEmpty = document.getElementById("tabHeader");
                                                                         
                                                                         if (isEmpty.value !== "") {
-                                                                            addEntry(entry);
-                                                                            setEntry('');
+                                                                            addTabHeader(tabHeader);
+                                                                            setTabHeader('');
                                                                         }
                                                                     }}
                                                                 >
@@ -236,31 +227,31 @@ function List(props) {
                                                     </li>
                                                 </>
                                         :
-                                            <li className="list-ul-list-item">
-                                                <div className="list-ul-control-input-wrapper mb-2">
-                                                    <div className="list-ul-control-input-label">
+                                            <li className="tabs-list-item">
+                                                <div className="tabs-control-input-wrapper mb-2">
+                                                    <div className="tabs-control-input-label">
                                                         <span>1.</span>
                                                     </div>
-                                                    <div className="list-ul-control-input">
+                                                    <div className="tabs-control-input">
                                                         <input
-                                                            id="entry"
-                                                            name="entry"
+                                                            id="tabHeader"
+                                                            name="tabHeader"
                                                             type="text"
-                                                            placeholder="Type entry here. . ."
-                                                            onChange={(event) => setEntry(event.target.value)}
-                                                            value={entry}
+                                                            placeholder="Type header name here. . ."
+                                                            onChange={(event) => setTabHeader(event.target.value)}
+                                                            value={tabHeader}
                                                         />
                                                     </div>
-                                                    <div className="list-ul-control-button">
+                                                    <div className="tabs-control-button">
                                                         <button
                                                             type="button"
                                                             className="btn btn-success btn-sm"
                                                             onClick={() => {
-                                                                const isEmpty = document.getElementById("entry");
+                                                                const isEmpty = document.getElementById("tabHeader");
                                                                 
                                                                 if (isEmpty.value !== "") {
-                                                                    addEntry(entry);
-                                                                    setEntry('');
+                                                                    addTabHeader(tabHeader);
+                                                                    setTabHeader('');
                                                                 }
                                                             }}
                                                         >
@@ -282,7 +273,7 @@ function List(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                        {/* <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Background</span>
                             </div>
@@ -302,6 +293,56 @@ function List(props) {
                                     }
                                     readOnly
                                 />
+                            </div>
+                        </li> */}
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set tabs style.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Tabs Style</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.tabStyle}
+                                    onChange={(event) => setTabStyle(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="tabs">Tabs</option>
+                                    <option value="pills">Pills</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Set tabs position.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Tabs Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.tabPosition}
+                                    onChange={(event) => setTabPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="top">Top</option>
+                                    <option value="left">Left</option>
+                                </select>
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -376,4 +417,4 @@ function List(props) {
     )
 }
 
-export default List;
+export default Tabs;
