@@ -2,7 +2,7 @@ import API from "../utils/api";
 
 export const courseService = {
     getAll,
-    addCourse,
+    createCourse,
     getCourse,
     getCourseLessons,
 };
@@ -12,7 +12,7 @@ async function getAll() {
     return handleResponse(response);
 }
 
-async function addCourse(data) {
+async function createCourse(data) {
     const response = await API.post('/courses', data);
     return handleResponse(response);
 }

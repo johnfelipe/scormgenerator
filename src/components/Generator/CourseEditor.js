@@ -38,9 +38,11 @@ class CourseEditor extends Component {
             courseNameExist: false,
             slideItemIndex: 0,
             lessonId: -1,
+            cid: -1,
         };
         
         this.setLessonId = this.setLessonId.bind(this);
+        this.setCid = this.setCid.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
@@ -63,12 +65,12 @@ class CourseEditor extends Component {
         );
 
         const url = window.location.pathname;
-        const cid = url.split('/')[2];
+        this.setCid(url.split('/')[2]);
 
         console.log('cid:');
-        console.log(cid);
+        console.log(this.state.cid);
 
-        courseService.getCourse(cid).then(
+        courseService.getCourse(this.state.cid).then(
             course => {
                 console.log(course);
                 this.props.addCourseTitle(course.title);
@@ -81,7 +83,7 @@ class CourseEditor extends Component {
             }
         );
 
-        // courseService.getCourseLessons(cid).then(
+        // courseService.getCourseLessons(this.state.cid).then(
         //     lessons => {
         //         console.log(lessons);
         //         lessons.map((lesson, lessonIndex) => (
@@ -110,6 +112,12 @@ class CourseEditor extends Component {
     setLessonId = (value) => {
         this.setState({
             lessonId: value,
+        })
+    }
+
+    setCid = (value) => {
+        this.setState({
+            setCid: value
         })
     }
 
