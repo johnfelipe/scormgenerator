@@ -337,32 +337,32 @@ html body #root #generator-container .row input[type=file] {
 html body #root #generator-container .row .custom-file-label {
   width: 280px;
 }
-html body #root #generator-container .row #lesson-container {
+html body #root #generator-container .row #lesson-container, html body #root #generator-container .row #course-container {
   width: 100%;
   height: 350px;
   background: white;
   border-radius: 5px;
   padding: 5px;
 }
-html body #root #generator-container .row #lesson-container .lesson-container {
+html body #root #generator-container .row #lesson-container .lesson-container, html body #root #generator-container .row #lesson-container .course-container, html body #root #generator-container .row #course-container .lesson-container, html body #root #generator-container .row #course-container .course-container {
   background: lightgrey;
   padding: 8px;
   height: 100%;
   border-radius: 5px;
   overflow: auto;
 }
-html body #root #generator-container .row #lesson-container .lesson-container .lesson-item-remove-btn {
+html body #root #generator-container .row #lesson-container .lesson-container .lesson-item-remove-btn, html body #root #generator-container .row #lesson-container .course-container .lesson-item-remove-btn, html body #root #generator-container .row #course-container .lesson-container .lesson-item-remove-btn, html body #root #generator-container .row #course-container .course-container .lesson-item-remove-btn {
   padding: 0px 0px 0px 0px;
   height: 25px;
   width: 25px;
 }
-html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container {
+html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container {
   background: lightgrey;
   padding: 8px;
   height: 100%;
   border-radius: 5px;
 }
-html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item {
+html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item {
   user-select: none;
   padding: 15px;
   margin: 0px 0px 8px 0px;

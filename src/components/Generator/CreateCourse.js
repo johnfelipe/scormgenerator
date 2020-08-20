@@ -88,7 +88,7 @@ function CreateCourse() {
                                                 handleChange(e)
 
                                                 if (e.target.value.trim() !== "") {
-                                                    this.props.addCourseTitle(values.courseTitle);
+                                                    // this.props.addCourseTitle(values.courseTitle);
                                                     setCourseNameExist(true);
                                                 }
                                             }
@@ -148,13 +148,13 @@ function CreateCourse() {
                                     </div>
                                 </div>
                                 <div id="save-btn-container" className="col-md-4 mt-2">
-                                    <button type="submit" className="btn btn-success float-right"  disabled={isSubmitting}>Create Course</button>
+                                    <button type="submit" className="btn btn-success float-right"  disabled={courseNameExist ? isSubmitting : true}>Create Course</button>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-12 mt-2">
-                                    <div id="lesson-container">
-                                        <div className="lesson-container">
+                                    <div id="course-container">
+                                        <div className="course-container">
                                             {courses.map((course, courseIndex) => (
                                                 <div>
                                                     {course.title}
