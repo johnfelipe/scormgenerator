@@ -18,12 +18,12 @@ async function createCourse(data) {
 }
 
 async function getCourse(id) {
-    const response = await API.get('/courses/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=lid');
+    const response = await API.get('/courses/' + id);
     return handleResponse(response);
 }
 
 async function getCourseLessons(id) {
-    const response = await API.get('/courses/' + id);
+    const response = await API.get('/courses/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=lid');
     return handleResponse(response);
 }
 

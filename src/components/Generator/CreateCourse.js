@@ -16,11 +16,13 @@ import { galleryService } from '../../services';
 function CreateCourse() {
 
     const [courses, setCourses] = useState([]);
+    const [course, setCourse] = useState([]);
     const [courseNameExist, setCourseNameExist] = useState(false);
 
     useEffect(() => {
         courseService.getAll().then(
             courses => {
+                console.log('courses from database:');
                 console.log(courses);
                 setCourses(courses);
             },
@@ -28,20 +30,43 @@ function CreateCourse() {
                 console.log(error);
             }
         );
-    }, []);
+        
+        console.log('current course that is added:');
+        console.log(course);
+    }, [course]);
 
     return (
         <div id="generator-container">
             <Formik
                 initialValues={{
+                    courseTitle: '',
                     courseLogo: '',
                     navigationType: 0,
-                    showProgressbar: '',
+                    showProgressbar: false,
                 }}
 
                 onSubmit={values => {
                     console.log(values);
-                    
+                    const data = {
+                        title: values.courseTitle,
+                        logo: values.courseLogo.url,
+                        navigation: values.navigationType,
+                        progressbar: values.showProgressbar ? 1 : 0,
+                        status: 1,
+                        type: 'Demo',
+                        uid: 1,
+                    }
+
+                    courseService.createCourse(data).then(
+                        course => {
+                            console.log('add course response:');
+                            console.log(course);
+                            setCourse(course);
+                        },
+                        error => {
+                            console.log(error);
+                        }
+                    );
                 }}
 
                 validationSchema={Yup.object().shape({
