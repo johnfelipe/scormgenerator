@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { galleryService } from '../../../../services';
+// import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+// import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // modal
-import AltTagForm from '../../../AlertModal/AltTagForm';
+// import AltTagForm from '../../../AlertModal/AltTagForm';
 
 // components
 import TabsAccordion from './TabsAccordion';
@@ -17,10 +18,10 @@ function Tabs(props) {
     const [updateTabHeader, setUpdateTabHeader] = useState('');
     const [updateTabHeaderCompareIndex, setUpdateTabHeaderCompareIndex] = useState('');
     const [isEditTabHeader, setIsEditTabHeader] = useState(false);
-    const [modalShow, setModalShow] = useState(false);
-    const [imgUrlPreview, setImgUrlPreview] = useState('');
-    const [file, setFile] = useState('');
-    const [fileIndex, setFileIndex] = useState('');
+    // const [modalShow, setModalShow] = useState(false);
+    // const [imgUrlPreview, setImgUrlPreview] = useState('');
+    // const [file, setFile] = useState('');
+    // const [fileIndex, setFileIndex] = useState('');
 
     const addTabHeader = (value) => {
         const currentColumnObj = currentColumn;
@@ -51,49 +52,49 @@ function Tabs(props) {
         props.setColumn(currentColumnObj);
     }
     
-    const handleImageChange = (e) => {
-        let files = e.target.files;
-        let reader = new FileReader();
+    // const handleImageChange = (e) => {
+    //     let files = e.target.files;
+    //     let reader = new FileReader();
 
-        reader.readAsDataURL(files[0])
-        reader.onloadend = () => {
-            // setBackgroundImg(files[0].name, reader.result);
-            setImgUrlPreview(reader.result);
-        }
+    //     reader.readAsDataURL(files[0])
+    //     reader.onloadend = () => {
+    //         // setBackgroundImg(files[0].name, reader.result);
+    //         setImgUrlPreview(reader.result);
+    //     }
 
-        setModalShow(true);
-        setFile(files);
-        setFileIndex(0);
-    }
+    //     setModalShow(true);
+    //     setFile(files);
+    //     setFileIndex(0);
+    // }
 
-    const handleImageUpload = (mediaAlt, file, fileIndex) => {
-        if (modalShow ) { 
-            const formData = new FormData();
+    // const handleImageUpload = (mediaAlt, file, fileIndex) => {
+    //     if (modalShow ) { 
+    //         const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
-            formData.append('alt', mediaAlt);
+    //         formData.append('file', file[fileIndex]);
+    //         formData.append('uid', 1);
+    //         formData.append('alt', mediaAlt);
 
-            galleryService.uploadFiles(formData)
-            .then(
-                fileObject => {
-                    console.log(fileObject);
-                    setBackgroundImg(fileObject.name, fileObject.image);
-                    props.setMediaFiles(fileObject);
-                },
-                error => console.log(error)
-            );
-        }
-    }
+    //         galleryService.uploadFiles(formData)
+    //         .then(
+    //             fileObject => {
+    //                 console.log(fileObject);
+    //                 setBackgroundImg(fileObject.name, fileObject.image);
+    //                 props.setMediaFiles(fileObject);
+    //             },
+    //             error => console.log(error)
+    //         );
+    //     }
+    // }
 
-    const setBackgroundImg = (name, url) => {
-        const currentColumnObj = currentColumn;
+    // const setBackgroundImg = (name, url) => {
+    //     const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+    //     currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
+    //     currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
 
-        props.setColumn(currentColumnObj);
-    }
+    //     props.setColumn(currentColumnObj);
+    // }
 
     const setTabStyle = (value) => {
         const currentColumnObj = currentColumn;
@@ -405,14 +406,14 @@ function Tabs(props) {
                     </ul>
                 </div>
             </div>
-            <AltTagForm
+            {/* <AltTagForm
                 imgUrlPreview={imgUrlPreview}
                 file={file}
                 fileIndex={fileIndex}
                 handleImageUpload={handleImageUpload}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
-            />
+            /> */}
         </div>
     )
 }

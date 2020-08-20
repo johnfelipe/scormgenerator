@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, Col, Nav, Row } from 'react-bootstrap';
+import { Tabs, Tab, Nav } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 
 function TabsLayout(props) {
