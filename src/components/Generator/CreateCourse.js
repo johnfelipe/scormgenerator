@@ -34,7 +34,7 @@ function CreateCourse() {
             <Formik
                 initialValues={{
                     courseLogo: '',
-                    navigationType: '',
+                    navigationType: 0,
                     showProgressbar: '',
                 }}
 
