@@ -11,6 +11,7 @@ import WarningModal from '../AlertModal/Warning';
 
 // services
 import { courseService } from '../../services';
+import { galleryService } from '../../services';
 
 function CreateCourse() {
 
@@ -40,7 +41,6 @@ function CreateCourse() {
 
                 onSubmit={values => {
                     console.log(values);
-
                     
                 }}
 
@@ -107,9 +107,25 @@ function CreateCourse() {
                                                 name="courseLogo"
                                                 type="file"
                                                 className="form-control custom-file-input"
-                                                onChange={(event) => {setFieldValue("courseLogo", event.currentTarget.files[0])}}
+                                                onChange={(event) => {
+                                                    // setFieldValue("courseLogo", event.currentTarget.files[0]);
+                                                    const formData = new FormData();
+
+                                                    formData.append('file', event.currentTarget.files[0]);
+                                                    formData.append('uid', 1);
+                                                    formData.append('alt', event.currentTarget.files[0].name);
+
+                                                    galleryService.uploadFiles(formData)
+                                                    .then(
+                                                        fileObject => {
+                                                            console.log(fileObject);
+                                                            setFieldValue("courseLogo", fileObject);
+                                                        },
+                                                        error => console.log(error)
+                                                    );
+                                                }}
                                                 onBlur={handleBlur}
-                                                accept="image/x-png,image/jpeg"
+                                                accept="image/*"
                                             />
                                             <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                         </div>
