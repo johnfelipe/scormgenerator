@@ -156,8 +156,17 @@ function CreateCourse() {
                                     <div id="course-container">
                                         <div className="course-container">
                                             {courses.map((course, courseIndex) => (
-                                                <div>
-                                                    {course.title}
+                                                <div
+                                                    key={"course-" + courseIndex}
+                                                    className="course-item p-2"
+                                                    data-course-id={course.cid}
+                                                >
+                                                    <div className="row m-0">
+                                                        <div className="col-md-8 py-2">{course.title}</div>
+                                                        <div className="col-md-4">
+                                                            <a href={"/course/" + course.cid} className="btn btn-primary text-white float-right" role="button">Go to course</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
