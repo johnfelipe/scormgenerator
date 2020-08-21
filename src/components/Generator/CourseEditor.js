@@ -9,10 +9,10 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // formik and related libraries
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { connect } from 'react-redux';
 
 // redux library
 import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 // components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -297,10 +297,10 @@ function CourseEditor() {
                                 <div className="col-md-4 mt-2">
                                     <div className="text-center">
                                         <GalleryHandler
-                                            addMediaFiles={this.props.addMediaFiles}
-                                            mediaFilesObject={mediaFilesObject}
+                                            // addMediaFiles={this.props.addMediaFiles}
+                                            // mediaFilesObject={mediaFilesObject}
                                             location="home"
-                                            setMediaFilesObject={setMediaFilesObject}
+                                            // setMediaFilesObject={setMediaFilesObject}
                                             buttonName="Gallery"
                                         />
                                     </div>

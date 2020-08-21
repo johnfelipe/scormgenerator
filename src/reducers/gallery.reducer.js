@@ -1,6 +1,6 @@
 import { galleryConstants } from '../constants';
 const initialState = {
-    currentCourse: {},
+    currentFile: {},
     mediaFiles: [],
 }
 
@@ -18,12 +18,12 @@ export function gallery(state = initialState, action) {
 
         case galleryConstants.UPLOAD_SUCCESS:
             return {
-                currentCourse: action.file
+                currentFile: action.file
             };
 
         case galleryConstants.GET_FILE_SUCCESS:
             return {
-                currentCourse: action.file
+                currentFile: action.file
             };
     
         case galleryConstants.ERROR:
