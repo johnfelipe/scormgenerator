@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
+// formik and related libraries
 import { Formik } from "formik";
 import * as Yup from 'yup';
+
+// redux library
+import { useDispatch, useSelector } from 'react-redux';
 
 // handler components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -9,31 +14,22 @@ import CheckBoxInput from '../Handlers/CheckBoxHandler';
 //modal
 import WarningModal from '../AlertModal/Warning';
 
+// actions
+import { courseActions } from '../../actions';
+
 // services
 import { courseService } from '../../services';
 import { galleryService } from '../../services';
 
 function CreateCourse() {
 
-    const [courses, setCourses] = useState([]);
-    const [course, setCourse] = useState([]);
+    const dispatch = useDispatch();
     const [courseNameExist, setCourseNameExist] = useState(false);
+    const courses = useSelector(state => state.course.courses ? state.course.courses : []) 
 
     useEffect(() => {
-        courseService.getAll().then(
-            courses => {
-                console.log('courses from database:');
-                console.log(courses);
-                setCourses(courses);
-            },
-            error => {
-                console.log(error);
-            }
-        );
-        
-        console.log('current course that is added:');
-        console.log(course);
-    }, [course]);
+        dispatch(courseActions.getAll());
+    }, [dispatch]);
 
     return (
         <div id="generator-container">
@@ -57,16 +53,7 @@ function CreateCourse() {
                         uid: 1,
                     }
 
-                    courseService.createCourse(data).then(
-                        course => {
-                            console.log('add course response:');
-                            console.log(course);
-                            setCourse(course);
-                        },
-                        error => {
-                            console.log(error);
-                        }
-                    );
+                    dispatch(courseActions.createCourse(data));
                 }}
 
                 validationSchema={Yup.object().shape({
