@@ -1,7 +1,7 @@
 import { courseContants } from '../constants';
 import { courseService } from '../services';
 import { alertActions } from './';
-import { history } from '../helpers';
+// import { history } from '../helpers';
 
 export const courseActions = {
     getAll,
