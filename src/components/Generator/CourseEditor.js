@@ -20,9 +20,12 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 //modal
 // import ConfirmationModal from '../AlertModal/Confirmation';
 import WarningModal from '../AlertModal/Warning';
-import { galleryService } from '../../services';
 
-class Main extends Component {
+// services
+import { galleryService } from '../../services';
+import { courseService } from '../../services';
+
+class CourseEditor extends Component {
 
     constructor(props) {
         super(props);
@@ -35,9 +38,11 @@ class Main extends Component {
             courseNameExist: false,
             slideItemIndex: 0,
             lessonId: -1,
+            cid: -1,
         };
         
         this.setLessonId = this.setLessonId.bind(this);
+        this.setCid = this.setCid.bind(this);
         this.onLessonClickListener = this.onLessonClickListener.bind(this);
         this.resourceFilesHandler = this.resourceFilesHandler.bind(this);
         this.transcriptFileHandler = this.transcriptFileHandler.bind(this);
@@ -50,8 +55,51 @@ class Main extends Component {
     componentDidMount = () => {
         galleryService.getAllFiles().then(
             mediaFiles => {
+                console.log('files uploaded:');
                 console.log(mediaFiles);
                 this.setMediaFilesObject(mediaFiles);
+                this.props.addMediaFiles(mediaFiles);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+
+        const url = window.location.pathname;
+        const cid = url.split('/')[2];
+        this.setCid(cid);
+
+        console.log('cid:');
+        console.log(cid);
+
+        courseService.getCourse(cid).then(
+            course => {
+                console.log('current course:');
+                console.log(course);
+                this.props.addCourseTitle(course.title);
+                this.props.addCourseLogo({
+                    name: course.logo.split('/')[course.logo.split('/').length - 1],
+                    url: course.logo,
+                });
+                this.props.chooseNavigationType(course.navigation);
+                this.props.showHideProgressbar(course.progressbar);
+
+                if (course.title !== "") {
+                    this.setCourseNameExist(true);
+                }
+            },
+            error => {
+                console.log(error);
+            }
+        );
+
+        courseService.getCourseLessons(cid).then(
+            lessons => {
+                console.log('course ' + cid + 'lessons:');
+                console.log(lessons);
+                // lessons.map((lesson, lessonIndex) => (
+                //     console.log(lesson)
+                // ))
             },
             error => {
                 console.log(error);
@@ -66,15 +114,25 @@ class Main extends Component {
         // console.log(this.props.showProgressbar);
         // console.log(this.state.resourceFilesObject);
         // console.log(this.state.transcriptFileObject);
+        console.log('this.props.courseLessons:');
         console.log(this.props.courseLessons);
         // console.log(this.state.glossaryEntryObject);
         this.props.course['lessons'] = this.props.courseLessons;
+        console.log('this.props.course:');
         console.log(this.props.course);
+        // console.log('this.props.courseLogo:');
+        // console.log(this.props.courseLogo);
     }
 
     setLessonId = (value) => {
         this.setState({
             lessonId: value,
+        })
+    }
+
+    setCid = (value) => {
+        this.setState({
+            setCid: value
         })
     }
 
@@ -175,7 +233,10 @@ class Main extends Component {
         return (
             <div id="generator-container">
                 <Formik
+                    enableReinitialize={true}
+
                     initialValues={{
+                        courseTitle: this.props.courseTitle,
                         courseLogo: this.props.courseLogo,
                         navigationType: this.props.navigationType,
                         showProgressbar: this.props.showProgressbar ? this.props.showProgressbar : false,
@@ -235,7 +296,7 @@ class Main extends Component {
                                             onBlur={(e) => {
                                                     handleBlur(e)
 
-                                                    if (e.target.value.trim() === "") {
+                                                    if (e.target.value.trim() === "" || values.courseTitle === "") {
                                                         this.setCourseNameExist(false);
                                                     }
                                                 }
@@ -243,7 +304,7 @@ class Main extends Component {
                                             onChange={(e) => {
                                                     handleChange(e)
 
-                                                    if (e.target.value.trim() !== "") {
+                                                    if (e.target.value.trim() !== "" || values.courseTitle !== "") {
                                                         this.props.addCourseTitle(values.courseTitle);
                                                         this.setCourseNameExist(true);
                                                     }
@@ -263,7 +324,23 @@ class Main extends Component {
                                                     name="courseLogo"
                                                     type="file"
                                                     className="form-control custom-file-input"
-                                                    onChange={(event) => {setFieldValue("courseLogo", event.currentTarget.files[0])}}
+                                                    onChange={(event) => {
+                                                        // setFieldValue("courseLogo", event.currentTarget.files[0]);
+                                                        const formData = new FormData();
+
+                                                        formData.append('file', event.currentTarget.files[0]);
+                                                        formData.append('uid', 1);
+                                                        formData.append('alt', event.currentTarget.files[0].name);
+
+                                                        galleryService.uploadFiles(formData)
+                                                        .then(
+                                                            fileObject => {
+                                                                console.log(fileObject);
+                                                                setFieldValue("courseLogo", fileObject);
+                                                            },
+                                                            error => console.log(error)
+                                                        );
+                                                    }}
                                                     onBlur={handleBlur}
                                                     accept="image/x-png,image/jpeg"
                                                 />
@@ -584,7 +661,7 @@ const mapDispatchToProps = (dispatch) => {
         editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
         chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
-        showHideProgressbar: (value) => dispatch({type: 'NAVIGATION_TYPE', value: value}),
+        showHideProgressbar: (value) => dispatch({type: 'SHOW_HIDE_PROGRESSBAR', value: value}),
         addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
         addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
         addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
@@ -593,4 +670,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseEditor);

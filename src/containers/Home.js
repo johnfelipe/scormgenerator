@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 //components
 // import Generator from '../components/Generator/Generator';
-import Main from '../components/Generator/Main';
+// import Main from '../components/Generator/Main';
+import CreateCourse from '../components/Generator/CreateCourse';
 
 class Home extends Component {
   render() {  
     return (
         <div className="container-fluid">
-            <Main />
+            <CreateCourse />
+            {/* <Main /> */}
             {/* <Generator /> */}
         </div>
     );
