@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+// react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+// formik and related libraries
 import { Formik } from "formik";
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+
+// redux library
+import { useDispatch, useSelector } from 'react-redux';
 
 // components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -18,15 +25,17 @@ import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
 
 //modal
-// import ConfirmationModal from '../AlertModal/Confirmation';
 import WarningModal from '../AlertModal/Warning';
+
+// actions
+import { courseActions } from '../../actions';
 
 // services
 import { galleryService } from '../../services';
-import { courseService } from '../../services';
 
 function CourseEditor() {
-
+    
+    const dispatch = useDispatch();
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     const [resourceFilesObject, setResourceFilesObject] = useState([]);
     const [transcriptFileObject, setTranscriptFileObject] = useState([]);
@@ -35,7 +44,24 @@ function CourseEditor() {
     const [courseNameExist, setCourseNameExist] = useState(false);
     const [slideItemIndex, setSlideItemIndex] = useState(0);
     const [lessonId, setLessonId] = useState(-1);
-    // const [cid, setCid] = useState(-1);
+    const [courseId, setCourseId] = useState(-1);
+
+    const url = window.location.pathname;
+    const cid = url.split('/')[2];
+    const currentCourse = useSelector(state => state.course.currentCourse);
+    const currentCourseLogo = (currentCourse.logo ? 
+            {
+                name: currentCourse.logo.split('/')[currentCourse.logo.split('/').length - 1],
+                url: currentCourse.logo
+            }
+        :
+            {}
+    );
+
+    useEffect(() => {
+        dispatch(courseActions.getCourse(cid));
+        setCourseId(cid);
+    }, [dispatch, cid]);
 
     // componentDidMount = () => {
     //     galleryService.getAllFiles().then(
@@ -140,10 +166,10 @@ function CourseEditor() {
                 enableReinitialize={true}
 
                 initialValues={{
-                    courseTitle: this.props.courseTitle,
-                    courseLogo: this.props.courseLogo,
-                    navigationType: this.props.navigationType,
-                    showProgressbar: this.props.showProgressbar ? this.props.showProgressbar : false,
+                    courseTitle: currentCourse.title,
+                    courseLogo: currentCourseLogo,
+                    navigationType: currentCourse.navigation,
+                    showProgressbar: currentCourse.progressbar === 1 ? true : false,
                 }}
 
                 onSubmit={values => {
@@ -545,7 +571,6 @@ function CourseEditor() {
                                             <div id="save-btn-container" className="float-right">
                                                 <button type="submit" className="btn btn-success" disabled={isSubmitting}>Generate Course</button>
                                             </div>
-                                            {/* <ConfirmationModal isSubmitting={isSubmitting}/> */}
                                         </div>
                                     </div>
                                 :
