@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
+
+// react bootstrap library
 import Alert from 'react-bootstrap/Alert';
+
+// fontawesome library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { galleryService } from '../../services';
+
+// redux library
+import { useDispatch } from 'react-redux';
+
+// actions
+import { galleryActions } from '../../actions';
+
+// service
+// import { galleryService } from '../../services';
 
 // modal
 import AltTagForm from '../AlertModal/AltTagForm';
@@ -10,6 +22,7 @@ import AltTagForm from '../AlertModal/AltTagForm';
 // https://codepen.io/hartzis/pen/VvNGZP
 function MediaUploader(props) {
 
+    const dispatch = useDispatch();
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
     const [modalShow, setModalShow] = useState(false);
@@ -31,14 +44,15 @@ function MediaUploader(props) {
                 formData.append('uid', 1);
                 formData.append('alt', files[fileIndex].name);
 
-                galleryService.uploadFiles(formData)
-                .then(
-                    fileObject => {
-                        console.log(fileObject);
-                        props.setMediaFiles(fileObject);
-                    },
-                    error => console.log(error)
-                );
+                dispatch(galleryActions.uploadFiles(formData));
+                // galleryService.uploadFiles(formData)
+                // .then(
+                //     fileObject => {
+                //         console.log(fileObject);
+                //         props.setMediaFiles(fileObject);
+                //     },
+                //     error => console.log(error)
+                // );
 
                 setShowSuccessMsg(true);
             } else if (files[fileIndex].type.includes('image')) {
@@ -87,14 +101,15 @@ function MediaUploader(props) {
             formData.append('uid', 1);
             formData.append('alt', mediaAlt);
 
-            galleryService.uploadFiles(formData)
-            .then(
-                fileObject => {
-                    console.log(fileObject);
-                    props.setMediaFiles(fileObject);
-                },
-                error => console.log(error)
-            );
+            dispatch(galleryActions.uploadFiles(formData));
+            // galleryService.uploadFiles(formData)
+            // .then(
+            //     fileObject => {
+            //         console.log(fileObject);
+            //         props.setMediaFiles(fileObject);
+            //     },
+            //     error => console.log(error)
+            // );
 
             setShowSuccessMsg(true);
         }
