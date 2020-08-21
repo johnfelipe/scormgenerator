@@ -281,12 +281,7 @@ class CourseEditor extends Component {
                         return (
                             <form onSubmit={handleSubmit}>
                                 <div className="row">
-                                    <div className="col-md-12 text-center">
-                                        <h3>Try it out!</h3>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-9">
+                                    <div className="col-md-8 pr-0">
                                         <input
                                             id="courseTitle"
                                             name="courseTitle"
@@ -318,7 +313,8 @@ class CourseEditor extends Component {
                                     </div>
                                     {
                                         this.state.courseNameExist ?
-                                            <div className="col-md-3">
+                                            <div className="col-md-4">
+                                                <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
                                                 <input
                                                     id="courseLogo"
                                                     name="courseLogo"
@@ -342,16 +338,16 @@ class CourseEditor extends Component {
                                                         );
                                                     }}
                                                     onBlur={handleBlur}
-                                                    accept="image/x-png,image/jpeg"
+                                                    accept="image/*"
                                                 />
-                                                <label htmlFor="courseLogo" className="custom-file-label" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                                <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                             </div>
                                         :
-                                            <div className="col-md-3">
+                                            <div className="col-md-4">
                                                 <WarningModal 
                                                     fieldType="label"
                                                     htmlFor="courseLogo"
-                                                    labelClasses="custom-file-label"
+                                                    labelClasses="course-logo mr-3"
                                                     labelId="custom-form-label"
                                                     label="Choose file"
                                                     modalMessage="Please enter a course name first"
