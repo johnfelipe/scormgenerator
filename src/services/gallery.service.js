@@ -3,6 +3,7 @@ import API from "../utils/api";
 export const galleryService = {
     getAllFiles,
     uploadFiles,
+    getFile,
 };
 
 async function getAllFiles() {
@@ -18,6 +19,11 @@ async function uploadFiles(data) {
     }
 
     const response = await API.post('/uploadFile', data, config);
+    return handleResponse(response);
+}
+
+async function getFile(id) {
+    const response = await API.get('/files/' + id);
     return handleResponse(response);
 }
 
