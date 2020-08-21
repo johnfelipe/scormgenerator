@@ -18,18 +18,18 @@ import WarningModal from '../AlertModal/Warning';
 import { courseActions } from '../../actions';
 
 // services
-import { courseService } from '../../services';
 import { galleryService } from '../../services';
 
 function CreateCourse() {
 
     const dispatch = useDispatch();
     const [courseNameExist, setCourseNameExist] = useState(false);
-    const courses = useSelector(state => state.course.courses ? state.course.courses : []) 
+    const courses = useSelector(state => state.course.courses ? state.course.courses : []);
+    const currentCourse = useSelector(state => state.course.currentCourse);
 
     useEffect(() => {
         dispatch(courseActions.getAll());
-    }, [dispatch]);
+    }, [dispatch, currentCourse]);
 
     return (
         <div id="generator-container">
@@ -41,19 +41,24 @@ function CreateCourse() {
                     showProgressbar: false,
                 }}
 
-                onSubmit={values => {
-                    console.log(values);
-                    const data = {
-                        title: values.courseTitle,
-                        logo: values.courseLogo.url,
-                        navigation: values.navigationType,
-                        progressbar: values.showProgressbar ? 1 : 0,
-                        status: 1,
-                        type: 'Demo',
-                        uid: 1,
-                    }
+                onSubmit={(values, {setSubmitting, resetForm}) => {
+                    try {
+                        console.log(values);
+                        const data = {
+                            title: values.courseTitle,
+                            logo: values.courseLogo.url,
+                            navigation: values.navigationType,
+                            progressbar: values.showProgressbar ? 1 : 0,
+                            status: 1,
+                            type: 'Demo',
+                            uid: 1,
+                        }
 
-                    dispatch(courseActions.createCourse(data));
+                        dispatch(courseActions.createCourse(data));
+                        resetForm({})
+                    } catch (error) {
+                        setSubmitting(false)
+                    }
                 }}
 
                 validationSchema={Yup.object().shape({
