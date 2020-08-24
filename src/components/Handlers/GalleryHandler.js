@@ -11,7 +11,7 @@ import MediaLoader from '../Gallery/MediaLoader';
 function GalleryHandler(props) {
 
     const [modalShow, setModalShow] = useState(false);
-    const [key, setKey] = useState(false);
+    const [key, setKey] = useState('uploadFiles');
     const [filterType, setFilterType] = useState(false);
     const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : [])
 
@@ -19,7 +19,7 @@ function GalleryHandler(props) {
         if (modalShow === false) {
             setFilterType("all");
         }
-    }, [modalShow]);
+    }, [modalShow, mediaFilesObject]);
 
     const galleryModal = (
         <Modal
