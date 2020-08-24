@@ -14,21 +14,27 @@ export function lesson(state = initialState, action) {
 
         case lessonContants.CREATE_SUCCESS:
             return {
+                ...state,
                 currentLesson: action.course
             };
 
         case lessonContants.GETALL_LESSON_SUCCESS:
             return {
+                ...state,
                 lessons: action.courses
             };
 
         case lessonContants.GET_LESSON_SUCCESS:
             return {
+                ...state,
                 currentLesson: action.course
             };
 
         case lessonContants.GET_LESSON_SLIDES_SUCCESS:
+            const { loading, ...stateCopy } = state;
+
             return {
+                ...stateCopy,
                 lessonSlides: action.lessons
             };
     
