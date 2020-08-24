@@ -37,6 +37,12 @@ export function lesson(state = initialState, action) {
                 ...stateCopy,
                 lessonSlides: action.slides
             };
+
+        case lessonContants.UPDATE_SUCCESS:
+            return {
+                ...state,
+                currentLesson: action.lesson
+            };
     
         case lessonContants.ERROR:
             return { 
