@@ -45,7 +45,7 @@ function GalleryHandler(props) {
                         <MediaUploader
                             // setMediaFiles={setMediaFiles}
                             // setMediaFilesObject={props.setMediaFilesObject}
-                            />
+                        />
                     </Tab>
                     <Tab eventKey="mediaLibrary" title="Media Library">
                         {
