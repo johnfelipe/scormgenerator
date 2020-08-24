@@ -29,6 +29,7 @@ import WarningModal from '../AlertModal/Warning';
 
 // actions
 import { courseActions } from '../../actions';
+import { galleryActions } from '../../actions';
 
 // services
 import { galleryService } from '../../services';
@@ -36,32 +37,30 @@ import { galleryService } from '../../services';
 function CourseEditor() {
     
     const dispatch = useDispatch();
+    
+    const url = window.location.pathname;
+    const cid = url.split('/')[2];
+    const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : false);
+    const currentLesson = useSelector(state => state.lesson.currentLesson);
+    const courseLessons = useSelector(state => state.course.courseLessons);
+    const currentFile = useSelector(state => state.gallery.currentFile);
+
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     const [resourceFilesObject, setResourceFilesObject] = useState([]);
     const [transcriptFileObject, setTranscriptFileObject] = useState([]);
     const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
-    const [mediaFilesObject, setMediaFilesObject] = useState([]);
+    // const [mediaFilesObject, setMediaFilesObject] = useState([]);
     const [courseNameExist, setCourseNameExist] = useState(false);
     const [slideItemIndex, setSlideItemIndex] = useState(0);
     const [lessonId, setLessonId] = useState(-1);
     const [courseId, setCourseId] = useState(-1);
 
-    const url = window.location.pathname;
-    const cid = url.split('/')[2];
-    const currentCourse = useSelector(state => state.course.currentCourse);
-    const currentCourseLogo = (currentCourse.logo ? 
-            {
-                name: currentCourse.logo.split('/')[currentCourse.logo.split('/').length - 1],
-                url: currentCourse.logo
-            }
-        :
-            {}
-    );
-
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
+        dispatch(courseActions.getCourseLessons(cid));
+        dispatch(galleryActions.getAllFiles());
         setCourseId(cid);
-    }, [dispatch, cid]);
+    }, [dispatch, cid, currentLesson, currentFile]);
 
     // componentDidMount = () => {
     //     galleryService.getAllFiles().then(
@@ -166,10 +165,13 @@ function CourseEditor() {
                 enableReinitialize={true}
 
                 initialValues={{
-                    courseTitle: currentCourse.title,
-                    courseLogo: currentCourseLogo,
-                    navigationType: currentCourse.navigation,
-                    showProgressbar: currentCourse.progressbar === 1 ? true : false,
+                    courseTitle: currentCourse ? currentCourse.title : '',
+                    courseLogo: {
+                        name: currentCourse ? currentCourse.logo ? currentCourse.logo.split('/')[currentCourse.logo.split('/').length - 1] : '' : '',
+                        url: currentCourse ? currentCourse.logo : '',
+                    },
+                    navigationType: currentCourse ? currentCourse.navigation : 0,
+                    showProgressbar: currentCourse ? currentCourse.progressbar === 1 ? true : false : 0,
                 }}
 
                 onSubmit={values => {
@@ -230,7 +232,7 @@ function CourseEditor() {
                                                 handleChange(e)
 
                                                 if (e.target.value.trim() !== "" || values.courseTitle !== "") {
-                                                    this.props.addCourseTitle(values.courseTitle);
+                                                    // this.props.addCourseTitle(values.courseTitle);
                                                     setCourseNameExist(true);
                                                 }
                                             }
@@ -241,7 +243,7 @@ function CourseEditor() {
                                         <div className="input-feedback">{errors.courseTitle}</div>
                                     )}
                                 </div>
-                                {
+                                {/* {
                                     courseNameExist ?
                                         <div className="col-md-4">
                                             <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
@@ -283,7 +285,36 @@ function CourseEditor() {
                                                 modalMessage="Please enter a course name first"
                                             />
                                         </div>
-                                }
+                                } */}
+                                <div className="col-md-4">
+                                    <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
+                                    <input
+                                        id="courseLogo"
+                                        name="courseLogo"
+                                        type="file"
+                                        className="form-control custom-file-input"
+                                        onChange={(event) => {
+                                            // setFieldValue("courseLogo", event.currentTarget.files[0]);
+                                            const formData = new FormData();
+
+                                            formData.append('file', event.currentTarget.files[0]);
+                                            formData.append('uid', 1);
+                                            formData.append('alt', event.currentTarget.files[0].name);
+
+                                            galleryService.uploadFiles(formData)
+                                            .then(
+                                                fileObject => {
+                                                    console.log(fileObject);
+                                                    setFieldValue("courseLogo", fileObject);
+                                                },
+                                                error => console.log(error)
+                                            );
+                                        }}
+                                        onBlur={handleBlur}
+                                        accept="image/*"
+                                    />
+                                    <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-4 mt-2">
@@ -291,7 +322,6 @@ function CourseEditor() {
                                         currentType={values.navigationType}
                                         name="navigationType"
                                         handleChange={handleChange}
-                                        courseNameExist={courseNameExist}
                                     />
                                 </div>
                                 <div className="col-md-4 mt-2">
@@ -313,17 +343,29 @@ function CourseEditor() {
                                             label="Progress Bar"
                                             handleChange={handleChange}
                                             onBlur={handleBlur}
-                                            courseNameExist={courseNameExist}
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
+                                <ResourcesHandler
+                                    // addResourceFiles={this.props.addResourceFiles}
+                                    setResourceFilesObject={setResourceFilesObject}
+                                    resourceFilesData={resourceFilesObject}
+                                />
                                 {
+                                    resourceFilesObject.length !== 0 ? 
+                                    <span>
+                                    Files Uploaded: &nbsp;
+                                    {resourceFilesObject.map((item, index) => (
+                                        index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
+                                    ))}</span> : <span></span>
+                                }
+                                {/* {
                                     courseNameExist ?
                                         <div className="col-md-4 mt-2">
                                             <ResourcesHandler
-                                                addResourceFiles={this.props.addResourceFiles}
+                                                // addResourceFiles={this.props.addResourceFiles}
                                                 setResourceFilesObject={setResourceFilesObject}
                                                 resourceFilesData={resourceFilesObject}
                                             />
@@ -350,13 +392,30 @@ function CourseEditor() {
                                                 />
                                             </div>
                                         </div>
-                                }
-                                {
+                                } */}
+                                <div className="col-md-4 mt-2">
+                                    <div className="text-center">
+                                        <TranscriptHandler
+                                            // addTranscriptFile={this.props.addTranscriptFile}
+                                            setTranscriptFileObject={setTranscriptFileObject}
+                                            transcriptFileData={transcriptFileObject}
+                                        />
+                                    </div>
+                                    {
+                                        transcriptFileObject.length !== 0 ? 
+                                        <span>
+                                        File Uploaded: &nbsp;
+                                        {transcriptFileObject.map((item) => (
+                                            <strong><label> {item.transcriptFile.name}</label></strong>
+                                        ))}</span> : <span></span>
+                                    }
+                                </div>
+                                {/* {
                                     courseNameExist ?
                                         <div className="col-md-4 mt-2">
                                             <div className="text-center">
                                                 <TranscriptHandler
-                                                    addTranscriptFile={this.props.addTranscriptFile}
+                                                    // addTranscriptFile={this.props.addTranscriptFile}
                                                     setTranscriptFileObject={setTranscriptFileObject}
                                                     transcriptFileData={transcriptFileObject}
                                                 />
@@ -386,12 +445,19 @@ function CourseEditor() {
                                                 </div>
                                             </div>
                                         </div>
-                                }
-                                {
+                                } */}
+                                <div className="col-md-4 mt-2">
+                                    <GlossaryHandler
+                                        // addGlossaryEntries={this.props.addGlossaryEntries}
+                                        setGlossaryEntryObject={setGlossaryEntryObject}
+                                        glossaryData={glossaryEntryObject}
+                                    />
+                                </div>
+                                {/* {
                                     courseNameExist ?
                                         <div className="col-md-4 mt-2">
                                             <GlossaryHandler
-                                                addGlossaryEntries={this.props.addGlossaryEntries}
+                                                // addGlossaryEntries={this.props.addGlossaryEntries}
                                                 setGlossaryEntryObject={setGlossaryEntryObject}
                                                 glossaryData={glossaryEntryObject}
                                             />
@@ -410,32 +476,35 @@ function CourseEditor() {
                                                 />
                                             </div>
                                         </div>
-                                }
+                                } */}
                             </div>
                             <div className="row">
                                 <div className="col-md-12 mt-2">
                                     <div id="lesson-container">
                                         <div className="lesson-container">
-                                            {this.props.courseLessons.map((item, index) => (
+                                            {courseLessons && courseLessons.map((item, index) => (
                                                 <Accordion
                                                     key={index}
                                                 >
                                                     <Card>
                                                         <Card.Header>
                                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                                <span onClick={() => setCurrentClickedLessonId(index)}>{item.lessonName}</span>
+                                                                <span onClick={() => setCurrentClickedLessonId(index)}>{item.title}</span>
                                                             </Accordion.Toggle>
                                                             <LessonHandler
-                                                                editLessonNameChange={this.props.editCourseLessonName}
+                                                                // editLessonNameChange={this.props.editCourseLessonName}
                                                                 action="edit"
-                                                                currentLessonName={item.lessonName}
+                                                                currentLessonName={item.title}
                                                                 id={index}
+                                                                cid={item.cid}
+                                                                uid={item.uid}
+                                                                lid={item.lid}
                                                             />
 
                                                             <button
                                                                 className="btn btn-danger float-right lesson-item-remove-btn"
                                                                 title="Remove"
-                                                                onClick={() => this.props.deleteLesson(index)}
+                                                                // onClick={() => this.props.deleteLesson(index)}
                                                             >
                                                                 <FontAwesomeIcon icon={faWindowClose} />
                                                             </button>
@@ -446,15 +515,15 @@ function CourseEditor() {
                                                                     this.props.courseLessons[index].slides ?
                                                                         this.props.courseLessons[index].slides.length < 5 ?
                                                                             <SlideHandler
-                                                                                addSlideChange={this.props.addLessonSlide}
+                                                                                // addSlideChange={this.props.addLessonSlide}
                                                                                 action="add"
                                                                                 currentSlideIndex={slideItemIndex}
                                                                                 lessonIndex={index}
                                                                                 slideItemId={"slide-item-" + slideItemIndex}
                                                                                 setSlideItemIndex={setSlideItemIndex}
-                                                                                addMediaFiles={this.props.addMediaFiles}
-                                                                                mediaFilesObject={mediaFilesObject}
-                                                                                setMediaFilesObject={setMediaFilesObject}
+                                                                                // addMediaFiles={this.props.addMediaFiles}
+                                                                                // mediaFilesObject={mediaFilesObject}
+                                                                                // setMediaFilesObject={setMediaFilesObject}
                                                                                 lessonId={lessonId}
                                                                             />
                                                                         :
@@ -468,19 +537,19 @@ function CourseEditor() {
                                                                             </div>
                                                                     :
                                                                         <SlideHandler
-                                                                            addSlideChange={this.props.addLessonSlide}
+                                                                            // addSlideChange={this.props.addLessonSlide}
                                                                             action="add"
                                                                             currentSlideIndex={slideItemIndex}
                                                                             lessonIndex={index}
                                                                             slideItemId={"slide-item-" + slideItemIndex}
                                                                             setSlideItemIndex={setSlideItemIndex}
-                                                                            addMediaFiles={this.props.addMediaFiles}
-                                                                            mediaFilesObject={mediaFilesObject}
-                                                                            setMediaFilesObject={setMediaFilesObject}
+                                                                            // addMediaFiles={this.props.addMediaFiles}
+                                                                            // mediaFilesObject={mediaFilesObject}
+                                                                            // setMediaFilesObject={setMediaFilesObject}
                                                                             lessonId={lessonId}
                                                                         />
                                                                 }
-                                                                {
+                                                                {/* {
                                                                     this.props.courseLessons[index].slides ?
                                                                         <DragDropContext onDragEnd={onDragEnd}>
                                                                             <Droppable droppableId="slides">
@@ -537,7 +606,8 @@ function CourseEditor() {
                                                                         </DragDropContext>
                                                                     :
                                                                         <div className="mt-2">No slide added yet.</div>
-                                                                }
+                                                                } */}
+                                                                <div className="mt-2">No slide added yet.</div>
                                                             </Card.Body>
                                                         </Accordion.Collapse>
                                                     </Card>
@@ -547,14 +617,14 @@ function CourseEditor() {
                                     </div>
                                 </div>
                             </div>
-                            {
+                            {/* {
                                 courseNameExist ?
                                     <div className="row">
                                         <div className="col-md-6 mt-2">
                                             {        
-                                                this.props.courseLessons.length < 2 ?
+                                                courseLessons.length < 2 ?
                                                     <LessonHandler
-                                                        addLessonNameChange={this.props.addCourseLessons}
+                                                        // addLessonNameChange={this.props.addCourseLessons}
                                                         action="add"
                                                         setLessonId={setLessonId}
                                                     />
@@ -588,7 +658,23 @@ function CourseEditor() {
                                             </div>
                                         </div>
                                     </div>
-                            }
+                            } */}
+                            <div className="row">
+                                <div className="col-md-6 mt-2">
+                                    <LessonHandler
+                                        // addLessonNameChange={this.props.addCourseLessons}
+                                        action="add"
+                                        setLessonId={setLessonId}
+                                        cid={currentCourse && currentCourse.cid}
+                                        uid={currentCourse && currentCourse.uid}
+                                    />
+                                </div>
+                                <div className="col-md-6 mt-2">
+                                    <div id="save-btn-container" className="float-right">
+                                        <button type="submit" className="btn btn-success" disabled={isSubmitting}>Save Course</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     );
                 }}
