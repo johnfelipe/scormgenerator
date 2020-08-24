@@ -15,19 +15,19 @@ export function lesson(state = initialState, action) {
         case lessonContants.CREATE_SUCCESS:
             return {
                 ...state,
-                currentLesson: action.course
+                currentLesson: action.lesson
             };
 
         case lessonContants.GETALL_LESSON_SUCCESS:
             return {
                 ...state,
-                lessons: action.courses
+                lessons: action.lessons
             };
 
         case lessonContants.GET_LESSON_SUCCESS:
             return {
                 ...state,
-                currentLesson: action.course
+                currentLesson: action.lesson
             };
 
         case lessonContants.GET_LESSON_SLIDES_SUCCESS:
@@ -35,7 +35,7 @@ export function lesson(state = initialState, action) {
 
             return {
                 ...stateCopy,
-                lessonSlides: action.lessons
+                lessonSlides: action.slides
             };
     
         case lessonContants.ERROR:
