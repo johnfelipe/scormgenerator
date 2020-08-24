@@ -8,6 +8,7 @@ export const lessonActions = {
     createLesson,
     getLesson,
     getLessonSlides,
+    updateLesson,
 };
 
 function getAllLessons() {
@@ -93,5 +94,27 @@ function getLessonSlides(id) {
 
     function request(id) { return { type: lessonContants.REQUEST, id } }
     function success(slides) { return { type: lessonContants.GET_LESSON_SLIDES_SUCCESS, slides } }
+    function failure(error) { return { type: lessonContants.ERROR, error } }
+}
+
+function updateLesson(data, id) {
+    return dispatch => {
+        dispatch(request(data));
+
+        lessonService.updateLesson(data, id)
+            .then(
+                lesson => { 
+                    dispatch(success(lesson));
+                    dispatch(alertActions.success('Lesson updated successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(id) { return { type: lessonContants.REQUEST, id } }
+    function success(lesson) { return { type: lessonContants.UPDATE_SUCCESS, lesson } }
     function failure(error) { return { type: lessonContants.ERROR, error } }
 }
