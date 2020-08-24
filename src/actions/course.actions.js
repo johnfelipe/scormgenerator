@@ -92,6 +92,6 @@ function getCourseLessons(id) {
     };
 
     function request(id) { return { type: courseContants.REQUEST, id } }
-    function success(course) { return { type: courseContants.GET_COURSE_LESSONS_SUCCESS, course } }
+    function success(lessons) { return { type: courseContants.GET_COURSE_LESSONS_SUCCESS, lessons } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
