@@ -23,8 +23,8 @@ async function getLesson(id) {
     return handleResponse(response);
 }
 
-async function updateLesson(id) {
-    const response = await API.put('/lessons/' + id,);
+async function updateLesson(data, id) {
+    const response = await API.put('/lessons/' + id, data);
     return handleResponse(response);
 }
 
