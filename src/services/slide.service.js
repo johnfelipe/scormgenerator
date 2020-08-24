@@ -23,8 +23,8 @@ async function getSlide(id) {
     return handleResponse(response);
 }
 
-async function updateSlide(id) {
-    const response = await API.put('/slides/' + id,);
+async function updateSlide(data, id) {
+    const response = await API.put('/slides/' + id, data);
     return handleResponse(response);
 }
 
