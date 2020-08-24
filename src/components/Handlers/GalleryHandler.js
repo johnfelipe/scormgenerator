@@ -13,7 +13,7 @@ function GalleryHandler(props) {
     const [modalShow, setModalShow] = useState(false);
     const [key, setKey] = useState(false);
     const [filterType, setFilterType] = useState(false);
-    const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.course.mediaFiles : [])
+    const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : [])
 
     useEffect(() => {
         if (modalShow === false) {
