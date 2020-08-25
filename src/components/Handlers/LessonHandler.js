@@ -5,26 +5,26 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 
 // redux library
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // actions
-// import { lessonActions } from '../../actions';
+import { lessonActions } from '../../actions';
 
 function LessonHandler(props) {
 
     const [modalShow, setModalShow] = useState(false);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const onSave = (lessonObj, lid) => {
         if (props.action === "add") {
-            props.addLessonNameChange(lessonObj);
-            // dispatch(lessonActions.createLesson(lessonObj));
+            // props.addLessonNameChange(lessonObj);
+            dispatch(lessonActions.createLesson(lessonObj));
         } else if (props.action === "edit") {
             const data = {
                 title: lessonObj.title,
             }
-            // dispatch(lessonActions.updateLesson(data, props.lid));
-            props.editLessonNameChange(data, lid);
+            dispatch(lessonActions.updateLesson(data, props.lid));
+            // props.editLessonNameChange(data, lid);
         }
         
         setModalShow(false)
