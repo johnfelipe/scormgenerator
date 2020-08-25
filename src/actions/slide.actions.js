@@ -1,6 +1,6 @@
 import { slideContants } from '../constants';
 import { slideService } from '../services';
-import { alertActions } from './';
+// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const slideActions = {
@@ -21,7 +21,8 @@ function getAllSlides() {
                     dispatch(success(lessons));
                 },
                 error => {
-                    dispatch(failure(error.toString()))
+                    dispatch(failure(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -39,11 +40,12 @@ function createSlide(data) {
             .then(
                 slide => { 
                     dispatch(success(slide));
-                    dispatch(alertActions.success('Slide created successfully'));
+                    // dispatch(alertActions.success('Slide created successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -61,11 +63,12 @@ function getSlide(id) {
             .then(
                 slide => { 
                     dispatch(success(slide));
-                    dispatch(alertActions.success('Slide fetched successfully'));
+                    // dispatch(alertActions.success('Slide fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -83,11 +86,12 @@ function getSlideColumns(id) {
             .then(
                 slides => { 
                     dispatch(success(slides));
-                    dispatch(alertActions.success('Slide columns fetched successfully'));
+                    // dispatch(alertActions.success('Slide columns fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -105,11 +109,11 @@ function updateSlide(data, id) {
             .then(
                 slide => { 
                     dispatch(success(slide));
-                    dispatch(alertActions.success('Slide updated successfully'));
+                    // dispatch(alertActions.success('Slide updated successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
                 }
             );
     };
