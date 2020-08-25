@@ -25,7 +25,7 @@ import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
 
 //modal
-import WarningModal from '../AlertModal/Warning';
+// import WarningModal from '../AlertModal/Warning';
 
 // actions
 import { courseActions } from '../../actions';
@@ -40,7 +40,7 @@ function CourseEditor() {
     
     const url = window.location.pathname;
     const cid = url.split('/')[2];
-    const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : false);
+    const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
     const currentLesson = useSelector(state => state.lesson.currentLesson);
     const courseLessons = useSelector(state => state.course.courseLessons);
     const currentFile = useSelector(state => state.gallery.currentFile);
@@ -62,69 +62,6 @@ function CourseEditor() {
         setCourseId(cid);
     }, [dispatch, cid, currentLesson, currentFile]);
 
-    // componentDidMount = () => {
-    //     galleryService.getAllFiles().then(
-    //         mediaFiles => {
-    //             console.log('files uploaded:');
-    //             console.log(mediaFiles);
-    //             this.setMediaFilesObject(mediaFiles);
-    //             this.props.addMediaFiles(mediaFiles);
-    //         },
-    //         error => {
-    //             console.log(error);
-    //         }
-    //     );
-
-    //     const url = window.location.pathname;
-    //     const cid = url.split('/')[2];
-    //     this.setCid(cid);
-
-    //     console.log('cid:');
-    //     console.log(cid);
-
-    //     courseService.getCourse(cid).then(
-    //         course => {
-    //             console.log('current course:');
-    //             console.log(course);
-    //             this.props.addCourseTitle(course.title);
-    //             this.props.addCourseLogo({
-    //                 name: course.logo.split('/')[course.logo.split('/').length - 1],
-    //                 url: course.logo,
-    //             });
-    //             this.props.chooseNavigationType(course.navigation);
-    //             this.props.showHideProgressbar(course.progressbar);
-
-    //             if (course.title !== "") {
-    //                 this.setCourseNameExist(true);
-    //             }
-    //         },
-    //         error => {
-    //             console.log(error);
-    //         }
-    //     );
-
-    //     courseService.getCourseLessons(cid).then(
-    //         lessons => {
-    //             console.log('course ' + cid + 'lessons:');
-    //             console.log(lessons);
-    //             // lessons.map((lesson, lessonIndex) => (
-    //             //     console.log(lesson)
-    //             // ))
-    //         },
-    //         error => {
-    //             console.log(error);
-    //         }
-    //     );
-    // }
-
-    // componentDidUpdate = () => {
-    //     console.log('this.props.courseLessons:');
-    //     console.log(this.props.courseLessons);
-    //     this.props.course['lessons'] = this.props.courseLessons;
-    //     console.log('this.props.course:');
-    //     console.log(this.props.course);
-    // }
-
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -143,7 +80,7 @@ function CourseEditor() {
         }
 
         if (source.droppableId === destination.droppableId) {
-            const lessonSlideList = this.props.courseLessons[currentClickedLessonId].slides;
+            const lessonSlideList = courseLessons[currentClickedLessonId].slides;
 
             const reordered_slides = reorder(
                 lessonSlideList,
@@ -152,10 +89,10 @@ function CourseEditor() {
             );
             let slides = reordered_slides;
 
-            const lessons = [...this.props.courseLessons];
+            const lessons = [...courseLessons];
             lessons[currentClickedLessonId].slides = slides;
 
-            this.props.updateCourseLessons(lessons);
+            // this.props.updateCourseLessons(lessons);
         }
     }
 
@@ -482,75 +419,52 @@ function CourseEditor() {
                                 <div className="col-md-12 mt-2">
                                     <div id="lesson-container">
                                         <div className="lesson-container">
-                                            {courseLessons && courseLessons.map((item, index) => (
+                                            {courseLessons && courseLessons.map((lesson, lessonIndex) => (
                                                 <Accordion
-                                                    key={index}
+                                                    key={lessonIndex}
                                                 >
                                                     <Card>
                                                         <Card.Header>
                                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                                <span onClick={() => setCurrentClickedLessonId(index)}>{item.title}</span>
+                                                                <span
+                                                                    onClick={() => {
+                                                                        setCurrentClickedLessonId(lessonIndex);
+                                                                        // dispatch(lessonActions.getLessonSlides(lesson.lid));
+                                                                    }}
+                                                                >
+                                                                    {lesson.title}
+                                                                </span>
                                                             </Accordion.Toggle>
                                                             <LessonHandler
                                                                 // editLessonNameChange={this.props.editCourseLessonName}
                                                                 action="edit"
-                                                                currentLessonName={item.title}
-                                                                id={index}
-                                                                cid={item.cid}
-                                                                uid={item.uid}
-                                                                lid={item.lid}
+                                                                currentLessonName={lesson.title}
+                                                                id={lessonIndex}
+                                                                cid={lesson.cid}
+                                                                uid={lesson.uid}
+                                                                lid={lesson.lid}
                                                             />
 
                                                             <button
                                                                 className="btn btn-danger float-right lesson-item-remove-btn"
                                                                 title="Remove"
-                                                                // onClick={() => this.props.deleteLesson(index)}
+                                                                // onClick={() => this.props.deleteLesson(lessonIndex)}
                                                             >
                                                                 <FontAwesomeIcon icon={faWindowClose} />
                                                             </button>
                                                         </Card.Header>
                                                         <Accordion.Collapse eventKey="0">
                                                             <Card.Body>
+                                                                <SlideHandler
+                                                                    action="add"
+                                                                    currentSlideIndex={slideItemIndex}
+                                                                    lessonIndex={lessonIndex}
+                                                                    slideItemId={"slide-item-" + slideItemIndex}
+                                                                    setSlideItemIndex={setSlideItemIndex}
+                                                                    lessonId={lessonId}
+                                                                />
                                                                 {
-                                                                    this.props.courseLessons[index].slides ?
-                                                                        this.props.courseLessons[index].slides.length < 5 ?
-                                                                            <SlideHandler
-                                                                                // addSlideChange={this.props.addLessonSlide}
-                                                                                action="add"
-                                                                                currentSlideIndex={slideItemIndex}
-                                                                                lessonIndex={index}
-                                                                                slideItemId={"slide-item-" + slideItemIndex}
-                                                                                setSlideItemIndex={setSlideItemIndex}
-                                                                                // addMediaFiles={this.props.addMediaFiles}
-                                                                                // mediaFilesObject={mediaFilesObject}
-                                                                                // setMediaFilesObject={setMediaFilesObject}
-                                                                                lessonId={lessonId}
-                                                                            />
-                                                                        :
-                                                                            <div id="slide-handler-container" className="d-inline">
-                                                                                <WarningModal 
-                                                                                    fieldType="addSlideBtn"
-                                                                                    btnClasses="btn btn-success"
-                                                                                    btnLabel="Add Slide"
-                                                                                    modalMessage="You have reached the maximum limit for free users"
-                                                                                />
-                                                                            </div>
-                                                                    :
-                                                                        <SlideHandler
-                                                                            // addSlideChange={this.props.addLessonSlide}
-                                                                            action="add"
-                                                                            currentSlideIndex={slideItemIndex}
-                                                                            lessonIndex={index}
-                                                                            slideItemId={"slide-item-" + slideItemIndex}
-                                                                            setSlideItemIndex={setSlideItemIndex}
-                                                                            // addMediaFiles={this.props.addMediaFiles}
-                                                                            // mediaFilesObject={mediaFilesObject}
-                                                                            // setMediaFilesObject={setMediaFilesObject}
-                                                                            lessonId={lessonId}
-                                                                        />
-                                                                }
-                                                                {/* {
-                                                                    this.props.courseLessons[index].slides ?
+                                                                    lesson.slides ?
                                                                         <DragDropContext onDragEnd={onDragEnd}>
                                                                             <Droppable droppableId="slides">
                                                                                 {(provided) => (
@@ -558,40 +472,39 @@ function CourseEditor() {
                                                                                         className="slide-container mt-3"
                                                                                         ref={provided.innerRef}
                                                                                     >
-                                                                                        {this.props.courseLessons[index].slides.map((item, itemSlideIndex) => (
+                                                                                        {lesson.slides.map((slide, slideIndex) => (
                                                                                             <Draggable
-                                                                                                key={itemSlideIndex}
-                                                                                                draggableId={'' + itemSlideIndex}
-                                                                                                index={itemSlideIndex}>
+                                                                                                key={slideIndex}
+                                                                                                draggableId={'' + slideIndex}
+                                                                                                index={slideIndex}>
                                                                                                 {(provided) => (
                                                                                                     <div
-                                                                                                        id={"slide-item-" + itemSlideIndex}
+                                                                                                        id={"slide-item-" + slideIndex}
                                                                                                         className="slide-item"
                                                                                                         ref={provided.innerRef}
                                                                                                         {...provided.draggableProps}
                                                                                                         {...provided.dragHandleProps}
                                                                                                     >
-                                                                                                        <span className="btn pr-1">{item.slideName}</span>
+                                                                                                        <span className="btn pr-1">{slide.title}</span>
                                                                                                         <SlideHandler
-                                                                                                            editSlideChange={this.props.editLessonSlide}
-                                                                                                            currentSlideName={item.slideName}
-                                                                                                            currentSlideSubtitle={item.slideSubtitle}
-                                                                                                            currentColumns={item.columns}
+                                                                                                            currentSlideName={slide.title}
+                                                                                                            currentSlideSubtitle={slide.slideSubtitle}
+                                                                                                            currentColumns={slide.columns}
                                                                                                             currentClickedLessonId={currentClickedLessonId}
                                                                                                             action="edit"
-                                                                                                            currentSlideIndex={itemSlideIndex}
+                                                                                                            currentSlideIndex={slideIndex}
                                                                                                             showTitleValue={true}
-                                                                                                            slideItemId={"slide-item-" + itemSlideIndex}
-                                                                                                            lessonIndex={index}
+                                                                                                            slideItemId={"slide-item-" + slideIndex}
+                                                                                                            lessonIndex={lessonIndex}
                                                                                                             setSlideItemIndex={setSlideItemIndex}
-                                                                                                            addMediaFiles={this.props.addMediaFiles}
-                                                                                                            mediaFilesObject={mediaFilesObject}
-                                                                                                            setMediaFilesObject={setMediaFilesObject}
+                                                                                                            // addMediaFiles={this.props.addMediaFiles}
+                                                                                                            // mediaFilesObject={mediaFilesObject}
+                                                                                                            // setMediaFilesObject={setMediaFilesObject}
                                                                                                         />
                                                                                                         <button 
                                                                                                             className="btn btn-danger float-right lesson-item-remove-btn" 
                                                                                                             title="Remove" 
-                                                                                                            onClick={() => this.props.deleteSlide(itemSlideIndex, currentClickedLessonId)}
+                                                                                                            onClick={() => this.props.deleteSlide(slideIndex, currentClickedLessonId)}
                                                                                                         >
                                                                                                             <FontAwesomeIcon icon={faWindowClose} />
                                                                                                         </button>
@@ -606,8 +519,7 @@ function CourseEditor() {
                                                                         </DragDropContext>
                                                                     :
                                                                         <div className="mt-2">No slide added yet.</div>
-                                                                } */}
-                                                                <div className="mt-2">No slide added yet.</div>
+                                                                }
                                                             </Card.Body>
                                                         </Accordion.Collapse>
                                                     </Card>
@@ -617,52 +529,9 @@ function CourseEditor() {
                                     </div>
                                 </div>
                             </div>
-                            {/* {
-                                courseNameExist ?
-                                    <div className="row">
-                                        <div className="col-md-6 mt-2">
-                                            {        
-                                                courseLessons.length < 2 ?
-                                                    <LessonHandler
-                                                        // addLessonNameChange={this.props.addCourseLessons}
-                                                        action="add"
-                                                        setLessonId={setLessonId}
-                                                    />
-                                                :
-                                                    <WarningModal 
-                                                        fieldType="addLessonBtn"
-                                                        btnClasses="btn btn-success"
-                                                        btnLabel="Add Lesson"
-                                                        modalMessage="You have reached the maximum limit for free users"
-                                                    />
-                                            }
-                                        </div>
-                                        <div className="col-md-6 mt-2">
-                                            <div id="save-btn-container" className="float-right">
-                                                <button type="submit" className="btn btn-success" disabled={isSubmitting}>Generate Course</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                :
-                                    <div className="row">
-                                        <div className="col-md-6 mt-2">
-                                            <div id="lesson-handler-container" className="d-inline">
-                                                <div id="add-lesson-btn" className="float-left">
-                                                    <button type="button" className="btn btn-success" disabled>Add Lesson</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6 mt-2">
-                                            <div id="save-btn-container" className="float-right">
-                                                <button type="submit" className="btn btn-success" disabled>Generate Course</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                            } */}
                             <div className="row">
                                 <div className="col-md-6 mt-2">
                                     <LessonHandler
-                                        // addLessonNameChange={this.props.addCourseLessons}
                                         action="add"
                                         setLessonId={setLessonId}
                                         cid={currentCourse && currentCourse.cid}
