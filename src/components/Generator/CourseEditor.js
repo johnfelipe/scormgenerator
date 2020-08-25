@@ -41,9 +41,10 @@ function CourseEditor() {
     const url = window.location.pathname;
     const cid = url.split('/')[2];
     const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
-    const currentLesson = useSelector(state => state.lesson.currentLesson);
-    const courseLessons = useSelector(state => state.course.courseLessons);
-    const currentFile = useSelector(state => state.gallery.currentFile);
+    const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
+    const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
+    const currentSlide = useSelector(state => state.slide.currentSlide ? state.slide.currentSlide : {});
+    const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     const [resourceFilesObject, setResourceFilesObject] = useState([]);
@@ -61,7 +62,7 @@ function CourseEditor() {
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
         setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile]);
+    }, [dispatch, cid, currentLesson, currentFile, currentSlide]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -524,7 +525,7 @@ function CourseEditor() {
                                                                             </Droppable>
                                                                         </DragDropContext>
                                                                     :
-                                                                        <div className="mt-2">No slide added yet.</div>
+                                                                        <div className="mt-2">No slide added yet.{console.log(lesson)}{console.log(lesson.slides)}</div>
                                                                 }
                                                             </Card.Body>
                                                         </Accordion.Collapse>
