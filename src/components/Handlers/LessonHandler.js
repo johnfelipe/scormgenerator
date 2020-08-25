@@ -23,7 +23,7 @@ function LessonHandler(props) {
             const data = {
                 title: lessonObj.title,
             }
-            dispatch(lessonActions.updateLesson(data, props.lid));
+            dispatch(lessonActions.updateLesson(data, lid));
             // props.editLessonNameChange(data, lid);
         }
         

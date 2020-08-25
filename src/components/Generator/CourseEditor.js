@@ -54,6 +54,7 @@ function CourseEditor() {
     const [slideItemIndex, setSlideItemIndex] = useState(0);
     const [lessonId, setLessonId] = useState(-1);
     const [courseId, setCourseId] = useState(-1);
+    const [lid, setLid] = useState(-1);
 
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
@@ -429,6 +430,7 @@ function CourseEditor() {
                                                                 <span
                                                                     onClick={() => {
                                                                         setCurrentClickedLessonId(lessonIndex);
+                                                                        setLid(lesson.lid);
                                                                         // dispatch(lessonActions.getLessonSlides(lesson.lid));
                                                                     }}
                                                                 >
@@ -536,6 +538,7 @@ function CourseEditor() {
                                         setLessonId={setLessonId}
                                         cid={currentCourse && currentCourse.cid}
                                         uid={currentCourse && currentCourse.uid}
+                                        lid={lid}
                                     />
                                 </div>
                                 <div className="col-md-6 mt-2">
