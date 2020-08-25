@@ -82,7 +82,7 @@ function getCourseLessons(id) {
             .then(
                 lessons => { 
                     dispatch(success(lessons));
-                    dispatch(alertActions.success('Course lessons fetched successfully'));
+                    // dispatch(alertActions.success('Course lessons fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
