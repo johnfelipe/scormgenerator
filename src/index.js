@@ -4,18 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+// import { PersistGate } from 'redux-persist/integration/react';
 
 // Custom components
 import { store } from './helpers';
-import { persistor } from './helpers';
+// import { persistor } from './helpers';
 
 ReactDOM.render(
     // <React.StrictMode>
         <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
+            {/* <PersistGate loading={null} persistor={persistor}> */}
                 <App />
-            </PersistGate>
+            {/* </PersistGate> */}
         </Provider>
     // </React.StrictMode><Provider store={store}>
     ,
