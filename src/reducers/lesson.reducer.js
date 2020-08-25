@@ -32,10 +32,8 @@ export function lesson(state = initialState, action) {
             };
 
         case lessonContants.GET_LESSON_SLIDES_SUCCESS:
-            const { loading, ...stateCopy } = state;
-
             return {
-                ...stateCopy,
+                ...state,
                 lessonSlides: action.slides
             };
 

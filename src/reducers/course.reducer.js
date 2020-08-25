@@ -32,10 +32,8 @@ export function course(state = initialState, action) {
             };
 
         case courseContants.GET_COURSE_LESSONS_SUCCESS:
-            const { loading, ...stateCopy } = state;
-
             return {
-                ...stateCopy,
+                ...state,
                 courseLessons: action.lessons
             };
     

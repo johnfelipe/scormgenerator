@@ -32,10 +32,8 @@ export function slide(state = initialState, action) {
             };
 
         case slideContants.GET_SLIDE_COLUMNS_SUCCESS:
-            const { loading, ...stateCopy } = state;
-
             return {
-                ...stateCopy,
+                ...state,
                 slideColumns: action.slides
             };
 
@@ -46,7 +44,8 @@ export function slide(state = initialState, action) {
             };
     
         case slideContants.ERROR:
-            return { 
+            return {
+                ...state,
                 error: action.error
             };
 
