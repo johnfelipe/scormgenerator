@@ -17,7 +17,7 @@ function getAllLessons() {
 
         lessonService.getAllLessons()
             .then(
-                lessons => { 
+                lessons => {
                     dispatch(success(lessons));
                 },
                 error => {

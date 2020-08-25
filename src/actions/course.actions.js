@@ -1,5 +1,6 @@
 import { courseContants } from '../constants';
 import { courseService } from '../services';
+import { lessonService } from '../services';
 import { alertActions } from './';
 // import { history } from '../helpers';
 
@@ -80,7 +81,21 @@ function getCourseLessons(id) {
 
         courseService.getCourseLessons(id)
             .then(
-                lessons => { 
+                lessons => {
+                    lessons.map((lesson, lessonIndex) => (
+                        lessonService.getLessonSlides(lesson.lid)
+                        .then(
+                            slides => {
+                                if (slides.length > 0) {
+                                    lessons[lessonIndex].slides = slides;
+                                }
+                            },
+                            error => {
+                                dispatch(failure(error.toString()));
+                                dispatch(alertActions.error(error.toString()));
+                            }
+                        )
+                    ));
                     dispatch(success(lessons));
                     // dispatch(alertActions.success('Course lessons fetched successfully'));
                 },
