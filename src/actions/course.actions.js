@@ -2,7 +2,7 @@ import { courseContants } from '../constants';
 import { courseService } from '../services';
 import { lessonService } from '../services';
 import { slideService } from '../services';
-import { alertActions } from './';
+// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const courseActions = {
@@ -22,7 +22,8 @@ function getAll() {
                     dispatch(success(courses));
                 },
                 error => {
-                    dispatch(failure(error.toString()))
+                    dispatch(failure(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -40,11 +41,12 @@ function createCourse(data) {
             .then(
                 course => { 
                     dispatch(success(course));
-                    dispatch(alertActions.success('Course created successfully'));
+                    // dispatch(alertActions.success('Course created successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -62,11 +64,12 @@ function getCourse(id) {
             .then(
                 course => { 
                     dispatch(success(course));
-                    dispatch(alertActions.success('Course fetched successfully'));
+                    // dispatch(alertActions.success('Course fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -98,7 +101,8 @@ function getCourseLessons(id) {
                                             },
                                             error => {
                                                 dispatch(failure(error.toString()));
-                                                dispatch(alertActions.error(error.toString()));
+                                                // dispatch(alertActions.error(error.toString()));
+                                                console.log(error);
                                             }
                                         )
                                     ));
@@ -108,7 +112,8 @@ function getCourseLessons(id) {
                             },
                             error => {
                                 dispatch(failure(error.toString()));
-                                dispatch(alertActions.error(error.toString()));
+                                // dispatch(alertActions.error(error.toString()));
+                                console.log(error);
                             }
                         )
                     ));
@@ -117,7 +122,8 @@ function getCourseLessons(id) {
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };

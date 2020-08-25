@@ -1,6 +1,6 @@
 import { galleryConstants } from '../constants';
 import { galleryService } from '../services';
-import { alertActions } from './';
+// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const galleryActions = {
@@ -19,7 +19,8 @@ function getAllFiles() {
                     dispatch(success(files));
                 },
                 error => {
-                    dispatch(failure(error.toString()))
+                    dispatch(failure(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -37,11 +38,12 @@ function uploadFiles(data) {
             .then(
                 file => { 
                     dispatch(success(file));
-                    dispatch(alertActions.success('File uploaded successfully'));
+                    // dispatch(alertActions.success('File uploaded successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -59,11 +61,12 @@ function getFile(id) {
             .then(
                 file => { 
                     dispatch(success(file));
-                    dispatch(alertActions.success('File fetched successfully'));
+                    // dispatch(alertActions.success('File fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };

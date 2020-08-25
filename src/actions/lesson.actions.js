@@ -1,6 +1,6 @@
 import { lessonContants } from '../constants';
 import { lessonService } from '../services';
-import { alertActions } from './';
+// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const lessonActions = {
@@ -21,7 +21,8 @@ function getAllLessons() {
                     dispatch(success(lessons));
                 },
                 error => {
-                    dispatch(failure(error.toString()))
+                    dispatch(failure(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -39,11 +40,12 @@ function createLesson(data) {
             .then(
                 lesson => { 
                     dispatch(success(lesson));
-                    dispatch(alertActions.success('Lesson created successfully'));
+                    // dispatch(alertActions.success('Lesson created successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -61,11 +63,12 @@ function getLesson(id) {
             .then(
                 lesson => { 
                     dispatch(success(lesson));
-                    dispatch(alertActions.success('Lesson fetched successfully'));
+                    // dispatch(alertActions.success('Lesson fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -87,7 +90,8 @@ function getLessonSlides(id) {
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
@@ -105,11 +109,12 @@ function updateLesson(data, id) {
             .then(
                 lesson => { 
                     dispatch(success(lesson));
-                    dispatch(alertActions.success('Lesson updated successfully'));
+                    // dispatch(alertActions.success('Lesson updated successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
                 }
             );
     };
