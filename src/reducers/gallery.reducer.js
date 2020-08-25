@@ -8,6 +8,7 @@ export function gallery(state = initialState, action) {
     switch (action.type) {
         case galleryConstants.REQUEST:
             return {
+                ...state,
                 loading: true
             };
 

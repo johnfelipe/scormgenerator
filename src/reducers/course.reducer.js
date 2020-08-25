@@ -9,6 +9,7 @@ export function course(state = initialState, action) {
     switch (action.type) {
         case courseContants.REQUEST:
             return {
+                ...state,
                 loading: true
             };
 

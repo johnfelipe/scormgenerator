@@ -9,6 +9,7 @@ export function slide(state = initialState, action) {
     switch (action.type) {
         case slideContants.REQUEST:
             return {
+                ...state,
                 loading: true
             };
 
