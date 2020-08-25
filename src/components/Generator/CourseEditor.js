@@ -464,6 +464,9 @@ function CourseEditor() {
                                                                     slideItemId={"slide-item-" + slideItemIndex}
                                                                     setSlideItemIndex={setSlideItemIndex}
                                                                     lessonId={lessonId}
+                                                                    cid={currentCourse && currentCourse.cid}
+                                                                    uid={currentCourse && currentCourse.uid}
+                                                                    lid={lid}
                                                                 />
                                                                 {
                                                                     lesson.slides ?
@@ -489,6 +492,7 @@ function CourseEditor() {
                                                                                                     >
                                                                                                         <span className="btn pr-1">{slide.title}</span>
                                                                                                         <SlideHandler
+                                                                                                            sid={slide.sid}
                                                                                                             currentSlideName={slide.title}
                                                                                                             currentSlideSubtitle={slide.slideSubtitle}
                                                                                                             currentColumns={slide.columns}
