@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
+
+// formik
 import { Formik } from "formik";
+import * as Yup from 'yup';
+
+// react beautiful dnd
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+// font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-import * as Yup from 'yup';
-import { connect } from 'react-redux';
+
+// react bootstrap
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Modal, Tab, Tabs } from 'react-bootstrap';
+
+// redux library
+import { connect } from 'react-redux';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -36,8 +46,12 @@ import TabsLayout from '../Slide/Layouts/TabsLayout';
 // modals
 import WarningModal from '../AlertModal/Warning';
 
+// actions
+import { slideActions } from '../../actions';
+import { courseActions } from '../../actions';
+
 // services
-import { slideService } from '../../services';
+// import { slideService } from '../../services';
 import { columnService } from '../../services';
 
 class SlideHandler extends Component {
@@ -136,6 +150,14 @@ class SlideHandler extends Component {
         console.log(this.state.column);
         console.log('props.columns: ');
         console.log(this.props.currentColumns);
+        console.log('this.props.currentSlide');
+        console.log(this.props.currentSlide);
+        console.log('this.props.cid');
+        console.log(this.props.cid);
+
+        // if (this.props.cid) {
+        //     this.props.getCourseLessons(this.props.cid);
+        // }
         // console.log('props.action');
         // console.log(this.props.action);
         // console.log('state.activeFeature');
@@ -3281,16 +3303,31 @@ class SlideHandler extends Component {
         })
     }
 
-    onSave = (slide, subtitle, columns, lessonIndex) => {
+    // onSave = (slide, subtitle, columns, lessonIndex) => {
+    //     if (this.props.action === "add") {
+    //         const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
+    //         this.props.addSlideChange(slideObj, lessonIndex);
+    //         console.log("add");
+    //     } else if (this.props.action === "edit") {
+    //         const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
+    //         this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
+    //         console.log("edit");
+    //     }
+        
+    //     this.setModalShow(false, 'save')
+    // }
+
+    onSave = (slideObj, sid) => {
         if (this.props.action === "add") {
-            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.addSlideChange(slideObj, lessonIndex);
+            this.props.createSlide(slideObj);
             console.log("add");
-        } else if (this.props.action === "edit") {
-            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
-            console.log("edit");
-        }
+            console.log(slideObj);
+        } 
+        // else if (this.props.action === "edit") {
+        //     const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
+        //     this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
+        //     console.log("edit");
+        // }
         
         this.setModalShow(false, 'save')
     }
@@ -3329,33 +3366,40 @@ class SlideHandler extends Component {
                         }}
 
                         onSubmit={values => {
-                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
-
-                            // create slide
-                            // lid and uid are temporary
                             const data = {
-                                lid: this.props.lessonId,
+                                lid: this.props.lid,
                                 title: values.slideName,
-                                uid: 1,
+                                uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                             }
+                            this.onSave(data, this.props.sid);
+                            // this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
 
-                            slideService.createSlide(data)
-                            .then(
-                                slideObj => {
-                                    this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
-                                    this.setSlideId(slideObj.sid);
-                                    console.log(slideObj);
-                                },
-                                error => console.log(error)
-                            );
+                            // // create slide
+                            // // lid and uid are temporary
+                            // const data = {
+                            //     lid: this.props.lessonId,
+                            //     title: values.slideName,
+                            //     uid: 1,
+                            //     hide_title: values.showTitle ? 1 : 0,
+                            // }
 
-                            this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
+                            // slideService.createSlide(data)
+                            // .then(
+                            //     slideObj => {
+                            //         this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
+                            //         this.setSlideId(slideObj.sid);
+                            //         console.log(slideObj);
+                            //     },
+                            //     error => console.log(error)
+                            // );
 
-                            // create column
-                            // sid and uid are temporary
-                            this.props.createColumn(1, 1, this.state.column);
-                            this.createColumn(1, 1, this.state.column);
+                            // this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
+
+                            // // create column
+                            // // sid and uid are temporary
+                            // this.props.createColumn(1, 1, this.state.column);
+                            // this.createColumn(1, 1, this.state.column);
 
                         }}
 
@@ -3481,9 +3525,9 @@ class SlideHandler extends Component {
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
                                             {/* <button type="button" className="btn btn-primary w-100">Open Library</button> */}
                                             <GalleryHandler
-                                                addMediaFiles={this.props.addMediaFiles}
-                                                mediaFilesObject={this.props.mediaFilesObject}
-                                                setMediaFilesObject={this.props.setMediaFilesObject}
+                                                // addMediaFiles={this.props.addMediaFiles}
+                                                // mediaFilesObject={this.props.mediaFilesObject}
+                                                // setMediaFilesObject={this.props.setMediaFilesObject}
                                                 buttonName="Open Library"
                                             />
                                         </div>
@@ -7381,14 +7425,16 @@ class SlideHandler extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        slide: state.slide,
-        columns: state.columns,
+        currentSlide: state.slide.currentSlide ? state.slide.currentSlide : {},
+        // columns: state.columns,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
+        createSlide: (data) => dispatch(slideActions.createSlide(data)),
+        getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
+
         createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
     }
 }
