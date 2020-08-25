@@ -13,16 +13,19 @@ export function gallery(state = initialState, action) {
 
         case galleryConstants.GETALL_FILES_SUCCESS:
             return {
+                ...state,
                 mediaFiles: action.files
             };
 
         case galleryConstants.UPLOAD_SUCCESS:
             return {
+                ...state,
                 currentFile: action.file
             };
 
         case galleryConstants.GET_FILE_SUCCESS:
             return {
+                ...state,
                 currentFile: action.file
             };
     
