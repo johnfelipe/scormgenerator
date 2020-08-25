@@ -1,6 +1,7 @@
 import { courseContants } from '../constants';
 import { courseService } from '../services';
 import { lessonService } from '../services';
+import { slideService } from '../services';
 import { alertActions } from './';
 // import { history } from '../helpers';
 
@@ -87,6 +88,21 @@ function getCourseLessons(id) {
                         .then(
                             slides => {
                                 if (slides.length > 0) {
+                                    slides.map((slide, slideIndex) => (
+                                        slideService.getSlideColumns(slide.sid)
+                                        .then(
+                                            columns => {
+                                                if (columns.length > 0) {
+                                                    slides[slideIndex].columns = columns;
+                                                }
+                                            },
+                                            error => {
+                                                dispatch(failure(error.toString()));
+                                                dispatch(alertActions.error(error.toString()));
+                                            }
+                                        )
+                                    ));
+                                    
                                     lessons[lessonIndex].slides = slides;
                                 }
                             },
