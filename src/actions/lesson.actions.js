@@ -83,7 +83,7 @@ function getLessonSlides(id) {
             .then(
                 slides => { 
                     dispatch(success(slides));
-                    dispatch(alertActions.success('Lesson slides fetched successfully'));
+                    // dispatch(alertActions.success('Lesson slides fetched successfully'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
