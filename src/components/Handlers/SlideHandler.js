@@ -47,8 +47,7 @@ import TabsLayout from '../Slide/Layouts/TabsLayout';
 import WarningModal from '../AlertModal/Warning';
 
 // actions
-import { slideActions } from '../../actions';
-import { courseActions } from '../../actions';
+import { slideActions, courseActions, columnActions } from '../../actions';
 
 // services
 // import { slideService } from '../../services';
@@ -192,13 +191,7 @@ class SlideHandler extends Component {
             columnObject.push(data);
             console.log(data);
 
-            columnService.createColumn(data)
-            .then(
-                slideObj => {
-                    console.log(slideObj);
-                },
-                error => console.log(error)
-            );
+            this.props.createColumn(data);
         }
     }
 
@@ -3337,7 +3330,7 @@ class SlideHandler extends Component {
                             this.onSave(data, this.props.sid, this.props.lessonIndex);
 
                             // creates column
-                            this.stringifySlideColumns(this.props.currentSlide.sid, this.props.uid, this.state.column);
+                            this.stringifySlideColumns(this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.uid, this.state.column);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -7374,6 +7367,7 @@ const mapDispatchToProps = (dispatch) => {
         appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
         updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
         updateSlideFromCourseLesson: (slideObj, slideIndex, lessonIndex) => dispatch(courseActions.updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex)),
+        createColumn: (columnObj) => dispatch(columnActions.createColumn(columnObj)),
     }
 }
 

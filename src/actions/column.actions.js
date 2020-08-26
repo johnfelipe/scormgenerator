@@ -3,7 +3,7 @@ import { columnService } from '../services';
 // import { alertActions } from './';
 // import { history } from '../helpers';
 
-export const slideActions = {
+export const columnActions = {
     createColumn,
 };
 
