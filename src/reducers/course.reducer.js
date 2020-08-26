@@ -70,6 +70,22 @@ export function course(state = initialState, action) {
                 ...state,
                 courseLessons: lessons,
             }
+
+        case courseContants.UPDATE_SLIDE_FROM_COURSE_LESSON:
+            const updateFromLessonObj = {
+                ...state.courseLessons[action.lessonIndex]
+            };
+
+            updateFromLessonObj.slides[action.slideIndex].title = action.slideObj.title;
+            updateFromLessonObj.slides[action.slideIndex].hide_title = action.slideObj.hide_title;
+        
+            lessons = [...state.courseLessons];
+            lessons[action.lessonIndex] = updateFromLessonObj;
+        
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
     
         case courseContants.ERROR:
             return { 
