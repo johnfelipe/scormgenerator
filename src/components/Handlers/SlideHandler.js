@@ -154,6 +154,8 @@ class SlideHandler extends Component {
         console.log(this.props.currentSlide);
         console.log('this.props.cid');
         console.log(this.props.cid);
+        console.log('this.props.lessonIndex');
+        console.log(this.props.lessonIndex);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
@@ -3317,9 +3319,10 @@ class SlideHandler extends Component {
     //     this.setModalShow(false, 'save')
     // }
 
-    onSave = (slideObj, sid) => {
+    onSave = (slideObj, sid, lessonIndex) => {
         if (this.props.action === "add") {
             this.props.createSlide(slideObj);
+            this.props.appendSlideToCourseLesson(slideObj, lessonIndex);
             console.log("add");
             console.log(slideObj);
         } 
@@ -3372,7 +3375,7 @@ class SlideHandler extends Component {
                                 uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                             }
-                            this.onSave(data, this.props.sid);
+                            this.onSave(data, this.props.sid, this.props.lessonIndex);
                             // this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
 
                             // // create slide
@@ -7434,6 +7437,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         createSlide: (data) => dispatch(slideActions.createSlide(data)),
         getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
+        appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
 
         createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
     }
