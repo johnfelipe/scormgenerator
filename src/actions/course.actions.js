@@ -10,6 +10,7 @@ export const courseActions = {
     createCourse,
     getCourse,
     getCourseLessons,
+    appendSlideToCourseLesson,
 };
 
 function getAll() {
@@ -84,51 +85,59 @@ function getCourseLessons(id) {
         dispatch(request(id));
 
         courseService.getCourseLessons(id)
-            .then(
-                lessons => {
-                    lessons.map((lesson, lessonIndex) => (
-                        lessonService.getLessonSlides(lesson.lid)
-                        .then(
-                            slides => {
-                                if (slides.length > 0) {
-                                    slides.map((slide, slideIndex) => (
-                                        slideService.getSlideColumns(slide.sid)
-                                        .then(
-                                            columns => {
-                                                if (columns.length > 0) {
-                                                    slides[slideIndex].columns = columns;
-                                                }
-                                            },
-                                            error => {
-                                                dispatch(failure(error.toString()));
-                                                // dispatch(alertActions.error(error.toString()));
-                                                console.log(error);
+        .then(
+            lessons => {
+                lessons.map((lesson, lessonIndex) => (
+                    lessonService.getLessonSlides(lesson.lid)
+                    .then(
+                        slides => {
+                            // if (slides.length > 0) {
+                                slides.map((slide, slideIndex) => (
+                                    slideService.getSlideColumns(slide.sid)
+                                    .then(
+                                        columns => {
+                                            if (columns.length > 0) {
+                                                slides[slideIndex].columns = columns;
                                             }
-                                        )
-                                    ));
-                                    
-                                    lessons[lessonIndex].slides = slides;
-                                }
-                            },
-                            error => {
-                                dispatch(failure(error.toString()));
-                                // dispatch(alertActions.error(error.toString()));
-                                console.log(error);
-                            }
-                        )
-                    ));
-                    dispatch(success(lessons));
-                    // dispatch(alertActions.success('Course lessons fetched successfully'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
-                }
-            );
+                                        },
+                                        error => {
+                                            dispatch(failure(error.toString()));
+                                            // dispatch(alertActions.error(error.toString()));
+                                            console.log(error);
+                                        }
+                                    )
+                                ));
+                                
+                                lessons[lessonIndex].slides = slides;
+                            // }
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            // dispatch(alertActions.error(error.toString()));
+                            console.log(error);
+                        }
+                    )
+                ));
+                dispatch(success(lessons));
+                // dispatch(alertActions.success('Course lessons fetched successfully'));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(id) { return { type: courseContants.REQUEST, id } }
     function success(lessons) { return { type: courseContants.GET_COURSE_LESSONS_SUCCESS, lessons } }
     function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function appendSlideToCourseLesson(slideObj, lessonIndex) {
+    return dispatch => {
+        dispatch(success(slideObj, lessonIndex));
+    };
+    
+    function success(slideObj, lessonIndex) { return { type: courseContants.APPEND, slideObj, lessonIndex } }
 }
