@@ -99,7 +99,24 @@ function getCourseLessons(id) {
                                     .then(
                                         columns => {
                                             if (columns.length > 0) {
-                                                slides[slideIndex].columns = columns;
+                                                let slideColumns = [];
+
+                                                columns.map((columnProps) => {
+                                                    const parsedDecodedFeatures = JSON.parse(atob(columnProps.features));
+                                                    const column = {
+                                                        type: 'column',
+                                                        name: columnProps.title,
+                                                        active: 0,
+                                                        grid: 0,
+                                                        id: 'column1',
+                                                        content: parsedDecodedFeatures,
+                                                    }
+                                                    console.log(columnProps);
+
+                                                    return slideColumns.push(column)
+                                                });
+
+                                                slides[slideIndex].columns = slideColumns;
                                             }
                                         },
                                         error => {
