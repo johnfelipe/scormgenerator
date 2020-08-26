@@ -43,7 +43,6 @@ function CourseEditor() {
     const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
     const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
-    const currentSlide = useSelector(state => state.slide.currentSlide ? state.slide.currentSlide : {});
     const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
@@ -62,7 +61,7 @@ function CourseEditor() {
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
         setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile, currentSlide]);
+    }, [dispatch, cid, currentLesson, currentFile]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -114,22 +113,22 @@ function CourseEditor() {
                 }}
 
                 onSubmit={values => {
-                    console.log(values);
+                    // console.log(values);
 
-                    if (courseNameExist !== true) {
-                        this.props.addCourseTitle(values.courseTitle);
-                        console.log('Clickuko!');
-                    }
+                    // if (courseNameExist !== true) {
+                    //     this.props.addCourseTitle(values.courseTitle);
+                    //     console.log('Clickuko!');
+                    // }
 
-                    this.props.addCourseLogo(values.courseLogo);
-                    this.props.chooseNavigationType(values.navigationType);
-                    this.props.showHideProgressbar(values.showProgressbar);
+                    // this.props.addCourseLogo(values.courseLogo);
+                    // this.props.chooseNavigationType(values.navigationType);
+                    // this.props.showHideProgressbar(values.showProgressbar);
 
-                    // create course
-                    // uid is temporary
-                    this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
-                    localStorage.setItem("CourseLessons", JSON.stringify(this.props.courseLessons));
-                    localStorage.setItem("Course", JSON.stringify(this.props.course));
+                    // // create course
+                    // // uid is temporary
+                    // this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
+                    // localStorage.setItem("CourseLessons", JSON.stringify(this.props.courseLessons));
+                    // localStorage.setItem("Course", JSON.stringify(this.props.course));
                 }}
 
                 validationSchema={Yup.object().shape({
@@ -469,63 +468,62 @@ function CourseEditor() {
                                                                     uid={currentCourse && currentCourse.uid}
                                                                     lid={lid}
                                                                 />
-                                                                {
-                                                                    lesson.slides ?
-                                                                        <DragDropContext onDragEnd={onDragEnd}>
-                                                                            <Droppable droppableId="slides">
-                                                                                {(provided) => (
-                                                                                    <div
-                                                                                        className="slide-container mt-3"
-                                                                                        ref={provided.innerRef}
-                                                                                    >
-                                                                                        {lesson.slides.map((slide, slideIndex) => (
-                                                                                            <Draggable
-                                                                                                key={slideIndex}
-                                                                                                draggableId={'' + slideIndex}
-                                                                                                index={slideIndex}>
-                                                                                                {(provided) => (
-                                                                                                    <div
-                                                                                                        id={"slide-item-" + slideIndex}
-                                                                                                        className="slide-item"
-                                                                                                        ref={provided.innerRef}
-                                                                                                        {...provided.draggableProps}
-                                                                                                        {...provided.dragHandleProps}
+                                                                {lesson.slides ?
+                                                                    <DragDropContext onDragEnd={onDragEnd}>
+                                                                        <Droppable droppableId="slides">
+                                                                            {(provided) => (
+                                                                                <div
+                                                                                    className="slide-container mt-3"
+                                                                                    ref={provided.innerRef}
+                                                                                >
+                                                                                    {lesson.slides.map((slide, slideIndex) => (
+                                                                                        <Draggable
+                                                                                            key={slideIndex}
+                                                                                            draggableId={'' + slideIndex}
+                                                                                            index={slideIndex}>
+                                                                                            {(provided) => (
+                                                                                                <div
+                                                                                                    id={"slide-item-" + slideIndex}
+                                                                                                    className="slide-item"
+                                                                                                    ref={provided.innerRef}
+                                                                                                    {...provided.draggableProps}
+                                                                                                    {...provided.dragHandleProps}
+                                                                                                >
+                                                                                                    <span className="btn pr-1">{slide.title}</span>
+                                                                                                    <SlideHandler
+                                                                                                        sid={slide.sid}
+                                                                                                        currentSlideName={slide.title}
+                                                                                                        currentSlideSubtitle={slide.slideSubtitle}
+                                                                                                        currentColumns={slide.columns}
+                                                                                                        currentClickedLessonId={currentClickedLessonId}
+                                                                                                        action="edit"
+                                                                                                        currentSlideIndex={slideIndex}
+                                                                                                        showTitleValue={true}
+                                                                                                        slideItemId={"slide-item-" + slideIndex}
+                                                                                                        lessonIndex={lessonIndex}
+                                                                                                        setSlideItemIndex={setSlideItemIndex}
+                                                                                                        // addMediaFiles={this.props.addMediaFiles}
+                                                                                                        // mediaFilesObject={mediaFilesObject}
+                                                                                                        // setMediaFilesObject={setMediaFilesObject}
+                                                                                                    />
+                                                                                                    <button 
+                                                                                                        className="btn btn-danger float-right lesson-item-remove-btn" 
+                                                                                                        title="Remove" 
+                                                                                                        onClick={() => this.props.deleteSlide(slideIndex, currentClickedLessonId)}
                                                                                                     >
-                                                                                                        <span className="btn pr-1">{slide.title}</span>
-                                                                                                        <SlideHandler
-                                                                                                            sid={slide.sid}
-                                                                                                            currentSlideName={slide.title}
-                                                                                                            currentSlideSubtitle={slide.slideSubtitle}
-                                                                                                            currentColumns={slide.columns}
-                                                                                                            currentClickedLessonId={currentClickedLessonId}
-                                                                                                            action="edit"
-                                                                                                            currentSlideIndex={slideIndex}
-                                                                                                            showTitleValue={true}
-                                                                                                            slideItemId={"slide-item-" + slideIndex}
-                                                                                                            lessonIndex={lessonIndex}
-                                                                                                            setSlideItemIndex={setSlideItemIndex}
-                                                                                                            // addMediaFiles={this.props.addMediaFiles}
-                                                                                                            // mediaFilesObject={mediaFilesObject}
-                                                                                                            // setMediaFilesObject={setMediaFilesObject}
-                                                                                                        />
-                                                                                                        <button 
-                                                                                                            className="btn btn-danger float-right lesson-item-remove-btn" 
-                                                                                                            title="Remove" 
-                                                                                                            onClick={() => this.props.deleteSlide(slideIndex, currentClickedLessonId)}
-                                                                                                        >
-                                                                                                            <FontAwesomeIcon icon={faWindowClose} />
-                                                                                                        </button>
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Draggable>
-                                                                                        ))}
-                                                                                        {provided.placeholder}
-                                                                                    </div>
-                                                                                )}
-                                                                            </Droppable>
-                                                                        </DragDropContext>
-                                                                    :
-                                                                        <div className="mt-2">No slide added yet.{console.log(lesson)}{console.log(lesson.slides)}</div>
+                                                                                                        <FontAwesomeIcon icon={faWindowClose} />
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </Draggable>
+                                                                                    ))}
+                                                                                    {provided.placeholder}
+                                                                                </div>
+                                                                            )}
+                                                                        </Droppable>
+                                                                    </DragDropContext>
+                                                                :
+                                                                    <div className="mt-2">No slide added yet.{console.log(lesson)}{console.log(lesson.slides)}</div>
                                                                 }
                                                             </Card.Body>
                                                         </Accordion.Collapse>
