@@ -16,25 +16,42 @@ export function course(state = initialState, action) {
         case courseContants.CREATE_SUCCESS:
             return {
                 ...state,
-                currentCourse: action.course
+                currentCourse: action.course,
             };
 
         case courseContants.GETALL_COURSE_SUCCESS:
             return {
                 ...state,
-                courses: action.courses
+                courses: action.courses,
             };
 
         case courseContants.GET_COURSE_SUCCESS:
             return {
                 ...state,
-                currentCourse: action.course
+                currentCourse: action.course,
             };
 
         case courseContants.GET_COURSE_LESSONS_SUCCESS:
             return {
                 ...state,
-                courseLessons: action.lessons
+                courseLessons: action.lessons,
+            };
+
+        case courseContants.APPEND:
+            const { slideObj, lessonIndex } = action;
+
+            const lessonObj = {
+                ...state.courseLessons[lessonIndex]
+            };
+
+            lessonObj.slides.push(slideObj);
+        
+            const lessons = [...state.courseLessons];
+            lessons[lessonIndex] = lessonObj;
+            
+            return {
+                ...state,
+                courseLessons: lessons,
             };
     
         case courseContants.ERROR:

@@ -91,7 +91,7 @@ function getCourseLessons(id) {
                     lessonService.getLessonSlides(lesson.lid)
                     .then(
                         slides => {
-                            // if (slides.length > 0) {
+                            if (slides.length > 0) {
                                 slides.map((slide, slideIndex) => (
                                     slideService.getSlideColumns(slide.sid)
                                     .then(
@@ -109,7 +109,7 @@ function getCourseLessons(id) {
                                 ));
                                 
                                 lessons[lessonIndex].slides = slides;
-                            // }
+                            }
                         },
                         error => {
                             dispatch(failure(error.toString()));
