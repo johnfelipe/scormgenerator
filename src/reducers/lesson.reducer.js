@@ -42,7 +42,13 @@ export function lesson(state = initialState, action) {
                 ...state,
                 currentLesson: action.lesson
             };
-    
+
+        case lessonContants.DELETE:
+            return {
+                ...state,
+                message: action.lesson
+            };
+
         case lessonContants.ERROR:
             return { 
                 error: action.error
