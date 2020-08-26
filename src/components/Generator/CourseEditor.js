@@ -493,6 +493,7 @@ function CourseEditor() {
                                                                                                     <span className="btn pr-1">{slide.title}</span>
                                                                                                     <SlideHandler
                                                                                                         sid={slide.sid}
+                                                                                                        lid={lesson.lid}
                                                                                                         currentSlideName={slide.title}
                                                                                                         currentSlideSubtitle={slide.subtitle}
                                                                                                         currentColumns={slide.columns}
@@ -513,7 +514,7 @@ function CourseEditor() {
                                                                                                         onClick={() => {
                                                                                                             // this.props.deleteSlide(slideIndex, currentClickedLessonId)
                                                                                                             dispatch(slideActions.deleteSlide(slide.sid));
-                                                                                                            dispatch(courseActions.deleteSlideFromLesson(slideIndex, currentClickedLessonId));
+                                                                                                            dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
                                                                                                         }}
                                                                                                     >
                                                                                                         <FontAwesomeIcon icon={faWindowClose} />

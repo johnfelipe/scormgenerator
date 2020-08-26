@@ -156,6 +156,8 @@ class SlideHandler extends Component {
         console.log(this.props.cid);
         console.log('this.props.lessonIndex');
         console.log(this.props.lessonIndex);
+        console.log('this.props.currentSlideIndex');
+        console.log(this.props.currentSlideIndex);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
@@ -3281,12 +3283,14 @@ class SlideHandler extends Component {
             this.props.appendSlideToCourseLesson(slideObj, lessonIndex);
             console.log("add");
             console.log(slideObj);
-        } 
-        // else if (this.props.action === "edit") {
-        //     const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-        //     this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
-        //     console.log("edit");
-        // }
+        } else if (this.props.action === "edit") {
+            this.props.updateSlide(slideObj, sid);
+            this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
+            console.log("edit");
+            console.log(slideObj);
+            console.log(this.props.currentSlideIndex);
+            console.log(this.props.lessonIndex);
+        }
         
         this.setModalShow(false, 'save')
     }
@@ -7365,8 +7369,8 @@ const mapDispatchToProps = (dispatch) => {
         createSlide: (data) => dispatch(slideActions.createSlide(data)),
         getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
         appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
-
-        createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
+        updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
+        updateSlideFromCourseLesson: (slideObj, slideIndex, lessonIndex) => dispatch(courseActions.updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex)),
     }
 }
 
