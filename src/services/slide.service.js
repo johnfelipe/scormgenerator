@@ -6,6 +6,7 @@ export const slideService = {
     getSlide,
     updateSlide,
     getSlideColumns,
+    deleteSlide,
 };
 
 async function createSlide(slideObj) {
@@ -30,6 +31,11 @@ async function updateSlide(data, id) {
 
 async function getSlideColumns(id) {
     const response = await API.get('/slides/' + id + '/columns?pageNo=0&pageSize=10000&sortBy=clid',);
+    return handleResponse(response);
+}
+
+async function deleteSlide(id) {
+    const response = await API.delete('/slides/' + id,);
     return handleResponse(response);
 }
 

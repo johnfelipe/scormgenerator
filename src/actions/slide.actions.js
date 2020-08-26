@@ -9,6 +9,7 @@ export const slideActions = {
     getSlide,
     getSlideColumns,
     updateSlide,
+    deleteSlide,
 };
 
 function getAllSlides() {
@@ -120,5 +121,28 @@ function updateSlide(data, id) {
 
     function request(id) { return { type: slideContants.REQUEST, id } }
     function success(slide) { return { type: slideContants.UPDATE_SUCCESS, slide } }
+    function failure(error) { return { type: slideContants.ERROR, error } }
+}
+
+function deleteSlide(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        slideService.deleteSlide(id)
+            .then(
+                slide => { 
+                    dispatch(success(slide));
+                    console.log(slide);
+                    // dispatch(alertActions.success('Slide updated successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(id) { return { type: slideContants.REQUEST, id } }
+    function success(slide) { return { type: slideContants.DELETE, slide } }
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
