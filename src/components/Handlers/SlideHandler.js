@@ -103,7 +103,7 @@ class SlideHandler extends Component {
             slideId: -1,
         };
         
-        this.createColumn = this.createColumn.bind(this);
+        this.stringifySlideColumns = this.stringifySlideColumns.bind(this);
         this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
@@ -170,7 +170,7 @@ class SlideHandler extends Component {
         // console.log(this.props.columns);
     }
 
-    stringifySlideColumns = (slideId, userId, columnArr) => {
+    stringifySlideColumns = (sid, userId, columnArr) => {
         let columnObject = [];
 
         for (let index in columnArr) {
@@ -178,7 +178,7 @@ class SlideHandler extends Component {
             let featuresJson = JSON.stringify(columnArr[index].content);
 
             const data = {
-                sid: slideId,
+                sid: sid,
                 uid: userId,
                 grid: columnArr[index].grid,
                 features: btoa(featuresJson)
@@ -3328,6 +3328,9 @@ class SlideHandler extends Component {
                             }
 
                             this.onSave(data, this.props.sid, this.props.lessonIndex);
+
+                            // creates column
+                            this.stringifySlideColumns(this.props.currentSlide.sid, this.props.uid, this.state.column);
                         }}
 
                         validationSchema={Yup.object().shape({
