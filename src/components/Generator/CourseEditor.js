@@ -28,7 +28,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 // import WarningModal from '../AlertModal/Warning';
 
 // actions
-import { courseActions, lessonActions, galleryActions } from '../../actions';
+import { courseActions, lessonActions, galleryActions, slideActions } from '../../actions';
 
 // services
 import { galleryService } from '../../services';
@@ -510,7 +510,11 @@ function CourseEditor() {
                                                                                                     <button 
                                                                                                         className="btn btn-danger float-right lesson-item-remove-btn" 
                                                                                                         title="Remove" 
-                                                                                                        onClick={() => this.props.deleteSlide(slideIndex, currentClickedLessonId)}
+                                                                                                        onClick={() => {
+                                                                                                            // this.props.deleteSlide(slideIndex, currentClickedLessonId)
+                                                                                                            dispatch(slideActions.deleteSlide(slide.sid));
+                                                                                                            dispatch(courseActions.deleteSlideFromLesson(slideIndex, currentClickedLessonId));
+                                                                                                        }}
                                                                                                     >
                                                                                                         <FontAwesomeIcon icon={faWindowClose} />
                                                                                                     </button>
