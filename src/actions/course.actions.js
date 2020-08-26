@@ -11,7 +11,8 @@ export const courseActions = {
     getCourse,
     getCourseLessons,
     appendSlideToCourseLesson,
-    deleteSlideFromLesson,
+    deleteSlideFromCourseLesson,
+    updateSlideFromCourseLesson,
 };
 
 function getAll() {
@@ -143,10 +144,18 @@ function appendSlideToCourseLesson(slideObj, lessonIndex) {
     function success(slideObj, lessonIndex) { return { type: courseContants.APPEND, slideObj, lessonIndex } }
 }
 
-function deleteSlideFromLesson(slideIndex, lessonIndex) {
+function deleteSlideFromCourseLesson(slideIndex, lessonIndex) {
     return dispatch => {
         dispatch(success(slideIndex, lessonIndex));
     };
     
     function success(slideIndex, lessonIndex) { return { type: courseContants.DELETE_SLIDE_FROM_COURSE_LESSON, slideIndex, lessonIndex } }
+}
+
+function updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex) {
+    return dispatch => {
+        dispatch(success(slideObj, slideIndex, lessonIndex));
+    };
+    
+    function success(slideObj, slideIndex, lessonIndex) { return { type: courseContants.UPDATE_SLIDE_FROM_COURSE_LESSON, slideObj, slideIndex, lessonIndex } }
 }
