@@ -6,6 +6,7 @@ export const lessonService = {
     getLesson,
     updateLesson,
     getLessonSlides,
+    deleteLesson,
 };
 
 async function createLesson(lessonObj) {
@@ -30,6 +31,11 @@ async function updateLesson(data, id) {
 
 async function getLessonSlides(id) {
     const response = await API.get('/lessons/' + id + '/slides?pageNo=0&pageSize=10000&sortBy=sid',);
+    return handleResponse(response);
+}
+
+async function deleteLesson(id) {
+    const response = await API.delete('/lessons/' + id,);
     return handleResponse(response);
 }
 
