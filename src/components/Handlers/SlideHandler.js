@@ -170,42 +170,12 @@ class SlideHandler extends Component {
         // console.log(this.props.columns);
     }
 
-    createColumn = (slideId, userId, columnArr) => {
+    stringifySlideColumns = (slideId, userId, columnArr) => {
         let columnObject = [];
 
         for (let index in columnArr) {
 
-            let featuresJson = [];
-
-            if (columnArr[index].grid === 0) {
-                featuresJson = JSON.stringify(columnArr[index].content['subColumnOne']);
-            } else if (columnArr[index].grid === 1 || columnArr[index].grid === 2 || columnArr[index].grid === 3) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo']
-                });
-            } else if (columnArr[index].grid === 4) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                });
-            } else if (columnArr[index].grid === 5) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                    subColumnFour: columnArr[index].content['subColumnFour'],
-                });
-            } else if (columnArr[index].grid === 6) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                    subColumnFour: columnArr[index].content['subColumnFour'],
-                    subColumnFive: columnArr[index].content['subColumnFive'],
-                });
-            }
+            let featuresJson = JSON.stringify(columnArr[index].content);
 
             const data = {
                 sid: slideId,
@@ -3305,20 +3275,6 @@ class SlideHandler extends Component {
         })
     }
 
-    // onSave = (slide, subtitle, columns, lessonIndex) => {
-    //     if (this.props.action === "add") {
-    //         const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-    //         this.props.addSlideChange(slideObj, lessonIndex);
-    //         console.log("add");
-    //     } else if (this.props.action === "edit") {
-    //         const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-    //         this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
-    //         console.log("edit");
-    //     }
-        
-    //     this.setModalShow(false, 'save')
-    // }
-
     onSave = (slideObj, sid, lessonIndex) => {
         if (this.props.action === "add") {
             this.props.createSlide(slideObj);
@@ -3370,35 +3326,8 @@ class SlideHandler extends Component {
                                 uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                             }
+
                             this.onSave(data, this.props.sid, this.props.lessonIndex);
-                            // this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
-
-                            // // create slide
-                            // // lid and uid are temporary
-                            // const data = {
-                            //     lid: this.props.lessonId,
-                            //     title: values.slideName,
-                            //     uid: 1,
-                            //     hide_title: values.showTitle ? 1 : 0,
-                            // }
-
-                            // slideService.createSlide(data)
-                            // .then(
-                            //     slideObj => {
-                            //         this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
-                            //         this.setSlideId(slideObj.sid);
-                            //         console.log(slideObj);
-                            //     },
-                            //     error => console.log(error)
-                            // );
-
-                            // this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
-
-                            // // create column
-                            // // sid and uid are temporary
-                            // this.props.createColumn(1, 1, this.state.column);
-                            // this.createColumn(1, 1, this.state.column);
-
                         }}
 
                         validationSchema={Yup.object().shape({
