@@ -6,6 +6,8 @@ const initialState = {
 }
 
 export function course(state = initialState, action) {
+    let lessons = [];
+
     switch (action.type) {
         case courseContants.REQUEST:
             return {
@@ -40,19 +42,34 @@ export function course(state = initialState, action) {
         case courseContants.APPEND:
             const { slideObj, lessonIndex } = action;
 
-            const lessonObj = {
+            const appendToLessonObj = {
                 ...state.courseLessons[lessonIndex]
             };
 
-            lessonObj.slides.push(slideObj);
+            appendToLessonObj.slides.push(slideObj);
         
-            const lessons = [...state.courseLessons];
-            lessons[lessonIndex] = lessonObj;
+            lessons = [...state.courseLessons];
+            lessons[lessonIndex] = appendToLessonObj;
             
             return {
                 ...state,
                 courseLessons: lessons,
             };
+
+        case courseContants.DELETE_SLIDE_FROM_COURSE_LESSON:
+            const deleteFromLessonObj = {
+                ...state.courseLessons[action.lessonIndex]
+            };
+
+            deleteFromLessonObj.slides.splice(action.slideIndex, 1);
+        
+            lessons = [...state.courseLessons];
+            lessons[action.lessonIndex] = deleteFromLessonObj;
+        
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
     
         case courseContants.ERROR:
             return { 
