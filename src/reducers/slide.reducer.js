@@ -43,6 +43,12 @@ export function slide(state = initialState, action) {
                 currentSlide: action.slide
             };
     
+        case slideContants.DELETE:
+            return {
+                ...state,
+                message: action.slide
+            };
+    
         case slideContants.ERROR:
             return {
                 ...state,

@@ -18,4 +18,7 @@ export const slideContants = {
 
     // UPDATE SLIDE
     UPDATE_SUCCESS: 'UPDATE_SLIDE_SUCCESS',
+
+    // DELETE SLIDE
+    DELETE: 'DELETE_SLIDE_SUCCESS',
 };
