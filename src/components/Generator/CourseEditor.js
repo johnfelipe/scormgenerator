@@ -28,8 +28,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 // import WarningModal from '../AlertModal/Warning';
 
 // actions
-import { courseActions } from '../../actions';
-import { galleryActions } from '../../actions';
+import { courseActions, lessonActions, galleryActions } from '../../actions';
 
 // services
 import { galleryService } from '../../services';
@@ -44,6 +43,7 @@ function CourseEditor() {
     const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
     const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
+    const lessonDeleteMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     const [resourceFilesObject, setResourceFilesObject] = useState([]);
@@ -61,7 +61,7 @@ function CourseEditor() {
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
         setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile]);
+    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -448,7 +448,10 @@ function CourseEditor() {
                                                             <button
                                                                 className="btn btn-danger float-right lesson-item-remove-btn"
                                                                 title="Remove"
-                                                                // onClick={() => this.props.deleteLesson(lessonIndex)}
+                                                                onClick={() => {
+                                                                    // this.props.deleteLesson(lessonIndex)
+                                                                    dispatch(lessonActions.deleteLesson(lesson.lid));
+                                                                }}
                                                             >
                                                                 <FontAwesomeIcon icon={faWindowClose} />
                                                             </button>
@@ -521,7 +524,7 @@ function CourseEditor() {
                                                                         </Droppable>
                                                                     </DragDropContext>
                                                                 :
-                                                                    <div className="mt-2">No slide added yet.{console.log(lesson)}{console.log(lesson.slides)}</div>
+                                                                    <div className="mt-2">No slide added yet.</div>
                                                                 }
                                                             </Card.Body>
                                                         </Accordion.Collapse>
