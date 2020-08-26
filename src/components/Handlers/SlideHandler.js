@@ -3356,22 +3356,17 @@ class SlideHandler extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <Formik
-                        // initialValues={{ 
-                        //     slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
-                        //     slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
-                        //     showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : false,
-                        // }}
-
                         initialValues={{ 
-                            slideName: '',
-                            slideSubtitle: '',
-                            showTitle: false,
+                            slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
+                            slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
+                            showTitle: this.props.hide_title ? true : false,
                         }}
 
                         onSubmit={values => {
                             const data = {
                                 lid: this.props.lid,
                                 title: values.slideName,
+                                subtitle: values.slideSubtitle,
                                 uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                             }

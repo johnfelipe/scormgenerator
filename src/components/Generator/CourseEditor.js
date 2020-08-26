@@ -421,9 +421,7 @@ function CourseEditor() {
                                     <div id="lesson-container">
                                         <div className="lesson-container">
                                             {courseLessons && courseLessons.map((lesson, lessonIndex) => (
-                                                <Accordion
-                                                    key={lessonIndex}
-                                                >
+                                                <Accordion key={lessonIndex}>
                                                     <Card>
                                                         <Card.Header>
                                                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
@@ -493,12 +491,12 @@ function CourseEditor() {
                                                                                                     <SlideHandler
                                                                                                         sid={slide.sid}
                                                                                                         currentSlideName={slide.title}
-                                                                                                        currentSlideSubtitle={slide.slideSubtitle}
+                                                                                                        currentSlideSubtitle={slide.subtitle}
                                                                                                         currentColumns={slide.columns}
+                                                                                                        hide_title={slide.hide_title}
                                                                                                         currentClickedLessonId={currentClickedLessonId}
                                                                                                         action="edit"
                                                                                                         currentSlideIndex={slideIndex}
-                                                                                                        showTitleValue={true}
                                                                                                         slideItemId={"slide-item-" + slideIndex}
                                                                                                         lessonIndex={lessonIndex}
                                                                                                         setSlideItemIndex={setSlideItemIndex}
