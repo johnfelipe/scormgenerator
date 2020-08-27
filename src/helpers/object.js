@@ -1,10 +1,19 @@
 export const objectHelpers = {
     isEmpty,
+    checkIfPropertyExist,
     doesObjectInArrayExist,
     findObjectIndexInArray
 };
 
-function isEmpty(obj, key) {
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+function checkIfPropertyExist(obj, key) {
     if (obj !== 'undefined') {
         if(obj.hasOwnProperty(key)) {
             return true;
