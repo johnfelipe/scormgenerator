@@ -301,6 +301,7 @@
         border-radius: .25rem;
         transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         width: 280px;
+        overflow: hidden;
     }
 
     .course-logo::after {
