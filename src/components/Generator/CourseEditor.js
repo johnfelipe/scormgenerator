@@ -276,16 +276,17 @@ function CourseEditor() {
                                                 <Accordion key={lessonIndex}>
                                                     <Card>
                                                         <Card.Header>
-                                                            <Accordion.Toggle as={Button} variant="link" eventKey="0" className="pr-0">
-                                                                <span
-                                                                    onClick={() => {
-                                                                        setCurrentClickedLessonId(lessonIndex);
-                                                                        setLid(lesson.lid);
-                                                                        // dispatch(lessonActions.getLessonSlides(lesson.lid));
-                                                                    }}
-                                                                >
-                                                                    {lesson.title}
-                                                                </span>
+                                                            <Accordion.Toggle
+                                                                as={Button}
+                                                                variant="link"
+                                                                eventKey="0"
+                                                                className="pr-0"
+                                                                onClick={() => {
+                                                                    setCurrentClickedLessonId(lessonIndex);
+                                                                    setLid(lesson.lid);
+                                                                }}
+                                                            >
+                                                                <span>{lesson.title}</span>
                                                             </Accordion.Toggle>
                                                             <LessonHandler
                                                                 // editLessonNameChange={this.props.editCourseLessonName}
