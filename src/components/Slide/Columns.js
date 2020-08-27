@@ -4,16 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import ContentEditable from 'react-contenteditable';
 
+// redux
+import { useDispatch } from 'react-redux';
+
+// actions
+import { columnActions } from '../../actions';
+
 // components
 import ChangeGridWarning from '../AlertModal/ChangeGridWarning';
 
 function Columns (props) {
 
+    const dispatch = useDispatch();
+    const { currentColumnContentIndex, columnIndex, clid } = props;
     const [modalShow, setModalShow] = useState(false);
     const currentColumn = props.currentColumn;
     const [collapseId, setCollapseId] = useState(false);
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const columnIndex = props.columnIndex;
     const [sizeIndex, setSizeIndex] = useState(-1);
     const [itemId, setItemId] = useState(-1);
     const [removeFeatures, setRemoveFeaures] = useState(false);
@@ -46,7 +52,15 @@ function Columns (props) {
                         onChange={(event) => props.handleContentEditable(event, columnIndex)}
                         className="content-editable d-inline"
                     />
-                    <button type="button" className="float-right column-item-remove-btn btn btn-link p-0" title="Remove" onClick={() => props.deleteColumn(columnIndex)}>
+                    <button
+                        type="button"
+                        className="float-right column-item-remove-btn btn btn-link p-0"
+                        title="Remove"
+                        onClick={() => {
+                            // props.deleteColumn(columnIndex);
+                            dispatch(columnActions.deleteColumn(clid));
+                        }}
+                    >
                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                     </button>
                     <span className="float-right mr-3"><FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/></span>
