@@ -1,6 +1,6 @@
 import { slideContants } from '../constants';
 import { slideService } from '../services';
-// import { alertActions } from './';
+import { courseActions } from './';
 // import { history } from '../helpers';
 
 export const slideActions = {
@@ -33,7 +33,7 @@ function getAllSlides() {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function createSlide(data) {
+function createSlide(data, lessonIndex) {
     return dispatch => {
         dispatch(request(data));
 
@@ -41,6 +41,8 @@ function createSlide(data) {
             .then(
                 slide => { 
                     dispatch(success(slide));
+                    slide.columns = [];
+                    dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex));
                     // dispatch(alertActions.success('Slide created successfully'));
                 },
                 error => {
