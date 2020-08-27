@@ -51,7 +51,7 @@ import { slideActions, courseActions, columnActions } from '../../actions';
 
 // services
 // import { slideService } from '../../services';
-import { columnService } from '../../services';
+// import { columnService } from '../../services';
 
 class SlideHandler extends Component {
 
@@ -160,6 +160,8 @@ class SlideHandler extends Component {
         console.log(this.props.lessonIndex);
         console.log('this.props.currentSlideIndex');
         console.log(this.props.currentSlideIndex);
+        console.log('this.props.sid');
+        console.log(this.props.sid);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
@@ -179,7 +181,8 @@ class SlideHandler extends Component {
 
         for (let index in columnArr) {
 
-            let featuresJson = JSON.stringify(columnArr[index].content);
+            // let featuresJson = JSON.stringify(columnArr[index].content);
+            let featuresJson = JSON.stringify(columnArr[index]);
 
             const data = {
                 sid: sid,
@@ -3327,7 +3330,7 @@ class SlideHandler extends Component {
                                 hide_title: values.showTitle ? 1 : 0,
                             }
 
-                            this.onSave(data, this.props.sid, this.props.lessonIndex);
+                            this.onSave(data, this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.lessonIndex);
 
                             // creates column
                             this.stringifySlideColumns(this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.uid, this.state.column);
