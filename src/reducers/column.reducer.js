@@ -16,7 +16,7 @@ export function column(state = initialState, action) {
             return {
                 ...state,
                 currentColumn: action.column,
-                columns: [...columns, action.column]
+                columns: [...state.columns, action.column]
             };
 
         case columnContants.UPDATE_SUCCESS:

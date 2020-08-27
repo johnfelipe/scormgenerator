@@ -154,14 +154,18 @@ class SlideHandler extends Component {
         console.log(this.props.currentColumns);
         console.log('this.props.currentSlide');
         console.log(this.props.currentSlide);
-        console.log('this.props.cid');
-        console.log(this.props.cid);
         console.log('this.props.lessonIndex');
         console.log(this.props.lessonIndex);
         console.log('this.props.currentSlideIndex');
         console.log(this.props.currentSlideIndex);
+        console.log('this.props.cid');
+        console.log(this.props.cid);
         console.log('this.props.sid');
         console.log(this.props.sid);
+        console.log('this.props.currentSlide.sid');
+        console.log(this.props.currentSlide.sid);
+        console.log('this.props.lid');
+        console.log(this.props.lid);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
@@ -176,7 +180,7 @@ class SlideHandler extends Component {
         // console.log(this.props.columns);
     }
 
-    stringifySlideColumns = (sid, userId, columnArr) => {
+    stringifySlideColumns = (sid, userId, columnArr, action) => {
         let columnObject = [];
 
         for (let index in columnArr) {
@@ -194,7 +198,13 @@ class SlideHandler extends Component {
             columnObject.push(data);
             console.log(data);
 
-            this.props.createColumn(data);
+            if (action === 'add') {
+                this.props.createColumn(data);
+            } else if (action === 'edit') {
+                const id = this.props.columns[index].clid;
+                this.props.updateColumn(data, id)
+            }
+            
         }
     }
 
@@ -7361,7 +7371,7 @@ class SlideHandler extends Component {
 const mapStateToProps = (state) => {
     return {
         currentSlide: state.slide.currentSlide ? state.slide.currentSlide : {},
-        // columns: state.columns,
+        columns: state.column.columns,
     }
 }
 
@@ -7373,6 +7383,7 @@ const mapDispatchToProps = (dispatch) => {
         updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
         updateSlideFromCourseLesson: (slideObj, slideIndex, lessonIndex) => dispatch(courseActions.updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex)),
         createColumn: (columnObj) => dispatch(columnActions.createColumn(columnObj)),
+        updateColumn: (columnObj, id) => dispatch(columnActions.updateColumn(columnObj, id)),
         appendSlideColumnsFromCourseLesson: (columnArray, slideIndex, lessonIndex) => dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex)),
     }
 }
