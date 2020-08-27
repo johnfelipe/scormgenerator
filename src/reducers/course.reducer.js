@@ -102,6 +102,21 @@ export function course(state = initialState, action) {
                 ...state,
                 courseLessons: lessons,
             }
+
+        case courseContants.DELETE_SLIDE_COLUMN_FROM_COURSE_LESSON:
+            const deleteColumnFromLessonObj = {
+                ...state.courseLessons[action.lessonIndex]
+            };
+
+            deleteColumnFromLessonObj.slides[action.slideIndex].columns.splice(action.columnIndex, 1);
+        
+            lessons = [...state.courseLessons];
+            lessons[action.lessonIndex] = deleteColumnFromLessonObj;
+        
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
     
         case courseContants.ERROR:
             return { 
