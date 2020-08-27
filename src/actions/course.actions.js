@@ -115,7 +115,6 @@ function getCourseLessons(id) {
                                                 //     id: 'column1',
                                                 //     content: parsedDecodedFeatures,
                                                 // }
-                                                console.log(parsedDecodedFeatures);
 
                                                 return slideColumns.push(parsedDecodedFeatures)
                                             });

@@ -146,8 +146,6 @@ class SlideHandler extends Component {
 
         if (this.props.sid) {
             this.props.getSlideColumns(this.props.sid);
-        } else if (this.props.currentSlide.sid) {
-            this.props.getSlideColumns(this.props.currentSlide.sid);
         }
     }
 
@@ -157,14 +155,14 @@ class SlideHandler extends Component {
             sessionStorage.removeItem("selectedAnswers");
         }
 
-        // if (prevProps.sid === this.props.sid) {
-        //     this.props.getSlideColumns(this.props.sid);
-        // }
+        if (this.props.sid !== prevProps.sid) {
+            this.props.getSlideColumns(this.props.sid);
+        }
         
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
         // console.log('this.props.currentSlide');
         // console.log(this.props.currentSlide);
         // console.log('this.props.currentSlideIndex');
@@ -173,8 +171,8 @@ class SlideHandler extends Component {
         console.log(this.props.cid);
         console.log('this.props.sid');
         console.log(this.props.sid);
-        console.log('this.props.currentSlide.sid');
-        console.log(this.props.currentSlide.sid);
+        // console.log('this.props.currentSlide.sid');
+        // console.log(this.props.currentSlide.sid);
         console.log('this.props.lid');
         console.log(this.props.lid);
         console.log('this.props.columns');
@@ -232,7 +230,8 @@ class SlideHandler extends Component {
 
                 console.log(data);
 
-                const id = this.props.slideColumns[index].clid;
+                // const id = this.props.slideColumns[index].clid;
+                const id = columnArr[index].clid;
                 this.props.updateColumn(data, id)
             }
             
