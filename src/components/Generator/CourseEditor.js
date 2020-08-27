@@ -50,17 +50,17 @@ function CourseEditor() {
     const [transcriptFileObject, setTranscriptFileObject] = useState([]);
     const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
     // const [mediaFilesObject, setMediaFilesObject] = useState([]);
-    const [courseNameExist, setCourseNameExist] = useState(false);
+    // const [courseNameExist, setCourseNameExist] = useState(false);
     const [slideItemIndex, setSlideItemIndex] = useState(0);
     const [lessonId, setLessonId] = useState(-1);
-    const [courseId, setCourseId] = useState(-1);
+    // const [courseId, setCourseId] = useState(-1);
     const [lid, setLid] = useState(-1);
 
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
-        setCourseId(cid);
+        // setCourseId(cid);
     }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg]);
 
     // a little function to help us with reordering the result
@@ -103,12 +103,12 @@ function CourseEditor() {
                 enableReinitialize={true}
 
                 initialValues={{
-                    courseTitle: currentCourse ? currentCourse.title : '',
+                    courseTitle: currentCourse ? currentCourse.title ? currentCourse.title : '' : '',
                     courseLogo: {
                         name: currentCourse ? currentCourse.logo ? currentCourse.logo.split('/')[currentCourse.logo.split('/').length - 1] : '' : '',
                         url: currentCourse ? currentCourse.logo : '',
                     },
-                    navigationType: currentCourse ? currentCourse.navigation : 0,
+                    navigationType: currentCourse ? currentCourse.navigation ? currentCourse.navigation : 0 : 0,
                     showProgressbar: currentCourse ? currentCourse.progressbar === 1 ? true : false : 0,
                 }}
 
@@ -158,23 +158,8 @@ function CourseEditor() {
                                         type="text"
                                         className={(errors.courseTitle && touched.courseTitle && "error form-control") || "form-control"}
                                         value={values.courseTitle}
-                                        onBlur={(e) => {
-                                                handleBlur(e)
-
-                                                if (e.target.value.trim() === "" || values.courseTitle === "") {
-                                                    setCourseNameExist(false);
-                                                }
-                                            }
-                                        }
-                                        onChange={(e) => {
-                                                handleChange(e)
-
-                                                if (e.target.value.trim() !== "" || values.courseTitle !== "") {
-                                                    // this.props.addCourseTitle(values.courseTitle);
-                                                    setCourseNameExist(true);
-                                                }
-                                            }
-                                        }
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
                                         placeholder="Type course name here . . ."
                                     />
                                     {errors.courseTitle && touched.courseTitle && (
@@ -361,6 +346,7 @@ function CourseEditor() {
                                                                                                     <SlideHandler
                                                                                                         sid={slide.sid}
                                                                                                         lid={lesson.lid}
+                                                                                                        uid={currentCourse && currentCourse.uid}
                                                                                                         currentSlideName={slide.title}
                                                                                                         currentSlideSubtitle={slide.subtitle}
                                                                                                         currentColumns={slide.columns}
