@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
 
 // Custom components
 import { store } from './helpers';
@@ -13,11 +12,9 @@ import { store } from './helpers';
 ReactDOM.render(
     // <React.StrictMode>
         <Provider store={store}>
-            {/* <PersistGate loading={null} persistor={persistor}> */}
-                <App />
-            {/* </PersistGate> */}
+            <App />
         </Provider>
-    // </React.StrictMode><Provider store={store}>
+    // </React.StrictMode>
     ,
     document.getElementById('root')
 );
