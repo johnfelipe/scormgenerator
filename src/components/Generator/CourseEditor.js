@@ -181,49 +181,6 @@ function CourseEditor() {
                                         <div className="input-feedback">{errors.courseTitle}</div>
                                     )}
                                 </div>
-                                {/* {
-                                    courseNameExist ?
-                                        <div className="col-md-4">
-                                            <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
-                                            <input
-                                                id="courseLogo"
-                                                name="courseLogo"
-                                                type="file"
-                                                className="form-control custom-file-input"
-                                                onChange={(event) => {
-                                                    // setFieldValue("courseLogo", event.currentTarget.files[0]);
-                                                    const formData = new FormData();
-
-                                                    formData.append('file', event.currentTarget.files[0]);
-                                                    formData.append('uid', 1);
-                                                    formData.append('alt', event.currentTarget.files[0].name);
-
-                                                    galleryService.uploadFiles(formData)
-                                                    .then(
-                                                        fileObject => {
-                                                            console.log(fileObject);
-                                                            setFieldValue("courseLogo", fileObject);
-                                                        },
-                                                        error => console.log(error)
-                                                    );
-                                                }}
-                                                onBlur={handleBlur}
-                                                accept="image/*"
-                                            />
-                                            <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
-                                        </div>
-                                    :
-                                        <div className="col-md-4">
-                                            <WarningModal 
-                                                fieldType="label"
-                                                htmlFor="courseLogo"
-                                                labelClasses="course-logo mr-3"
-                                                labelId="custom-form-label"
-                                                label="Choose file"
-                                                modalMessage="Please enter a course name first"
-                                            />
-                                        </div>
-                                } */}
                                 <div className="col-md-4">
                                     <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
                                     <input
@@ -301,38 +258,6 @@ function CourseEditor() {
                                         ))}</span> : <span></span>
                                     }
                                 </div>
-                                {/* {
-                                    courseNameExist ?
-                                        <div className="col-md-4 mt-2">
-                                            <ResourcesHandler
-                                                // addResourceFiles={this.props.addResourceFiles}
-                                                setResourceFilesObject={setResourceFilesObject}
-                                                resourceFilesData={resourceFilesObject}
-                                            />
-                                            {
-                                                resourceFilesObject.length !== 0 ? 
-                                                <span>
-                                                Files Uploaded: &nbsp;
-                                                {resourceFilesObject.map((item, index) => (
-                                                    index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
-                                                ))}</span> : <span></span>
-                                            }
-                                        </div>
-                                    :
-                                        <div className="col-md-4 mt-2">
-                                            <div id="resources-btn-container">
-                                                <WarningModal 
-                                                    fieldType="buttonWithLabel"
-                                                    htmlFor="resourcesBtn"
-                                                    labelClasses="mr-2"
-                                                    label="Upload Resources (Optional):"
-                                                    btnClasses="btn btn-outline-dark"
-                                                    btnLabel="Resources"
-                                                    modalMessage="Please enter a course name first"
-                                                />
-                                            </div>
-                                        </div>
-                                } */}
                                 <div className="col-md-4 mt-2">
                                     <div className="text-center">
                                         <TranscriptHandler
@@ -350,42 +275,6 @@ function CourseEditor() {
                                         ))}</span> : <span></span>
                                     }
                                 </div>
-                                {/* {
-                                    courseNameExist ?
-                                        <div className="col-md-4 mt-2">
-                                            <div className="text-center">
-                                                <TranscriptHandler
-                                                    // addTranscriptFile={this.props.addTranscriptFile}
-                                                    setTranscriptFileObject={setTranscriptFileObject}
-                                                    transcriptFileData={transcriptFileObject}
-                                                />
-                                            </div>
-                                            {
-                                                transcriptFileObject.length !== 0 ? 
-                                                <span>
-                                                File Uploaded: &nbsp;
-                                                {transcriptFileObject.map((item) => (
-                                                    <strong><label> {item.transcriptFile.name}</label></strong>
-                                                ))}</span> : <span></span>
-                                            }
-                                        </div>
-                                    :
-                                        <div className="col-md-4 mt-2">
-                                            <div className="text-center">
-                                                <div id="transcript-btn-container">
-                                                    <WarningModal 
-                                                        fieldType="buttonWithLabel"
-                                                        htmlFor="transcriptBtn"
-                                                        labelClasses="mr-2"
-                                                        label="Upload Transcript (Optional):"
-                                                        btnClasses="btn btn-outline-dark"
-                                                        btnLabel="Transcript"
-                                                        modalMessage="Please enter a course name first"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                } */}
                                 <div className="col-md-4 mt-2">
                                     <GlossaryHandler
                                         // addGlossaryEntries={this.props.addGlossaryEntries}
@@ -393,30 +282,6 @@ function CourseEditor() {
                                         glossaryData={glossaryEntryObject}
                                     />
                                 </div>
-                                {/* {
-                                    courseNameExist ?
-                                        <div className="col-md-4 mt-2">
-                                            <GlossaryHandler
-                                                // addGlossaryEntries={this.props.addGlossaryEntries}
-                                                setGlossaryEntryObject={setGlossaryEntryObject}
-                                                glossaryData={glossaryEntryObject}
-                                            />
-                                        </div>
-                                    :
-                                        <div className="col-md-4 mt-2">
-                                            <div id="add-glossary-container" className="float-right">
-                                                <WarningModal 
-                                                    fieldType="buttonWithLabel"
-                                                    htmlFor="glossaryBtn"
-                                                    labelClasses="mr-2"
-                                                    label="Add Glossary (Optional):"
-                                                    btnClasses="btn btn-outline-dark"
-                                                    btnLabel="Glossary"
-                                                    modalMessage="Please enter a course name first"
-                                                />
-                                            </div>
-                                        </div>
-                                } */}
                             </div>
                             <div className="row">
                                 <div className="col-md-12 mt-2">
