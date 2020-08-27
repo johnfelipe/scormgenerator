@@ -49,6 +49,9 @@ import WarningModal from '../AlertModal/Warning';
 // actions
 import { slideActions, courseActions, columnActions } from '../../actions';
 
+// helpers
+import { objectHelpers } from '../../helpers';
+
 // services
 // import { slideService } from '../../services';
 // import { columnService } from '../../services';
@@ -140,6 +143,12 @@ class SlideHandler extends Component {
         
         console.log('props.columns: ');
         console.log(this.props.currentColumns);
+
+        if (this.props.sid) {
+            this.props.getSlideColumns(this.props.sid);
+        } else if (this.props.currentSlide.sid) {
+            this.props.getSlideColumns(this.props.currentSlide.sid);
+        }
     }
 
     componentDidUpdate() {
@@ -147,6 +156,12 @@ class SlideHandler extends Component {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
         }
+
+        // if (this.props.sid) {
+        //     this.props.getSlideColumns(this.props.sid);
+        // } else if (this.props.currentSlide.sid) {
+        //     this.props.getSlideColumns(this.props.currentSlide.sid);
+        // }
         
         console.log('state.columns: ');
         console.log(this.state.column);
@@ -166,6 +181,8 @@ class SlideHandler extends Component {
         console.log(this.props.currentSlide.sid);
         console.log('this.props.lid');
         console.log(this.props.lid);
+        console.log('this.props.columns');
+        console.log(this.props.columns);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
@@ -201,7 +218,14 @@ class SlideHandler extends Component {
             if (action === 'add') {
                 this.props.createColumn(data);
             } else if (action === 'edit') {
-                const id = this.props.columns[index].clid;
+
+                console.log('EXECEUTED! EDIT');
+                if (objectHelpers.isEmpty(this.props.slideColumns[index])) {
+                    this.props.createColumn(data);
+                    console.log('EXECEUTED!');
+                }
+
+                const id = this.props.slideColumns[index].clid;
                 this.props.updateColumn(data, id)
             }
             
@@ -3345,7 +3369,7 @@ class SlideHandler extends Component {
                             this.onSave(data, this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.lessonIndex, this.state.column);
 
                             // creates column
-                            this.stringifySlideColumns(this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.uid, this.state.column);
+                            this.stringifySlideColumns(this.props.currentSlide.sid ? this.props.currentSlide.sid : this.props.sid, this.props.uid, this.state.column, this.props.action);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -3499,7 +3523,12 @@ class SlideHandler extends Component {
                                                                                             {...provided.dragHandleProps}
                                                                                             id={'column-' + columnIndex}
                                                                                         >
-                                                                                            <SlideColumn 
+                                                                                            <SlideColumn
+                                                                                                clid={item.clid}
+                                                                                                sid={item.sid}
+                                                                                                lid={item.lid}
+                                                                                                slideIndex={this.props.currentSlideIndex}
+                                                                                                lessonIndex={this.props.lessonIndex}
                                                                                                 columnIndex={columnIndex}
                                                                                                 currentColumn={item}
                                                                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
@@ -7372,6 +7401,8 @@ const mapStateToProps = (state) => {
     return {
         currentSlide: state.slide.currentSlide ? state.slide.currentSlide : {},
         columns: state.column.columns,
+        currentColumn: state.column.currentColumn,
+        slideColumns: state.slide.slideColumns,
     }
 }
 
@@ -7385,6 +7416,7 @@ const mapDispatchToProps = (dispatch) => {
         createColumn: (columnObj) => dispatch(columnActions.createColumn(columnObj)),
         updateColumn: (columnObj, id) => dispatch(columnActions.updateColumn(columnObj, id)),
         appendSlideColumnsFromCourseLesson: (columnArray, slideIndex, lessonIndex) => dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex)),
+        getSlideColumns: (id) => dispatch(slideActions.getSlideColumns(id)),
     }
 }
 

@@ -8,7 +8,7 @@ import ContentEditable from 'react-contenteditable';
 import { useDispatch } from 'react-redux';
 
 // actions
-import { columnActions } from '../../actions';
+import { columnActions, courseActions } from '../../actions';
 
 // components
 import ChangeGridWarning from '../AlertModal/ChangeGridWarning';
@@ -16,7 +16,7 @@ import ChangeGridWarning from '../AlertModal/ChangeGridWarning';
 function Columns (props) {
 
     const dispatch = useDispatch();
-    const { currentColumnContentIndex, columnIndex, clid } = props;
+    const { currentColumnContentIndex, columnIndex, clid, slideIndex, lessonIndex } = props;
     const [modalShow, setModalShow] = useState(false);
     const currentColumn = props.currentColumn;
     const [collapseId, setCollapseId] = useState(false);
@@ -57,8 +57,12 @@ function Columns (props) {
                         className="float-right column-item-remove-btn btn btn-link p-0"
                         title="Remove"
                         onClick={() => {
-                            // props.deleteColumn(columnIndex);
-                            dispatch(columnActions.deleteColumn(clid));
+                            props.deleteColumn(columnIndex);
+                            dispatch(courseActions.deleteSlideColumnFromCourseLesson(columnIndex, slideIndex, lessonIndex));
+                            
+                            if (clid) {
+                                dispatch(columnActions.deleteColumn(clid));
+                            }
                         }}
                     >
                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
