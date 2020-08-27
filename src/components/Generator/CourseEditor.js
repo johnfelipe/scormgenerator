@@ -336,7 +336,7 @@ function CourseEditor() {
                                                                     uid={currentCourse && currentCourse.uid}
                                                                     lid={lid}
                                                                 />
-                                                                {lesson.slides ?
+                                                                {lesson.slides && lesson.slides.length > 0 ?
                                                                     <DragDropContext onDragEnd={onDragEnd}>
                                                                         <Droppable droppableId="slides">
                                                                             {(provided) => (

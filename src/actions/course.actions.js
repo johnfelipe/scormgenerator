@@ -93,42 +93,40 @@ function getCourseLessons(id) {
                     lessonService.getLessonSlides(lesson.lid)
                     .then(
                         slides => {
-                            if (slides.length > 0) {
-                                slides.map((slide, slideIndex) => (
-                                    slideService.getSlideColumns(slide.sid)
-                                    .then(
-                                        columns => {
-                                            if (columns.length > 0) {
-                                                let slideColumns = [];
+                            slides.map((slide, slideIndex) => (
+                                slideService.getSlideColumns(slide.sid)
+                                .then(
+                                    columns => {
+                                        if (columns.length > 0) {
+                                            let slideColumns = [];
 
-                                                columns.map((columnProps) => {
-                                                    const parsedDecodedFeatures = JSON.parse(atob(columnProps.features));
-                                                    const column = {
-                                                        type: 'column',
-                                                        name: columnProps.title,
-                                                        active: 0,
-                                                        grid: 0,
-                                                        id: 'column1',
-                                                        content: parsedDecodedFeatures,
-                                                    }
-                                                    console.log(columnProps);
+                                            columns.map((columnProps) => {
+                                                const parsedDecodedFeatures = JSON.parse(atob(columnProps.features));
+                                                const column = {
+                                                    type: 'column',
+                                                    name: columnProps.title,
+                                                    active: 0,
+                                                    grid: 0,
+                                                    id: 'column1',
+                                                    content: parsedDecodedFeatures,
+                                                }
+                                                console.log(columnProps);
 
-                                                    return slideColumns.push(column)
-                                                });
+                                                return slideColumns.push(column)
+                                            });
 
-                                                slides[slideIndex].columns = slideColumns;
-                                            }
-                                        },
-                                        error => {
-                                            dispatch(failure(error.toString()));
-                                            // dispatch(alertActions.error(error.toString()));
-                                            console.log(error);
+                                            slides[slideIndex].columns = slideColumns;
                                         }
-                                    )
-                                ));
-                                
-                                lessons[lessonIndex].slides = slides;
-                            }
+                                    },
+                                    error => {
+                                        dispatch(failure(error.toString()));
+                                        // dispatch(alertActions.error(error.toString()));
+                                        console.log(error);
+                                    }
+                                )
+                            ));
+                            
+                            lessons[lessonIndex].slides = slides;
                         },
                         error => {
                             dispatch(failure(error.toString()));
