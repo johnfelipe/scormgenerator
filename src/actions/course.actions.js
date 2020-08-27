@@ -14,6 +14,7 @@ export const courseActions = {
     deleteSlideFromCourseLesson,
     updateSlideFromCourseLesson,
     appendSlideColumnsFromCourseLesson,
+    deleteSlideColumnFromCourseLesson,
 };
 
 function getAll() {
@@ -103,6 +104,9 @@ function getCourseLessons(id) {
 
                                             columns.map((columnProps) => {
                                                 const parsedDecodedFeatures = JSON.parse(atob(columnProps.features));
+                                                parsedDecodedFeatures.clid = columnProps.clid;
+                                                parsedDecodedFeatures.sid = columnProps.sid;
+                                                parsedDecodedFeatures.lid = lesson.lid;
                                                 // const column = {
                                                 //     type: 'column',
                                                 //     name: columnProps.title,
@@ -182,4 +186,12 @@ function appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex
     };
     
     function success(columnArray, slideIndex, lessonIndex) { return { type: courseContants.APPEND_SLIDE_COLUMNS_FROM_COURSE_LESSON, columnArray, slideIndex, lessonIndex } }
+}
+
+function deleteSlideColumnFromCourseLesson(columnIndex, slideIndex, lessonIndex) {
+    return dispatch => {
+        dispatch(success(columnIndex, slideIndex, lessonIndex));
+    };
+    
+    function success(columnIndex, slideIndex, lessonIndex) { return { type: courseContants.DELETE_SLIDE_COLUMN_FROM_COURSE_LESSON, columnIndex, slideIndex, lessonIndex } }
 }
