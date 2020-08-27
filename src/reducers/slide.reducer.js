@@ -40,7 +40,7 @@ export function slide(state = initialState, action) {
         case slideContants.UPDATE_SUCCESS:
             return {
                 ...state,
-                currentSlide: action.slide
+                message: action.slide
             };
     
         case slideContants.DELETE:

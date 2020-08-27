@@ -345,8 +345,9 @@ function CourseEditor() {
                                                                                                     <span className="btn pr-1">{slide.title}</span>
                                                                                                     <SlideHandler
                                                                                                         sid={slide.sid}
-                                                                                                        lid={lesson.lid}
+                                                                                                        cid={currentCourse && currentCourse.cid}
                                                                                                         uid={currentCourse && currentCourse.uid}
+                                                                                                        lid={lesson.lid}
                                                                                                         currentSlideName={slide.title}
                                                                                                         currentSlideSubtitle={slide.subtitle}
                                                                                                         currentColumns={slide.columns}
