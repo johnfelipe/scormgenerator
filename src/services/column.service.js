@@ -3,6 +3,7 @@ import API from "../utils/api";
 export const columnService = {
     createColumn,
     updateColumn,
+    deleteColumn,
 };
 
 async function createColumn(columnObj) {
@@ -12,6 +13,11 @@ async function createColumn(columnObj) {
 
 async function updateColumn(columnObj, id) {
     const response = await API.put('/columns/' + id, columnObj);
+    return handleResponse(response);
+}
+
+async function deleteColumn(id) {
+    const response = await API.delete('/columns/' + id,);
     return handleResponse(response);
 }
 

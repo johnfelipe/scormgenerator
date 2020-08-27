@@ -6,6 +6,7 @@ import { columnService } from '../services';
 export const columnActions = {
     createColumn,
     updateColumn,
+    deleteColumn,
 };
 
 function createColumn(data) {
@@ -51,5 +52,28 @@ function updateColumn(data, id) {
 
     function request(column) { return { type: columnContants.REQUEST, column } }
     function success(column) { return { type: columnContants.UPDATE_SUCCESS, column } }
+    function failure(error) { return { type: columnContants.ERROR, error } }
+}
+
+function deleteColumn(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        columnService.deleteColumn(id)
+            .then(
+                column => { 
+                    dispatch(success(column));
+                    // dispatch(alertActions.success('Slide created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(column) { return { type: columnContants.REQUEST, column } }
+    function success(column) { return { type: columnContants.DELETE, column } }
     function failure(error) { return { type: columnContants.ERROR, error } }
 }
