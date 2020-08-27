@@ -77,6 +77,7 @@ export function course(state = initialState, action) {
             };
 
             updateFromLessonObj.slides[action.slideIndex].title = action.slideObj.title;
+            updateFromLessonObj.slides[action.subtitle].hide_title = action.slideObj.subtitle;
             updateFromLessonObj.slides[action.slideIndex].hide_title = action.slideObj.hide_title;
         
             lessons = [...state.courseLessons];
