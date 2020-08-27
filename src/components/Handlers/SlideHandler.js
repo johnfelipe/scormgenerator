@@ -230,9 +230,14 @@ class SlideHandler extends Component {
 
                 console.log(data);
 
-                // const id = this.props.slideColumns[index].clid;
-                const id = columnArr[index].clid;
-                this.props.updateColumn(data, id)
+                if (columnArr[index].clid) {
+                    const id = columnArr[index].clid;
+                    this.props.updateColumn(data, id);
+                } else {
+                    const id = this.props.slideColumns[index].clid;
+                    this.props.updateColumn(data, id);
+                }
+                
             }
             
         }
