@@ -286,19 +286,21 @@ function CourseEditor() {
                                 </div>
                             </div>
                             <div className="row">
-                                <ResourcesHandler
-                                    // addResourceFiles={this.props.addResourceFiles}
-                                    setResourceFilesObject={setResourceFilesObject}
-                                    resourceFilesData={resourceFilesObject}
-                                />
-                                {
-                                    resourceFilesObject.length !== 0 ? 
-                                    <span>
-                                    Files Uploaded: &nbsp;
-                                    {resourceFilesObject.map((item, index) => (
-                                        index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
-                                    ))}</span> : <span></span>
-                                }
+                                <div className="col-md-4 mt-2">
+                                    <ResourcesHandler
+                                        // addResourceFiles={this.props.addResourceFiles}
+                                        setResourceFilesObject={setResourceFilesObject}
+                                        resourceFilesData={resourceFilesObject}
+                                    />
+                                    {
+                                        resourceFilesObject.length !== 0 ? 
+                                        <span>
+                                        Files Uploaded: &nbsp;
+                                        {resourceFilesObject.map((item, index) => (
+                                            index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
+                                        ))}</span> : <span></span>
+                                    }
+                                </div>
                                 {/* {
                                     courseNameExist ?
                                         <div className="col-md-4 mt-2">
