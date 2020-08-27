@@ -13,6 +13,7 @@ export const courseActions = {
     appendSlideToCourseLesson,
     deleteSlideFromCourseLesson,
     updateSlideFromCourseLesson,
+    appendSlideColumnsFromCourseLesson,
 };
 
 function getAll() {
@@ -97,7 +98,7 @@ function getCourseLessons(id) {
                                 slideService.getSlideColumns(slide.sid)
                                 .then(
                                     columns => {
-                                        if (columns.length > 0) {
+                                        // if (columns.length > 0) {
                                             let slideColumns = [];
 
                                             columns.map((columnProps) => {
@@ -110,13 +111,13 @@ function getCourseLessons(id) {
                                                 //     id: 'column1',
                                                 //     content: parsedDecodedFeatures,
                                                 // }
-                                                // console.log(columnProps);
+                                                console.log(parsedDecodedFeatures);
 
                                                 return slideColumns.push(parsedDecodedFeatures)
                                             });
 
                                             slides[slideIndex].columns = slideColumns;
-                                        }
+                                        // }
                                     },
                                     error => {
                                         dispatch(failure(error.toString()));
@@ -173,4 +174,12 @@ function updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex) {
     };
     
     function success(slideObj, slideIndex, lessonIndex) { return { type: courseContants.UPDATE_SLIDE_FROM_COURSE_LESSON, slideObj, slideIndex, lessonIndex } }
+}
+
+function appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex) {
+    return dispatch => {
+        dispatch(success(columnArray, slideIndex, lessonIndex));
+    };
+    
+    function success(columnArray, slideIndex, lessonIndex) { return { type: courseContants.APPEND_SLIDE_COLUMNS_FROM_COURSE_LESSON, columnArray, slideIndex, lessonIndex } }
 }
