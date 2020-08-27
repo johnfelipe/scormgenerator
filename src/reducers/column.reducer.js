@@ -15,7 +15,14 @@ export function column(state = initialState, action) {
         case columnContants.CREATE_SUCCESS:
             return {
                 ...state,
-                currentColumn: action.column
+                currentColumn: action.column,
+                columns: [...columns, action.column]
+            };
+
+        case columnContants.UPDATE_SUCCESS:
+            return {
+                ...state,
+                message: action.column
             };
     
         case columnContants.ERROR:
