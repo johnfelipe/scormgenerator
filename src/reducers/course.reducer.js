@@ -87,6 +87,21 @@ export function course(state = initialState, action) {
                 ...state,
                 courseLessons: lessons,
             }
+
+        case courseContants.APPEND_SLIDE_COLUMNS_FROM_COURSE_LESSON:
+            const updateSlideColumnFromLessonObj = {
+                ...state.courseLessons[action.lessonIndex]
+            };
+
+            updateSlideColumnFromLessonObj.slides[action.slideIndex].columns = action.columnArray;
+        
+            lessons = [...state.courseLessons];
+            lessons[action.lessonIndex] = updateSlideColumnFromLessonObj;
+        
+            return {
+                ...state,
+                courseLessons: lessons,
+            }
     
         case courseContants.ERROR:
             return { 
