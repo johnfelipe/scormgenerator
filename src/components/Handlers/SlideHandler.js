@@ -137,8 +137,8 @@ class SlideHandler extends Component {
             sessionStorage.removeItem("selectedAnswers");
         }
         
-        console.log('props.columns: ');
-        console.log(this.props.currentColumns);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
 
         if (this.props.sid) {
             this.props.getSlideColumns(this.props.sid);
@@ -155,26 +155,26 @@ class SlideHandler extends Component {
             this.props.getSlideColumns(this.props.sid);
         }
         
-        console.log('state.columns: ');
-        console.log(this.state.column);
-        console.log('props.columns: ');
-        console.log(this.props.currentColumns);
+        // console.log('state.columns: ');
+        // console.log(this.state.column);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
         // console.log('this.props.currentSlide');
         // console.log(this.props.currentSlide);
-        console.log('this.props.currentSlideIndex');
-        console.log(this.props.currentSlideIndex);
-        console.log('this.props.cid');
-        console.log(this.props.cid);
-        console.log('this.props.sid');
-        console.log(this.props.sid);
+        // console.log('this.props.currentSlideIndex');
+        // console.log(this.props.currentSlideIndex);
+        // console.log('this.props.cid');
+        // console.log(this.props.cid);
+        // console.log('this.props.sid');
+        // console.log(this.props.sid);
         // console.log('this.props.currentSlide.sid');
         // console.log(this.props.currentSlide.sid);
-        console.log('this.props.lid');
-        console.log(this.props.lid);
-        console.log('this.props.columns');
-        console.log(this.props.columns);
-        console.log('this.props.lessonIndex');
-        console.log(this.props.lessonIndex);
+        // console.log('this.props.lid');
+        // console.log(this.props.lid);
+        // console.log('this.props.columns');
+        // console.log(this.props.columns);
+        // console.log('this.props.lessonIndex');
+        // console.log(this.props.lessonIndex);
 
         // if (this.props.cid) {
         //     this.props.getCourseLessons(this.props.cid);
