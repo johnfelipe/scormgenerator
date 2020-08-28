@@ -51,7 +51,6 @@ function CourseEditor() {
     const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
     // const [mediaFilesObject, setMediaFilesObject] = useState([]);
     // const [courseNameExist, setCourseNameExist] = useState(false);
-    const [slideItemIndex, setSlideItemIndex] = useState(0);
     const [lessonId, setLessonId] = useState(-1);
     // const [courseId, setCourseId] = useState(-1);
     const [lid, setLid] = useState(-1);
@@ -313,10 +312,16 @@ function CourseEditor() {
                                                             <Card.Body>
                                                                 <SlideHandler
                                                                     action="add"
-                                                                    // currentSlideIndex={slideItemIndex}
                                                                     lessonIndex={lessonIndex}
-                                                                    slideItemId={"slide-item-" + slideItemIndex}
-                                                                    // setSlideItemIndex={setSlideItemIndex}
+                                                                    slideItemId={
+                                                                        lesson.slides ?
+                                                                            lesson.slides.length > 0 ?
+                                                                                "slide-item-" + lesson.slides.length
+                                                                            :
+                                                                                "slide-item-" + 0
+                                                                        :
+                                                                            "slide-item-" + 0
+                                                                    }
                                                                     lessonId={lessonId}
                                                                     cid={currentCourse && currentCourse.cid}
                                                                     uid={currentCourse && currentCourse.uid}
@@ -338,7 +343,7 @@ function CourseEditor() {
                                                                                 0
                                                                         :
                                                                             0
-                                                                }
+                                                                    }
                                                                 />
                                                                 {lesson.slides && lesson.slides.length > 0 ?
                                                                     <DragDropContext onDragEnd={onDragEnd}>
