@@ -3323,14 +3323,18 @@ class SlideHandler extends Component {
 
     onSave = (slideObj, sid, lessonIndex, columnArray) => {
         if (this.props.action === "add") {
-            this.props.createSlide(slideObj, lessonIndex);
+            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
             // this.props.appendSlideToCourseLesson(slideObj, lessonIndex);
+            // creates column
+            // this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
             console.log("add");
             console.log(slideObj);
         } else if (this.props.action === "edit") {
             this.props.updateSlide(slideObj, sid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
+            // creates column
+            this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
             console.log("edit");
             console.log(slideObj);
             console.log(this.props.currentSlideIndex);
@@ -3377,10 +3381,9 @@ class SlideHandler extends Component {
                                 columns: [],
                             }
 
-                            this.onSave(data, this.props.sid ? this.props.sid : 0, this.props.lessonIndex, this.state.column);
+                            // const sid = this.props.slides.length > 0 ? this.props.slides[this.props.slides.length-1].sid : 1;
 
-                            // creates column
-                            this.stringifySlideColumns(this.props.sid ? this.props.sid : 0, this.props.uid, this.state.column, this.props.action);
+                            this.onSave(data, this.props.sid, this.props.lessonIndex, this.state.column);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -7414,12 +7417,13 @@ const mapStateToProps = (state) => {
         columns: state.column.columns,
         currentColumn: state.column.currentColumn,
         slideColumns: state.slide.slideColumns,
+        slides: state.slide.slides,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (data, lessonIndex) => dispatch(slideActions.createSlide(data, lessonIndex)),
+        createSlide: (data, lessonIndex, columnArray, slideIndex, uid) => dispatch(slideActions.createSlide(data, lessonIndex, columnArray, slideIndex, uid)),
         getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
         appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
         updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
@@ -7428,6 +7432,7 @@ const mapDispatchToProps = (dispatch) => {
         updateColumn: (columnObj, id) => dispatch(columnActions.updateColumn(columnObj, id)),
         appendSlideColumnsFromCourseLesson: (columnArray, slideIndex, lessonIndex) => dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex)),
         getSlideColumns: (id) => dispatch(slideActions.getSlideColumns(id)),
+        getLatestLessonSlide: (id) => dispatch(courseActions.getLatestLessonSlide(id)),
     }
 }
 
