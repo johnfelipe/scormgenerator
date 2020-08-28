@@ -5,6 +5,7 @@ import { coursemetaService } from '../services';
 
 export const coursemetaActions = {
     createCoursemeta,
+    updateCoursemeta,
     deleteCoursemeta,
     getAllCoursemeta,
     getCoursemeta,
@@ -31,6 +32,29 @@ function createCoursemeta(data) {
 
     function request(coursemeta) { return { type: coursemetaConstants.REQUEST, coursemeta } }
     function success(coursemeta) { return { type: coursemetaConstants.CREATE_SUCCESS, coursemeta } }
+    function failure(error) { return { type: coursemetaConstants.ERROR, error } }
+}
+
+function updateCoursemeta(data, id) {
+    return dispatch => {
+        dispatch(request(data));
+
+        coursemetaService.updateCoursemeta(data, id)
+            .then(
+                message => { 
+                    dispatch(success(message));
+                    // dispatch(alertActions.success('Slide created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(message) { return { type: coursemetaConstants.REQUEST, message } }
+    function success(message) { return { type: coursemetaConstants.UPDATE_SUCCESS, message } }
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }
 

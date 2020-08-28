@@ -56,6 +56,12 @@ export function coursemeta(state = initialState, action) {
                 ...state,
                 currentCoursemeta: action.coursemeta
             };
+            
+        case coursemetaConstants.UPDATE_SUCCESS:
+            return {
+                ...state,
+                message: action.message
+            };
 
         case coursemetaConstants.DELETE_SUCCESS:
             return {
