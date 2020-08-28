@@ -2,6 +2,9 @@ import { coursemetaConstants } from '../constants';
 const initialState = {
     currentCoursemeta: {},
     coursemetas: [],
+    coursemetasResources: [],
+    coursemetasTranscript: [],
+    coursemetasGlossary: [],
     coursemetasByRkey: [],
 }
 
@@ -26,10 +29,29 @@ export function coursemeta(state = initialState, action) {
             };
 
         case coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS:
-            return {
-                ...state,
-                coursemetasByRkey: action.coursemetas
-            };
+
+            if (action.rkey === "resources") {
+                return {
+                    ...state,
+                    coursemetasResources: action.coursemetas
+                };
+            } else if (action.rkey === "transcript") {
+                return {
+                    ...state,
+                    coursemetasTranscript: action.coursemetas
+                };
+            } else if (action.rkey === "glossary") {
+                return {
+                    ...state,
+                    coursemetasGlossary: action.coursemetas
+                };
+            } else {
+                return {
+                    ...state,
+                    coursemetasByRkey: action.coursemetas
+                };
+            }
+            
 
         case coursemetaConstants.GET_COURSEMETA_SUCCESS:
             return {
