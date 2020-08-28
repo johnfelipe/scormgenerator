@@ -7,6 +7,7 @@ import { gallery } from './gallery.reducer';
 import { lesson } from './lesson.reducer';
 import { slide } from './slide.reducer';
 import { column } from './column.reducer';
+import { coursemeta } from './coursemeta.reducer';
 
 const rootReducer = combineReducers({
     alert,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     lesson,
     slide,
     column,
+    coursemeta,
 });
 
 export default rootReducer;
