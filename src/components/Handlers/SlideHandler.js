@@ -3372,6 +3372,7 @@ class SlideHandler extends Component {
                                 uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                                 columns: [],
+                                weight: this.props.slideWeight,
                             }
 
                             // const sid = this.props.slides.length > 0 ? this.props.slides[this.props.slides.length-1].sid : 1;

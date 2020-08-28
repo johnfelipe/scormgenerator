@@ -54,6 +54,7 @@ function LessonHandler(props) {
                             cid: props.cid,
                             title: values.lessonName,
                             uid: props.uid,
+                            weight: props.lessonWeight,
                         }
 
                         // onSave(data, props.id);
