@@ -29,7 +29,6 @@ export function coursemeta(state = initialState, action) {
             };
 
         case coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS:
-
             if (action.rkey === "resources") {
                 return {
                     ...state,
@@ -50,8 +49,7 @@ export function coursemeta(state = initialState, action) {
                     ...state,
                     coursemetasByRkey: action.coursemetas
                 };
-            }
-            
+            };
 
         case coursemetaConstants.GET_COURSEMETA_SUCCESS:
             return {

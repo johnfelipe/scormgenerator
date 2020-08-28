@@ -48,6 +48,7 @@ function CourseEditor() {
     const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
     // const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
     // const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
+    const coursemetaDeleteMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     // const [resourceFilesObject, setResourceFilesObject] = useState([]);
@@ -65,7 +66,7 @@ function CourseEditor() {
         dispatch(galleryActions.getAllFiles());
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "resources"));
         // setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg, currentCoursemeta]);
+    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg, currentCoursemeta, coursemetaDeleteMsg]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
