@@ -65,7 +65,7 @@ function ResourcesHandler(props) {
     }
 
     const deleteFileInputField = (index, resourceObj) => {
-        setToBeDeleted([...toBeDeleted, resourceObj.cmid]);
+        setToBeDeleted([...toBeDeleted, {cmid: resourceObj.cmid, index: index}]);
 
         const inputObj = [...inputObject];
         inputObj.splice(index, 1);
@@ -107,7 +107,7 @@ function ResourcesHandler(props) {
 
         if (toBeDeleted.length > 0) {
             for (var index in toBeDeleted) {
-                dispatch(coursemetaActions.deleteCoursemeta(toBeDeleted[index]));
+                dispatch(coursemetaActions.deleteCoursemeta(toBeDeleted[index].cmid));
             }
         }
 
