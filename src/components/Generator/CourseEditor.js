@@ -28,7 +28,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 // import WarningModal from '../AlertModal/Warning';
 
 // actions
-import { courseActions, lessonActions, galleryActions, slideActions } from '../../actions';
+import { courseActions, lessonActions, galleryActions, slideActions, coursemetaActions } from '../../actions';
 
 // services
 import { galleryService } from '../../services';
@@ -44,9 +44,13 @@ function CourseEditor() {
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
     const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
     const lessonDeleteMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
+    const currentCoursemeta = useSelector(state => state.coursemeta.currentCoursemeta ? state.coursemeta.currentCoursemeta : {});
+    const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
+    // const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
+    // const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
-    const [resourceFilesObject, setResourceFilesObject] = useState([]);
+    // const [resourceFilesObject, setResourceFilesObject] = useState([]);
     const [transcriptFileObject, setTranscriptFileObject] = useState([]);
     const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
     // const [mediaFilesObject, setMediaFilesObject] = useState([]);
@@ -59,8 +63,9 @@ function CourseEditor() {
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
+        dispatch(coursemetaActions.getCoursemetaByRkey(cid, "resources"));
         // setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg]);
+    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg, currentCoursemeta]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -230,7 +235,7 @@ function CourseEditor() {
                                 <div className="col-md-4 mt-2">
                                     <ResourcesHandler
                                         // addResourceFiles={this.props.addResourceFiles}
-                                        setResourceFilesObject={setResourceFilesObject}
+                                        // setResourceFilesObject={setResourceFilesObject}
                                         resourceFilesData={resourceFilesObject}
                                     />
                                     {
