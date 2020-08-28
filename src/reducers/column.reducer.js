@@ -2,6 +2,7 @@ import { columnContants } from '../constants';
 const initialState = {
     currentColumn: {},
     columns: [],
+    allColumns: [],
 }
 
 export function column(state = initialState, action) {
@@ -17,6 +18,12 @@ export function column(state = initialState, action) {
                 ...state,
                 currentColumn: action.column,
                 columns: [...state.columns, action.column]
+            };
+
+        case columnContants.GETALL_COLUMN_SUCCESS:
+            return {
+                ...state,
+                allColumns: action.columns
             };
 
         case columnContants.UPDATE_SUCCESS:

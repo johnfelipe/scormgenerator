@@ -4,6 +4,7 @@ export const columnService = {
     createColumn,
     updateColumn,
     deleteColumn,
+    getAllColumn,
 };
 
 async function createColumn(columnObj) {
@@ -18,6 +19,11 @@ async function updateColumn(columnObj, id) {
 
 async function deleteColumn(id) {
     const response = await API.delete('/columns/' + id,);
+    return handleResponse(response);
+}
+
+async function getAllColumn() {
+    const response = await API.get('/columns',);
     return handleResponse(response);
 }
 

@@ -7,6 +7,7 @@ export const columnActions = {
     createColumn,
     updateColumn,
     deleteColumn,
+    getAllColumn,
 };
 
 function createColumn(data) {
@@ -75,5 +76,26 @@ function deleteColumn(id) {
 
     function request(column) { return { type: columnContants.REQUEST, column } }
     function success(column) { return { type: columnContants.DELETE, column } }
+    function failure(error) { return { type: columnContants.ERROR, error } }
+}
+
+function getAllColumn() {
+    return dispatch => {
+
+        columnService.getAllColumn()
+            .then(
+                columns => { 
+                    dispatch(success(columns));
+                    // dispatch(alertActions.success('Slide created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+    
+    function success(columns) { return { type: columnContants.DELETE, columns } }
     function failure(error) { return { type: columnContants.ERROR, error } }
 }
