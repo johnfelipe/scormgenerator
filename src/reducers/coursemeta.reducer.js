@@ -2,7 +2,7 @@ import { coursemetaConstants } from '../constants';
 const initialState = {
     currentCoursemeta: {},
     coursemetas: [],
-    coursemetasByRkey = [],
+    coursemetasByRkey: [],
 }
 
 export function coursemeta(state = initialState, action) {
