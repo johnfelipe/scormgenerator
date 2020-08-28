@@ -96,6 +96,6 @@ function getAllColumn() {
             );
     };
     
-    function success(columns) { return { type: columnContants.DELETE, columns } }
+    function success(columns) { return { type: columnContants.GETALL_COLUMN_SUCCESS, columns } }
     function failure(error) { return { type: columnContants.ERROR, error } }
 }

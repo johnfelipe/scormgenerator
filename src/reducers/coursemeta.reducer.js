@@ -1,7 +1,8 @@
 import { coursemetaConstants } from '../constants';
 const initialState = {
     currentCoursemeta: {},
-    coursemetas: []
+    coursemetas: [],
+    coursemetasByRkey = [],
 }
 
 export function coursemeta(state = initialState, action) {
@@ -22,6 +23,18 @@ export function coursemeta(state = initialState, action) {
             return {
                 ...state,
                 coursemetas: action.coursemetas
+            };
+
+        case coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS:
+            return {
+                ...state,
+                coursemetasByRkey: action.coursemetas
+            };
+
+        case coursemetaConstants.GET_COURSEMETA_SUCCESS:
+            return {
+                ...state,
+                currentCoursemeta: action.coursemeta
             };
 
         case coursemetaConstants.DELETE_SUCCESS:
