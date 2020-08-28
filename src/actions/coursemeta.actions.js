@@ -101,11 +101,11 @@ function getCoursemeta(id) {
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }
 
-function getCoursemetaByRkey(rkey) {
+function getCoursemetaByRkey(cid, rkey) {
     return dispatch => {
         dispatch(request(rkey));
 
-        coursemetaService.getCoursemetaByRkey(rkey)
+        coursemetaService.getCoursemetaByRkey(cid, rkey)
             .then(
                 coursemetas => { 
                     dispatch(success(coursemetas, rkey));
