@@ -138,7 +138,7 @@ function ResourcesHandler(props) {
     }
 
     const initialValues = getInitialValues(inputObject);
-    console.log(initialValues);
+    
     const resourcesModal = (
         <Modal
             show={modalShow}
@@ -176,7 +176,6 @@ function ResourcesHandler(props) {
                                     {inputObject.map((input, index) => (
                                         <div key={input.name} className="row mt-2">
                                             <div className="col-md-11">
-                                            {console.log(input)}
                                                 <input
                                                     id={input.name}
                                                     name={input.name}
@@ -202,8 +201,10 @@ function ResourcesHandler(props) {
                                                             <span>Choose file</span>
                                                         } */}
                                                         {values[input.name] ?
-                                                            values[input.name].rvalue &&
-                                                            values[input.name].rvalue.split('/')[5]
+                                                            values[input.name].rvalue ?
+                                                                values[input.name].rvalue.split('/')[5]
+                                                            :
+                                                                values[input.name].name
                                                         :
                                                             <span>Choose file</span>
                                                         }
