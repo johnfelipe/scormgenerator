@@ -97,7 +97,7 @@ function CourseObj(props) {
             fileObject => {
                 console.log(fileObject);
                 setIntroVideo(fileObject.name, fileObject.image, fileObject.type);
-                props.setMediaFiles(fileObject);
+                // props.setMediaFiles(fileObject);
             },
             error => console.log(error)
         );

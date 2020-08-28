@@ -52,7 +52,7 @@ function Card(props) {
                 fileObject => {
                     console.log(fileObject);
                     setImg(fileObject.name, fileObject.image, fileObject.type);
-                    props.setMediaFiles(fileObject);
+                    // props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );

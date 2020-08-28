@@ -52,10 +52,6 @@ import { slideActions, courseActions, columnActions } from '../../actions';
 // helpers
 import { objectHelpers } from '../../helpers';
 
-// services
-// import { slideService } from '../../services';
-// import { columnService } from '../../services';
-
 class SlideHandler extends Component {
 
     constructor(props) {
@@ -196,7 +192,6 @@ class SlideHandler extends Component {
     stringifySlideColumns = (sid, userId, columnArr, action) => {
         for (let index in columnArr) {
 
-            // let featuresJson = JSON.stringify(columnArr[index].content);
             let featuresJson = JSON.stringify(columnArr[index]);
 
             if (action === 'add') {
