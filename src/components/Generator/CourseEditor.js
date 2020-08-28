@@ -243,11 +243,19 @@ function CourseEditor() {
                                     />
                                     {
                                         resourceFilesObject.length !== 0 ? 
-                                        <span>
-                                        Files Uploaded: &nbsp;
-                                        {resourceFilesObject.map((item, index) => (
-                                            index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.rvalue.split('/')[5]},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.rvalue.split('/')[5]}</label></strong>
-                                        ))}</span> : <span></span>
+                                        <span className="text-break">
+                                            Files Uploaded: &nbsp;
+                                            {resourceFilesObject.map((item, index) => (
+                                                index + 1 !== resourceFilesObject.length ?
+                                                    <strong key={index}>
+                                                        <label key={index} >{item.rvalue.split('/')[5]},</label>
+                                                    </strong>
+                                                :
+                                                    <strong key={index}>
+                                                        <label key={index} >{item.rvalue.split('/')[5]}</label>
+                                                    </strong>
+                                            ))}</span> : <span>
+                                        </span>
                                     }
                                 </div>
                                 <div className="col-md-4 mt-2">
