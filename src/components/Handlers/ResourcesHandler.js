@@ -1,56 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
-class ResourcesHandler extends Component {
+function ResourcesHandler(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalShow: false,
-            inputCounter: 1,
-            inputObject: [
-                {name: 'resourceFile1', top: 0}
-            ],
-            top: 45,
-        };
-        this.setModalShow = this.setModalShow.bind(this);
-        this.onSave = this.onSave.bind(this);
-        this.addInput = this.addInput.bind(this);
-        this.getInitialValues = this.getInitialValues.bind(this);
-        this.deleteFileInputField = this.deleteFileInputField.bind(this);
-    }
+    const [modalShow, setModalShow] = useState(false);
+    const [inputCounter, setInputCounter] = useState(1);
+    const [inputObject, setInputObject] = useState([{name: 'resourceFile1', top: 0}]);
+    // const [top, setTop] = useState(45);
 
-    componentDidUpdate = () => {
-        // console.log(this.props.resourceFilesData);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         modalShow: false,
+    //         inputCounter: 1,
+    //         inputObject: [
+    //             {name: 'resourceFile1', top: 0}
+    //         ],
+    //         top: 45,
+    //     };
+    //     this.setModalShow = this.setModalShow.bind(this);
+    //     this.onSave = this.onSave.bind(this);
+    //     this.addInput = this.addInput.bind(this);
+    //     this.getInitialValues = this.getInitialValues.bind(this);
+    //     this.deleteFileInputField = this.deleteFileInputField.bind(this);
+    // }
 
-    setModalShow = (value) => {
-        this.setState({
-            modalShow: value,
-        });
-    }
+    // componentDidUpdate = () => {
+    //     // console.log(this.props.resourceFilesData);
+    // }
 
-    addInput = () => {
-        let currentCount = this.state.inputCounter;
+    // setModalShow = (value) => {
+    //     this.setState({
+    //         modalShow: value,
+    //     });
+    // }
+
+    const addInput = () => {
+        let currentCount = inputCounter;
         currentCount += 1;
 
         if (!(currentCount === 6)) {
-            // const inputObj = { name: 'resourceFile' + currentCount, top: this.state.inputObject[currentCount - 2].top + this.state.top };
+            // const inputObj = { name: 'resourceFile' + currentCount, top: inputObject[currentCount - 2].top + top };
             const inputObj = { name: 'resourceFile' + currentCount };
 
-            this.setState({
-                inputCounter: currentCount,
-                inputObject: [...this.state.inputObject, inputObj],
-            });
+            setInputCounter(currentCount);
+            setInputObject([...inputObject, inputObj]);
+
+            // this.setState({
+            //     inputCounter: currentCount,
+            //     inputObject: [...inputObject, inputObj],
+            // });
         } else {
             alert("Already limit!");
         }
     }
 
-    getInitialValues = (inputs) => {
+    const getInitialValues = (inputs) => {
         //declare an empty initialValues object
         const initialValues = {};
         //loop loop over fields array
@@ -66,19 +74,22 @@ class ResourcesHandler extends Component {
         return initialValues;
     }
 
-    deleteFileInputField = (index) => {
-        const inputObj = [...this.state.inputObject];
+    const deleteFileInputField = (index) => {
+        const inputObj = [...inputObject];
         inputObj.splice(index, 1);
 
         const currentCount = inputObj.length;
 
-        this.setState({
-            inputCounter: currentCount,
-            inputObject: inputObj,
-        });
+        setInputCounter(currentCount);
+        setInputObject(inputObj);
+
+        // this.setState({
+        //     inputCounter: currentCount,
+        //     inputObject: inputObj,
+        // });
     }
 
-    onSave = (object) => {
+    const onSave = (object) => {
         let resourcesArr = [];
         let counter = 0
 
@@ -89,84 +100,82 @@ class ResourcesHandler extends Component {
             counter++;
         }
         
-        this.props.resourceFilesHandler(resourcesArr);
-        this.props.addResourceFiles(resourcesArr);
+        // props.resourceFilesHandler(resourcesArr);
+        // props.addResourceFiles(resourcesArr);
 
-        this.setModalShow(false)
+        setModalShow(false)
     }
 
-    render() {
-        const initialValues = this.getInitialValues(this.state.inputObject);
-        const resourcesModal = (
-            <Modal
-                show={this.state.modalShow}
-                onHide={() => this.setModalShow(false)}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                dialogClassName="resources-modal"
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Upload Resources
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Formik
-                        initialValues= {initialValues}
+    const initialValues = getInitialValues(inputObject);
+    const resourcesModal = (
+        <Modal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            dialogClassName="resources-modal"
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Upload Resources
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Formik
+                    initialValues= {initialValues}
 
-                        onSubmit={values => {
-                            this.onSave(values);
-                        }}
-                    >
-                        {props => {
-                            const {
-                            values,
-                            isSubmitting,
-                            handleBlur,
-                            handleSubmit,
-                            setFieldValue,
-                            } = props;
-                            return (
-                                <div>
-                                    <button type="button" className="btn btn-success" onClick={this.addInput}>Add File</button>
-                                    <form onSubmit={handleSubmit}>
-                                        {this.state.inputObject.map((input, index) => (
-                                            <div key={input.name} className="row mt-2">
-                                                <div className="col-md-11">
-                                                    <input
-                                                        id={input.name}
-                                                        name={input.name}
-                                                        type="file"
-                                                        className="form-control custom-file-input"
-                                                        onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
-                                                        onBlur={handleBlur}
-                                                    />
-                                                    <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].file ? values[input.name].file.name : values[input.name].name : <span>Choose file</span> }</label>
-                                                </div>
-                                                <div className="col-md-1">
-                                                    <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => this.deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
-                                                </div>
+                    onSubmit={values => {
+                        onSave(values);
+                    }}
+                >
+                    {props => {
+                        const {
+                        values,
+                        isSubmitting,
+                        handleBlur,
+                        handleSubmit,
+                        setFieldValue,
+                        } = props;
+                        return (
+                            <div>
+                                <button type="button" className="btn btn-success" onClick={addInput}>Add File</button>
+                                <form onSubmit={handleSubmit}>
+                                    {inputObject.map((input, index) => (
+                                        <div key={input.name} className="row mt-2">
+                                            <div className="col-md-11">
+                                                <input
+                                                    id={input.name}
+                                                    name={input.name}
+                                                    type="file"
+                                                    className="form-control custom-file-input"
+                                                    onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
+                                                    onBlur={handleBlur}
+                                                />
+                                                <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].file ? values[input.name].file.name : values[input.name].name : <span>Choose file</span> }</label>
                                             </div>
-                                        ))}
-                                        <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
-                                    </form>
-                                </div>
-                            );
-                        }}
-                    </Formik>
-                </Modal.Body>
-            </Modal>
-        );
+                                            <div className="col-md-1">
+                                                <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <button type="submit" className="btn btn-success float-right mt-5" disabled={isSubmitting}>Save</button>
+                                </form>
+                            </div>
+                        );
+                    }}
+                </Formik>
+            </Modal.Body>
+        </Modal>
+    );
 
-        return (
-            <div id="resources-btn-container">
-                <label htmlFor="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
-                <button type="button" className="btn btn-outline-dark" onClick={() => this.setModalShow(true)}>Resources</button>
-                {resourcesModal}
-            </div>
-        )
-    }
+    return (
+        <div id="resources-btn-container">
+            <label htmlFor="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
+            <button type="button" className="btn btn-outline-dark" onClick={() => setModalShow(true)}>Resources</button>
+            {resourcesModal}
+        </div>
+    )
 }
 
 export default ResourcesHandler;
