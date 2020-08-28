@@ -20,60 +20,29 @@ function ResourcesHandler(props) {
     const [modalShow, setModalShow] = useState(false);
     const [inputCounter, setInputCounter] = useState(resourceFilesData.length > 0 ? resourceFilesData.length : 1);
     const [inputObject, setInputObject] = useState([{name: 'resourceFile1'}]);
-    // const [top, setTop] = useState(45);
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         modalShow: false,
-    //         inputCounter: 1,
-    //         inputObject: [
-    //             {name: 'resourceFile1', top: 0}
-    //         ],
-    //         top: 45,
-    //     };
-    //     this.setModalShow = this.setModalShow.bind(this);
-    //     this.onSave = this.onSave.bind(this);
-    //     this.addInput = this.addInput.bind(this);
-    //     this.getInitialValues = this.getInitialValues.bind(this);
-    //     this.deleteFileInputField = this.deleteFileInputField.bind(this);
-    // }
-
-    // componentDidUpdate = () => {
-    //     // console.log(this.props.resourceFilesData);
-    // }
-
-    // setModalShow = (value) => {
-    //     this.setState({
-    //         modalShow: value,
-    //     });
-    // }
+    const [toBeDeleted, setToBeDeleted] = useState([]);
 
     useEffect(() => {
         let inputObj = [];
-
-        for (let i = 0; i <= inputCounter; i++) {
+        let i = 0;
+        for (; i < resourceFilesData.length; i++) {
             inputObj.push({name: 'resourceFile' + (i + 1)});
         }
 
+        setInputCounter(i);
+        setInputCounter(resourceFilesData.length);
         setInputObject(inputObj);
-    }, [inputCounter]);
+    }, [resourceFilesData.length]);
 
     const addInput = () => {
         let currentCount = inputCounter;
         currentCount += 1;
 
         if (!(currentCount === 6)) {
-            // const inputObj = { name: 'resourceFile' + currentCount, top: inputObject[currentCount - 2].top + top };
             const inputObj = { name: 'resourceFile' + currentCount };
 
             setInputCounter(currentCount);
             setInputObject([...inputObject, inputObj]);
-
-            // this.setState({
-            //     inputCounter: currentCount,
-            //     inputObject: [...inputObject, inputObj],
-            // });
         } else {
             alert("Already limit!");
         }
@@ -95,7 +64,9 @@ function ResourcesHandler(props) {
         return initialValues;
     }
 
-    const deleteFileInputField = (index) => {
+    const deleteFileInputField = (index, resourceObj) => {
+        setToBeDeleted([...toBeDeleted, resourceObj.cmid]);
+
         const inputObj = [...inputObject];
         inputObj.splice(index, 1);
 
@@ -103,52 +74,48 @@ function ResourcesHandler(props) {
 
         setInputCounter(currentCount);
         setInputObject(inputObj);
-
-        // this.setState({
-        //     inputCounter: currentCount,
-        //     inputObject: inputObj,
-        // });
     }
 
     const onSave = (object) => {
-        let resourcesArr = [];
-        let counter = 0
 
         for (var key in object) {
             if (object.hasOwnProperty(key)) {
-                resourcesArr[counter] = { ...resourcesArr[counter], file: object[key] };
-                const formData = new FormData();
+                if (object[key].name) {
+                    const formData = new FormData();
 
-                formData.append('file', object[key]);
-                formData.append('uid', uid);
-                formData.append('alt', object[key].name);
+                    formData.append('file', object[key]);
+                    formData.append('uid', uid);
+                    formData.append('alt', object[key].name);
 
-                galleryService.uploadFiles(formData)
-                .then(
-                    fileObject => {
-                        console.log(fileObject);
-                        const data = {
-                            cid: cid,
-                            rkey: 'resources',
-                            rvalue: fileObject.url,
-                        }
-                        
-                        dispatch(coursemetaActions.createCoursemeta(data));
-                    },
-                    error => console.log(error)
-                );
+                    galleryService.uploadFiles(formData)
+                    .then(
+                        fileObject => {
+                            console.log(fileObject);
+                            const data = {
+                                cid: cid,
+                                rkey: 'resources',
+                                rvalue: fileObject.url,
+                            }
+                            
+                            dispatch(coursemetaActions.createCoursemeta(data));
+                        },
+                        error => console.log(error)
+                    );
+                }
             }
-            counter++;
         }
-        
-        // props.resourceFilesHandler(resourcesArr);
-        // props.addResourceFiles(resourcesArr);
+
+        if (toBeDeleted.length > 0) {
+            for (var index in toBeDeleted) {
+                dispatch(coursemetaActions.deleteCoursemeta(toBeDeleted[index]));
+            }
+        }
 
         setModalShow(false)
     }
 
     const initialValues = getInitialValues(inputObject);
-    console.log(initialValues);
+
     const resourcesModal = (
         <Modal
             show={modalShow}
@@ -193,7 +160,6 @@ function ResourcesHandler(props) {
                                                     className="form-control custom-file-input"
                                                     onChange={(event) => {
                                                         setFieldValue(input.name, event.currentTarget.files[0]);
-                                                        // setFieldValue("courseLogo", event.currentTarget.files[0]);
                                                     }}
                                                     onBlur={handleBlur}
                                                 />
@@ -202,26 +168,26 @@ function ResourcesHandler(props) {
                                                     className={input.name + "-input-label custom-file-label"}
                                                     id="custom-form-label"
                                                 >
-                                                        {/* {values[input.name] ?
-                                                            values[input.name].file ?
-                                                                values[input.name].file.name
-                                                            :
-                                                                values[input.name].name
+                                                    {values[input.name] ?
+                                                        values[input.name].rvalue ?
+                                                            values[input.name].rvalue.split('/')[5]
                                                         :
-                                                            <span>Choose file</span>
-                                                        } */}
-                                                        {values[input.name] ?
-                                                            values[input.name].rvalue ?
-                                                                values[input.name].rvalue.split('/')[5]
-                                                            :
-                                                                values[input.name].name
-                                                        :
-                                                            <span>Choose file</span>
-                                                        }
+                                                            values[input.name].name
+                                                    :
+                                                        <span>Choose file</span>
+                                                    }
                                                 </label>
                                             </div>
                                             <div className="col-md-1">
-                                                <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
+                                                <button
+                                                    className="btn btn-danger float-right remove-file-input-row"
+                                                    title="Remove"
+                                                    onClick={() => {
+                                                        deleteFileInputField(index, values[input.name]);
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faWindowClose} />
+                                                </button>
                                             </div>
                                         </div>
                                     ))}
