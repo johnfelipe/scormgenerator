@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,8 +18,8 @@ function ResourcesHandler(props) {
     const { cid, resourceFilesData, uid } = props;
     const dispatch = useDispatch();
     const [modalShow, setModalShow] = useState(false);
-    const [inputCounter, setInputCounter] = useState(1);
-    const [inputObject, setInputObject] = useState([{name: 'resourceFile1', top: 0}]);
+    const [inputCounter, setInputCounter] = useState(resourceFilesData.length > 0 ? resourceFilesData.length : 1);
+    const [inputObject, setInputObject] = useState([{name: 'resourceFile1'}]);
     // const [top, setTop] = useState(45);
 
     // constructor(props) {
@@ -48,6 +48,16 @@ function ResourcesHandler(props) {
     //         modalShow: value,
     //     });
     // }
+
+    useEffect(() => {
+        let inputObj = [];
+
+        for (let i = 0; i <= inputCounter; i++) {
+            inputObj.push({name: 'resourceFile' + (i + 1)});
+        }
+
+        setInputObject(inputObj);
+    }, [inputCounter]);
 
     const addInput = () => {
         let currentCount = inputCounter;
@@ -138,7 +148,7 @@ function ResourcesHandler(props) {
     }
 
     const initialValues = getInitialValues(inputObject);
-    
+    console.log(initialValues);
     const resourcesModal = (
         <Modal
             show={modalShow}
