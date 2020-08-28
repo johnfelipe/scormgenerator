@@ -44,18 +44,22 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
                     slide.columns = [];
                     dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex, columnArray, slideIndex));
                     // dispatch(alertActions.success('Slide created successfully'));
-                    for (let index in columnArray) {
-                        let featuresJson = JSON.stringify(columnArray[index]);
-                
-                        const data = {
-                            sid: slide.sid,
-                            uid: uid,
-                            grid: columnArray[index].grid,
-                            features: btoa(featuresJson)
+                    if (columnArray.length > 0) {
+                        for (let index in columnArray) {
+                            let featuresJson = JSON.stringify(columnArray[index]);
+                    
+                            const data = {
+                                sid: slide.sid,
+                                uid: uid,
+                                grid: columnArray[index].grid,
+                                features: btoa(featuresJson)
+                            }
+                    
+                            console.log(data);
+                            dispatch(columnActions.createColumn(data));
                         }
-                
-                        console.log(data);
-                        dispatch(columnActions.createColumn(data));
+
+                        dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     }
                 },
                 error => {
