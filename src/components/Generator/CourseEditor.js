@@ -313,22 +313,32 @@ function CourseEditor() {
                                                             <Card.Body>
                                                                 <SlideHandler
                                                                     action="add"
-                                                                    currentSlideIndex={slideItemIndex}
+                                                                    // currentSlideIndex={slideItemIndex}
                                                                     lessonIndex={lessonIndex}
                                                                     slideItemId={"slide-item-" + slideItemIndex}
-                                                                    setSlideItemIndex={setSlideItemIndex}
+                                                                    // setSlideItemIndex={setSlideItemIndex}
                                                                     lessonId={lessonId}
                                                                     cid={currentCourse && currentCourse.cid}
                                                                     uid={currentCourse && currentCourse.uid}
                                                                     lid={lid}
-                                                                    sid={lesson.slides ?
-                                                                        lesson.slides.length > 0 ?
+                                                                    sid={
+                                                                        lesson.slides ?
+                                                                            lesson.slides.length > 0 ?
                                                                                 lesson.slides[lesson.slides.length - 1].sid + 1
                                                                             :
                                                                                 1
                                                                         :
                                                                             1
                                                                     }
+                                                                    currentSlideIndex={
+                                                                        lesson.slides ?
+                                                                            lesson.slides.length > 0 ?
+                                                                                lesson.slides.length
+                                                                            :
+                                                                                0
+                                                                        :
+                                                                            0
+                                                                }
                                                                 />
                                                                 {lesson.slides && lesson.slides.length > 0 ?
                                                                     <DragDropContext onDragEnd={onDragEnd}>
@@ -366,7 +376,7 @@ function CourseEditor() {
                                                                                                         currentSlideIndex={slideIndex}
                                                                                                         slideItemId={"slide-item-" + slideIndex}
                                                                                                         lessonIndex={lessonIndex}
-                                                                                                        setSlideItemIndex={setSlideItemIndex}
+                                                                                                        // setSlideItemIndex={setSlideItemIndex}
                                                                                                         // addMediaFiles={this.props.addMediaFiles}
                                                                                                         // mediaFilesObject={mediaFilesObject}
                                                                                                         // setMediaFilesObject={setMediaFilesObject}

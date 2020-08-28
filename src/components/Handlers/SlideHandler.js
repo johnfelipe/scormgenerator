@@ -165,8 +165,8 @@ class SlideHandler extends Component {
         console.log(this.props.currentColumns);
         // console.log('this.props.currentSlide');
         // console.log(this.props.currentSlide);
-        // console.log('this.props.currentSlideIndex');
-        // console.log(this.props.currentSlideIndex);
+        console.log('this.props.currentSlideIndex');
+        console.log(this.props.currentSlideIndex);
         console.log('this.props.cid');
         console.log(this.props.cid);
         console.log('this.props.sid');
@@ -3324,9 +3324,6 @@ class SlideHandler extends Component {
     onSave = (slideObj, sid, lessonIndex, columnArray) => {
         if (this.props.action === "add") {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
-            // this.props.appendSlideToCourseLesson(slideObj, lessonIndex);
-            // creates column
-            // this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
             console.log("add");
             console.log(slideObj);
         } else if (this.props.action === "edit") {
