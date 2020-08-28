@@ -101,14 +101,14 @@ function getCoursemeta(id) {
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }
 
-function getCoursemetaByRkey(id) {
+function getCoursemetaByRkey(rkey) {
     return dispatch => {
-        dispatch(request(id));
+        dispatch(request(rkey));
 
-        coursemetaService.getCoursemetaByRkey(id)
+        coursemetaService.getCoursemetaByRkey(rkey)
             .then(
                 coursemetas => { 
-                    dispatch(success(coursemetas));
+                    dispatch(success(coursemetas, rkey));
                     // dispatch(alertActions.success('Slide created successfully'));
                 },
                 error => {
@@ -120,6 +120,6 @@ function getCoursemetaByRkey(id) {
     };
 
     function request(coursemetas) { return { type: coursemetaConstants.REQUEST, coursemetas } }
-    function success(coursemetas) { return { type: coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS, coursemetas } }
+    function success(coursemetas, rkey) { return { type: coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS, coursemetas, rkey } }
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }
