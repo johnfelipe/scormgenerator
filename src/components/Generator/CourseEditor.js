@@ -237,13 +237,15 @@ function CourseEditor() {
                                         // addResourceFiles={this.props.addResourceFiles}
                                         // setResourceFilesObject={setResourceFilesObject}
                                         resourceFilesData={resourceFilesObject}
+                                        cid={cid}
+                                        uid={currentCourse && currentCourse.uid}
                                     />
                                     {
                                         resourceFilesObject.length !== 0 ? 
                                         <span>
                                         Files Uploaded: &nbsp;
                                         {resourceFilesObject.map((item, index) => (
-                                            index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.file.name},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.file.name}</label></strong>
+                                            index + 1 !== resourceFilesObject.length ? <strong key={index} ><label key={index} >&nbsp;{item.rvalue.split('/')[5]},</label></strong> : <strong key={index} ><label key={index} >&nbsp;{item.rvalue.split('/')[5]}</label></strong>
                                         ))}</span> : <span></span>
                                     }
                                 </div>
