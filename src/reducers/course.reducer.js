@@ -3,6 +3,7 @@ const initialState = {
     currentCourse: {},
     courses: [],
     courseLessons: [],
+    currentSlide: {},
 }
 
 export function course(state = initialState, action) {
@@ -51,7 +52,7 @@ export function course(state = initialState, action) {
         
             return {
                 ...state,
-                courseLessons: lessons,
+                courseLessons: lessons
             }
 
         case courseContants.UPDATE_SLIDE_FROM_COURSE_LESSON:
@@ -80,9 +81,6 @@ export function course(state = initialState, action) {
 
             appendToLessonObj.slides.push(slideObj);
 
-            console.log(action.columnArray);
-            console.log(action.slideIndex);
-
             if (action.columnArray.length > 0) {
                 appendToLessonObj.slides[action.slideIndex].columns = action.columnArray;
             }
@@ -93,6 +91,7 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: lessons,
+                currentSlide: slideObj,
             };
 
         case courseContants.APPEND_SLIDE_COLUMNS_FROM_COURSE_LESSON:
@@ -124,6 +123,12 @@ export function course(state = initialState, action) {
                 ...state,
                 courseLessons: lessons,
             }
+
+        case courseContants.GET_LATEST_LESSON_SLIDE:
+            return {
+                ...state,
+                currentSlide: action.slideObj
+            };
     
         case courseContants.ERROR:
             return { 
