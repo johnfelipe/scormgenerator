@@ -1,6 +1,6 @@
 import { slideContants } from '../constants';
-import { slideService } from '../services';
-import { courseActions } from './';
+import { slideService, } from '../services';
+import { courseActions, columnActions } from './';
 // import { history } from '../helpers';
 
 export const slideActions = {
@@ -18,8 +18,8 @@ function getAllSlides() {
 
         slideService.getAllSlides()
             .then(
-                lessons => { 
-                    dispatch(success(lessons));
+                slides => { 
+                    dispatch(success(slides));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -28,12 +28,12 @@ function getAllSlides() {
             );
     };
 
-    function request(lessons) { return { type: slideContants.REQUEST, lessons } }
-    function success(lessons) { return { type: slideContants.GETALL_SLIDE_SUCCESS, lessons } }
+    function request(slides) { return { type: slideContants.REQUEST, slides } }
+    function success(slides) { return { type: slideContants.GETALL_SLIDE_SUCCESS, slides } }
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function createSlide(data, lessonIndex, columnArray, slideIndex) {
+function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
     return dispatch => {
         dispatch(request(data));
 
@@ -43,8 +43,20 @@ function createSlide(data, lessonIndex, columnArray, slideIndex) {
                     dispatch(success(slide));
                     slide.columns = [];
                     dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex, columnArray, slideIndex));
-                    // dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     // dispatch(alertActions.success('Slide created successfully'));
+                    for (let index in columnArray) {
+                        let featuresJson = JSON.stringify(columnArray[index]);
+                
+                        const data = {
+                            sid: slide.sid,
+                            uid: uid,
+                            grid: columnArray[index].grid,
+                            features: btoa(featuresJson)
+                        }
+                
+                        console.log(data);
+                        dispatch(columnActions.createColumn(data));
+                    }
                 },
                 error => {
                     dispatch(failure(error.toString()));

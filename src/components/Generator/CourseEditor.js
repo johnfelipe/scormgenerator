@@ -321,6 +321,14 @@ function CourseEditor() {
                                                                     cid={currentCourse && currentCourse.cid}
                                                                     uid={currentCourse && currentCourse.uid}
                                                                     lid={lid}
+                                                                    sid={lesson.slides ?
+                                                                        lesson.slides.length > 0 ?
+                                                                                lesson.slides[lesson.slides.length - 1].sid + 1
+                                                                            :
+                                                                                1
+                                                                        :
+                                                                            1
+                                                                    }
                                                                 />
                                                                 {lesson.slides && lesson.slides.length > 0 ?
                                                                     <DragDropContext onDragEnd={onDragEnd}>
