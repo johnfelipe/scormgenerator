@@ -216,19 +216,20 @@ class SlideHandler extends Component {
 
                     this.props.createColumn(data);
                     console.log('EXECEUTED!');
-                }
+                } else if (columnArr[index].clid) {
+                    const data = {
+                        grid: columnArr[index].grid,
+                        features: btoa(featuresJson)
+                    }
 
-                const data = {
-                    grid: columnArr[index].grid,
-                    features: btoa(featuresJson)
-                }
-
-                console.log(data);
-
-                if (columnArr[index].clid) {
                     const id = columnArr[index].clid;
                     this.props.updateColumn(data, id);
                 } else {
+                    const data = {
+                        grid: columnArr[index].grid,
+                        features: btoa(featuresJson)
+                    }
+
                     const id = this.props.slideColumns[index].clid;
                     this.props.updateColumn(data, id);
                 }
