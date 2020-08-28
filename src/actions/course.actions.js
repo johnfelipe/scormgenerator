@@ -15,6 +15,7 @@ export const courseActions = {
     updateSlideFromCourseLesson,
     appendSlideColumnsFromCourseLesson,
     deleteSlideColumnFromCourseLesson,
+    getLatestLessonSlide,
 };
 
 function getAll() {
@@ -193,4 +194,32 @@ function deleteSlideColumnFromCourseLesson(columnIndex, slideIndex, lessonIndex)
     };
     
     function success(columnIndex, slideIndex, lessonIndex) { return { type: courseContants.DELETE_SLIDE_COLUMN_FROM_COURSE_LESSON, columnIndex, slideIndex, lessonIndex } }
+}
+
+function getLatestLessonSlide(lessonId) {
+    return dispatch => {
+        dispatch(request(lessonId));
+
+        lessonService.getLessonSlides(lessonId)
+            .then(
+                slides => {
+                    const slideObj = slides[slides.length-1];
+                    if (slideObj) {
+                        dispatch(success(slideObj));
+                    } else {
+                        dispatch(success({}));
+                    }
+                    // dispatch(alertActions.success('Lesson slides fetched successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(lessonId) { return { type: courseContants.REQUEST, lessonId } }
+    function success(slideObj) { return { type: courseContants.GET_LATEST_LESSON_SLIDE, slideObj } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
 }
