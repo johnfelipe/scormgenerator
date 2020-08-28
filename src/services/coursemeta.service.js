@@ -34,12 +34,9 @@ async function getCoursemetaByRkey(cid, rkey) {
         response = await API.get('/course/' + cid + '/coursemeta/rkey/' + rkey,);
     } catch (error) {
         console.log(error);
-    } finally {
-        console.log(response);
         response = {
             data: [],
         };
-        console.log(response);
     }
     
     return handleResponse(response);
