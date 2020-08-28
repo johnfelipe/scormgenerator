@@ -155,12 +155,12 @@ function getCourseLessons(id) {
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
 
-function appendSlideToCourseLesson(slideObj, lessonIndex) {
+function appendSlideToCourseLesson(slideObj, lessonIndex, columnArray, slideIndex) {
     return dispatch => {
-        dispatch(success(slideObj, lessonIndex));
+        dispatch(success(slideObj, lessonIndex, columnArray, slideIndex));
     };
     
-    function success(slideObj, lessonIndex) { return { type: courseContants.APPEND, slideObj, lessonIndex } }
+    function success(slideObj, lessonIndex, columnArray, slideIndex) { return { type: courseContants.APPEND, slideObj, lessonIndex, columnArray, slideIndex } }
 }
 
 function deleteSlideFromCourseLesson(slideIndex, lessonIndex) {

@@ -33,7 +33,7 @@ function getAllSlides() {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function createSlide(data, lessonIndex) {
+function createSlide(data, lessonIndex, columnArray, slideIndex) {
     return dispatch => {
         dispatch(request(data));
 
@@ -42,7 +42,8 @@ function createSlide(data, lessonIndex) {
                 slide => { 
                     dispatch(success(slide));
                     slide.columns = [];
-                    dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex));
+                    dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex, columnArray, slideIndex));
+                    // dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     // dispatch(alertActions.success('Slide created successfully'));
                 },
                 error => {

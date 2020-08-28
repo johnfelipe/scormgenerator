@@ -39,23 +39,6 @@ export function course(state = initialState, action) {
                 courseLessons: action.lessons,
             };
 
-        case courseContants.APPEND:
-            const { slideObj, lessonIndex } = action;
-
-            const appendToLessonObj = {
-                ...state.courseLessons[lessonIndex]
-            };
-
-            appendToLessonObj.slides.push(slideObj);
-        
-            lessons = [...state.courseLessons];
-            lessons[lessonIndex] = appendToLessonObj;
-            
-            return {
-                ...state,
-                courseLessons: lessons,
-            };
-
         case courseContants.DELETE_SLIDE_FROM_COURSE_LESSON:
             const deleteFromLessonObj = {
                 ...state.courseLessons[action.lessonIndex]
@@ -87,6 +70,30 @@ export function course(state = initialState, action) {
                 ...state,
                 courseLessons: lessons,
             }
+        
+        case courseContants.APPEND:
+            const { slideObj, lessonIndex } = action;
+
+            const appendToLessonObj = {
+                ...state.courseLessons[lessonIndex]
+            };
+
+            appendToLessonObj.slides.push(slideObj);
+
+            console.log(action.columnArray);
+            console.log(action.slideIndex);
+
+            if (action.columnArray.length > 0) {
+                appendToLessonObj.slides[action.slideIndex].columns = action.columnArray;
+            }
+        
+            lessons = [...state.courseLessons];
+            lessons[lessonIndex] = appendToLessonObj;
+            
+            return {
+                ...state,
+                courseLessons: lessons,
+            };
 
         case courseContants.APPEND_SLIDE_COLUMNS_FROM_COURSE_LESSON:
             const updateSlideColumnFromLessonObj = {
