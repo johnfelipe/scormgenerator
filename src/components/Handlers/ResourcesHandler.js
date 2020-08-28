@@ -4,8 +4,19 @@ import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
+// redux library
+import { useDispatch } from 'react-redux';
+
+// actions
+import { coursemetaActions } from '../../actions';
+
+// services
+import { galleryService } from '../../services';
+
 function ResourcesHandler(props) {
 
+    const { cid, resourceFilesData, uid } = props;
+    const dispatch = useDispatch();
     const [modalShow, setModalShow] = useState(false);
     const [inputCounter, setInputCounter] = useState(1);
     const [inputObject, setInputObject] = useState([{name: 'resourceFile1', top: 0}]);
@@ -66,7 +77,7 @@ function ResourcesHandler(props) {
         // pluck off the name and value props and add it to the initialValues object;
         inputs.forEach((field, index) => {
             if(!initialValues[field.name]) {
-                initialValues[field.name] = this.props.resourceFilesData[index] ? this.props.resourceFilesData[index].file : '';
+                initialValues[field.name] = resourceFilesData[index] ? resourceFilesData[index] : '';
             }
         });
     
@@ -96,6 +107,26 @@ function ResourcesHandler(props) {
         for (var key in object) {
             if (object.hasOwnProperty(key)) {
                 resourcesArr[counter] = { ...resourcesArr[counter], file: object[key] };
+                const formData = new FormData();
+
+                formData.append('file', object[key]);
+                formData.append('uid', uid);
+                formData.append('alt', object[key].name);
+
+                galleryService.uploadFiles(formData)
+                .then(
+                    fileObject => {
+                        console.log(fileObject);
+                        const data = {
+                            cid: cid,
+                            rkey: 'resources',
+                            rvalue: fileObject.url,
+                        }
+                        
+                        dispatch(coursemetaActions.createCoursemeta(data));
+                    },
+                    error => console.log(error)
+                );
             }
             counter++;
         }
@@ -107,6 +138,7 @@ function ResourcesHandler(props) {
     }
 
     const initialValues = getInitialValues(inputObject);
+    console.log(initialValues);
     const resourcesModal = (
         <Modal
             show={modalShow}
@@ -144,15 +176,38 @@ function ResourcesHandler(props) {
                                     {inputObject.map((input, index) => (
                                         <div key={input.name} className="row mt-2">
                                             <div className="col-md-11">
+                                            {console.log(input)}
                                                 <input
                                                     id={input.name}
                                                     name={input.name}
                                                     type="file"
                                                     className="form-control custom-file-input"
-                                                    onChange={(event) => {setFieldValue(input.name, event.currentTarget.files[0]);}}
+                                                    onChange={(event) => {
+                                                        setFieldValue(input.name, event.currentTarget.files[0]);
+                                                        // setFieldValue("courseLogo", event.currentTarget.files[0]);
+                                                    }}
                                                     onBlur={handleBlur}
                                                 />
-                                                <label htmlFor={input.name} className={input.name + "-input-label custom-file-label"} id="custom-form-label"> { values[input.name] ? values[input.name].file ? values[input.name].file.name : values[input.name].name : <span>Choose file</span> }</label>
+                                                <label
+                                                    htmlFor={input.name}
+                                                    className={input.name + "-input-label custom-file-label"}
+                                                    id="custom-form-label"
+                                                >
+                                                        {/* {values[input.name] ?
+                                                            values[input.name].file ?
+                                                                values[input.name].file.name
+                                                            :
+                                                                values[input.name].name
+                                                        :
+                                                            <span>Choose file</span>
+                                                        } */}
+                                                        {values[input.name] ?
+                                                            values[input.name].rvalue &&
+                                                            values[input.name].rvalue.split('/')[5]
+                                                        :
+                                                            <span>Choose file</span>
+                                                        }
+                                                </label>
                                             </div>
                                             <div className="col-md-1">
                                                 <button className="btn btn-danger float-right remove-file-input-row" title="Remove" onClick={() => deleteFileInputField(index)}><FontAwesomeIcon icon={faWindowClose} /></button>
