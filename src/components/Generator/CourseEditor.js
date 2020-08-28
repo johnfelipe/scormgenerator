@@ -43,12 +43,12 @@ function CourseEditor() {
     const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
     const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
-    const lessonDeleteMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
+    const lessonActionMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
     const currentCoursemeta = useSelector(state => state.coursemeta.currentCoursemeta ? state.coursemeta.currentCoursemeta : {});
     const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
     // const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
     // const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
-    const coursemetaDeleteMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
+    const coursemetaActionMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     // const [resourceFilesObject, setResourceFilesObject] = useState([]);
@@ -66,7 +66,7 @@ function CourseEditor() {
         dispatch(galleryActions.getAllFiles());
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "resources"));
         // setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile, lessonDeleteMsg, currentCoursemeta, coursemetaDeleteMsg]);
+    }, [dispatch, cid, currentLesson, currentFile, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {

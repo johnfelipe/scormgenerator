@@ -80,7 +80,27 @@ function ResourcesHandler(props) {
 
         for (var key in object) {
             if (object.hasOwnProperty(key)) {
-                if (object[key].name) {
+                if (object[key].file) {
+                    const cmid = object[key].cmid;
+                    const formData = new FormData();
+
+                    formData.append('file', object[key].file);
+                    formData.append('uid', uid);
+                    formData.append('alt', object[key].file.name);
+
+                    galleryService.uploadFiles(formData)
+                    .then(
+                        fileObject => {
+                            console.log(fileObject);
+                            const data = {
+                                rvalue: fileObject.url,
+                            }
+                            
+                            dispatch(coursemetaActions.updateCoursemeta(data, cmid));
+                        },
+                        error => console.log(error)
+                    );
+                } else if (object[key].name) {
                     const formData = new FormData();
 
                     formData.append('file', object[key]);
@@ -136,6 +156,8 @@ function ResourcesHandler(props) {
 
                     onSubmit={values => {
                         onSave(values);
+                        console.log(values);
+                        console.log(resourceFilesData);
                     }}
                 >
                     {props => {
@@ -159,7 +181,10 @@ function ResourcesHandler(props) {
                                                     type="file"
                                                     className="form-control custom-file-input"
                                                     onChange={(event) => {
-                                                        setFieldValue(input.name, event.currentTarget.files[0]);
+                                                        values[input.name] && values[input.name].rvalue ?
+                                                            setFieldValue(input.name, {cmid: values[input.name].cmid, file: event.currentTarget.files[0]})
+                                                        :
+                                                            setFieldValue(input.name, event.currentTarget.files[0])
                                                     }}
                                                     onBlur={handleBlur}
                                                 />
@@ -172,7 +197,10 @@ function ResourcesHandler(props) {
                                                         values[input.name].rvalue ?
                                                             values[input.name].rvalue.split('/')[5]
                                                         :
-                                                            values[input.name].name
+                                                            values[input.name].file ?
+                                                                values[input.name].file.name
+                                                            :
+                                                                values[input.name].name
                                                     :
                                                         <span>Choose file</span>
                                                     }
