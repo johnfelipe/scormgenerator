@@ -15,6 +15,14 @@ function SgCharts(props) {
     //     props.setColumn(currentColumnObj);
     // }
 
+    const setChartType = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartType = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -33,38 +41,34 @@ function SgCharts(props) {
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
-                <div className="sg-control-input">
-                    <div className="sg-expandable-rich-text">
-                        <div className="sg-workspace-expander">
-                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                { 
-                                    isShownTextArea ? 
-                                        <button
-                                            type="button"
-                                            className="textarea-hover-btn btn btn-light"
-                                            onMouseLeave={() => setIsShownTextArea(false)}
-                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentArea')}
-                                        >
-                                            <span>Click to Edit</span>
-                                        </button>
-                                    :
-                                        <span></span>
+                <div className="sg-control-input sg-control-input">
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Choose chart type.</span>
+                                    </Tooltip>
                                 }
-                                <textarea 
-                                    onMouseOver={() => setIsShownTextArea(true)} 
-                                    disabled 
-                                    value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumnContentIndex in currentColumn.content &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
-                                    }
-                                />
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Chart</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].output.chartType}
+                                    onChange={(event) => setChartType(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="pie">Pie</option>
+                                    <option value="doughnut">Doughnut</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
