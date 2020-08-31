@@ -1,19 +1,62 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { galleryService } from '../../../../services';
+
+// modal
+import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function SgCharts(props) {
 
     const { contentIndex, currentColumnContentIndex, currentColumn } = props;
+    const [modalShow, setModalShow] = useState(false);
+    const [imgUrlPreview, setImgUrlPreview] = useState('');
+    const [file, setFile] = useState('');
+    const [fileIndex, setFileIndex] = useState('');
 
-    // const setBackgroundImg = (name, url) => {
-    //     const currentColumnObj = currentColumn;
+    const handleImageChange = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
 
-    //     currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
-    //     currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+        reader.readAsDataURL(files[0])
+        reader.onloadend = () => {
+            setImgUrlPreview(reader.result);
+        }
 
-    //     props.setColumn(currentColumnObj);
-    // }
+        setModalShow(true);
+        setFile(files);
+        setFileIndex(0);
+    }
+
+    const handleImageUpload = (mediaAlt, file, fileIndex) => {
+        if (modalShow ) { 
+            const formData = new FormData();
+
+            formData.append('file', file[fileIndex]);
+            formData.append('uid', 1);
+            formData.append('alt', mediaAlt);
+
+            galleryService.uploadFiles(formData)
+            .then(
+                fileObject => {
+                    console.log(fileObject);
+                    setBackgroundImg(fileObject.name, fileObject.image);
+                    props.setMediaFiles(fileObject);
+                },
+                error => console.log(error)
+            );
+        }
+    }
+
+    const setBackgroundImg = (name, url) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+
+        props.setColumn(currentColumnObj);
+    }
 
     const setChartType = (value) => {
         const currentColumnObj = currentColumn;
@@ -159,6 +202,14 @@ function SgCharts(props) {
                     </ul>
                 </div>
             </div>
+            <AltTagForm
+                imgUrlPreview={imgUrlPreview}
+                file={file}
+                fileIndex={fileIndex}
+                handleImageUpload={handleImageUpload}
+                modalShow={modalShow}
+                setModalShow={setModalShow}
+            />
         </div>
     )
 }
