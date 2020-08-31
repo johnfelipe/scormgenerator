@@ -25,30 +25,7 @@ function TranscriptHandler(props) {
         console.log(transcriptFileData);
     }, [transcriptFileData]);
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         modalShow: false,
-    //     };
-    //     this.setModalShow = this.setModalShow.bind(this);
-    //     this.onSave = this.onSave.bind(this);
-    // }
-
-    // componentDidUpdate = () => {
-    //     // console.log(this.props.transcriptFileData);
-    // }
-
-    // setModalShow = (value) => {
-    //     this.setState({
-    //         modalShow: value,
-    //     });
-    // }
-
     const onSave = (object) => {
-        // let transcriptArr = [];
-
-        // transcriptArr[0] = object;
-
         if (object['transcriptFile'].name) {
             const formData = new FormData();
 
@@ -91,8 +68,6 @@ function TranscriptHandler(props) {
                 error => console.log(error)
             );
         } 
-        // this.props.transcriptFileHandler(transcriptArr);
-        // this.props.addTranscriptFile(transcriptArr);
 
         setModalShow(false)
     }
@@ -133,7 +108,6 @@ function TranscriptHandler(props) {
 
                     onSubmit={values => {
                         onSave(values);
-                        // console.log(values);
                     }}
                 >
                     {props => {

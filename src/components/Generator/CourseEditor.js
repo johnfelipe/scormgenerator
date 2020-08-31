@@ -47,13 +47,13 @@ function CourseEditor() {
     const currentCoursemeta = useSelector(state => state.coursemeta.currentCoursemeta ? state.coursemeta.currentCoursemeta : {});
     const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
     const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
-    // const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
+    const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
     const coursemetaActionMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     // const [resourceFilesObject, setResourceFilesObject] = useState([]);
     // const [transcriptFileObject, setTranscriptFileObject] = useState([]);
-    const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
+    // const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
     // const [mediaFilesObject, setMediaFilesObject] = useState([]);
     // const [courseNameExist, setCourseNameExist] = useState(false);
     const [lessonId, setLessonId] = useState(-1);
@@ -66,6 +66,7 @@ function CourseEditor() {
         dispatch(galleryActions.getAllFiles());
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "resources"));
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "transcript"));
+        dispatch(coursemetaActions.getCoursemetaByRkey(cid, "glossary"));
         // setCourseId(cid);
     }, [dispatch, cid, currentLesson, currentFile, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
 
@@ -262,8 +263,6 @@ function CourseEditor() {
                                 <div className="col-md-4 mt-2">
                                     <div className="text-center">
                                         <TranscriptHandler
-                                            // addTranscriptFile={this.props.addTranscriptFile}
-                                            // setTranscriptFileObject={setTranscriptFileObject}
                                             transcriptFileData={transcriptFileObject}
                                             cid={cid}
                                             uid={currentCourse && currentCourse.uid}
@@ -284,7 +283,7 @@ function CourseEditor() {
                                 <div className="col-md-4 mt-2">
                                     <GlossaryHandler
                                         // addGlossaryEntries={this.props.addGlossaryEntries}
-                                        setGlossaryEntryObject={setGlossaryEntryObject}
+                                        // setGlossaryEntryObject={setGlossaryEntryObject}
                                         glossaryData={glossaryEntryObject}
                                     />
                                 </div>
