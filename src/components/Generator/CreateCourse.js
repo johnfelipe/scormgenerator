@@ -114,7 +114,7 @@ function CreateCourse() {
                                 {
                                     courseNameExist ?
                                         <div className="col-md-4">
-                                            <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
+                                            <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label>
                                             <input
                                                 id="courseLogo"
                                                 name="courseLogo"

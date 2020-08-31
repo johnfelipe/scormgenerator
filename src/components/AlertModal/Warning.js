@@ -50,7 +50,7 @@ class Warning extends Component {
         if (this.props.fieldType === 'label') {
             value = (
                 <>
-                    <label htmlFor={this.props.htmlFor} className="ml-3 mt-1">Logo:</label>
+                    <label htmlFor={this.props.htmlFor} className="ml-4-5 mt-1">Logo:</label>
                     <label htmlFor={this.props.htmlFor} className={this.props.labelClasses} id={this.props.labelId} onClick={() => {this.setModalShow(true)}}>
                         <span>{this.props.label}</span>
                     </label>
