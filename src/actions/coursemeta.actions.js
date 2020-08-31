@@ -65,7 +65,7 @@ function deleteCoursemeta(id) {
         coursemetaService.deleteCoursemeta(id)
             .then(
                 message => { 
-                    dispatch(success(message));
+                    dispatch(success(message, id));
                     // dispatch(alertActions.success('Slide created successfully'));
                 },
                 error => {
@@ -77,7 +77,7 @@ function deleteCoursemeta(id) {
     };
 
     function request(message) { return { type: coursemetaConstants.REQUEST, message } }
-    function success(message) { return { type: coursemetaConstants.DELETE_SUCCESS, message } }
+    function success(message, id) { return { type: coursemetaConstants.DELETE_SUCCESS, message, id } }
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }
 

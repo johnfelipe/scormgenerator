@@ -17,6 +17,7 @@ function GlossaryHandler(props) {
     const [modalShow, setModalShow] = useState(false);
     const [inputCounter, setInputCounter] = useState(glossaryData.length > 0 ? glossaryData.length : 1);
     const [inputObject, setInputObject] = useState([{key: 'glossaryKey1', value: 'glossaryValue1'}]);
+    const [toBeDeleted, setToBeDeleted] = useState([]);
 
     useEffect(() => {
         let inputObj = [];
@@ -94,12 +95,15 @@ function GlossaryHandler(props) {
         // });
     }
 
-    const deleteRowInputField = (index) => {
+    const deleteRowInputField = (index, glossaryObj) => {
+        setToBeDeleted([...toBeDeleted, {cmid: glossaryObj.cmid, index: index}]);
+
         const inputObj = [...inputObject];
         inputObj.splice(index, 1);
 
         const currentCount = inputObj.length;
 
+        getInitialValues(inputObj);
         setInputCounter(currentCount);
         setInputObject(inputObj);
 
@@ -111,6 +115,13 @@ function GlossaryHandler(props) {
 
     const onSave = (object) => {
         console.log(object);
+
+        if (toBeDeleted.length > 0) {
+            for (var index in toBeDeleted) {
+                dispatch(coursemetaActions.deleteCoursemeta(toBeDeleted[index].cmid));
+            }
+        }
+
         let glossaryArr = [];
 
         let keyCount = 1;
@@ -143,10 +154,8 @@ function GlossaryHandler(props) {
             }
         }
 
-        console.log(glossaryArr);
-
         for ( let i = 0; i < glossaryArr.length; i++) {
-            if(glossaryArr[i].cmid) {
+            if(glossaryArr[i].cmid && toBeDeleted.includes(glossaryArr[i].cmid) === false) {
                 const data = {
                     rvalue: JSON.stringify(glossaryArr[i]),
                 }
@@ -187,6 +196,7 @@ function GlossaryHandler(props) {
             </Modal.Header>
             <Modal.Body>
                 <Formik
+                    enableReinitialize={true}
                     initialValues= {initialValues}
 
                     onSubmit={values => {
@@ -240,7 +250,7 @@ function GlossaryHandler(props) {
                                                         className="btn btn-danger remove-file-input-row"
                                                         title="Remove"
                                                         onClick={() => {
-                                                            deleteRowInputField(index);
+                                                            deleteRowInputField(index, input);
                                                         }}
                                                     >
                                                         <FontAwesomeIcon icon={faWindowClose} />
