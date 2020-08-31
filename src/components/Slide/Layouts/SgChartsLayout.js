@@ -1,9 +1,10 @@
 import React from 'react';
-import { Pie } from "react-chartjs-2";
+import { Pie, Doughnut } from "react-chartjs-2";
 
 function SgChartsLayout(props) {
 
-    // const { output, css, style } = props;
+    const { output, css, style } = props;
+
     const data = {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [
@@ -29,11 +30,15 @@ function SgChartsLayout(props) {
             borderWidth: 1
           }
         ]
-    }
+    };
 
     return (
-        <div id="tabs-layout" className="w-100 h-100 p-3 border border-light">
-            <Pie data={data} />
+        <div id="sg-charts-layout" className="w-100 h-100 p-3 border border-light">
+            {output.chartType === "pie" ?
+                <Pie data={data} />
+            :
+                <Doughnut data={data} />
+            }
         </div>
     );
 }
