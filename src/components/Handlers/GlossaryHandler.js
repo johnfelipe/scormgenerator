@@ -33,32 +33,6 @@ function GlossaryHandler(props) {
             setInputObject(inputObj);
         }
     }, [glossaryData]);
-    
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         modalShow: false,
-    //         inputCounter: 1,
-    //         inputObject: [
-    //             {key: 'glossaryKey1', value: 'glossaryValue1'}
-    //         ],
-    //     };
-    //     this.setModalShow = this.setModalShow.bind(this);
-    //     this.onSave = this.onSave.bind(this);
-    //     this.addInput = this.addInput.bind(this);
-    //     this.getInitialValues = this.getInitialValues.bind(this);
-    //     this.deleteRowInputField = this.deleteRowInputField.bind(this);
-    // }
-
-    // componentDidUpdate = () => {
-    //     // console.log(this.props.glossaryData);
-    // }
-
-    // setModalShow = (value) => {
-    //     this.setState({
-    //         modalShow: value,
-    //     });
-    // }
 
     const getInitialValues = (inputs) => {
         //declare an empty initialValues object
@@ -106,11 +80,6 @@ function GlossaryHandler(props) {
         getInitialValues(inputObj);
         setInputCounter(currentCount);
         setInputObject(inputObj);
-
-        // this.setState({
-        //     inputCounter: currentCount,
-        //     inputObject: inputObj,
-        // });
     }
 
     const onSave = (object) => {
@@ -171,14 +140,11 @@ function GlossaryHandler(props) {
                 dispatch(coursemetaActions.createCoursemeta(data));
             }
         }
-        
-        // this.props.glossaryHandler(glossaryArr);
-        // this.props.addGlossaryEntries(glossaryArr);
+
         setModalShow(false)
     }
 
     const initialValues = getInitialValues(inputObject);
-    console.log(initialValues);
 
     const glossaryModal = (
         <Modal
@@ -227,7 +193,7 @@ function GlossaryHandler(props) {
                                                         type="text"
                                                         className="form-control"
                                                         onChange={handleChange}
-                                                        value={values[input.key]}
+                                                        value={values[input.key] ? values[input.key] : ''}
                                                         onBlur={handleBlur}
                                                         placeholder="Term"
                                                     />
@@ -239,7 +205,7 @@ function GlossaryHandler(props) {
                                                         type="text"
                                                         className="form-control"
                                                         onChange={handleChange}
-                                                        value={values[input.value]}
+                                                        value={values[input.value] ? values[input.key] : ''}
                                                         onBlur={handleBlur}
                                                         placeholder="Definition"
                                                     />

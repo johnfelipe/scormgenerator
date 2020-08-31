@@ -51,10 +51,6 @@ function CourseEditor() {
     const coursemetaActionMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
-    // const [resourceFilesObject, setResourceFilesObject] = useState([]);
-    // const [transcriptFileObject, setTranscriptFileObject] = useState([]);
-    // const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
-    // const [mediaFilesObject, setMediaFilesObject] = useState([]);
     // const [courseNameExist, setCourseNameExist] = useState(false);
     const [lessonId, setLessonId] = useState(-1);
     // const [courseId, setCourseId] = useState(-1);
@@ -282,8 +278,6 @@ function CourseEditor() {
                                 </div>
                                 <div className="col-md-4 mt-2">
                                     <GlossaryHandler
-                                        // addGlossaryEntries={this.props.addGlossaryEntries}
-                                        // setGlossaryEntryObject={setGlossaryEntryObject}
                                         glossaryData={glossaryEntryObject}
                                         cid={cid}
                                     />
