@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +17,21 @@ function GlossaryHandler(props) {
     const [modalShow, setModalShow] = useState(false);
     const [inputCounter, setInputCounter] = useState(glossaryData.length > 0 ? glossaryData.length : 1);
     const [inputObject, setInputObject] = useState([{key: 'glossaryKey1', value: 'glossaryValue1'}]);
+
+    useEffect(() => {
+        let inputObj = [];
+        let i = 0;
+
+        if (glossaryData.length > 0) {
+            for (; i < glossaryData.length; i++) {
+                inputObj.push({key: 'glossaryKey' + (i + 1), value: 'glossaryValue' + (i + 1), cmid: glossaryData[i].cmid});
+            }
+
+            setInputCounter(i);
+            setInputCounter(glossaryData.length);
+            setInputObject(inputObj);
+        }
+    }, [glossaryData]);
     
     // constructor(props) {
     //     super(props);
@@ -51,9 +66,12 @@ function GlossaryHandler(props) {
         //if prop does not exit in the initialValues object,
         // pluck off the name and value props and add it to the initialValues object;
         inputs.forEach((field, index) => {
-            if(!initialValues[field.key]) {
-                initialValues[field.key] = glossaryData[index] ? glossaryData[index].key : '';
-                initialValues[field.value] = glossaryData[index] ? glossaryData[index].value : '';
+            if (glossaryData[index]) {
+                const rvalue = JSON.parse(glossaryData[index].rvalue);
+                if(!initialValues[field.key]) {
+                    initialValues[field.key] = glossaryData[index] ? rvalue.key : '';
+                    initialValues[field.value] = glossaryData[index] ? rvalue.value : '';
+                }
             }
         });
     
@@ -101,14 +119,22 @@ function GlossaryHandler(props) {
             if (object.hasOwnProperty(key)) {
                 if (key.includes("glossaryKey")) {
                     if (object[key] !== "") {
-                        glossaryArr[keyCount-1] = { ...glossaryArr[keyCount-1], key: object[key] };
+                        if (inputObject[keyCount-1].cmid) {
+                            glossaryArr[keyCount-1] = { ...glossaryArr[keyCount-1], key: object[key], cmid: inputObject[keyCount-1].cmid };
+                        } else {
+                            glossaryArr[keyCount-1] = { ...glossaryArr[keyCount-1], key: object[key] };
+                        }
                         keyCount++;
                     } else {
                         keyCount++;
                     }
                 } else if (key.includes("glossaryValue")){
                     if (object[key] !== "") {
-                        glossaryArr[valueCount-1] = { ...glossaryArr[valueCount-1], value: object[key] };
+                        if (inputObject[valueCount-1].cmid) {
+                            glossaryArr[valueCount-1] = { ...glossaryArr[valueCount-1], value: object[key], cmid: inputObject[valueCount-1].cmid };
+                        } else {
+                            glossaryArr[valueCount-1] = { ...glossaryArr[valueCount-1], value: object[key] };
+                        }
                         valueCount++;
                     } else {
                         valueCount++;
@@ -117,15 +143,24 @@ function GlossaryHandler(props) {
             }
         }
 
+        console.log(glossaryArr);
+
         for ( let i = 0; i < glossaryArr.length; i++) {
-            console.log(glossaryArr[i]);
-            const data = {
-                cid: cid,
-                rkey: 'glossary',
-                rvalue: JSON.stringify(glossaryArr[i]),
-            }
+            if(glossaryArr[i].cmid) {
+                const data = {
+                    rvalue: JSON.stringify(glossaryArr[i]),
+                }
+                
+                dispatch(coursemetaActions.updateCoursemeta(data, glossaryArr[i].cmid));
+            } else {
+                const data = {
+                    cid: cid,
+                    rkey: 'glossary',
+                    rvalue: JSON.stringify(glossaryArr[i]),
+                }
             
-            dispatch(coursemetaActions.createCoursemeta(data));
+                dispatch(coursemetaActions.createCoursemeta(data));
+            }
         }
         
         // this.props.glossaryHandler(glossaryArr);
@@ -134,6 +169,7 @@ function GlossaryHandler(props) {
     }
 
     const initialValues = getInitialValues(inputObject);
+    console.log(initialValues);
 
     const glossaryModal = (
         <Modal
@@ -155,6 +191,7 @@ function GlossaryHandler(props) {
 
                     onSubmit={values => {
                         console.log(values);
+                        console.log(inputObject);
                         onSave(values);
                     }}
                 >
@@ -199,6 +236,7 @@ function GlossaryHandler(props) {
                                                 </div>
                                                 <div className="col-md-1 mt-1 mb-1 pl-0 pr-0 text-center">
                                                     <button
+                                                        type="button"
                                                         className="btn btn-danger remove-file-input-row"
                                                         title="Remove"
                                                         onClick={() => {

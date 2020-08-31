@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import * as Yup from 'yup';
@@ -20,10 +20,6 @@ function TranscriptHandler(props) {
     const SUPPORTED_FORMATS = [
         "application/pdf"
     ];
-
-    useEffect(() => {
-        console.log(transcriptFileData);
-    }, [transcriptFileData]);
 
     const onSave = (object) => {
         if (object['transcriptFile'].name) {

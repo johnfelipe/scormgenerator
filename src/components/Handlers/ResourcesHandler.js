@@ -35,7 +35,7 @@ function ResourcesHandler(props) {
             setInputCounter(resourceFilesData.length);
             setInputObject(inputObj);
         }
-    }, [resourceFilesData.length]);
+    }, [resourceFilesData]);
 
     const addInput = () => {
         let currentCount = inputCounter;
