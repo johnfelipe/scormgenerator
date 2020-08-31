@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -71,6 +71,7 @@ class SlideHandler extends Component {
             features: [
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
@@ -136,9 +137,6 @@ class SlideHandler extends Component {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
         }
-        
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
 
         if (this.props.sid) {
             this.props.getSlideColumns(this.props.sid);
@@ -155,10 +153,10 @@ class SlideHandler extends Component {
             this.props.getSlideColumns(this.props.sid);
         }
         
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
         // console.log('this.props.currentSlide');
         // console.log(this.props.currentSlide);
         // console.log('this.props.currentSlideIndex');
@@ -603,6 +601,24 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
+        } else if (featureType === "sgCharts") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'sgCharts',
+                output: {
+                    chartType: 'pie',
+                    dataSets: {},
+                    chartOptions: {}
+                },
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
+            };
         }
 
         const columns = this.state.column;
@@ -968,6 +984,32 @@ class SlideHandler extends Component {
                                 },
                                 tabStyle: 'tabs',
                                 tabPosition: 'top',
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {}
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
                             },
                             css: '',
                         };
@@ -3320,18 +3362,18 @@ class SlideHandler extends Component {
     onSave = (slideObj, sid, lessonIndex, columnArray) => {
         if (this.props.action === "add") {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
-            console.log("add");
-            console.log(slideObj);
+            // console.log("add");
+            // console.log(slideObj);
         } else if (this.props.action === "edit") {
             this.props.updateSlide(slideObj, sid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
             // creates column
             this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
-            console.log("edit");
-            console.log(slideObj);
-            console.log(this.props.currentSlideIndex);
-            console.log(this.props.lessonIndex);
+            // console.log("edit");
+            // console.log(slideObj);
+            // console.log(this.props.currentSlideIndex);
+            // console.log(this.props.lessonIndex);
         }
         
         this.setModalShow(false, 'save')
@@ -3374,8 +3416,6 @@ class SlideHandler extends Component {
                                 columns: [],
                                 weight: this.props.slideWeight,
                             }
-
-                            // const sid = this.props.slides.length > 0 ? this.props.slides[this.props.slides.length-1].sid : 1;
 
                             this.onSave(data, this.props.sid, this.props.lessonIndex, this.state.column);
                         }}
