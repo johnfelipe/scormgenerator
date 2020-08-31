@@ -13,6 +13,7 @@ import Card from './Features/Card/Card';
 import Image from './Features/Image';
 import List from './Features/List/List';
 import Tabs from './Features/Tabs/Tabs';
+import Charts from './Features/Charts/SgCharts';
 
 class Editor extends Component {
 
@@ -280,6 +281,23 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
                     // setMediaFiles={this.setMediaFiles}
+                    setActiveOutputIndex={this.props.setActiveOutputIndex}
+                />
+            );
+        } else if (this.props.feature === "sgCharts") {
+            editorContent = (
+                <Charts
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
                     setActiveOutputIndex={this.props.setActiveOutputIndex}
                 />
             );
