@@ -46,13 +46,13 @@ function CourseEditor() {
     const lessonActionMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
     const currentCoursemeta = useSelector(state => state.coursemeta.currentCoursemeta ? state.coursemeta.currentCoursemeta : {});
     const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
-    // const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
+    const transcriptFileObject = useSelector(state => state.coursemeta.coursemetasTranscript ? state.coursemeta.coursemetasTranscript : []);
     // const glossaryEntryObject = useSelector(state => state.coursemeta.coursemetasGlossary ? state.coursemeta.coursemetasGlossary : []);
     const coursemetaActionMsg = useSelector(state => state.coursemeta.message ? state.coursemeta.message : '');
 
     const [currentClickedLessonId, setCurrentClickedLessonId] = useState('');
     // const [resourceFilesObject, setResourceFilesObject] = useState([]);
-    const [transcriptFileObject, setTranscriptFileObject] = useState([]);
+    // const [transcriptFileObject, setTranscriptFileObject] = useState([]);
     const [glossaryEntryObject, setGlossaryEntryObject] = useState([]);
     // const [mediaFilesObject, setMediaFilesObject] = useState([]);
     // const [courseNameExist, setCourseNameExist] = useState(false);
@@ -65,6 +65,7 @@ function CourseEditor() {
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "resources"));
+        dispatch(coursemetaActions.getCoursemetaByRkey(cid, "transcript"));
         // setCourseId(cid);
     }, [dispatch, cid, currentLesson, currentFile, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
 
@@ -235,44 +236,49 @@ function CourseEditor() {
                             <div className="row">
                                 <div className="col-md-4 mt-2">
                                     <ResourcesHandler
-                                        // addResourceFiles={this.props.addResourceFiles}
-                                        // setResourceFilesObject={setResourceFilesObject}
                                         resourceFilesData={resourceFilesObject}
                                         cid={cid}
                                         uid={currentCourse && currentCourse.uid}
                                     />
                                     {
                                         resourceFilesObject.length !== 0 ? 
-                                        <span className="text-break">
-                                            Files Uploaded: &nbsp;
-                                            {resourceFilesObject.map((item, index) => (
-                                                index + 1 !== resourceFilesObject.length ?
-                                                    <strong key={index}>
-                                                        <label key={index} >{item.rvalue.split('/')[5]},</label>
-                                                    </strong>
-                                                :
-                                                    <strong key={index}>
-                                                        <label key={index} >{item.rvalue.split('/')[5]}</label>
-                                                    </strong>
-                                            ))}</span> : <span>
-                                        </span>
+                                            <span className="text-break">
+                                                Files Uploaded: &nbsp;
+                                                {resourceFilesObject.map((item, index) => (
+                                                    index + 1 !== resourceFilesObject.length ?
+                                                        <strong key={"resources-" + index}>
+                                                            <label key={index} >{item.rvalue.split('/')[5]},&nbsp;</label>
+                                                        </strong>
+                                                    :
+                                                        <strong key={index}>
+                                                            <label key={index} >{item.rvalue.split('/')[5]}</label>
+                                                        </strong>
+                                                ))}
+                                            </span>
+                                        :
+                                            <span></span>
                                     }
                                 </div>
                                 <div className="col-md-4 mt-2">
                                     <div className="text-center">
                                         <TranscriptHandler
                                             // addTranscriptFile={this.props.addTranscriptFile}
-                                            setTranscriptFileObject={setTranscriptFileObject}
+                                            // setTranscriptFileObject={setTranscriptFileObject}
                                             transcriptFileData={transcriptFileObject}
+                                            cid={cid}
+                                            uid={currentCourse && currentCourse.uid}
                                         />
                                     </div>
                                     {
                                         transcriptFileObject.length !== 0 ? 
-                                        <span>
-                                        File Uploaded: &nbsp;
-                                        {transcriptFileObject.map((item) => (
-                                            <strong><label> {item.transcriptFile.name}</label></strong>
-                                        ))}</span> : <span></span>
+                                            <span className="text-break">
+                                                File Uploaded: &nbsp;
+                                                {transcriptFileObject.map((item, index) => (
+                                                    <strong key={"transcript-" + index}><label> {item.rvalue.split('/')[5]}</label></strong>
+                                                ))}
+                                            </span>
+                                        :
+                                            <span></span>
                                     }
                                 </div>
                                 <div className="col-md-4 mt-2">
