@@ -80,7 +80,7 @@ function SgCharts(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-text-editor">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
@@ -109,6 +109,44 @@ function SgCharts(props) {
                                     <option value="pie">Pie</option>
                                     <option value="doughnut">Doughnut</option>
                                 </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Upload data from csv.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Data</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/>
+                                        <input
+                                            type="file"
+                                            style={{ display: "none"}}
+                                            onChange={handleImageChange}
+                                            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        />
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Upload csv file"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name
+                                    }
+                                    readOnly
+                                />
                             </div>
                         </li>
                     </ul>
