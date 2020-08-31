@@ -25,13 +25,16 @@ function ResourcesHandler(props) {
     useEffect(() => {
         let inputObj = [];
         let i = 0;
-        for (; i < resourceFilesData.length; i++) {
-            inputObj.push({name: 'resourceFile' + (i + 1)});
-        }
 
-        setInputCounter(i);
-        setInputCounter(resourceFilesData.length);
-        setInputObject(inputObj);
+        if (resourceFilesData.length > 0) {
+            for (; i < resourceFilesData.length; i++) {
+                inputObj.push({name: 'resourceFile' + (i + 1)});
+            }
+
+            setInputCounter(i);
+            setInputCounter(resourceFilesData.length);
+            setInputObject(inputObj);
+        }
     }, [resourceFilesData.length]);
 
     const addInput = () => {
