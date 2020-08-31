@@ -285,6 +285,7 @@ function CourseEditor() {
                                         // addGlossaryEntries={this.props.addGlossaryEntries}
                                         // setGlossaryEntryObject={setGlossaryEntryObject}
                                         glossaryData={glossaryEntryObject}
+                                        cid={cid}
                                     />
                                 </div>
                             </div>
