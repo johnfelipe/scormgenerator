@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import CSVReader from "react-csv-reader";
+
+// font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+
+// react bootstrap
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+
+// services
 import { galleryService } from '../../../../services';
 
 // modal
@@ -14,6 +21,13 @@ function SgCharts(props) {
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
+
+    const parseOptions = {
+        header: true,
+        dynamicTyping: true,
+        skipEmptyLines: true,
+        transformHeader: header => header.toLowerCase().replace(/\W/g, "_")
+    }
 
     const handleImageChange = (e) => {
         let files = e.target.files;
@@ -65,6 +79,37 @@ function SgCharts(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const handleCsvUpload = (data, fileInfo) => {
+        const currentColumnObj = currentColumn;
+        // let files = e.target.files;
+        // let reader = new FileReader();
+
+        // currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.url = files[0].name;
+        // reader.readAsDataURL(files[0])
+        // reader.onloadend = () => {
+        //     currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.url = reader.result;
+        //     csvHandler(reader.result);
+        // }
+        const labels = data.map(function(d) {
+            return d.name;
+        });
+
+        const dataSet = data.map(function(d) {
+            return +d.weeks;
+        });
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name
+        console.log(data, fileInfo);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    // const csvHandler = (csvFile) => {
+
+    // }
 
     return (
         <div className="sg-controls">
@@ -129,11 +174,16 @@ function SgCharts(props) {
                                 <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
                                         <FontAwesomeIcon icon={faUpload}/>
-                                        <input
+                                        {/* <input
                                             type="file"
                                             style={{ display: "none"}}
-                                            onChange={handleImageChange}
+                                            onChange={handleCsvUpload}
                                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                        /> */}
+                                        <CSVReader
+                                            cssClass="d-none"
+                                            onFileLoaded={handleCsvUpload}
+                                            parserOptions={parseOptions}
                                         />
                                     </span>
                                 </label>
@@ -142,8 +192,10 @@ function SgCharts(props) {
                                     placeholder="Upload csv file"
                                     className="form-control w-50"
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name ?
+                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.name
+                                        :
+                                            ''
                                     }
                                     readOnly
                                 />
