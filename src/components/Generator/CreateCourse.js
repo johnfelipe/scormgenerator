@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -30,6 +31,50 @@ function CreateCourse() {
     useEffect(() => {
         dispatch(courseActions.getAll());
     }, [dispatch, currentCourse]);
+
+    // a little function to help us with reordering the result
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+    
+        return result;
+    };
+
+    const onDragEnd = result => {
+        const { source, destination } = result;
+
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if ((source.droppableId === "courses") && (destination.droppableId === "courses") && (source.droppableId === destination.droppableId)) {
+            const courseList = courses;
+
+            const reordered_courses = reorder(
+                courseList,
+                source.index,
+                destination.index
+            );
+
+            let updatedCourseList = reordered_courses;
+
+            for (let i = 0; i < updatedCourseList.length; i++) {
+                const data = {
+                    weight: i
+                }
+                updatedCourseList[i].weight = i;
+                dispatch(courseActions.updateCourse(data, updatedCourseList[i].cid));
+
+                // roles = roles.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+            }
+
+            updatedCourseList = updatedCourseList.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+
+            dispatch(courseActions.updateCourseList(updatedCourseList));
+        }
+    }
 
     return (
         <div id="generator-container">
@@ -183,28 +228,48 @@ function CreateCourse() {
                             <div className="row">
                                 <div className="col-md-12 mt-2">
                                     <div id="course-container">
-                                        <div className="course-container">
-                                            {courses.map((course, courseIndex) => (
-                                                <div
-                                                    key={"course-" + courseIndex}
-                                                    className="course-item p-2"
-                                                    data-course-id={course.cid}
-                                                >
-                                                    <div className="row m-0">
-                                                        <div className="col-md-8 py-2">{course.title}</div>
-                                                        <div className="col-md-4">
-                                                            <a
-                                                                href={"/course/" + course.cid}
-                                                                className="btn btn-primary text-white float-right"
-                                                                role="button"
-                                                            >
-                                                                Go to course
-                                                            </a>
-                                                        </div>
+                                        <DragDropContext onDragEnd={onDragEnd}>
+                                            <Droppable droppableId="courses">
+                                                {(provided) => (
+                                                    <div
+                                                        className="course-container"
+                                                        ref={provided.innerRef}
+                                                    >
+                                                        {courses.map((course, courseIndex) => (
+                                                            <Draggable
+                                                                key={'courses-' + courseIndex}
+                                                                draggableId={'courses-' + courseIndex}
+                                                                index={courseIndex}>
+                                                                {(provided) => (
+                                                                    <div
+                                                                        key={"course-" + courseIndex}
+                                                                        className="course-item p-2"
+                                                                        data-course-id={course.cid}
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                    >
+                                                                        <div className="row m-0">
+                                                                            <div className="col-md-8 py-2">{course.title}</div>
+                                                                            <div className="col-md-4">
+                                                                                <a
+                                                                                    href={"/course/" + course.cid}
+                                                                                    className="btn btn-primary text-white float-right"
+                                                                                    role="button"
+                                                                                >
+                                                                                    Go to course
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        ))}
+                                                        {provided.placeholder}
                                                     </div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                                )}
+                                            </Droppable>
+                                        </DragDropContext>
                                     </div>
                                 </div>
                             </div>
