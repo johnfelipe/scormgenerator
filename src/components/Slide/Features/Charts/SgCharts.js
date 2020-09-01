@@ -22,6 +22,7 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState([]);
+    const [sampleValue, setSampleValue] = useState('');
 
     const parseOptions = {
         header: true,
@@ -225,13 +226,13 @@ function SgCharts(props) {
                             </OverlayTrigger>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value=''
-                                    // onChange={(event) => setChartType(event.target.value)}
+                                    value={sampleValue}
+                                    onChange={(event) => setSampleValue(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >
                                     {properties.length > 0 ?
                                         properties.map((item, index) => (
-                                            <option key={'property-' + index} value="pie">{item}</option>
+                                            <option key={'property-' + index} value={item}>{item}</option>
                                         ))
                                     :
                                         <option value="">No option shown yet.</option>
