@@ -75,15 +75,45 @@ function CourseEditor() {
         return result;
     };
 
-    const onDragEnd = result => {
+    const onDragEndLessons = result => {
         const { source, destination } = result;
-        
+
         // dropped outside the list
         if (!destination) {
             return;
         }
 
-        if (source.droppableId === destination.droppableId) {
+        if ((source.droppableId === "lessons") && (destination.droppableId === "lessons") && (source.droppableId === destination.droppableId)) {
+            const courseLessonList = courseLessons;
+
+            const reordered_lessons = reorder(
+                courseLessonList,
+                source.index,
+                destination.index
+            );
+            let lessons = reordered_lessons;
+
+            for (let i = 0; i < lessons.length; i++) {
+                const data = {
+                    weight: i
+                }
+                lessons[i].weight = i;
+                dispatch(lessonActions.updateLesson(data, lessons[i].lid));
+            }
+
+            dispatch(courseActions.updateCourseLessonsList(lessons));
+        }
+    }
+
+    const onDragEndSlides = result => {
+        const { source, destination } = result;
+
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+        
+        if ((source.droppableId === "slides") && (destination.droppableId === "slides") && (source.droppableId === destination.droppableId)) {
             const lessonSlideList = courseLessons[currentClickedLessonId].slides;
 
             const reordered_slides = reorder(
@@ -292,160 +322,184 @@ function CourseEditor() {
                             <div className="row">
                                 <div className="col-md-12 mt-2">
                                     <div id="lesson-container">
-                                        <div className="lesson-container">
-                                            {courseLessons && courseLessons.map((lesson, lessonIndex) => (
-                                                <Accordion key={lessonIndex}>
-                                                    <Card>
-                                                        <Card.Header>
-                                                            <Accordion.Toggle
-                                                                as={Button}
-                                                                variant="link"
-                                                                eventKey="0"
-                                                                className="pr-0"
-                                                                onClick={() => {
-                                                                    setCurrentClickedLessonId(lessonIndex);
-                                                                    setLid(lesson.lid);
-                                                                }}
-                                                            >
-                                                                <span>{lesson.title}</span>
-                                                            </Accordion.Toggle>
-                                                            <LessonHandler
-                                                                // editLessonNameChange={this.props.editCourseLessonName}
-                                                                action="edit"
-                                                                currentLessonName={lesson.title}
-                                                                id={lessonIndex}
-                                                                cid={lesson.cid}
-                                                                uid={lesson.uid}
-                                                                lid={lesson.lid}
-                                                            />
+                                        <DragDropContext onDragEnd={onDragEndLessons}>
+                                            <Droppable droppableId="lessons">
+                                                {(provided) => (
+                                                    <div
+                                                        className="lesson-container"
+                                                        ref={provided.innerRef}
+                                                    >
+                                                        {courseLessons && courseLessons.map((lesson, lessonIndex) => (
+                                                            <Draggable
+                                                                key={'courseLesson-' + lessonIndex}
+                                                                draggableId={'courseLesson-' + lessonIndex}
+                                                                index={lessonIndex}>
+                                                                {(provided) => (
+                                                                    <div
+                                                                        id={"lesson-item-" + lessonIndex}
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                    >
+                                                                        <Accordion key={lessonIndex}>
+                                                                            <Card>
+                                                                                <Card.Header>
+                                                                                    <Accordion.Toggle
+                                                                                        as={Button}
+                                                                                        variant="link"
+                                                                                        eventKey="0"
+                                                                                        className="pr-0"
+                                                                                        onClick={() => {
+                                                                                            setCurrentClickedLessonId(lessonIndex);
+                                                                                            setLid(lesson.lid);
+                                                                                        }}
+                                                                                    >
+                                                                                        <span>{lesson.title}</span>
+                                                                                    </Accordion.Toggle>
+                                                                                    <LessonHandler
+                                                                                        // editLessonNameChange={this.props.editCourseLessonName}
+                                                                                        action="edit"
+                                                                                        currentLessonName={lesson.title}
+                                                                                        id={lessonIndex}
+                                                                                        cid={lesson.cid}
+                                                                                        uid={lesson.uid}
+                                                                                        lid={lesson.lid}
+                                                                                    />
 
-                                                            <button
-                                                                className="btn btn-danger float-right lesson-item-remove-btn"
-                                                                title="Remove"
-                                                                onClick={() => {
-                                                                    // this.props.deleteLesson(lessonIndex)
-                                                                    dispatch(lessonActions.deleteLesson(lesson.lid));
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon icon={faWindowClose} />
-                                                            </button>
-                                                        </Card.Header>
-                                                        <Accordion.Collapse eventKey="0">
-                                                            <Card.Body>
-                                                                <SlideHandler
-                                                                    action="add"
-                                                                    lessonIndex={lessonIndex}
-                                                                    slideItemId={
-                                                                        lesson.slides ?
-                                                                            lesson.slides.length > 0 ?
-                                                                                "slide-item-" + lesson.slides.length
-                                                                            :
-                                                                                "slide-item-" + 0
-                                                                        :
-                                                                            "slide-item-" + 0
-                                                                    }
-                                                                    lessonId={lessonId}
-                                                                    cid={currentCourse && currentCourse.cid}
-                                                                    uid={currentCourse && currentCourse.uid}
-                                                                    lid={lid}
-                                                                    sid={
-                                                                        lesson.slides ?
-                                                                            lesson.slides.length > 0 ?
-                                                                                lesson.slides[lesson.slides.length - 1].sid + 1
-                                                                            :
-                                                                                1
-                                                                        :
-                                                                            1
-                                                                    }
-                                                                    currentSlideIndex={
-                                                                        lesson.slides ?
-                                                                            lesson.slides.length > 0 ?
-                                                                                lesson.slides.length
-                                                                            :
-                                                                                0
-                                                                        :
-                                                                            0
-                                                                    }
-                                                                    slideWeight={
-                                                                        lesson.slides ?
-                                                                            lesson.slides.length > 0 ?
-                                                                                lesson.slides.length
-                                                                            :
-                                                                                1
-                                                                        :
-                                                                            1
-                                                                    }
-                                                                />
-                                                                {lesson.slides && lesson.slides.length > 0 ?
-                                                                    <DragDropContext onDragEnd={onDragEnd}>
-                                                                        <Droppable droppableId="slides">
-                                                                            {(provided) => (
-                                                                                <div
-                                                                                    className="slide-container mt-3"
-                                                                                    ref={provided.innerRef}
-                                                                                >
-                                                                                    {lesson.slides.map((slide, slideIndex) => (
-                                                                                        <Draggable
-                                                                                            key={slideIndex}
-                                                                                            draggableId={'' + slideIndex}
-                                                                                            index={slideIndex}>
-                                                                                            {(provided) => (
-                                                                                                <div
-                                                                                                    id={"slide-item-" + slideIndex}
-                                                                                                    className="slide-item"
-                                                                                                    ref={provided.innerRef}
-                                                                                                    {...provided.draggableProps}
-                                                                                                    {...provided.dragHandleProps}
-                                                                                                >
-                                                                                                    <span className="btn pr-1">{slide.title}</span>
-                                                                                                    <SlideHandler
-                                                                                                        sid={slide.sid}
-                                                                                                        cid={currentCourse && currentCourse.cid}
-                                                                                                        uid={currentCourse && currentCourse.uid}
-                                                                                                        lid={lesson.lid}
-                                                                                                        currentSlideName={slide.title}
-                                                                                                        currentSlideSubtitle={slide.subtitle}
-                                                                                                        currentColumns={slide.columns}
-                                                                                                        hide_title={slide.hide_title}
-                                                                                                        currentClickedLessonId={currentClickedLessonId}
-                                                                                                        action="edit"
-                                                                                                        currentSlideIndex={slideIndex}
-                                                                                                        slideItemId={"slide-item-" + slideIndex}
-                                                                                                        lessonIndex={lessonIndex}
-                                                                                                        // setSlideItemIndex={setSlideItemIndex}
-                                                                                                        // addMediaFiles={this.props.addMediaFiles}
-                                                                                                        // mediaFilesObject={mediaFilesObject}
-                                                                                                        // setMediaFilesObject={setMediaFilesObject}
-                                                                                                    />
-                                                                                                    <button 
-                                                                                                        className="btn btn-danger float-right lesson-item-remove-btn" 
-                                                                                                        title="Remove" 
-                                                                                                        onClick={() => {
-                                                                                                            // this.props.deleteSlide(slideIndex, currentClickedLessonId)
-                                                                                                            dispatch(slideActions.deleteSlide(slide.sid));
-                                                                                                            dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faWindowClose} />
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            )}
-                                                                                        </Draggable>
-                                                                                    ))}
-                                                                                    {provided.placeholder}
-                                                                                </div>
-                                                                            )}
-                                                                        </Droppable>
-                                                                    </DragDropContext>
-                                                                :
-                                                                    <div className="mt-2">No slide added yet.</div>
-                                                                }
-                                                            </Card.Body>
-                                                        </Accordion.Collapse>
-                                                    </Card>
-                                                </Accordion>
-                                            ))}
-                                        </div>
+                                                                                    <button
+                                                                                        className="btn btn-danger float-right lesson-item-remove-btn"
+                                                                                        title="Remove"
+                                                                                        onClick={() => {
+                                                                                            // this.props.deleteLesson(lessonIndex)
+                                                                                            dispatch(lessonActions.deleteLesson(lesson.lid));
+                                                                                        }}
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faWindowClose} />
+                                                                                    </button>
+                                                                                </Card.Header>
+                                                                                <Accordion.Collapse eventKey="0">
+                                                                                    <Card.Body>
+                                                                                        <SlideHandler
+                                                                                            action="add"
+                                                                                            lessonIndex={lessonIndex}
+                                                                                            slideItemId={
+                                                                                                lesson.slides ?
+                                                                                                    lesson.slides.length > 0 ?
+                                                                                                        "slide-item-" + lesson.slides.length
+                                                                                                    :
+                                                                                                        "slide-item-" + 0
+                                                                                                :
+                                                                                                    "slide-item-" + 0
+                                                                                            }
+                                                                                            lessonId={lessonId}
+                                                                                            cid={currentCourse && currentCourse.cid}
+                                                                                            uid={currentCourse && currentCourse.uid}
+                                                                                            lid={lid}
+                                                                                            sid={
+                                                                                                lesson.slides ?
+                                                                                                    lesson.slides.length > 0 ?
+                                                                                                        lesson.slides[lesson.slides.length - 1].sid + 1
+                                                                                                    :
+                                                                                                        1
+                                                                                                :
+                                                                                                    1
+                                                                                            }
+                                                                                            currentSlideIndex={
+                                                                                                lesson.slides ?
+                                                                                                    lesson.slides.length > 0 ?
+                                                                                                        lesson.slides.length
+                                                                                                    :
+                                                                                                        0
+                                                                                                :
+                                                                                                    0
+                                                                                            }
+                                                                                            slideWeight={
+                                                                                                lesson.slides ?
+                                                                                                    lesson.slides.length > 0 ?
+                                                                                                        lesson.slides.length
+                                                                                                    :
+                                                                                                        1
+                                                                                                :
+                                                                                                    1
+                                                                                            }
+                                                                                        />
+                                                                                        {lesson.slides && lesson.slides.length > 0 ?
+                                                                                            <DragDropContext onDragEnd={onDragEndSlides}>
+                                                                                                <Droppable droppableId="slides">
+                                                                                                    {(provided) => (
+                                                                                                        <div
+                                                                                                            className="slide-container mt-3"
+                                                                                                            ref={provided.innerRef}
+                                                                                                        >
+                                                                                                            {lesson.slides.map((slide, slideIndex) => (
+                                                                                                                <Draggable
+                                                                                                                    key={'lessonSlide-' + slideIndex}
+                                                                                                                    draggableId={'lessonSlide-' + slideIndex}
+                                                                                                                    index={slideIndex}>
+                                                                                                                    {(provided) => (
+                                                                                                                        <div
+                                                                                                                            id={"slide-item-" + slideIndex}
+                                                                                                                            className="slide-item"
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+                                                                                                                        >
+                                                                                                                            <span className="btn pr-1">{slide.title}</span>
+                                                                                                                            <SlideHandler
+                                                                                                                                sid={slide.sid}
+                                                                                                                                cid={currentCourse && currentCourse.cid}
+                                                                                                                                uid={currentCourse && currentCourse.uid}
+                                                                                                                                lid={lesson.lid}
+                                                                                                                                currentSlideName={slide.title}
+                                                                                                                                currentSlideSubtitle={slide.subtitle}
+                                                                                                                                currentColumns={slide.columns}
+                                                                                                                                hide_title={slide.hide_title}
+                                                                                                                                currentClickedLessonId={currentClickedLessonId}
+                                                                                                                                action="edit"
+                                                                                                                                currentSlideIndex={slideIndex}
+                                                                                                                                slideItemId={"slide-item-" + slideIndex}
+                                                                                                                                lessonIndex={lessonIndex}
+                                                                                                                                // setSlideItemIndex={setSlideItemIndex}
+                                                                                                                                // addMediaFiles={this.props.addMediaFiles}
+                                                                                                                                // mediaFilesObject={mediaFilesObject}
+                                                                                                                                // setMediaFilesObject={setMediaFilesObject}
+                                                                                                                            />
+                                                                                                                            <button 
+                                                                                                                                className="btn btn-danger float-right lesson-item-remove-btn" 
+                                                                                                                                title="Remove" 
+                                                                                                                                onClick={() => {
+                                                                                                                                    // this.props.deleteSlide(slideIndex, currentClickedLessonId)
+                                                                                                                                    dispatch(slideActions.deleteSlide(slide.sid));
+                                                                                                                                    dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
+                                                                                                                                }}
+                                                                                                                            >
+                                                                                                                                <FontAwesomeIcon icon={faWindowClose} />
+                                                                                                                            </button>
+                                                                                                                        </div>
+                                                                                                                    )}
+                                                                                                                </Draggable>
+                                                                                                            ))}
+                                                                                                            {provided.placeholder}
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Droppable>
+                                                                                            </DragDropContext>
+                                                                                        :
+                                                                                            <div className="mt-2">No slide added yet.</div>
+                                                                                        }
+                                                                                    </Card.Body>
+                                                                                </Accordion.Collapse>
+                                                                            </Card>
+                                                                        </Accordion>
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        ))}
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )}
+                                            </Droppable>
+                                        </DragDropContext>
                                     </div>
                                 </div>
                             </div>
