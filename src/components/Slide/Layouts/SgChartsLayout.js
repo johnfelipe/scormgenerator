@@ -41,10 +41,13 @@ function SgChartsLayout(props) {
 
     return (
         <div id="sg-charts-layout" className="w-100 h-100 p-3 border border-light">
-            {output.chartType === "pie" ?
+            {output.chartType === "pie" &&  output.dataSets.labels &&  output.dataSets.data ?
                 <Pie data={data} />
             :
-                <Doughnut data={data} />
+                output.chartType === "doughnut" ?
+                    <Doughnut data={data} />
+                :
+                    <span>No chart is shown.</span>
             }
         </div>
     );
