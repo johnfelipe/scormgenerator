@@ -97,6 +97,7 @@ function CreateCourse() {
                             status: 1,
                             type: 'Demo',
                             uid: 1,
+                            weight: 0,
                         }
 
                         dispatch(courseActions.createCourse(data));
