@@ -14,7 +14,7 @@ function isEmpty(obj) {
 }
 
 function checkIfPropertyExist(obj, key) {
-    if (obj !== 'undefined') {
+    if (obj) {
         if(obj.hasOwnProperty(key)) {
             return true;
         } else {

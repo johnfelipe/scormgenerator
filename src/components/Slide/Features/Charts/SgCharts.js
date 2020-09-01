@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CSVReader from "react-csv-reader";
+import MultiSelect from "react-multi-select-component";
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +23,7 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState([]);
-    const [sampleValue, setSampleValue] = useState('');
+    // const [sampleValue, setSampleValue] = useState('');
 
     const parseOptions = {
         header: true,
@@ -84,7 +85,8 @@ function SgCharts(props) {
 
     const handleCsvUpload = (data, fileInfo) => {
         const currentColumnObj = currentColumn;
-        const csvHeaders = []
+        const csvHeaders = [];
+        const csvHeadersObj = [];
         // let files = e.target.files;
         // let reader = new FileReader();
 
@@ -96,13 +98,19 @@ function SgCharts(props) {
         // }
         for (const key of Object.keys(data)) {
             for (const key1 of Object.keys(data[key])) {
+                // if (!csvHeaders.includes(key1)) {
+                //     csvHeaders.push(key1);
+                // }
+
                 if (!csvHeaders.includes(key1)) {
                     csvHeaders.push(key1);
+                    csvHeadersObj.push({label: key1, value: key1});
                 }
             }
         }
 
-        setProperties(csvHeaders);
+        // setProperties(csvHeaders);
+        setProperties(csvHeadersObj);
 
         const labels = data.map(function(d) {
             return d.name;
@@ -225,7 +233,7 @@ function SgCharts(props) {
                                 </div>
                             </OverlayTrigger>
                             <div className="sg-control-input-list-input">
-                                <select
+                                {/* <select
                                     value={sampleValue}
                                     onChange={(event) => setSampleValue(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
@@ -237,7 +245,18 @@ function SgCharts(props) {
                                     :
                                         <option value="">No option shown yet.</option>
                                     }
-                                </select>
+                                </select> */}
+                                <span>
+                                    <MultiSelect
+                                        options={properties}
+                                        // value={selectedAnswers}
+                                        onChange={(e) => {
+                                            console.log(e);
+                                        }}
+                                        labelledBy={"Select"}
+                                        disableSearch={true}
+                                    />
+                                </span>
                             </div>
                         </li>
                     </ul>
