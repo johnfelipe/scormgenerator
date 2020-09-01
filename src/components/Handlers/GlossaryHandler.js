@@ -173,11 +173,11 @@ function GlossaryHandler(props) {
                 >
                     {props => {
                         const {
-                        values,
-                        isSubmitting,
-                        handleBlur,
-                        handleSubmit,
-                        handleChange,
+                            values,
+                            isSubmitting,
+                            handleBlur,
+                            handleSubmit,
+                            handleChange,
                         } = props;
                         return (
                             <div>

@@ -30,7 +30,7 @@ async function updateLesson(data, id) {
 }
 
 async function getLessonSlides(id) {
-    const response = await API.get('/lessons/' + id + '/slides?pageNo=0&pageSize=10000&sortBy=sid',);
+    const response = await API.get('/lessons/' + id + '/slides?pageNo=0&pageSize=10000&sortBy=weight',);
     return handleResponse(response);
 }
 
