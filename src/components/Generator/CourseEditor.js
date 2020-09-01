@@ -93,10 +93,16 @@ function CourseEditor() {
             );
             let slides = reordered_slides;
 
+            for (let i = 0; i < slides.length; i++) {
+                const data = {
+                    weight: i
+                }
+                slides[i].weight = i;
+                dispatch(slideActions.updateSlide(data, slides[i].sid));
+            }
+
             const lessons = [...courseLessons];
             lessons[currentClickedLessonId].slides = slides;
-
-            // this.props.updateCourseLessons(lessons);
         }
     }
 
