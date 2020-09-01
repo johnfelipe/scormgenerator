@@ -23,7 +23,7 @@ async function getCourse(id) {
 }
 
 async function getCourseLessons(id) {
-    const response = await API.get('/course/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=lid');
+    const response = await API.get('/course/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=weight');
     return handleResponse(response);
 }
 

@@ -16,6 +16,7 @@ export const courseActions = {
     appendSlideColumnsFromCourseLesson,
     deleteSlideColumnFromCourseLesson,
     getLatestLessonSlide,
+    updateCourseLessonsList,
 };
 
 function getAll() {
@@ -222,4 +223,12 @@ function getLatestLessonSlide(lessonId) {
     function request(lessonId) { return { type: courseContants.REQUEST, lessonId } }
     function success(slideObj) { return { type: courseContants.GET_LATEST_LESSON_SLIDE, slideObj } }
     function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function updateCourseLessonsList(courseLessonsList) {
+    return dispatch => {
+        dispatch(success(courseLessonsList));
+    };
+    
+    function success(courseLessonsList) { return { type: courseContants.UPDATE_COURSE_LESSONS_LIST, courseLessonsList } }
 }

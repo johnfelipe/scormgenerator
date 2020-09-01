@@ -122,7 +122,13 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: lessons,
-            }
+            };
+
+        case courseContants.UPDATE_COURSE_LESSONS_LIST:
+            return {
+                ...state,
+                courseLessons: action.courseLessonsList
+            };
 
         case courseContants.GET_LATEST_LESSON_SLIDE:
             return {
