@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -70,6 +70,7 @@ class SlideHandler extends Component {
                 { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
             ],
             features: [
+                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, },
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'card', name: 'Card', icon: faIdCardAlt, },
                 { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
@@ -625,6 +626,20 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
+        } else if (featureType === "accordion") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'accordion',
+                output: [],
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
+            };
         }
 
         const columns = this.state.column;
@@ -1013,6 +1028,28 @@ class SlideHandler extends Component {
                                     url: ''
                                 }
                             },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'accordion') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
                             class: '',
                             id: '',
                             style: {

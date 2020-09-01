@@ -51,11 +51,11 @@ async function getCoursemetaByRkey(cid, rkey) {
         console.log(error);
         response = {
             data: [],
+            status: 200
         };
     }
     
     return handleResponse(response);
-    
 }
 
 function handleResponse(response) {
