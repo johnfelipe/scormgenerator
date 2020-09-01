@@ -21,6 +21,7 @@ function SgCharts(props) {
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
+    const [properties, setProperties] = useState([]);
 
     const parseOptions = {
         header: true,
@@ -82,6 +83,7 @@ function SgCharts(props) {
 
     const handleCsvUpload = (data, fileInfo) => {
         const currentColumnObj = currentColumn;
+        const csvHeaders = []
         // let files = e.target.files;
         // let reader = new FileReader();
 
@@ -91,6 +93,16 @@ function SgCharts(props) {
         //     currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.url = reader.result;
         //     csvHandler(reader.result);
         // }
+        for (const key of Object.keys(data)) {
+            for (const key1 of Object.keys(data[key])) {
+                if (!csvHeaders.includes(key1)) {
+                    csvHeaders.push(key1);
+                }
+            }
+        }
+
+        setProperties(csvHeaders);
+
         const labels = data.map(function(d) {
             return d.name;
         });
@@ -106,10 +118,6 @@ function SgCharts(props) {
 
         props.setColumn(currentColumnObj);
     }
-
-    // const csvHandler = (csvFile) => {
-
-    // }
 
     return (
         <div className="sg-controls">
@@ -199,6 +207,36 @@ function SgCharts(props) {
                                     }
                                     readOnly
                                 />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Choose data to show.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Show data</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value=''
+                                    // onChange={(event) => setChartType(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    {properties.length > 0 ?
+                                        properties.map((item, index) => (
+                                            <option key={'property-' + index} value="pie">{item}</option>
+                                        ))
+                                    :
+                                        <option value="">No option shown yet.</option>
+                                    }
+                                </select>
                             </div>
                         </li>
                     </ul>
