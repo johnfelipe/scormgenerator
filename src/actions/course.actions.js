@@ -130,7 +130,7 @@ function getCourseLessons(id) {
                                             let slideColumns = [];
 
                                             columns.map((columnProps) => {
-                                                const parsedDecodedFeatures = JSON.parse(atob(columnProps.features));
+                                                const parsedDecodedFeatures = JSON.parse(decodeURIComponent(escape(atob(columnProps.features))));
                                                 parsedDecodedFeatures.clid = columnProps.clid;
                                                 parsedDecodedFeatures.sid = columnProps.sid;
                                                 parsedDecodedFeatures.lid = lesson.lid;
