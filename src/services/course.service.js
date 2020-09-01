@@ -5,6 +5,7 @@ export const courseService = {
     createCourse,
     getCourse,
     getCourseLessons,
+    updateCourse,
 };
 
 async function getAll() {
@@ -24,6 +25,11 @@ async function getCourse(id) {
 
 async function getCourseLessons(id) {
     const response = await API.get('/course/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=weight');
+    return handleResponse(response);
+}
+
+async function updateCourse(data, id) {
+    const response = await API.put('/courses/' + id, data);
     return handleResponse(response);
 }
 

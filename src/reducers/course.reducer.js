@@ -22,10 +22,20 @@ export function course(state = initialState, action) {
                 currentCourse: action.course,
             };
 
-        case courseContants.GETALL_COURSE_SUCCESS:
+        case courseContants.UPDATE_SUCCESS:
             return {
                 ...state,
-                courses: action.courses,
+                message: action.course,
+            };
+
+        case courseContants.GETALL_COURSE_SUCCESS:
+            let courseList = action.courses
+
+            courseList = courseList.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+            
+            return {
+                ...state,
+                courses: courseList,
             };
 
         case courseContants.GET_COURSE_SUCCESS:
@@ -128,6 +138,12 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: action.courseLessonsList
+            };
+            
+        case courseContants.UPDATE_COURSE_LIST:
+            return {
+                ...state,
+                courses: action.courseList,
             };
 
         case courseContants.GET_LATEST_LESSON_SLIDE:

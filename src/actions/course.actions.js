@@ -8,6 +8,7 @@ import { slideService } from '../services';
 export const courseActions = {
     getAll,
     createCourse,
+    updateCourse,
     getCourse,
     getCourseLessons,
     appendSlideToCourseLesson,
@@ -17,6 +18,7 @@ export const courseActions = {
     deleteSlideColumnFromCourseLesson,
     getLatestLessonSlide,
     updateCourseLessonsList,
+    updateCourseList,
 };
 
 function getAll() {
@@ -60,6 +62,29 @@ function createCourse(data) {
 
     function request(course) { return { type: courseContants.REQUEST, course } }
     function success(course) { return { type: courseContants.CREATE_SUCCESS, course } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function updateCourse(data, id) {
+    return dispatch => {
+        dispatch(request(data));
+
+        courseService.updateCourse(data, id)
+            .then(
+                course => { 
+                    dispatch(success(course));
+                    // dispatch(alertActions.success('Course created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(course) { return { type: courseContants.REQUEST, course } }
+    function success(course) { return { type: courseContants.UPDATE_SUCCESS, course } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
 
@@ -231,4 +256,12 @@ function updateCourseLessonsList(courseLessonsList) {
     };
     
     function success(courseLessonsList) { return { type: courseContants.UPDATE_COURSE_LESSONS_LIST, courseLessonsList } }
+}
+
+function updateCourseList(courseList) {
+    return dispatch => {
+        dispatch(success(courseList));
+    };
+    
+    function success(courseList) { return { type: courseContants.UPDATE_COURSE_LIST, courseList } }
 }
