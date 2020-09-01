@@ -205,9 +205,6 @@ class SlideHandler extends Component {
                 this.props.createColumn(data);
             } else if (action === 'edit') {
                 console.log('EXECEUTED! EDIT');
-                // console.log(columnArr);
-                // console.log(this.props.slideColumns);
-                // console.log(this.props.slideColumns[index]);
                 if (objectHelpers.isEmpty(this.props.slideColumns[index])) {
                     const data = {
                         sid: sid,
@@ -219,29 +216,12 @@ class SlideHandler extends Component {
                     this.props.createColumn(data);
                     console.log('EXECEUTED!');
                 } else if (columnArr[index].clid) {
-                    // console.log('here');
-                    // console.log(columnArr[index]);
-                    // console.log(columnArr[index].clid);
-                    // console.log(columnArr[index].grid);
-                    // console.log(featuresJson);
-                    // console.log(btoa(unescape(encodeURIComponent(featuresJson))));
-
-                    // const data = {
-                    //     grid: columnArr[index].grid,
-                    //     features: btoa(featuresJson)
-                    // }
-
                     const data = {
                         grid: columnArr[index].grid,
                         features: btoa(unescape(encodeURIComponent(featuresJson)))
                     }
 
                     const id = columnArr[index].clid;
-                    
-                    // console.log('here');
-                    // console.log(columnArr[index]);
-                    // console.log(data);
-                    // console.log(id);
                     this.props.updateColumn(data, id);
                 } else {
                     // console.log('here HERE');
