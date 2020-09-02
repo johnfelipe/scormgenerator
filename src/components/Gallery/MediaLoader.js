@@ -282,19 +282,43 @@ function MediaLoader (props) {
                 :
                     mediaType.includes("audio") ?
                         <div className="text-center">
-                            <ReactAudioPlayer
-                                src={mediaUrl}
-                                controls
-                                title={mediaName}
-                            />
+                            <div>
+                                <textarea 
+                                    value={
+                                        '<iframe width="560" height="315" src="' + mediaUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                                    }
+                                    className="resize-none w-100"
+                                    style={{ height: '100px' }}
+                                    readOnly
+                                />
+                            </div>
+                            <div>
+                                <ReactAudioPlayer
+                                    src={mediaUrl}
+                                    controls
+                                    title={mediaName}
+                                />
+                            </div>
                         </div>
                     :
                         mediaType.includes("video") &&
                             <div className="text-center">
-                                <Player>
-                                    <source src={mediaUrl} />
-                                    <ControlBar autoHide={true}/>
-                                </Player>
+                                <div>
+                                    <textarea 
+                                        value={
+                                            '<iframe width="560" height="315" src="' + mediaUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                                        }
+                                        className="resize-none w-100"
+                                        style={{ height: '100px' }}
+                                        readOnly
+                                    />
+                                </div>
+                                <div>
+                                    <Player>
+                                        <source src={mediaUrl} />
+                                        <ControlBar autoHide={true}/>
+                                    </Player>
+                                </div>
                             </div>
                 }
             </Modal.Body>
