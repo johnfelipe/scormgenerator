@@ -318,6 +318,10 @@
   margin-left: 1.75rem !important;
 }
 
+.resize-none {
+  resize: none !important;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
