@@ -36,13 +36,12 @@ import { galleryService } from '../../services';
 function CourseEditor() {
     
     const dispatch = useDispatch();
-    
     const url = window.location.pathname;
     const cid = url.split('/')[2];
     const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
     const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});
-    const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
+    // const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
     const lessonActionMsg = useSelector(state => state.lesson.message ? state.lesson.message : '');
     const currentCoursemeta = useSelector(state => state.coursemeta.currentCoursemeta ? state.coursemeta.currentCoursemeta : {});
     const resourceFilesObject = useSelector(state => state.coursemeta.coursemetasResources ? state.coursemeta.coursemetasResources : []);
@@ -64,7 +63,7 @@ function CourseEditor() {
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "transcript"));
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "glossary"));
         // setCourseId(cid);
-    }, [dispatch, cid, currentLesson, currentFile, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
+    }, [dispatch, cid, currentLesson, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {

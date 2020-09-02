@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
 
 // redux library
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+// actions
+import { galleryActions } from '../../actions';
 
 // Gallery Components
 import MediaUploader from '../Gallery/MediaUploader';
@@ -11,16 +14,22 @@ import MediaLoader from '../Gallery/MediaLoader';
 function GalleryHandler(props) {
 
     const { uid } = props;
+    const dispatch = useDispatch();
     const [modalShow, setModalShow] = useState(false);
     const [key, setKey] = useState('uploadFiles');
     const [filterType, setFilterType] = useState(false);
     const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : []);
+    const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
 
     useEffect(() => {
         if (modalShow === false) {
             setFilterType("all");
         }
     }, [modalShow, mediaFilesObject]);
+
+    useEffect(() => {
+        dispatch(galleryActions.getAllFiles());
+    }, [dispatch, currentFile]);
 
     const galleryModal = (
         <Modal
