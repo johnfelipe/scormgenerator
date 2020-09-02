@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {RadioGroup, Radio} from 'react-radio-group';
 
 // modal
 import AltTagForm from '../../AlertModal/AltTagForm';
@@ -81,6 +83,14 @@ function Audio(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setShowPlayer = (value) => {
+        const currentColumnObj = currentColumn;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.show = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -108,7 +118,7 @@ function Audio(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleAudioUpload} accept="image/*"/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleAudioUpload} accept="audio/*"/>
                                     </span>
                                 </label>
                                 <input
@@ -121,6 +131,59 @@ function Audio(props) {
                                     }
                                     readOnly
                                 />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Choose whether to show player or not.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Show player</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <RadioGroup
+                                    name="fruit"
+                                    selectedValue={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.show &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.show
+                                    }
+                                    onChange={setShowPlayer}
+                                    className="row m-0"
+                                >
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="yes"
+                                            className="mr-2" 
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="no"
+                                            className="mr-2"
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>No</span>
+                                    </label>
+                                </RadioGroup>
                             </div>
                         </li>
                     </ul>
