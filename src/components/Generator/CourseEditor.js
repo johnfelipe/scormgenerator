@@ -217,7 +217,7 @@ function CourseEditor() {
                                             const formData = new FormData();
 
                                             formData.append('file', event.currentTarget.files[0]);
-                                            formData.append('uid', 1);
+                                            formData.append('uid', currentCourse.uid);
                                             formData.append('alt', event.currentTarget.files[0].name);
 
                                             galleryService.uploadFiles(formData)
@@ -251,6 +251,7 @@ function CourseEditor() {
                                             location="home"
                                             // setMediaFilesObject={setMediaFilesObject}
                                             buttonName="Gallery"
+                                            uid={currentCourse && currentCourse.uid}
                                         />
                                     </div>
                                 </div>

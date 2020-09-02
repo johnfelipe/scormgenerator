@@ -23,6 +23,7 @@ import AltTagForm from '../AlertModal/AltTagForm';
 function MediaUploader(props) {
 
     const dispatch = useDispatch();
+    const { uid } = props;
     const [showSuccessMsg, setShowSuccessMsg] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
     const [modalShow, setModalShow] = useState(false);
@@ -41,7 +42,7 @@ function MediaUploader(props) {
                 const formData = new FormData();
 
                 formData.append('file', files[fileIndex]);
-                formData.append('uid', 1);
+                formData.append('uid', uid);
                 formData.append('alt', files[fileIndex].name);
 
                 dispatch(galleryActions.uploadFiles(formData));
@@ -98,7 +99,7 @@ function MediaUploader(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             dispatch(galleryActions.uploadFiles(formData));
