@@ -34,6 +34,7 @@
     "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",
     "react-multi-select-component": "^3.0.1",
+    "react-radio-group": "^3.0.3",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.1.2",
