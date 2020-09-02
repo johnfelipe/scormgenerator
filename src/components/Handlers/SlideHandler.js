@@ -385,7 +385,13 @@ class SlideHandler extends Component {
         if (featureType === "audio") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'audio',
-                output: 'No audio added.',
+                output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                    }
+                },
                 class: '',
                 id: '',
                 style: {
@@ -722,7 +728,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1105,7 +1117,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1218,7 +1236,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1331,7 +1355,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1443,7 +1473,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1559,7 +1595,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1674,7 +1716,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1790,7 +1838,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1905,7 +1959,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2020,7 +2080,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2136,7 +2202,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2251,7 +2323,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2583,7 +2661,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2698,7 +2782,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2813,7 +2903,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2928,7 +3024,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3043,7 +3145,13 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3717,6 +3825,7 @@ class SlideHandler extends Component {
                                                             correctAnswers={this.state.correctAnswers}
                                                             setMediaFilesObject={this.props.setMediaFilesObject}
                                                             setActiveOutputIndex={this.setActiveOutputIndex}
+                                                            uid={this.props.uid}
                                                         />
                                                     </Tab>
                                                 </Tabs>
