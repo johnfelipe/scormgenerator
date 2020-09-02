@@ -97,7 +97,7 @@ function MediaUploader(props) {
             console.log('tapos na');
             console.log(mediaAlt);
             const formData = new FormData();
-
+            console.log(uid);
             formData.append('file', file[fileIndex]);
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);

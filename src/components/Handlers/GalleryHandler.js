@@ -10,10 +10,11 @@ import MediaLoader from '../Gallery/MediaLoader';
 
 function GalleryHandler(props) {
 
+    const { uid } = props;
     const [modalShow, setModalShow] = useState(false);
     const [key, setKey] = useState('uploadFiles');
     const [filterType, setFilterType] = useState(false);
-    const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : [])
+    const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : []);
 
     useEffect(() => {
         if (modalShow === false) {
@@ -45,6 +46,7 @@ function GalleryHandler(props) {
                         <MediaUploader
                             // setMediaFiles={setMediaFiles}
                             // setMediaFilesObject={props.setMediaFilesObject}
+                            uid={uid}
                         />
                     </Tab>
                     <Tab eventKey="mediaLibrary" title="Media Library">
@@ -66,6 +68,7 @@ function GalleryHandler(props) {
                                         mediaFiles={mediaFilesObject}
                                         // deleteMedia={deleteMedia}
                                         filterType={filterType}
+                                        uid={uid}
                                     />
                                 </>
                             :
