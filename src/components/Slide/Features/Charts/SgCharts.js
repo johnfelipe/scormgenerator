@@ -17,7 +17,7 @@ import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function SgCharts(props) {
 
-    const { contentIndex, currentColumnContentIndex, currentColumn } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
@@ -51,7 +51,7 @@ function SgCharts(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)

@@ -9,9 +9,7 @@ import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function HomePage(props) {
 
-    const currentColumn = props.currentColumn;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const contentIndex = props.contentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [showPicker, setShowPicker] = useState(false);
     const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor;
     const [modalShow, setModalShow] = useState(false);
@@ -71,7 +69,7 @@ function HomePage(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)

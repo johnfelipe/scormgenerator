@@ -8,9 +8,7 @@ import AltTagForm from '../../AlertModal/AltTagForm';
 
 function Image(props) {
     
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
@@ -47,7 +45,7 @@ function Image(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)

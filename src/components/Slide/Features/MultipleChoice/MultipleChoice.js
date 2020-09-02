@@ -29,9 +29,7 @@ function MultipleChoice(props) {
     const [isFinalQuiz, setIsFinalQuiz] = useState(sessionStorage.getItem('isFinalQuizSet') ? sessionStorage.getItem('isFinalQuizSet') : false);
     const slideItemIdWithFinalQuiz = sessionStorage.getItem('slideItemId') ? sessionStorage.getItem('slideItemId') : '';
 
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
     const correctAnswers = props.correctAnswers;
 
@@ -325,7 +323,7 @@ function MultipleChoice(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)

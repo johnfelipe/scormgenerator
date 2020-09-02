@@ -5,9 +5,7 @@ import { galleryService } from '../../../services';
 
 function Video(props) {
     
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [isShownTextArea, setIsShownTextArea] = useState(false);
 
     const setVideo = (name, url, type) => {
@@ -41,7 +39,7 @@ function Video(props) {
         // }
 
         formData.append('file', files[0]);
-        formData.append('uid', 1);
+        formData.append('uid', uid);
         formData.append('alt', files[0].name);
 
         galleryService.uploadFiles(formData)

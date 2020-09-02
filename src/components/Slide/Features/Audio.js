@@ -8,7 +8,7 @@ import AltTagForm from '../../AlertModal/AltTagForm';
 
 function Audio(props) {
 
-    const { contentIndex, currentColumnContentIndex, currentColumn } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
@@ -33,7 +33,7 @@ function Audio(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)
@@ -62,7 +62,7 @@ function Audio(props) {
         const formData = new FormData();
 
         formData.append('file', files[fileIndex]);
-        formData.append('uid', 1);
+        formData.append('uid', uid);
         formData.append('alt', files[fileIndex].name);
 
         galleryService.uploadFiles(formData)
