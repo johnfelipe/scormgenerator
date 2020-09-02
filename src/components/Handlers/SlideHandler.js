@@ -390,6 +390,7 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                         type: '',
+                        show: true,
                     }
                 },
                 class: '',
@@ -733,6 +734,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1122,6 +1124,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1241,6 +1244,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1360,6 +1364,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1478,6 +1483,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1600,6 +1606,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1721,6 +1728,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1843,6 +1851,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -1964,6 +1973,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2085,6 +2095,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2207,6 +2218,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2328,6 +2340,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2666,6 +2679,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2787,6 +2801,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -2908,6 +2923,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -3029,6 +3045,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
@@ -3150,6 +3167,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
+                                    show: true,
                                 }
                             },
                             class: '',
