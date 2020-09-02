@@ -95,53 +95,11 @@ function Audio(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-text-editor">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
-                    {/* <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item-textarea">
-                            <div className="sg-control-input-list-label">
-                                <span>Choose Audio</span>
-                                <span>Embed Code</span>
-                            </div>
-                            <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                <textarea
-                                    placeholder="Put embed code here . . ."
-                                    className="sg-input-code"
-                                    style={{fontSize: 10}}
-                                    value={ 
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
-                                    }
-                                    onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
-                                />
-                                <ul className="audio-feature-value-list pl-0">
-                                    {
-                                        props.mediaFilesObject.length > 0 ?
-                                            props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
-                                                mediaFile.type.includes("audio") ?
-                                                    <li key={mediaIndex} className="audio-feature-value-list-item">
-                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
-                                                        <label className="pl-1">{mediaFile.name}</label>
-                                                    </li>
-                                                :
-                                                    null
-                                            ))
-                                        :
-                                            <div className="w-100">
-                                                <input
-                                                    type="file"
-                                                    onChange={this.handleFileUpload}
-                                                    accept="audio/*"
-                                                    multiple
-                                                />
-                                            </div>
-                                    }
-                                </ul>
-                            </div>
-                        </li> */}
-
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
