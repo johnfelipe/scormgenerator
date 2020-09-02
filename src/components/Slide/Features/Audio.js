@@ -63,9 +63,9 @@ function Audio(props) {
         let files = e.target.files;
         const formData = new FormData();
 
-        formData.append('file', files[fileIndex]);
+        formData.append('file', files[0]);
         formData.append('uid', uid);
-        formData.append('alt', files[fileIndex].name);
+        formData.append('alt', files[0].name);
 
         galleryService.uploadFiles(formData)
         .then(
@@ -75,12 +75,11 @@ function Audio(props) {
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.name = fileObject.name;
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.url = fileObject.image;
                 currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.type = fileObject.type;
-
+        
+                props.setColumn(currentColumnObj);
             },
             error => console.log(error)
         );
-        
-        props.setColumn(currentColumnObj);
     }
 
     const setShowPlayer = (value) => {
