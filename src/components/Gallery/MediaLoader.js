@@ -79,7 +79,7 @@ function MediaLoader (props) {
                                     }}
                                 >
                                     <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
                                         <div className="audio">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -103,7 +103,7 @@ function MediaLoader (props) {
                                     }}
                                 >
                                     <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
+                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-5-5"/>
                                         <div className="video">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -161,7 +161,7 @@ function MediaLoader (props) {
                                 }}
                             >
                                 <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
                                     <div className="audio">
                                         <div>{fileData.name}</div>
                                     </div>
@@ -190,7 +190,7 @@ function MediaLoader (props) {
                                 }}
                             >
                                 <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
                                     <div className="video">
                                         <div>{fileData.name}</div>
                                     </div>
