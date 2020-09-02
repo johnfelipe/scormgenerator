@@ -390,7 +390,7 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                         type: '',
-                        show: true,
+                        show: 'yes',
                     }
                 },
                 class: '',
@@ -734,7 +734,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                     type: '',
-                                    show: true,
+                                    show: 'yes',
                                 }
                             },
                             class: '',
@@ -1120,13 +1120,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1240,13 +1240,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1360,13 +1360,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1479,13 +1479,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1602,13 +1602,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1724,13 +1724,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1847,13 +1847,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1969,13 +1969,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2091,13 +2091,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2214,13 +2214,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2336,13 +2336,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2675,13 +2675,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2797,13 +2797,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2919,13 +2919,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -3041,13 +3041,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -3163,13 +3163,13 @@ class SlideHandler extends Component {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: true,
-                                }
-                            },
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
