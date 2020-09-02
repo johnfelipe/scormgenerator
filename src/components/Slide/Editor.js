@@ -94,7 +94,7 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "contentArea") {
@@ -110,7 +110,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "multipleChoice") {
@@ -130,7 +130,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     setMChoiceIndex={this.props.setMChoiceIndex}
                     correctAnswers={this.props.correctAnswers}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "homePage") {
@@ -146,7 +146,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "courseObjectives") {
@@ -163,6 +163,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "listModal") {
@@ -179,7 +180,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "video") {
@@ -195,7 +196,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "dragDrop") {
@@ -213,6 +214,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "card") {
@@ -230,7 +232,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "image") {
@@ -246,7 +248,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "list") {
@@ -263,7 +265,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "tabs") {
@@ -280,7 +282,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    // setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                     setActiveOutputIndex={this.props.setActiveOutputIndex}
                 />
             );
@@ -299,6 +301,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
                     setActiveOutputIndex={this.props.setActiveOutputIndex}
+                    uid={this.props.uid}
                 />
             );
         } else {
