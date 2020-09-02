@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CSVReader from "react-csv-reader";
-import MultiSelect from "react-multi-select-component";
+// import MultiSelect from "react-multi-select-component";
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +23,7 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState([]);
-    // const [sampleValue, setSampleValue] = useState('');
+    const [sampleValue, setSampleValue] = useState('');
 
     const parseOptions = {
         header: true,
@@ -59,7 +59,6 @@ function SgCharts(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
-                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );
@@ -86,7 +85,7 @@ function SgCharts(props) {
     const handleCsvUpload = (data, fileInfo) => {
         const currentColumnObj = currentColumn;
         const csvHeaders = [];
-        const csvHeadersObj = [];
+        // const csvHeadersObj = [];
         // let files = e.target.files;
         // let reader = new FileReader();
 
@@ -98,19 +97,19 @@ function SgCharts(props) {
         // }
         for (const key of Object.keys(data)) {
             for (const key1 of Object.keys(data[key])) {
-                // if (!csvHeaders.includes(key1)) {
-                //     csvHeaders.push(key1);
-                // }
-
                 if (!csvHeaders.includes(key1)) {
                     csvHeaders.push(key1);
-                    csvHeadersObj.push({label: key1, value: key1});
                 }
+
+                // if (!csvHeaders.includes(key1)) {
+                //     csvHeaders.push(key1);
+                //     csvHeadersObj.push({label: key1, value: key1});
+                // }
             }
         }
 
-        // setProperties(csvHeaders);
-        setProperties(csvHeadersObj);
+        setProperties(csvHeaders);
+        // setProperties(csvHeadersObj);
 
         const labels = data.map(function(d) {
             return d.name;
@@ -233,7 +232,7 @@ function SgCharts(props) {
                                 </div>
                             </OverlayTrigger>
                             <div className="sg-control-input-list-input">
-                                {/* <select
+                                <select
                                     value={sampleValue}
                                     onChange={(event) => setSampleValue(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
@@ -245,8 +244,8 @@ function SgCharts(props) {
                                     :
                                         <option value="">No option shown yet.</option>
                                     }
-                                </select> */}
-                                <span>
+                                </select>
+                                {/* <span>
                                     <MultiSelect
                                         options={properties}
                                         // value={selectedAnswers}
@@ -255,8 +254,9 @@ function SgCharts(props) {
                                         }}
                                         labelledBy={"Select"}
                                         disableSearch={true}
+                                        menuContainerStyle={{ zIndex: 5 }}
                                     />
-                                </span>
+                                </span> */}
                             </div>
                         </li>
                     </ul>

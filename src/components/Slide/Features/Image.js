@@ -56,7 +56,6 @@ function Image(props) {
                     console.log(fileObject);
                     setImage(fileObject.name, fileObject.image, fileObject.image);
                     setImgAlt(fileObject.alt);
-                    // props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );
