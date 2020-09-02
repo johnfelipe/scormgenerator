@@ -57,6 +57,31 @@ function Audio(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const handleAudioUpload = (e) => {
+        const currentColumnObj = currentColumn;
+        let files = e.target.files;
+        const formData = new FormData();
+
+        formData.append('file', files[fileIndex]);
+        formData.append('uid', 1);
+        formData.append('alt', files[fileIndex].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.name = fileObject.name;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.url = fileObject.image;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.type = fileObject.type;
+
+            },
+            error => console.log(error)
+        );
+        
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -76,10 +101,10 @@ function Audio(props) {
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
-                    <ul className="sg-control-input-list">
+                    {/* <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-textarea">
                             <div className="sg-control-input-list-label">
-                                {/* <span>Choose Audio</span> */}
+                                <span>Choose Audio</span>
                                 <span>Embed Code</span>
                             </div>
                             <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
@@ -92,7 +117,7 @@ function Audio(props) {
                                     }
                                     onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
                                 />
-                                {/* <ul className="audio-feature-value-list pl-0">
+                                <ul className="audio-feature-value-list pl-0">
                                     {
                                         props.mediaFilesObject.length > 0 ?
                                             props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
@@ -114,7 +139,31 @@ function Audio(props) {
                                                 />
                                             </div>
                                     }
-                                </ul> */}
+                                </ul>
+                            </div>
+                        </li> */}
+
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label">
+                                <span>Audio</span>
+                            </div>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleAudioUpload} accept="image/*"/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Upload Audio"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name
+                                    }
+                                    readOnly
+                                />
                             </div>
                         </li>
                     </ul>
