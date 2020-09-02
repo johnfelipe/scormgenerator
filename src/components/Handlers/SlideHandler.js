@@ -3719,6 +3719,7 @@ class SlideHandler extends Component {
                                                 // mediaFilesObject={this.props.mediaFilesObject}
                                                 // setMediaFilesObject={this.props.setMediaFilesObject}
                                                 buttonName="Open Library"
+                                                uid={this.props.uid}
                                             />
                                         </div>
                                     </div>
