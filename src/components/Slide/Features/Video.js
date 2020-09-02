@@ -49,7 +49,7 @@ function Video(props) {
             fileObject => {
                 console.log(fileObject);
                 setVideo(fileObject.name, fileObject.image, fileObject.type);
-                props.setMediaFiles(fileObject);
+                // props.setMediaFiles(fileObject);
             },
             error => console.log(error)
         );
