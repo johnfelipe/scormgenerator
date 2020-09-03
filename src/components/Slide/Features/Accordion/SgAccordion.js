@@ -101,7 +101,7 @@ function SgAccordion(props) {
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
-                                <span>Question/s</span>
+                                <span>Accordion/s</span>
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group sg-accordion-list">
@@ -149,6 +149,7 @@ function SgAccordion(props) {
                                                                     <SgSubAccordion
                                                                         index={index}
                                                                         item={item}
+                                                                        contentIndex={contentIndex}
                                                                         deleteSgAccordion={deleteSgAccordion}
                                                                         setIsEditSgAccordion={setIsEditSgAccordion}
                                                                         setUpdateSgAccordion={setUpdateSgAccordion}
@@ -158,8 +159,7 @@ function SgAccordion(props) {
                                                                         setIsAddSgAccordionContent={setIsAddSgAccordionContent}
                                                                         isAddSgAccordionContent={isAddSgAccordionContent}
                                                                         sgAccordionContent={sgAccordionContent}
-                                                                        setShowTextEditor={props.setShowTextEditor}
-                                                                        setMChoiceIndex={props.setMChoiceIndex}
+                                                                        setShowEditor={props.setShowEditor}
                                                                         setUpdateSgAccordionCompareIndex={setUpdateSgAccordionCompareIndex}
                                                                     />
                                                             }
@@ -252,7 +252,7 @@ function SgAccordion(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropTextColor}
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.textColor}
                                     onChange={(event) => setSgAccordionTextColor(event.target.value)}
                                     className="form-control-plaintext border border-secondary rounded"
                                 >

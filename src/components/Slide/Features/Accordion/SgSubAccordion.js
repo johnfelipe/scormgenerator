@@ -6,10 +6,11 @@ import { faEdit, faTrash, faCaretUp, faCaretDown } from '@fortawesome/free-solid
 function SgSubAccordion(props) {
 
     let item = props.item;
-    const { index, isAddSgAccordionContent, sgAccordionContent } = props;
+    // const { index, isAddSgAccordionContent, sgAccordionContent, contentIndex } = props;
+    const { index, contentIndex } = props;
 
-    const [editSgAccordionContent, setEditSgAccordionContent] = useState('');
-    const [isEditSgAccordionContent, setIsEditSgAccordionContent] = useState(false);
+    // const [editSgAccordionContent, setEditSgAccordionContent] = useState('');
+    // const [isEditSgAccordionContent, setIsEditSgAccordionContent] = useState(false);
     const [collapseId, setCollapseId] = useState(false);
 
     const collapseListener = (currentCollapseId) => {
@@ -26,13 +27,22 @@ function SgSubAccordion(props) {
     return (
         <Accordion key={'accordion-drag-drop-question-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
+                <Accordion.Toggle
+                    as={Card.Header}
+                    eventKey={index}
+                    className="p-2"
+                    onClick={() => {
+                        collapseListener(collapseId);
+                        console.log(index);
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
                     <span>{item.title}</span>
                     <button
                         type="button"
                         className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1 float-right"
                         onClick={() => {
-                            props.deleteSgAccordion(index)
+                            props.deleteSgAccordion(index);
                         }}
                     >
                         <FontAwesomeIcon icon={faTrash}/>
@@ -54,7 +64,31 @@ function SgSubAccordion(props) {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={index}>
                     <Card.Body className="p-2">
-                        
+                        <ul className="sg-control-input-list">
+                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                <div className="sg-control-input-list-label">
+                                    <span>Content</span>
+                                </div>
+                                <div className="sg-control-input-list-input">
+                                    <div className="sg-expandable-code-editor">
+                                        <div className="sg-workspace-expander">
+                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                <button
+                                                    type="button"
+                                                    className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                    onClick={() => {
+                                                        props.setShowEditor(true, contentIndex, 'accordion', index);
+                                                    }}
+                                                >
+                                                    <span>Edit</span>
+                                                </button>
+                                                <input type="text" value="" disabled className="rounded"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
