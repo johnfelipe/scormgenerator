@@ -118,13 +118,18 @@ function SgCharts(props) {
     }
 
     const setDataSets = (data) => {
+        const randomColor = require('randomcolor');
         const currentColumnObj = currentColumn;
         let dataSets = [];
+        let backgroundColors = []
 
         const csvData = currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data;
 
         for (const key of Object.keys(data)) {
             const dataSet = csvData.map(function(d) {
+                if (!backgroundColors.includes(randomColor())) {
+                    backgroundColors.push(randomColor());
+                }
                 return +d[data[key].value];
             });
 
@@ -132,6 +137,7 @@ function SgCharts(props) {
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSets;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.colors = backgroundColors;
         props.setColumn(currentColumnObj);
     }
 
