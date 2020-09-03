@@ -99,21 +99,21 @@ function SgCharts(props) {
                 }
             }
         }
-        setProperties(csvHeadersObj.slice(1));
 
         const labels = data.map(function(d) {
-            if (typeof d[csvHeaders[0]] === 'string') {
-                return d[csvHeaders[0]];
-            } else {
-                setModalShowChartDataAlert(true);
-            }
+            return d[csvHeaders[0]];
         });
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj.slice(1);
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data = data;
-        props.setColumn(currentColumnObj);
+        if (typeof data[0][csvHeaders[0]] === 'string') {
+            setProperties(csvHeadersObj.slice(1));
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj.slice(1);
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data = data;
+            props.setColumn(currentColumnObj);
+        } else {
+            setModalShowChartDataAlert(true);
+        }
     }
 
     const setShownData = (selected) => {
