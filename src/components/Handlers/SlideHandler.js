@@ -619,7 +619,9 @@ class SlideHandler extends Component {
                 output: {
                     chartType: 'pie',
                     dataSets: {},
-                    chartOptions: {},
+                    chartOptions: {
+                        shownData: [],
+                    },
                     csvFile: {
                         name: '',
                         url: ''
@@ -1038,7 +1040,9 @@ class SlideHandler extends Component {
                             output: {
                                 chartType: 'pie',
                                 dataSets: {},
-                                chartOptions: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
                                 csvFile: {
                                     name: '',
                                     url: ''
