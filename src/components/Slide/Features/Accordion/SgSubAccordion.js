@@ -25,7 +25,7 @@ function SgSubAccordion(props) {
     }
 
     return (
-        <Accordion key={'accordion-drag-drop-question-' + index}>
+        <Accordion key={'accordion-sg-accordion-' + index}>
             <Card>
                 <Accordion.Toggle
                     as={Card.Header}
