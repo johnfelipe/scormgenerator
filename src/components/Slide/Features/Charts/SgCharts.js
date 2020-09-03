@@ -15,6 +15,9 @@ import { galleryService } from '../../../../services';
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
 
+// helpers
+import { stringHelpers } from '../../../../helpers';
+
 function SgCharts(props) {
 
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
@@ -86,13 +89,13 @@ function SgCharts(props) {
         const currentColumnObj = currentColumn;
         const csvHeaders = [];
         const csvHeadersObj = [];
-        
+
         for (const key of Object.keys(data)) {
             for (const key1 of Object.keys(data[key])) {
 
                 if (!csvHeaders.includes(key1)) {
                     csvHeaders.push(key1);
-                    csvHeadersObj.push({label: key1, value: key1});
+                    csvHeadersObj.push({label: stringHelpers.ucfirst(key1), value: key1});
                 }
             }
         }
