@@ -43,6 +43,7 @@ import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
 import AudioLayout from '../Slide/Layouts/AudioLayout';
 import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
+import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -4366,6 +4367,46 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <SgChartsLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'accordion' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <SgAccordionLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
