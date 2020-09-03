@@ -620,7 +620,7 @@ class SlideHandler extends Component {
                 type: 'sgCharts',
                 output: {
                     chartType: 'pie',
-                    dataSets: [],
+                    dataSets: {},
                     chartOptions: {
                         shownData: [],
                     },
@@ -1043,7 +1043,7 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             output: {
                                 chartType: 'pie',
-                                dataSets: [],
+                                dataSets: {},
                                 chartOptions: {
                                     shownData: [],
                                 },
