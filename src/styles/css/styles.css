@@ -2064,4 +2064,184 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   margin-top: 10px;
 }
 
+html body {
+  font-family: "Open Sans";
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout {
+  text-align: left !important;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion {
+  line-height: 25px;
+  width: 100%;
+  cursor: pointer;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-label-selected {
+  background: #5eb75e;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
+  height: 50px;
+  line-height: 25px;
+  float: left;
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
+    font-size: 14px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text .target {
+  display: inline-block;
+  width: 110px;
+  background: lightblue;
+  margin: 0 3px;
+  text-align: center;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answer-here {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 165px;
+  list-style: none;
+  border: 1px solid #19286C;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li {
+  border: 1px solid transparent;
+  padding: 6px 8px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.title {
+  color: white;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.option {
+  display: block;
+  position: relative;
+  z-index: 50;
+  font-size: 13px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 130px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+    margin: 0 110px;
+    top: 130px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+    margin: 0 40px;
+    top: 130px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 175px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
+    margin: 0 110px;
+    top: 175px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
+    margin: 0 40px;
+    top: 175px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .sg-accordion-list .sg-accordion-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .sg-accordion-action-button .col-md-6 .multi-select {
+  --rmsc-h: 29.4px;
+  /* Height */
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin: 7px 0 0;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 0 0 20px;
+  position: relative;
+  height: 32px;
+  padding: 0 5px 0 0;
+  font-size: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input {
+  flex: 1 1;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input input[type=text] {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 1px;
+  height: 32px;
+  margin: 0;
+  border: 1px solid #ddd;
+  padding: 5px 7px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #444;
+  background-color: #fff;
+  outline: 0;
+  border-radius: 0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  z-index: 5;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-button {
+  padding-left: 5px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs {
+  margin-top: 10px;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs .nav-link {
+  width: calc(100%/3);
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content {
+  padding: 10px;
+  height: 200px;
+  overflow: auto !important;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item {
+  user-select: none;
+  padding: 10px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item .sg-accordion-file-item-delete {
+  cursor: pointer;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item #sg-accordion-file-item {
+  text-overflow: ellipsis;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item .sg-accordion {
+  list-style-type: none;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item {
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 10px;
+  margin: 0px 0px 8px 0px;
+  background: whitesmoke;
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item #sg-accordion-feature-answer-list-item-answer {
+  text-overflow: ellipsis !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 /*# sourceMappingURL=styles.css.map */
