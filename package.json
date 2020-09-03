@@ -20,6 +20,7 @@
     "codemirror": "^5.54.0",
     "formik": "^2.1.4",
     "jquery": "^3.5.1",
+    "randomcolor": "^0.6.2",
     "react": "^16.13.1",
     "react-ace": "^9.0.0",
     "react-audio-player": "^0.13.0",
