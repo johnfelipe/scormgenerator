@@ -334,4 +334,18 @@
     .resize-none {
         resize: none !important;
     }
+
+    // overflow
+    .overflow-unset {
+        overflow: unset !important;
+    }
+
+    // important ui defaults
+    .sg-charts-multiselect {
+        .dropdown-container {
+            .dropdown-content {
+                z-index: 5000 !important;
+            }
+        }
+    }
 }

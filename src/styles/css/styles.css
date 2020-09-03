@@ -326,6 +326,14 @@
   resize: none !important;
 }
 
+.overflow-unset {
+  overflow: unset !important;
+}
+
+.sg-charts-multiselect .dropdown-container .dropdown-content {
+  z-index: 5000 !important;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
