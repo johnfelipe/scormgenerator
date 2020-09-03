@@ -98,7 +98,7 @@ function SgCharts(props) {
             }
         }
 
-        setProperties(csvHeadersObj);
+        setProperties(csvHeadersObj.slice(1));
 
         const labels = data.map(function(d) {
             return d[csvHeaders[0]];
@@ -110,7 +110,8 @@ function SgCharts(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj.slice(1);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data = data;
         // currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
         // console.log(data, fileInfo);
 
@@ -124,6 +125,23 @@ function SgCharts(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData = selected
 
         props.setColumn(currentColumnObj);
+    }
+
+    const setDataSets = (data) => {
+        const currentColumnObj = currentColumn;
+        let dataSets = [];
+
+        const csvData = currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data;
+
+        for (const key of Object.keys(data)) {
+            const dataSet = csvData.map(function(d) {
+                return +d[data[key].value];
+            });
+
+            dataSets.push(dataSet);
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSets;
     }
 
     return (
@@ -241,7 +259,9 @@ function SgCharts(props) {
                                             currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData &&
                                             currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData
                                         }
-                                        onChange={setShownData}
+                                        onChange={(e) => {
+                                            setShownData(e);
+                                        }}
                                     />
                                 </span>
                             </div>
