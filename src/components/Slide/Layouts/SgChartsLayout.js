@@ -5,14 +5,24 @@ function SgChartsLayout(props) {
 
     // const { output, css, style } = props;
     const { output } = props;
+    let datasets = [];
+
+    if (output.dataSets.data) {
+        if (output.dataSets.data.length > 0) {
+            for (const key of Object.keys(output.dataSets.data)) {
+                const dataset = {
+                    data: output.dataSets.data[key],
+                    label: output.chartOptions.shownData[key].label
+                }
+
+                datasets.push(dataset);
+            }
+        }
+    }
 
     const data = {
         labels: output.dataSets.labels,
-        datasets: [
-            {
-              data: output.dataSets.data,
-            }
-          ]
+        datasets: datasets,
     };
 
     return (
