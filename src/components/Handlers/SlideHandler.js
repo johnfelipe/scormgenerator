@@ -201,7 +201,7 @@ class SlideHandler extends Component {
                     sid: sid,
                     uid: userId,
                     grid: columnArr[index].grid,
-                    features: btoa(featuresJson)
+                    features: btoa(unescape(encodeURIComponent(featuresJson)))
                 }
 
                 console.log(data);
@@ -209,16 +209,18 @@ class SlideHandler extends Component {
             } else if (action === 'edit') {
                 console.log('EXECEUTED! EDIT');
                 if (objectHelpers.isEmpty(this.props.slideColumns[index])) {
+                    console.log('IF HERE');
                     const data = {
                         sid: sid,
                         uid: userId,
                         grid: columnArr[index].grid,
-                        features: btoa(featuresJson)
+                        features: btoa(unescape(encodeURIComponent(featuresJson)))
                     }
 
                     this.props.createColumn(data);
                     console.log('EXECEUTED!');
                 } else if (columnArr[index].clid) {
+                    console.log('ELFSE IF HERE');
                     const data = {
                         grid: columnArr[index].grid,
                         features: btoa(unescape(encodeURIComponent(featuresJson)))
@@ -227,7 +229,7 @@ class SlideHandler extends Component {
                     const id = columnArr[index].clid;
                     this.props.updateColumn(data, id);
                 } else {
-                    // console.log('here HERE');
+                    console.log('ELSE HERE');
                     const data = {
                         grid: columnArr[index].grid,
                         features: btoa(unescape(encodeURIComponent(featuresJson)))
