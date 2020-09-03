@@ -26,7 +26,6 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState([]);
-    const [selected, setSelected] = useState([]);
 
     const parseOptions = {
         header: true,
@@ -92,7 +91,6 @@ function SgCharts(props) {
 
         for (const key of Object.keys(data)) {
             for (const key1 of Object.keys(data[key])) {
-
                 if (!csvHeaders.includes(key1)) {
                     csvHeaders.push(key1);
                     csvHeadersObj.push({label: stringHelpers.ucfirst(key1), value: key1});
@@ -103,17 +101,26 @@ function SgCharts(props) {
         setProperties(csvHeadersObj);
 
         const labels = data.map(function(d) {
-            return d.name;
+            return d[csvHeaders[0]];
         });
 
-        const dataSet = data.map(function(d) {
-            return +d.weeks;
-        });
+        // const dataSet = data.map(function(d) {
+        //     return +d.weeks;
+        // });
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name
-        console.log(data, fileInfo);
+        // currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
+        // console.log(data, fileInfo);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setShownData = (selected) => {
+        console.log(selected);
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData = selected
 
         props.setColumn(currentColumnObj);
     }
@@ -229,8 +236,11 @@ function SgCharts(props) {
                                         labelledBy={"Select"}
                                         disableSearch={true}
                                         className="sg-charts-multiselect"
-                                        value={selected}
-                                        onChange={setSelected}
+                                        value={
+                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData &&
+                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData
+                                        }
+                                        onChange={setShownData}
                                     />
                                 </span>
                             </div>
