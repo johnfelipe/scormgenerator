@@ -14,6 +14,7 @@ import Image from './Features/Image';
 import List from './Features/List/List';
 import Tabs from './Features/Tabs/Tabs';
 import Charts from './Features/Charts/SgCharts';
+import Accordion from './Features/Accordion/SgAccordion';
 
 class Editor extends Component {
 
@@ -289,6 +290,24 @@ class Editor extends Component {
         } else if (this.props.feature === "sgCharts") {
             editorContent = (
                 <Charts
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
+                    setActiveOutputIndex={this.props.setActiveOutputIndex}
+                    uid={this.props.uid}
+                />
+            );
+        } else if (this.props.feature === "accordion") {
+            editorContent = (
+                <Accordion
                     setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 // components
-import DragDropAccordion from './DragDropAccordion';
+import SgSubAccordion from './SgSubAccordion';
 import ColorPickerBg from '../../../Common/ColorPicker';
 
 function SgAccordion(props) {
@@ -146,7 +146,7 @@ function SgAccordion(props) {
                                                                         </div>
                                                                     </div>
                                                                 :
-                                                                    <DragDropAccordion
+                                                                    <SgSubAccordion
                                                                         index={index}
                                                                         item={item}
                                                                         deleteSgAccordion={deleteSgAccordion}
@@ -161,8 +161,6 @@ function SgAccordion(props) {
                                                                         setShowTextEditor={props.setShowTextEditor}
                                                                         setMChoiceIndex={props.setMChoiceIndex}
                                                                         setUpdateSgAccordionCompareIndex={setUpdateSgAccordionCompareIndex}
-                                                                        addAnswer={addAnswer}
-                                                                        editAnswer={editAnswer}
                                                                     />
                                                             }
                                                         </li>
@@ -270,16 +268,6 @@ function SgAccordion(props) {
                             <div className="sg-control-input-list-input sg-accordion-background-color-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerBg ? setShowPickerBg(false) : setShowPickerBg(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
                                     <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label sg-accordion-background-color-label">
-                                <span>Theme Color</span>
-                            </div>
-                            <div className="sg-control-input-list-input sg-accordion-background-color-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerTc ? setShowPickerTc(false) : setShowPickerTc(true)} style={{ background: currentThemeColor, cursor: 'pointer' }}>
-                                    <span className="text-white h-100 w-100">{currentThemeColor}</span>
                                 </div>
                             </div>
                         </li>
