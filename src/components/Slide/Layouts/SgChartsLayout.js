@@ -12,7 +12,8 @@ function SgChartsLayout(props) {
             for (const key of Object.keys(output.dataSets.data)) {
                 const dataset = {
                     data: output.dataSets.data[key],
-                    label: output.chartOptions.shownData[key].label
+                    label: output.chartOptions.shownData[key].label,
+                    backgroundColor: output.dataSets.colors,
                 }
 
                 datasets.push(dataset);
