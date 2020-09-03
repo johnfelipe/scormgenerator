@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CSVReader from "react-csv-reader";
-// import MultiSelect from "react-multi-select-component";
+import MultiSelect from "react-multi-select-component";
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +23,7 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState([]);
-    const [sampleValue, setSampleValue] = useState('');
+    const [selected, setSelected] = useState([]);
 
     const parseOptions = {
         header: true,
@@ -85,31 +85,19 @@ function SgCharts(props) {
     const handleCsvUpload = (data, fileInfo) => {
         const currentColumnObj = currentColumn;
         const csvHeaders = [];
-        // const csvHeadersObj = [];
-        // let files = e.target.files;
-        // let reader = new FileReader();
-
-        // currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.url = files[0].name;
-        // reader.readAsDataURL(files[0])
-        // reader.onloadend = () => {
-        //     currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.url = reader.result;
-        //     csvHandler(reader.result);
-        // }
+        const csvHeadersObj = [];
+        
         for (const key of Object.keys(data)) {
             for (const key1 of Object.keys(data[key])) {
+
                 if (!csvHeaders.includes(key1)) {
                     csvHeaders.push(key1);
+                    csvHeadersObj.push({label: key1, value: key1});
                 }
-
-                // if (!csvHeaders.includes(key1)) {
-                //     csvHeaders.push(key1);
-                //     csvHeadersObj.push({label: key1, value: key1});
-                // }
             }
         }
 
-        setProperties(csvHeaders);
-        // setProperties(csvHeadersObj);
+        setProperties(csvHeadersObj);
 
         const labels = data.map(function(d) {
             return d.name;
@@ -141,7 +129,7 @@ function SgCharts(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-group">
+            <div className="sg-control sg-control-group overflow-unset">
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
@@ -231,32 +219,17 @@ function SgCharts(props) {
                                     <span>Show data</span>
                                 </div>
                             </OverlayTrigger>
-                            <div className="sg-control-input-list-input">
-                                <select
-                                    value={sampleValue}
-                                    onChange={(event) => setSampleValue(event.target.value)}
-                                    className="form-control-plaintext border border-secondary rounded"
-                                >
-                                    {properties.length > 0 ?
-                                        properties.map((item, index) => (
-                                            <option key={'property-' + index} value={item}>{item}</option>
-                                        ))
-                                    :
-                                        <option value="">No option shown yet.</option>
-                                    }
-                                </select>
-                                {/* <span>
+                            <div className="sg-control-input-list-input overflow-unset">
+                                <span>
                                     <MultiSelect
                                         options={properties}
-                                        // value={selectedAnswers}
-                                        onChange={(e) => {
-                                            console.log(e);
-                                        }}
                                         labelledBy={"Select"}
                                         disableSearch={true}
-                                        menuContainerStyle={{ zIndex: 5 }}
+                                        className="sg-charts-multiselect"
+                                        value={selected}
+                                        onChange={setSelected}
                                     />
-                                </span> */}
+                                </span>
                             </div>
                         </li>
                     </ul>
