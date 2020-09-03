@@ -14,6 +14,7 @@ import { galleryService } from '../../../../services';
 
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
+import ChartDataAlert from '../../../AlertModal/ChartDataAlert';
 
 // helpers
 import { stringHelpers } from '../../../../helpers';
@@ -21,7 +22,8 @@ import { stringHelpers } from '../../../../helpers';
 function SgCharts(props) {
 
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShowAltTagForm, setModalShowAltTagForm] = useState(false);
+    const [modalShowChartDataAlert, setModalShowChartDataAlert] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
@@ -43,13 +45,13 @@ function SgCharts(props) {
             setImgUrlPreview(reader.result);
         }
 
-        setModalShow(true);
+        setModalShowAltTagForm(true);
         setFile(files);
         setFileIndex(0);
     }
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
-        if (modalShow ) { 
+        if (modalShowAltTagForm ) { 
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
@@ -100,7 +102,11 @@ function SgCharts(props) {
         setProperties(csvHeadersObj.slice(1));
 
         const labels = data.map(function(d) {
-            return d[csvHeaders[0]];
+            if (typeof d[csvHeaders[0]] === 'string') {
+                return d[csvHeaders[0]];
+            } else {
+                setModalShowChartDataAlert(true);
+            }
         });
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
@@ -360,8 +366,12 @@ function SgCharts(props) {
                 file={file}
                 fileIndex={fileIndex}
                 handleImageUpload={handleImageUpload}
-                modalShow={modalShow}
-                setModalShow={setModalShow}
+                modalShow={modalShowAltTagForm}
+                setModalShow={setModalShowAltTagForm}
+            />
+            <ChartDataAlert
+                modalShow={modalShowChartDataAlert}
+                setModalShow={setModalShowChartDataAlert}
             />
         </div>
     )
