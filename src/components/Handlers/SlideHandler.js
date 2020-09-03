@@ -155,10 +155,10 @@ class SlideHandler extends Component {
             this.props.getSlideColumns(this.props.sid);
         }
         
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
         // console.log('this.props.currentSlide');
@@ -626,7 +626,8 @@ class SlideHandler extends Component {
                     },
                     csvFile: {
                         name: '',
-                        url: ''
+                        url: '',
+                        headers: [],
                     }
                 },
                 class: '',
@@ -1047,7 +1048,8 @@ class SlideHandler extends Component {
                                 },
                                 csvFile: {
                                     name: '',
-                                    url: ''
+                                    url: '',
+                                    headers: [],
                                 }
                             },
                             class: '',

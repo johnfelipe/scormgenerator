@@ -25,7 +25,7 @@ function SgCharts(props) {
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
-    const [properties, setProperties] = useState([]);
+    const [properties, setProperties] = useState(currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.headers.length > 0 ? currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.headers : []);
 
     const parseOptions = {
         header: true,
@@ -109,7 +109,8 @@ function SgCharts(props) {
         // });
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj;
         // currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
         // console.log(data, fileInfo);
 
