@@ -14,6 +14,7 @@ function VideoLayout(props) {
                         {/* <video className="video-layout-video h-100 w-100" controls src={output.url}>
                             Your browser does not support the video tag.
                         </video> */}
+                        {output.show === 'yes' &&
                         <Player
                             className="video-layout-video h-100 w-100"
                         >
@@ -28,7 +29,7 @@ function VideoLayout(props) {
                             <ControlBar autoHide={true}>
                                 <ClosedCaptionButton order={7} />
                             </ControlBar>
-                        </Player>
+                        </Player>}
                         {output.paragraph &&
                             <div className="mt-3 p-3">
                                 {ReactHtmlParser(output.paragraph)}
