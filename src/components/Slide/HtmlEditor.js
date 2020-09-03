@@ -28,6 +28,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html");
         } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
+        } else if (contentFor === 'accordion') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -53,6 +55,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
         } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = source;
+        } else if (contentFor === 'accordion') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -71,6 +75,12 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html'));
         } else if (contentFor === 'tabsContent') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent, 'html'));
+        } else if (contentFor === 'accordion') {
+            console.log(activeOutputIndex)
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output)
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex])
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content)
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 

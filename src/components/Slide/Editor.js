@@ -301,7 +301,6 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    setActiveOutputIndex={this.props.setActiveOutputIndex}
                     uid={this.props.uid}
                 />
             );
@@ -319,7 +318,6 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    setActiveOutputIndex={this.props.setActiveOutputIndex}
                     uid={this.props.uid}
                 />
             );
