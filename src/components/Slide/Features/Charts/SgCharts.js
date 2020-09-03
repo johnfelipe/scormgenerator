@@ -97,33 +97,23 @@ function SgCharts(props) {
                 }
             }
         }
-
         setProperties(csvHeadersObj.slice(1));
 
         const labels = data.map(function(d) {
             return d[csvHeaders[0]];
         });
 
-        // const dataSet = data.map(function(d) {
-        //     return +d.weeks;
-        // });
-
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.labels = labels;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.name = fileInfo.name;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.headers = csvHeadersObj.slice(1);
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.csvFile.data = data;
-        // currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSet;
-        // console.log(data, fileInfo);
-
         props.setColumn(currentColumnObj);
     }
 
     const setShownData = (selected) => {
         console.log(selected);
         const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData = selected
-
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData = selected;
         props.setColumn(currentColumnObj);
     }
 
@@ -142,6 +132,7 @@ function SgCharts(props) {
         }
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSets;
+        props.setColumn(currentColumnObj);
     }
 
     return (
@@ -261,6 +252,7 @@ function SgCharts(props) {
                                         }
                                         onChange={(e) => {
                                             setShownData(e);
+                                            setDataSets(e);
                                         }}
                                     />
                                 </span>
