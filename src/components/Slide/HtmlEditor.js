@@ -74,24 +74,6 @@ function HtmlEditor(props) {
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 
-    // const onChangeTextEditor = (value, contentIndex, editorType) => {
-    //     const currentColumnObj = currentColumn;
-
-    //     if (editorType.type === 'text') {
-    //         if (editorType.for === 'courseInfo') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
-    //         } else if (editorType.for === 'courseReq') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
-    //         } else if (editorType.for === 'listModal') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value;
-    //         } else if (editorType.for === 'video') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value;
-    //         }
-    //     }
-
-    //     props.setColumn(currentColumnObj);
-    // }
-
     return (
         <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
@@ -158,47 +140,14 @@ function HtmlEditor(props) {
             </div>
             <div className="sg-workspace-expander-body">
                 <div className="sg-text-editor sg-text-editor-mode-html h-100">
-                    {/* {
-                        contentFor === '' ?
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={ 
-                                    typeof currentColumn !== "undefined" &&
-                                    'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                    currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  &&
-                                    currentColumn.content[currentColumnContentIndex][contentIndex].output
-                                }
-                                onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
-                            />
-                        :
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={
-                                    contentFor === 'courseInfo' ?
-                                        typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
-                                    :
-                                        contentFor === 'courseReq' ?
-                                            typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
-                                        :
-                                            contentFor === 'listModal' ?
-                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content
-                                            :
-                                                contentFor === 'video' &&
-                                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
-                                }
-                                onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
-                            />
-                    } */}
-                    {/* {editorOnly === "true" && */}
-                        <RichTextEditor
-                            className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
-                            editorClassName={editorOnly === "true" ? "sg-text-editor-html h-74-5" : "sg-text-editor-html h-54-5"}
-                            value={editorValue}
-                            onChange={handleChange}
-                            autoFocus={true}
-                            blockStyleFn={getTextAlignClassName}
-                        />
-                    {/* } */}
+                    <RichTextEditor
+                        className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
+                        editorClassName={editorOnly === "true" ? "sg-text-editor-html h-74-5" : "sg-text-editor-html h-54-5"}
+                        value={editorValue}
+                        onChange={handleChange}
+                        autoFocus={true}
+                        blockStyleFn={getTextAlignClassName}
+                    />
                     {editorOnly === "false" &&
                         <>
                             <div className="sg-workspace-expander-head-label mt-1 mb-1">
