@@ -518,6 +518,7 @@ class SlideHandler extends Component {
                     name: '',
                     url: '',
                     type: '',
+                    show: 'yes',
                     paragraph: '',
                     vtt: {
                         name: '',
@@ -893,6 +894,7 @@ class SlideHandler extends Component {
                                 name: '',
                                 url: '',
                                 type: '',
+                                show: 'yes',
                                 paragraph: '',
                                 vtt: {
                                     name: '',

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {RadioGroup, Radio} from 'react-radio-group';
 
 function Video(props) {
     
@@ -61,6 +63,14 @@ function Video(props) {
             setVtt(files[0].name, reader.result, files[0].type);
         }
     }
+
+    const setShowPlayer = (value) => {
+        const currentColumnObj = currentColumn;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.show = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -106,6 +116,59 @@ function Video(props) {
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Upload subtitle" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.vtt.name} readOnly/>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Choose whether to show player or not.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Show player</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <RadioGroup
+                                    name="fruit"
+                                    selectedValue={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.show &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.show
+                                    }
+                                    onChange={setShowPlayer}
+                                    className="row m-0"
+                                >
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="yes"
+                                            className="mr-2" 
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="no"
+                                            className="mr-2"
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>No</span>
+                                    </label>
+                                </RadioGroup>
                             </div>
                         </li>
                     </ul>
