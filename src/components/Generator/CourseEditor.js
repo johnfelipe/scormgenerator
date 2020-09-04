@@ -446,42 +446,42 @@ function CourseEditor() {
                                                                                                                     {(provided) => (
                                                                                                                         <div
                                                                                                                             id={"slide-item-" + slideIndex}
-                                                                                                                            className="slide-item"
+                                                                                                                            className={slideIndex !== 0 ? "slide-item row m-0 mt-2" : "slide-item row m-0"}
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
                                                                                                                             {...provided.dragHandleProps}
                                                                                                                         >
-                                                                                                                            <span className="btn pr-1">{slide.title}</span>
-                                                                                                                            <SlideHandler
-                                                                                                                                sid={slide.sid}
-                                                                                                                                cid={currentCourse && currentCourse.cid}
-                                                                                                                                uid={currentCourse && currentCourse.uid}
-                                                                                                                                lid={lesson.lid}
-                                                                                                                                currentSlideName={slide.title}
-                                                                                                                                currentSlideSubtitle={slide.subtitle}
-                                                                                                                                currentColumns={slide.columns}
-                                                                                                                                hide_title={slide.hide_title}
-                                                                                                                                currentClickedLessonId={currentClickedLessonId}
-                                                                                                                                action="edit"
-                                                                                                                                currentSlideIndex={slideIndex}
-                                                                                                                                slideItemId={"slide-item-" + slideIndex}
-                                                                                                                                lessonIndex={lessonIndex}
-                                                                                                                                // setSlideItemIndex={setSlideItemIndex}
-                                                                                                                                // addMediaFiles={this.props.addMediaFiles}
-                                                                                                                                // mediaFilesObject={mediaFilesObject}
-                                                                                                                                // setMediaFilesObject={setMediaFilesObject}
-                                                                                                                            />
-                                                                                                                            <button 
-                                                                                                                                className="btn btn-danger btn-sm float-right" 
-                                                                                                                                title="Remove" 
-                                                                                                                                onClick={() => {
-                                                                                                                                    // this.props.deleteSlide(slideIndex, currentClickedLessonId)
-                                                                                                                                    dispatch(slideActions.deleteSlide(slide.sid));
-                                                                                                                                    dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
-                                                                                                                                }}
-                                                                                                                            >
-                                                                                                                                <FontAwesomeIcon icon={faWindowClose} />
-                                                                                                                            </button>
+                                                                                                                            <div className="col-md-11 pl-0">
+                                                                                                                                <span className="btn pr-1">{slide.title}</span>
+                                                                                                                                <SlideHandler
+                                                                                                                                    sid={slide.sid}
+                                                                                                                                    cid={currentCourse && currentCourse.cid}
+                                                                                                                                    uid={currentCourse && currentCourse.uid}
+                                                                                                                                    lid={lesson.lid}
+                                                                                                                                    currentSlideName={slide.title}
+                                                                                                                                    currentSlideSubtitle={slide.subtitle}
+                                                                                                                                    currentColumns={slide.columns}
+                                                                                                                                    hide_title={slide.hide_title}
+                                                                                                                                    currentClickedLessonId={currentClickedLessonId}
+                                                                                                                                    action="edit"
+                                                                                                                                    currentSlideIndex={slideIndex}
+                                                                                                                                    slideItemId={"slide-item-" + slideIndex}
+                                                                                                                                    lessonIndex={lessonIndex}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                            <div className="col-md-1 sg-vertical-center justify-content-center pr-0">
+                                                                                                                                <button 
+                                                                                                                                    className="btn btn-danger btn-sm" 
+                                                                                                                                    title="Remove" 
+                                                                                                                                    onClick={() => {
+                                                                                                                                        // this.props.deleteSlide(slideIndex, currentClickedLessonId)
+                                                                                                                                        dispatch(slideActions.deleteSlide(slide.sid));
+                                                                                                                                        dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
+                                                                                                                                    }}
+                                                                                                                                >
+                                                                                                                                    <FontAwesomeIcon icon={faWindowClose} />
+                                                                                                                                </button>
+                                                                                                                            </div>
                                                                                                                         </div>
                                                                                                                     )}
                                                                                                                 </Draggable>
