@@ -654,8 +654,12 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
-                    backgroundColor: '',
+                    backgroundColor: '#fff',
                     textColor: '',
+                    header: {
+                        bgColor: '',
+                        tColor: '',
+                    },
                 },
                 css: '',
             };
@@ -1088,8 +1092,12 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
-                                backgroundColor: '',
+                                backgroundColor: '#fff',
                                 textColor: '',
+                                header: {
+                                    bgColor: '',
+                                    tColor: '',
+                                },
                             },
                             css: '',
                         };

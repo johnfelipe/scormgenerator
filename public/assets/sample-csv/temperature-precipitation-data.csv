@@ -1,3 +1,13 @@
-January,February,March,April,May,June,July,August,September,October,November,December
-Temperature,7,7,10,15,20,23,26,30,35,43,48
-Precipitation,8.1,14.9,41,31.4,42.6,57.5,36,42,47,50,56
+month,temperature,precipitation
+January,7,8
+February,7,1
+March,10,14.9
+April,15,41
+May,20,31.4
+June,23,42.6
+July,26,57.5
+August,30,36
+September,35,42
+October,43,47
+November,48,50
+December,50,56
