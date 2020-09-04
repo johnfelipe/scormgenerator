@@ -5,6 +5,7 @@ import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-sol
 // components
 import SgSubAccordion from './SgSubAccordion';
 import ColorPickerBg from '../../../Common/ColorPicker';
+import ColorPickerAHC from '../../../Common/ColorPicker';
 
 function SgAccordion(props) {
 
@@ -16,7 +17,9 @@ function SgAccordion(props) {
     const [isEditSgAccordion, setIsEditSgAccordion] = useState(false);
     const [isAddSgAccordionContent, setIsAddSgAccordionContent] = useState(false);
     const [showPickerBg, setShowPickerBg] = useState(false);
+    const [showPickerAHC, setShowPickerAHC] = useState(false);
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
+    const currentHeaderColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.headerColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.headerColor;
 
     const addSgAccordion = (value) => {
         const currentColumnObj = currentColumn;
@@ -75,6 +78,14 @@ function SgAccordion(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.textColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setSgAccordionAccordionHeaderColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.headerColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -247,6 +258,20 @@ function SgAccordion(props) {
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label sg-accordion-background-color-label">
+                                <span>Accordion Header Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input sg-accordion-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerAHC ? setShowPickerAHC(false) : setShowPickerAHC(true)} style={{ background: currentHeaderColor ? currentHeaderColor : '#fff', cursor: 'pointer' }}>
+                                    {currentHeaderColor ?
+                                        <span className="text-white h-100 w-100">{currentHeaderColor}</span>
+                                    :
+                                        <span className="text-black h-100 w-100">TRANSPARENT</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Text Color</span>
                             </div>
@@ -296,6 +321,12 @@ function SgAccordion(props) {
                 showPicker={showPickerBg}
                 setBackgroundColor={setSgAccordionBackgroundColor}
                 defaultColor={currentBackgroundColor}
+            />
+            <ColorPickerAHC
+                classNames="position-absolute sg-accordion-color-picker-ahc"
+                showPicker={showPickerAHC}
+                setBackgroundColor={setSgAccordionAccordionHeaderColor}
+                defaultColor={currentHeaderColor}
             />
         </div>
     )
