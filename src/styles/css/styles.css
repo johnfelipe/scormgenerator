@@ -432,11 +432,6 @@ html body #root #generator-container .row #lesson-container .lesson-container, h
   border-radius: 5px;
   overflow: auto;
 }
-html body #root #generator-container .row #lesson-container .lesson-container .lesson-item-remove-btn, html body #root #generator-container .row #lesson-container .course-container .lesson-item-remove-btn, html body #root #generator-container .row #course-container .lesson-container .lesson-item-remove-btn, html body #root #generator-container .row #course-container .course-container .lesson-item-remove-btn {
-  padding: 0px 0px 0px 0px;
-  height: 25px;
-  width: 25px;
-}
 html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapsing div.card-body div.slide-container, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapsing div.card-body div.slide-container, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapsing div.card-body div.slide-container, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapsing div.card-body div.slide-container {
   background: lightgrey;
   padding: 8px;
