@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAudio, faFileVideo, faTrash, faClone } from '@fortawesome/free-solid-svg-icons';
+import { faFileAudio, faFileVideo, faTrash, faClone, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar } from 'video-react';
@@ -358,6 +358,21 @@ function MediaLoader (props) {
                                             <FontAwesomeIcon icon={faClone}/>
                                         </button>
                                     </CopyToClipboard>
+                                    <div className="row m-0 mb-2">
+                                        <div className="col-md-1 sg-vertical-center justify-content-center">
+                                            <span>VTT:</span>
+                                        </div>
+                                        <div className="col-md-1 p-0">
+                                            <label className="input-group-btn form-inline m-0 float-right">
+                                                <span className="btn btn-primary">
+                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} />
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div className="col-md-10 p-0 pl-1">
+                                            <input type="text" placeholder="Choose vtt file" className="form-control" value={mediaVtt} readOnly/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <Player>
