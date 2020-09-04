@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // formik and related libraries
@@ -339,43 +339,50 @@ function CourseEditor() {
                                                                         id={"lesson-item-" + lessonIndex}
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
                                                                     >
                                                                         <Accordion key={lessonIndex}>
                                                                             <Card>
-                                                                                <Card.Header>
-                                                                                    <Accordion.Toggle
-                                                                                        as={Button}
-                                                                                        variant="link"
-                                                                                        eventKey="0"
-                                                                                        className="pr-0"
-                                                                                        onClick={() => {
-                                                                                            setCurrentClickedLessonId(lessonIndex);
-                                                                                            setLid(lesson.lid);
-                                                                                        }}
-                                                                                    >
-                                                                                        <span>{lesson.title}</span>
-                                                                                    </Accordion.Toggle>
-                                                                                    <LessonHandler
-                                                                                        // editLessonNameChange={this.props.editCourseLessonName}
-                                                                                        action="edit"
-                                                                                        currentLessonName={lesson.title}
-                                                                                        id={lessonIndex}
-                                                                                        cid={lesson.cid}
-                                                                                        uid={lesson.uid}
-                                                                                        lid={lesson.lid}
-                                                                                    />
-
-                                                                                    <button
-                                                                                        className="btn btn-danger float-right lesson-item-remove-btn"
-                                                                                        title="Remove"
-                                                                                        onClick={() => {
-                                                                                            // this.props.deleteLesson(lessonIndex)
-                                                                                            dispatch(lessonActions.deleteLesson(lesson.lid));
-                                                                                        }}
-                                                                                    >
-                                                                                        <FontAwesomeIcon icon={faWindowClose} />
-                                                                                    </button>
+                                                                                <Card.Header className="row m-0">
+                                                                                    <div className="col-md-11 pl-0">
+                                                                                        <Accordion.Toggle
+                                                                                            as={Button}
+                                                                                            variant="link"
+                                                                                            eventKey="0"
+                                                                                            className="pr-0"
+                                                                                            onClick={() => {
+                                                                                                setCurrentClickedLessonId(lessonIndex);
+                                                                                                setLid(lesson.lid);
+                                                                                            }}
+                                                                                        >
+                                                                                            <span>{lesson.title}</span>
+                                                                                        </Accordion.Toggle>
+                                                                                        <LessonHandler
+                                                                                            // editLessonNameChange={this.props.editCourseLessonName}
+                                                                                            action="edit"
+                                                                                            currentLessonName={lesson.title}
+                                                                                            id={lessonIndex}
+                                                                                            cid={lesson.cid}
+                                                                                            uid={lesson.uid}
+                                                                                            lid={lesson.lid}
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div className="col-md-1 sg-vertical-center justify-content-space-between">
+                                                                                        <span
+                                                                                            {...provided.dragHandleProps}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                                                        </span>
+                                                                                        <button
+                                                                                            className="btn btn-danger btn-sm"
+                                                                                            title="Remove"
+                                                                                            onClick={() => {
+                                                                                                // this.props.deleteLesson(lessonIndex)
+                                                                                                dispatch(lessonActions.deleteLesson(lesson.lid));
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faWindowClose} />
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </Card.Header>
                                                                                 <Accordion.Collapse eventKey="0">
                                                                                     <Card.Body>
@@ -465,7 +472,7 @@ function CourseEditor() {
                                                                                                                                 // setMediaFilesObject={setMediaFilesObject}
                                                                                                                             />
                                                                                                                             <button 
-                                                                                                                                className="btn btn-danger float-right lesson-item-remove-btn" 
+                                                                                                                                className="btn btn-danger btn-sm float-right" 
                                                                                                                                 title="Remove" 
                                                                                                                                 onClick={() => {
                                                                                                                                     // this.props.deleteSlide(slideIndex, currentClickedLessonId)
