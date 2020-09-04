@@ -660,6 +660,7 @@ class SlideHandler extends Component {
                         bgColor: '',
                         tColor: '',
                     },
+                    orientation: 'horizontal',
                 },
                 css: '',
             };
@@ -1098,6 +1099,7 @@ class SlideHandler extends Component {
                                     bgColor: '',
                                     tColor: '',
                                 },
+                                orientation: 'horizontal',
                             },
                             css: '',
                         };
