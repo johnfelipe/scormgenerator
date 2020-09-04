@@ -1,6 +1,7 @@
 import React from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
+// import HorizontalAccordion from '../../Common/Accordion/HorizontalAccordion';
 
 function SgAccordionLayout(props) {
 
@@ -8,22 +9,27 @@ function SgAccordionLayout(props) {
     
     return (
         <>
-            <div id="sg-accordion-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover' }}>
-                <div className="content-area-container h-100 w-100 border border-light p-3 ">
+            <div id="sg-accordion-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
+                <div className="content-area-container h-100 w-100 border border-light p-3">
                     {output.length > 0 ?
                         output.map((item, itemIndex) => (
-                            style.orientation === 'horizontal' ?
-                                <Accordion key={'accordion-sg-accordion-output-' + itemIndex} className={itemIndex !== 0 ? 'mt-2' : ''}>
+                            style.orientation === 'vertical' ?
+                                <Accordion
+                                    key={'accordion-sg-accordion-output-' + itemIndex}
+                                    className={itemIndex !== 0 ? 'mt-2' : ''}
+                                >
                                     <Card>
                                         <Accordion.Toggle
                                             as={Card.Header}
                                             eventKey={itemIndex}
-                                            className="p-2"
-                                            style={{ cursor: 'pointer' }}
+                                            className={style.textColor ? style.textColor + " p-2" : "p-2"}
+                                            style={{ cursor: 'pointer', background: style.headerColor }}
                                         >
                                             <span>{item.title}</span>
                                         </Accordion.Toggle>
-                                        <Accordion.Collapse eventKey={itemIndex}>
+                                        <Accordion.Collapse
+                                            eventKey={itemIndex}
+                                        >
                                             <Card.Body className="p-2">
                                                 {ReactHtmlParser(item.content)}
                                             </Card.Body>
@@ -31,7 +37,7 @@ function SgAccordionLayout(props) {
                                     </Card>
                                 </Accordion>
                             :
-                                <span>Under construction. . .</span>
+                                <span>Under construction.</span>
                         ))
                     :
                         <span>No accordion added.</span>
