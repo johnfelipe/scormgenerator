@@ -661,7 +661,7 @@ class SlideHandler extends Component {
                         bgColor: '',
                         tColor: '',
                     },
-                    orientation: 'horizontal',
+                    orientation: 'vertical',
                 },
                 css: '',
             };
@@ -1101,7 +1101,7 @@ class SlideHandler extends Component {
                                     bgColor: '',
                                     tColor: '',
                                 },
-                                orientation: 'horizontal',
+                                orientation: 'vertical',
                             },
                             css: '',
                         };
