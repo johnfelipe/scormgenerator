@@ -7,6 +7,7 @@ export const galleryActions = {
     getAllFiles,
     uploadFiles,
     getFile,
+    updateFile,
 };
 
 function getAllFiles() {
@@ -73,5 +74,28 @@ function getFile(id) {
 
     function request(id) { return { type: galleryConstants.REQUEST, id } }
     function success(file) { return { type: galleryConstants.GET_FILE_SUCCESS, file } }
+    function failure(error) { return { type: galleryConstants.ERROR, error } }
+}
+
+function updateFile(id, vtt, alt) {
+    return dispatch => {
+        dispatch(request(vtt));
+
+        galleryService.updateFile(id, vtt, alt)
+            .then(
+                file => { 
+                    dispatch(success(file));
+                    // dispatch(alertActions.success('File fetched successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(id) { return { type: galleryConstants.REQUEST, id } }
+    function success(file) { return { type: galleryConstants.UPDATE_SUCCESS, file } }
     function failure(error) { return { type: galleryConstants.ERROR, error } }
 }

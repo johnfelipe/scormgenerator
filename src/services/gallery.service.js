@@ -4,6 +4,7 @@ export const galleryService = {
     getAllFiles,
     uploadFiles,
     getFile,
+    updateFile,
 };
 
 async function getAllFiles() {
@@ -24,6 +25,11 @@ async function uploadFiles(data) {
 
 async function getFile(id) {
     const response = await API.get('/files/' + id);
+    return handleResponse(response);
+}
+
+async function updateFile(id, vtt, alt) {
+    const response = await API.put('/files/' + id + '?vtt=' + vtt + '&alt=' + alt,);
     return handleResponse(response);
 }
 
