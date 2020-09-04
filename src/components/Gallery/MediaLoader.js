@@ -5,10 +5,14 @@ import { Modal } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar } from 'video-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { galleryActions } from '../../actions';
+import { galleryService } from '../../services';
+import { useDispatch } from 'react-redux';
 
 function MediaLoader (props) {
 
-    const {filterType, mediaFiles} = props;
+    const dispatch = useDispatch();
+    const {filterType, mediaFiles, uid} = props;
     const [modalShow, setModalShow] = useState(false);
     const [mediaName, setMediaName] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
@@ -36,6 +40,26 @@ function MediaLoader (props) {
                 prevElem.classList.remove("selected");
             }
         }
+    }
+
+    const handleFileUpload = (e) => {
+        let files = e.target.files;
+        console.log(files);
+
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+        formData.append('uid', uid);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+                dispatch(galleryActions.updateFile(fileObject.fid, fileObject.url, fileObject.name));
+            },
+            error => console.log(error)
+        );
     }
 
     const content = (filterType, mediaFiles) => {
@@ -365,7 +389,7 @@ function MediaLoader (props) {
                                         <div className="col-md-1 p-0">
                                             <label className="input-group-btn form-inline m-0 float-right">
                                                 <span className="btn btn-primary">
-                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} />
+                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" onChange={(e) => handleFileUpload(e)} style={{ display: "none"}} accept=".vtt"/>
                                                 </span>
                                             </label>
                                         </div>
