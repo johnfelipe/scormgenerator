@@ -123,25 +123,6 @@
                                                             z-index: 5000;
                                                             margin: 0 40px;
                                                             // top: 55px;
-                                                            top: 130px;
-
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 130px;
-                                                            }
-
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 130px;
-                                                            }
-                                                        }
-
-                                                        .sg-accordion-color-picker-tc {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
                                                             top: 175px;
 
                                                             @media only screen and (min-width: 1920px) {
@@ -154,6 +135,25 @@
                                                                 margin: 0 40px;
                                                                 // top: 75px;
                                                                 top: 175px;
+                                                            }
+                                                        }
+
+                                                        .sg-accordion-color-picker-ahc {
+                                                            z-index: 5000;
+                                                            margin: 0 40px;
+                                                            // top: 55px;
+                                                            top: 85px;
+
+                                                            @media only screen and (min-width: 1920px) {
+                                                                margin: 0 110px;
+                                                                // top: 55px;
+                                                                top: 85px;
+                                                            }
+
+                                                            @media only screen and (max-width: 1366px) {
+                                                                margin: 0 40px;
+                                                                // top: 75px;
+                                                                top: 85px;
                                                             }
                                                         }
 

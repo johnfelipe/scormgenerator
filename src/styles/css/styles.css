@@ -2136,35 +2136,35 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
   z-index: 5000;
   margin: 0 40px;
-  top: 130px;
-}
-@media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
-    margin: 0 110px;
-    top: 130px;
-  }
-}
-@media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
-    margin: 0 40px;
-    top: 130px;
-  }
-}
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
-  z-index: 5000;
-  margin: 0 40px;
   top: 175px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
     margin: 0 110px;
     top: 175px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-tc {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
     margin: 0 40px;
     top: 175px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 85px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+    margin: 0 110px;
+    top: 85px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+    margin: 0 40px;
+    top: 85px;
   }
 }
 html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #uncontrolled-tab-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .sg-accordion-list .sg-accordion-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .sg-accordion-action-button .col-md-6 .multi-select {
