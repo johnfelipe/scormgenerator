@@ -14,6 +14,7 @@ function MediaLoader (props) {
     const [mediaUrl, setMediaUrl] = useState('');
     const [mediaAlt, setMediaAlt] = useState('');
     const [mediaType, setMediaType] = useState('');
+    const [mediaVtt, setMediaVtt] = useState('');
     const [copied, setCopied] = useState(false);
 
     const itemClick = (itemId) => {
@@ -187,6 +188,7 @@ function MediaLoader (props) {
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
                                     setMediaType(fileData.type);
+                                    setMediaVtt(fileData.vtt);
                                 }}
                             >
                                 <div className="thumbnail">
@@ -238,7 +240,7 @@ function MediaLoader (props) {
                     </div> */}
                         <div className="form-inline justify-content-center mb-2">
                             {copied &&
-                                <label className="form-check-label text-success mr-2">Url copied to clipboard!</label>
+                                <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
                             }
                             <input
                                 type="text"
@@ -283,14 +285,33 @@ function MediaLoader (props) {
                     mediaType.includes("audio") ?
                         <div className="text-center">
                             <div>
+                                {copied &&
+                                    <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
+                                }
                                 <textarea 
                                     value={
-                                        '<iframe width="560" height="315" src="' + mediaUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                                        '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
                                     }
                                     className="resize-none w-100"
                                     style={{ height: '100px' }}
                                     readOnly
                                 />
+                                <CopyToClipboard
+                                    onCopy={setCopied}
+                                    text={
+                                        '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
+                                    }
+                                >
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary w-100 mb-2"
+                                        onClick={() => {
+                                            clearCopiedMessage();
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faClone}/>
+                                    </button>
+                                </CopyToClipboard>
                             </div>
                             <div>
                                 <ReactAudioPlayer
@@ -304,14 +325,39 @@ function MediaLoader (props) {
                         mediaType.includes("video") &&
                             <div className="text-center">
                                 <div>
+                                    {copied &&
+                                        <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
+                                    }
                                     <textarea 
                                         value={
-                                            '<iframe width="560" height="315" src="' + mediaUrl + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+                                            mediaVtt ?
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"><track label="English" kind="subtitles" srclang="en" src="' + mediaVtt + '" default></video>'
+                                            :
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"></video>'
                                         }
-                                        className="resize-none w-100"
+                                        className="resize-none w-100 sg-video-code-sharing code monospace"
                                         style={{ height: '100px' }}
                                         readOnly
                                     />
+                                    <CopyToClipboard
+                                        onCopy={setCopied}
+                                        text={
+                                            mediaVtt ?
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"><track label="English" kind="subtitles" srclang="en" src="' + mediaVtt + '" default></video>'
+                                            :
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"></video>'
+                                        }
+                                    >
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary w-100 mb-2"
+                                            onClick={() => {
+                                                clearCopiedMessage();
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faClone}/>
+                                        </button>
+                                    </CopyToClipboard>
                                 </div>
                                 <div>
                                     <Player>
@@ -322,9 +368,6 @@ function MediaLoader (props) {
                             </div>
                 }
             </Modal.Body>
-            <Modal.Footer>
-                <button className="btn btn-primary" onClick={() => setModalShow(false)}>Close</button>
-            </Modal.Footer>
         </Modal>
     );
 
