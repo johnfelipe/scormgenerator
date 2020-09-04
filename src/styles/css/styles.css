@@ -326,8 +326,15 @@
   margin-left: 1.75rem !important;
 }
 
-.mt-5-5 {
-  margin-top: 3.25rem !important;
+@media (min-width: 1200px) {
+  .mt-5-5 {
+    margin-top: 5.5rem !important;
+  }
+}
+@media (max-width: 1400px) {
+  .mt-5-5 {
+    margin-top: 3.25rem !important;
+  }
 }
 
 .resize-none {

@@ -335,7 +335,14 @@
     }
 
     .mt-5-5 {
-        margin-top: 3.25rem !important;
+        // margin-top: 3.25rem !important;
+        @media (min-width: 1200px) {
+            margin-top: 5.5rem !important;
+        }
+
+        @media (max-width: 1400px) {
+            margin-top: 3.25rem !important;
+        }
     }
 
     // textarea
