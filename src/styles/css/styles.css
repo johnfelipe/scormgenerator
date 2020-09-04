@@ -351,13 +351,17 @@
 }
 
 .sg-vertical-center {
-  display: flex;
-  align-items: center;
-  flex: 1 1 100%;
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 100% !important;
 }
 
 .justify-content-space-between {
-  justify-content: space-between;
+  justify-content: space-between !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
 }
 
 html body #root .App .App-header p {
@@ -441,7 +445,6 @@ html body #root #generator-container .row #lesson-container .lesson-container di
 html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #lesson-container .lesson-container div.accordion div.card div.collapsing div.card-body div.slide-container .slide-item, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #lesson-container .course-container div.accordion div.card div.collapsing div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .lesson-container div.accordion div.card div.collapsing div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapse div.card-body div.slide-container .slide-item, html body #root #generator-container .row #course-container .course-container div.accordion div.card div.collapsing div.card-body div.slide-container .slide-item {
   user-select: none;
   padding: 15px;
-  margin: 0px 0px 8px 0px;
   background: whitesmoke;
   border-radius: 5px;
 }

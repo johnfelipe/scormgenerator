@@ -366,12 +366,16 @@
     }
 
     .sg-vertical-center {
-        display: flex;
-        align-items: center;
-        flex: 1 1 100%;
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 1 100% !important;
     }
 
     .justify-content-space-between {
-        justify-content: space-between;
+        justify-content: space-between !important;
+    }
+
+    .justify-content-center {
+        justify-content: center !important;
     }
 }
