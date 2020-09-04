@@ -12,4 +12,7 @@ export const galleryConstants = {
 
     // GET INDICIDUAL FILE
     GET_FILE_SUCCESS: 'GET_FILE_SUCCESS',
+
+    // GET INDICIDUAL FILE
+    UPDATE_SUCCESS: 'UPDATE_FILE_SUCCESS',
 };

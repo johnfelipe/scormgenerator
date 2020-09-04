@@ -29,6 +29,12 @@ export function gallery(state = initialState, action) {
                 ...state,
                 currentFile: action.file
             };
+
+        case galleryConstants.UPDATE_SUCCESS:
+            return {
+                ...state,
+                message: action.file
+            };
     
         case galleryConstants.ERROR:
             return { 
