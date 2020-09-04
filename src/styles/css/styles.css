@@ -356,14 +356,6 @@
   flex: 1 1 100% !important;
 }
 
-.justify-content-space-between {
-  justify-content: space-between !important;
-}
-
-.justify-content-center {
-  justify-content: center !important;
-}
-
 html body #root .App .App-header p {
   color: red;
 }

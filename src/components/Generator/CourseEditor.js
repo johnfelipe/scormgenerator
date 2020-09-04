@@ -366,7 +366,7 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-1 sg-vertical-center justify-content-space-between">
+                                                                                    <div className="col-md-1 sg-vertical-center justify-content-between">
                                                                                         <span
                                                                                             {...provided.dragHandleProps}
                                                                                         >
