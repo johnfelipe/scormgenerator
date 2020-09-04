@@ -350,6 +350,16 @@
   overflow: auto;
 }
 
+.sg-vertical-center {
+  display: flex;
+  align-items: center;
+  flex: 1 1 100%;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
