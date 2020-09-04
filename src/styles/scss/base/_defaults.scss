@@ -356,4 +356,12 @@
             }
         }
     }
+
+    .code {
+        background: lightgrey;
+        padding: 8px;
+        height: 100%;
+        border-radius: 5px;
+        overflow: auto;
+    }
 }

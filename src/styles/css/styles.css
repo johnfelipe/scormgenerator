@@ -342,6 +342,14 @@
   z-index: 5000 !important;
 }
 
+.code {
+  background: lightgrey;
+  padding: 8px;
+  height: 100%;
+  border-radius: 5px;
+  overflow: auto;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
