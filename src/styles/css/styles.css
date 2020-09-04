@@ -356,6 +356,16 @@
   flex: 1 1 100% !important;
 }
 
+.sg-video-code-sharing {
+  height: 100px;
+  border: none;
+  text-align: left;
+}
+
+.monospace {
+  font-family: "Lucida Console", Courier, monospace;
+}
+
 html body #root .App .App-header p {
   color: red;
 }

@@ -370,4 +370,15 @@
         align-items: center !important;
         flex: 1 1 100% !important;
     }
+
+    .sg-video-code-sharing {
+        height: 100px;
+        border: none;
+        text-align: left;
+    }
+
+    // font-family
+    .monospace {
+        font-family: "Lucida Console", Courier, monospace;
+    }
 }
