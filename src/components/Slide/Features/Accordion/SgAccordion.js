@@ -89,14 +89,6 @@ function SgAccordion(props) {
 
         props.setColumn(currentColumnObj);
     }
-
-    const setSgAccordionOrientation = (value) => {
-        const currentColumnObj = currentColumn;
-
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.orientation = value;
-
-        props.setColumn(currentColumnObj);
-    }
     
     return (
         <div className="sg-controls">
@@ -265,21 +257,6 @@ function SgAccordion(props) {
                 </div>
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Accordion Collapse Orientation</span>
-                            </div>
-                            <div className="sg-control-input-list-input">
-                                <select
-                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.orientation}
-                                    onChange={(event) => setSgAccordionOrientation(event.target.value)}
-                                    className="form-control-plaintext border border-secondary rounded"
-                                >
-                                    <option value="vertical">&nbsp;Vertical Collapse</option>
-                                    <option value="horizontal">&nbsp;Horizontal Collapse</option>
-                                </select>
-                            </div>
-                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label sg-accordion-background-color-label">
                                 <span>Accordion Header Color</span>
