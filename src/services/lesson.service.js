@@ -10,32 +10,92 @@ export const lessonService = {
 };
 
 async function createLesson(lessonObj) {
-    const response = await API.post('/lessons', lessonObj);
+    let response;
+    try {
+        response = await API.post('/lessons', lessonObj);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getAllLessons() {
-    const response = await API.get('/lessons',);
+    let response;
+    try {
+        response = await API.get('/lessons',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getLesson(id) {
-    const response = await API.get('/lessons/' + id,);
+    let response;
+    try {
+        response = await API.get('/lessons/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function updateLesson(data, id) {
-    const response = await API.put('/lessons/' + id, data);
+    let response;
+    try {
+        response = await API.put('/lessons/' + id, data);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getLessonSlides(id) {
-    const response = await API.get('/lessons/' + id + '/slides?pageNo=0&pageSize=10000&sortBy=weight',);
+    let response;
+    try {
+        response = await API.get('/lessons/' + id + '/slides?pageNo=0&pageSize=10000&sortBy=weight',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function deleteLesson(id) {
-    const response = await API.delete('/lessons/' + id,);
+    let response;
+    try {
+        response = await API.delete('/lessons/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
@@ -45,6 +105,11 @@ function handleResponse(response) {
     if (response.status === 500) {
         const error = response;
         return Promise.reject(error.message);
+    } else if (response.status === 404) {
+        const error = response;
+        console.log(error.message);
+        console.log(error.error);
+        // return Promise.reject(error.message);
     }
 
     return data;
