@@ -14,7 +14,6 @@ async function createCoursemeta(coursemetaObj) {
     try {
         response = await API.post('/coursesmeta', coursemetaObj);
     } catch (error) {
-        console.log(error);
         response = {
             data: [],
             status: 404,
@@ -29,11 +28,11 @@ async function updateCoursemeta(coursemetaObj, id) {
     try {
         response = await API.put('/coursesmeta/' + id, coursemetaObj);
     } catch (error) {
-        console.log(error);
         response = {
             data: [],
             status: 404,
             message: 'Not found',
+            error: error,
         };
     }
     return handleResponse(response);
@@ -44,9 +43,11 @@ async function deleteCoursemeta(id) {
     try {
         response = await API.delete('/coursesmeta/' + id,);
     } catch (error) {
-        console.log(error);
         response = {
-            data: 'Something went wrong.',
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
         };
     }
     return handleResponse(response);
@@ -57,11 +58,11 @@ async function getAllCoursemeta() {
     try {
         response = await API.get('/coursesmeta',);
     } catch (error) {
-        console.log(error);
         response = {
             data: [],
             status: 404,
             message: 'Not found',
+            error: error,
         };
     }
     return handleResponse(response);
@@ -72,26 +73,26 @@ async function getCoursemeta(id) {
     try {
         response = await API.get('/coursesmeta/' + id,);
     } catch (error) {
-        console.log(error);
         response = {
             data: [],
             status: 404,
             message: 'Not found',
+            error: error,
         };
     }
     return handleResponse(response);
 }
 
 async function getCoursemetaByRkey(cid, rkey) {
-    let response;
+    let response = '';
     try {
         response = await API.get('/course/' + cid + '/coursemeta/rkey/' + rkey,);
     } catch (error) {
-        console.log(error);
         response = {
             data: [],
             status: 404,
             message: 'Not found',
+            error: error,
         };
     }
     return handleResponse(response);
@@ -105,7 +106,9 @@ function handleResponse(response) {
         return Promise.reject(error.message);
     } else if (response.status === 404) {
         const error = response;
-        return Promise.reject(error.message);
+        console.log(error.message);
+        console.log(error.error);
+        // return Promise.reject(error.message);
     }
 
     return data;
