@@ -84,7 +84,7 @@ async function getCoursemeta(id) {
 }
 
 async function getCoursemetaByRkey(cid, rkey) {
-    let response = '';
+    let response;
     try {
         response = await API.get('/course/' + cid + '/coursemeta/rkey/' + rkey,);
     } catch (error) {
