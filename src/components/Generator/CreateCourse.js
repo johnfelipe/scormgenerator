@@ -253,7 +253,7 @@ function CreateCourse() {
                                                                     >
                                                                         <div className="row m-0">
                                                                             <div className="col-md-10 py-2">{course.title}</div>
-                                                                            <div className="col-md-2 sg-vertical-center justify-content-space-between">
+                                                                            <div className="col-md-2 sg-vertical-center justify-content-between">
                                                                                 <span
                                                                                     {...provided.dragHandleProps}
                                                                                 >
