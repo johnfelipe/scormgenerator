@@ -10,32 +10,92 @@ export const slideService = {
 };
 
 async function createSlide(slideObj) {
-    const response = await API.post('/slides', slideObj);
+    let response;
+    try {
+        response = await API.post('/slides', slideObj);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getAllSlides() {
-    const response = await API.get('/slides',);
+    let response;
+    try {
+        response = await API.get('/slides',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getSlide(id) {
-    const response = await API.get('/slides/' + id,);
+    let response;
+    try {
+        response = await API.get('/slides/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function updateSlide(data, id) {
-    const response = await API.put('/slides/' + id, data);
+    let response;
+    try {
+        response = await API.put('/slides/' + id, data);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getSlideColumns(id) {
-    const response = await API.get('/slides/' + id + '/columns?pageNo=0&pageSize=10000&sortBy=clid',);
+    let response;
+    try {
+        response = await API.get('/slides/' + id + '/columns?pageNo=0&pageSize=10000&sortBy=clid',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function deleteSlide(id) {
-    const response = await API.delete('/slides/' + id,);
+    let response;
+    try {
+        response = await API.delete('/slides/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
@@ -45,6 +105,11 @@ function handleResponse(response) {
     if (response.status === 500) {
         const error = response;
         return Promise.reject(error.message);
+    } else if (response.status === 404) {
+        const error = response;
+        console.log(error.message);
+        console.log(error.error);
+        // return Promise.reject(error.message);
     }
 
     return data;
