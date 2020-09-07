@@ -10,12 +10,32 @@ export const coursemetaService = {
 };
 
 async function createCoursemeta(coursemetaObj) {
-    const response = await API.post('/coursesmeta', coursemetaObj);
+    let response;
+    try {
+        response = await API.post('/coursesmeta', coursemetaObj);
+    } catch (error) {
+        console.log(error);
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+        };
+    }
     return handleResponse(response);
 }
 
 async function updateCoursemeta(coursemetaObj, id) {
-    const response = await API.put('/coursesmeta/' + id, coursemetaObj);
+    let response;
+    try {
+        response = await API.put('/coursesmeta/' + id, coursemetaObj);
+    } catch (error) {
+        console.log(error);
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+        };
+    }
     return handleResponse(response);
 }
 
@@ -29,32 +49,51 @@ async function deleteCoursemeta(id) {
             data: 'Something went wrong.',
         };
     }
-
     return handleResponse(response);
 }
 
 async function getAllCoursemeta() {
-    const response = await API.get('/coursesmeta',);
+    let response;
+    try {
+        response = await API.get('/coursesmeta',);
+    } catch (error) {
+        console.log(error);
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+        };
+    }
     return handleResponse(response);
 }
 
 async function getCoursemeta(id) {
-    const response = await API.get('/coursesmeta/' + id,);
+    let response;
+    try {
+        response = await API.get('/coursesmeta/' + id,);
+    } catch (error) {
+        console.log(error);
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+        };
+    }
     return handleResponse(response);
 }
 
 async function getCoursemetaByRkey(cid, rkey) {
-    let response = '';
+    let response;
     try {
         response = await API.get('/course/' + cid + '/coursemeta/rkey/' + rkey,);
     } catch (error) {
         console.log(error);
         response = {
             data: [],
-            status: 200
+            status: 404,
+            message: 'Not found',
         };
     }
-    
     return handleResponse(response);
 }
 
@@ -62,6 +101,9 @@ function handleResponse(response) {
     let data = response.data;
     
     if (response.status === 500) {
+        const error = response;
+        return Promise.reject(error.message);
+    } else if (response.status === 404) {
         const error = response;
         return Promise.reject(error.message);
     }
