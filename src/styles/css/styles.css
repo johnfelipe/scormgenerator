@@ -7,6 +7,10 @@
   width: auto !important;
 }
 
+.w-8 {
+  width: 8% !important;
+}
+
 .w-10 {
   width: 10% !important;
 }
