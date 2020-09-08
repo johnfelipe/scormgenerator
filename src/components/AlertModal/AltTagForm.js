@@ -31,6 +31,10 @@ function AltTagForm (props) {
                         // setMediaAlt(values.alt);
                         props.setModalShow(false);
                         props.handleImageUpload(values.alt, file, fileIndex);
+                        
+                        if (props.location === 'contentPicture') {
+                            props.setImgAlt(values.alt);
+                        }
                     }}
 
                     validationSchema={Yup.object().shape({

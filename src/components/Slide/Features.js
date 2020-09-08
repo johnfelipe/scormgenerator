@@ -6,10 +6,21 @@ class Features extends Component {
 
     render() {
         return (
-            <>
-                <FontAwesomeIcon className="feature-icon" icon={this.props.icon}/>
-                <h4>{this.props.name}</h4>
-                <FontAwesomeIcon icon={faArrowsAlt}/>
+            <>{this.props.icon.length > 0 ?
+                    <>
+                        {this.props.icon.map((item, itemIndex) => {
+                            return <FontAwesomeIcon className={itemIndex === 0 ? "feature-icon w-8 mr-1" : "feature-icon w-8"} icon={item}/>
+                        })}
+                        <h4>{this.props.name}</h4>
+                        <FontAwesomeIcon icon={faArrowsAlt}/>
+                    </>
+                :
+                    <>
+                        <FontAwesomeIcon className="feature-icon" icon={this.props.icon}/>
+                        <h4>{this.props.name}</h4>
+                        <FontAwesomeIcon icon={faArrowsAlt}/>
+                    </>
+                }
             </>
         )
     }

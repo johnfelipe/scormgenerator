@@ -45,9 +45,16 @@
                                             border-bottom: 1px solid #ddd;
                                             height: 503.21px;
                                             // overflow: hidden !important;
-                                            overflow: auto !important;
+                                            // overflow: auto !important;
+                                            overflow: auto;
                                             margin-top: 0.8rem !important;
                                             padding-top: 0 !important;
+
+                                            #slide-tabs-tabpane-features {
+                                                .tab-content {
+                                                    overflow: unset !important;
+                                                }
+                                            }
                                         }
                                     }
 

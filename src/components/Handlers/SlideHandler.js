@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -44,6 +44,7 @@ import AudioLayout from '../Slide/Layouts/AudioLayout';
 import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
 import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
+import ContentWithPictureLayout from '../Slide/Layouts/ContentWithPictureLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -83,6 +84,25 @@ class SlideHandler extends Component {
                 { type: 'list', name: 'List', icon: faListUl, },
                 { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+                { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
+                { type: 'video', name: 'Video', icon: faVideo, },
+            ],
+            fixedFeatures: [
+                { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
+                { type: 'homePage', name: 'Home Page', icon: faHome, },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+            ],
+            fluidFeatures: [
+                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, },
+                { type: 'audio', name: 'Audio', icon: faFileAudio, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
+                { type: 'contentArea', name: 'Content Area', icon: faSquare, },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
+                { type: 'image', name: 'Image', icon: faFileImage, },
+                { type: 'list', name: 'List', icon: faListUl, },
+                { type: 'listModal', name: 'List Modal', icon: faList, },
                 { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
@@ -664,6 +684,26 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
+        } else if (featureType === "contentPicture") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'contentPicture',
+                output: {
+                    image: {
+                        name: '',
+                        url: '',
+                        alt: '',
+                    },
+                    content: '<span>No content provided yet.</span>'
+                },
+                style: {
+                    backgroundColor: '#fff',
+                    textColor: '',
+                    imgPosition: 'left',
+                },
+                class: '',
+                id: '',
+                css: '',
+            };
         }
 
         const columns = this.state.column;
@@ -677,6 +717,9 @@ class SlideHandler extends Component {
     onDragEnd = result => {
         const { source, destination } = result;
         const activeColumnId = this.state.activeColumnId;
+
+        console.log(source);
+        console.log(destination);
 
         // dropped outside the list
         if (!destination) {
@@ -705,7 +748,158 @@ class SlideHandler extends Component {
             })
         }
 
-        if ((source.droppableId === "features") && (destination.droppableId !== "features")) {
+        if ((source.droppableId === "fixed-features" && destination.droppableId !== "fixed-features")) {
+            const currentColumns = this.state.column;
+
+            this.setActiveTab("editor");
+
+            for (var keyIndex in currentColumns) {
+                if (destination.droppableId === currentColumns[keyIndex]['id']) {
+                    // First Size
+
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
+
+                    destination.index = parseInt(keyIndex);
+                    const currentFeatures = this.state.fixedFeatures;
+                    
+                    if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: 'question-files-left',
+                            id: '',
+                            styles: {
+                                questionLabelClass: 'rounded-circle',
+                                questionBackgroundColor: '#fff',
+                                multipleChoiceTextColor: 'text-black',
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            mechanics: {
+                                repeat: 0,
+                                passingRate: 80,
+                                specificType: 'knowledgeCheck',
+                                returnSlide: 0
+                            },
+                            css: '',
+                        };
+
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'homePage') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                title: 'Title',
+                                subtitle: 'Subtitle',
+                                date: '',
+                                courseId: '',
+                                backgroundImg: {
+                                    name: '',
+                                    url: ''
+                                }
+                            },
+                            class: 'course-title-bottom-left',
+                            id: '',
+                            styles: {
+                                titleBoxColor: '#0069d9',
+                                titleBoxBorder: 'border-bottom'
+                            },
+                            css: '',
+                        };
+
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                courseNav: {
+                                    name: 'Course Navigation',
+                                },
+                                courseInfo: {
+                                    name: 'Course Information',
+                                    content: '<span>No information provided yet.</span>'
+                                },
+                                courseReq: {
+                                    name: 'Course Requirements',
+                                    content: '<span>No requirements provided yet</span>.'
+                                },
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                courseIntroColor: '#0069d9'
+                            },
+                            introVideo: {
+                                name: 'file_example_MP4_480_1_5MG',
+                                url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
+                                type: 'video/mp4',
+                                position: 'course-objectives-video-left'
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                image: {
+                                    name: '',
+                                    url: '',
+                                    alt: '',
+                                },
+                                content: '<span>No content provided yet.</span>'
+                            },
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                                backgroundColor: '#fff',
+                                textColor: '',
+                                imgPosition: 'left',
+                            },
+                            class: '',
+                            id: '',
+                            css: '',
+                        };
+                        
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    }
+                    
+                }
+            }
+        }
+
+        if ((source.droppableId === "fluid-features" && destination.droppableId !== "fluid-features")) {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
@@ -719,7 +913,7 @@ class SlideHandler extends Component {
                     });
 
                     destination.index = parseInt(key);
-                    const currentFeatures = this.state.features;
+                    const currentFeatures = this.state.fluidFeatures;
                     
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
@@ -765,103 +959,6 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: [],
-                            class: 'question-files-left',
-                            id: '',
-                            styles: {
-                                questionLabelClass: 'rounded-circle',
-                                questionBackgroundColor: '#fff',
-                                multipleChoiceTextColor: 'text-black',
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                            },
-                            mechanics: {
-                                repeat: 0,
-                                passingRate: 80,
-                                specificType: 'knowledgeCheck',
-                                returnSlide: 0
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: {
-                                title: 'Title',
-                                subtitle: 'Subtitle',
-                                date: '',
-                                courseId: '',
-                                backgroundImg: {
-                                    name: '',
-                                    url: ''
-                                }
-                            },
-                            class: 'course-title-bottom-left',
-                            id: '',
-                            styles: {
-                                titleBoxColor: '#0069d9',
-                                titleBoxBorder: 'border-bottom'
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: {
-                                courseNav: {
-                                    name: 'Course Navigation',
-                                },
-                                courseInfo: {
-                                    name: 'Course Information',
-                                    content: '<span>No information provided yet.</span>'
-                                },
-                                courseReq: {
-                                    name: 'Course Requirements',
-                                    content: '<span>No requirements provided yet</span>.'
-                                },
-                            },
-                            class: '',
-                            id: '',
-                            styles: {
-                                courseIntroColor: '#0069d9'
-                            },
-                            introVideo: {
-                                name: 'file_example_MP4_480_1_5MG',
-                                url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-                                type: 'video/mp4',
-                                position: 'course-objectives-video-left'
-                            },
-                            css: '',
-                        };
-                        
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -3755,7 +3852,7 @@ class SlideHandler extends Component {
                                     <DragDropContext onDragEnd={this.onDragEnd}>
                                         <div className="row mt-2">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
-                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
+                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="slide-tabs" className="text-center">
                                                     <Tab eventKey="column" title="Column" className="mt-1">
                                                         <div className="sg-workspace-content-section">
                                                             {this.state.column.length !== 0 ?
@@ -3819,8 +3916,70 @@ class SlideHandler extends Component {
                                                             
                                                         </div>
                                                     </Tab>
-                                                    <Tab eventKey="features" title="Features" className="mt-1">
-                                                        <Droppable droppableId="features">
+                                                    <Tab eventKey="features" title="Features">
+                                                        <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center">
+                                                            <Tab eventKey="fixed" title="Fixed" tabClassName="sg-w-100-div-2">
+                                                                <Droppable droppableId="fixed-features">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef} className="sg-feature-list">
+                                                                            {this.state.fixedFeatures.map((item, featureIndex) => (
+                                                                                <Draggable
+                                                                                    key={'fixed-feature-draggable-' + featureIndex}
+                                                                                    draggableId={'fixed-feature-' + featureIndex}
+                                                                                    index={featureIndex}
+                                                                                >
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                            className="sg-feature-list-item"
+                                                                                        >
+                                                                                            <SlideFeature
+                                                                                                icon={item.icon}
+                                                                                                name={item.name}
+                                                                                            />
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </Tab>
+                                                            <Tab eventKey="fluid" title="Fluid" tabClassName="sg-w-100-div-2">
+                                                                <Droppable droppableId="fluid-features">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef} className="sg-feature-list">
+                                                                            {this.state.fluidFeatures.map((item, featureIndex) => (
+                                                                                <Draggable
+                                                                                    key={'fluid-feature-draggable-' + featureIndex}
+                                                                                    draggableId={'fluid-feature-' + featureIndex}
+                                                                                    index={featureIndex}
+                                                                                >
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                            className="sg-feature-list-item"
+                                                                                        >
+                                                                                            <SlideFeature
+                                                                                                icon={item.icon}
+                                                                                                name={item.name}
+                                                                                            />
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </Tab>
+                                                        </Tabs>
+                                                        {/* <Droppable droppableId="features">
                                                             {(provided) => (
                                                                 <div ref={provided.innerRef} className="sg-feature-list">
                                                                     {this.state.features.map((item, featureIndex) => (
@@ -3847,7 +4006,7 @@ class SlideHandler extends Component {
                                                                     {provided.placeholder}
                                                                 </div>
                                                             )}
-                                                        </Droppable>
+                                                        </Droppable> */}
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
@@ -4417,6 +4576,46 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <SgAccordionLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'contentPicture' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <ContentWithPictureLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}

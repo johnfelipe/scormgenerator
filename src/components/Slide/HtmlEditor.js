@@ -30,6 +30,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
         } else if (contentFor === 'accordion') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
+        } else if (contentFor === 'contentPicture') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -57,6 +59,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = source;
         } else if (contentFor === 'accordion') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
+        } else if (contentFor === 'contentPicture') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -76,11 +80,9 @@ function HtmlEditor(props) {
         } else if (contentFor === 'tabsContent') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent, 'html'));
         } else if (contentFor === 'accordion') {
-            console.log(activeOutputIndex)
-            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output)
-            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex])
-            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content)
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
+        } else if (contentFor === 'contentPicture') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 
