@@ -3,17 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 
+// components
+import ColorPickerBg from '../../../Common/ColorPicker';
+
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function ContentWithLeftPicture(props) {
     
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
+    const [showPickerBg, setShowPickerBg] = useState(false);
     const [isShownTextArea, setIsShownTextArea] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
+    const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
 
     const setImage = (name, url, type) => {
         const currentColumnObj = currentColumn;
@@ -64,6 +69,14 @@ function ContentWithLeftPicture(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.alt = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setBackgroundColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -149,6 +162,20 @@ function ContentWithLeftPicture(props) {
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label content-picture-left-background-color-label">
+                                <span>Background Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input content-picture-left-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerBg ? setShowPickerBg(false) : setShowPickerBg(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                    {currentBackgroundColor !== 'transparent' && currentBackgroundColor !== '' ?
+                                        <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
+                                    :
+                                        <span className="text-black h-100 w-100">TRANSPARENT</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
                             </div>
@@ -204,6 +231,12 @@ function ContentWithLeftPicture(props) {
                     </ul>
                 </div>
             </div>
+            <ColorPickerBg
+                classNames="position-absolute content-picture-left-color-picker-bg"
+                showPicker={showPickerBg}
+                setBackgroundColor={setBackgroundColor}
+                defaultColor={currentBackgroundColor}
+            />
             <AltTagForm
                 imgUrlPreview={imgUrlPreview}
                 file={file}
