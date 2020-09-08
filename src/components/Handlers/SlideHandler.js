@@ -86,6 +86,24 @@ class SlideHandler extends Component {
                 { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
+            fixedFeatures: [
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
+                { type: 'homePage', name: 'Home Page', icon: faHome, },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+            ],
+            fluidFeatures: [
+                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, },
+                { type: 'audio', name: 'Audio', icon: faFileAudio, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
+                { type: 'contentArea', name: 'Content Area', icon: faSquare, },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
+                { type: 'image', name: 'Image', icon: faFileImage, },
+                { type: 'list', name: 'List', icon: faListUl, },
+                { type: 'listModal', name: 'List Modal', icon: faList, },
+                { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
+                { type: 'video', name: 'Video', icon: faVideo, },
+            ],
             activeFeature: '',
             activeTab: 'column',
             activeColumnId: 0,
@@ -3825,7 +3843,7 @@ class SlideHandler extends Component {
                                                                 <Droppable droppableId="fixed-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
-                                                                            {this.state.features.map((item, featureIndex) => (
+                                                                            {this.state.fixedFeatures.map((item, featureIndex) => (
                                                                                 <Draggable
                                                                                     key={'fixed-feature-draggable-' + featureIndex}
                                                                                     draggableId={'fixed-feature-' + featureIndex}
@@ -3855,7 +3873,7 @@ class SlideHandler extends Component {
                                                                 <Droppable droppableId="fluid-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
-                                                                            {this.state.features.map((item, featureIndex) => (
+                                                                            {this.state.fluidFeatures.map((item, featureIndex) => (
                                                                                 <Draggable
                                                                                     key={'fluid-feature-draggable-' + featureIndex}
                                                                                     draggableId={'fluid-feature-' + featureIndex}
