@@ -79,6 +79,14 @@ function ContentWithLeftPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.textColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -130,7 +138,7 @@ function ContentWithLeftPicture(props) {
                                             type="button"
                                             className="textarea-hover-btn btn btn-light"
                                             onMouseLeave={() => setIsShownTextArea(false)}
-                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentPictureLeft')}
+                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentPicture')}
                                         >
                                             <span>Click to Edit</span>
                                         </button>
@@ -172,6 +180,21 @@ function ContentWithLeftPicture(props) {
                                         <span className="text-black h-100 w-100">TRANSPARENT</span>
                                     }
                                 </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.textColor}
+                                    onChange={(event) => setTextColor(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="text-black">&nbsp;Black</option>
+                                    <option value="text-white">&nbsp;White</option>
+                                </select>
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">

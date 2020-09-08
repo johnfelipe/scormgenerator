@@ -9,7 +9,7 @@ function ContentWithLeftPictureLayout(props) {
     
     return (
         <>
-            <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover' }}>
+            <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
                 <div className="content-area-container h-100 w-100 border border-light p-3 ">
                     <div className="row m-0">
                         <div className="col-md-6">
@@ -19,7 +19,7 @@ function ContentWithLeftPictureLayout(props) {
                                 <FontAwesomeIcon icon={faImage} className="h-100"/>
                             }
                         </div>
-                        <div className="col-md-6">
+                        <div className={style.textColor ? "col-md-6 text-left " + style.textColor : "col-md-6 text-left"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
