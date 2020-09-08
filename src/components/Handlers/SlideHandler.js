@@ -44,6 +44,7 @@ import AudioLayout from '../Slide/Layouts/AudioLayout';
 import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
 import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
+import ContentWithLeftPictureLayout from '../Slide/Layouts/ContentWithLeftPictureLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -684,6 +685,28 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
+        } else if (featureType === "contentPictureLeft") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'contentPictureLeft',
+                output: {
+                    image: {
+                        name: '',
+                        url: '',
+                    },
+                    content: 'No content provided yet.'
+                },
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                    backgroundColor: '#fff',
+                    textColor: '',
+                },
+                class: '',
+                id: '',
+                css: '',
+            };
         }
 
         const columns = this.state.column;
@@ -697,6 +720,9 @@ class SlideHandler extends Component {
     onDragEnd = result => {
         const { source, destination } = result;
         const activeColumnId = this.state.activeColumnId;
+
+        console.log(source);
+        console.log(destination);
 
         // dropped outside the list
         if (!destination) {
@@ -725,7 +751,7 @@ class SlideHandler extends Component {
             })
         }
 
-        if ((source.droppableId === "fixed-features" || source.droppableId === "fluid-features") && (destination.droppableId !== "fixed-features" || destination.droppableId !== "fluid-features")) {
+        if ((source.droppableId === "fixed-features" && destination.droppableId !== "fixed-features")) {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
@@ -739,60 +765,9 @@ class SlideHandler extends Component {
                     });
 
                     destination.index = parseInt(key);
-                    const currentFeatures = this.state.features;
+                    const currentFeatures = this.state.fixedFeatures;
                     
-                    if (currentFeatures[source.index]['type'] === 'contentArea') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: '<p>This content will show up directly in its container.</p>',
-                            class: '',
-                            id: '',
-                            style: {
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'audio') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            output: {
-                                audio: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    show: 'yes',
-                                }
-                            },
-                            class: '',
-                            id: '',
-                            style: {
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[key].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                    if (currentFeatures[source.index]['type'] === 'multipleChoice') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: [],
@@ -882,6 +857,109 @@ class SlideHandler extends Component {
                             css: '',
                         };
                         
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'contentPictureLeft') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                image: {
+                                    name: '',
+                                    url: '',
+                                },
+                                content: 'No content provided yet.'
+                            },
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                                backgroundColor: '#fff',
+                                textColor: '',
+                            },
+                            class: '',
+                            id: '',
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    }
+                    
+                }
+            }
+        }
+
+        if ((source.droppableId === "fluid-features" && destination.droppableId !== "fluid-features")) {
+            const currentColumns = this.state.column;
+
+            this.setActiveTab("editor");
+
+            for (var key in currentColumns) {
+                if (destination.droppableId === currentColumns[key]['id']) {
+                    // First Size
+
+                    this.setState({
+                        currentColumnContentIndex: 'subColumnOne',
+                    });
+
+                    destination.index = parseInt(key);
+                    const currentFeatures = this.state.fluidFeatures;
+                    
+                    if (currentFeatures[source.index]['type'] === 'contentArea') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: '<p>This content will show up directly in its container.</p>',
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'audio') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+
                         currentColumns[key].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -3877,9 +3955,9 @@ class SlideHandler extends Component {
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
                                                                             {this.state.fluidFeatures.map((item, featureIndex) => (
                                                                                 <Draggable
-                                                                                    key={'fluid-feature-draggable-' + featureIndex}
-                                                                                    draggableId={'fluid-feature-' + featureIndex}
-                                                                                    index={featureIndex}
+                                                                                    key={'fluid-feature-draggable-' + this.state.fixedFeatures.length + featureIndex}
+                                                                                    draggableId={'fluid-feature-' + this.state.fixedFeatures.length + featureIndex}
+                                                                                    index={this.state.fixedFeatures.length + featureIndex}
                                                                                 >
                                                                                     {(provided) => (
                                                                                         <div
@@ -4499,6 +4577,46 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <SgAccordionLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'contentPictureLeft' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <ContentWithLeftPictureLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
