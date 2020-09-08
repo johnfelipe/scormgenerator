@@ -189,6 +189,7 @@ function SgCharts(props) {
                                 >
                                     <option value="pie">Pie</option>
                                     <option value="doughnut">Doughnut</option>
+                                    <option value="bar">Bar</option>
                                 </select>
                             </div>
                         </li>
