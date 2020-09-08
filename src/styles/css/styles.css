@@ -2296,4 +2296,42 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   white-space: nowrap;
 }
 
+html body {
+  font-family: "Open Sans";
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-left-color-picker-bg {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 95px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-left-color-picker-bg {
+    margin: 0 110px;
+    top: 95px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-left-color-picker-bg {
+    margin: 0 40px;
+    top: 95px;
+  }
+}
+html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 85px;
+}
+@media only screen and (min-width: 1920px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+    margin: 0 110px;
+    top: 85px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+    margin: 0 40px;
+    top: 85px;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
