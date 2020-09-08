@@ -16,10 +16,10 @@ function ContentWithLeftPictureLayout(props) {
                             {output.image.url ?
                                 <img src={output.image.url} alt={output.image.alt} className="h-100" />
                             :
-                                <FontAwesomeIcon icon={faImage} className="h-100"/>
+                                <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
                             }
                         </div>
-                        <div className={style.textColor ? "col-md-6 text-left " + style.textColor : "col-md-6 text-left"}>
+                        <div className={style.textColor ? "col-md-6 text-left sg-vertical-center " + style.textColor : "col-md-6 text-left sg-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
