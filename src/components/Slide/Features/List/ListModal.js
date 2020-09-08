@@ -14,7 +14,7 @@ import ColorPicker from '../../../Common/ColorPicker';
 
 function ListModal(props) {
 
-    const { contentIndex, currentColumn, currentColumnContentIndex,  } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const listButtonModal = currentColumn.content[currentColumnContentIndex][contentIndex].output;
     const listButtonColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.btnColor;
     const [addedButtonName, setAddedButtonName] = useState('');
@@ -145,7 +145,7 @@ function ListModal(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)
@@ -153,7 +153,6 @@ function ListModal(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
-                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );

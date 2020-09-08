@@ -9,7 +9,7 @@ function HtmlEditor(props) {
 
     const { currentColumn, contentIndex, currentColumnContentIndex, contentFor, activeOutputIndex } = props;
     const [editorValue, setEditorValue] = useState(createEmptyValue());
-    const [htmlOnly, setHtmlOnly] = useState("true");
+    const [editorOnly, setEditorOnly] = useState("true");
 
     const handleChange = value => {
         setEditorValue(value);
@@ -28,6 +28,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html");
         } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
+        } else if (contentFor === 'accordion') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -53,6 +55,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output = source;
         } else if (contentFor === 'tabsContent') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = source;
+        } else if (contentFor === 'accordion') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -71,32 +75,20 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output, 'html'));
         } else if (contentFor === 'tabsContent') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent, 'html'));
+        } else if (contentFor === 'accordion') {
+            console.log(activeOutputIndex)
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output)
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex])
+            console.log(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content)
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
-
-    // const onChangeTextEditor = (value, contentIndex, editorType) => {
-    //     const currentColumnObj = currentColumn;
-
-    //     if (editorType.type === 'text') {
-    //         if (editorType.for === 'courseInfo') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value;
-    //         } else if (editorType.for === 'courseReq') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value;
-    //         } else if (editorType.for === 'listModal') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value;
-    //         } else if (editorType.for === 'video') {
-    //             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value;
-    //         }
-    //     }
-
-    //     props.setColumn(currentColumnObj);
-    // }
 
     return (
         <div className={props.showHtmlEditor ? "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor sg-active" : "sg-workspace-expander-content sg-workspace-expander-content-vertical sg-workspace-expander-content-expandable-text-editor"}>
             <div className="sg-workspace-expander-head">
                 <div className="sg-workspace-expander-head-label">
-                    {htmlOnly === "false" ?
+                    {editorOnly === "true" ?
                         <span>Rich Text Editor/HTML</span>
                     :
                         <span>HTML</span>
@@ -108,20 +100,20 @@ function HtmlEditor(props) {
                         placement="top"
                         overlay={
                             <Tooltip id='tooltip-top'>
-                                <span>Show Editor only</span>
+                                <span>Show Editor with HTML</span>
                             </Tooltip>
                         }
                     >
                         <button
                             type="button"
-                            className={htmlOnly === "true" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={editorOnly === "false" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
-                                if (htmlOnly !== "true") {
-                                    setHtmlOnly("true");
+                                if (editorOnly !== "false") {
+                                    setEditorOnly("false");
                                 }
                             }}
                         >
-                            <FontAwesomeIcon icon={faEdit}/>
+                            <FontAwesomeIcon icon={faCode}/>
                         </button>
                     </OverlayTrigger>
                     <OverlayTrigger
@@ -129,20 +121,20 @@ function HtmlEditor(props) {
                         placement="top"
                         overlay={
                             <Tooltip id='tooltip-top'>
-                                <span>Show Editor with HTML</span>
+                                <span>Show Editor only</span>
                             </Tooltip>
                         }
                     >
                         <button
                             type="button"
-                            className={htmlOnly === "false" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={editorOnly === "true" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
-                                if (htmlOnly !== "false") {
-                                    setHtmlOnly("false");
+                                if (editorOnly !== "true") {
+                                    setEditorOnly("true");
                                 }
                             }}
                         >
-                            <FontAwesomeIcon icon={faCode}/>
+                            <FontAwesomeIcon icon={faEdit}/>
                         </button>
                     </OverlayTrigger>
                     <button
@@ -158,57 +150,26 @@ function HtmlEditor(props) {
             </div>
             <div className="sg-workspace-expander-body">
                 <div className="sg-text-editor sg-text-editor-mode-html h-100">
-                    {/* {
-                        contentFor === '' ?
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={ 
-                                    typeof currentColumn !== "undefined" &&
-                                    'content' in currentColumn && currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                    currentColumnContentIndex in currentColumn.content && currentColumn.content[currentColumnContentIndex].length > 0  &&
-                                    currentColumn.content[currentColumnContentIndex][contentIndex].output
-                                }
-                                onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
-                            />
-                        :
-                            <textarea
-                                className="sg-text-editor-html"
-                                value={
-                                    contentFor === 'courseInfo' ?
-                                        typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo.content
-                                    :
-                                        contentFor === 'courseReq' ?
-                                            typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq.content
-                                        :
-                                            contentFor === 'listModal' ?
-                                                typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content
-                                            :
-                                                contentFor === 'video' &&
-                                                    typeof currentColumn !== "undefined" && currentColumn.content[currentColumnContentIndex][contentIndex] && currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
-                                }
-                                onChange={(event) => onChangeTextEditor(event.target.value, contentIndex, { type: 'text', for: contentFor })}
-                            />
-                    } */}
-                    {htmlOnly === "false" &&
-                        <RichTextEditor
-                            className={htmlOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
-                            editorClassName={htmlOnly === "true" ? "sg-text-editor-html h-82" : "sg-text-editor-html h-67"}
-                            value={editorValue}
-                            onChange={handleChange}
-                            autoFocus={true}
-                            blockStyleFn={getTextAlignClassName}
-                        />
-                    }
-                    {htmlOnly === "false" &&
-                        <div className="sg-workspace-expander-head-label mt-1 mb-1">
-                            <span>HTML</span>
-                        </div>
-                    }
-                    <textarea
-                        className={htmlOnly === "true" ? "sg-text-editor-html h-100 border-top" : "sg-text-editor-html h-40 border-top"}
-                        value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
-                        onChange={onChangeSource}
+                    <RichTextEditor
+                        className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
+                        editorClassName={editorOnly === "true" ? "sg-text-editor-html h-74-5" : "sg-text-editor-html h-54-5"}
+                        value={editorValue}
+                        onChange={handleChange}
+                        autoFocus={true}
+                        blockStyleFn={getTextAlignClassName}
                     />
+                    {editorOnly === "false" &&
+                        <>
+                            <div className="sg-workspace-expander-head-label mt-1 mb-1">
+                                <span>HTML</span>
+                            </div>
+                            <textarea
+                                className={editorOnly === "false" ? "sg-text-editor-html h-40 border-top" : "sg-text-editor-html h-100 border-top"}
+                                value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
+                                onChange={onChangeSource}
+                            />
+                        </>
+                    }
                 </div>
             </div>
         </div>

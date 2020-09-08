@@ -40,15 +40,15 @@
                                 border-radius: 5px;
                                 overflow: auto;
 
-                                .lesson-item-remove-btn {
-                                    padding: 0px 0px 0px 0px;
-                                    height: 25px;
-                                    width: 25px;
-                                }
+                                // .lesson-item-remove-btn {
+                                //     padding: 0px 0px 0px 0px;
+                                //     height: 25px;
+                                //     width: 25px;
+                                // }
 
                                 div.accordion {
                                     div.card {
-                                        div.collapse {
+                                        div.collapse, div.collapsing {
                                             div.card-body {
                                                 div.slide-container {
                                                     background: lightgrey; 
@@ -59,7 +59,7 @@
                                                     .slide-item {
                                                         user-select: none; 
                                                         padding: 15px; 
-                                                        margin: 0px 0px 8px 0px; 
+                                                        // margin: 0px 0px 8px 0px; 
                                                         background: whitesmoke;
                                                         border-radius: 5px;
                                                     }

@@ -20,6 +20,7 @@
 @import "components/features/drag-drop";
 @import "components/features/list-ul";
 @import "components/features/tabs";
+@import "components/features/sg-accordion";
 
 @include defaults;
 @include header;
@@ -43,3 +44,4 @@
 @include drag-drop;
 @include list-ul;
 @include tabs;
+@include sg-accordion;

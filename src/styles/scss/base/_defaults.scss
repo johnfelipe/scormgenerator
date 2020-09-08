@@ -85,6 +85,10 @@
         height: 46.75% !important;
     }
 
+    .h-54-5 {
+        height: 54.5% !important;
+    }
+
     .h-55 {
         height: 55% !important;
     }
@@ -103,6 +107,10 @@
 
     .h-70 {
         height: 70% !important;
+    }
+
+    .h-74-5 {
+        height: 74.5% !important;
     }
 
     .h-75 {
@@ -129,11 +137,7 @@
         height: 95% !important;
     }
 
-    // Custom paddings
-    .pr-6 {
-        padding-right: 4.5rem !important;
-    }
-
+    // Custom fonts
     .font-5 {
         font-size: 5px !important;
     }
@@ -248,6 +252,10 @@
             padding-right: 7.5rem!important;
         }
     }
+    
+    .pr-6 {
+        padding-right: 4.5rem !important;
+    }
 
     .pl-6 {
         padding-left: 4.5rem!important;
@@ -301,6 +309,7 @@
         border-radius: .25rem;
         transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         width: 280px;
+        overflow: hidden;
     }
 
     .course-logo::after {
@@ -318,5 +327,74 @@
         background-color: #e9ecef;
         border-left: inherit;
         border-radius: 0 .25rem .25rem 0;
+    }
+
+    // custom margins
+    .ml-4-5 {
+        margin-left: 1.75rem !important;
+    }
+
+    .mt-5-5 {
+        // margin-top: 3.25rem !important;
+        @media (min-width: 1200px) {
+            margin-top: 5.5rem ;
+        }
+
+        @media screen and (min-device-width: 1200px) { 
+            margin-top: 3.25rem ;
+        }
+    }
+
+    // textarea
+    .resize-none {
+        resize: none !important;
+    }
+
+    // overflow
+    .overflow-unset {
+        overflow: unset !important;
+    }
+
+    // important ui defaults
+    .sg-charts-multiselect {
+        .dropdown-container {
+            .dropdown-content {
+                z-index: 5000 !important;
+            }
+        }
+    }
+
+    .code {
+        background: lightgrey;
+        padding: 8px;
+        height: 100%;
+        border-radius: 5px;
+        overflow: auto;
+    }
+
+    // alignment
+    .sg-vertical-center {
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 1 100% !important;
+    }
+
+    .sg-vertical-center-v2 {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .sg-video-code-sharing {
+        height: 100px;
+        border: none;
+        text-align: left;
+    }
+
+    // font-family
+    .monospace {
+        font-family: "Lucida Console", Courier, monospace;
     }
 }

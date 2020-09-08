@@ -11,7 +11,7 @@ import ListUlAccordion from './ListUlAccordion';
 
 function List(props) {
 
-    const { contentIndex, currentColumn, currentColumnContentIndex } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [entry, setEntry] = useState('');
     const [updateEntry, setUpdateEntry] = useState('');
     const [updateEntryCompareIndex, setUpdateEntryCompareIndex] = useState('');
@@ -78,7 +78,7 @@ function List(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)
@@ -86,7 +86,6 @@ function List(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
-                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );

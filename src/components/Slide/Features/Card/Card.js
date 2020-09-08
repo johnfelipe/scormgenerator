@@ -8,9 +8,7 @@ import AltTagForm from '../../../AlertModal/AltTagForm';
 
 function Card(props) {
 
-    const currentColumn = props.currentColumn;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
-    const contentIndex = props.contentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
@@ -44,7 +42,7 @@ function Card(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)
@@ -52,7 +50,6 @@ function Card(props) {
                 fileObject => {
                     console.log(fileObject);
                     setImg(fileObject.name, fileObject.image, fileObject.type);
-                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );

@@ -5,25 +5,81 @@ export const courseService = {
     createCourse,
     getCourse,
     getCourseLessons,
+    updateCourse,
 };
 
 async function getAll() {
-    const response = await API.get('/courses',);
+    let response;
+    try {
+        response = await API.get('/courses',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function createCourse(data) {
-    const response = await API.post('/courses', data);
+    let response;
+    try {
+        response = await API.post('/courses', data);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getCourse(id) {
-    const response = await API.get('/courses/' + id);
+    let response;
+    try {
+        response = await API.get('/courses/' + id);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
 async function getCourseLessons(id) {
-    const response = await API.get('/course/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=lid');
+    let response;
+    try {
+        response = await API.get('/course/' + id + '/lessons?pageNo=0&pageSize=1000&sortBy=weight');
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function updateCourse(data, id) {
+    let response;
+    try {
+        response = await API.put('/courses/' + id, data);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
     return handleResponse(response);
 }
 
@@ -33,6 +89,11 @@ function handleResponse(response) {
     if (response.status === 500) {
         const error = response;
         return Promise.reject(error.message);
+    } else if (response.status === 404) {
+        const error = response;
+        console.log(error.message);
+        console.log(error.error);
+        // return Promise.reject(error.message);
     }
 
     return data;

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAudio, faFileVideo, faTrash, faClone } from '@fortawesome/free-solid-svg-icons';
+import { faFileAudio, faFileVideo, faTrash, faClone, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { Player, ControlBar } from 'video-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { galleryActions } from '../../actions';
+import { galleryService } from '../../services';
+import { useDispatch } from 'react-redux';
 
 function MediaLoader (props) {
 
-    const {filterType, mediaFiles} = props;
+    const dispatch = useDispatch();
+    const {filterType, mediaFiles, uid} = props;
     const [modalShow, setModalShow] = useState(false);
     const [mediaName, setMediaName] = useState('');
     const [mediaUrl, setMediaUrl] = useState('');
     const [mediaAlt, setMediaAlt] = useState('');
     const [mediaType, setMediaType] = useState('');
+    const [mediaVtt, setMediaVtt] = useState('');
     const [copied, setCopied] = useState(false);
 
     const itemClick = (itemId) => {
@@ -35,6 +40,27 @@ function MediaLoader (props) {
                 prevElem.classList.remove("selected");
             }
         }
+    }
+
+    const handleFileUpload = (e) => {
+        let files = e.target.files;
+        console.log(files);
+
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+        formData.append('uid', uid);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+                dispatch(galleryActions.updateFile(fileObject.fid, fileObject.url, fileObject.name));
+                setMediaVtt(fileObject.url);
+            },
+            error => console.log(error)
+        );
     }
 
     const content = (filterType, mediaFiles) => {
@@ -78,8 +104,8 @@ function MediaLoader (props) {
                                         setMediaType(fileData.type);
                                     }}
                                 >
-                                    <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                    <div className="thumbnail sg-vertical-center-v2">
+                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                         <div className="audio">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -100,10 +126,11 @@ function MediaLoader (props) {
                                         setMediaAlt(fileData.alt);
                                         setModalShow(true);
                                         setMediaType(fileData.type);
+                                        setMediaVtt(fileData.vtt);
                                     }}
                                 >
-                                    <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-3"/>
+                                    <div className="thumbnail sg-vertical-center-v2">
+                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40"/>
                                         <div className="video">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -160,8 +187,8 @@ function MediaLoader (props) {
                                     setMediaType(fileData.type);
                                 }}
                             >
-                                <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                <div className="thumbnail sg-vertical-center-v2">
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="audio">
                                         <div>{fileData.name}</div>
                                     </div>
@@ -187,10 +214,11 @@ function MediaLoader (props) {
                                     setMediaAlt(fileData.alt);
                                     setModalShow(true);
                                     setMediaType(fileData.type);
+                                    setMediaVtt(fileData.vtt);
                                 }}
                             >
-                                <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-3"/>
+                                <div className="thumbnail sg-vertical-center-v2">
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="video">
                                         <div>{fileData.name}</div>
                                     </div>
@@ -238,7 +266,7 @@ function MediaLoader (props) {
                     </div> */}
                         <div className="form-inline justify-content-center mb-2">
                             {copied &&
-                                <label className="form-check-label text-success mr-2">Url copied to clipboard!</label>
+                                <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
                             }
                             <input
                                 type="text"
@@ -282,25 +310,105 @@ function MediaLoader (props) {
                 :
                     mediaType.includes("audio") ?
                         <div className="text-center">
-                            <ReactAudioPlayer
-                                src={mediaUrl}
-                                controls
-                                title={mediaName}
-                            />
+                            <div>
+                                {copied &&
+                                    <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
+                                }
+                                <textarea 
+                                    value={
+                                        '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
+                                    }
+                                    className="resize-none w-100"
+                                    style={{ height: '100px' }}
+                                    readOnly
+                                />
+                                <CopyToClipboard
+                                    onCopy={setCopied}
+                                    text={
+                                        '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
+                                    }
+                                >
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary w-100 mb-2"
+                                        onClick={() => {
+                                            clearCopiedMessage();
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faClone}/>
+                                    </button>
+                                </CopyToClipboard>
+                            </div>
+                            <div>
+                                <ReactAudioPlayer
+                                    src={mediaUrl}
+                                    controls
+                                    title={mediaName}
+                                />
+                            </div>
                         </div>
                     :
                         mediaType.includes("video") &&
                             <div className="text-center">
-                                <Player>
-                                    <source src={mediaUrl} />
-                                    <ControlBar autoHide={true}/>
-                                </Player>
+                                <div>
+                                    {copied &&
+                                        <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
+                                    }
+                                    <textarea 
+                                        value={
+                                            mediaVtt ?
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"><track label="English" kind="subtitles" srclang="en" src="' + mediaVtt + '" default></video>'
+                                            :
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"></video>'
+                                        }
+                                        className="resize-none w-100 sg-video-code-sharing code monospace"
+                                        style={{ height: '100px' }}
+                                        readOnly
+                                    />
+                                    <CopyToClipboard
+                                        onCopy={setCopied}
+                                        text={
+                                            mediaVtt ?
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"><track label="English" kind="subtitles" srclang="en" src="' + mediaVtt + '" default></video>'
+                                            :
+                                                '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"></video>'
+                                        }
+                                    >
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary w-100 mb-2"
+                                            onClick={() => {
+                                                clearCopiedMessage();
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faClone}/>
+                                        </button>
+                                    </CopyToClipboard>
+                                    <div className="row m-0 mb-2">
+                                        <div className="col-md-1 sg-vertical-center justify-content-center">
+                                            <span>VTT:</span>
+                                        </div>
+                                        <div className="col-md-1 p-0">
+                                            <label className="input-group-btn form-inline m-0 float-right">
+                                                <span className="btn btn-primary">
+                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" onChange={(e) => handleFileUpload(e)} style={{ display: "none"}} accept=".vtt"/>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div className="col-md-10 p-0 pl-1">
+                                            <input type="text" placeholder="Choose vtt file" className="form-control" value={mediaVtt} readOnly/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Player>
+                                        <source src={mediaUrl} />
+                                        <ControlBar autoHide={true}/>
+                                    </Player>
+                                </div>
                             </div>
                 }
             </Modal.Body>
-            <Modal.Footer>
-                <button className="btn btn-primary" onClick={() => setModalShow(false)}>Close</button>
-            </Modal.Footer>
         </Modal>
     );
 

@@ -13,6 +13,8 @@ import Card from './Features/Card/Card';
 import Image from './Features/Image';
 import List from './Features/List/List';
 import Tabs from './Features/Tabs/Tabs';
+import Charts from './Features/Charts/SgCharts';
+import Accordion from './Features/Accordion/SgAccordion';
 
 class Editor extends Component {
 
@@ -24,8 +26,8 @@ class Editor extends Component {
         
         this.deleteFeature = this.deleteFeature.bind(this);
         this.radioClick = this.radioClick.bind(this);
-        this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.setMediaFiles = this.setMediaFiles.bind(this);
+        // this.handleFileUpload = this.handleFileUpload.bind(this);
+        // this.setMediaFiles = this.setMediaFiles.bind(this);
     }
 
     deleteFeature = () => {
@@ -41,42 +43,42 @@ class Editor extends Component {
         })
     }
 
-    handleFileUpload = (e) => {
-        let files = e.target.files;
+    // handleFileUpload = (e) => {
+    //     let files = e.target.files;
 
-        this.setState({
-            showSuccessMsg: true,
-        })
+    //     this.setState({
+    //         showSuccessMsg: true,
+    //     })
 
-        // eslint-disable-next-line
-        Object.keys(files).map((fileIndex) => {
+    //     // eslint-disable-next-line
+    //     Object.keys(files).map((fileIndex) => {
 
-            let reader = new FileReader();
+    //         let reader = new FileReader();
 
-            const fileObject = {
-                name: files[fileIndex].name.split(".")[0],
-                extension: files[fileIndex].name.split(".")[1],
-                size: files[fileIndex].size,
-                type: files[fileIndex].type,
-                lastModified: files[fileIndex].lastModified,
-                lastModifiedDate: files[fileIndex].lastModifiedDate,
-            };
+    //         const fileObject = {
+    //             name: files[fileIndex].name.split(".")[0],
+    //             extension: files[fileIndex].name.split(".")[1],
+    //             size: files[fileIndex].size,
+    //             type: files[fileIndex].type,
+    //             lastModified: files[fileIndex].lastModified,
+    //             lastModifiedDate: files[fileIndex].lastModifiedDate,
+    //         };
 
-            reader.readAsDataURL(files[fileIndex])
-            reader.onloadend = () => {
-                fileObject.dataUrl = reader.result;
-                this.setMediaFiles(fileObject);
-            }
-        });
-    }
+    //         reader.readAsDataURL(files[fileIndex])
+    //         reader.onloadend = () => {
+    //             fileObject.dataUrl = reader.result;
+    //             this.setMediaFiles(fileObject);
+    //         }
+    //     });
+    // }
 
-    setMediaFiles = (fileObject) => {
-        const mediaFile = fileObject;
-        let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
+    // setMediaFiles = (fileObject) => {
+    //     const mediaFile = fileObject;
+    //     let mediaFiles = [...this.props.mediaFilesObject, mediaFile];
 
-        this.props.setMediaFilesObject(mediaFiles);
-        this.props.addMediaFiles(mediaFiles);
-    }
+    //     this.props.setMediaFilesObject(mediaFiles);
+    //     this.props.addMediaFiles(mediaFiles);
+    // }
 
     render() {
         let editorContent;
@@ -93,7 +95,7 @@ class Editor extends Component {
                     setFeatureId={this.props.setFeatureId}
                     setFeatureClass={this.props.setFeatureClass}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "contentArea") {
@@ -109,7 +111,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "multipleChoice") {
@@ -129,7 +131,7 @@ class Editor extends Component {
                     setShowTextEditor={this.props.setShowTextEditor}
                     setMChoiceIndex={this.props.setMChoiceIndex}
                     correctAnswers={this.props.correctAnswers}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "homePage") {
@@ -145,7 +147,7 @@ class Editor extends Component {
                     setFeatureClass={this.props.setFeatureClass}
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "courseObjectives") {
@@ -162,6 +164,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "listModal") {
@@ -178,7 +181,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "video") {
@@ -194,7 +197,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "dragDrop") {
@@ -212,6 +215,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "card") {
@@ -229,7 +233,7 @@ class Editor extends Component {
                     resetFeature={this.props.resetFeature}
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "image") {
@@ -245,7 +249,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     resetFeature={this.props.resetFeature}
                     setShowEditor={this.props.setShowEditor}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "list") {
@@ -262,7 +266,7 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                 />
             );
         } else if (this.props.feature === "tabs") {
@@ -279,8 +283,42 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
-                    setMediaFiles={this.setMediaFiles}
+                    uid={this.props.uid}
                     setActiveOutputIndex={this.props.setActiveOutputIndex}
+                />
+            );
+        } else if (this.props.feature === "sgCharts") {
+            editorContent = (
+                <Charts
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
+                    uid={this.props.uid}
+                />
+            );
+        } else if (this.props.feature === "accordion") {
+            editorContent = (
+                <Accordion
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    setShowEditor={this.props.setShowEditor}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    setShowTextEditor={this.props.setShowTextEditor}
+                    resetFeature={this.props.resetFeature}
+                    uid={this.props.uid}
                 />
             );
         } else {

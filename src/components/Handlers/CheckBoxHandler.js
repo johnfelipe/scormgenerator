@@ -45,7 +45,6 @@ class CheckBoxHandler extends Component {
                             checked={this.props.currentCbValue}
                             onChange={this.props.handleChange}
                             onBlur={this.props.onBlur}
-                            disabled={!this.props.courseNameExist}
                             className="d-none"
                         />
                             <FontAwesomeIcon icon={this.props.currentCbValue ? faEye : faEyeSlash}/>

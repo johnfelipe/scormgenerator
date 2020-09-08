@@ -9,9 +9,7 @@ import ColorPicker from '../../../Common/ColorPicker';
 
 function CourseObj(props) {
     
-    const currentColumn = props.currentColumn;
-    const contentIndex = props.contentIndex;
-    const currentColumnContentIndex = props.currentColumnContentIndex;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const courseNav = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseNav;
     const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
@@ -89,7 +87,7 @@ function CourseObj(props) {
         // }
 
         formData.append('file', files[0]);
-        formData.append('uid', 1);
+        formData.append('uid', uid);
         formData.append('alt', files[0].name);
 
         galleryService.uploadFiles(formData)
@@ -97,7 +95,6 @@ function CourseObj(props) {
             fileObject => {
                 console.log(fileObject);
                 setIntroVideo(fileObject.name, fileObject.image, fileObject.type);
-                props.setMediaFiles(fileObject);
             },
             error => console.log(error)
         );

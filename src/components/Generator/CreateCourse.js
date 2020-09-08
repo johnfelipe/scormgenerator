@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+
+// formik and related libraries
 import { Formik } from "formik";
 import * as Yup from 'yup';
+
+// redux library
+import { useDispatch, useSelector } from 'react-redux';
 
 // handler components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -9,31 +17,66 @@ import CheckBoxInput from '../Handlers/CheckBoxHandler';
 //modal
 import WarningModal from '../AlertModal/Warning';
 
+// actions
+import { courseActions } from '../../actions';
+
 // services
-import { courseService } from '../../services';
 import { galleryService } from '../../services';
 
 function CreateCourse() {
 
-    const [courses, setCourses] = useState([]);
-    const [course, setCourse] = useState([]);
+    const dispatch = useDispatch();
     const [courseNameExist, setCourseNameExist] = useState(false);
+    const courses = useSelector(state => state.course.courses ? state.course.courses : []);
+    const currentCourse = useSelector(state => state.course.currentCourse);
 
     useEffect(() => {
-        courseService.getAll().then(
-            courses => {
-                console.log('courses from database:');
-                console.log(courses);
-                setCourses(courses);
-            },
-            error => {
-                console.log(error);
+        dispatch(courseActions.getAll());
+    }, [dispatch, currentCourse]);
+
+    // a little function to help us with reordering the result
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+    
+        return result;
+    };
+
+    const onDragEnd = result => {
+        const { source, destination } = result;
+
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if ((source.droppableId === "courses") && (destination.droppableId === "courses") && (source.droppableId === destination.droppableId)) {
+            const courseList = courses;
+
+            const reordered_courses = reorder(
+                courseList,
+                source.index,
+                destination.index
+            );
+
+            let updatedCourseList = reordered_courses;
+
+            for (let i = 0; i < updatedCourseList.length; i++) {
+                const data = {
+                    weight: i
+                }
+                updatedCourseList[i].weight = i;
+                dispatch(courseActions.updateCourse(data, updatedCourseList[i].cid));
+
+                // roles = roles.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
             }
-        );
-        
-        console.log('current course that is added:');
-        console.log(course);
-    }, [course]);
+
+            updatedCourseList = updatedCourseList.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+
+            dispatch(courseActions.updateCourseList(updatedCourseList));
+        }
+    }
 
     return (
         <div id="generator-container">
@@ -45,28 +88,25 @@ function CreateCourse() {
                     showProgressbar: false,
                 }}
 
-                onSubmit={values => {
-                    console.log(values);
-                    const data = {
-                        title: values.courseTitle,
-                        logo: values.courseLogo.url,
-                        navigation: values.navigationType,
-                        progressbar: values.showProgressbar ? 1 : 0,
-                        status: 1,
-                        type: 'Demo',
-                        uid: 1,
-                    }
-
-                    courseService.createCourse(data).then(
-                        course => {
-                            console.log('add course response:');
-                            console.log(course);
-                            setCourse(course);
-                        },
-                        error => {
-                            console.log(error);
+                onSubmit={(values, {setSubmitting, resetForm}) => {
+                    try {
+                        console.log(values);
+                        const data = {
+                            title: values.courseTitle,
+                            logo: values.courseLogo.url,
+                            navigation: values.navigationType,
+                            progressbar: values.showProgressbar ? 1 : 0,
+                            status: 1,
+                            type: 'Demo',
+                            uid: 1,
+                            weight: 0,
                         }
-                    );
+
+                        dispatch(courseActions.createCourse(data));
+                        resetForm({})
+                    } catch (error) {
+                        setSubmitting(false)
+                    }
                 }}
 
                 validationSchema={Yup.object().shape({
@@ -122,7 +162,7 @@ function CreateCourse() {
                                 {
                                     courseNameExist ?
                                         <div className="col-md-4">
-                                            <label htmlFor="courseLogo" className="position-absolute ml-3 mt-1">Logo:</label>
+                                            <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label>
                                             <input
                                                 id="courseLogo"
                                                 name="courseLogo"
@@ -191,22 +231,52 @@ function CreateCourse() {
                             <div className="row">
                                 <div className="col-md-12 mt-2">
                                     <div id="course-container">
-                                        <div className="course-container">
-                                            {courses.map((course, courseIndex) => (
-                                                <div
-                                                    key={"course-" + courseIndex}
-                                                    className="course-item p-2"
-                                                    data-course-id={course.cid}
-                                                >
-                                                    <div className="row m-0">
-                                                        <div className="col-md-8 py-2">{course.title}</div>
-                                                        <div className="col-md-4">
-                                                            <a href={"/course/" + course.cid} className="btn btn-primary text-white float-right" role="button">Go to course</a>
-                                                        </div>
+                                        <DragDropContext onDragEnd={onDragEnd}>
+                                            <Droppable droppableId="courses">
+                                                {(provided) => (
+                                                    <div
+                                                        className="course-container"
+                                                        ref={provided.innerRef}
+                                                    >
+                                                        {courses.map((course, courseIndex) => (
+                                                            <Draggable
+                                                                key={'courses-' + courseIndex}
+                                                                draggableId={'courses-' + courseIndex}
+                                                                index={courseIndex}>
+                                                                {(provided) => (
+                                                                    <div
+                                                                        key={"course-" + courseIndex}
+                                                                        className="course-item p-2"
+                                                                        data-course-id={course.cid}
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                    >
+                                                                        <div className="row m-0">
+                                                                            <div className="col-md-10 py-2">{course.title}</div>
+                                                                            <div className="col-md-2 sg-vertical-center justify-content-between">
+                                                                                <span
+                                                                                    {...provided.dragHandleProps}
+                                                                                >
+                                                                                    <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                                                </span>
+                                                                                <a
+                                                                                    href={"/course/" + course.cid}
+                                                                                    className="btn btn-primary text-white float-right"
+                                                                                    role="button"
+                                                                                >
+                                                                                    Go to course
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        ))}
+                                                        {provided.placeholder}
                                                     </div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                                )}
+                                            </Droppable>
+                                        </DragDropContext>
                                     </div>
                                 </div>
                             </div>

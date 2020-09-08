@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
+
+// formik
 import { Formik } from "formik";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore } from '@fortawesome/free-solid-svg-icons';
-import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import * as Yup from 'yup';
-import { connect } from 'react-redux';
+
+// react beautiful dnd
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+// font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+
+// react bootstrap
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Modal, Tab, Tabs } from 'react-bootstrap';
+
+// redux library
+import { connect } from 'react-redux';
 
 // components
 import SlideColumn from '../Slide/Columns';
@@ -32,13 +42,17 @@ import ListLayout from '../Slide/Layouts/ListLayout';
 import ContentAreaLayout from '../Slide/Layouts/ContentAreaLayout';
 import AudioLayout from '../Slide/Layouts/AudioLayout';
 import TabsLayout from '../Slide/Layouts/TabsLayout';
+import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
+import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
 
-// services
-import { slideService } from '../../services';
-import { columnService } from '../../services';
+// actions
+import { slideActions, courseActions, columnActions } from '../../actions';
+
+// helpers
+import { objectHelpers } from '../../helpers';
 
 class SlideHandler extends Component {
 
@@ -57,8 +71,10 @@ class SlideHandler extends Component {
                 { id: 6,items: [{ size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}, { size: "1/5", class: "sg-1-5"}]},
             ],
             features: [
+                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, },
                 { type: 'audio', name: 'Audio', icon: faFileAudio, },
                 { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
                 { type: 'contentArea', name: 'Content Area', icon: faSquare, },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
@@ -89,7 +105,7 @@ class SlideHandler extends Component {
             slideId: -1,
         };
         
-        this.createColumn = this.createColumn.bind(this);
+        this.stringifySlideColumns = this.stringifySlideColumns.bind(this);
         this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
         this.addColumn = this.addColumn.bind(this);
@@ -124,18 +140,48 @@ class SlideHandler extends Component {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
         }
+
+        if (this.props.sid) {
+            this.props.getSlideColumns(this.props.sid);
+        }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, nextProps) {
         if(sessionStorage.getItem("selectedAnswers")) {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
+        }
+
+        if (this.props.sid !== prevProps.sid) {
+            this.props.getSlideColumns(this.props.sid);
         }
         
         console.log('state.columns: ');
         console.log(this.state.column);
         console.log('props.columns: ');
         console.log(this.props.currentColumns);
+        // console.log('state.modalShow: ');
+        // console.log(this.state.modalShow);
+        // console.log('this.props.currentSlide');
+        // console.log(this.props.currentSlide);
+        // console.log('this.props.currentSlideIndex');
+        // console.log(this.props.currentSlideIndex);
+        // console.log('this.props.cid');
+        // console.log(this.props.cid);
+        // console.log('this.props.sid');
+        // console.log(this.props.sid);
+        // console.log('this.props.currentSlide.sid');
+        // console.log(this.props.currentSlide.sid);
+        // console.log('this.props.lid');
+        // console.log(this.props.lid);
+        // console.log('this.props.columns');
+        // console.log(this.props.columns);
+        // console.log('this.props.lessonIndex');
+        // console.log(this.props.lessonIndex);
+
+        // if (this.props.cid) {
+        //     this.props.getCourseLessons(this.props.cid);
+        // }
         // console.log('props.action');
         // console.log(this.props.action);
         // console.log('state.activeFeature');
@@ -146,60 +192,56 @@ class SlideHandler extends Component {
         // console.log(this.props.columns);
     }
 
-    createColumn = (slideId, userId, columnArr) => {
-        let columnObject = [];
-
+    stringifySlideColumns = (sid, userId, columnArr, action) => {
         for (let index in columnArr) {
 
-            let featuresJson = [];
+            let featuresJson = JSON.stringify(columnArr[index]);
 
-            if (columnArr[index].grid === 0) {
-                featuresJson = JSON.stringify(columnArr[index].content['subColumnOne']);
-            } else if (columnArr[index].grid === 1 || columnArr[index].grid === 2 || columnArr[index].grid === 3) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo']
-                });
-            } else if (columnArr[index].grid === 4) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                });
-            } else if (columnArr[index].grid === 5) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                    subColumnFour: columnArr[index].content['subColumnFour'],
-                });
-            } else if (columnArr[index].grid === 6) {
-                featuresJson = JSON.stringify({
-                    subColumnOne: columnArr[index].content['subColumnOne'], 
-                    subColumnTwo: columnArr[index].content['subColumnTwo'],
-                    subColumnThree: columnArr[index].content['subColumnThree'],
-                    subColumnFour: columnArr[index].content['subColumnFour'],
-                    subColumnFive: columnArr[index].content['subColumnFive'],
-                });
+            if (action === 'add') {
+                const data = {
+                    sid: sid,
+                    uid: userId,
+                    grid: columnArr[index].grid,
+                    features: btoa(unescape(encodeURIComponent(featuresJson)))
+                }
+
+                console.log(data);
+                this.props.createColumn(data);
+            } else if (action === 'edit') {
+                console.log('EXECEUTED! EDIT');
+                if (objectHelpers.isEmpty(this.props.slideColumns[index])) {
+                    console.log('IF HERE');
+                    const data = {
+                        sid: sid,
+                        uid: userId,
+                        grid: columnArr[index].grid,
+                        features: btoa(unescape(encodeURIComponent(featuresJson)))
+                    }
+
+                    this.props.createColumn(data);
+                    console.log('EXECEUTED!');
+                } else if (columnArr[index].clid) {
+                    console.log('ELFSE IF HERE');
+                    const data = {
+                        grid: columnArr[index].grid,
+                        features: btoa(unescape(encodeURIComponent(featuresJson)))
+                    }
+
+                    const id = columnArr[index].clid;
+                    this.props.updateColumn(data, id);
+                } else {
+                    console.log('ELSE HERE');
+                    const data = {
+                        grid: columnArr[index].grid,
+                        features: btoa(unescape(encodeURIComponent(featuresJson)))
+                    }
+
+                    const id = this.props.slideColumns[index].clid;
+                    this.props.updateColumn(data, id);
+                }
+                
             }
-
-            const data = {
-                sid: slideId,
-                uid: userId,
-                grid: columnArr[index].grid,
-                features: btoa(featuresJson)
-            }
-
-            columnObject.push(data);
-            console.log(data);
-
-            columnService.createColumn(data)
-            .then(
-                slideObj => {
-                    console.log(slideObj);
-                },
-                error => console.log(error)
-            );
+            
         }
     }
 
@@ -348,7 +390,14 @@ class SlideHandler extends Component {
         if (featureType === "audio") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'audio',
-                output: 'No audio added.',
+                output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                 class: '',
                 id: '',
                 style: {
@@ -470,6 +519,7 @@ class SlideHandler extends Component {
                     name: '',
                     url: '',
                     type: '',
+                    show: 'yes',
                     paragraph: '',
                     vtt: {
                         name: '',
@@ -567,6 +617,53 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
+        } else if (featureType === "sgCharts") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'sgCharts',
+                output: {
+                    chartType: 'pie',
+                    dataSets: {},
+                    chartOptions: {
+                        shownData: [],
+                    },
+                    csvFile: {
+                        name: '',
+                        url: '',
+                        headers: [],
+                        data: [],
+                    }
+                },
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                },
+                css: '',
+            };
+        } else if (featureType === "accordion") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'accordion',
+                output: [],
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                    headerColor: '',
+                    backgroundColor: '#fff',
+                    textColor: '',
+                    header: {
+                        bgColor: '',
+                        tColor: '',
+                    },
+                },
+                css: '',
+            };
         }
 
         const columns = this.state.column;
@@ -649,7 +746,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -798,6 +902,7 @@ class SlideHandler extends Component {
                                 name: '',
                                 url: '',
                                 type: '',
+                                show: 'yes',
                                 paragraph: '',
                                 vtt: {
                                     name: '',
@@ -943,6 +1048,69 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'accordion') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                                headerColor: '',
+                                backgroundColor: '#fff',
+                                textColor: '',
+                                header: {
+                                    bgColor: '',
+                                    tColor: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                     
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-1')) {
@@ -980,7 +1148,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1093,7 +1268,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1206,7 +1388,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1318,7 +1507,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1434,7 +1630,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1549,7 +1752,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1665,7 +1875,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1780,7 +1997,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -1895,7 +2119,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2011,7 +2242,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2126,7 +2364,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2458,7 +2703,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2573,7 +2825,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2688,7 +2947,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2803,7 +3069,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -2918,7 +3191,14 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: 'No audio added.',
+                            output: {
+                    audio: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        show: 'yes',
+                    }
+                },
                             class: '',
                             id: '',
                             style: {
@@ -3281,15 +3561,21 @@ class SlideHandler extends Component {
         })
     }
 
-    onSave = (slide, subtitle, columns, lessonIndex) => {
+    onSave = (slideObj, sid, lessonIndex, columnArray) => {
         if (this.props.action === "add") {
-            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.addSlideChange(slideObj, lessonIndex);
-            console.log("add");
+            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
+            // console.log("add");
+            // console.log(slideObj);
         } else if (this.props.action === "edit") {
-            const slideObj = {slideName: slide, slideSubtitle: subtitle, columns: columns}
-            this.props.editSlideChange(slideObj, this.props.currentSlideIndex, this.props.currentClickedLessonId);
-            console.log("edit");
+            this.props.updateSlide(slideObj, sid);
+            this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
+            this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
+            // creates column
+            this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
+            // console.log("edit");
+            // console.log(slideObj);
+            // console.log(this.props.currentSlideIndex);
+            // console.log(this.props.lessonIndex);
         }
         
         this.setModalShow(false, 'save')
@@ -3319,38 +3605,21 @@ class SlideHandler extends Component {
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
                             slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
-                            showTitle: this.props.slide.hide_title ? this.props.slide.hide_title : false,
+                            showTitle: this.props.hide_title ? true : false,
                         }}
 
                         onSubmit={values => {
-                            this.onSave(values.slideName, values.slideSubtitle, this.state.column, this.props.lessonIndex);
-
-                            // create slide
-                            // lid and uid are temporary
                             const data = {
-                                lid: this.props.lessonId,
+                                lid: this.props.lid,
                                 title: values.slideName,
-                                uid: 1,
+                                subtitle: values.slideSubtitle,
+                                uid: this.props.uid,
                                 hide_title: values.showTitle ? 1 : 0,
+                                columns: [],
+                                weight: this.props.slideWeight,
                             }
 
-                            slideService.createSlide(data)
-                            .then(
-                                slideObj => {
-                                    this.props.createSlide(slideObj.lid, slideObj.title, 1, slideObj.hide_title);
-                                    this.setSlideId(slideObj.sid);
-                                    console.log(slideObj);
-                                },
-                                error => console.log(error)
-                            );
-
-                            this.props.setSlideItemIndex(this.props.currentSlideIndex + 1);
-
-                            // create column
-                            // sid and uid are temporary
-                            this.props.createColumn(1, 1, this.state.column);
-                            this.createColumn(1, 1, this.state.column);
-
+                            this.onSave(data, this.props.sid, this.props.lessonIndex, this.state.column);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -3475,10 +3744,11 @@ class SlideHandler extends Component {
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
                                             {/* <button type="button" className="btn btn-primary w-100">Open Library</button> */}
                                             <GalleryHandler
-                                                addMediaFiles={this.props.addMediaFiles}
-                                                mediaFilesObject={this.props.mediaFilesObject}
-                                                setMediaFilesObject={this.props.setMediaFilesObject}
+                                                // addMediaFiles={this.props.addMediaFiles}
+                                                // mediaFilesObject={this.props.mediaFilesObject}
+                                                // setMediaFilesObject={this.props.setMediaFilesObject}
                                                 buttonName="Open Library"
+                                                uid={this.props.uid}
                                             />
                                         </div>
                                     </div>
@@ -3504,7 +3774,12 @@ class SlideHandler extends Component {
                                                                                             {...provided.dragHandleProps}
                                                                                             id={'column-' + columnIndex}
                                                                                         >
-                                                                                            <SlideColumn 
+                                                                                            <SlideColumn
+                                                                                                clid={item.clid}
+                                                                                                sid={item.sid}
+                                                                                                lid={item.lid}
+                                                                                                slideIndex={this.props.currentSlideIndex}
+                                                                                                lessonIndex={this.props.lessonIndex}
                                                                                                 columnIndex={columnIndex}
                                                                                                 currentColumn={item}
                                                                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
@@ -3598,6 +3873,7 @@ class SlideHandler extends Component {
                                                             correctAnswers={this.state.correctAnswers}
                                                             setMediaFilesObject={this.props.setMediaFilesObject}
                                                             setActiveOutputIndex={this.setActiveOutputIndex}
+                                                            uid={this.props.uid}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -4061,6 +4337,86 @@ class SlideHandler extends Component {
                                                                                                                         }
                                                                                                                     >
                                                                                                                         <TabsLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'sgCharts' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <SgChartsLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'accordion' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        id={
+                                                                                                                            contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                            : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex
+                                                                                                                        } 
+                                                                                                                        className={
+                                                                                                                            contentFirst.class ? 
+                                                                                                                                contentFirst.class + " content-output"
+                                                                                                                            : 
+                                                                                                                                "content-output"
+                                                                                                                        } 
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex, 
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <SgAccordionLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
@@ -7375,15 +7731,26 @@ class SlideHandler extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        slide: state.slide,
-        columns: state.columns,
+        currentSlide: state.slide.currentSlide ? state.slide.currentSlide : {},
+        columns: state.column.columns,
+        currentColumn: state.column.currentColumn,
+        slideColumns: state.slide.slideColumns,
+        slides: state.slide.slides,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (lessonIndex, title, userId, hideShowTitle) => dispatch({type: 'CREATE_SLIDE', lid: lessonIndex, title: title, uid: userId, hide_title: hideShowTitle}),
-        createColumn: (currentSlideIndex, userId, columnArr) => dispatch({type: 'CREATE_COLUMN', sid: currentSlideIndex, uid: userId, columnArr: columnArr}),
+        createSlide: (data, lessonIndex, columnArray, slideIndex, uid) => dispatch(slideActions.createSlide(data, lessonIndex, columnArray, slideIndex, uid)),
+        getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
+        appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
+        updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
+        updateSlideFromCourseLesson: (slideObj, slideIndex, lessonIndex) => dispatch(courseActions.updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex)),
+        createColumn: (columnObj) => dispatch(columnActions.createColumn(columnObj)),
+        updateColumn: (columnObj, id) => dispatch(columnActions.updateColumn(columnObj, id)),
+        appendSlideColumnsFromCourseLesson: (columnArray, slideIndex, lessonIndex) => dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex)),
+        getSlideColumns: (id) => dispatch(slideActions.getSlideColumns(id)),
+        getLatestLessonSlide: (id) => dispatch(courseActions.getLatestLessonSlide(id)),
     }
 }
 

@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {RadioGroup, Radio} from 'react-radio-group';
 
 // modal
 import AltTagForm from '../../AlertModal/AltTagForm';
 
 function Audio(props) {
 
-    const { contentIndex, currentColumnContentIndex, currentColumn } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
@@ -33,7 +35,7 @@ function Audio(props) {
             const formData = new FormData();
 
             formData.append('file', file[fileIndex]);
-            formData.append('uid', 1);
+            formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
             galleryService.uploadFiles(formData)
@@ -41,7 +43,6 @@ function Audio(props) {
                 fileObject => {
                     console.log(fileObject);
                     setBackgroundImg(fileObject.name, fileObject.image);
-                    props.setMediaFiles(fileObject);
                 },
                 error => console.log(error)
             );
@@ -53,6 +54,38 @@ function Audio(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.url = url;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundImg.name = name;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const handleAudioUpload = (e) => {
+        const currentColumnObj = currentColumn;
+        let files = e.target.files;
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+        formData.append('uid', uid);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.name = fileObject.name;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.url = fileObject.image;
+                currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.type = fileObject.type;
+        
+                props.setColumn(currentColumnObj);
+            },
+            error => console.log(error)
+        );
+    }
+
+    const setShowPlayer = (value) => {
+        const currentColumnObj = currentColumn;
+        
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.audio.show = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -71,50 +104,85 @@ function Audio(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-text-editor">
+            <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item-textarea">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
-                                {/* <span>Choose Audio</span> */}
-                                <span>Embed Code</span>
+                                <span>Audio</span>
                             </div>
-                            <div className="sg-control-input-list-input sg-control-input-list-input-height-5">
-                                <textarea
-                                    placeholder="Put embed code here . . ."
-                                    className="sg-input-code"
-                                    style={{fontSize: 10}}
-                                    value={ 
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleAudioUpload} accept="audio/*"/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Upload Audio"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name
                                     }
-                                    onChange={(event) => props.onChangeTextArea(event.target.value, contentIndex, 'html')}
+                                    readOnly
                                 />
-                                {/* <ul className="audio-feature-value-list pl-0">
-                                    {
-                                        props.mediaFilesObject.length > 0 ?
-                                            props.mediaFilesObject.map((mediaFile, mediaIndex)=> (
-                                                mediaFile.type.includes("audio") ?
-                                                    <li key={mediaIndex} className="audio-feature-value-list-item">
-                                                        <input type="radio" value={mediaIndex} onClick={() => this.radioClick(mediaIndex, mediaFile)} checked={this.state.radioValue === mediaIndex ? true : false} />
-                                                        <label className="pl-1">{mediaFile.name}</label>
-                                                    </li>
-                                                :
-                                                    null
-                                            ))
-                                        :
-                                            <div className="w-100">
-                                                <input
-                                                    type="file"
-                                                    onChange={this.handleFileUpload}
-                                                    accept="audio/*"
-                                                    multiple
-                                                />
-                                            </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Choose whether to show player or not.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Show player</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <RadioGroup
+                                    name="fruit"
+                                    selectedValue={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.show &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.show
                                     }
-                                </ul> */}
+                                    onChange={setShowPlayer}
+                                    className="row m-0"
+                                >
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="yes"
+                                            className="mr-2" 
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label className="mb-1 mt-1 p-0 col-md-6">
+                                        <Radio
+                                            value="no"
+                                            className="mr-2"
+                                            disabled={
+                                                currentColumn.content[currentColumnContentIndex][contentIndex].output.audio.name === '' ?
+                                                    true
+                                                :
+                                                    false
+                                            }
+                                        />
+                                        <span>No</span>
+                                    </label>
+                                </RadioGroup>
                             </div>
                         </li>
                     </ul>
