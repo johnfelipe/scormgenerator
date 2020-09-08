@@ -15,6 +15,7 @@ import List from './Features/List/List';
 import Tabs from './Features/Tabs/Tabs';
 import Charts from './Features/Charts/SgCharts';
 import Accordion from './Features/Accordion/SgAccordion';
+import ContentWithLeftPicture from './Features/ContentWithPicture/ContentWithLeftPicture';
 
 class Editor extends Component {
 
@@ -318,6 +319,22 @@ class Editor extends Component {
                     setShowCssEditor={this.props.setShowCssEditor}
                     setShowTextEditor={this.props.setShowTextEditor}
                     resetFeature={this.props.resetFeature}
+                    uid={this.props.uid}
+                />
+            );
+        } else if (this.props.feature === "contentPictureLeft") {
+            editorContent = (
+                <ContentWithLeftPicture
+                    setColumn={this.props.setColumn}
+                    deleteFeature={this.props.deleteFeature}
+                    contentIndex={this.props.contentIndex}
+                    currentColumn={this.props.currentColumn}
+                    currentColumnContentIndex={this.props.currentColumnContentIndex}
+                    setFeatureId={this.props.setFeatureId}
+                    setFeatureClass={this.props.setFeatureClass}
+                    setShowCssEditor={this.props.setShowCssEditor}
+                    resetFeature={this.props.resetFeature}
+                    setShowEditor={this.props.setShowEditor}
                     uid={this.props.uid}
                 />
             );
