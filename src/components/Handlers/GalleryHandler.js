@@ -20,6 +20,7 @@ function GalleryHandler(props) {
     const [filterType, setFilterType] = useState(false);
     const mediaFilesObject = useSelector(state => state.gallery.mediaFiles ? state.gallery.mediaFiles : []);
     const currentFile = useSelector(state => state.gallery.currentFile ? state.gallery.currentFile : {});
+    const galleryMsg = useSelector(state => state.gallery.message ? state.gallery.message : '');
 
     useEffect(() => {
         if (modalShow === false) {
@@ -29,7 +30,8 @@ function GalleryHandler(props) {
 
     useEffect(() => {
         dispatch(galleryActions.getAllFiles());
-    }, [dispatch, currentFile]);
+        console.log(galleryMsg);
+    }, [dispatch, currentFile, galleryMsg]);
 
     const galleryModal = (
         <Modal

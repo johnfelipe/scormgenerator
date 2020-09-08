@@ -57,6 +57,7 @@ function MediaLoader (props) {
             fileObject => {
                 console.log(fileObject);
                 dispatch(galleryActions.updateFile(fileObject.fid, fileObject.url, fileObject.name));
+                setMediaVtt(fileObject.url);
             },
             error => console.log(error)
         );
@@ -125,6 +126,7 @@ function MediaLoader (props) {
                                         setMediaAlt(fileData.alt);
                                         setModalShow(true);
                                         setMediaType(fileData.type);
+                                        setMediaVtt(fileData.vtt);
                                     }}
                                 >
                                     <div className="thumbnail sg-vertical-center-v2">
