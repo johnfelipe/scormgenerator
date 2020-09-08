@@ -140,6 +140,7 @@ function MediaUploader(props) {
                             aria-describedby="inputGroupFileAddon01"
                             onChange={handleFileUpload}
                             onBlur={clearSuccessMessage}
+                            accept="image/*, video/*, audio/*"
                             // multiple
                         />
                         <label className="custom-file-label pr-6" htmlFor="inputGroupFile01">
