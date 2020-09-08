@@ -698,6 +698,7 @@ class SlideHandler extends Component {
                 style: {
                     backgroundColor: '#fff',
                     textColor: '',
+                    imgPosition: 'left',
                 },
                 class: '',
                 id: '',
@@ -878,6 +879,7 @@ class SlideHandler extends Component {
                                 },
                                 backgroundColor: '#fff',
                                 textColor: '',
+                                imgPosition: 'left',
                             },
                             class: '',
                             id: '',

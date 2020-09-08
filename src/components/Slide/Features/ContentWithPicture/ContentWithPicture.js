@@ -87,6 +87,14 @@ function ContentWithLeftPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setImgPosition = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.imgPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -194,6 +202,21 @@ function ContentWithLeftPicture(props) {
                                 >
                                     <option value="text-black">&nbsp;Black</option>
                                     <option value="text-white">&nbsp;White</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Image Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.imgPosition}
+                                    onChange={(event) => setImgPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="left">&nbsp;Left</option>
+                                    <option value="right">&nbsp;Right</option>
                                 </select>
                             </div>
                         </li>
