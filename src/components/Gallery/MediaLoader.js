@@ -103,8 +103,8 @@ function MediaLoader (props) {
                                         setMediaType(fileData.type);
                                     }}
                                 >
-                                    <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
+                                    <div className="thumbnail sg-vertical-center-v2">
+                                        <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                         <div className="audio">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -127,8 +127,8 @@ function MediaLoader (props) {
                                         setMediaType(fileData.type);
                                     }}
                                 >
-                                    <div className="thumbnail">
-                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40 mt-5-5"/>
+                                    <div className="thumbnail sg-vertical-center-v2">
+                                        <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40"/>
                                         <div className="video">
                                             <div>{fileData.name}</div>
                                         </div>
@@ -185,8 +185,8 @@ function MediaLoader (props) {
                                     setMediaType(fileData.type);
                                 }}
                             >
-                                <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
+                                <div className="thumbnail sg-vertical-center-v2">
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="audio">
                                         <div>{fileData.name}</div>
                                     </div>
@@ -215,8 +215,8 @@ function MediaLoader (props) {
                                     setMediaVtt(fileData.vtt);
                                 }}
                             >
-                                <div className="thumbnail">
-                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40 mt-5-5"/>
+                                <div className="thumbnail sg-vertical-center-v2">
+                                    <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="video">
                                         <div>{fileData.name}</div>
                                     </div>
