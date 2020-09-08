@@ -15,7 +15,7 @@ import List from './Features/List/List';
 import Tabs from './Features/Tabs/Tabs';
 import Charts from './Features/Charts/SgCharts';
 import Accordion from './Features/Accordion/SgAccordion';
-import ContentWithLeftPicture from './Features/ContentWithPicture/ContentWithLeftPicture';
+import ContentWithPicture from './Features/ContentWithPicture/ContentWithPicture';
 
 class Editor extends Component {
 
@@ -322,9 +322,9 @@ class Editor extends Component {
                     uid={this.props.uid}
                 />
             );
-        } else if (this.props.feature === "contentPictureLeft") {
+        } else if (this.props.feature === "contentPicture") {
             editorContent = (
-                <ContentWithLeftPicture
+                <ContentWithPicture
                     setColumn={this.props.setColumn}
                     deleteFeature={this.props.deleteFeature}
                     contentIndex={this.props.contentIndex}

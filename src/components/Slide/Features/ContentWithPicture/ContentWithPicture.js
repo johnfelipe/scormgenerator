@@ -161,10 +161,10 @@ function ContentWithLeftPicture(props) {
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label content-picture-left-background-color-label">
+                            <div className="sg-control-input-list-label content-picture-background-color-label">
                                 <span>Background Color</span>
                             </div>
-                            <div className="sg-control-input-list-input content-picture-left-background-color-selector">
+                            <div className="sg-control-input-list-input content-picture-background-color-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerBg ? setShowPickerBg(false) : setShowPickerBg(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
                                     {currentBackgroundColor !== 'transparent' && currentBackgroundColor !== '' ?
                                         <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
@@ -231,7 +231,7 @@ function ContentWithLeftPicture(props) {
                 </div>
             </div>
             <ColorPickerBg
-                classNames="position-absolute content-picture-left-color-picker-bg"
+                classNames="position-absolute content-picture-color-picker-bg"
                 showPicker={showPickerBg}
                 setBackgroundColor={setBackgroundColor}
                 defaultColor={currentBackgroundColor}
@@ -243,7 +243,7 @@ function ContentWithLeftPicture(props) {
                 handleImageUpload={handleImageUpload}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
-                location="contentPictureLeftT"
+                location="contentPicture"
                 setImgAlt={setImgAlt}
             />
         </div>

@@ -21,7 +21,7 @@
 @import "components/features/list-ul";
 @import "components/features/tabs";
 @import "components/features/sg-accordion";
-@import "components/features/content-picture-left";
+@import "components/features/content-picture";
 
 @include defaults;
 @include header;
@@ -46,4 +46,4 @@
 @include list-ul;
 @include tabs;
 @include sg-accordion;
-@include content-picture-left;
+@include content-picture;

@@ -9,21 +9,21 @@ function ContentWithLeftPictureLayout(props) {
     
     return (
         <>
-            <div id="content-picture-left-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover' }}>
+            <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover' }}>
                 <div className="content-area-container h-100 w-100 border border-light p-3 ">
                     <div className="row m-0">
                         <div className="col-md-6">
                             {output.image.url ?
-                                <img src={output.image.url} alt={output.image.alt} />
+                                <img src={output.image.url} alt={output.image.alt} className="h-100" />
                             :
-                                <FontAwesomeIcon icon={faImage}/>
+                                <FontAwesomeIcon icon={faImage} className="h-100"/>
                             }
                         </div>
                         <div className="col-md-6">
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
-                    {props.cssApplier(css, 'content-picture-left-layout')}
+                    {props.cssApplier(css, 'content-picture-layout')}
                 </div>
             </div>
         </>

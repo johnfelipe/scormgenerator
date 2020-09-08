@@ -1,4 +1,4 @@
-@mixin content-picture-left {
+@mixin content-picture {
     html {
         body {
             font-family: 'Open Sans';
@@ -14,7 +14,7 @@
                                             #slide-tabs-tabpane-editor {
                                                 .sg-workspace-controls {
                                                     .sg-controls {
-                                                        .content-picture-left-color-picker-bg {
+                                                        .content-picture-color-picker-bg {
                                                             z-index: 5000;
                                                             margin: 0 40px;
                                                             // top: 55px;

@@ -30,7 +30,7 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
         } else if (contentFor === 'accordion') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
-        } else if (contentFor === 'contentPictureLeft') {
+        } else if (contentFor === 'contentPicture') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
         }
 
@@ -59,7 +59,7 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = source;
         } else if (contentFor === 'accordion') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
-        } else if (contentFor === 'contentPictureLeft') {
+        } else if (contentFor === 'contentPicture') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = source;
         }
 
@@ -81,7 +81,7 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent, 'html'));
         } else if (contentFor === 'accordion') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
-        } else if (contentFor === 'contentPictureLeft') {
+        } else if (contentFor === 'contentPicture') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);

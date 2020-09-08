@@ -32,7 +32,7 @@ function AltTagForm (props) {
                         props.setModalShow(false);
                         props.handleImageUpload(values.alt, file, fileIndex);
                         
-                        if (props.location === 'contentPictureLeft') {
+                        if (props.location === 'contentPicture') {
                             props.setImgAlt(values.alt);
                         }
                     }}

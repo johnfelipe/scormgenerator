@@ -44,7 +44,7 @@ import AudioLayout from '../Slide/Layouts/AudioLayout';
 import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
 import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
-import ContentWithLeftPictureLayout from '../Slide/Layouts/ContentWithLeftPictureLayout';
+import ContentWithPictureLayout from '../Slide/Layouts/ContentWithPictureLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -88,8 +88,7 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'contentPictureLeft', name: 'Content With Picture (Left)', icon: [faList, faImage] },
-                { type: 'contentPictureRight', name: 'Content With Picture (Right)', icon: [faImage, faList] },
+                { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
@@ -685,9 +684,9 @@ class SlideHandler extends Component {
                 },
                 css: '',
             };
-        } else if (featureType === "contentPictureLeft") {
+        } else if (featureType === "contentPicture") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'contentPictureLeft',
+                type: 'contentPicture',
                 output: {
                     image: {
                         name: '',
@@ -861,7 +860,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'contentPictureLeft') {
+                    } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             output: {
@@ -4583,7 +4582,7 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {contentFirst.type === 'contentPictureLeft' &&
+                                                                                                                {contentFirst.type === 'contentPicture' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
@@ -4614,7 +4613,7 @@ class SlideHandler extends Component {
                                                                                                                             )
                                                                                                                         }
                                                                                                                     >
-                                                                                                                        <ContentWithLeftPictureLayout
+                                                                                                                        <ContentWithPictureLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
                                                                                                                             css={contentFirst.css}
