@@ -752,15 +752,15 @@ class SlideHandler extends Component {
 
             this.setActiveTab("editor");
 
-            for (var key in currentColumns) {
-                if (destination.droppableId === currentColumns[key]['id']) {
+            for (var keyIndex in currentColumns) {
+                if (destination.droppableId === currentColumns[keyIndex]['id']) {
                     // First Size
 
                     this.setState({
                         currentColumnContentIndex: 'subColumnOne',
                     });
 
-                    destination.index = parseInt(key);
+                    destination.index = parseInt(keyIndex);
                     const currentFeatures = this.state.fixedFeatures;
                     
                     if (currentFeatures[source.index]['type'] === 'multipleChoice') {
@@ -787,12 +787,12 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
-                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
                         let currentContent = {
@@ -816,12 +816,12 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
-                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
                         let currentContent = {
@@ -853,12 +853,12 @@ class SlideHandler extends Component {
                             css: '',
                         };
                         
-                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
                     } else if (currentFeatures[source.index]['type'] === 'contentPictureLeft') {
                         let currentContent = {
@@ -883,12 +883,12 @@ class SlideHandler extends Component {
                             css: '',
                         };
                         
-                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
                             activeFeature: currentFeatures[source.index]['type'],
                             activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
                     }
                     
