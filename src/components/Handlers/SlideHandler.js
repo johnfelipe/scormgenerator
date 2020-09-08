@@ -705,7 +705,7 @@ class SlideHandler extends Component {
             })
         }
 
-        if ((source.droppableId === "features") && (destination.droppableId !== "features")) {
+        if ((source.droppableId === "fixed-features" || source.droppableId === "fluid-features") && (destination.droppableId !== "fixed-features" || destination.droppableId !== "fluid-features")) {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
@@ -3755,7 +3755,7 @@ class SlideHandler extends Component {
                                     <DragDropContext onDragEnd={this.onDragEnd}>
                                         <div className="row mt-2">
                                             <div id="slide-sidebar" className="col-md-3 pr-0">
-                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="uncontrolled-tab" className="text-center">
+                                                <Tabs activeKey={this.state.activeTab} onSelect={this.setActiveTab} id="slide-tabs" className="text-center">
                                                     <Tab eventKey="column" title="Column" className="mt-1">
                                                         <div className="sg-workspace-content-section">
                                                             {this.state.column.length !== 0 ?
@@ -3819,8 +3819,70 @@ class SlideHandler extends Component {
                                                             
                                                         </div>
                                                     </Tab>
-                                                    <Tab eventKey="features" title="Features" className="mt-1">
-                                                        <Droppable droppableId="features">
+                                                    <Tab eventKey="features" title="Features">
+                                                        <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center">
+                                                            <Tab eventKey="fixed" title="Fixed" tabClassName="sg-w-100-div-2">
+                                                                <Droppable droppableId="fixed-features">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef} className="sg-feature-list">
+                                                                            {this.state.features.map((item, featureIndex) => (
+                                                                                <Draggable
+                                                                                    key={'fixed-feature-draggable-' + featureIndex}
+                                                                                    draggableId={'fixed-feature-' + featureIndex}
+                                                                                    index={featureIndex}
+                                                                                >
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                            className="sg-feature-list-item"
+                                                                                        >
+                                                                                            <SlideFeature
+                                                                                                icon={item.icon}
+                                                                                                name={item.name}
+                                                                                            />
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </Tab>
+                                                            <Tab eventKey="fluid" title="Fluid" tabClassName="sg-w-100-div-2">
+                                                                <Droppable droppableId="fluid-features">
+                                                                    {(provided) => (
+                                                                        <div ref={provided.innerRef} className="sg-feature-list">
+                                                                            {this.state.features.map((item, featureIndex) => (
+                                                                                <Draggable
+                                                                                    key={'fluid-feature-draggable-' + featureIndex}
+                                                                                    draggableId={'fluid-feature-' + featureIndex}
+                                                                                    index={featureIndex}
+                                                                                >
+                                                                                    {(provided) => (
+                                                                                        <div
+                                                                                            ref={provided.innerRef}
+                                                                                            {...provided.draggableProps}
+                                                                                            {...provided.dragHandleProps}
+                                                                                            className="sg-feature-list-item"
+                                                                                        >
+                                                                                            <SlideFeature
+                                                                                                icon={item.icon}
+                                                                                                name={item.name}
+                                                                                            />
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Draggable>
+                                                                            ))}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </Tab>
+                                                        </Tabs>
+                                                        {/* <Droppable droppableId="features">
                                                             {(provided) => (
                                                                 <div ref={provided.innerRef} className="sg-feature-list">
                                                                     {this.state.features.map((item, featureIndex) => (
@@ -3847,7 +3909,7 @@ class SlideHandler extends Component {
                                                                     {provided.placeholder}
                                                                 </div>
                                                             )}
-                                                        </Droppable>
+                                                        </Droppable> */}
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
