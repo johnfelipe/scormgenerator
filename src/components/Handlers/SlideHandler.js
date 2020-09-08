@@ -692,6 +692,7 @@ class SlideHandler extends Component {
                     image: {
                         name: '',
                         url: '',
+                        alt: '',
                     },
                     content: '<span>No content provided yet.</span>'
                 },
@@ -867,6 +868,7 @@ class SlideHandler extends Component {
                                 image: {
                                     name: '',
                                     url: '',
+                                    alt: '',
                                 },
                                 content: '<span>No content provided yet.</span>'
                             },
