@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -87,6 +87,8 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
+                { type: 'contentPictureLeft', name: 'Content With Picture (Left)', icon: [faList, faImage] },
+                { type: 'contentPictureRight', name: 'Content With Picture (Right)', icon: [faImage, faList] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
