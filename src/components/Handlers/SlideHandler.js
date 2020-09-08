@@ -3952,9 +3952,9 @@ class SlideHandler extends Component {
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
                                                                             {this.state.fluidFeatures.map((item, featureIndex) => (
                                                                                 <Draggable
-                                                                                    key={'fluid-feature-draggable-' + this.state.fixedFeatures.length + featureIndex}
-                                                                                    draggableId={'fluid-feature-' + this.state.fixedFeatures.length + featureIndex}
-                                                                                    index={this.state.fixedFeatures.length + featureIndex}
+                                                                                    key={'fluid-feature-draggable-' + featureIndex}
+                                                                                    draggableId={'fluid-feature-' + featureIndex}
+                                                                                    index={featureIndex}
                                                                                 >
                                                                                     {(provided) => (
                                                                                         <div
