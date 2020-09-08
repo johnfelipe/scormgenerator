@@ -23,9 +23,8 @@ function ContentWithLeftPicture(props) {
     const setImage = (name, url, type) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.name = name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.url = url;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.type = type;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.image.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.image.url = url;
 
         props.setColumn(currentColumnObj);
     }
@@ -68,7 +67,7 @@ function ContentWithLeftPicture(props) {
     const setImgAlt = (value) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.alt = value;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.image.alt = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -97,7 +96,7 @@ function ContentWithLeftPicture(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Image Setup</label>
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
@@ -131,7 +130,7 @@ function ContentWithLeftPicture(props) {
                                             type="button"
                                             className="textarea-hover-btn btn btn-light"
                                             onMouseLeave={() => setIsShownTextArea(false)}
-                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentArea')}
+                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentPictureLeft')}
                                         >
                                             <span>Click to Edit</span>
                                         </button>
@@ -244,6 +243,8 @@ function ContentWithLeftPicture(props) {
                 handleImageUpload={handleImageUpload}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
+                location="contentPictureLeftT"
+                setImgAlt={setImgAlt}
             />
         </div>
     );
