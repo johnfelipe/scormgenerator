@@ -337,11 +337,11 @@
     .mt-5-5 {
         // margin-top: 3.25rem !important;
         @media (min-width: 1200px) {
-            margin-top: 5.5rem !important;
+            margin-top: 5.5rem ;
         }
 
-        @media (max-width: 1400px) {
-            margin-top: 3.25rem !important;
+        @media screen and (min-device-width: 1200px) { 
+            margin-top: 3.25rem ;
         }
     }
 
@@ -372,10 +372,19 @@
         overflow: auto;
     }
 
+    // alignment
     .sg-vertical-center {
         display: flex !important;
         align-items: center !important;
         flex: 1 1 100% !important;
+    }
+
+    .sg-vertical-center-v2 {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
     }
 
     .sg-video-code-sharing {
