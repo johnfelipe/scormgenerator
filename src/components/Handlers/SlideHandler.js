@@ -88,11 +88,11 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'card', name: 'Card', icon: faIdCardAlt, },
-                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
+                { type: 'cardFixed', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgChartsFixed', name: 'Charts', icon: faChartPie, },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
-                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
+                { type: 'dragDropFixed', name: 'Drag and Drop', icon: faHandRock, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
@@ -459,6 +459,7 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
+                    height: 655,
                 },
                 mechanics: {
                     repeat: 0,
@@ -485,7 +486,8 @@ class SlideHandler extends Component {
                 id: '',
                 styles: {
                     titleBoxColor: '#0069d9',
-                    titleBoxBorder: 'border-bottom'
+                    titleBoxBorder: 'border-bottom',
+                    height: 655,
                 },
                 css: '',
             };
@@ -507,7 +509,8 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 styles: {
-                    courseIntroColor: '#0069d9'
+                    courseIntroColor: '#0069d9',
+                    height: 655,
                 },
                 introVideo: {
                     name: 'file_example_MP4_480_1_5MG',
@@ -702,9 +705,77 @@ class SlideHandler extends Component {
                     backgroundColor: '#fff',
                     textColor: '',
                     imgPosition: 'left',
+                    height: 655,
                 },
                 class: '',
                 id: '',
+                css: '',
+            };
+        } else if (featureType === "cardFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'card',
+                output: {
+                    img: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        alt: '',
+                    },
+                    title: 'Card title',
+                    content: 'No content provided yet.',
+                    button: {
+                        label: 'Click me',
+                        url: '',
+                    }
+                },
+                class: '',
+                id: '',
+                styles: {
+                    themeColor: '#0069d9',
+                    height: 655,
+                },
+                css: '',
+            };
+        } else if (featureType === "sgChartsFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'sgCharts',
+                output: {
+                    chartType: 'pie',
+                    dataSets: {},
+                    chartOptions: {
+                        shownData: [],
+                    },
+                    csvFile: {
+                        name: '',
+                        url: '',
+                        headers: [],
+                        data: [],
+                    }
+                },
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                    height: 655,
+                },
+                css: '',
+            };
+        } else if (featureType === "dragDropFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'dragDrop',
+                output: [],
+                class: '',
+                id: '',
+                styles: {
+                    dragDropBackgroundColor: '#fff',
+                    dragDropTextColor: 'text-black',
+                    themeColor: '#0069d9',
+                    backgroundImg: '',
+                    height: 655,
+                },
                 css: '',
             };
         }
@@ -770,7 +841,6 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'multipleChoice') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: [],
                             class: 'question-files-left',
                             id: '',
@@ -803,7 +873,6 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: {
                                 title: 'Title',
                                 subtitle: 'Subtitle',
@@ -834,7 +903,6 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: {
                                 courseNav: {
                                     name: 'Course Navigation',
@@ -873,7 +941,6 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: {
                                 image: {
                                     name: '',
@@ -904,10 +971,9 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                    } else if (currentFeatures[source.index]['type'] === 'sgChartsFixed') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: {
                                 chartType: 'pie',
                                 dataSets: {},
@@ -940,10 +1006,9 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                    } else if (currentFeatures[source.index]['type'] === 'cardFixed') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: {
                                 img: {
                                     name: '',
@@ -974,10 +1039,9 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
+                    } else if (currentFeatures[source.index]['type'] === 'dragDropFixed') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
                             output: [],
                             class: '',
                             id: '',
@@ -4353,7 +4417,7 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {contentFirst.type === 'card' &&
+                                                                                                                {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
@@ -4783,7 +4847,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
 
-                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -4959,7 +5023,7 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
 
-                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
@@ -5143,7 +5207,7 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {contentFirst.type === 'card' &&
+                                                                                                                        {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                             <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
@@ -5319,7 +5383,7 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {contentSecond.type === 'card' &&
+                                                                                                                        {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                             <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
@@ -5503,7 +5567,7 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentFirst.type === 'card' &&
+                                                                                                                            {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -5679,7 +5743,7 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentSecond.type === 'card' &&
+                                                                                                                            {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -5864,7 +5928,7 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentFirst.type === 'card' &&
+                                                                                                                            {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -6040,7 +6104,7 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentSecond.type === 'card' &&
+                                                                                                                            {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -6216,7 +6280,7 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {contentThird.type === 'card' &&
+                                                                                                                            {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
@@ -6401,7 +6465,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -6577,7 +6641,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -6753,7 +6817,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentThird.type === 'card' &&
+                                                                                                                                    {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -6929,7 +6993,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFourth.type === 'card' &&
+                                                                                                                                    {(contentFourth.type === 'card' || contentFourth.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7113,7 +7177,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7289,7 +7353,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentSecond.type === 'card' &&
+                                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7465,7 +7529,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentThird.type === 'card' &&
+                                                                                                                                    {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7641,7 +7705,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFourth.type === 'card' &&
+                                                                                                                                    {(contentFourth.type === 'card' || contentFourth.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7817,7 +7881,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {contentFifth.type === 'card' &&
+                                                                                                                                    {(contentFifth.type === 'card' || contentFifth.type === 'cardFixed') &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
