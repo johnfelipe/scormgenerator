@@ -770,6 +770,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'multipleChoice') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: [],
                             class: 'question-files-left',
                             id: '',
@@ -781,6 +782,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
+                                height: 655
                             },
                             mechanics: {
                                 repeat: 0,
@@ -801,6 +803,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 title: 'Title',
                                 subtitle: 'Subtitle',
@@ -815,7 +818,8 @@ class SlideHandler extends Component {
                             id: '',
                             styles: {
                                 titleBoxColor: '#0069d9',
-                                titleBoxBorder: 'border-bottom'
+                                titleBoxBorder: 'border-bottom',
+                                height: 655
                             },
                             css: '',
                         };
@@ -830,6 +834,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 courseNav: {
                                     name: 'Course Navigation',
@@ -846,7 +851,8 @@ class SlideHandler extends Component {
                             class: '',
                             id: '',
                             styles: {
-                                courseIntroColor: '#0069d9'
+                                courseIntroColor: '#0069d9',
+                                height: 655
                             },
                             introVideo: {
                                 name: 'file_example_MP4_480_1_5MG',
@@ -867,6 +873,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 image: {
                                     name: '',
@@ -883,6 +890,7 @@ class SlideHandler extends Component {
                                 backgroundColor: '#fff',
                                 textColor: '',
                                 imgPosition: 'left',
+                                height: 655,
                             },
                             class: '',
                             id: '',
@@ -899,6 +907,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 chartType: 'pie',
                                 dataSets: {},
@@ -919,6 +928,7 @@ class SlideHandler extends Component {
                                     name: '',
                                     url: '',
                                 },
+                                height: 655,
                             },
                             css: '',
                         };
@@ -933,6 +943,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 img: {
                                     name: '',
@@ -951,6 +962,7 @@ class SlideHandler extends Component {
                             id: '',
                             styles: {
                                 themeColor: '#0069d9',
+                                height: 655,
                             },
                             css: '',
                         };
@@ -965,6 +977,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: [],
                             class: '',
                             id: '',
@@ -973,6 +986,7 @@ class SlideHandler extends Component {
                                 dragDropTextColor: 'text-black',
                                 themeColor: '#0069d9',
                                 backgroundImg: '',
+                                height: 655,
                             },
                             css: '',
                         };
