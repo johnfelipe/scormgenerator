@@ -20,6 +20,7 @@ export const courseActions = {
     updateCourseLessonsList,
     updateCourseList,
     duplicateCourse,
+    duplicateSlide,
 };
 
 function getAll() {
@@ -127,28 +128,18 @@ function getCourseLessons(id) {
                                 slideService.getSlideColumns(slide.sid)
                                 .then(
                                     columns => {
-                                        // if (columns.length > 0) {
-                                            let slideColumns = [];
+                                        let slideColumns = [];
 
-                                            columns.map((columnProps) => {
-                                                const parsedDecodedFeatures = JSON.parse(decodeURIComponent(escape(atob(columnProps.features))));
-                                                parsedDecodedFeatures.clid = columnProps.clid;
-                                                parsedDecodedFeatures.sid = columnProps.sid;
-                                                parsedDecodedFeatures.lid = lesson.lid;
-                                                // const column = {
-                                                //     type: 'column',
-                                                //     name: columnProps.title,
-                                                //     active: 0,
-                                                //     grid: 0,
-                                                //     id: 'column1',
-                                                //     content: parsedDecodedFeatures,
-                                                // }
+                                        columns.map((columnProps) => {
+                                            const parsedDecodedFeatures = JSON.parse(decodeURIComponent(escape(atob(columnProps.features))));
+                                            parsedDecodedFeatures.clid = columnProps.clid;
+                                            parsedDecodedFeatures.sid = columnProps.sid;
+                                            parsedDecodedFeatures.lid = lesson.lid;
 
-                                                return slideColumns.push(parsedDecodedFeatures)
-                                            });
+                                            return slideColumns.push(parsedDecodedFeatures)
+                                        });
 
-                                            slides[slideIndex].columns = slideColumns;
-                                        // }
+                                        slides[slideIndex].columns = slideColumns;
                                     },
                                     error => {
                                         dispatch(failure(error.toString()));
@@ -287,5 +278,49 @@ function duplicateCourse(id) {
 
     function request(course) { return { type: courseContants.REQUEST, course } }
     function success(course) { return { type: courseContants.DUPLICATE_COURSE, course } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function duplicateSlide(lessonIndex, lessonLid, sid) {
+    return dispatch => {
+        dispatch(request(sid));
+
+        slideService.duplicateSlide(sid)
+            .then(
+                slide => { 
+                    slideService.getSlideColumns(slide.sid)
+                    .then(
+                        columns => {
+                            let slideColumns = [];
+
+                            columns.map((columnProps) => {
+                                const parsedDecodedFeatures = JSON.parse(decodeURIComponent(escape(atob(columnProps.features))));
+                                parsedDecodedFeatures.clid = columnProps.clid;
+                                parsedDecodedFeatures.sid = columnProps.sid;
+                                parsedDecodedFeatures.lid = lessonLid;
+
+                                return slideColumns.push(parsedDecodedFeatures)
+                            });
+
+                            slide.columns = slideColumns;
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            // dispatch(alertActions.error(error.toString()));
+                            console.log(error);
+                        }
+                    )
+                    dispatch(success(slide, lessonIndex));
+                    // dispatch(alertActions.success('Slide updated successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(id) { return { type: courseContants.REQUEST, id } }
+    function success(duplicateSlideObj, duplicateLessonIndex) { return { type: courseContants.DUPLICATE_SLIDE, duplicateSlideObj, duplicateLessonIndex } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
