@@ -311,6 +311,13 @@ function MediaLoader (props) {
                     mediaType.includes("audio") ?
                         <div className="text-center">
                             <div>
+                                <ReactAudioPlayer
+                                    src={mediaUrl}
+                                    controls
+                                    title={mediaName}
+                                />
+                            </div>
+                            <div>
                                 {copied &&
                                     <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
                                 }
@@ -339,21 +346,35 @@ function MediaLoader (props) {
                                     </button>
                                 </CopyToClipboard>
                             </div>
-                            <div>
-                                <ReactAudioPlayer
-                                    src={mediaUrl}
-                                    controls
-                                    title={mediaName}
-                                />
-                            </div>
                         </div>
                     :
                         mediaType.includes("video") &&
                             <div className="text-center">
                                 <div>
+                                    <Player>
+                                        <source src={mediaUrl} />
+                                        <ControlBar autoHide={true}/>
+                                    </Player>
+                                </div>
+                                <div>
                                     {copied &&
                                         <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
                                     }
+                                    <div className="row m-0 mb-2 mt-2">
+                                        <div className="col-md-1 sg-vertical-center justify-content-center">
+                                            <span>VTT:</span>
+                                        </div>
+                                        <div className="col-md-1 p-0">
+                                            <label className="input-group-btn form-inline m-0 float-right">
+                                                <span className="btn btn-primary">
+                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" onChange={(e) => handleFileUpload(e)} style={{ display: "none"}} accept=".vtt"/>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div className="col-md-10 p-0 pl-1">
+                                            <input type="text" placeholder="Choose vtt file" className="form-control" value={mediaVtt} readOnly/>
+                                        </div>
+                                    </div>
                                     <textarea 
                                         value={
                                             mediaVtt ?
@@ -376,7 +397,7 @@ function MediaLoader (props) {
                                     >
                                         <button
                                             type="button"
-                                            className="btn btn-primary w-100 mb-2"
+                                            className="btn btn-primary w-100"
                                             onClick={() => {
                                                 clearCopiedMessage();
                                             }}
@@ -384,27 +405,6 @@ function MediaLoader (props) {
                                             <FontAwesomeIcon icon={faClone}/>
                                         </button>
                                     </CopyToClipboard>
-                                    <div className="row m-0 mb-2">
-                                        <div className="col-md-1 sg-vertical-center justify-content-center">
-                                            <span>VTT:</span>
-                                        </div>
-                                        <div className="col-md-1 p-0">
-                                            <label className="input-group-btn form-inline m-0 float-right">
-                                                <span className="btn btn-primary">
-                                                    <FontAwesomeIcon icon={faUpload}/><input type="file" onChange={(e) => handleFileUpload(e)} style={{ display: "none"}} accept=".vtt"/>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <div className="col-md-10 p-0 pl-1">
-                                            <input type="text" placeholder="Choose vtt file" className="form-control" value={mediaVtt} readOnly/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Player>
-                                        <source src={mediaUrl} />
-                                        <ControlBar autoHide={true}/>
-                                    </Player>
                                 </div>
                             </div>
                 }
