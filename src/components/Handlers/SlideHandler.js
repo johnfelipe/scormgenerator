@@ -729,73 +729,6 @@ class SlideHandler extends Component {
         } else if (featureType === "cardFixed") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'card',
-                output: {
-                    img: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        alt: '',
-                    },
-                    title: 'Card title',
-                    content: 'No content provided yet.',
-                    button: {
-                        label: 'Click me',
-                        url: '',
-                    }
-                },
-                class: '',
-                id: '',
-                styles: {
-                    themeColor: '#0069d9',
-                    height: 655,
-                },
-                css: '',
-            };
-        } else if (featureType === "sgChartsFixed") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'sgCharts',
-                output: {
-                    chartType: 'pie',
-                    dataSets: {},
-                    chartOptions: {
-                        shownData: [],
-                    },
-                    csvFile: {
-                        name: '',
-                        url: '',
-                        headers: [],
-                        data: [],
-                    }
-                },
-                class: '',
-                id: '',
-                style: {
-                    backgroundImg: {
-                        name: '',
-                        url: '',
-                    },
-                    height: 655,
-                },
-                css: '',
-            };
-        } else if (featureType === "dragDropFixed") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'dragDrop',
-                output: [],
-                class: '',
-                id: '',
-                styles: {
-                    dragDropBackgroundColor: '#fff',
-                    dragDropTextColor: 'text-black',
-                    themeColor: '#0069d9',
-                    backgroundImg: '',
-                    height: 655,
-                },
-                css: '',
-            };
-        } else if (featureType === "cardFixed") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'card',
                 category: 'fixed',
                 output: {
                     img: {
@@ -1605,6 +1538,41 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
 
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-2-2')) {
@@ -1722,6 +1690,41 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -1853,6 +1856,41 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-2-3-2')) {
 
@@ -1969,6 +2007,41 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -2103,6 +2176,41 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-2')) {
 
@@ -2222,6 +2330,41 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
                         currentColumns[key].content.subColumnTwo.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -2356,6 +2499,41 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnOne.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-2')) {
 
@@ -2482,6 +2660,41 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
                         });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[key].content.subColumnTwo.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnTwo.length - 1),
+                        });
                     }
                 } else if (destination.droppableId === (currentColumns[key]['id'] + '-sg-1-3-1-3')) {
 
@@ -2601,6 +2814,41 @@ class SlideHandler extends Component {
                             css: '',
                         };
 
+                        currentColumns[key].content.subColumnThree.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[key].content.subColumnThree.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
                         currentColumns[key].content.subColumnThree.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -4033,18 +4281,12 @@ class SlideHandler extends Component {
     onSave = (slideObj, sid, lessonIndex, columnArray) => {
         if (this.props.action === "add") {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
-            // console.log("add");
-            // console.log(slideObj);
         } else if (this.props.action === "edit") {
             this.props.updateSlide(slideObj, sid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
             // creates column
             this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
-            // console.log("edit");
-            // console.log(slideObj);
-            // console.log(this.props.currentSlideIndex);
-            // console.log(this.props.lessonIndex);
         }
         
         this.setModalShow(false, 'save')
@@ -4620,7 +4862,7 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                {contentFirst.type === 'card' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
@@ -4848,7 +5090,7 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {(contentFirst.type === 'sgCharts' || contentFirst.type === 'sgChartsFixed') &&
+                                                                                                                {contentFirst.type === 'sgCharts' &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
@@ -5023,22 +5265,22 @@ class SlideHandler extends Component {
                                                                                                                                 contentFirst.id ? 
                                                                                                                                     contentFirst.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-2-1-content-output-' + contentFirstIndex
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
                                                                                                                             } 
                                                                                                                             className={
                                                                                                                                 contentFirst.class ? 
                                                                                                                                     contentFirst.class + " content-output"
                                                                                                                                 : 
                                                                                                                                     "content-output"
-                                                                                                                            } 
+                                                                                                                            }
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
                                                                                                                                     contentFirstIndex, 
                                                                                                                                     contentFirst.id ? 
-                                                                                                                                        contentFirst.id 
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-2-1-content-output-' + contentFirstIndex, 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex, 
                                                                                                                                     'subColumnOne'
                                                                                                                                 )
                                                                                                                             }
@@ -5050,19 +5292,32 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
 
-                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                    {contentFirst.type === 'card' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
                                                                                                                             {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                            className="content-output"
-                                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            id={
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            }
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
                                                                                                                                     contentFirstIndex,
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
                                                                                                                                     item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                     'subColumnOne'
                                                                                                                                 )
@@ -5156,6 +5411,46 @@ class SlideHandler extends Component {
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
+
+                                                                                                                    {contentFirst.type === 'sgCharts' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                            id={
+                                                                                                                                contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentFirstIndex, 
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                    'subColumnOne'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <SgChartsLayout
+                                                                                                                                output={contentFirst.output}
+                                                                                                                                style={contentFirst.style}
+                                                                                                                                css={contentFirst.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
                                                                                                                 </>
                                                                                                             )}
                                                                                                         </Draggable>
@@ -5199,7 +5494,7 @@ class SlideHandler extends Component {
                                                                                                                                 contentSecond.id ? 
                                                                                                                                     contentSecond.id
                                                                                                                                 : 
-                                                                                                                                    'sg-1-2-2-content-output-' + contentSecondIndex
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
                                                                                                                             } 
                                                                                                                             className={
                                                                                                                                 contentSecond.class ? 
@@ -5212,9 +5507,9 @@ class SlideHandler extends Component {
                                                                                                                                     index, 
                                                                                                                                     contentSecondIndex, 
                                                                                                                                     contentSecond.id ? 
-                                                                                                                                        contentSecond.id 
-                                                                                                                                    : 
-                                                                                                                                        'sg-1-2-2-content-output-' + contentSecondIndex, 
+                                                                                                                                    contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex, 
                                                                                                                                     'subColumnTwo'
                                                                                                                                 )
                                                                                                                             }
@@ -5226,19 +5521,32 @@ class SlideHandler extends Component {
                                                                                                                         </div>
                                                                                                                     }
 
-                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                    {contentSecond.type === 'card' &&
                                                                                                                         <div 
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
                                                                                                                             {...provided.dragHandleProps}
 
                                                                                                                             key={item.id + '-content-output-' + contentSecondIndex}
-                                                                                                                            className="content-output"
-                                                                                                                            id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                            id={
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentSecond.class ? 
+                                                                                                                                    contentSecond.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
                                                                                                                             onClick={() => 
                                                                                                                                 this.contentPaneClick(
                                                                                                                                     index, 
                                                                                                                                     contentSecondIndex,
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                        : 
                                                                                                                                     item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                     'subColumnTwo'
                                                                                                                                 )
@@ -5332,6 +5640,46 @@ class SlideHandler extends Component {
                                                                                                                             />
                                                                                                                         </div>
                                                                                                                     }
+
+                                                                                                                    {contentSecond.type === 'sgCharts' &&
+                                                                                                                        <div 
+                                                                                                                            ref={provided.innerRef}
+                                                                                                                            {...provided.draggableProps}
+                                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                                            key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                            id={
+                                                                                                                                contentSecond.id ? 
+                                                                                                                                contentSecond.id
+                                                                                                                                : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex
+                                                                                                                            } 
+                                                                                                                            className={
+                                                                                                                                contentSecond.class ? 
+                                                                                                                                contentSecond.class + " content-output"
+                                                                                                                                : 
+                                                                                                                                    "content-output"
+                                                                                                                            } 
+                                                                                                                            onClick={() => 
+                                                                                                                                this.contentPaneClick(
+                                                                                                                                    index, 
+                                                                                                                                    contentSecondIndex, 
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                    item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                    'subColumnTwo'
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                        >
+                                                                                                                            <SgChartsLayout
+                                                                                                                                output={contentSecond.output}
+                                                                                                                                style={contentSecond.style}
+                                                                                                                                css={contentSecond.css}
+                                                                                                                                cssApplier={this.cssApplier}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                    }
                                                                                                                 </>
                                                                                                             )}
                                                                                                         </Draggable>
@@ -5383,7 +5731,7 @@ class SlideHandler extends Component {
                                                                                                                                     contentFirst.id ? 
                                                                                                                                         contentFirst.id
                                                                                                                                     : 
-                                                                                                                                        'sg-1-3-1-content-output-' + contentFirstIndex
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentFirst.class ? 
@@ -5396,9 +5744,9 @@ class SlideHandler extends Component {
                                                                                                                                         index, 
                                                                                                                                         contentFirstIndex, 
                                                                                                                                         contentFirst.id ? 
-                                                                                                                                            contentFirst.id 
-                                                                                                                                        : 
-                                                                                                                                            'sg-1-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                        contentFirst.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
                                                                                                                                 }
@@ -5410,19 +5758,32 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                        {contentFirst.type === 'card' &&
                                                                                                                             <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
                                                                                                                                 {...provided.dragHandleProps}
 
                                                                                                                                 key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                                className="content-output"
-                                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                id={
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
                                                                                                                                 onClick={() => 
                                                                                                                                     this.contentPaneClick(
                                                                                                                                         index, 
                                                                                                                                         contentFirstIndex,
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                            : 
                                                                                                                                         item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                         'subColumnOne'
                                                                                                                                     )
@@ -5516,6 +5877,46 @@ class SlideHandler extends Component {
                                                                                                                                 />
                                                                                                                             </div>
                                                                                                                         }
+
+                                                                                                                        {contentFirst.type === 'sgCharts' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                id={
+                                                                                                                                    contentFirst.id ? 
+                                                                                                                                    contentFirst.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentFirst.class ? 
+                                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentFirstIndex, 
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                        'subColumnOne'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                <SgChartsLayout
+                                                                                                                                    output={contentFirst.output}
+                                                                                                                                    style={contentFirst.style}
+                                                                                                                                    css={contentFirst.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
                                                                                                                     </>
                                                                                                                 )}
                                                                                                             </Draggable>
@@ -5559,7 +5960,7 @@ class SlideHandler extends Component {
                                                                                                                                     contentSecond.id ? 
                                                                                                                                         contentSecond.id
                                                                                                                                     : 
-                                                                                                                                        'sg-2-3-2-content-output-' + contentSecondIndex
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex
                                                                                                                                 } 
                                                                                                                                 className={
                                                                                                                                     contentSecond.class ? 
@@ -5572,9 +5973,9 @@ class SlideHandler extends Component {
                                                                                                                                         index, 
                                                                                                                                         contentSecondIndex, 
                                                                                                                                         contentSecond.id ? 
-                                                                                                                                            contentSecond.id 
-                                                                                                                                        : 
-                                                                                                                                            'sg-2-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                        contentSecond.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                         'subColumnTwo'
                                                                                                                                     )
                                                                                                                                 }
@@ -5586,19 +5987,32 @@ class SlideHandler extends Component {
                                                                                                                             </div>
                                                                                                                         }
 
-                                                                                                                        {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                        {contentSecond.type === 'card' &&
                                                                                                                             <div 
                                                                                                                                 ref={provided.innerRef}
                                                                                                                                 {...provided.draggableProps}
                                                                                                                                 {...provided.dragHandleProps}
 
                                                                                                                                 key={item.id + '-content-output-' + contentSecondIndex}
-                                                                                                                                className="content-output"
-                                                                                                                                id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                id={
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                }
                                                                                                                                 onClick={() => 
                                                                                                                                     this.contentPaneClick(
                                                                                                                                         index, 
                                                                                                                                         contentSecondIndex,
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                            : 
                                                                                                                                         item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                         'subColumnTwo'
                                                                                                                                     )
@@ -5692,6 +6106,46 @@ class SlideHandler extends Component {
                                                                                                                                 />
                                                                                                                             </div>
                                                                                                                         }
+
+                                                                                                                        {contentSecond.type === 'sgCharts' &&
+                                                                                                                            <div 
+                                                                                                                                ref={provided.innerRef}
+                                                                                                                                {...provided.draggableProps}
+                                                                                                                                {...provided.dragHandleProps}
+
+                                                                                                                                key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                id={
+                                                                                                                                    contentSecond.id ? 
+                                                                                                                                    contentSecond.id
+                                                                                                                                    : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                } 
+                                                                                                                                className={
+                                                                                                                                    contentSecond.class ? 
+                                                                                                                                    contentSecond.class + " content-output"
+                                                                                                                                    : 
+                                                                                                                                        "content-output"
+                                                                                                                                } 
+                                                                                                                                onClick={() => 
+                                                                                                                                    this.contentPaneClick(
+                                                                                                                                        index, 
+                                                                                                                                        contentSecondIndex, 
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                            : 
+                                                                                                                                        item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                        'subColumnTwo'
+                                                                                                                                    )
+                                                                                                                                }
+                                                                                                                            >
+                                                                                                                                <SgChartsLayout
+                                                                                                                                    output={contentSecond.output}
+                                                                                                                                    style={contentSecond.style}
+                                                                                                                                    css={contentSecond.css}
+                                                                                                                                    cssApplier={this.cssApplier}
+                                                                                                                                />
+                                                                                                                            </div>
+                                                                                                                        }
                                                                                                                     </>
                                                                                                                 )}
                                                                                                             </Draggable>
@@ -5743,7 +6197,7 @@ class SlideHandler extends Component {
                                                                                                                                         contentFirst.id ? 
                                                                                                                                             contentFirst.id
                                                                                                                                         : 
-                                                                                                                                            'sg-2-3-1-content-output-' + contentFirstIndex
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentFirst.class ? 
@@ -5756,9 +6210,9 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex, 
                                                                                                                                             contentFirst.id ? 
-                                                                                                                                                contentFirst.id 
-                                                                                                                                            : 
-                                                                                                                                                'sg-2-3-1-content-output-' + contentFirstIndex, 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
                                                                                                                                     }
@@ -5770,19 +6224,32 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                            {contentFirst.type === 'card' &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
                                                                                                                                     key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                                    className="content-output"
-                                                                                                                                    id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                            contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex,
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
                                                                                                                                             item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
@@ -5876,6 +6343,46 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentFirst.type === 'sgCharts' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex, 
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <SgChartsLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
                                                                                                                         </>
                                                                                                                     )}
                                                                                                                 </Draggable>
@@ -5919,22 +6426,22 @@ class SlideHandler extends Component {
                                                                                                                                         contentSecond.id ? 
                                                                                                                                             contentSecond.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-2-content-output-' + contentSecondIndex
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentSecond.class ? 
                                                                                                                                             contentSecond.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
-                                                                                                                                    } 
+                                                                                                                                    }  
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex, 
                                                                                                                                             contentSecond.id ? 
-                                                                                                                                                contentSecond.id 
+                                                                                                                                            contentSecond.id 
                                                                                                                                             : 
-                                                                                                                                                'sg-1-3-2-content-output-' + contentSecondIndex, 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex, 
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
                                                                                                                                     }
@@ -5946,19 +6453,32 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                            {contentSecond.type === 'card' &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
                                                                                                                                     key={item.id + '-content-output-' + contentSecondIndex}
-                                                                                                                                    className="content-output"
-                                                                                                                                    id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                            contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex,
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
                                                                                                                                             item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
@@ -6045,6 +6565,46 @@ class SlideHandler extends Component {
                                                                                                                                     }
                                                                                                                                 >
                                                                                                                                     <AudioLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
+
+                                                                                                                            {contentSecond.type === 'sgCharts' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex, 
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <SgChartsLayout
                                                                                                                                         output={contentSecond.output}
                                                                                                                                         style={contentSecond.style}
                                                                                                                                         css={contentSecond.css}
@@ -6104,22 +6664,22 @@ class SlideHandler extends Component {
                                                                                                                                         contentFirst.id ? 
                                                                                                                                             contentFirst.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-1-content-output-' + contentFirstIndex
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentFirst.class ? 
                                                                                                                                             contentFirst.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
-                                                                                                                                    } 
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex, 
                                                                                                                                             contentFirst.id ? 
-                                                                                                                                                contentFirst.id 
+                                                                                                                                            contentFirst.id 
                                                                                                                                             : 
-                                                                                                                                                'sg-1-3-1-1-content-output-' + contentFirstIndex, 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex, 
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
                                                                                                                                     }
@@ -6131,19 +6691,32 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                            {contentFirst.type === 'card' &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
                                                                                                                                     key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                                    className="content-output"
-                                                                                                                                    id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                            contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentFirstIndex,
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
                                                                                                                                             item.id + '-content-output-' + contentFirstIndex,
                                                                                                                                             'subColumnOne'
                                                                                                                                         )
@@ -6237,6 +6810,46 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentFirst.type === 'sgCharts' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentFirst.id ? 
+                                                                                                                                        contentFirst.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentFirst.class ? 
+                                                                                                                                        contentFirst.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentFirstIndex, 
+                                                                                                                                            contentFirst.id ? 
+                                                                                                                                            contentFirst.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                            'subColumnOne'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <SgChartsLayout
+                                                                                                                                        output={contentFirst.output}
+                                                                                                                                        style={contentFirst.style}
+                                                                                                                                        css={contentFirst.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
                                                                                                                         </>
                                                                                                                     )}
                                                                                                                 </Draggable>
@@ -6280,22 +6893,22 @@ class SlideHandler extends Component {
                                                                                                                                         contentSecond.id ? 
                                                                                                                                             contentSecond.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-2-content-output-' + contentSecondIndex
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentSecond.class ? 
                                                                                                                                             contentSecond.class + " content-output"
                                                                                                                                         : 
                                                                                                                                             "content-output"
-                                                                                                                                    } 
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex, 
                                                                                                                                             contentSecond.id ? 
-                                                                                                                                                contentSecond.id 
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-1-2-content-output-' + contentSecondIndex, 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
                                                                                                                                     }
@@ -6307,19 +6920,32 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                            {contentSecond.type === 'card' &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
                                                                                                                                     key={item.id + '-content-output-' + contentSecondIndex}
-                                                                                                                                    className="content-output"
-                                                                                                                                    id={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                            contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentSecondIndex,
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
                                                                                                                                             item.id + '-content-output-' + contentSecondIndex,
                                                                                                                                             'subColumnTwo'
                                                                                                                                         )
@@ -6413,6 +7039,46 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentSecond.type === 'sgCharts' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentSecondIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentSecond.id ? 
+                                                                                                                                        contentSecond.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentSecond.class ? 
+                                                                                                                                        contentSecond.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentSecondIndex, 
+                                                                                                                                            contentSecond.id ? 
+                                                                                                                                            contentSecond.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentSecondIndex,
+                                                                                                                                            'subColumnTwo'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <SgChartsLayout
+                                                                                                                                        output={contentSecond.output}
+                                                                                                                                        style={contentSecond.style}
+                                                                                                                                        css={contentSecond.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
                                                                                                                         </>
                                                                                                                     )}
                                                                                                                 </Draggable>
@@ -6456,7 +7122,7 @@ class SlideHandler extends Component {
                                                                                                                                         contentThird.id ? 
                                                                                                                                             contentThird.id
                                                                                                                                         : 
-                                                                                                                                            'sg-1-3-1-3-content-output-' + contentThirdIndex
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex
                                                                                                                                     } 
                                                                                                                                     className={
                                                                                                                                         contentThird.class ? 
@@ -6469,9 +7135,9 @@ class SlideHandler extends Component {
                                                                                                                                             index, 
                                                                                                                                             contentThirdIndex, 
                                                                                                                                             contentThird.id ? 
-                                                                                                                                                contentThird.id 
-                                                                                                                                            : 
-                                                                                                                                                'sg-1-3-1-3-content-output-' + contentThirdIndex, 
+                                                                                                                                            contentThird.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex,
                                                                                                                                             'subColumnThree'
                                                                                                                                         )
                                                                                                                                     }
@@ -6483,19 +7149,32 @@ class SlideHandler extends Component {
                                                                                                                                 </div>
                                                                                                                             }
 
-                                                                                                                            {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
+                                                                                                                            {contentThird.type === 'card' &&
                                                                                                                                 <div 
                                                                                                                                     ref={provided.innerRef}
                                                                                                                                     {...provided.draggableProps}
                                                                                                                                     {...provided.dragHandleProps}
 
                                                                                                                                     key={item.id + '-content-output-' + contentThirdIndex}
-                                                                                                                                    className="content-output"
-                                                                                                                                    id={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentThird.class ? 
+                                                                                                                                            contentThird.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    }
                                                                                                                                     onClick={() => 
                                                                                                                                         this.contentPaneClick(
                                                                                                                                             index, 
                                                                                                                                             contentThirdIndex,
+                                                                                                                                            contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                                : 
                                                                                                                                             item.id + '-content-output-' + contentThirdIndex,
                                                                                                                                             'subColumnThree'
                                                                                                                                         )
@@ -6589,6 +7268,46 @@ class SlideHandler extends Component {
                                                                                                                                     />
                                                                                                                                 </div>
                                                                                                                             }
+
+                                                                                                                            {contentThird.type === 'sgCharts' &&
+                                                                                                                                <div 
+                                                                                                                                    ref={provided.innerRef}
+                                                                                                                                    {...provided.draggableProps}
+                                                                                                                                    {...provided.dragHandleProps}
+
+                                                                                                                                    key={item.id + '-content-output-' + contentThirdIndex}
+                                                                                                                                    id={
+                                                                                                                                        contentThird.id ? 
+                                                                                                                                        contentThird.id
+                                                                                                                                        : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex
+                                                                                                                                    } 
+                                                                                                                                    className={
+                                                                                                                                        contentThird.class ? 
+                                                                                                                                        contentThird.class + " content-output"
+                                                                                                                                        : 
+                                                                                                                                            "content-output"
+                                                                                                                                    } 
+                                                                                                                                    onClick={() => 
+                                                                                                                                        this.contentPaneClick(
+                                                                                                                                            index, 
+                                                                                                                                            contentThirdIndex, 
+                                                                                                                                            contentThird.id ? 
+                                                                                                                                            contentThird.id
+                                                                                                                                                : 
+                                                                                                                                            item.id + '-content-output-' + contentThirdIndex,
+                                                                                                                                            'subColumnThree'
+                                                                                                                                        )
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <SgChartsLayout
+                                                                                                                                        output={contentThird.output}
+                                                                                                                                        style={contentThird.style}
+                                                                                                                                        css={contentThird.css}
+                                                                                                                                        cssApplier={this.cssApplier}
+                                                                                                                                    />
+                                                                                                                                </div>
+                                                                                                                            }
                                                                                                                         </>
                                                                                                                     )}
                                                                                                                 </Draggable>
@@ -6668,7 +7387,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                                    {contentFirst.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -6844,7 +7563,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                                    {contentSecond.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7020,7 +7739,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
+                                                                                                                                    {contentThird.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7196,7 +7915,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentFourth.type === 'card' || contentFourth.type === 'cardFixed') &&
+                                                                                                                                    {contentFourth.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7380,7 +8099,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentFirst.type === 'card' || contentFirst.type === 'cardFixed') &&
+                                                                                                                                    {contentFirst.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7556,7 +8275,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentSecond.type === 'card' || contentSecond.type === 'cardFixed') &&
+                                                                                                                                    {contentSecond.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7732,7 +8451,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentThird.type === 'card' || contentThird.type === 'cardFixed') &&
+                                                                                                                                    {contentThird.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -7908,7 +8627,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentFourth.type === 'card' || contentFourth.type === 'cardFixed') &&
+                                                                                                                                    {contentFourth.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
@@ -8084,7 +8803,7 @@ class SlideHandler extends Component {
                                                                                                                                         </div>
                                                                                                                                     }
 
-                                                                                                                                    {(contentFifth.type === 'card' || contentFifth.type === 'cardFixed') &&
+                                                                                                                                    {contentFifth.type === 'card' &&
                                                                                                                                         <div 
                                                                                                                                             ref={provided.innerRef}
                                                                                                                                             {...provided.draggableProps}
