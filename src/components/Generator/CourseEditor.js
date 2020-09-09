@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 // react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose, faArrowsAlt, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -343,7 +344,7 @@ function CourseEditor() {
                                                                         <Accordion key={lessonIndex}>
                                                                             <Card>
                                                                                 <Card.Header className="row m-0">
-                                                                                    <div className="col-md-11 pl-0">
+                                                                                    <div className="col-md-10 pl-0">
                                                                                         <Accordion.Toggle
                                                                                             as={Button}
                                                                                             variant="link"
@@ -366,22 +367,61 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-1 sg-vertical-center justify-content-between">
-                                                                                        <span
-                                                                                            {...provided.dragHandleProps}
+                                                                                    <div className="col-md-2 sg-vertical-center justify-content-between">
+                                                                                        <OverlayTrigger
+                                                                                            key="draggable-top"
+                                                                                            placement="top"
+                                                                                            overlay={
+                                                                                                <Tooltip id='draggable-tooltip-top'>
+                                                                                                    <span>Drag Handle</span>
+                                                                                                </Tooltip>
+                                                                                            }
                                                                                         >
-                                                                                            <FontAwesomeIcon icon={faArrowsAlt}/>
-                                                                                        </span>
-                                                                                        <button
-                                                                                            className="btn btn-danger btn-sm"
-                                                                                            title="Remove"
-                                                                                            onClick={() => {
-                                                                                                // this.props.deleteLesson(lessonIndex)
-                                                                                                dispatch(lessonActions.deleteLesson(lesson.lid));
-                                                                                            }}
+                                                                                            <span
+                                                                                                {...provided.dragHandleProps}
+                                                                                            >
+                                                                                                <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                                                            </span>
+                                                                                        </OverlayTrigger>
+                                                                                        <OverlayTrigger
+                                                                                            key="duplicate-top"
+                                                                                            placement="top"
+                                                                                            overlay={
+                                                                                                <Tooltip id='duplicate-tooltip-top'>
+                                                                                                    <span>Duplicate course</span>
+                                                                                                </Tooltip>
+                                                                                            }
                                                                                         >
-                                                                                            <FontAwesomeIcon icon={faWindowClose} />
-                                                                                        </button>
+                                                                                            <button
+                                                                                                type="button"
+                                                                                                className="btn btn-sm btn-primary"
+                                                                                                onClick={() => {
+                                                                                                    dispatch(lessonActions.duplicateLesson(lesson.lid));
+                                                                                                }}
+                                                                                            >
+                                                                                                <FontAwesomeIcon icon={faCopy}/>
+                                                                                            </button>
+                                                                                        </OverlayTrigger>
+                                                                                        <OverlayTrigger
+                                                                                            key="delete-top"
+                                                                                            placement="top"
+                                                                                            overlay={
+                                                                                                <Tooltip id='delete-tooltip-top'>
+                                                                                                    <span>Delete lesson</span>
+                                                                                                </Tooltip>
+                                                                                            }
+                                                                                        >
+                                                                                            <button
+                                                                                                className="btn btn-danger btn-sm"
+                                                                                                title="Remove"
+                                                                                                onClick={() => {
+                                                                                                    // this.props.deleteLesson(lessonIndex)
+                                                                                                    dispatch(lessonActions.deleteLesson(lesson.lid));
+                                                                                                }}
+                                                                                            >
+                                                                                                <FontAwesomeIcon icon={faWindowClose} />
+                                                                                            </button>
+                                                                                        </OverlayTrigger>
                                                                                     </div>
                                                                                 </Card.Header>
                                                                                 <Accordion.Collapse eventKey="0">
