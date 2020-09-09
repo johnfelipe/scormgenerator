@@ -146,6 +146,17 @@ export function course(state = initialState, action) {
                 courses: action.courseList,
             };
 
+        case courseContants.DUPLICATE_COURSE:
+            const currentCourseList = state.courses;
+
+            currentCourseList.push(action.course);
+
+            return {
+                ...state,
+                courses: currentCourseList,
+                currentCourse: action.course
+            };
+
         case courseContants.GET_LATEST_LESSON_SLIDE:
             return {
                 ...state,

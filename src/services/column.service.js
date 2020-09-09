@@ -5,6 +5,7 @@ export const columnService = {
     updateColumn,
     deleteColumn,
     getAllColumn,
+    duplicateColumn,
 };
 
 async function createColumn(columnObj) {
@@ -56,6 +57,21 @@ async function getAllColumn() {
     let response;
     try {
         response = await API.get('/columns',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function duplicateColumn(id) {
+    let response;
+    try {
+        response = await API.post('/copy/columns/' + id,);
     } catch (error) {
         response = {
             data: [],

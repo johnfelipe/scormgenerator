@@ -7,6 +7,7 @@ export const coursemetaService = {
     getAllCoursemeta,
     getCoursemeta,
     getCoursemetaByRkey,
+    duplicateCoursemeta,
 };
 
 async function createCoursemeta(coursemetaObj) {
@@ -87,6 +88,21 @@ async function getCoursemetaByRkey(cid, rkey) {
     let response;
     try {
         response = await API.get('/course/' + cid + '/coursemeta/rkey/' + rkey,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function duplicateCoursemeta(id) {
+    let response = '';
+    try {
+        response = await API.post('/copy/coursesmeta/' + id,);
     } catch (error) {
         response = {
             data: [],

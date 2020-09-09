@@ -8,6 +8,7 @@ export const columnActions = {
     updateColumn,
     deleteColumn,
     getAllColumn,
+    duplicateColumn,
 };
 
 function createColumn(data) {
@@ -97,5 +98,26 @@ function getAllColumn() {
     };
     
     function success(columns) { return { type: columnContants.GETALL_COLUMN_SUCCESS, columns } }
+    function failure(error) { return { type: columnContants.ERROR, error } }
+}
+
+function duplicateColumn() {
+    return dispatch => {
+
+        columnService.duplicateColumn()
+            .then(
+                columns => { 
+                    dispatch(success(columns));
+                    // dispatch(alertActions.success('Slide created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+    
+    function success(columns) { return { type: columnContants.DUPLICATE_COLUMN, columns } }
     function failure(error) { return { type: columnContants.ERROR, error } }
 }

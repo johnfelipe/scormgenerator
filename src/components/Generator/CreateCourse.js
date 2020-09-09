@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -254,18 +255,57 @@ function CreateCourse() {
                                                                         <div className="row m-0">
                                                                             <div className="col-md-10 py-2">{course.title}</div>
                                                                             <div className="col-md-2 sg-vertical-center justify-content-between">
-                                                                                <span
-                                                                                    {...provided.dragHandleProps}
+                                                                                <OverlayTrigger
+                                                                                    key="draggable-top"
+                                                                                    placement="top"
+                                                                                    overlay={
+                                                                                        <Tooltip id='draggable-tooltip-top'>
+                                                                                            <span>Drag Handle</span>
+                                                                                        </Tooltip>
+                                                                                    }
                                                                                 >
-                                                                                    <FontAwesomeIcon icon={faArrowsAlt}/>
-                                                                                </span>
-                                                                                <a
-                                                                                    href={"/course/" + course.cid}
-                                                                                    className="btn btn-primary text-white float-right"
-                                                                                    role="button"
+                                                                                    <span
+                                                                                        {...provided.dragHandleProps}
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                                                    </span>
+                                                                                </OverlayTrigger>
+                                                                                <OverlayTrigger
+                                                                                    key="duplicate-top"
+                                                                                    placement="top"
+                                                                                    overlay={
+                                                                                        <Tooltip id='duplicate-tooltip-top'>
+                                                                                            <span>Duplicate course</span>
+                                                                                        </Tooltip>
+                                                                                    }
                                                                                 >
-                                                                                    Go to course
-                                                                                </a>
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="btn btn-primary"
+                                                                                        onClick={() => {
+                                                                                            dispatch(courseActions.duplicateCourse(course.cid));
+                                                                                        }}
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faCopy}/>
+                                                                                    </button>
+                                                                                </OverlayTrigger>
+                                                                                <OverlayTrigger
+                                                                                    key="goto-top"
+                                                                                    placement="top"
+                                                                                    overlay={
+                                                                                        <Tooltip id='goto-tooltip-top'>
+                                                                                            <span>Go to course</span>
+                                                                                        </Tooltip>
+                                                                                    }
+                                                                                >
+                                                                                    <a
+                                                                                        href={"/course/" + course.cid}
+                                                                                        className="btn btn-primary text-white"
+                                                                                        role="button"
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faArrowCircleRight}/>
+                                                                                    </a>
+                                                                                </OverlayTrigger>
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -49,6 +49,12 @@ export function lesson(state = initialState, action) {
                 message: action.lesson
             };
 
+        case lessonContants.DUPLICATE_LESSON:
+            return {
+                ...state,
+                currentLesson: action.lesson
+            };
+
         case lessonContants.ERROR:
             return { 
                 error: action.error

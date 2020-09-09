@@ -10,6 +10,7 @@ export const slideActions = {
     getSlideColumns,
     updateSlide,
     deleteSlide,
+    duplicateSlide,
 };
 
 function getAllSlides() {
@@ -163,5 +164,27 @@ function deleteSlide(id) {
 
     function request(id) { return { type: slideContants.REQUEST, id } }
     function success(slide) { return { type: slideContants.DELETE, slide } }
+    function failure(error) { return { type: slideContants.ERROR, error } }
+}
+
+function duplicateSlide(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        slideService.duplicateSlide(id)
+            .then(
+                slide => { 
+                    dispatch(success(slide));
+                    // dispatch(alertActions.success('Slide updated successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(id) { return { type: slideContants.REQUEST, id } }
+    function success(slide) { return { type: slideContants.DUPLICATE_SLIDE, slide } }
     function failure(error) { return { type: slideContants.ERROR, error } }
 }

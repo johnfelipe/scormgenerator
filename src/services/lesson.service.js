@@ -7,6 +7,7 @@ export const lessonService = {
     updateLesson,
     getLessonSlides,
     deleteLesson,
+    duplicateLesson,
 };
 
 async function createLesson(lessonObj) {
@@ -88,6 +89,21 @@ async function deleteLesson(id) {
     let response;
     try {
         response = await API.delete('/lessons/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function duplicateLesson(id) {
+    let response;
+    try {
+        response = await API.post('/copy/lessons/' + id,);
     } catch (error) {
         response = {
             data: [],
