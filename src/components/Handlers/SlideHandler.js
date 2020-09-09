@@ -88,8 +88,8 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'cardFixed', name: 'Card', icon: faIdCardAlt, },
-                { type: 'sgChartsFixed', name: 'Charts', icon: faChartPie, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
                 { type: 'dragDropFixed', name: 'Drag and Drop', icon: faHandRock, },
