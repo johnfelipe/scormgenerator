@@ -157,6 +157,24 @@ export function course(state = initialState, action) {
                 currentCourse: action.course
             };
 
+        case courseContants.DUPLICATE_SLIDE:
+            const { duplicateSlideObj, duplicateLessonIndex } = action;
+
+            const duplicateAppendToLessonObj = {
+                ...state.courseLessons[duplicateLessonIndex]
+            };
+
+            duplicateAppendToLessonObj.slides.push(duplicateSlideObj);
+        
+            lessons = [...state.courseLessons];
+            lessons[duplicateLessonIndex] = duplicateAppendToLessonObj;
+            
+            return {
+                ...state,
+                courseLessons: lessons,
+                currentSlide: duplicateSlideObj,
+            };
+
         case courseContants.GET_LATEST_LESSON_SLIDE:
             return {
                 ...state,

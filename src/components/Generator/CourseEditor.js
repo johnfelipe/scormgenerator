@@ -388,7 +388,7 @@ function CourseEditor() {
                                                                                             placement="top"
                                                                                             overlay={
                                                                                                 <Tooltip id='duplicate-tooltip-top'>
-                                                                                                    <span>Duplicate course</span>
+                                                                                                    <span>Duplicate lesson</span>
                                                                                                 </Tooltip>
                                                                                             }
                                                                                         >
@@ -489,9 +489,8 @@ function CourseEditor() {
                                                                                                                             className={slideIndex !== 0 ? "slide-item row m-0 mt-2" : "slide-item row m-0"}
                                                                                                                             ref={provided.innerRef}
                                                                                                                             {...provided.draggableProps}
-                                                                                                                            {...provided.dragHandleProps}
                                                                                                                         >
-                                                                                                                            <div className="col-md-11 pl-0">
+                                                                                                                            <div className="col-md-10 pl-0">
                                                                                                                                 <span className="btn pr-1">{slide.title}</span>
                                                                                                                                 <SlideHandler
                                                                                                                                     sid={slide.sid}
@@ -509,18 +508,65 @@ function CourseEditor() {
                                                                                                                                     lessonIndex={lessonIndex}
                                                                                                                                 />
                                                                                                                             </div>
-                                                                                                                            <div className="col-md-1 sg-vertical-center justify-content-center pr-0">
-                                                                                                                                <button 
-                                                                                                                                    className="btn btn-danger btn-sm" 
-                                                                                                                                    title="Remove" 
-                                                                                                                                    onClick={() => {
-                                                                                                                                        // this.props.deleteSlide(slideIndex, currentClickedLessonId)
-                                                                                                                                        dispatch(slideActions.deleteSlide(slide.sid));
-                                                                                                                                        dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
-                                                                                                                                    }}
+                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-between pr-0">
+                                                                                                                                <OverlayTrigger
+                                                                                                                                    key="draggable-slide-top"
+                                                                                                                                    placement="top"
+                                                                                                                                    overlay={
+                                                                                                                                        <Tooltip id='draggable-slide-tooltip-top'>
+                                                                                                                                            <span>Drag Handle</span>
+                                                                                                                                        </Tooltip>
+                                                                                                                                    }
                                                                                                                                 >
-                                                                                                                                    <FontAwesomeIcon icon={faWindowClose} />
-                                                                                                                                </button>
+                                                                                                                                    <span
+                                                                                                                                        {...provided.dragHandleProps}
+                                                                                                                                    >
+                                                                                                                                        <FontAwesomeIcon icon={faArrowsAlt}/>
+                                                                                                                                    </span>
+                                                                                                                                </OverlayTrigger>
+                                                                                                                                <OverlayTrigger
+                                                                                                                                    key="duplicate-slide-top"
+                                                                                                                                    placement="top"
+                                                                                                                                    overlay={
+                                                                                                                                        <Tooltip id='duplicate-slide-tooltip-top'>
+                                                                                                                                            <span>Duplicate slide</span>
+                                                                                                                                        </Tooltip>
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <button
+                                                                                                                                        type="button"
+                                                                                                                                        className="btn btn-sm btn-primary"
+                                                                                                                                        onClick={() => {
+                                                                                                                                            dispatch(courseActions.duplicateSlide(lessonIndex, lesson.lid, slide.sid));
+                                                                                                                                            console.log(lessonIndex)
+                                                                                                                                            console.log(lesson.lid)
+                                                                                                                                            console.log(slide.sid)
+                                                                                                                                        }}
+                                                                                                                                    >
+                                                                                                                                        <FontAwesomeIcon icon={faCopy}/>
+                                                                                                                                    </button>
+                                                                                                                                </OverlayTrigger>
+                                                                                                                                <OverlayTrigger
+                                                                                                                                    key="delete-slide-top"
+                                                                                                                                    placement="top"
+                                                                                                                                    overlay={
+                                                                                                                                        <Tooltip id='delete-slide-tooltip-top'>
+                                                                                                                                            <span>Delete slide</span>
+                                                                                                                                        </Tooltip>
+                                                                                                                                    }
+                                                                                                                                >
+                                                                                                                                    <button 
+                                                                                                                                        className="btn btn-danger btn-sm" 
+                                                                                                                                        title="Remove" 
+                                                                                                                                        onClick={() => {
+                                                                                                                                            // this.props.deleteSlide(slideIndex, currentClickedLessonId)
+                                                                                                                                            dispatch(slideActions.deleteSlide(slide.sid));
+                                                                                                                                            dispatch(courseActions.deleteSlideFromCourseLesson(slideIndex, currentClickedLessonId));
+                                                                                                                                        }}
+                                                                                                                                    >
+                                                                                                                                        <FontAwesomeIcon icon={faWindowClose} />
+                                                                                                                                    </button>
+                                                                                                                                </OverlayTrigger>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     )}
