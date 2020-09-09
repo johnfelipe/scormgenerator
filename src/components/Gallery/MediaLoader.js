@@ -325,7 +325,7 @@ function MediaLoader (props) {
                                     value={
                                         '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
                                     }
-                                    className="resize-none w-100"
+                                    className="resize-none w-100 sg-audio-code-sharing code monospace"
                                     style={{ height: '100px' }}
                                     readOnly
                                 />
