@@ -88,11 +88,11 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'cardFixed', name: 'Card', icon: faIdCardAlt, },
-                { type: 'sgChartsFixed', name: 'Charts', icon: faChartPie, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
-                { type: 'dragDropFixed', name: 'Drag and Drop', icon: faHandRock, },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
@@ -844,7 +844,7 @@ class SlideHandler extends Component {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
-
+            console.log(currentColumns);
             for (var keyIndex in currentColumns) {
                 if (destination.droppableId === currentColumns[keyIndex]['id']) {
                     // First Size
@@ -993,7 +993,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'sgChartsFixed') {
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             category: 'fixed',
@@ -1029,7 +1029,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'cardFixed') {
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             category: 'fixed',
@@ -1063,7 +1063,7 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'dragDropFixed') {
+                    } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
                             category: 'fixed',
