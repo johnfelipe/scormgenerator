@@ -7,6 +7,7 @@ export const slideService = {
     updateSlide,
     getSlideColumns,
     deleteSlide,
+    duplicateSlide,
 };
 
 async function createSlide(slideObj) {
@@ -88,6 +89,21 @@ async function deleteSlide(id) {
     let response;
     try {
         response = await API.delete('/slides/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function duplicateSlide(id) {
+    let response;
+    try {
+        response = await API.post('/copy/slides/' + id,);
     } catch (error) {
         response = {
             data: [],

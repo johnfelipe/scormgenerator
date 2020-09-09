@@ -6,6 +6,7 @@ export const courseService = {
     getCourse,
     getCourseLessons,
     updateCourse,
+    duplicateCourse,
 };
 
 async function getAll() {
@@ -72,6 +73,21 @@ async function updateCourse(data, id) {
     let response;
     try {
         response = await API.put('/courses/' + id, data);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function duplicateCourse(id) {
+    let response;
+    try {
+        response = await API.post('/copy/courses/' + id,);
     } catch (error) {
         response = {
             data: [],
