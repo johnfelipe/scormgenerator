@@ -413,6 +413,7 @@ class SlideHandler extends Component {
         if (featureType === "audio") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'audio',
+                category: 'fluid',
                 output: {
                     audio: {
                         name: '',
@@ -434,6 +435,7 @@ class SlideHandler extends Component {
         } else if (featureType === "contentArea") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'contentArea',
+                category: 'fluid',
                 output: '<p>This content will show up directly in its container.</p>',
                 class: '',
                 id: '',
@@ -448,6 +450,7 @@ class SlideHandler extends Component {
         } else if (featureType === "multipleChoice") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'multipleChoice',
+                category: 'fixed',
                 output: [],
                 class: 'question-files-left',
                 id: '',
@@ -471,6 +474,7 @@ class SlideHandler extends Component {
         } else if (featureType === "homePage") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'homePage',
+                category: 'fixed',
                 output: {
                     title: 'Title',
                     subtitle: 'Subtitle',
@@ -492,6 +496,7 @@ class SlideHandler extends Component {
         } else if (featureType === "courseObjectives") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'courseObjectives',
+                category: 'fixed',
                 output: {
                     courseNav: {
                         name: 'Course Navigation',
@@ -520,6 +525,7 @@ class SlideHandler extends Component {
         } else if (featureType === "listModal") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'listModal',
+                category: 'fluid',
                 output: [],
                 class: '',
                 id: '',
@@ -538,6 +544,7 @@ class SlideHandler extends Component {
         } else if (featureType === "video") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'video',
+                category: 'fluid',
                 output: {
                     name: '',
                     url: '',
@@ -557,6 +564,7 @@ class SlideHandler extends Component {
         } else if (featureType === "dragDrop") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'dragDrop',
+                category: 'fluid',
                 output: [],
                 class: '',
                 id: '',
@@ -571,6 +579,7 @@ class SlideHandler extends Component {
         } else if (featureType === "card") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'card',
+                category: 'fluid',
                 output: {
                     img: {
                         name: '',
@@ -595,6 +604,7 @@ class SlideHandler extends Component {
         } else if (featureType === "image") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'image',
+                category: 'fluid',
                 output: {
                     name: '',
                     url: '',
@@ -609,6 +619,7 @@ class SlideHandler extends Component {
         } else if (featureType === "list") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'list',
+                category: 'fluid',
                 output: {
                     title: '',
                     entries: [],
@@ -627,6 +638,7 @@ class SlideHandler extends Component {
         } else if (featureType === "tabs") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'tabs',
+                category: 'fluid',
                 output: [],
                 class: '',
                 id: '',
@@ -643,6 +655,7 @@ class SlideHandler extends Component {
         } else if (featureType === "sgCharts") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'sgCharts',
+                category: 'fluid',
                 output: {
                     chartType: 'pie',
                     dataSets: {},
@@ -669,6 +682,7 @@ class SlideHandler extends Component {
         } else if (featureType === "accordion") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'accordion',
+                category: 'fluid',
                 output: [],
                 class: '',
                 id: '',
@@ -690,6 +704,7 @@ class SlideHandler extends Component {
         } else if (featureType === "contentPicture") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'contentPicture',
+                category: 'fixed',
                 output: {
                     image: {
                         name: '',
@@ -705,6 +720,76 @@ class SlideHandler extends Component {
                 },
                 class: '',
                 id: '',
+                css: '',
+            };
+        } else if (featureType === "cardFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'card',
+                category: 'fixed',
+                output: {
+                    img: {
+                        name: '',
+                        url: '',
+                        type: '',
+                        alt: '',
+                    },
+                    title: 'Card title',
+                    content: 'No content provided yet.',
+                    button: {
+                        label: 'Click me',
+                        url: '',
+                    }
+                },
+                class: '',
+                id: '',
+                styles: {
+                    themeColor: '#0069d9',
+                    height: 655,
+                },
+                css: '',
+            };
+        } else if (featureType === "sgChartsFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'sgCharts',
+                category: 'fixed',
+                output: {
+                    chartType: 'pie',
+                    dataSets: {},
+                    chartOptions: {
+                        shownData: [],
+                    },
+                    csvFile: {
+                        name: '',
+                        url: '',
+                        headers: [],
+                        data: [],
+                    }
+                },
+                class: '',
+                id: '',
+                style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
+                    height: 655,
+                },
+                css: '',
+            };
+        } else if (featureType === "dragDropFixed") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'dragDrop',
+                category: 'fixed',
+                output: [],
+                class: '',
+                id: '',
+                styles: {
+                    dragDropBackgroundColor: '#fff',
+                    dragDropTextColor: 'text-black',
+                    themeColor: '#0069d9',
+                    backgroundImg: '',
+                    height: 655,
+                },
                 css: '',
             };
         }
@@ -770,6 +855,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'multipleChoice') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: [],
                             class: 'question-files-left',
                             id: '',
@@ -801,6 +887,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'homePage') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 title: 'Title',
                                 subtitle: 'Subtitle',
@@ -830,6 +917,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 courseNav: {
                                     name: 'Course Navigation',
@@ -867,6 +955,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 image: {
                                     name: '',
@@ -899,6 +988,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 chartType: 'pie',
                                 dataSets: {},
@@ -933,6 +1023,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: {
                                 img: {
                                     name: '',
@@ -965,6 +1056,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
                             output: [],
                             class: '',
                             id: '',
@@ -1009,6 +1101,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1031,6 +1124,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 audio: {
                                     name: '',
@@ -1060,6 +1154,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1086,6 +1181,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'video') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 name: '',
                                 url: '',
@@ -1113,6 +1209,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1135,6 +1232,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1167,6 +1265,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'image') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 name: '',
                                 url: '',
@@ -1189,6 +1288,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'list') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 title: '',
                                 entries: [],
@@ -1215,6 +1315,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'tabs') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1239,6 +1340,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 chartType: 'pie',
                                 dataSets: {},
@@ -1273,6 +1375,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'accordion') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1314,6 +1417,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1336,14 +1440,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1365,6 +1470,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1391,6 +1497,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1434,6 +1541,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1456,14 +1564,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1485,6 +1594,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1511,6 +1621,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1554,6 +1665,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1576,14 +1688,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1605,6 +1718,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1631,6 +1745,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1673,6 +1788,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1695,14 +1811,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1724,6 +1841,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1750,6 +1868,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1796,6 +1915,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1818,14 +1938,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                            audio: {
+                                name: '',
+                                url: '',
+                                type: '',
+                                show: 'yes',
+                            }
+                        },
                             class: '',
                             id: '',
                             style: {
@@ -1847,6 +1968,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1873,6 +1995,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -1918,6 +2041,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -1940,14 +2064,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -1969,6 +2094,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -1995,6 +2121,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2041,6 +2168,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2063,14 +2191,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2092,6 +2221,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2118,6 +2248,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2163,6 +2294,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2185,14 +2317,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2214,6 +2347,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2240,6 +2374,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2285,6 +2420,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2307,14 +2443,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2336,6 +2473,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2362,6 +2500,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2408,6 +2547,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2430,14 +2570,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2459,6 +2600,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2485,6 +2627,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2530,6 +2673,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2552,14 +2696,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2581,6 +2726,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2607,6 +2753,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2652,6 +2799,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2674,9 +2822,24 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            category: 'fluid',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
-                            id: '' 
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnThree.push(currentContent);
@@ -2689,6 +2852,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2715,6 +2879,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2760,6 +2925,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2782,9 +2948,24 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
-                            output: '',
+                            category: 'fluid',
+                            output: {
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
-                            id: '' 
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
                         };
 
                         currentColumns[key].content.subColumnFour.push(currentContent);
@@ -2797,6 +2978,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2823,6 +3005,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2869,6 +3052,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -2891,14 +3075,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -2920,6 +3105,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -2946,6 +3132,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -2991,6 +3178,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -3013,14 +3201,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3042,6 +3231,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -3068,6 +3258,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -3113,6 +3304,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -3135,14 +3327,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3164,6 +3357,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -3190,6 +3384,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -3235,6 +3430,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -3257,14 +3453,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3286,6 +3483,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -3312,6 +3510,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
@@ -3357,6 +3556,7 @@ class SlideHandler extends Component {
                     if (currentFeatures[source.index]['type'] === 'contentArea') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: '<p>This content will show up directly in its container.</p>',
                             class: '',
                             id: '',
@@ -3379,14 +3579,15 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'audio') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
-                    audio: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        show: 'yes',
-                    }
-                },
+                                audio: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    show: 'yes',
+                                }
+                            },
                             class: '',
                             id: '',
                             style: {
@@ -3408,6 +3609,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'listModal') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: [],
                             class: '',
                             id: '',
@@ -3434,6 +3636,7 @@ class SlideHandler extends Component {
                     } else if (currentFeatures[source.index]['type'] === 'card') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
+                            category: 'fluid',
                             output: {
                                 img: {
                                     name: '',
