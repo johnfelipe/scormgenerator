@@ -4645,7 +4645,7 @@ class SlideHandler extends Component {
                                                                                                                     </div>
                                                                                                                 }
 
-                                                                                                                {contentFirst.type === 'sgCharts' &&
+                                                                                                                {(contentFirst.type === 'sgCharts' || contentFirst.type === 'sgChartsFixed') &&
                                                                                                                     <div 
                                                                                                                         ref={provided.innerRef}
                                                                                                                         {...provided.draggableProps}
