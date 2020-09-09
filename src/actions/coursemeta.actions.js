@@ -10,6 +10,7 @@ export const coursemetaActions = {
     getAllCoursemeta,
     getCoursemeta,
     getCoursemetaByRkey,
+    duplicateCoursemeta,
 };
 
 function createCoursemeta(data) {
@@ -145,5 +146,28 @@ function getCoursemetaByRkey(cid, rkey) {
 
     function request(coursemetas) { return { type: coursemetaConstants.REQUEST, coursemetas } }
     function success(coursemetas, rkey) { return { type: coursemetaConstants.GETALL_COURSEMETAS_RKEY_SUCCESS, coursemetas, rkey } }
+    function failure(error) { return { type: coursemetaConstants.ERROR, error } }
+}
+
+function duplicateCoursemeta(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        coursemetaService.duplicateCoursemeta(id)
+            .then(
+                coursemetas => { 
+                    dispatch(success(coursemetas));
+                    // dispatch(alertActions.success('Slide created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(coursemetas) { return { type: coursemetaConstants.REQUEST, coursemetas } }
+    function success(coursemetas) { return { type: coursemetaConstants.DUPLICATE_COURSEMETA, coursemetas } }
     function failure(error) { return { type: coursemetaConstants.ERROR, error } }
 }

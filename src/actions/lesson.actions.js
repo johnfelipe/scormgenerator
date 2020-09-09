@@ -10,6 +10,7 @@ export const lessonActions = {
     getLessonSlides,
     updateLesson,
     deleteLesson,
+    duplicateLesson,
 };
 
 function getAllLessons() {
@@ -146,5 +147,29 @@ function deleteLesson(id) {
 
     function request(id) { return { type: lessonContants.REQUEST, id } }
     function success(lesson) { return { type: lessonContants.DELETE, lesson } }
+    function failure(error) { return { type: lessonContants.ERROR, error } }
+}
+
+function duplicateLesson(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        lessonService.duplicateLesson(id)
+            .then(
+                lesson => { 
+                    dispatch(success(lesson));
+                    console.log(lesson);
+                    // dispatch(alertActions.success('Lesson updated successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(id) { return { type: lessonContants.REQUEST, id } }
+    function success(lesson) { return { type: lessonContants.DUPLICATE_LESSON, lesson } }
     function failure(error) { return { type: lessonContants.ERROR, error } }
 }
