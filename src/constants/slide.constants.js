@@ -21,4 +21,7 @@ export const slideContants = {
 
     // DELETE SLIDE
     DELETE: 'DELETE_SLIDE_SUCCESS',
+
+    // DUPLICATE SLIDE
+    DUPLICATE_SLIDE: 'DUPLICATE_SLIDE_SUCCESS',
 };
