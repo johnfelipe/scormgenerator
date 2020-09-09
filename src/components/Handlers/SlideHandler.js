@@ -88,8 +88,11 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
+                { type: 'card', name: 'Card', icon: faIdCardAlt, },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
                 { type: 'homePage', name: 'Home Page', icon: faHome, },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
             ],
@@ -886,6 +889,94 @@ class SlideHandler extends Component {
                             css: '',
                         };
                         
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                chartType: 'pie',
+                                dataSets: {},
+                                chartOptions: {
+                                    shownData: [],
+                                },
+                                csvFile: {
+                                    name: '',
+                                    url: '',
+                                    headers: [],
+                                    data: [],
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            style: {
+                                backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                            },
+                            css: '',
+                        };
+                        
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'card') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: {
+                                img: {
+                                    name: '',
+                                    url: '',
+                                    type: '',
+                                    alt: '',
+                                },
+                                title: 'Card title',
+                                content: 'No content provided yet.',
+                                button: {
+                                    label: 'Click me',
+                                    url: '',
+                                }
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                            },
+                            css: '',
+                        };
+
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            output: [],
+                            class: '',
+                            id: '',
+                            styles: {
+                                dragDropBackgroundColor: '#fff',
+                                dragDropTextColor: 'text-black',
+                                themeColor: '#0069d9',
+                                backgroundImg: '',
+                            },
+                            css: '',
+                        };
+
                         currentColumns[keyIndex].content.subColumnOne.push(currentContent);
                         this.setState({
                             column: currentColumns,
@@ -3916,7 +4007,7 @@ class SlideHandler extends Component {
                                                             
                                                         </div>
                                                     </Tab>
-                                                    <Tab eventKey="features" title="Features">
+                                                    <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
                                                         <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center">
                                                             <Tab eventKey="fixed" title="Fixed" tabClassName="sg-w-100-div-2">
                                                                 <Droppable droppableId="fixed-features">
@@ -3979,34 +4070,6 @@ class SlideHandler extends Component {
                                                                 </Droppable>
                                                             </Tab>
                                                         </Tabs>
-                                                        {/* <Droppable droppableId="features">
-                                                            {(provided) => (
-                                                                <div ref={provided.innerRef} className="sg-feature-list">
-                                                                    {this.state.features.map((item, featureIndex) => (
-                                                                        <Draggable
-                                                                            key={'feature-draggable-' + featureIndex}
-                                                                            draggableId={'feature-' + featureIndex}
-                                                                            index={featureIndex}
-                                                                        >
-                                                                            {(provided) => (
-                                                                                <div
-                                                                                    ref={provided.innerRef}
-                                                                                    {...provided.draggableProps}
-                                                                                    {...provided.dragHandleProps}
-                                                                                    className="sg-feature-list-item"
-                                                                                >
-                                                                                    <SlideFeature
-                                                                                        icon={item.icon}
-                                                                                        name={item.name}
-                                                                                    />
-                                                                                </div>
-                                                                            )}
-                                                                        </Draggable>
-                                                                    ))}
-                                                                    {provided.placeholder}
-                                                                </div>
-                                                            )}
-                                                        </Droppable> */}
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 
