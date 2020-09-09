@@ -9,7 +9,6 @@ export const courseActions = {
     getAll,
     createCourse,
     updateCourse,
-    duplicateCourse,
     getCourse,
     getCourseLessons,
     appendSlideToCourseLesson,
@@ -20,6 +19,7 @@ export const courseActions = {
     getLatestLessonSlide,
     updateCourseLessonsList,
     updateCourseList,
+    duplicateCourse,
 };
 
 function getAll() {
@@ -86,29 +86,6 @@ function updateCourse(data, id) {
 
     function request(course) { return { type: courseContants.REQUEST, course } }
     function success(course) { return { type: courseContants.UPDATE_SUCCESS, course } }
-    function failure(error) { return { type: courseContants.ERROR, error } }
-}
-
-function duplicateCourse(id) {
-    return dispatch => {
-        dispatch(request(id));
-
-        courseService.duplicateCourse(id)
-            .then(
-                course => { 
-                    dispatch(success(course));
-                    // dispatch(alertActions.success('Course created successfully'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
-                }
-            );
-    };
-
-    function request(course) { return { type: courseContants.REQUEST, course } }
-    function success(course) { return { type: courseContants.DUPLICATE_COURSE, course } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
 
@@ -288,4 +265,27 @@ function updateCourseList(courseList) {
     };
     
     function success(courseList) { return { type: courseContants.UPDATE_COURSE_LIST, courseList } }
+}
+
+function duplicateCourse(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        courseService.duplicateCourse(id)
+            .then(
+                course => { 
+                    dispatch(success(course));
+                    // dispatch(alertActions.success('Course created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(course) { return { type: courseContants.REQUEST, course } }
+    function success(course) { return { type: courseContants.DUPLICATE_COURSE, course } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
 }
