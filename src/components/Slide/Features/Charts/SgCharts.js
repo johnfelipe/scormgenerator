@@ -150,7 +150,7 @@ function SgCharts(props) {
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
-                <div className="sg-workspace-actions">
+                <div className="sg-workspace-actions border-top border-gray">
                     <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'sgCharts')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
