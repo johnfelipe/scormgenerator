@@ -4010,7 +4010,7 @@ class SlideHandler extends Component {
             }
         }
 
-        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "features" || destination.droppableId !== "features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
+        if ((source.droppableId === destination.droppableId) && (source.droppableId !== "fluid-features" || destination.droppableId !== "fluid-features") && (source.droppableId !== "fixed-features" || destination.droppableId !== "fixed-features") && (source.droppableId !== "columns" || destination.droppableId !== "columns")) {
 
             console.log(source);
             console.log(destination);
