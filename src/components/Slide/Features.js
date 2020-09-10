@@ -9,7 +9,7 @@ class Features extends Component {
             <>{this.props.icon.length > 0 ?
                     <>
                         {this.props.icon.map((item, itemIndex) => {
-                            return <FontAwesomeIcon className={itemIndex === 0 ? "feature-icon w-8 mr-1" : "feature-icon w-8"} icon={item}/>
+                            return <FontAwesomeIcon key={"sg-icon-" + itemIndex} className={itemIndex === 0 ? "feature-icon w-8 mr-1" : "feature-icon w-8"} icon={item}/>
                         })}
                         <h4>{this.props.name}</h4>
                         <FontAwesomeIcon icon={faArrowsAlt}/>
