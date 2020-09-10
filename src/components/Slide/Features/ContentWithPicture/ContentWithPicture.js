@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // components
 import ColorPickerBg from '../../../Common/ColorPicker';
@@ -199,9 +200,24 @@ function ContentWithLeftPicture(props) {
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            <div className="sg-control-input-list-label">
-                                <span>Layout</span>
-                            </div>
+                            <OverlayTrigger
+                                key="content-with-picture-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='content-with-picture-tooltip-top'>
+                                        <span>
+                                            Choose layout option for image and content:<br/>
+                                            Legend: <br/>
+                                            50 - 50 = 50% Image and 50% content
+                                            75 - 25 = 75% Image and 25% content
+                                        </span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Layout</span>
+                                </div>
+                            </OverlayTrigger>
                             <div className="sg-control-input-list-input">
                                 <select
                                     value={currentColumn.content[currentColumnContentIndex][contentIndex].style.layout}
