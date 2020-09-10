@@ -95,6 +95,14 @@ function ContentWithLeftPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setLayout = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.layout = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -188,6 +196,21 @@ function ContentWithLeftPicture(props) {
                                         <span className="text-black h-100 w-100">TRANSPARENT</span>
                                     }
                                 </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Layout</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.layout}
+                                    onChange={(event) => setLayout(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="50-50">&nbsp;50|50</option>
+                                    <option value="75-25">&nbsp;75|25</option>
+                                </select>
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
