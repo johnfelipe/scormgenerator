@@ -617,6 +617,7 @@ class SlideHandler extends Component {
                 id: '',
                 styles: {
                     themeColor: '#0069d9',
+                    imageShape: '',
                 },
                 css: '',
             };
@@ -766,6 +767,7 @@ class SlideHandler extends Component {
                 styles: {
                     themeColor: '#0069d9',
                     height: 655,
+                    imageShape: '',
                 },
                 css: '',
             };
@@ -1066,6 +1068,7 @@ class SlideHandler extends Component {
                             styles: {
                                 themeColor: '#0069d9',
                                 height: 655,
+                                imageShape: '',
                             },
                             css: '',
                         };
@@ -1276,6 +1279,7 @@ class SlideHandler extends Component {
                             id: '',
                             styles: {
                                 themeColor: '#0069d9',
+                                imageShape: '',
                             },
                             css: '',
                         };
