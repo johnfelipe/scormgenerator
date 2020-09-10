@@ -46,14 +46,22 @@
                                             height: 503.21px;
                                             // overflow: hidden !important;
                                             // overflow: auto !important;
-                                            overflow: auto;
+                                            // overflow: auto;
                                             margin-top: 0.8rem !important;
                                             padding-top: 0 !important;
 
                                             #slide-tabs-tabpane-features {
+                                                height: 503.21px;
+
                                                 .tab-content {
-                                                    overflow: unset !important;
+                                                    overflow: auto !important;
+                                                    height: 462px
                                                 }
+                                            }
+
+                                            #slide-tabs-tabpane-column, #slide-tabs-tabpane-editor {
+                                                overflow: auto;
+                                                margin-top: 0.8rem !important;
                                             }
                                         }
                                     }

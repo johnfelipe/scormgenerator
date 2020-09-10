@@ -383,7 +383,7 @@
   height: 100%;
 }
 
-.sg-video-code-sharing {
+.sg-video-code-sharing, .sg-audio-code-sharing {
   height: 100px;
   border: none;
   text-align: left;
@@ -517,12 +517,19 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: 503.21px;
-  overflow: auto;
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {
+  height: 503.21px;
+}
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
-  overflow: unset !important;
+  overflow: auto !important;
+  height: 462px;
+}
+html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-column, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-editor {
+  overflow: auto;
+  margin-top: 0.8rem !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container {
   max-height: 545px;
