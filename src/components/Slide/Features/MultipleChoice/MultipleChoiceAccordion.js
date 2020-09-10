@@ -238,7 +238,7 @@ function MultipleChoiceAccordion(props) {
     return (
         <Accordion key={'accordion-multiple-choice-question-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
+                <Accordion.Toggle as={Card.Header} eventKey={index + 1} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
                     <span>Question </span>
                     <span>&nbsp;{index+1}</span>
                     <button
@@ -265,7 +265,7 @@ function MultipleChoiceAccordion(props) {
                         <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
                     </span>
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={index + 1}>
                     <Card.Body className="p-2">
                         <span>Question: <strong>{item.question}</strong></span>
                         <Tabs defaultActiveKey="answers" id="question-answers-files-tabs">

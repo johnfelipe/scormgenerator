@@ -80,7 +80,7 @@ function DragDropAccordion(props) {
     return (
         <Accordion key={'accordion-drag-drop-question-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
+                <Accordion.Toggle as={Card.Header} eventKey={index + 1} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
                     <span>Instruction </span>
                     <span>&nbsp;{index+1}</span>
                     <button
@@ -107,7 +107,7 @@ function DragDropAccordion(props) {
                         <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
                     </span>
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={index + 1}>
                     <Card.Body className="p-2">
                         <span>Instruction: <strong>{item.instruction}</strong></span>
                         {

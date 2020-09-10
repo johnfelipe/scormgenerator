@@ -857,7 +857,6 @@ class SlideHandler extends Component {
             const currentColumns = this.state.column;
 
             this.setActiveTab("editor");
-            console.log(currentColumns);
             for (var keyIndex in currentColumns) {
                 if (destination.droppableId === currentColumns[keyIndex]['id']) {
                     // First Size

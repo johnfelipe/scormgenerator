@@ -29,7 +29,7 @@ function SgSubAccordion(props) {
             <Card>
                 <Accordion.Toggle
                     as={Card.Header}
-                    eventKey={index}
+                    eventKey={index + 1}
                     className="p-2"
                     onClick={() => {
                         collapseListener(collapseId);
@@ -62,7 +62,7 @@ function SgSubAccordion(props) {
                         <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
                     </span>
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={index + 1}>
                     <Card.Body className="p-2">
                         <ul className="sg-control-input-list">
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">

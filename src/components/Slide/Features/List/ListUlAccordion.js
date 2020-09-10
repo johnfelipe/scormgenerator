@@ -98,7 +98,7 @@ function ListUlAccordion(props) {
     return (
         <Accordion key={'accordion-list-ul-entry-' + index}>
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={index} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
+                <Accordion.Toggle as={Card.Header} eventKey={index + 1} className="p-2" onClick={() => collapseListener(collapseId)} style={{ cursor: 'pointer' }}>
                     <div
                         id="list-ul-list-item"
                         className="row m-0"
@@ -133,7 +133,7 @@ function ListUlAccordion(props) {
                         </div>
                     </div>
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={index + 1}>
                     <Card.Body className="p-2">
                         <span>Entry: <strong>{item.entry}</strong></span>
                         {
