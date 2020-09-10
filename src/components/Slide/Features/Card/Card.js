@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
@@ -90,6 +91,14 @@ function Card(props) {
         props.setColumn(currentColumnObj);
     }
 
+    const setImgShape = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumn.content[currentColumnContentIndex][contentIndex].styles.imageShape = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -117,7 +126,7 @@ function Card(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}}/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
@@ -226,6 +235,33 @@ function Card(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="content-with-picture-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='content-with-picture-tooltip-top'>
+                                        <span>
+                                            Choose the shape of the image.
+                                        </span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Image Shape</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.layout}
+                                    onChange={(event) => setImgShape(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="">&nbsp;Default</option>
+                                    <option value="circle">&nbsp;Circle</option>
+                                </select>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
