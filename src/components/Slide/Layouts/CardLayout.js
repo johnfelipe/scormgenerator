@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 function CardLayout(props) {
 
@@ -6,7 +8,16 @@ function CardLayout(props) {
 
     return (
         <div id={cardId ? cardId : "card-layout"} className={"card " + cardClass}>
-            <img className="card-img-top border border-secondary h-auto" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
+            <div className="image-container text-center">
+                {cardOutput.img.url ?
+                    cardStyles.imageShape === 'circle' ?
+                        <img className="card-img-top border border-secondary sg-avatar" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
+                    :
+                        <img className="card-img-top border border-secondary h-auto" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
+                :
+                    <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
+                }
+            </div>
             <div className="card-body">
                 <h5 className="card-title">{cardOutput.title}</h5>
                 <p className="card-text h-100">{cardOutput.content}</p>
