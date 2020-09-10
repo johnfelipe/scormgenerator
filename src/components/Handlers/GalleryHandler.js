@@ -30,7 +30,6 @@ function GalleryHandler(props) {
 
     useEffect(() => {
         dispatch(galleryActions.getAllFiles());
-        console.log(galleryMsg);
     }, [dispatch, currentFile, galleryMsg]);
 
     const galleryModal = (
