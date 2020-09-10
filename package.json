@@ -13,7 +13,6 @@
     "@testing-library/user-event": "^7.2.1",
     "ace-builds": "^1.4.11",
     "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "codemirror": "^5.54.0",
     "formik": "^2.1.4",
