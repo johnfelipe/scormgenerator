@@ -393,6 +393,18 @@
   font-family: "Lucida Console", Courier, monospace;
 }
 
+.sg-avatar {
+  /* make a square container */
+  width: 150px !important;
+  height: 150px !important;
+  /* fill the container, preserving aspect ratio, and cropping to fit */
+  background-size: cover !important;
+  /* center the image vertically and horizontally */
+  background-position: top center !important;
+  /* round the edges to a circle with border radius 1/2 container size */
+  border-radius: 50% !important;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
