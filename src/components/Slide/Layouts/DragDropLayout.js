@@ -135,6 +135,11 @@ function DragDropLayout(props) {
                             <p className="font-20 m-0"><span>{(itemIndex+1) + '. ' + item.instruction}</span></p>
                         </div>
                         {content(item)}
+                        <div className="col-md-12 mt-3 p-0">
+                            <button type="button" className="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
                         {props.cssApplier(dragDropCss, 'drag-drop-layout')}
                     </div>
                 ))
