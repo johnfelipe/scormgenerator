@@ -128,6 +128,7 @@ class SlideHandler extends Component {
             slideId: -1,
         };
         
+        this.setColumnState = this.setColumnState.bind(this);
         this.stringifySlideColumns = this.stringifySlideColumns.bind(this);
         this.setSlideId = this.setSlideId.bind(this);
         this.setModalShow = this.setModalShow.bind(this);
@@ -167,6 +168,11 @@ class SlideHandler extends Component {
         if (this.props.sid) {
             this.props.getSlideColumns(this.props.sid);
         }
+
+        // console.log('state.columns: ');
+        // console.log(this.state.column);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
     }
 
     componentDidUpdate(prevProps, nextProps) {
@@ -177,6 +183,10 @@ class SlideHandler extends Component {
 
         if (this.props.sid !== prevProps.sid) {
             this.props.getSlideColumns(this.props.sid);
+        }
+
+        if ((this.state.column.length === 0) && (this.props.currentColumns !== undefined)) {
+            this.setColumnState(this.props.currentColumns);
         }
         
         console.log('state.columns: ');
@@ -213,6 +223,12 @@ class SlideHandler extends Component {
         // console.log(this.props.slide);
         // console.log('this.props.column');
         // console.log(this.props.columns);
+    }
+
+    setColumnState = (columns) => {
+        this.setState({
+            column: columns,
+        });
     }
 
     stringifySlideColumns = (sid, userId, columnArr, action) => {
