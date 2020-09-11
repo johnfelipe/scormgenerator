@@ -302,7 +302,7 @@ function MultiCard(props) {
                                                             type="button"
                                                             className="input-hover-btn btn btn-light border border-secondary p-1"
                                                             onClick={() => {
-                                                                props.setShowEditor(true, contentIndex, 'card');
+                                                                props.setShowEditor(true, contentIndex, 'multiCardFirst');
                                                             }}
                                                         >
                                                             <span>Edit</span>
@@ -434,7 +434,7 @@ function MultiCard(props) {
                                                             type="button"
                                                             className="input-hover-btn btn btn-light border border-secondary p-1"
                                                             onClick={() => {
-                                                                props.setShowEditor(true, contentIndex, 'card');
+                                                                props.setShowEditor(true, contentIndex, 'multiCardSecond');
                                                             }}
                                                         >
                                                             <span>Edit</span>
@@ -566,7 +566,7 @@ function MultiCard(props) {
                                                             type="button"
                                                             className="input-hover-btn btn btn-light border border-secondary p-1"
                                                             onClick={() => {
-                                                                props.setShowEditor(true, contentIndex, 'card');
+                                                                props.setShowEditor(true, contentIndex, 'multiCardThird');
                                                             }}
                                                         >
                                                             <span>Edit</span>
@@ -698,7 +698,7 @@ function MultiCard(props) {
                                                             type="button"
                                                             className="input-hover-btn btn btn-light border border-secondary p-1"
                                                             onClick={() => {
-                                                                props.setShowEditor(true, contentIndex, 'card');
+                                                                props.setShowEditor(true, contentIndex, 'multiCardFourth');
                                                             }}
                                                         >
                                                             <span>Edit</span>
