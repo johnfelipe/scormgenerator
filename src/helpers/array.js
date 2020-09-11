@@ -1,5 +1,6 @@
 export const arrayHelpers = {
     shuffle,
+    removeElement,
 };
 
 function shuffle(array) {
@@ -19,4 +20,14 @@ function shuffle(array) {
     }
   
     return array;
-  }
+}
+
+function removeElement(array, toBeRemoved) {
+    const index = array.indexOf(toBeRemoved);
+
+    if (index > -1) {
+        array.splice(index, 1);
+    }
+
+    return array;
+}
