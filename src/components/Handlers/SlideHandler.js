@@ -45,6 +45,7 @@ import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
 import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
 import ContentWithPictureLayout from '../Slide/Layouts/ContentWithPictureLayout';
+import MultiCardLayout from '../Slide/Layouts/MultiCardLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -5324,6 +5325,35 @@ class SlideHandler extends Component {
                                                                                                                         <ContentWithPictureLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'multiCard' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        className="content-output"
+                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex,
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <MultiCardLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            class={contentFirst.class}
+                                                                                                                            id={contentFirst.id}
+                                                                                                                            styles={contentFirst.styles}
                                                                                                                             css={contentFirst.css}
                                                                                                                             cssApplier={this.cssApplier}
                                                                                                                         />
