@@ -11,7 +11,7 @@ function CardLayout(props) {
             <div className="image-container text-center">
                 {cardOutput.img.url ?
                     cardStyles.imageShape === 'circle' ?
-                        <img className="card-img-top border border-secondary sg-avatar" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
+                        <img className="card-img-top border border-secondary rounded-circle h-auto" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
                     :
                         <img className="card-img-top border border-secondary h-auto" src={cardOutput.img.url} alt={cardOutput.img.alt}/>
                 :
