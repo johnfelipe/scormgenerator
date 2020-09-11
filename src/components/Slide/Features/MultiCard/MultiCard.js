@@ -152,7 +152,15 @@ function MultiCard(props) {
     const setButtonLabel = (e, cardNumber) => {
         const currentColumnObj = currentColumn;
 
-        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label = e.target.value;
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label = e.target.value;
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label = e.target.value;
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label = e.target.value;
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label = e.target.value;
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -294,7 +302,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonLabel(e)}
+                                                onChange={(e) => setButtonLabel(e, 1)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label
@@ -426,7 +434,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonLabel(e)}
+                                                onChange={(e) => setButtonLabel(e, 2)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label
@@ -558,7 +566,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonLabel(e)}
+                                                onChange={(e) => setButtonLabel(e, 3)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label
@@ -690,7 +698,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonLabel(e)}
+                                                onChange={(e) => setButtonLabel(e, 4)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label
