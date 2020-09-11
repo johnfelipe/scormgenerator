@@ -38,6 +38,14 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
         } else if (contentFor === 'sgCharts') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = value.toString("html");
+        } else if (contentFor === 'multiCardFirst') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.content = value.toString("html");
+        } else if (contentFor === 'multiCardSecond') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.content = value.toString("html");
+        } else if (contentFor === 'multiCardThird') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = value.toString("html");
+        } else if (contentFor === 'multiCardFourth') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -73,6 +81,14 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = source;
         } else if (contentFor === 'sgCharts') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = source;
+        } else if (contentFor === 'multiCardFirst') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.content = source;
+        } else if (contentFor === 'multiCardSecond') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.content = source;
+        } else if (contentFor === 'multiCardThird') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = source;
+        } else if (contentFor === 'multiCardFourth') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -101,6 +117,14 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
         } else if (contentFor === 'sgCharts') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.description, 'html'));
+        } else if (contentFor === 'multiCardFirst') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.content, 'html'));
+        } else if (contentFor === 'multiCardSecond') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.content, 'html'));
+        } else if (contentFor === 'multiCardThird') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.content, 'html'));
+        } else if (contentFor === 'multiCardFourth') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 

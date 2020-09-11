@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage, faClone } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -45,6 +45,7 @@ import TabsLayout from '../Slide/Layouts/TabsLayout';
 import SgChartsLayout from '../Slide/Layouts/SgChartsLayout';
 import SgAccordionLayout from '../Slide/Layouts/SgAccordionLayout';
 import ContentWithPictureLayout from '../Slide/Layouts/ContentWithPictureLayout';
+import MultiCardLayout from '../Slide/Layouts/MultiCardLayout';
 
 // modals
 import WarningModal from '../AlertModal/Warning';
@@ -88,12 +89,12 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'card', name: 'Card', icon: faIdCardAlt, category: 'fixed' },
                 { type: 'sgCharts', name: 'Charts', icon: faChartPie, category: 'fixed' },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage], category: 'fixed' },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, category: 'fixed' },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, category: 'fixed' },
                 { type: 'homePage', name: 'Home Page', icon: faHome, category: 'fixed' },
+                { type: 'multiCard', name: 'Multi Card', icon: faClone, category: 'fixed' },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, category: 'fixed' },
             ],
             fluidFeatures: [
@@ -750,33 +751,6 @@ class SlideHandler extends Component {
                 id: '',
                 css: '',
             };
-        } else if (featureType === "cardFixed") {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
-                type: 'card',
-                category: 'fixed',
-                output: {
-                    img: {
-                        name: '',
-                        url: '',
-                        type: '',
-                        alt: '',
-                    },
-                    title: 'Card title',
-                    content: 'No content provided yet.',
-                    button: {
-                        label: 'Click me',
-                        url: '',
-                    }
-                },
-                class: '',
-                id: '',
-                styles: {
-                    themeColor: '#0069d9',
-                    height: 655,
-                    imageShape: '',
-                },
-                css: '',
-            };
         } else if (featureType === "sgChartsFixed") {
             currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
                 type: 'sgCharts',
@@ -820,6 +794,77 @@ class SlideHandler extends Component {
                     themeColor: '#0069d9',
                     backgroundImg: '',
                     height: 655,
+                },
+                css: '',
+            };
+        } else if (featureType === "multiCard") {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex] = {
+                type: 'multiCard',
+                category: 'fixed',
+                output: {
+                    cardCounter: [],
+                    firstCard: {
+                        img: {
+                            name: '',
+                            url: '',
+                            type: '',
+                            alt: '',
+                        },
+                        title: 'Card title',
+                        content: '<p>No content provided yet.</p>',
+                        button: {
+                            label: 'Click me',
+                            url: '',
+                        }
+                    },
+                    secondCard: {
+                        img: {
+                            name: '',
+                            url: '',
+                            type: '',
+                            alt: '',
+                        },
+                        title: 'Card title',
+                        content: '<p>No content provided yet.</p>',
+                        button: {
+                            label: 'Click me',
+                            url: '',
+                        }
+                    },
+                    thirdCard: {
+                        img: {
+                            name: '',
+                            url: '',
+                            type: '',
+                            alt: '',
+                        },
+                        title: 'Card title',
+                        content: '<p>No content provided yet.</p>',
+                        button: {
+                            label: 'Click me',
+                            url: '',
+                        }
+                    },
+                    fourthCard: {
+                        img: {
+                            name: '',
+                            url: '',
+                            type: '',
+                            alt: '',
+                        },
+                        title: 'Card title',
+                        content: '<p>No content provided yet.</p>',
+                        button: {
+                            label: 'Click me',
+                            url: '',
+                        }
+                    },
+                },
+                class: '',
+                id: '',
+                styles: {
+                    themeColor: '#0069d9',
+                    imageShape: '',
                 },
                 css: '',
             };
@@ -1055,41 +1100,6 @@ class SlideHandler extends Component {
                             activeColumnId: destination.index,
                             activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
                         });
-                    } else if (currentFeatures[source.index]['type'] === 'card') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                img: {
-                                    name: '',
-                                    url: '',
-                                    type: '',
-                                    alt: '',
-                                },
-                                title: 'Card title',
-                                content: 'No content provided yet.',
-                                button: {
-                                    label: 'Click me',
-                                    url: '',
-                                }
-                            },
-                            class: '',
-                            id: '',
-                            styles: {
-                                themeColor: '#0069d9',
-                                height: 655,
-                                imageShape: '',
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
                     } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
                         let currentContent = {
                             type: currentFeatures[source.index]['type'],
@@ -1103,6 +1113,85 @@ class SlideHandler extends Component {
                                 themeColor: '#0069d9',
                                 backgroundImg: '',
                                 height: 655,
+                            },
+                            css: '',
+                        };
+
+                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                        this.setState({
+                            column: currentColumns,
+                            activeFeature: currentFeatures[source.index]['type'],
+                            activeColumnId: destination.index,
+                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                        });
+                    } else if (currentFeatures[source.index]['type'] === 'multiCard') {
+                        let currentContent = {
+                            type: currentFeatures[source.index]['type'],
+                            category: 'fixed',
+                            output: {
+                                cardCounter: [],
+                                firstCard: {
+                                    img: {
+                                        name: '',
+                                        url: '',
+                                        type: '',
+                                        alt: '',
+                                    },
+                                    title: 'Card title',
+                                    content: '<p>No content provided yet.</p>',
+                                    button: {
+                                        label: 'Click me',
+                                        url: '',
+                                    }
+                                },
+                                secondCard: {
+                                    img: {
+                                        name: '',
+                                        url: '',
+                                        type: '',
+                                        alt: '',
+                                    },
+                                    title: 'Card title',
+                                    content: '<p>No content provided yet.</p>',
+                                    button: {
+                                        label: 'Click me',
+                                        url: '',
+                                    }
+                                },
+                                thirdCard: {
+                                    img: {
+                                        name: '',
+                                        url: '',
+                                        type: '',
+                                        alt: '',
+                                    },
+                                    title: 'Card title',
+                                    content: '<p>No content provided yet.</p>',
+                                    button: {
+                                        label: 'Click me',
+                                        url: '',
+                                    }
+                                },
+                                fourthCard: {
+                                    img: {
+                                        name: '',
+                                        url: '',
+                                        type: '',
+                                        alt: '',
+                                    },
+                                    title: 'Card title',
+                                    content: '<p>No content provided yet.</p>',
+                                    button: {
+                                        label: 'Click me',
+                                        url: '',
+                                    }
+                                },
+                            },
+                            class: '',
+                            id: '',
+                            styles: {
+                                themeColor: '#0069d9',
+                                imageShape: '',
                             },
                             css: '',
                         };
@@ -5236,6 +5325,35 @@ class SlideHandler extends Component {
                                                                                                                         <ContentWithPictureLayout
                                                                                                                             output={contentFirst.output}
                                                                                                                             style={contentFirst.style}
+                                                                                                                            css={contentFirst.css}
+                                                                                                                            cssApplier={this.cssApplier}
+                                                                                                                        />
+                                                                                                                    </div>
+                                                                                                                }
+
+                                                                                                                {contentFirst.type === 'multiCard' &&
+                                                                                                                    <div 
+                                                                                                                        ref={provided.innerRef}
+                                                                                                                        {...provided.draggableProps}
+                                                                                                                        {...provided.dragHandleProps}
+
+                                                                                                                        key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        className="content-output"
+                                                                                                                        id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                                        onClick={() => 
+                                                                                                                            this.contentPaneClick(
+                                                                                                                                index, 
+                                                                                                                                contentFirstIndex,
+                                                                                                                                item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                                'subColumnOne'
+                                                                                                                            )
+                                                                                                                        }
+                                                                                                                    >
+                                                                                                                        <MultiCardLayout
+                                                                                                                            output={contentFirst.output}
+                                                                                                                            cardClass={contentFirst.class}
+                                                                                                                            id={contentFirst.id}
+                                                                                                                            styles={contentFirst.styles}
                                                                                                                             css={contentFirst.css}
                                                                                                                             cssApplier={this.cssApplier}
                                                                                                                         />
