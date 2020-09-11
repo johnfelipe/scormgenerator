@@ -5351,7 +5351,7 @@ class SlideHandler extends Component {
                                                                                                                     >
                                                                                                                         <MultiCardLayout
                                                                                                                             output={contentFirst.output}
-                                                                                                                            class={contentFirst.class}
+                                                                                                                            cardClass={contentFirst.class}
                                                                                                                             id={contentFirst.id}
                                                                                                                             styles={contentFirst.styles}
                                                                                                                             css={contentFirst.css}

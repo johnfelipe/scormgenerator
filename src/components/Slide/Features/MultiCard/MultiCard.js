@@ -126,10 +126,20 @@ function MultiCard(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
+                                        <FontAwesomeIcon icon={faUpload}/>
+                                        <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name} readOnly/>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.img.name
+                                    }
+                                    readOnly
+                                />
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -142,7 +152,8 @@ function MultiCard(props) {
                                     placeholder=""
                                     onChange={(e) => setImgAlt(e.target.value)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.img.alt && currentColumn.content[currentColumnContentIndex][contentIndex].output.img.alt
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt
                                     }
                                 />
                             </div>
@@ -157,7 +168,8 @@ function MultiCard(props) {
                                     placeholder=""
                                     onChange={(e) => setTitle(e)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.title && currentColumn.content[currentColumnContentIndex][contentIndex].output.title
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title
                                     }
                                 />
                             </div>
@@ -185,15 +197,6 @@ function MultiCard(props) {
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                </div>
-            </div>
-            <div className="sg-control sg-control-group">
-                <div className="sg-control-header">
-                    <label>Button Setup</label>
-                </div>
-                <div className="sg-control-input">
-                    <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>Label</span>
@@ -204,8 +207,8 @@ function MultiCard(props) {
                                     placeholder=""
                                     onChange={(e) => setButtonLabel(e)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label
                                     }
                                 />
                             </div>
@@ -220,8 +223,8 @@ function MultiCard(props) {
                                     placeholder=""
                                     onChange={(e) => setButtonUrl(e)}
                                     value={
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url
                                     }
                                 />
                             </div>
