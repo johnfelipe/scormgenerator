@@ -802,6 +802,7 @@ class SlideHandler extends Component {
                 type: 'multiCard',
                 category: 'fixed',
                 output: {
+                    cardCounter: [],
                     firstCard: {
                         img: {
                             name: '',
@@ -1128,6 +1129,7 @@ class SlideHandler extends Component {
                             type: currentFeatures[source.index]['type'],
                             category: 'fixed',
                             output: {
+                                cardCounter: [],
                                 firstCard: {
                                     img: {
                                         name: '',

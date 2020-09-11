@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
@@ -6,19 +6,6 @@ import ReactHtmlParser from 'react-html-parser';
 function MultiCardLayout(props) {
 
     const { output, cardClass, id, styles } = props;
-    const [cardCounter, setCardCounter] = useState(0);
-
-    const countCards = (output) => {
-        if (output.firstCard.img.url !== '') {
-            setCardCounter(cardCounter + 1);
-        } else if (output.secondCard.img.url !== '') {
-            setCardCounter(cardCounter + 1);
-        } else if (output.thirdCard.img.url !== '') {
-            setCardCounter(cardCounter + 1);
-        } else if (output.fourthCard.img.url !== '') {
-            setCardCounter(cardCounter + 1);
-        }
-    }
 
     const multiCardContent = (output, cardCounter) => {
         if (cardCounter === 0) {
@@ -40,7 +27,7 @@ function MultiCardLayout(props) {
                         </div>
                         <div className="card-body">
                             <h5 className="card-title">{output.firstCard.title}</h5>
-                            <p className="card-text h-100">{ReactHtmlParser(output.firstCard.content)}</p>
+                            <div className="card-text h-100">{ReactHtmlParser(output.firstCard.content)}</div>
                             {output.firstCard.button.url &&
                                 <a
                                     href={output.firstCard.button.url}
@@ -65,7 +52,7 @@ function MultiCardLayout(props) {
                         </div>
                         <div className="card-body">
                             <h5 className="card-title">{output.secondCard.title}</h5>
-                            <p className="card-text h-100">{ReactHtmlParser(output.secondCard.content)}</p>
+                            <div className="card-text h-100">{ReactHtmlParser(output.secondCard.content)}</div>
                             {output.secondCard.button.url &&
                                 <a
                                     href={output.secondCard.button.url}
@@ -90,7 +77,7 @@ function MultiCardLayout(props) {
                         </div>
                         <div className="card-body">
                             <h5 className="card-title">{output.thirdCard.title}</h5>
-                            <p className="card-text h-100">{ReactHtmlParser(output.thirdCard.content)}</p>
+                            <div className="card-text h-100">{ReactHtmlParser(output.thirdCard.content)}</div>
                             {output.thirdCard.button.url &&
                                 <a
                                     href={output.thirdCard.button.url}
@@ -115,7 +102,7 @@ function MultiCardLayout(props) {
                         </div>
                         <div className="card-body">
                             <h5 className="card-title">{output.fourthCard.title}</h5>
-                            <p className="card-text h-100">{ReactHtmlParser(output.fourthCard.content)}</p>
+                            <div className="card-text h-100">{ReactHtmlParser(output.fourthCard.content)}</div>
                             {output.fourthCard.button.url &&
                                 <a
                                     href={output.fourthCard.button.url}
@@ -146,8 +133,7 @@ function MultiCardLayout(props) {
 
     return (
         <div id={id ? id : "card-layout"} className={"card " + cardClass}>
-            {countCards(output)}
-            {multiCardContent(output, cardCounter)}
+            {multiCardContent(output, output.cardCounter.length)}
             {/* <div className="image-container text-center">
                 {output.firstCard.img.url ?
                     styles.imageShape === 'circle' ?

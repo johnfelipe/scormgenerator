@@ -58,6 +58,14 @@ function MultiCard(props) {
         }
     }
 
+    const setCardCounter = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.cardCounter.push(value);
+
+        props.setColumn(currentColumnObj);
+    }
+
     const setTitle = (e, cardNumber) => {
         const currentColumnObj = currentColumn;
 
@@ -103,6 +111,9 @@ function MultiCard(props) {
                 fileObject => {
                     console.log(fileObject);
                     setImg(fileObject.name, fileObject.image, fileObject.type, cardNumber);
+                    if (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber)) {
+                        setCardCounter(cardNumber);
+                    }
                 },
                 error => console.log(error)
             );
@@ -193,7 +204,7 @@ function MultiCard(props) {
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions border-top border-gray">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'card')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'multiCard')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
