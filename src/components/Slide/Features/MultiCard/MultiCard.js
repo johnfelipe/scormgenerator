@@ -200,6 +200,8 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
 
+    
+
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
@@ -222,13 +224,26 @@ function MultiCard(props) {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0" className="p-2" onClick={() => collapseListener(firstCardCollapse, 'firstCard')}>
                             <div className="row m-0">
-                                <div className="col-md-10">
+                                <div className="col-md-9">
                                     <span>First Card</span>
                                 </div>
-                                <div className="col-md-2 text-center">
+                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={firstCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
+                                    <OverlayTrigger
+                                        key="first-card-top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id='first-card-tooltip-top'>
+                                                <span>Reset</span>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                            <FontAwesomeIcon icon={faUndo}/>
+                                        </button>
+                                    </OverlayTrigger>
                                 </div>
                             </div>
                         </Accordion.Toggle>
@@ -354,13 +369,26 @@ function MultiCard(props) {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1" className="p-2" onClick={() => collapseListener(secondCardCollapse, 'secondCard')}>
                             <div className="row m-0">
-                                <div className="col-md-10">
+                                <div className="col-md-9">
                                     <span>Second Card</span>
                                 </div>
-                                <div className="col-md-2 text-center">
+                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={secondCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
+                                    <OverlayTrigger
+                                        key="second-card-top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id='second-card-tooltip-top'>
+                                                <span>Reset</span>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                            <FontAwesomeIcon icon={faUndo}/>
+                                        </button>
+                                    </OverlayTrigger>
                                 </div>
                             </div>
                         </Accordion.Toggle>
@@ -486,13 +514,26 @@ function MultiCard(props) {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="2" className="p-2" onClick={() => collapseListener(thirdCardCollapse, 'thirdCard')}>
                             <div className="row m-0">
-                                <div className="col-md-10">
+                                <div className="col-md-9">
                                     <span>Third Card</span>
                                 </div>
-                                <div className="col-md-2 text-center">
+                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={thirdCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
+                                    <OverlayTrigger
+                                        key="third-card-top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id='third-card-tooltip-top'>
+                                                <span>Reset</span>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                            <FontAwesomeIcon icon={faUndo}/>
+                                        </button>
+                                    </OverlayTrigger>
                                 </div>
                             </div>
                         </Accordion.Toggle>
@@ -618,13 +659,26 @@ function MultiCard(props) {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="3" className="p-2" onClick={() => collapseListener(fourthCardCollapse, 'fourthCard')}>
                             <div className="row m-0">
-                                <div className="col-md-10">
+                                <div className="col-md-9">
                                     <span>Fourth Card</span>
                                 </div>
-                                <div className="col-md-2 text-center">
+                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={fourthCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
+                                    <OverlayTrigger
+                                        key="fourth-card-top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id='fourth-card-tooltip-top'>
+                                                <span>Reset</span>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                            <FontAwesomeIcon icon={faUndo}/>
+                                        </button>
+                                    </OverlayTrigger>
                                 </div>
                             </div>
                         </Accordion.Toggle>
