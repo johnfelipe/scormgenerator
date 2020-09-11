@@ -405,6 +405,26 @@
   border-radius: 50% !important;
 }
 
+.sg-text-indent-1 {
+  text-indent: 0.25rem !important;
+}
+
+.sg-text-indent-2 {
+  text-indent: 0.5rem !important;
+}
+
+.sg-text-indent-3 {
+  text-indent: 1rem !important;
+}
+
+.sg-text-indent-4 {
+  text-indent: 1.5rem !important;
+}
+
+.sg-text-indent-5 {
+  text-indent: 3rem !important;
+}
+
 html body #root .App .App-header p {
   color: red;
 }

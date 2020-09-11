@@ -424,4 +424,25 @@
         /* round the edges to a circle with border radius 1/2 container size */
         border-radius: 50% !important;
     }
+
+    // text-indent
+    .sg-text-indent-1 {
+        text-indent: .25rem!important;
+    }
+
+    .sg-text-indent-2 {
+        text-indent: .5rem!important;
+    }
+
+    .sg-text-indent-3 {
+        text-indent: 1rem!important;
+    }
+
+    .sg-text-indent-4 {
+        text-indent: 1.5rem!important;
+    }
+
+    .sg-text-indent-5 {
+        text-indent: 3rem!important;
+    }
 }
