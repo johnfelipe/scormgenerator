@@ -165,10 +165,18 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setButtonUrl = (e) => {
+    const setButtonUrl = (e, cardNumber) => {
         const currentColumnObj = currentColumn;
 
-        currentColumn.content[currentColumnContentIndex][contentIndex].output.button.url = e.target.value;
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url = e.target.value;
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url = e.target.value;
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url = e.target.value;
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url = e.target.value;
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -318,7 +326,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonUrl(e)}
+                                                onChange={(e) => setButtonUrl(e, 1)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url
@@ -450,7 +458,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonUrl(e)}
+                                                onChange={(e) => setButtonUrl(e, 2)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url
@@ -582,7 +590,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonUrl(e)}
+                                                onChange={(e) => setButtonUrl(e, 3)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url
@@ -714,7 +722,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setButtonUrl(e)}
+                                                onChange={(e) => setButtonUrl(e, 4)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url
