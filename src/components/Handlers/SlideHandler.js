@@ -88,26 +88,26 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'card', name: 'Card', icon: faIdCardAlt, },
-                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
-                { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage] },
-                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, },
-                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
-                { type: 'homePage', name: 'Home Page', icon: faHome, },
-                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, category: 'fixed' },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, category: 'fixed' },
+                { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage], category: 'fixed' },
+                { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, category: 'fixed' },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, category: 'fixed' },
+                { type: 'homePage', name: 'Home Page', icon: faHome, category: 'fixed' },
+                { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, category: 'fixed' },
             ],
             fluidFeatures: [
-                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, },
-                { type: 'audio', name: 'Audio', icon: faFileAudio, },
-                { type: 'card', name: 'Card', icon: faIdCardAlt, },
-                { type: 'sgCharts', name: 'Charts', icon: faChartPie, },
-                { type: 'contentArea', name: 'Content Area', icon: faSquare, },
-                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, },
-                { type: 'image', name: 'Image', icon: faFileImage, },
-                { type: 'list', name: 'List', icon: faListUl, },
-                { type: 'listModal', name: 'List Modal', icon: faList, },
-                { type: 'tabs', name: 'Tabs', icon: faWindowRestore, },
-                { type: 'video', name: 'Video', icon: faVideo, },
+                { type: 'accordion', name: 'Accordion', icon: faChevronCircleDown, category: 'fluid' },
+                { type: 'audio', name: 'Audio', icon: faFileAudio, category: 'fluid' },
+                { type: 'card', name: 'Card', icon: faIdCardAlt, category: 'fluid' },
+                { type: 'sgCharts', name: 'Charts', icon: faChartPie, category: 'fluid' },
+                { type: 'contentArea', name: 'Content Area', icon: faSquare, category: 'fluid' },
+                { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, category: 'fluid' },
+                { type: 'image', name: 'Image', icon: faFileImage, category: 'fluid' },
+                { type: 'list', name: 'List', icon: faListUl, category: 'fluid' },
+                { type: 'listModal', name: 'List Modal', icon: faList, category: 'fluid' },
+                { type: 'tabs', name: 'Tabs', icon: faWindowRestore, category: 'fluid' },
+                { type: 'video', name: 'Video', icon: faVideo, category: 'fluid' },
             ],
             activeFeature: '',
             activeTab: 'column',
@@ -4570,6 +4570,7 @@ class SlideHandler extends Component {
                                                                                             <SlideFeature
                                                                                                 icon={item.icon}
                                                                                                 name={item.name}
+                                                                                                category={item.category}
                                                                                             />
                                                                                         </div>
                                                                                     )}
@@ -4600,6 +4601,7 @@ class SlideHandler extends Component {
                                                                                             <SlideFeature
                                                                                                 icon={item.icon}
                                                                                                 name={item.name}
+                                                                                                category={item.category}
                                                                                             />
                                                                                         </div>
                                                                                     )}
