@@ -26,7 +26,7 @@ function TabsAccordion(props) {
             <Card>
                 <Accordion.Toggle
                     as={Card.Header}
-                    eventKey={index}
+                    eventKey={index + 1}
                     className="p-2"
                     onClick={() => {
                         collapseListener(collapseId);
@@ -68,9 +68,8 @@ function TabsAccordion(props) {
                         </div>
                     </div>
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={index + 1}>
                     <Card.Body className="p-2">
-                        <span>Sample content</span>
                         <ul className="sg-control-input-list">
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
                                 <div className="sg-control-input-list-label">

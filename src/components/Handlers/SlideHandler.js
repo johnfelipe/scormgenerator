@@ -186,13 +186,17 @@ class SlideHandler extends Component {
         }
 
         if ((this.state.column.length === 0) && (this.props.currentColumns !== undefined)) {
-            this.setColumnState(this.props.currentColumns);
+            if (Array.isArray(this.props.currentColumns)) {
+                if (this.props.currentColumns.length !== 0) {
+                    this.setColumnState(this.props.currentColumns);
+                }
+            }
         }
         
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
         // console.log('this.props.currentSlide');
@@ -607,7 +611,7 @@ class SlideHandler extends Component {
                         alt: '',
                     },
                     title: 'Card title',
-                    content: 'No content provided yet.',
+                    content: '<p>No content provided yet.</p>',
                     button: {
                         label: 'Click me',
                         url: '',
@@ -1269,7 +1273,7 @@ class SlideHandler extends Component {
                                     alt: '',
                                 },
                                 title: 'Card title',
-                                content: 'No content provided yet.',
+                                content: '<p>No content provided yet.</p>',
                                 button: {
                                     label: 'Click me',
                                     url: '',

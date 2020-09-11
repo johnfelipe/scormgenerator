@@ -32,6 +32,10 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
         } else if (contentFor === 'contentPicture') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
+        } else if (contentFor === 'card') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
+        } else if (contentFor === 'image') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -61,6 +65,10 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = source;
         } else if (contentFor === 'contentPicture') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = source;
+        } else if (contentFor === 'card') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = source;
+        } else if (contentFor === 'image') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -83,6 +91,10 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content, 'html'));
         } else if (contentFor === 'contentPicture') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.content, 'html'));
+        } else if (contentFor === 'card') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.content, 'html'));
+        } else if (contentFor === 'image') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
+import ReactHtmlParser from 'react-html-parser';
 
 function CardLayout(props) {
 
@@ -20,7 +21,7 @@ function CardLayout(props) {
             </div>
             <div className="card-body">
                 <h5 className="card-title">{cardOutput.title}</h5>
-                <p className="card-text h-100">{cardOutput.content}</p>
+                <p className="card-text h-100">{ReactHtmlParser(cardOutput.content)}</p>
                 {cardOutput.button.url &&
                     <a
                         href={cardOutput.button.url}

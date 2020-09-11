@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import {RadioGroup, Radio} from 'react-radio-group';
+import { RadioGroup, Radio } from 'react-radio-group';
+import ReactHtmlParser from 'react-html-parser';
 
 function Video(props) {
     
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
-    const [isShownTextArea, setIsShownTextArea] = useState(false);
 
     const setVideo = (name, url, type) => {
         const currentColumnObj = currentColumn;
@@ -175,30 +175,32 @@ function Video(props) {
                 </div>
             </div>
             <div className="sg-control sg-control-text-editor">
-                <div className="sg-control-header">
+                <div className="sg-control-header d-flex justify-content-between">
                     <label>Body Text</label>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={() => props.setShowEditor(true, contentIndex, 'video')}>
+                        <FontAwesomeIcon icon={faEdit}/>
+                    </button>
                 </div>
                 <div className="sg-control-input">
                     <div className="sg-expandable-rich-text">
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                { 
-                                    isShownTextArea ? 
-                                        <button type="button" className="textarea-hover-btn btn btn-light" onMouseLeave={() => setIsShownTextArea(false)} onClick={() => props.setShowEditor(true, contentIndex, 'video')}>
-                                            <span>Click to Edit</span>
-                                        </button>
-                                    :
-                                        <span></span>
-                                }
-                                <textarea 
-                                    onMouseOver={() => setIsShownTextArea(true)} 
+                                <textarea
+                                    className="resize-none"
                                     disabled 
                                     value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumnContentIndex in currentColumn.content &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
+                                        // typeof currentColumn != "undefined" &&
+                                        // 'content' in currentColumn &&
+                                        // currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        // currentColumnContentIndex in currentColumn.content &&
+                                        // currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph !== '' ?
+                                            typeof ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph)[0].props.children[0] !== 'object' ?
+                                                ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph)[0].props.children[0]
+                                            :
+                                                'No information provided yet.'
+                                        :
+                                            'No information provided yet.'
                                     }
                                 />
                             </div>

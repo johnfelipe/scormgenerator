@@ -115,7 +115,7 @@ function Card(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Body Text</label>
+                    <label>Content Setup</label>
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
@@ -174,7 +174,7 @@ function Card(props) {
                                                 type="button"
                                                 className="input-hover-btn btn btn-light border border-secondary p-1"
                                                 onClick={() => {
-                                                    props.setShowTextEditor(true, contentIndex, 'card');
+                                                    props.setShowEditor(true, contentIndex, 'card');
                                                 }}
                                             >
                                                 <span>Edit</span>

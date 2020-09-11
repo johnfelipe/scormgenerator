@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../services';
+import ReactHtmlParser from 'react-html-parser';
 
 // modal
 import AltTagForm from '../../AlertModal/AltTagForm';
@@ -9,7 +10,6 @@ import AltTagForm from '../../AlertModal/AltTagForm';
 function ContentArea(props) {
 
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
-    const [isShownTextArea, setIsShownTextArea] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
@@ -72,36 +72,34 @@ function ContentArea(props) {
                 </div>
             </div>
             <div className="sg-control sg-control-text-editor">
-                <div className="sg-control-header">
+                <div className="sg-control-header d-flex justify-content-between">
                     <label>Content Setup</label>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={() => props.setShowEditor(true, contentIndex, 'contentArea')}>
+                        <FontAwesomeIcon icon={faEdit}/>
+                    </button>
                 </div>
                 <div className="sg-control-input">
                     <div className="sg-expandable-rich-text">
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                { 
-                                    isShownTextArea ? 
-                                        <button
-                                            type="button"
-                                            className="textarea-hover-btn btn btn-light"
-                                            onMouseLeave={() => setIsShownTextArea(false)}
-                                            onClick={() => props.setShowEditor(true, contentIndex, 'contentArea')}
-                                        >
-                                            <span>Click to Edit</span>
-                                        </button>
-                                    :
-                                        <span></span>
-                                }
-                                <textarea 
-                                    onMouseOver={() => setIsShownTextArea(true)} 
+                                <textarea
+                                    className="resize-none"
                                     disabled 
                                     value={ 
-                                        typeof currentColumn != "undefined" &&
-                                        'content' in currentColumn &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumnContentIndex in currentColumn.content &&
-                                        currentColumn.content[currentColumnContentIndex].length > 0 &&
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output
+                                        // typeof currentColumn != "undefined" &&
+                                        // 'content' in currentColumn &&
+                                        // currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        // currentColumnContentIndex in currentColumn.content &&
+                                        // currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                        // ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output)[0].props.children[0]
+                                        // currentColumn.content[currentColumnContentIndex][contentIndex].output
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output !== '' ?
+                                            typeof ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output)[0].props.children[0] !== 'object' ?
+                                                ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output)[0].props.children[0]
+                                            :
+                                                'No information provided yet.'
+                                        :
+                                            'No information provided yet.'
                                     }
                                 />
                             </div>
