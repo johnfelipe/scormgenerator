@@ -762,29 +762,6 @@ function MultiCardLayout(props) {
     return (
         <div id={id ? id : "card-layout"} className={"card " + cardClass}>
             {multiCardContent(output, output.cardCounter.length)}
-            {/* <div className="image-container text-center">
-                {output.firstCard.img.url ?
-                    styles.imageShape === 'circle' ?
-                        <img className="card-img-top border border-secondary rounded-circle h-auto" src={output.firstCard.img.url} alt={output.firstCard.img.alt}/>
-                    :
-                        <img className="card-img-top border border-secondary h-auto" src={output.firstCard.img.url} alt={output.firstCard.img.alt}/>
-                :
-                    <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
-                }
-            </div>
-            <div className="card-body">
-                <h5 className="card-title">{output.firstCard.title}</h5>
-                <p className="card-text h-100">{ReactHtmlParser(output.firstCard.content)}</p>
-                {output.firstCard.button.url &&
-                    <a
-                        href={output.firstCard.button.url}
-                        className="btn btn-primary"
-                        style={{ background: styles.themeColor }}
-                    >
-                        {output.firstCard.button.label}
-                    </a>
-                }
-            </div> */}
         </div>
     );
 }
