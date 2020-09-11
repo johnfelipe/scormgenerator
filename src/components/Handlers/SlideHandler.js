@@ -691,7 +691,9 @@ class SlideHandler extends Component {
                         url: '',
                         headers: [],
                         data: [],
-                    }
+                    },
+                    label: '',
+                    description: '',
                 },
                 class: '',
                 id: '',
@@ -790,7 +792,9 @@ class SlideHandler extends Component {
                         url: '',
                         headers: [],
                         data: [],
-                    }
+                    },
+                    label: '',
+                    description: '',
                 },
                 class: '',
                 id: '',
@@ -1028,7 +1032,9 @@ class SlideHandler extends Component {
                                     url: '',
                                     headers: [],
                                     data: [],
-                                }
+                                },
+                                label: '',
+                                description: '',
                             },
                             class: '',
                             id: '',
@@ -1385,7 +1391,9 @@ class SlideHandler extends Component {
                                     url: '',
                                     headers: [],
                                     data: [],
-                                }
+                                },
+                                label: '',
+                                description: '',
                             },
                             class: '',
                             id: '',

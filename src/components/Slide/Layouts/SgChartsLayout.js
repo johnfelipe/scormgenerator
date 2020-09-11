@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pie, Doughnut, Bar } from "react-chartjs-2";
+import ReactHtmlParser from 'react-html-parser';
 
 function SgChartsLayout(props) {
 
@@ -30,15 +31,39 @@ function SgChartsLayout(props) {
         if (output.dataSets.labels && output.dataSets.data) {
             if (output.chartType === "pie") {
                 return (
-                    <Pie data={data} />
+                    <>
+                        <div id="sg-pie-chart">
+                            <Pie data={data} />
+                            <label className="mt-1"><strong>{output.label}</strong></label>
+                        </div>
+                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                            {ReactHtmlParser(output.description)}
+                        </div>
+                    </>
                 );
             } else if (output.chartType === "doughnut") {
                 return (
-                    <Doughnut data={data} />
+                    <>
+                        <div id="sg-doughnut-chart">
+                            <Doughnut data={data} />
+                            <label className="mt-1"><strong>{output.label}</strong></label>
+                        </div>
+                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                            {ReactHtmlParser(output.description)}
+                        </div>
+                    </>
                 );
             } else if (output.chartType === "bar") {
                 return (
-                    <Bar data={data} />
+                    <>
+                        <div id="sg-bar-chart">
+                            <Bar data={data} />
+                            <label className="mt-1"><strong>{output.label}</strong></label>
+                        </div>
+                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                            {ReactHtmlParser(output.description)}
+                        </div>
+                    </>
                 );
             }
         } else {

@@ -36,6 +36,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
         } else if (contentFor === 'image') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
+        } else if (contentFor === 'sgCharts') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = value.toString("html");
         }
 
         props.setColumn(currentColumnObj);
@@ -69,6 +71,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = source;
         } else if (contentFor === 'image') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = source;
+        } else if (contentFor === 'sgCharts') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -95,6 +99,8 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.content, 'html'));
         } else if (contentFor === 'image') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.paragraph, 'html'));
+        } else if (contentFor === 'sgCharts') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.description, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 

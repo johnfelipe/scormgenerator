@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import CSVReader from "react-csv-reader";
 import MultiSelect from "react-multi-select-component";
+import ReactHtmlParser from 'react-html-parser';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 // react bootstrap
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -117,7 +118,6 @@ function SgCharts(props) {
     }
 
     const setShownData = (selected) => {
-        console.log(selected);
         const currentColumnObj = currentColumn;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData = selected;
         props.setColumn(currentColumnObj);
@@ -144,6 +144,12 @@ function SgCharts(props) {
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.data = dataSets;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.dataSets.colors = backgroundColors;
+        props.setColumn(currentColumnObj);
+    }
+
+    const setChartLabel = (value) => {
+        const currentColumnObj = currentColumn;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.label = value;
         props.setColumn(currentColumnObj);
     }
 
@@ -178,7 +184,7 @@ function SgCharts(props) {
                                 }
                             >
                                 <div className="sg-control-input-list-label">
-                                    <span>Chart</span>
+                                    <span>Type</span>
                                 </div>
                             </OverlayTrigger>
                             <div className="sg-control-input-list-input">
@@ -271,7 +277,51 @@ function SgCharts(props) {
                                 </span>
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Label</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    onChange={(event) => setChartLabel(event.target.value)}
+                                    value={ 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.label
+                                    }
+                                />
+                            </div>
+                        </li>
                     </ul>
+                </div>
+            </div>
+            <div className="sg-control sg-control-text-editor">
+                <div className="sg-control-header d-flex justify-content-between">
+                    <label>Content Setup</label>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={() => props.setShowEditor(true, contentIndex, 'sgCharts')}>
+                        <FontAwesomeIcon icon={faEdit}/>
+                    </button>
+                </div>
+                <div className="sg-control-input">
+                    <div className="sg-expandable-rich-text">
+                        <div className="sg-workspace-expander">
+                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                <textarea
+                                    className="resize-none"
+                                    disabled 
+                                    value={ 
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.description !== '' ?
+                                            typeof ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.description)[0].props.children[0] !== 'object' ?
+                                                ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.description)[0].props.children[0]
+                                            :
+                                                'No information provided yet.'
+                                        :
+                                            'No information provided yet.'
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
