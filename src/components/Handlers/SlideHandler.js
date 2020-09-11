@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage, faClone } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -88,12 +88,12 @@ class SlideHandler extends Component {
                 { type: 'video', name: 'Video', icon: faVideo, },
             ],
             fixedFeatures: [
-                { type: 'card', name: 'Card', icon: faIdCardAlt, category: 'fixed' },
                 { type: 'sgCharts', name: 'Charts', icon: faChartPie, category: 'fixed' },
                 { type: 'contentPicture', name: 'Content With Picture', icon: [faList, faImage], category: 'fixed' },
                 { type: 'courseObjectives', name: 'Course Objectives', icon: faListAlt, category: 'fixed' },
                 { type: 'dragDrop', name: 'Drag and Drop', icon: faHandRock, category: 'fixed' },
                 { type: 'homePage', name: 'Home Page', icon: faHome, category: 'fixed' },
+                { type: 'multiCard', name: 'Multi Card', icon: faClone, category: 'fixed' },
                 { type: 'multipleChoice', name: 'Multiple Choice', icon: faQuestionCircle, category: 'fixed' },
             ],
             fluidFeatures: [
