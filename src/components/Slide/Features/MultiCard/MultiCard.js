@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpload, faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faTrashAlt, faUndo, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Accordion, Card } from 'react-bootstrap';
@@ -15,6 +15,47 @@ function MultiCard(props) {
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
+    const [firstCardCollapse, setFirstCardCollapse] = useState(true);
+    const [secondCardCollapse, setSecondCardCollapse] = useState(false);
+    const [thirdCardCollapse, setThirdCardCollapse] = useState(false);
+    const [fourthCardCollapse, setFourthCardCollapse] = useState(false);
+
+    const collapseListener = (currentCollapseId, card) => {
+
+        if (card === 'firstCard') {
+            if (currentCollapseId) {
+                currentCollapseId = false;
+            } else {
+                currentCollapseId = true;
+            }
+
+            setFirstCardCollapse(currentCollapseId);
+        } else if (card === 'secondCard') {
+            if (currentCollapseId) {
+                currentCollapseId = false;
+            } else {
+                currentCollapseId = true;
+            }
+
+            setSecondCardCollapse(currentCollapseId);
+        } else if (card === 'thirdCard') {
+            if (currentCollapseId) {
+                currentCollapseId = false;
+            } else {
+                currentCollapseId = true;
+            }
+
+            setThirdCardCollapse(currentCollapseId);
+        } else if (card === 'fourthCard') {
+            if (currentCollapseId) {
+                currentCollapseId = false;
+            } else {
+                currentCollapseId = true;
+            }
+
+            setFourthCardCollapse(currentCollapseId);
+        }
+    }
 
     const setTitle = (e) => {
         const currentColumnObj = currentColumn;
@@ -120,8 +161,17 @@ function MultiCard(props) {
                 </div>
                 <Accordion defaultActiveKey="0">
                     <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0" className="p-2">
-                            <span>First Card</span>
+                        <Accordion.Toggle as={Card.Header} eventKey="0" className="p-2" onClick={() => collapseListener(firstCardCollapse, 'firstCard')}>
+                            <div className="row m-0">
+                                <div className="col-md-10">
+                                    <span>First Card</span>
+                                </div>
+                                <div className="col-md-2 text-center">
+                                    <span>
+                                        <FontAwesomeIcon icon={firstCardCollapse === true ? faCaretUp : faCaretDown}/>
+                                    </span>
+                                </div>
+                            </div>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0" className="p-2">
                             <div className="sg-control-input">
@@ -243,8 +293,17 @@ function MultiCard(props) {
                 </Accordion>
                 <Accordion className="mt-2">
                     <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="1" className="p-2">
-                            <span>Second Card</span>
+                        <Accordion.Toggle as={Card.Header} eventKey="1" className="p-2" onClick={() => collapseListener(secondCardCollapse, 'secondCard')}>
+                            <div className="row m-0">
+                                <div className="col-md-10">
+                                    <span>Second Card</span>
+                                </div>
+                                <div className="col-md-2 text-center">
+                                    <span>
+                                        <FontAwesomeIcon icon={secondCardCollapse === true ? faCaretUp : faCaretDown}/>
+                                    </span>
+                                </div>
+                            </div>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1" className="p-2">
                             <div className="sg-control-input">
@@ -366,10 +425,19 @@ function MultiCard(props) {
                 </Accordion>
                 <Accordion className="mt-2">
                     <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="1" className="p-2">
-                            <span>Third Card</span>
+                        <Accordion.Toggle as={Card.Header} eventKey="2" className="p-2" onClick={() => collapseListener(thirdCardCollapse, 'thirdCard')}>
+                            <div className="row m-0">
+                                <div className="col-md-10">
+                                    <span>Third Card</span>
+                                </div>
+                                <div className="col-md-2 text-center">
+                                    <span>
+                                        <FontAwesomeIcon icon={thirdCardCollapse === true ? faCaretUp : faCaretDown}/>
+                                    </span>
+                                </div>
+                            </div>
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="1" className="p-2">
+                        <Accordion.Collapse eventKey="2" className="p-2">
                             <div className="sg-control-input">
                                 <ul className="sg-control-input-list">
                                     <li className="sg-control-input-list-item sg-control-input-list-item-upload">
@@ -489,10 +557,19 @@ function MultiCard(props) {
                 </Accordion>
                 <Accordion className="mt-2">
                     <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="1" className="p-2">
-                            <span>Fourth Card</span>
+                        <Accordion.Toggle as={Card.Header} eventKey="3" className="p-2" onClick={() => collapseListener(fourthCardCollapse, 'fourthCard')}>
+                            <div className="row m-0">
+                                <div className="col-md-10">
+                                    <span>Fourth Card</span>
+                                </div>
+                                <div className="col-md-2 text-center">
+                                    <span>
+                                        <FontAwesomeIcon icon={fourthCardCollapse === true ? faCaretUp : faCaretDown}/>
+                                    </span>
+                                </div>
+                            </div>
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="1" className="p-2">
+                        <Accordion.Collapse eventKey="3" className="p-2">
                             <div className="sg-control-input">
                                 <ul className="sg-control-input-list">
                                     <li className="sg-control-input-list-item sg-control-input-list-item-upload">
