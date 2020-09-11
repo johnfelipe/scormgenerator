@@ -128,7 +128,7 @@ function Tabs(props) {
             </div>
             <div className="sg-control sg-control-text-editor">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Tab/s Setup</label>
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">

@@ -143,7 +143,7 @@ function ContentWithLeftPicture(props) {
             </div>
             <div className="sg-control sg-control-text-editor">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Body Text</label>
                 </div>
                 <div className="sg-control-input">
                     <div className="sg-expandable-rich-text">

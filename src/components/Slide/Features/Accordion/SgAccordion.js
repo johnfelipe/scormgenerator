@@ -106,7 +106,7 @@ function SgAccordion(props) {
             </div>
             <div className="sg-control sg-control-text-editor">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Accordion Setup</label>
                 </div>
                 <div className="sg-control-content">
                     <ul className="sg-control-input-list">

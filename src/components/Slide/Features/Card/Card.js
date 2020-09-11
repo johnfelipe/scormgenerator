@@ -115,7 +115,7 @@ function Card(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Body Text</label>
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">

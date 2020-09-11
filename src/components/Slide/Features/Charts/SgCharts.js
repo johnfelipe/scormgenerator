@@ -163,7 +163,7 @@ function SgCharts(props) {
             </div>
             <div className="sg-control sg-control-group overflow-unset">
                 <div className="sg-control-header">
-                    <label>Content Setup</label>
+                    <label>Chart Setup</label>
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
