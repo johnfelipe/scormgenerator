@@ -4,6 +4,7 @@ import { faUpload, faTrashAlt, faUndo, faCaretUp, faCaretDown } from '@fortaweso
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Accordion, Card } from 'react-bootstrap';
+import { arrayHelpers } from '../../../../helpers';
 
 // modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
@@ -200,7 +201,48 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
 
-    
+    const resetCard = (cardNumber) => {
+        const currentColumnObj = currentColumn;
+
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.url = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.type = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.title = 'Card title';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.content = '<p>No content provided yet.</p>';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label = 'Click me';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url = '';
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.url = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.type = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.title = 'Card title';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.content = '<p>No content provided yet.</p>';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label = 'Click me';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url = '';
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.url = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.type = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.title = 'Card title';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = '<p>No content provided yet.</p>';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label = 'Click me';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url = '';
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.url = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.type = '';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.title = 'Card title';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = '<p>No content provided yet.</p>';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label = 'Click me';
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url = '';
+        }
+
+        const newCardCounter = arrayHelpers.removeElement(currentColumnObj.content[currentColumnContentIndex][contentIndex].output.cardCounter, cardNumber);
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.cardCounter = newCardCounter;
+
+        props.setColumn(currentColumnObj);
+    }
 
     return (
         <div className="sg-controls">
@@ -240,7 +282,7 @@ function MultiCard(props) {
                                             </Tooltip>
                                         }
                                     >
-                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(1)}}>
                                             <FontAwesomeIcon icon={faUndo}/>
                                         </button>
                                     </OverlayTrigger>
@@ -385,7 +427,7 @@ function MultiCard(props) {
                                             </Tooltip>
                                         }
                                     >
-                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(2)}}>
                                             <FontAwesomeIcon icon={faUndo}/>
                                         </button>
                                     </OverlayTrigger>
@@ -530,7 +572,7 @@ function MultiCard(props) {
                                             </Tooltip>
                                         }
                                     >
-                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(3)}}>
                                             <FontAwesomeIcon icon={faUndo}/>
                                         </button>
                                     </OverlayTrigger>
@@ -675,7 +717,7 @@ function MultiCard(props) {
                                             </Tooltip>
                                         }
                                     >
-                                        <button type="button" className="btn btn-primary btn-sm ml-2">
+                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(4)}}>
                                             <FontAwesomeIcon icon={faUndo}/>
                                         </button>
                                     </OverlayTrigger>
