@@ -125,10 +125,18 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const setImgAlt = (value) => {
+    const setImgAlt = (value, cardNumber) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.alt = value;
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt = value;
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt = value;
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt = value;
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt = value;
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -223,7 +231,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setImgAlt(e.target.value)}
+                                                onChange={(e) => setImgAlt(e.target.value, 1)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt
@@ -355,7 +363,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setImgAlt(e.target.value)}
+                                                onChange={(e) => setImgAlt(e.target.value, 2)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt
@@ -487,7 +495,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setImgAlt(e.target.value)}
+                                                onChange={(e) => setImgAlt(e.target.value, 3)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt
@@ -619,7 +627,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setImgAlt(e.target.value)}
+                                                onChange={(e) => setImgAlt(e.target.value, 4)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt
