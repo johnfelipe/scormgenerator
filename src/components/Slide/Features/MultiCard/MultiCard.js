@@ -19,6 +19,7 @@ function MultiCard(props) {
     const [secondCardCollapse, setSecondCardCollapse] = useState(false);
     const [thirdCardCollapse, setThirdCardCollapse] = useState(false);
     const [fourthCardCollapse, setFourthCardCollapse] = useState(false);
+    const [cardNumber, setCardNumber] = useState(0);
 
     const collapseListener = (currentCollapseId, card) => {
 
@@ -65,7 +66,7 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e, cardNumber) => {
         let files = e.target.files;
         let reader = new FileReader();
 
@@ -78,6 +79,7 @@ function MultiCard(props) {
         setModalShow(true);
         setFile(files);
         setFileIndex(0);
+        setCardNumber(cardNumber);
     }
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
@@ -92,19 +94,33 @@ function MultiCard(props) {
             .then(
                 fileObject => {
                     console.log(fileObject);
-                    setImg(fileObject.name, fileObject.image, fileObject.type);
+                    setImg(fileObject.name, fileObject.image, fileObject.type, cardNumber);
                 },
                 error => console.log(error)
             );
         }
     }
 
-    const setImg = (name, url, type) => {
+    const setImg = (name, url, type, cardNumber) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.name = name;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.url = url;
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.img.type = type;
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name = name;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.url = url;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.img.type = type;
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name = name;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.url = url;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.img.type = type;
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name = name;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.url = url;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.type = type;
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name = name;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.url = url;
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.type = type;
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -184,7 +200,7 @@ function MultiCard(props) {
                                             <label className="input-group-btn">
                                                 <span className="btn btn-primary">
                                                     <FontAwesomeIcon icon={faUpload}/>
-                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
+                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 1)}} accept="image/*"/>
                                                 </span>
                                             </label>
                                             <input
@@ -316,7 +332,7 @@ function MultiCard(props) {
                                             <label className="input-group-btn">
                                                 <span className="btn btn-primary">
                                                     <FontAwesomeIcon icon={faUpload}/>
-                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
+                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 2)}} accept="image/*"/>
                                                 </span>
                                             </label>
                                             <input
@@ -448,7 +464,7 @@ function MultiCard(props) {
                                             <label className="input-group-btn">
                                                 <span className="btn btn-primary">
                                                     <FontAwesomeIcon icon={faUpload}/>
-                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
+                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 3)}} accept="image/*"/>
                                                 </span>
                                             </label>
                                             <input
@@ -580,7 +596,7 @@ function MultiCard(props) {
                                             <label className="input-group-btn">
                                                 <span className="btn btn-primary">
                                                     <FontAwesomeIcon icon={faUpload}/>
-                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e)}} accept="image/*"/>
+                                                    <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 4)}} accept="image/*"/>
                                                 </span>
                                             </label>
                                             <input
