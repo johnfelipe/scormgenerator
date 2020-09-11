@@ -58,10 +58,18 @@ function MultiCard(props) {
         }
     }
 
-    const setTitle = (e) => {
+    const setTitle = (e, cardNumber) => {
         const currentColumnObj = currentColumn;
 
-        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.title = e.target.value;
+        if (cardNumber === 1) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.title = e.target.value;
+        } else if (cardNumber === 2) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.title = e.target.value;
+        } else if (cardNumber === 3) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.title = e.target.value;
+        } else if (cardNumber === 4) {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.title = e.target.value;
+        }
 
         props.setColumn(currentColumnObj);
     }
@@ -141,7 +149,7 @@ function MultiCard(props) {
         props.setColumn(currentColumnObj);
     }
     
-    const setButtonLabel = (e) => {
+    const setButtonLabel = (e, cardNumber) => {
         const currentColumnObj = currentColumn;
 
         currentColumn.content[currentColumnContentIndex][contentIndex].output.button.label = e.target.value;
@@ -247,7 +255,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setTitle(e)}
+                                                onChange={(e) => setTitle(e, 1)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title
@@ -379,7 +387,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setTitle(e)}
+                                                onChange={(e) => setTitle(e, 2)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title
@@ -511,7 +519,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setTitle(e)}
+                                                onChange={(e) => setTitle(e, 3)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title
@@ -643,7 +651,7 @@ function MultiCard(props) {
                                             <input
                                                 type="text"
                                                 placeholder=""
-                                                onChange={(e) => setTitle(e)}
+                                                onChange={(e) => setTitle(e, 4)}
                                                 value={
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title &&
                                                     currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title
