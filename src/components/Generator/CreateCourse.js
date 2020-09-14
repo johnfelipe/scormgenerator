@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // handler components
 import NavigationHandler from '../Handlers/NavigationHandler';
 import CheckBoxInput from '../Handlers/CheckBoxHandler';
+import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
 
 //modal
 import WarningModal from '../AlertModal/Warning';
@@ -30,6 +31,14 @@ function CreateCourse() {
     const [courseNameExist, setCourseNameExist] = useState(false);
     const courses = useSelector(state => state.course.courses ? state.course.courses : []);
     const currentCourse = useSelector(state => state.course.currentCourse);
+    const courseTypeOptions = [
+        {label: 'Scorm 1.2', value: 'Scorm 1.2'},
+        {label: 'Scorm 2004', value: 'Scorm 2004'},
+    ];
+    const courseLayoutOptions = [
+        {label: 'Fixed', value: 'fixed'},
+        {label: 'Fluid', value: 'fluid'},
+    ]
 
     useEffect(() => {
         dispatch(courseActions.getAll());
@@ -86,6 +95,8 @@ function CreateCourse() {
                     courseTitle: '',
                     courseLogo: '',
                     navigationType: 0,
+                    courseType: "Scorm 1.2",
+                    courseLayout: "fixed",
                     showProgressbar: false,
                 }}
 
@@ -130,7 +141,7 @@ function CreateCourse() {
                     return (
                         <form onSubmit={handleSubmit}>
                             <div className="row">
-                                <div className="col-md-8 pr-0">
+                                <div className="col-md-9 pr-0">
                                     <input
                                         id="courseTitle"
                                         name="courseTitle"
@@ -162,8 +173,8 @@ function CreateCourse() {
                                 </div>
                                 {
                                     courseNameExist ?
-                                        <div className="col-md-4">
-                                            <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label>
+                                        <div className="col-md-3">
+                                            {/* <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label> */}
                                             <input
                                                 id="courseLogo"
                                                 name="courseLogo"
@@ -192,7 +203,7 @@ function CreateCourse() {
                                             <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                         </div>
                                     :
-                                        <div className="col-md-4">
+                                        <div className="col-md-3">
                                             <WarningModal 
                                                 fieldType="label"
                                                 htmlFor="courseLogo"
@@ -205,7 +216,7 @@ function CreateCourse() {
                                 }
                             </div>
                             <div className="row">
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <NavigationHandler
                                         currentType={values.navigationType}
                                         name="navigationType"
@@ -213,7 +224,7 @@ function CreateCourse() {
                                         courseNameExist={courseNameExist}
                                     />
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <div className="text-center mt-2">
                                         <CheckBoxInput
                                             currentCbValue={values.showProgressbar}
@@ -225,8 +236,31 @@ function CreateCourse() {
                                         />
                                     </div>
                                 </div>
-                                <div id="save-btn-container" className="col-md-4 mt-2">
-                                    <button type="submit" className="btn btn-success float-right"  disabled={courseNameExist ? isSubmitting : true}>Create Course</button>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-center">
+                                        <SgDropdownSelect
+                                            selectTitle="Type"
+                                            currentValue={values.courseType}
+                                            defaultValue="Scorm 1.2"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseType"
+                                            selectHtmlFor="courseType"
+                                            selectOptions={courseTypeOptions}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-right">
+                                        <SgDropdownSelect
+                                            selectTitle="Layout"
+                                            currentValue={values.courseLayout}
+                                            defaultValue="fixed"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseLayout"
+                                            selectHtmlFor="courseLayout"
+                                            selectOptions={courseLayoutOptions}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
@@ -318,6 +352,11 @@ function CreateCourse() {
                                             </Droppable>
                                         </DragDropContext>
                                     </div>
+                                </div>
+                            </div> 
+                            <div className="row">                                                      
+                                <div id="save-btn-container" className="col-md-12 mt-2">
+                                    <button type="submit" className="btn btn-success float-right"  disabled={courseNameExist ? isSubmitting : true}>Create Course</button>
                                 </div>
                             </div>
                         </form>
