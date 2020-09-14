@@ -24,6 +24,7 @@ import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
+import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
 
 //modal
 // import WarningModal from '../AlertModal/Warning';
@@ -55,6 +56,14 @@ function CourseEditor() {
     const [lessonId, setLessonId] = useState(-1);
     // const [courseId, setCourseId] = useState(-1);
     const [lid, setLid] = useState(-1);
+    const courseTypeOptions = [
+        {label: 'Scorm 1.2', value: 'Scorm 1.2'},
+        {label: 'Scorm 2004', value: 'Scorm 2004'},
+    ];
+    const courseLayoutOptions = [
+        {label: 'Fixed', value: 'fixed'},
+        {label: 'Fluid', value: 'fluid'},
+    ];
 
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
@@ -149,6 +158,8 @@ function CourseEditor() {
                     },
                     navigationType: currentCourse ? currentCourse.navigation ? currentCourse.navigation : 0 : 0,
                     showProgressbar: currentCourse ? currentCourse.progressbar === 1 ? true : false : 0,
+                    courseType: currentCourse ? currentCourse.type ? currentCourse.type : "Scorm 1.2" : "Scorm 1.2",
+                    courseLayout: currentCourse ? currentCourse.layout ? currentCourse.layout : "fixed" : "fixed",
                 }}
 
                 onSubmit={values => {
@@ -190,7 +201,7 @@ function CourseEditor() {
                     return (
                         <form onSubmit={handleSubmit}>
                             <div className="row">
-                                <div className="col-md-8 pr-0">
+                                <div className="col-md-9 pr-0">
                                     <input
                                         id="courseTitle"
                                         name="courseTitle"
@@ -205,8 +216,8 @@ function CourseEditor() {
                                         <div className="input-feedback">{errors.courseTitle}</div>
                                     )}
                                 </div>
-                                <div className="col-md-4">
-                                    <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label>
+                                <div className="col-md-3">
+                                    {/* <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label> */}
                                     <input
                                         id="courseLogo"
                                         name="courseLogo"
@@ -236,26 +247,40 @@ function CourseEditor() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <NavigationHandler
                                         currentType={values.navigationType}
                                         name="navigationType"
                                         handleChange={handleChange}
                                     />
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <div className="text-center">
-                                        <GalleryHandler
-                                            // addMediaFiles={this.props.addMediaFiles}
-                                            // mediaFilesObject={mediaFilesObject}
-                                            location="home"
-                                            // setMediaFilesObject={setMediaFilesObject}
-                                            buttonName="Gallery"
-                                            uid={currentCourse && currentCourse.uid}
+                                        <SgDropdownSelect
+                                            selectTitle="Type"
+                                            currentValue={values.courseType}
+                                            defaultValue="Scorm 1.2"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseType"
+                                            selectHtmlFor="courseType"
+                                            selectOptions={courseTypeOptions}
                                         />
                                     </div>
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-right">
+                                        <SgDropdownSelect
+                                            selectTitle="Layout"
+                                            currentValue={values.courseLayout}
+                                            defaultValue="fixed"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseLayout"
+                                            selectHtmlFor="courseLayout"
+                                            selectOptions={courseLayoutOptions}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
                                     <div className="float-right mt-2">
                                         <CheckBoxInput
                                             currentCbValue={values.showProgressbar}
@@ -268,7 +293,7 @@ function CourseEditor() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <ResourcesHandler
                                         resourceFilesData={resourceFilesObject}
                                         cid={cid}
@@ -293,8 +318,25 @@ function CourseEditor() {
                                             <span></span>
                                     }
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <div className="text-center">
+                                        <GalleryHandler
+                                            location="home"
+                                            buttonName="Gallery"
+                                            uid={currentCourse && currentCourse.uid}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-center">
+                                        <GlossaryHandler
+                                            glossaryData={glossaryEntryObject}
+                                            cid={cid}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-right">
                                         <TranscriptHandler
                                             transcriptFileData={transcriptFileObject}
                                             cid={cid}
@@ -312,12 +354,6 @@ function CourseEditor() {
                                         :
                                             <span></span>
                                     }
-                                </div>
-                                <div className="col-md-4 mt-2">
-                                    <GlossaryHandler
-                                        glossaryData={glossaryEntryObject}
-                                        cid={cid}
-                                    />
                                 </div>
                             </div>
                             <div className="row">
@@ -358,7 +394,6 @@ function CourseEditor() {
                                                                                             <span>{lesson.title}</span>
                                                                                         </Accordion.Toggle>
                                                                                         <LessonHandler
-                                                                                            // editLessonNameChange={this.props.editCourseLessonName}
                                                                                             action="edit"
                                                                                             currentLessonName={lesson.title}
                                                                                             id={lessonIndex}
@@ -367,7 +402,7 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-2 sg-vertical-center justify-content-between">
+                                                                                    <div className="col-md-2 text-right">
                                                                                         <OverlayTrigger
                                                                                             key="draggable-top"
                                                                                             placement="top"
@@ -394,7 +429,7 @@ function CourseEditor() {
                                                                                         >
                                                                                             <button
                                                                                                 type="button"
-                                                                                                className="btn btn-sm btn-primary"
+                                                                                                className="btn btn-sm btn-primary ml-3"
                                                                                                 onClick={() => {
                                                                                                     dispatch(lessonActions.duplicateLesson(lesson.lid));
                                                                                                 }}
@@ -412,7 +447,7 @@ function CourseEditor() {
                                                                                             }
                                                                                         >
                                                                                             <button
-                                                                                                className="btn btn-danger btn-sm"
+                                                                                                className="btn btn-danger btn-sm ml-3"
                                                                                                 title="Remove"
                                                                                                 onClick={() => {
                                                                                                     // this.props.deleteLesson(lessonIndex)

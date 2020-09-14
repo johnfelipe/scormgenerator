@@ -38,7 +38,7 @@ function CreateCourse() {
     const courseLayoutOptions = [
         {label: 'Fixed', value: 'fixed'},
         {label: 'Fluid', value: 'fluid'},
-    ]
+    ];
 
     useEffect(() => {
         dispatch(courseActions.getAll());
@@ -109,7 +109,8 @@ function CreateCourse() {
                             navigation: values.navigationType,
                             progressbar: values.showProgressbar ? 1 : 0,
                             status: 1,
-                            type: 'Demo',
+                            type: values.courseType,
+                            layout: values.courseLayout,
                             uid: 1,
                             weight: 0,
                         }
@@ -288,7 +289,8 @@ function CreateCourse() {
                                                                     >
                                                                         <div className="row m-0">
                                                                             <div className="col-md-10 py-2">{course.title}</div>
-                                                                            <div className="col-md-2 sg-vertical-center justify-content-between">
+                                                                            {/* <div className="col-md-2 sg-vertical-center justify-content-between"> */}
+                                                                            <div className="col-md-2 text-right">
                                                                                 <OverlayTrigger
                                                                                     key="draggable-top"
                                                                                     placement="top"
@@ -315,7 +317,7 @@ function CreateCourse() {
                                                                                 >
                                                                                     <button
                                                                                         type="button"
-                                                                                        className="btn btn-primary"
+                                                                                        className="btn btn-primary ml-3"
                                                                                         onClick={() => {
                                                                                             dispatch(courseActions.duplicateCourse(course.cid));
                                                                                         }}
@@ -334,7 +336,7 @@ function CreateCourse() {
                                                                                 >
                                                                                     <a
                                                                                         href={"/course/" + course.cid}
-                                                                                        className="btn btn-primary text-white"
+                                                                                        className="btn btn-primary ml-3"
                                                                                         role="button"
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faArrowCircleRight}/>
