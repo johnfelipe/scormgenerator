@@ -13,7 +13,6 @@ import * as Yup from 'yup';
 
 // redux library
 import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
 
 // components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -163,22 +162,7 @@ function CourseEditor() {
                 }}
 
                 onSubmit={values => {
-                    // console.log(values);
-
-                    // if (courseNameExist !== true) {
-                    //     this.props.addCourseTitle(values.courseTitle);
-                    //     console.log('Clickuko!');
-                    // }
-
-                    // this.props.addCourseLogo(values.courseLogo);
-                    // this.props.chooseNavigationType(values.navigationType);
-                    // this.props.showHideProgressbar(values.showProgressbar);
-
-                    // // create course
-                    // // uid is temporary
-                    // this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
-                    // localStorage.setItem("CourseLessons", JSON.stringify(this.props.courseLessons));
-                    // localStorage.setItem("Course", JSON.stringify(this.props.course));
+                    
                 }}
 
                 validationSchema={Yup.object().shape({
@@ -655,40 +639,4 @@ function CourseEditor() {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        courseTitle: state.courseTitle,
-        courseLogo: state.courseLogo,
-        courseLessons: state.courseLessons,
-        navigationType: state.navigationType,
-        showProgressbar: state.showProgressbar,
-        resourceFiles: state.resourceFiles,
-        transcriptFile: state.transcriptFile,
-        glossaryEntries: state.glossaryEntries,
-        mediaFiles: state.mediaFiles,
-        course: state.course,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', courseTitle: courseTitle}),
-        addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', courseLogo: courseLogo}),
-        addCourseLessons: (lessonName) => dispatch({type: 'ADD_COURSE_LESSONS', lessonName: lessonName}),
-        updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
-        editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
-        deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
-        addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
-        deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
-        chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
-        showHideProgressbar: (value) => dispatch({type: 'SHOW_HIDE_PROGRESSBAR', value: value}),
-        addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
-        addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
-        addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
-        addMediaFiles: (value) => dispatch({type: 'ADD_MEDIA_FILES', object: value}),
-        createCourse: (userId, logo, navigation, progressbar, title) => dispatch({type: 'CREATE_COURSE', uid: userId, logo: logo, navigation: navigation, progressbar: progressbar, title: title}),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CourseEditor);
+export default CourseEditor;
