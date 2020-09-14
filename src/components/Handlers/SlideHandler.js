@@ -194,8 +194,8 @@ class SlideHandler extends Component {
             }
         }
 
-        console.log('props.courseLayout: ');
-        console.log(this.props.courseLayout);
+        // console.log('props.courseLayout: ');
+        // console.log(this.props.courseLayout);
         // console.log('state.columns: ');
         // console.log(this.state.column);
         // console.log('props.columns: ');

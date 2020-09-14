@@ -17,35 +17,35 @@ function HtmlEditor(props) {
         const currentColumnObj = currentColumn;
 
         if (contentFor === 'courseInfo') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseInfo.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'courseReq') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.courseReq.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'listModal') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'video') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'contentArea') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'tabsContent') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].tabContent = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'accordion') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output[activeOutputIndex].content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'contentPicture') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'card') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'image') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.paragraph = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'sgCharts') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.description = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'multiCardFirst') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.firstCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'multiCardSecond') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.secondCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'multiCardThird') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'multiCardFourth') {
-            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = value.toString("html");
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         }
 
         props.setColumn(currentColumnObj);
@@ -208,7 +208,7 @@ function HtmlEditor(props) {
                                 <span>HTML</span>
                             </div>
                             <textarea
-                                className={editorOnly === "false" ? "sg-text-editor-html h-40 border-top" : "sg-text-editor-html h-100 border-top"}
+                                className={editorOnly === "false" ? "sg-text-editor-html h-40 border-top source" : "sg-text-editor-html h-100 border-top source"}
                                 value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
                                 onChange={onChangeSource}
                             />
