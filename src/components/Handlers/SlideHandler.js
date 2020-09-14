@@ -193,11 +193,13 @@ class SlideHandler extends Component {
                 }
             }
         }
-        
-        console.log('state.columns: ');
-        console.log(this.state.column);
-        console.log('props.columns: ');
-        console.log(this.props.currentColumns);
+
+        console.log('props.courseLayout: ');
+        console.log(this.props.courseLayout);
+        // console.log('state.columns: ');
+        // console.log(this.state.column);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
         // console.log('this.props.currentSlide');
@@ -4650,8 +4652,8 @@ class SlideHandler extends Component {
                                                         </div>
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
-                                                        <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center">
-                                                            <Tab eventKey="fixed" title="Fixed" tabClassName="sg-w-100-div-2">
+                                                        {/* <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center"> */}
+                                                            {this.props.courseLayout === "fixed" ?
                                                                 <Droppable droppableId="fixed-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
@@ -4681,8 +4683,7 @@ class SlideHandler extends Component {
                                                                         </div>
                                                                     )}
                                                                 </Droppable>
-                                                            </Tab>
-                                                            <Tab eventKey="fluid" title="Fluid" tabClassName="sg-w-100-div-2">
+                                                            :
                                                                 <Droppable droppableId="fluid-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
@@ -4712,8 +4713,8 @@ class SlideHandler extends Component {
                                                                         </div>
                                                                     )}
                                                                 </Droppable>
-                                                            </Tab>
-                                                        </Tabs>
+                                                            }
+                                                        {/* </Tabs> */}
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 

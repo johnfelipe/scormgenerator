@@ -459,6 +459,7 @@ function CourseEditor() {
                                                                                 <Accordion.Collapse eventKey="0">
                                                                                     <Card.Body>
                                                                                         <SlideHandler
+                                                                                            courseLayout={currentCourse.layout}
                                                                                             action="add"
                                                                                             lessonIndex={lessonIndex}
                                                                                             slideItemId={
@@ -525,6 +526,7 @@ function CourseEditor() {
                                                                                                                             <div className="col-md-10 pl-0">
                                                                                                                                 <span className="btn pr-1">{slide.title}</span>
                                                                                                                                 <SlideHandler
+                                                                                                                                    courseLayout={currentCourse.layout}
                                                                                                                                     sid={slide.sid}
                                                                                                                                     cid={currentCourse && currentCourse.cid}
                                                                                                                                     uid={currentCourse && currentCourse.uid}
