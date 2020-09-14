@@ -299,24 +299,21 @@ function CourseEditor() {
                                         cid={cid}
                                         uid={currentCourse && currentCourse.uid}
                                     />
-                                    {
-                                        resourceFilesObject.length !== 0 ? 
-                                            <span className="text-break">
-                                                Files Uploaded: &nbsp;
-                                                {resourceFilesObject.map((item, index) => (
+                                     {/* <div className="text-break mt-2">
+                                            Files Uploaded: &nbsp;
+                                            <strong>
+                                            {resourceFilesObject.length !== 0 ? 
+                                                resourceFilesObject.map((item, index) => (
                                                     index + 1 !== resourceFilesObject.length ?
-                                                        <strong key={"resources-" + index}>
-                                                            <label key={index} >{item.rvalue.split('/')[5]},&nbsp;</label>
-                                                        </strong>
+                                                        <label key={index} >{item.rvalue.split('/')[5]},&nbsp;</label>
                                                     :
-                                                        <strong key={index}>
-                                                            <label key={index} >{item.rvalue.split('/')[5]}</label>
-                                                        </strong>
-                                                ))}
-                                            </span>
-                                        :
-                                            <span></span>
-                                    }
+                                                        <label key={index} >{item.rvalue.split('/')[5]}</label>
+                                                ))
+                                            :
+                                                <span></span>
+                                            }
+                                            </strong>
+                                    </div> */}
                                 </div>
                                 <div className="col-md-3 mt-2">
                                     <div className="text-center">
@@ -343,7 +340,7 @@ function CourseEditor() {
                                             uid={currentCourse && currentCourse.uid}
                                         />
                                     </div>
-                                    {
+                                    {/* {
                                         transcriptFileObject.length !== 0 ? 
                                             <span className="text-break">
                                                 File Uploaded: &nbsp;
@@ -353,7 +350,7 @@ function CourseEditor() {
                                             </span>
                                         :
                                             <span></span>
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div className="row">
