@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // redux library
 import { useDispatch } from 'react-redux';
@@ -234,7 +235,17 @@ function ResourcesHandler(props) {
 
     return (
         <div id="resources-btn-container">
-            <label htmlFor="resourcesBtn" className="mr-2">Upload Resources (Optional):</label>
+            <OverlayTrigger
+                key="resourcesBtn-top"
+                placement="top"
+                overlay={
+                    <Tooltip id='resourcesBtn-tooltip-top'>
+                        <span>Upload resources here.</span>
+                    </Tooltip>
+                }
+            >
+                <label htmlFor="resourcesBtn" className="mr-2">Resources (Optional):</label>
+            </OverlayTrigger>
             <button type="button" className="btn btn-outline-dark" onClick={() => setModalShow(true)}>Resources</button>
             {resourcesModal}
         </div>

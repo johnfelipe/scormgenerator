@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Tabs, Tab } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // redux library
 import { useSelector, useDispatch } from 'react-redux';
@@ -94,7 +95,17 @@ function GalleryHandler(props) {
         <div id="gallery-btn-container">
             {props.location === "home" ?
                 <>
-                    <label htmlFor="galleryBtn" className="mr-2">Add Gallery Files:</label>
+                    <OverlayTrigger
+                        key="galleryBtn-top"
+                        placement="top"
+                        overlay={
+                            <Tooltip id='galleryBtn-tooltip-top'>
+                                <span>Upload media files here.</span>
+                            </Tooltip>
+                        }
+                    >
+                        <label htmlFor="galleryBtn" className="mr-2">Gallery Files:</label>
+                    </OverlayTrigger>
                     <button type="button" className="btn btn-outline-dark" onClick={() => setModalShow(true)}>{props.buttonName}</button>
                 </>
             :
