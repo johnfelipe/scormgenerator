@@ -315,7 +315,8 @@
         border: 1px solid #ced4da;
         border-radius: .25rem;
         transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        width: 280px;
+        // width: 280px;
+        width: 90%;
         overflow: hidden;
     }
 
@@ -330,7 +331,7 @@
         padding: .375rem .75rem;
         line-height: 1.5;
         color: #495057;
-        content: "Browse";
+        content: "Upload Logo";
         background-color: #e9ecef;
         border-left: inherit;
         border-radius: 0 .25rem .25rem 0;
@@ -343,6 +344,14 @@
 
     .ml-4-5 {
         margin-left: 1.75rem !important;
+    }
+
+    .ml-6 {
+        margin-left: 4.5rem !important;
+    }
+
+    .ml-7 {
+        margin-left: 6rem !important;
     }
 
     .mt-5-5 {
