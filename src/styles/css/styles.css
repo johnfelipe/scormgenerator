@@ -569,7 +569,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  height: 503.21px;
+  height: 502px;
   overflow: auto !important;
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
@@ -580,10 +580,6 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
   overflow: auto !important;
   height: 462px;
-}
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-column, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-editor {
-  overflow: auto;
-  margin-top: 0.8rem !important;
 }
 html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container {
   max-height: 545px;
