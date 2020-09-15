@@ -4599,7 +4599,7 @@ class SlideHandler extends Component {
                                                                                         <div
                                                                                             ref={provided.innerRef}
                                                                                             {...provided.draggableProps}
-                                                                                            {...provided.dragHandleProps}
+                                                                                            // {...provided.dragHandleProps}
                                                                                             id={'column-' + columnIndex}
                                                                                         >
                                                                                             <SlideColumn
@@ -4618,6 +4618,8 @@ class SlideHandler extends Component {
                                                                                                 handleSizeActive={this.handleSizeActive}
                                                                                                 resetStates={this.resetStates}
                                                                                                 handleContentEditable={this.handleContentEditable}
+                                                                                                courseLayout={this.props.courseLayout}
+                                                                                                dragHandleProps={provided.dragHandleProps}
                                                                                             />
                                                                                         </div>
                                                                                     )}
