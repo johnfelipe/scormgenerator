@@ -14,28 +14,22 @@ class Features extends Component {
                                     key={"sg-icon-" + itemIndex}
                                     className={
                                         itemIndex === 0 ? 
-                                            this.props.category === "fixed" ? 
-                                                "feature-icon w-8 mr-1 text-primary" 
-                                            : 
-                                                "feature-icon w-8 mr-1"
+                                            "feature-icon w-8 mr-1"
                                         :
-                                            this.props.category === "fixed" ? 
-                                                "feature-icon w-8 text-primary"
-                                            :
-                                                "feature-icon w-8"
+                                            "feature-icon w-8"
                                     }
                                     icon={item}
                                 />
                             );
                         })}
-                        <h4 className={this.props.category === "fixed" ? "text-primary" : ""}>{this.props.name}</h4>
-                        <FontAwesomeIcon icon={faArrowsAlt} className={this.props.category === "fixed" ? "text-primary" : ""}/>
+                        <h4>{this.props.name}</h4>
+                        <FontAwesomeIcon icon={faArrowsAlt}/>
                     </>
                 :
                     <>
-                        <FontAwesomeIcon className={this.props.category === "fixed" ? "feature-icon text-primary" : "feature-icon"} icon={this.props.icon}/>
-                        <h4 className={this.props.category === "fixed" ? "text-primary" : ""}>{this.props.name}</h4>
-                        <FontAwesomeIcon icon={faArrowsAlt} className={this.props.category === "fixed" ? "text-primary" : ""}/>
+                        <FontAwesomeIcon className="feature-icon" icon={this.props.icon}/>
+                        <h4>{this.props.name}</h4>
+                        <FontAwesomeIcon icon={faArrowsAlt}/>
                     </>
                 }
             </>

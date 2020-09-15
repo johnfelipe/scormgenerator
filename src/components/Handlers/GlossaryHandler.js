@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // redux library
 import { useDispatch } from 'react-redux';
@@ -236,8 +237,18 @@ function GlossaryHandler(props) {
     );
 
     return (
-        <div id="add-glossary-container" className="float-right">
-            <label htmlFor="glossaryBtn" className="mr-2">Add Glossary (Optional):</label>
+        <div id="add-glossary-container">
+            <OverlayTrigger
+                key="glossaryBtn-top"
+                placement="top"
+                overlay={
+                    <Tooltip id='glossaryBtn-tooltip-top'>
+                        <span>Add glossary entries here.</span>
+                    </Tooltip>
+                }
+            >
+                <label htmlFor="glossaryBtn" className="mr-2">Glossary (Optional):</label>
+            </OverlayTrigger>
             <button type="button" className="btn btn-outline-dark" onClick={() => setModalShow(true)}>Glossary</button>
             {glossaryModal}
         </div>

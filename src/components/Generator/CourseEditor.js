@@ -13,7 +13,6 @@ import * as Yup from 'yup';
 
 // redux library
 import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
 
 // components
 import NavigationHandler from '../Handlers/NavigationHandler';
@@ -24,6 +23,7 @@ import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
 import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
+import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
 
 //modal
 // import WarningModal from '../AlertModal/Warning';
@@ -55,6 +55,14 @@ function CourseEditor() {
     const [lessonId, setLessonId] = useState(-1);
     // const [courseId, setCourseId] = useState(-1);
     const [lid, setLid] = useState(-1);
+    const courseTypeOptions = [
+        {label: 'Scorm 1.2', value: 'Scorm 1.2'},
+        {label: 'Scorm 2004', value: 'Scorm 2004'},
+    ];
+    const courseLayoutOptions = [
+        {label: 'Fixed', value: 'fixed'},
+        {label: 'Fluid', value: 'fluid'},
+    ];
 
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
@@ -149,25 +157,12 @@ function CourseEditor() {
                     },
                     navigationType: currentCourse ? currentCourse.navigation ? currentCourse.navigation : 0 : 0,
                     showProgressbar: currentCourse ? currentCourse.progressbar === 1 ? true : false : 0,
+                    courseType: currentCourse ? currentCourse.type ? currentCourse.type : "Scorm 1.2" : "Scorm 1.2",
+                    courseLayout: currentCourse ? currentCourse.layout ? currentCourse.layout : "fixed" : "fixed",
                 }}
 
                 onSubmit={values => {
-                    // console.log(values);
-
-                    // if (courseNameExist !== true) {
-                    //     this.props.addCourseTitle(values.courseTitle);
-                    //     console.log('Clickuko!');
-                    // }
-
-                    // this.props.addCourseLogo(values.courseLogo);
-                    // this.props.chooseNavigationType(values.navigationType);
-                    // this.props.showHideProgressbar(values.showProgressbar);
-
-                    // // create course
-                    // // uid is temporary
-                    // this.props.createCourse(1, values.courseLogo, values.navigationType, values.showProgressbar, values.courseTitle);
-                    // localStorage.setItem("CourseLessons", JSON.stringify(this.props.courseLessons));
-                    // localStorage.setItem("Course", JSON.stringify(this.props.course));
+                    
                 }}
 
                 validationSchema={Yup.object().shape({
@@ -190,7 +185,7 @@ function CourseEditor() {
                     return (
                         <form onSubmit={handleSubmit}>
                             <div className="row">
-                                <div className="col-md-8 pr-0">
+                                <div className="col-md-9 pr-0">
                                     <input
                                         id="courseTitle"
                                         name="courseTitle"
@@ -205,8 +200,8 @@ function CourseEditor() {
                                         <div className="input-feedback">{errors.courseTitle}</div>
                                     )}
                                 </div>
-                                <div className="col-md-4">
-                                    <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label>
+                                <div className="col-md-3">
+                                    {/* <label htmlFor="courseLogo" className="position-absolute ml-4-5 mt-1">Logo:</label> */}
                                     <input
                                         id="courseLogo"
                                         name="courseLogo"
@@ -236,26 +231,40 @@ function CourseEditor() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <NavigationHandler
                                         currentType={values.navigationType}
                                         name="navigationType"
                                         handleChange={handleChange}
                                     />
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <div className="text-center">
-                                        <GalleryHandler
-                                            // addMediaFiles={this.props.addMediaFiles}
-                                            // mediaFilesObject={mediaFilesObject}
-                                            location="home"
-                                            // setMediaFilesObject={setMediaFilesObject}
-                                            buttonName="Gallery"
-                                            uid={currentCourse && currentCourse.uid}
+                                        <SgDropdownSelect
+                                            selectTitle="Type"
+                                            currentValue={values.courseType}
+                                            defaultValue="Scorm 1.2"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseType"
+                                            selectHtmlFor="courseType"
+                                            selectOptions={courseTypeOptions}
                                         />
                                     </div>
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-center">
+                                        <SgDropdownSelect
+                                            selectTitle="Layout"
+                                            currentValue={values.courseLayout}
+                                            defaultValue="fixed"
+                                            onChangeHandler={handleChange}
+                                            selectId="courseLayout"
+                                            selectHtmlFor="courseLayout"
+                                            selectOptions={courseLayoutOptions}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
                                     <div className="float-right mt-2">
                                         <CheckBoxInput
                                             currentCbValue={values.showProgressbar}
@@ -268,40 +277,54 @@ function CourseEditor() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <ResourcesHandler
                                         resourceFilesData={resourceFilesObject}
                                         cid={cid}
                                         uid={currentCourse && currentCourse.uid}
                                     />
-                                    {
-                                        resourceFilesObject.length !== 0 ? 
-                                            <span className="text-break">
-                                                Files Uploaded: &nbsp;
-                                                {resourceFilesObject.map((item, index) => (
+                                     {/* <div className="text-break mt-2">
+                                            Files Uploaded: &nbsp;
+                                            <strong>
+                                            {resourceFilesObject.length !== 0 ? 
+                                                resourceFilesObject.map((item, index) => (
                                                     index + 1 !== resourceFilesObject.length ?
-                                                        <strong key={"resources-" + index}>
-                                                            <label key={index} >{item.rvalue.split('/')[5]},&nbsp;</label>
-                                                        </strong>
+                                                        <label key={index} >{item.rvalue.split('/')[5]},&nbsp;</label>
                                                     :
-                                                        <strong key={index}>
-                                                            <label key={index} >{item.rvalue.split('/')[5]}</label>
-                                                        </strong>
-                                                ))}
-                                            </span>
-                                        :
-                                            <span></span>
-                                    }
+                                                        <label key={index} >{item.rvalue.split('/')[5]}</label>
+                                                ))
+                                            :
+                                                <span></span>
+                                            }
+                                            </strong>
+                                    </div> */}
                                 </div>
-                                <div className="col-md-4 mt-2">
+                                <div className="col-md-3 mt-2">
                                     <div className="text-center">
+                                        <GalleryHandler
+                                            location="home"
+                                            buttonName="Gallery"
+                                            uid={currentCourse && currentCourse.uid}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-center">
+                                        <GlossaryHandler
+                                            glossaryData={glossaryEntryObject}
+                                            cid={cid}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 mt-2">
+                                    <div className="text-right">
                                         <TranscriptHandler
                                             transcriptFileData={transcriptFileObject}
                                             cid={cid}
                                             uid={currentCourse && currentCourse.uid}
                                         />
                                     </div>
-                                    {
+                                    {/* {
                                         transcriptFileObject.length !== 0 ? 
                                             <span className="text-break">
                                                 File Uploaded: &nbsp;
@@ -311,13 +334,7 @@ function CourseEditor() {
                                             </span>
                                         :
                                             <span></span>
-                                    }
-                                </div>
-                                <div className="col-md-4 mt-2">
-                                    <GlossaryHandler
-                                        glossaryData={glossaryEntryObject}
-                                        cid={cid}
-                                    />
+                                    } */}
                                 </div>
                             </div>
                             <div className="row">
@@ -358,7 +375,6 @@ function CourseEditor() {
                                                                                             <span>{lesson.title}</span>
                                                                                         </Accordion.Toggle>
                                                                                         <LessonHandler
-                                                                                            // editLessonNameChange={this.props.editCourseLessonName}
                                                                                             action="edit"
                                                                                             currentLessonName={lesson.title}
                                                                                             id={lessonIndex}
@@ -367,7 +383,7 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-2 sg-vertical-center justify-content-between">
+                                                                                    <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                         <OverlayTrigger
                                                                                             key="draggable-top"
                                                                                             placement="top"
@@ -394,7 +410,7 @@ function CourseEditor() {
                                                                                         >
                                                                                             <button
                                                                                                 type="button"
-                                                                                                className="btn btn-sm btn-primary"
+                                                                                                className="btn btn-sm btn-primary ml-3"
                                                                                                 onClick={() => {
                                                                                                     dispatch(lessonActions.duplicateLesson(lesson.lid));
                                                                                                 }}
@@ -412,7 +428,7 @@ function CourseEditor() {
                                                                                             }
                                                                                         >
                                                                                             <button
-                                                                                                className="btn btn-danger btn-sm"
+                                                                                                className="btn btn-danger btn-sm ml-3"
                                                                                                 title="Remove"
                                                                                                 onClick={() => {
                                                                                                     // this.props.deleteLesson(lessonIndex)
@@ -427,6 +443,7 @@ function CourseEditor() {
                                                                                 <Accordion.Collapse eventKey="0">
                                                                                     <Card.Body>
                                                                                         <SlideHandler
+                                                                                            courseLayout={currentCourse.layout}
                                                                                             action="add"
                                                                                             lessonIndex={lessonIndex}
                                                                                             slideItemId={
@@ -493,6 +510,7 @@ function CourseEditor() {
                                                                                                                             <div className="col-md-10 pl-0">
                                                                                                                                 <span className="btn pr-1">{slide.title}</span>
                                                                                                                                 <SlideHandler
+                                                                                                                                    courseLayout={currentCourse.layout}
                                                                                                                                     sid={slide.sid}
                                                                                                                                     cid={currentCourse && currentCourse.cid}
                                                                                                                                     uid={currentCourse && currentCourse.uid}
@@ -508,7 +526,7 @@ function CourseEditor() {
                                                                                                                                     lessonIndex={lessonIndex}
                                                                                                                                 />
                                                                                                                             </div>
-                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-between pr-0">
+                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                                                                 <OverlayTrigger
                                                                                                                                     key="draggable-slide-top"
                                                                                                                                     placement="top"
@@ -535,7 +553,7 @@ function CourseEditor() {
                                                                                                                                 >
                                                                                                                                     <button
                                                                                                                                         type="button"
-                                                                                                                                        className="btn btn-sm btn-primary"
+                                                                                                                                        className="btn btn-sm btn-primary ml-3"
                                                                                                                                         onClick={() => {
                                                                                                                                             dispatch(courseActions.duplicateSlide(lessonIndex, lesson.lid, slide.sid));
                                                                                                                                             console.log(lessonIndex)
@@ -556,7 +574,7 @@ function CourseEditor() {
                                                                                                                                     }
                                                                                                                                 >
                                                                                                                                     <button 
-                                                                                                                                        className="btn btn-danger btn-sm" 
+                                                                                                                                        className="btn btn-danger btn-sm ml-3" 
                                                                                                                                         title="Remove" 
                                                                                                                                         onClick={() => {
                                                                                                                                             // this.props.deleteSlide(slideIndex, currentClickedLessonId)
@@ -621,40 +639,4 @@ function CourseEditor() {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        courseTitle: state.courseTitle,
-        courseLogo: state.courseLogo,
-        courseLessons: state.courseLessons,
-        navigationType: state.navigationType,
-        showProgressbar: state.showProgressbar,
-        resourceFiles: state.resourceFiles,
-        transcriptFile: state.transcriptFile,
-        glossaryEntries: state.glossaryEntries,
-        mediaFiles: state.mediaFiles,
-        course: state.course,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addCourseTitle: (courseTitle) => dispatch({type: 'ADD_COURSE_TITLE', courseTitle: courseTitle}),
-        addCourseLogo: (courseLogo) => dispatch({type: 'ADD_COURSE_LOGO', courseLogo: courseLogo}),
-        addCourseLessons: (lessonName) => dispatch({type: 'ADD_COURSE_LESSONS', lessonName: lessonName}),
-        updateCourseLessons: (courseLessons) => dispatch({type: 'UPDATE_COURSE_LESSONS', courseLessons: courseLessons}),
-        editCourseLessonName: (lessonName, lessonId) => dispatch({type: 'EDIT_COURSE_LESSON_NAME', lessonName: lessonName, index: lessonId}),
-        deleteLesson: (lessonId) => dispatch({type: 'DELETE_LESSON', index: lessonId}),
-        addLessonSlide: (slideObj, lessonId) => dispatch({type: 'ADD_LESSON_SLIDES', slideObj: slideObj, index: lessonId}),
-        editLessonSlide: (slideObj, currentSlideIndex, currentClickedLessonId) => dispatch({type: 'EDIT_LESSON_SLIDE_NAME', slideObj: slideObj, currentSlideIndex: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
-        deleteSlide: (currentSlideIndex, currentClickedLessonId) => dispatch({type: 'DELETE_SLIDE', index: currentSlideIndex, currentClickedLessonId: currentClickedLessonId}),
-        chooseNavigationType: (id) => dispatch({type: 'NAVIGATION_TYPE', typeId: id}),
-        showHideProgressbar: (value) => dispatch({type: 'SHOW_HIDE_PROGRESSBAR', value: value}),
-        addResourceFiles: (value) => dispatch({type: 'ADD_RESOURCE_FILES', object: value}),
-        addTranscriptFile: (value) => dispatch({type: 'ADD_TRANSCRIPT_FILE', object: value}),
-        addGlossaryEntries: (value) => dispatch({type: 'ADD_GLOSSARY_ENTRIES', object: value}),
-        addMediaFiles: (value) => dispatch({type: 'ADD_MEDIA_FILES', object: value}),
-        createCourse: (userId, logo, navigation, progressbar, title) => dispatch({type: 'CREATE_COURSE', uid: userId, logo: logo, navigation: navigation, progressbar: progressbar, title: title}),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CourseEditor);
+export default CourseEditor;

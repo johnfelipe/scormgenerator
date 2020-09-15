@@ -193,11 +193,13 @@ class SlideHandler extends Component {
                 }
             }
         }
-        
-        console.log('state.columns: ');
-        console.log(this.state.column);
-        console.log('props.columns: ');
-        console.log(this.props.currentColumns);
+
+        // console.log('props.courseLayout: ');
+        // console.log(this.props.courseLayout);
+        // console.log('state.columns: ');
+        // console.log(this.state.column);
+        // console.log('props.columns: ');
+        // console.log(this.props.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
         // console.log('this.props.currentSlide');
@@ -4572,11 +4574,7 @@ class SlideHandler extends Component {
                                         </div>
                                         <div className="col-md-2 pr-0">
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
-                                            {/* <button type="button" className="btn btn-primary w-100">Open Library</button> */}
                                             <GalleryHandler
-                                                // addMediaFiles={this.props.addMediaFiles}
-                                                // mediaFilesObject={this.props.mediaFilesObject}
-                                                // setMediaFilesObject={this.props.setMediaFilesObject}
                                                 buttonName="Open Library"
                                                 uid={this.props.uid}
                                             />
@@ -4601,7 +4599,7 @@ class SlideHandler extends Component {
                                                                                         <div
                                                                                             ref={provided.innerRef}
                                                                                             {...provided.draggableProps}
-                                                                                            {...provided.dragHandleProps}
+                                                                                            // {...provided.dragHandleProps}
                                                                                             id={'column-' + columnIndex}
                                                                                         >
                                                                                             <SlideColumn
@@ -4620,6 +4618,8 @@ class SlideHandler extends Component {
                                                                                                 handleSizeActive={this.handleSizeActive}
                                                                                                 resetStates={this.resetStates}
                                                                                                 handleContentEditable={this.handleContentEditable}
+                                                                                                courseLayout={this.props.courseLayout}
+                                                                                                dragHandleProps={provided.dragHandleProps}
                                                                                             />
                                                                                         </div>
                                                                                     )}
@@ -4632,26 +4632,31 @@ class SlideHandler extends Component {
                                                             :
                                                                 <span></span>
                                                             }
-                                                            {
-                                                                this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                            {this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                                this.props.courseLayout === "fixed" ?
+                                                                    this.state.column.length === 0 &&
                                                                     <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
                                                                         <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
                                                                     </button>
                                                                 :
-                                                                    <WarningModal 
-                                                                        fieldType="buttonWithIcon"
-                                                                        btnClasses="sg-add-sortable-column-after"
-                                                                        icon={faPlus}
-                                                                        btnLabel="Add Column"
-                                                                        modalMessage="Please enter a slide name first"
-                                                                    />
+                                                                    <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
+                                                                        <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
+                                                                    </button>
+                                                            :
+                                                                <WarningModal 
+                                                                    fieldType="buttonWithIcon"
+                                                                    btnClasses="sg-add-sortable-column-after"
+                                                                    icon={faPlus}
+                                                                    btnLabel="Add Column"
+                                                                    modalMessage="Please enter a slide name first"
+                                                                />
                                                             }
                                                             
                                                         </div>
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
-                                                        <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center">
-                                                            <Tab eventKey="fixed" title="Fixed" tabClassName="sg-w-100-div-2">
+                                                        {/* <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center"> */}
+                                                            {this.props.courseLayout === "fixed" ?
                                                                 <Droppable droppableId="fixed-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
@@ -4681,8 +4686,7 @@ class SlideHandler extends Component {
                                                                         </div>
                                                                     )}
                                                                 </Droppable>
-                                                            </Tab>
-                                                            <Tab eventKey="fluid" title="Fluid" tabClassName="sg-w-100-div-2">
+                                                            :
                                                                 <Droppable droppableId="fluid-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
@@ -4712,8 +4716,8 @@ class SlideHandler extends Component {
                                                                         </div>
                                                                     )}
                                                                 </Droppable>
-                                                            </Tab>
-                                                        </Tabs>
+                                                            }
+                                                        {/* </Tabs> */}
                                                     </Tab>
                                                     <Tab eventKey="editor" title="Editor" className="mt-1">
                                                         <SlideEditor 

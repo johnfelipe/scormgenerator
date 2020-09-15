@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik } from "formik";
 import * as Yup from 'yup';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 // redux library
 import { useDispatch } from 'react-redux';
@@ -172,7 +173,17 @@ function TranscriptHandler(props) {
 
     return (
         <div id="transcript-btn-container">
-            <label htmlFor="transcriptBtn" className="mr-2">Upload Transcript (Optional):</label>
+            <OverlayTrigger
+                key="transcriptBtn-top"
+                placement="top"
+                overlay={
+                    <Tooltip id='transcriptBtn-tooltip-top'>
+                        <span>Upload transcript here.</span>
+                    </Tooltip>
+                }
+            >
+                <label htmlFor="transcriptBtn" className="mr-2">Transcript (Optional):</label>
+            </OverlayTrigger>
             <button type="button" className="btn btn-outline-dark" onClick={() => setModalShow(true)}>Transcript</button>
             {transcriptModal}
         </div>
