@@ -4719,7 +4719,7 @@ class SlideHandler extends Component {
                                                             }
                                                         {/* </Tabs> */}
                                                     </Tab>
-                                                    <Tab eventKey="editor" title="Editor" className="mt-1">
+                                                    <Tab eventKey="editor" title="Editor" className="h-100">
                                                         <SlideEditor 
                                                             setColumn={this.setColumn}
                                                             feature={this.state.activeFeature} 
