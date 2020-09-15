@@ -252,7 +252,7 @@ function CourseEditor() {
                                     </div>
                                 </div>
                                 <div className="col-md-3 mt-2">
-                                    <div className="text-right">
+                                    <div className="text-center">
                                         <SgDropdownSelect
                                             selectTitle="Layout"
                                             currentValue={values.courseLayout}
@@ -383,7 +383,7 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-2 text-right">
+                                                                                    <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                         <OverlayTrigger
                                                                                             key="draggable-top"
                                                                                             placement="top"
@@ -526,7 +526,7 @@ function CourseEditor() {
                                                                                                                                     lessonIndex={lessonIndex}
                                                                                                                                 />
                                                                                                                             </div>
-                                                                                                                            <div className="col-md-2 text-right">
+                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                                                                 <OverlayTrigger
                                                                                                                                     key="draggable-slide-top"
                                                                                                                                     placement="top"

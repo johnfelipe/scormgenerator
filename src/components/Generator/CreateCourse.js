@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -282,15 +283,26 @@ function CreateCourse() {
                                                                 {(provided) => (
                                                                     <div
                                                                         key={"course-" + courseIndex}
-                                                                        className="course-item p-2"
+                                                                        className="course-item p-2 rounded"
                                                                         data-course-id={course.cid}
                                                                         ref={provided.innerRef}
                                                                         {...provided.draggableProps}
                                                                     >
                                                                         <div className="row m-0">
-                                                                            <div className="col-md-10 py-2">{course.title}</div>
+                                                                            <div className="col-md-10 py-2">
+                                                                                <span
+                                                                                    className={
+                                                                                        course.layout === "fixed" ?
+                                                                                            "fixed-layout-text-color font-weight-bold"
+                                                                                        : 
+                                                                                            "fluid-layout-text-color font-weight-bold"
+                                                                                    }
+                                                                                >
+                                                                                    {course.title}
+                                                                                </span>
+                                                                            </div>
                                                                             {/* <div className="col-md-2 sg-vertical-center justify-content-between"> */}
-                                                                            <div className="col-md-2 text-right">
+                                                                            <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                 <OverlayTrigger
                                                                                     key="draggable-top"
                                                                                     placement="top"
@@ -341,6 +353,16 @@ function CreateCourse() {
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faArrowCircleRight}/>
                                                                                     </a>
+                                                                                    
+                                                                                    {/* <Link
+                                                                                        to={{
+                                                                                            pathname: "/course/" + course.cid,
+                                                                                            state: { sample: true }
+                                                                                        }}
+                                                                                        className="btn btn-primary ml-3"
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faArrowCircleRight}/>
+                                                                                    </Link> */}
                                                                                 </OverlayTrigger>
                                                                             </div>
                                                                         </div>
