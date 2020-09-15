@@ -467,6 +467,10 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
+                    backgroundAudio: {
+                        name: '',
+                        url: '',
+                    },
                 },
                 css: '',
             };
@@ -1236,6 +1240,10 @@ class SlideHandler extends Component {
                             id: '',
                             style: {
                                 backgroundImg: {
+                                    name: '',
+                                    url: '',
+                                },
+                                backgroundAudio: {
                                     name: '',
                                     url: '',
                                 },
