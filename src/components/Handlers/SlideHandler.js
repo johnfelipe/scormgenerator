@@ -4574,11 +4574,7 @@ class SlideHandler extends Component {
                                         </div>
                                         <div className="col-md-2 pr-0">
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
-                                            {/* <button type="button" className="btn btn-primary w-100">Open Library</button> */}
                                             <GalleryHandler
-                                                // addMediaFiles={this.props.addMediaFiles}
-                                                // mediaFilesObject={this.props.mediaFilesObject}
-                                                // setMediaFilesObject={this.props.setMediaFilesObject}
                                                 buttonName="Open Library"
                                                 uid={this.props.uid}
                                             />
@@ -4634,19 +4630,24 @@ class SlideHandler extends Component {
                                                             :
                                                                 <span></span>
                                                             }
-                                                            {
-                                                                this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                            {this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                                this.props.courseLayout === "fixed" ?
+                                                                    this.state.column.length === 0 &&
                                                                     <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
                                                                         <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
                                                                     </button>
                                                                 :
-                                                                    <WarningModal 
-                                                                        fieldType="buttonWithIcon"
-                                                                        btnClasses="sg-add-sortable-column-after"
-                                                                        icon={faPlus}
-                                                                        btnLabel="Add Column"
-                                                                        modalMessage="Please enter a slide name first"
-                                                                    />
+                                                                    <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
+                                                                        <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
+                                                                    </button>
+                                                            :
+                                                                <WarningModal 
+                                                                    fieldType="buttonWithIcon"
+                                                                    btnClasses="sg-add-sortable-column-after"
+                                                                    icon={faPlus}
+                                                                    btnLabel="Add Column"
+                                                                    modalMessage="Please enter a slide name first"
+                                                                />
                                                             }
                                                             
                                                         </div>

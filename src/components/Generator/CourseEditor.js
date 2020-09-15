@@ -526,7 +526,7 @@ function CourseEditor() {
                                                                                                                                     lessonIndex={lessonIndex}
                                                                                                                                 />
                                                                                                                             </div>
-                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-between pr-0">
+                                                                                                                            <div className="col-md-2 text-right">
                                                                                                                                 <OverlayTrigger
                                                                                                                                     key="draggable-slide-top"
                                                                                                                                     placement="top"
@@ -553,7 +553,7 @@ function CourseEditor() {
                                                                                                                                 >
                                                                                                                                     <button
                                                                                                                                         type="button"
-                                                                                                                                        className="btn btn-sm btn-primary"
+                                                                                                                                        className="btn btn-sm btn-primary ml-3"
                                                                                                                                         onClick={() => {
                                                                                                                                             dispatch(courseActions.duplicateSlide(lessonIndex, lesson.lid, slide.sid));
                                                                                                                                             console.log(lessonIndex)
@@ -574,7 +574,7 @@ function CourseEditor() {
                                                                                                                                     }
                                                                                                                                 >
                                                                                                                                     <button 
-                                                                                                                                        className="btn btn-danger btn-sm" 
+                                                                                                                                        className="btn btn-danger btn-sm ml-3" 
                                                                                                                                         title="Remove" 
                                                                                                                                         onClick={() => {
                                                                                                                                             // this.props.deleteSlide(slideIndex, currentClickedLessonId)
