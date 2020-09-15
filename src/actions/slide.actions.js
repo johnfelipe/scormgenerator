@@ -11,6 +11,7 @@ export const slideActions = {
     updateSlide,
     deleteSlide,
     duplicateSlide,
+    toAddSlidePage,
 };
 
 function getAllSlides() {
@@ -187,4 +188,12 @@ function duplicateSlide(id) {
     function request(id) { return { type: slideContants.REQUEST, id } }
     function success(slide) { return { type: slideContants.DUPLICATE_SLIDE, slide } }
     function failure(error) { return { type: slideContants.ERROR, error } }
+}
+
+function toAddSlidePage(addSlideProps) {
+    return dispatch => {
+        dispatch(success(addSlideProps));
+    };
+
+    function success(addSlideProps) { return { type: slideContants.ADD_SLIDE_PROPS, addSlideProps } }
 }
