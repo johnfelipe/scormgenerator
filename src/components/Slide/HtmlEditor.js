@@ -194,25 +194,21 @@ function HtmlEditor(props) {
             </div>
             <div className="sg-workspace-expander-body">
                 <div className="sg-text-editor sg-text-editor-mode-html h-100">
-                    <RichTextEditor
-                        className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
-                        editorClassName={editorOnly === "true" ? "sg-text-editor-html h-74-5" : "sg-text-editor-html h-54-5"}
-                        value={editorValue}
-                        onChange={handleChange}
-                        autoFocus={true}
-                        blockStyleFn={getTextAlignClassName}
-                    />
-                    {editorOnly === "false" &&
-                        <>
-                            <div className="sg-workspace-expander-head-label mt-1 mb-1">
-                                <span>HTML</span>
-                            </div>
-                            <textarea
-                                className={editorOnly === "false" ? "sg-text-editor-html h-40 border-top source" : "sg-text-editor-html h-100 border-top source"}
-                                value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
-                                onChange={onChangeSource}
-                            />
-                        </>
+                    {editorOnly === "true" ?
+                        <RichTextEditor
+                            className={editorOnly === "true" ? "sg-text-editor-html h-100" : "sg-text-editor-html h-55"}
+                            editorClassName={editorOnly === "true" ? "sg-text-editor-html h-74-5" : "sg-text-editor-html h-54-5"}
+                            value={editorValue}
+                            onChange={handleChange}
+                            autoFocus={true}
+                            blockStyleFn={getTextAlignClassName}
+                        />
+                    :
+                        <textarea
+                            className="sg-text-editor-html border-top source"
+                            value={editorValue.toString('html', {blockStyleFn: getTextAlignStyles})}
+                            onChange={onChangeSource}
+                        />
                     }
                 </div>
             </div>
