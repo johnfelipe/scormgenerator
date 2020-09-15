@@ -11,7 +11,7 @@ function ContentAreaLayout(props) {
                 {ReactHtmlParser(output)}
                 {props.cssApplier(css, 'content-area-layout')}
                 {style.backgroundAudio.url &&
-                    <audio controls autoPlay className="d-none">
+                    <audio id="content-area-bg-audio" controls autoPlay className="d-none">
                         <source src={style.backgroundAudio.url} type={style.backgroundAudio.type}/>
                         Your browser does not support the audio element.
                     </audio>
