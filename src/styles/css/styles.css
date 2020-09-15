@@ -439,6 +439,14 @@
   cursor: not-allowed !important;
 }
 
+.fixed-layout-text-color {
+  color: #007BFF !important;
+}
+
+.fluid-layout-text-color {
+  color: #FF8400 !important;
+}
+
 html body #root .App .App-header p {
   color: red;
 }

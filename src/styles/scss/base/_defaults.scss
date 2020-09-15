@@ -461,4 +461,13 @@
         opacity:0.6; //This grays it out to look disabled
         cursor: not-allowed !important;
     }
+
+    // course-related colors
+    .fixed-layout-text-color {
+        color: #007BFF !important;
+    }
+
+    .fluid-layout-text-color {
+        color:#FF8400 !important;
+    }
 }
