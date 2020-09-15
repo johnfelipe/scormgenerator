@@ -79,6 +79,7 @@ function ContentArea(props) {
     }
 
     const setBackgroundMusic = (name, url, type) => {
+        const audioPlayer = document.getElementById("content-area-bg-audio");
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url = url;
@@ -86,17 +87,24 @@ function ContentArea(props) {
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.type = type;
 
         props.setColumn(currentColumnObj);
+        
+        if (audioPlayer) {
+            setPlay(true);
+            audioPlayer.load();
+        }
     }
 
     const bgAudioControl = () => {
-        const audioPlayer = document.getElementById("content-area-bg-audio"); 
+        const audioPlayer = document.getElementById("content-area-bg-audio");
 
-        if (play) {
-            setPlay(false);
-            audioPlayer.pause();
-        } else {
-            setPlay(true);
-            audioPlayer.play();
+        if (audioPlayer) {
+            if (play) {
+                setPlay(false);
+                audioPlayer.pause();
+            } else {
+                setPlay(true);
+                audioPlayer.play();
+            }
         }
     }
 
@@ -203,7 +211,7 @@ function ContentArea(props) {
                                 </div>
                             </OverlayTrigger>
                             <div className="sg-control-input-list-input input-group">
-                                {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url &&
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url && 
                                     play ?
                                         <OverlayTrigger
                                             key="top"
@@ -214,9 +222,15 @@ function ContentArea(props) {
                                                 </Tooltip>
                                             }
                                         >
-                                            <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
-                                                <FontAwesomeIcon icon={faPause}/>
-                                            </span>
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url !== '' ?
+                                                <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
+                                                    <FontAwesomeIcon icon={faPause}/>
+                                                </span>
+                                            :
+                                                <span type="button" className="btn btn-primary disabled">
+                                                    <FontAwesomeIcon icon={faPause}/>
+                                                </span>
+                                            }
                                         </OverlayTrigger>
                                     :
                                         <OverlayTrigger
@@ -228,9 +242,15 @@ function ContentArea(props) {
                                                 </Tooltip>
                                             }
                                         >
-                                            <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
-                                                <FontAwesomeIcon icon={faPlay}/>
-                                            </span>
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url !== '' ?
+                                                <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
+                                                    <FontAwesomeIcon icon={faPlay}/>
+                                                </span>
+                                            :
+                                                <span type="button" className="btn btn-primary disabled">
+                                                    <FontAwesomeIcon icon={faPlay}/>
+                                                </span>
+                                            }
                                         </OverlayTrigger>
                                 }
                             </div>
