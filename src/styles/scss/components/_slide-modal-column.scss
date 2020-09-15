@@ -16,7 +16,7 @@
                                                 }
 
                                                 .section-header {
-                                                    border-bottom: 2px solid rgba(0,0,0,.125) !important;
+                                                    // border-bottom: 2px solid rgba(0,0,0,.125) !important;
 
                                                     .column-item-remove-btn {
                                                         cursor: pointer;
@@ -77,8 +77,14 @@
                                                             span.sg-1-5 {
                                                                 width: calc(20% - 2px);
                                                             }
+                                                        }
+                                                    }
 
-
+                                                    ul.sg-column-layout.disabled {
+                                                        > li {
+                                                            pointer-events:none; //This makes it not clickable
+                                                            opacity:0.6; //This grays it out to look disabled
+                                                            cursor: not-allowed !important;
                                                         }
                                                     }
                                                 }
