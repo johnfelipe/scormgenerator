@@ -214,9 +214,9 @@ function ContentArea(props) {
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm" onClick={() => bgAudioControl()}>
+                                            <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
                                                 <FontAwesomeIcon icon={faPause}/>
-                                            </button>
+                                            </span>
                                         </OverlayTrigger>
                                     :
                                         <OverlayTrigger
@@ -228,9 +228,9 @@ function ContentArea(props) {
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm" onClick={() => bgAudioControl()}>
+                                            <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
                                                 <FontAwesomeIcon icon={faPlay}/>
-                                            </button>
+                                            </span>
                                         </OverlayTrigger>
                                 }
                             </div>
