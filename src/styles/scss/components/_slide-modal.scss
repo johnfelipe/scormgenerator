@@ -1,10 +1,10 @@
 @mixin slide-modal {
     html {
         body {
-            div.modal {
-                div.modal-dialog {
-                    div.modal-content {
-                        div.modal-body {
+            // div.modal {
+            //     div.modal-dialog {
+            //         div.modal-content {
+            //             div.modal-body {
                             form {
                                 input.error {
                                     border-color: red;
@@ -122,15 +122,15 @@
                                     display: none;
                                 }
                             }
-                        }
-                    }
-                }
+            //             }
+            //         }
+            //     }
 
-                .slide-modal-width {
-                    max-width: none;
-                    width: 95%;
-                }
-            }
+            //     .slide-modal-width {
+            //         max-width: none;
+            //         width: 95%;
+            //     }
+            // }
         }
     }
 }
