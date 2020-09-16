@@ -55,6 +55,12 @@ export function slide(state = initialState, action) {
                 ...state,
                 slideHandlerProps: action.addSlideProps
             };
+            
+        case slideContants.EDIT_SLIDE_PROPS:
+            return {
+                ...state,
+                slideHandlerProps: action.editSlideProps
+            };
     
         case slideContants.ERROR:
             return {

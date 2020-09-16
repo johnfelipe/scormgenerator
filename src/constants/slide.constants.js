@@ -27,4 +27,7 @@ export const slideContants = {
 
     // ADD SLIDE PROPS
     ADD_SLIDE_PROPS: 'ADD_SLIDE_PROPS_SUCCESS',
+    
+    // EDIT SLIDE PROPS
+    EDIT_SLIDE_PROPS: 'EDIT_SLIDE_PROPS_SUCCESS',
 };
