@@ -66,6 +66,7 @@ function CourseEditor() {
     ];
 
     useEffect(() => {
+        sessionStorage.clear();
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
@@ -192,6 +193,8 @@ function CourseEditor() {
             ,
         }
 
+        sessionStorage.setItem("cid", currentCourse.cid)
+
         dispatch(slideActions.toAddSlidePage(data));
     }
 
@@ -212,6 +215,8 @@ function CourseEditor() {
             slideItemId: "slide-item-" + slideIndex,
             lessonIndex: lessonIndex,
         }
+
+        sessionStorage.setItem("cid", currentCourse.cid)
 
         dispatch(slideActions.toAddSlidePage(data));
     }

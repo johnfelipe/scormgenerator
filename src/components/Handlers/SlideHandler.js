@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 
 // formik
 import { Formik } from "formik";
@@ -165,7 +166,7 @@ class SlideHandler extends Component {
     }
 
     componentDidMount = () => {
-        if(sessionStorage.getItem("selectedAnswers")) {
+        if (sessionStorage.getItem("selectedAnswers")) {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
         }
@@ -9126,6 +9127,16 @@ class SlideHandler extends Component {
             </Formik>
         );
 
+        if (objectHelpers.isEmpty(this.props.slideHandlerProps)) {
+            const cid = sessionStorage.getItem("cid");
+
+            if (cid) {
+                return <Redirect push to={"/course/" + cid} />
+            } else {
+                return <Redirect push to="/" />
+            }
+        }
+
         return (
             <div className="sg-add-slide-container py-3">
                 <div id="slide-handler-container">
@@ -9144,6 +9155,7 @@ const mapStateToProps = (state) => {
         slideColumns: state.slide.slideColumns,
         slides: state.slide.slides,
         slideHandlerProps: state.slide.slideHandlerProps,
+        currentCourse: state.course.currentCourse,
     }
 }
 
