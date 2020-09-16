@@ -63,8 +63,8 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            column: this.props.currentColumns ?
-                this.props.currentColumns
+            column: this.props.slideHandlerProps.currentColumns ?
+                this.props.slideHandlerProps.currentColumns
             :
                 [],
             columnSizes: [
@@ -170,14 +170,14 @@ class SlideHandler extends Component {
             sessionStorage.removeItem("selectedAnswers");
         }
 
-        if (this.props.sid) {
-            this.props.getSlideColumns(this.props.sid);
+        if (this.props.slideHandlerProps.sid) {
+            this.props.getSlideColumns(this.props.slideHandlerProps.sid);
         }
         
         // console.log('state.columns: ');
         // console.log(this.state.column);
         // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        // console.log(this.props.slideHandlerProps.currentColumns);
     }
 
     componentDidUpdate(prevProps, nextProps) {
@@ -186,54 +186,54 @@ class SlideHandler extends Component {
             sessionStorage.removeItem("selectedAnswers");
         }
 
-        if (this.props.sid !== prevProps.sid) {
-            this.props.getSlideColumns(this.props.sid);
+        if (this.props.slideHandlerProps.sid !== prevProps.sid) {
+            this.props.getSlideColumns(this.props.slideHandlerProps.sid);
         }
 
-        if ((this.state.column.length === 0) && (this.props.currentColumns !== undefined)) {
-            if (Array.isArray(this.props.currentColumns)) {
-                if (this.props.currentColumns.length !== 0) {
-                    this.setColumnState(this.props.currentColumns);
+        if ((this.state.column.length === 0) && (this.props.slideHandlerProps.currentColumns !== undefined)) {
+            if (Array.isArray(this.props.slideHandlerProps.currentColumns)) {
+                if (this.props.slideHandlerProps.currentColumns.length !== 0) {
+                    this.setColumnState(this.props.slideHandlerProps.currentColumns);
                 }
             }
         }
 
         // console.log('props.courseLayout: ');
-        // console.log(this.props.courseLayout);
+        // console.log(this.props.slideHandlerProps.courseLayout);
         // console.log('state.columns: ');
         // console.log(this.state.column);
         // console.log('props.columns: ');
-        // console.log(this.props.currentColumns);
+        // console.log(this.props.slideHandlerProps.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
-        // console.log('this.props.currentSlide');
-        // console.log(this.props.currentSlide);
-        // console.log('this.props.currentSlideIndex');
-        // console.log(this.props.currentSlideIndex);
-        // console.log('this.props.cid');
-        // console.log(this.props.cid);
-        // console.log('this.props.sid');
-        // console.log(this.props.sid);
-        // console.log('this.props.currentSlide.sid');
-        // console.log(this.props.currentSlide.sid);
-        // console.log('this.props.lid');
-        // console.log(this.props.lid);
-        // console.log('this.props.columns');
-        // console.log(this.props.columns);
-        // console.log('this.props.lessonIndex');
-        // console.log(this.props.lessonIndex);
+        // console.log('this.props.slideHandlerProps.currentSlide');
+        // console.log(this.props.slideHandlerProps.currentSlide);
+        // console.log('this.props.slideHandlerProps.currentSlideIndex');
+        // console.log(this.props.slideHandlerProps.currentSlideIndex);
+        // console.log('this.props.slideHandlerProps.cid');
+        // console.log(this.props.slideHandlerProps.cid);
+        // console.log('this.props.slideHandlerProps.sid');
+        // console.log(this.props.slideHandlerProps.sid);
+        // console.log('this.props.slideHandlerProps.currentSlide.sid');
+        // console.log(this.props.slideHandlerProps.currentSlide.sid);
+        // console.log('this.props.slideHandlerProps.lid');
+        // console.log(this.props.slideHandlerProps.lid);
+        // console.log('this.props.slideHandlerProps.columns');
+        // console.log(this.props.slideHandlerProps.columns);
+        // console.log('this.props.slideHandlerProps.lessonIndex');
+        // console.log(this.props.slideHandlerProps.lessonIndex);
 
-        // if (this.props.cid) {
-        //     this.props.getCourseLessons(this.props.cid);
+        // if (this.props.slideHandlerProps.cid) {
+        //     this.props.slideHandlerProps.getCourseLessons(this.props.slideHandlerProps.cid);
         // }
         // console.log('props.action');
-        // console.log(this.props.action);
+        // console.log(this.props.slideHandlerProps.action);
         // console.log('state.activeFeature');
         // console.log(this.state.activeFeature);
-        // console.log('this.props.slide');
-        // console.log(this.props.slide);
-        // console.log('this.props.column');
-        // console.log(this.props.columns);
+        // console.log('this.props.slideHandlerProps.slide');
+        // console.log(this.props.slideHandlerProps.slide);
+        // console.log('this.props.slideHandlerProps.column');
+        // console.log(this.props.slideHandlerProps.columns);
     }
 
     setColumnState = (columns) => {
@@ -310,7 +310,7 @@ class SlideHandler extends Component {
         if (action === "close" || action === "edit") {
             console.log('Edit here');
             this.setState({
-                column: this.props.currentColumns ? this.props.currentColumns : [],
+                column: this.props.slideHandlerProps.currentColumns ? this.props.slideHandlerProps.currentColumns : [],
                 activeFeature: '',
                 activeColumnId: 0,
                 activeTab: 'column',
@@ -4412,9 +4412,9 @@ class SlideHandler extends Component {
     }
 
     onSave = (slideObj, sid, lessonIndex, columnArray) => {
-        if (this.props.action === "add") {
-            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.currentSlideIndex, this.props.uid);
-        } else if (this.props.action === "edit") {
+        if (this.props.slideHandlerProps.action === "add") {
+            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid);
+        } else if (this.props.slideHandlerProps.action === "edit") {
             this.props.updateSlide(slideObj, sid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
@@ -4437,7 +4437,7 @@ class SlideHandler extends Component {
             // >
             //     <Modal.Header closeButton>
             //         <Modal.Title id="contained-modal-title-vcenter">
-            //             {this.props.action === "add" ?
+            //             {this.props.slideHandlerProps.action === "add" ?
             //                 <span>Add Slide</span>
             //                 :
             //                 <span>Edit Slide</span>
@@ -4454,16 +4454,16 @@ class SlideHandler extends Component {
 
                         onSubmit={values => {
                             const data = {
-                                lid: this.props.lid,
+                                lid: this.props.slideHandlerProps.lid,
                                 title: values.slideName,
                                 subtitle: values.slideSubtitle,
-                                uid: this.props.uid,
+                                uid: this.props.slideHandlerProps.uid,
                                 hide_title: values.showTitle ? 1 : 0,
                                 columns: [],
-                                weight: this.props.slideWeight,
+                                weight: this.props.slideHandlerProps.slideWeight,
                             }
 
-                            this.onSave(data, this.props.sid, this.props.lessonIndex, this.state.column);
+                            this.onSave(data, this.props.slideHandlerProps.sid, this.props.slideHandlerProps.lessonIndex, this.state.column);
                         }}
 
                         validationSchema={Yup.object().shape({
@@ -4588,7 +4588,7 @@ class SlideHandler extends Component {
                                             <label htmlFor="slideSubtitle" className="d-block">Media Library:</label>
                                             <GalleryHandler
                                                 buttonName="Open Library"
-                                                uid={this.props.uid}
+                                                uid={this.props.slideHandlerProps.uid}
                                             />
                                         </div>
                                     </div>
@@ -4619,7 +4619,7 @@ class SlideHandler extends Component {
                                                                                                 sid={item.sid}
                                                                                                 lid={item.lid}
                                                                                                 slideIndex={this.props.currentSlideIndex}
-                                                                                                lessonIndex={this.props.lessonIndex}
+                                                                                                lessonIndex={this.props.slideHandlerProps.addSlideProps.lessonIndex}
                                                                                                 columnIndex={columnIndex}
                                                                                                 currentColumn={item}
                                                                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
@@ -4630,7 +4630,7 @@ class SlideHandler extends Component {
                                                                                                 handleSizeActive={this.handleSizeActive}
                                                                                                 resetStates={this.resetStates}
                                                                                                 handleContentEditable={this.handleContentEditable}
-                                                                                                courseLayout={this.props.courseLayout}
+                                                                                                courseLayout={this.props.slideHandlerProps.courseLayout}
                                                                                                 dragHandleProps={provided.dragHandleProps}
                                                                                             />
                                                                                         </div>
@@ -4645,7 +4645,7 @@ class SlideHandler extends Component {
                                                                 <span></span>
                                                             }
                                                             {this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
-                                                                this.props.courseLayout === "fixed" ?
+                                                                this.props.slideHandlerProps.courseLayout === "fixed" ?
                                                                     this.state.column.length === 0 &&
                                                                     <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
                                                                         <span><FontAwesomeIcon icon={faPlus}/>Add Column</span>
@@ -4668,7 +4668,7 @@ class SlideHandler extends Component {
                                                     </Tab>
                                                     <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
                                                         {/* <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center"> */}
-                                                            {this.props.courseLayout === "fixed" ?
+                                                            {this.props.slideHandlerProps.courseLayout === "fixed" ?
                                                                 <Droppable droppableId="fixed-features">
                                                                     {(provided) => (
                                                                         <div ref={provided.innerRef} className="sg-feature-list">
@@ -4755,7 +4755,7 @@ class SlideHandler extends Component {
                                                             correctAnswers={this.state.correctAnswers}
                                                             setMediaFilesObject={this.props.setMediaFilesObject}
                                                             setActiveOutputIndex={this.setActiveOutputIndex}
-                                                            uid={this.props.uid}
+                                                            uid={this.props.slideHandlerProps.uid}
                                                         />
                                                     </Tab>
                                                 </Tabs>
@@ -9150,7 +9150,7 @@ class SlideHandler extends Component {
             // <div id="slide-handler-container" className="d-inline">
             <div className="sg-add-slide-container py-3">
                 <div id="slide-handler-container">
-                    {/* {this.props.action === "add" ?
+                    {/* {this.props.slideHandlerProps.action === "add" ?
                         <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
                     :
                         <div id="edit-slide-btn" className="d-inline">
@@ -9172,6 +9172,7 @@ const mapStateToProps = (state) => {
         currentColumn: state.column.currentColumn,
         slideColumns: state.slide.slideColumns,
         slides: state.slide.slides,
+        slideHandlerProps: state.slide.slideHandlerProps,
     }
 }
 
