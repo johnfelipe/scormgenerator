@@ -4416,10 +4416,10 @@ class SlideHandler extends Component {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid);
         } else if (this.props.slideHandlerProps.action === "edit") {
             this.props.updateSlide(slideObj, sid);
-            this.props.updateSlideFromCourseLesson(slideObj, this.props.currentSlideIndex, this.props.lessonIndex);
-            this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.currentSlideIndex, this.props.lessonIndex);
+            this.props.updateSlideFromCourseLesson(slideObj, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
+            this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             // creates column
-            this.stringifySlideColumns(sid, this.props.uid, columnArray, this.props.action);
+            this.stringifySlideColumns(sid, this.props.slideHandlerProps.uid, columnArray, this.props.slideHandlerProps.action);
         }
         
         this.setModalShow(false, 'save')
