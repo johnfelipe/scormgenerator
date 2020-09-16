@@ -9138,7 +9138,7 @@ class SlideHandler extends Component {
         }
 
         return (
-            <div className="sg-add-slide-container py-3">
+            <div className="sg-slide-page-container py-3">
                 <div id="slide-handler-container">
                     {slideModal}
                 </div>
