@@ -160,7 +160,7 @@ function ContentArea(props) {
             </div>
             <div className="sg-control sg-control-group">
                 <div className="sg-control-header">
-                    <label>Music</label>
+                    <label>Background Music</label>
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">

@@ -46,7 +46,7 @@ function Columns (props) {
     return (
         <Accordion key={'accordion-column-' + columnIndex} className="mb-2">
             <Card>
-                <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2" onClick={collapseListener}>
+                <Accordion.Toggle as={Card.Header} eventKey="0" className="section-header p-2" onClick={() => collapseListener(collapseId)}>
                     <ContentEditable
                         html={props.name}
                         onChange={(event) => props.handleContentEditable(event, columnIndex)}
@@ -54,7 +54,7 @@ function Columns (props) {
                     />
                     <button
                         type="button"
-                        className="float-right column-item-remove-btn btn btn-link p-0"
+                        className={courseLayout === "fixed" ? "d-none" : "float-right column-item-remove-btn btn btn-link p-0"}
                         title="Remove"
                         onClick={() => {
                             props.deleteColumn(columnIndex);
@@ -67,8 +67,8 @@ function Columns (props) {
                     >
                         <FontAwesomeIcon icon={faTrash} className="text-danger"/>
                     </button>
-                    <span className="float-right mr-3" {...dragHandleProps}><FontAwesomeIcon icon={faArrowsAlt}/></span>
-                    <span className="float-right mr-3"><FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/></span>
+                    <span className={courseLayout === "fixed" ? "d-none" : "float-right mr-3"} {...dragHandleProps}><FontAwesomeIcon icon={faArrowsAlt}/></span>
+                    <span className="float-right mr-3"><FontAwesomeIcon icon={collapseId ? faCaretUp : faCaretDown}/></span>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
                     <Card.Body className="section-body">
