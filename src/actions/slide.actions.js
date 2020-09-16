@@ -12,6 +12,7 @@ export const slideActions = {
     deleteSlide,
     duplicateSlide,
     toAddSlidePage,
+    toEditSlidePage,
 };
 
 function getAllSlides() {
@@ -196,4 +197,12 @@ function toAddSlidePage(addSlideProps) {
     };
 
     function success(addSlideProps) { return { type: slideContants.ADD_SLIDE_PROPS, addSlideProps } }
+}
+
+function toEditSlidePage(editSlideProps) {
+    return dispatch => {
+        dispatch(success(editSlideProps));
+    };
+
+    function success(editSlideProps) { return { type: slideContants.EDIT_SLIDE_PROPS, editSlideProps } }
 }
