@@ -514,51 +514,6 @@ function CourseEditor() {
                                                                                 </Card.Header>
                                                                                 <Accordion.Collapse eventKey="0">
                                                                                     <Card.Body>
-                                                                                        {/* <SlideHandler
-                                                                                            courseLayout={currentCourse.layout}
-                                                                                            action="edit"
-                                                                                            lessonIndex={lessonIndex}
-                                                                                            slideItemId={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        "slide-item-" + lesson.slides.length
-                                                                                                    :
-                                                                                                        "slide-item-" + 0
-                                                                                                :
-                                                                                                    "slide-item-" + 0
-                                                                                            }
-                                                                                            lessonId={lessonId}
-                                                                                            cid={currentCourse && currentCourse.cid}
-                                                                                            uid={currentCourse && currentCourse.uid}
-                                                                                            lid={lid}
-                                                                                            sid={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides[lesson.slides.length - 1].sid + 1
-                                                                                                    :
-                                                                                                        1
-                                                                                                :
-                                                                                                    1
-                                                                                            }
-                                                                                            currentSlideIndex={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides.length
-                                                                                                    :
-                                                                                                        0
-                                                                                                :
-                                                                                                    0
-                                                                                            }
-                                                                                            slideWeight={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides.length
-                                                                                                    :
-                                                                                                        1
-                                                                                                :
-                                                                                                    1
-                                                                                            }
-                                                                                        /> */}
                                                                                         <div id="slide-handler-add-btn" className="d-inline">
                                                                                             <Link
                                                                                                 to={"/course/" + currentCourse.cid + "/lesson/" + lesson.lid + "/add-slide"}
@@ -588,22 +543,6 @@ function CourseEditor() {
                                                                                                                         >
                                                                                                                             <div className="col-md-10 pl-0">
                                                                                                                                 <span className="btn pr-1">{slide.title}</span>
-                                                                                                                                {/* <SlideHandler
-                                                                                                                                    courseLayout={currentCourse.layout}
-                                                                                                                                    sid={slide.sid}
-                                                                                                                                    cid={currentCourse && currentCourse.cid}
-                                                                                                                                    uid={currentCourse && currentCourse.uid}
-                                                                                                                                    lid={lesson.lid}
-                                                                                                                                    currentSlideName={slide.title}
-                                                                                                                                    currentSlideSubtitle={slide.subtitle}
-                                                                                                                                    currentColumns={slide.columns}
-                                                                                                                                    hide_title={slide.hide_title}
-                                                                                                                                    currentClickedLessonId={currentClickedLessonId}
-                                                                                                                                    action="edit"
-                                                                                                                                    currentSlideIndex={slideIndex}
-                                                                                                                                    slideItemId={"slide-item-" + slideIndex}
-                                                                                                                                    lessonIndex={lessonIndex}
-                                                                                                                                /> */}
                                                                                                                                 <div id="slide-handler-add-btn" className="d-inline">
                                                                                                                                     <div id="edit-slide-btn" className="d-inline">
                                                                                                                                         <Link
