@@ -3,7 +3,7 @@ const initialState = {
     currentSlide: {},
     slides: [],
     slideColumns: [],
-    addSlideProps: {},
+    slideHandlerProps: {},
 }
 
 export function slide(state = initialState, action) {
@@ -53,7 +53,7 @@ export function slide(state = initialState, action) {
         case slideContants.ADD_SLIDE_PROPS:
             return {
                 ...state,
-                addSlideProps: action.addSlideProps
+                slideHandlerProps: action.addSlideProps
             };
     
         case slideContants.ERROR:
