@@ -1,7 +1,7 @@
 import { slideContants } from '../constants';
 import { slideService, } from '../services';
 import { courseActions, columnActions } from './';
-// import { history } from '../helpers';
+import { history } from '../helpers';
 
 export const slideActions = {
     getAllSlides,
@@ -36,7 +36,7 @@ function getAllSlides() {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
+function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
     return dispatch => {
         dispatch(request(data));
 
@@ -64,6 +64,9 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
 
                         dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     }
+
+                    history.push("/course/" + cid);
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));

@@ -4412,9 +4412,9 @@ class SlideHandler extends Component {
         })
     }
 
-    onSave = (slideObj, sid, lessonIndex, columnArray) => {
+    onSave = (slideObj, sid, lessonIndex, columnArray, cid) => {
         if (this.props.slideHandlerProps.action === "add") {
-            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid);
+            this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid, cid);
         } else if (this.props.slideHandlerProps.action === "edit") {
             this.props.updateSlide(slideObj, sid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
@@ -4422,8 +4422,6 @@ class SlideHandler extends Component {
             // creates column
             this.stringifySlideColumns(sid, this.props.slideHandlerProps.uid, columnArray, this.props.slideHandlerProps.action);
         }
-        
-        this.setModalShow(false, 'save')
     }
 
     render() {
@@ -4436,6 +4434,8 @@ class SlideHandler extends Component {
                 }}
 
                 onSubmit={values => {
+                    const cid = sessionStorage.getItem("cid");
+
                     const data = {
                         lid: this.props.slideHandlerProps.lid,
                         title: values.slideName,
@@ -4446,7 +4446,7 @@ class SlideHandler extends Component {
                         weight: this.props.slideHandlerProps.slideWeight,
                     }
 
-                    this.onSave(data, this.props.slideHandlerProps.sid, this.props.slideHandlerProps.lessonIndex, this.state.column);
+                    this.onSave(data, this.props.slideHandlerProps.sid, this.props.slideHandlerProps.lessonIndex, this.state.column, cid);
                 }}
 
                 validationSchema={Yup.object().shape({
@@ -9161,7 +9161,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createSlide: (data, lessonIndex, columnArray, slideIndex, uid) => dispatch(slideActions.createSlide(data, lessonIndex, columnArray, slideIndex, uid)),
+        createSlide: (data, lessonIndex, columnArray, slideIndex, uid, cid) => dispatch(slideActions.createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid)),
         getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
         appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
         updateSlide: (slideObj, lid) => dispatch(slideActions.updateSlide(slideObj, lid)),
