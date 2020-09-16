@@ -4627,7 +4627,7 @@ class SlideHandler extends Component {
                                                     :
                                                         <span></span>
                                                     }
-                                                    {this.state.isSlideNameNotEmpty || this.props.currentSlideName ?
+                                                    {this.state.isSlideNameNotEmpty || this.props.slideHandlerProps.currentSlideName ?
                                                         this.props.slideHandlerProps.courseLayout === "fixed" ?
                                                             this.state.column.length === 0 &&
                                                             <button type="button" className="sg-add-sortable-column-after" onClick={this.addColumn}>
