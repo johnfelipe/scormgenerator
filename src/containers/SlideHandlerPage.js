@@ -3,7 +3,7 @@ import React from 'react';
 //components
 import SlideHandler from '../components/Handlers/SlideHandler';
 
-function AddSlidePage() {
+function SlideHandlerPage() {
 
     return (
         <div className="container-fluid">
@@ -12,4 +12,4 @@ function AddSlidePage() {
     );
 }
 
-export default AddSlidePage;
+export default SlideHandlerPage;
