@@ -9133,7 +9133,11 @@ class SlideHandler extends Component {
                                             }
                                         </div>
                                     </DragDropContext>
-                                    <button type="submit" className="btn btn-success float-right mt-2">Save</button>
+                                    <div className="row m-0">
+                                        <div className="col-md-12">
+                                            <button type="submit" className="btn btn-success float-right mt-2">Save</button>
+                                        </div>
+                                    </div>
                                 </form>
                             );
                         }}
@@ -9144,15 +9148,17 @@ class SlideHandler extends Component {
 
         return (
             // <div id="slide-handler-container" className="d-inline">
-            <div id="slide-handler-container">
-                {/* {this.props.action === "add" ?
-                    <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
-                :
-                    <div id="edit-slide-btn" className="d-inline">
-                        <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true, 'edit')}>| Edit</button>
-                    </div>
-                } */}
-                {slideModal}
+            <div className="sg-add-slide-container py-3">
+                <div id="slide-handler-container">
+                    {/* {this.props.action === "add" ?
+                        <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
+                    :
+                        <div id="edit-slide-btn" className="d-inline">
+                            <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true, 'edit')}>| Edit</button>
+                        </div>
+                    } */}
+                    {slideModal}
+                </div>
             </div>
             // </div>
         )
