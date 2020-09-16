@@ -15,7 +15,8 @@ import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regul
 // react bootstrap
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import { Modal, Tab, Tabs } from 'react-bootstrap';
+// import { Modal, Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-bootstrap';
 
 // redux library
 import { connect } from 'react-redux';
