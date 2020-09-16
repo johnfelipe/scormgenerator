@@ -62,7 +62,10 @@ class SlideHandler extends Component {
         super(props);
         this.state = {
             modalShow: false,
-            column: this.props.currentColumns ? this.props.currentColumns : [],
+            column: this.props.currentColumns ?
+                this.props.currentColumns
+            :
+                [],
             columnSizes: [
                 { id: 0,items: [{ size: "1/1", class: "sg-1-1"}]},
                 { id: 1,items: [{ size: "1/2", class: "sg-1-2"}, { size: "1/2", class: "sg-1-2"}]},
@@ -169,7 +172,7 @@ class SlideHandler extends Component {
         if (this.props.sid) {
             this.props.getSlideColumns(this.props.sid);
         }
-
+        
         // console.log('state.columns: ');
         // console.log(this.state.column);
         // console.log('props.columns: ');
@@ -327,7 +330,7 @@ class SlideHandler extends Component {
 
     addColumn = () => {
         const currentCount = this.state.column.length + 1
-        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: 0, grid: 0, id: 'column' + currentCount, content: [] }
+        const columnObj = { type: 'column', name: 'Column ' + currentCount, active: 0, grid: 0, id: 'column' + currentCount, content: {} }
         // columnObj.content['subColumnOne'] = [];
         columnObj.content = {
             subColumnOne: []
