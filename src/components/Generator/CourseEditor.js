@@ -195,6 +195,27 @@ function CourseEditor() {
         dispatch(slideActions.toAddSlidePage(data));
     }
 
+    const redirectToEditSlidePage = (currentCourse, slide, lessonIndex, lesson, slideIndex) => {
+        const data = {
+            courseLayout: currentCourse.layout,
+            sid: slide.sid,
+            cid: currentCourse.cid,
+            uid: currentCourse.uid,
+            lid: lesson.lid,
+            currentSlideName: slide.title,
+            currentSlideSubtitle: slide.subtitle,
+            currentColumns: slide.columns,
+            hide_title: slide.hide_title,
+            currentClickedLessonId: currentClickedLessonId,
+            action: "edit",
+            currentSlideIndex: slideIndex,
+            slideItemId: "slide-item-" + slideIndex,
+            lessonIndex: lessonIndex,
+        }
+
+        dispatch(slideActions.toAddSlidePage(data));
+    }
+
     return (
         <div id="generator-container">
             <Formik
@@ -495,7 +516,7 @@ function CourseEditor() {
                                                                                     <Card.Body>
                                                                                         {/* <SlideHandler
                                                                                             courseLayout={currentCourse.layout}
-                                                                                            action="add"
+                                                                                            action="edit"
                                                                                             lessonIndex={lessonIndex}
                                                                                             slideItemId={
                                                                                                 lesson.slides ?
@@ -583,6 +604,15 @@ function CourseEditor() {
                                                                                                                                     slideItemId={"slide-item-" + slideIndex}
                                                                                                                                     lessonIndex={lessonIndex}
                                                                                                                                 /> */}
+                                                                                                                                <div id="slide-handler-add-btn" className="d-inline">
+                                                                                                                                    <div id="edit-slide-btn" className="d-inline">
+                                                                                                                                        <Link
+                                                                                                                                            to={"/course/" + currentCourse.cid + "/lesson/" + lesson.lid + "/edit-slide/" + slide.sid}
+                                                                                                                                            className="btn btn-link  pl-0"
+                                                                                                                                            onClick={() => redirectToEditSlidePage(currentCourse, slide, lessonIndex, lesson, slideIndex)}
+                                                                                                                                        >| Edit</Link>
+                                                                                                                                    </div>
+                                                                                                                                </div>
                                                                                                                             </div>
                                                                                                                             <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                                                                 <OverlayTrigger
