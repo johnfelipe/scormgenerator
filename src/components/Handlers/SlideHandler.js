@@ -186,9 +186,9 @@ class SlideHandler extends Component {
             sessionStorage.removeItem("selectedAnswers");
         }
 
-        if (this.props.slideHandlerProps.sid !== prevProps.sid) {
-            this.props.getSlideColumns(this.props.slideHandlerProps.sid);
-        }
+        // if (this.props.slideHandlerProps.sid !== prevProps.sid) {
+        //     this.props.getSlideColumns(this.props.slideHandlerProps.sid);
+        // }
 
         if ((this.state.column.length === 0) && (this.props.slideHandlerProps.currentColumns !== undefined)) {
             if (Array.isArray(this.props.slideHandlerProps.currentColumns)) {
@@ -4447,9 +4447,9 @@ class SlideHandler extends Component {
             //     <Modal.Body>
                     <Formik
                         initialValues={{ 
-                            slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
-                            slideSubtitle: this.props.currentSlideSubtitle ? this.props.currentSlideSubtitle : '',
-                            showTitle: this.props.hide_title ? true : false,
+                            slideName: this.props.slideHandlerProps.currentSlideName ? this.props.slideHandlerProps.currentSlideName : '',
+                            slideSubtitle: this.props.slideHandlerProps.currentSlideSubtitle ? this.props.slideHandlerProps.currentSlideSubtitle : '',
+                            showTitle: this.props.slideHandlerProps.hide_title ? true : false,
                         }}
 
                         onSubmit={values => {
@@ -4618,8 +4618,8 @@ class SlideHandler extends Component {
                                                                                                 clid={item.clid}
                                                                                                 sid={item.sid}
                                                                                                 lid={item.lid}
-                                                                                                slideIndex={this.props.currentSlideIndex}
-                                                                                                lessonIndex={this.props.slideHandlerProps.addSlideProps.lessonIndex}
+                                                                                                slideIndex={this.props.slideHandlerProps.currentSlideIndex}
+                                                                                                lessonIndex={this.props.slideHandlerProps.lessonIndex}
                                                                                                 columnIndex={columnIndex}
                                                                                                 currentColumn={item}
                                                                                                 currentColumnContentIndex={this.state.currentColumnContentIndex}
