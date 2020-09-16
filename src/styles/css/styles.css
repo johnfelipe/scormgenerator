@@ -539,18 +539,23 @@ html body #root .container-fluid {
   background-color: #70707021;
 }
 
-html body form input.error {
+html body div#slide-handler-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+html body div#slide-handler-container form input.error {
   border-color: red;
 }
-html body form .input-feedback {
+html body div#slide-handler-container form .input-feedback {
   color: #eb3636;
   font-size: 14px;
 }
-html body form div.row div#slide-sidebar .card-header-tabs {
+html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs {
   margin-right: 0rem !important;
   margin-left: 0rem !important;
 }
-html body form div.row div#slide-sidebar .card-header-tabs .nav-link {
+html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs .nav-link {
   width: calc(100% / 3);
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
@@ -562,10 +567,10 @@ html body form div.row div#slide-sidebar .card-header-tabs .nav-link {
   overflow: hidden;
   white-space: nowrap;
 }
-html body form div.row div#slide-sidebar .card-header-tabs .active {
+html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs .active {
   background-color: rgba(112, 112, 112, 0.25);
 }
-html body form div.row div#slide-sidebar .tab-content {
+html body div#slide-handler-container form div.row div#slide-sidebar .tab-content {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -574,44 +579,44 @@ html body form div.row div#slide-sidebar .tab-content {
   margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
-html body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {
+html body div#slide-handler-container form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {
   height: 503.21px;
 }
-html body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
+html body div#slide-handler-container form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
   overflow: auto !important;
   height: 462px;
 }
-html body form div.row div#slide-content div#slide-content-container {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container {
   max-height: 545px;
   overflow: auto;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-2 {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-2 {
   width: 48%;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-3 {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-3 {
   width: 30.66666%;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-2-3 {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-2-3 {
   width: 65.33332%;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-4 {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-4 {
   width: 22%;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-5 {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-5 {
   width: 16.8%;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column {
   margin-right: 4%;
   border: 2px dashed #e2e2e2;
   cursor: pointer;
 }
-html body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column:last-of-type {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column:last-of-type {
   margin-right: 0 !important;
 }
-html body form div.row div#slide-content div#slide-content-container .active-column {
+html body div#slide-handler-container form div.row div#slide-content div#slide-content-container .active-column {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-html body form .check-text input {
+html body div#slide-handler-container form .check-text input {
   display: none;
 }
 

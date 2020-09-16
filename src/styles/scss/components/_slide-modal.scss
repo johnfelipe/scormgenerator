@@ -5,6 +5,11 @@
             //     div.modal-dialog {
             //         div.modal-content {
             //             div.modal-body {
+                        div#slide-handler-container {
+                            width: 100%;
+                            margin: 0 auto;
+                            padding: 20px;
+                            
                             form {
                                 input.error {
                                     border-color: red;
@@ -122,6 +127,7 @@
                                     display: none;
                                 }
                             }
+                        }
             //             }
             //         }
             //     }
