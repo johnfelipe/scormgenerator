@@ -4426,24 +4426,24 @@ class SlideHandler extends Component {
 
     render() {
         const slideModal = (
-            <Modal
-                show={this.state.modalShow}
-                onHide={() => this.setModalShow(false, 'close')}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                dialogClassName="slide-modal-width"
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        {this.props.action === "add" ?
-                            <span>Add Slide</span>
-                            :
-                            <span>Edit Slide</span>
-                        }
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+            // <Modal
+            //     show={this.state.modalShow}
+            //     onHide={() => this.setModalShow(false, 'close')}
+            //     size="lg"
+            //     aria-labelledby="contained-modal-title-vcenter"
+            //     centered
+            //     dialogClassName="slide-modal-width"
+            // >
+            //     <Modal.Header closeButton>
+            //         <Modal.Title id="contained-modal-title-vcenter">
+            //             {this.props.action === "add" ?
+            //                 <span>Add Slide</span>
+            //                 :
+            //                 <span>Edit Slide</span>
+            //             }
+            //         </Modal.Title>
+            //     </Modal.Header>
+            //     <Modal.Body>
                     <Formik
                         initialValues={{ 
                             slideName: this.props.currentSlideName ? this.props.currentSlideName : '',
@@ -9137,21 +9137,23 @@ class SlideHandler extends Component {
                             );
                         }}
                     </Formik>
-                </Modal.Body>
-            </Modal>
+            //     </Modal.Body>
+            // </Modal>
         );
 
         return (
-            <div id="slide-handler-container" className="d-inline">
-                {this.props.action === "add" ?
+            // <div id="slide-handler-container" className="d-inline">
+            <div id="slide-handler-container">
+                {/* {this.props.action === "add" ?
                     <button type="button" className="btn btn-success" onClick={() => this.setModalShow(true, 'add')}>Add Slide</button>
                 :
                     <div id="edit-slide-btn" className="d-inline">
                         <button type="button" className="btn btn-link pl-0" onClick={() => this.setModalShow(true, 'edit')}>| Edit</button>
                     </div>
-                }
+                } */}
                 {slideModal}
             </div>
+            // </div>
         )
     }
 }
