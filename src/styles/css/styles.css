@@ -543,6 +543,7 @@ html body div#slide-handler-container {
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+  background: white;
 }
 html body div#slide-handler-container form input.error {
   border-color: red;
@@ -551,11 +552,11 @@ html body div#slide-handler-container form .input-feedback {
   color: #eb3636;
   font-size: 14px;
 }
-html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs {
+html body div#slide-handler-container form div.row div#slide-sidebar .nav-tabs {
   margin-right: 0rem !important;
   margin-left: 0rem !important;
 }
-html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs .nav-link {
+html body div#slide-handler-container form div.row div#slide-sidebar .nav-tabs .nav-link {
   width: calc(100% / 3);
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
@@ -567,7 +568,7 @@ html body div#slide-handler-container form div.row div#slide-sidebar .card-heade
   overflow: hidden;
   white-space: nowrap;
 }
-html body div#slide-handler-container form div.row div#slide-sidebar .card-header-tabs .active {
+html body div#slide-handler-container form div.row div#slide-sidebar .nav-tabs .active {
   background-color: rgba(112, 112, 112, 0.25);
 }
 html body div#slide-handler-container form div.row div#slide-sidebar .tab-content {
@@ -576,7 +577,6 @@ html body div#slide-handler-container form div.row div#slide-sidebar .tab-conten
   border-bottom: 1px solid #ddd;
   height: 502px;
   overflow: auto !important;
-  margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
 html body div#slide-handler-container form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {

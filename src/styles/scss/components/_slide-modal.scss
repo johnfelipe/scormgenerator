@@ -9,6 +9,7 @@
                             width: 100%;
                             margin: 0 auto;
                             padding: 20px;
+                            background: white;
                             
                             form {
                                 input.error {
@@ -22,7 +23,7 @@
 
                                 div.row {
                                     div#slide-sidebar {
-                                        .card-header-tabs {
+                                        .nav-tabs {
                                             margin-right: 0rem !important;
                                             margin-left: 0rem !important;
 
@@ -53,7 +54,7 @@
                                             // overflow: hidden !important;
                                             overflow: auto !important;
                                             // overflow: auto;
-                                            margin-top: 0.8rem !important;
+                                            // margin-top: 0.8rem !important;
                                             padding-top: 0 !important;
 
                                             #slide-tabs-tabpane-features {
