@@ -52,26 +52,22 @@ function Columns (props) {
                         onChange={(event) => props.handleContentEditable(event, columnIndex)}
                         className="content-editable d-inline"
                     />
-                    {courseLayout === "fluid" &&
-                        <>
-                            <button
-                                type="button"
-                                className="float-right column-item-remove-btn btn btn-link p-0"
-                                title="Remove"
-                                onClick={() => {
-                                    props.deleteColumn(columnIndex);
-                                    dispatch(courseActions.deleteSlideColumnFromCourseLesson(columnIndex, slideIndex, lessonIndex));
-                                    
-                                    if (clid) {
-                                        dispatch(columnActions.deleteColumn(clid));
-                                    }
-                                }}
-                            >
-                                <FontAwesomeIcon icon={faTrash} className="text-danger"/>
-                            </button>
-                            <span className="float-right mr-3" {...dragHandleProps}><FontAwesomeIcon icon={faArrowsAlt}/></span>
-                        </>
-                    }
+                    <button
+                        type="button"
+                        className={courseLayout === "fixed" ? "d-none" : "float-right column-item-remove-btn btn btn-link p-0"}
+                        title="Remove"
+                        onClick={() => {
+                            props.deleteColumn(columnIndex);
+                            dispatch(courseActions.deleteSlideColumnFromCourseLesson(columnIndex, slideIndex, lessonIndex));
+                            
+                            if (clid) {
+                                dispatch(columnActions.deleteColumn(clid));
+                            }
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faTrash} className="text-danger"/>
+                    </button>
+                    <span className={courseLayout === "fixed" ? "d-none" : "float-right mr-3"} {...dragHandleProps}><FontAwesomeIcon icon={faArrowsAlt}/></span>
                     <span className="float-right mr-3"><FontAwesomeIcon icon={collapseId ? faCaretUp : faCaretDown}/></span>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
