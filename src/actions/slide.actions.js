@@ -127,7 +127,7 @@ function getSlideColumns(id) {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function updateSlide(data, id) {
+function updateSlide(data, id, cid) {
     return dispatch => {
         dispatch(request(data));
 
@@ -136,6 +136,9 @@ function updateSlide(data, id) {
                 slide => { 
                     dispatch(success(slide));
                     // dispatch(alertActions.success('Slide updated successfully'));
+
+                    history.push("/course/" + cid);
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));
