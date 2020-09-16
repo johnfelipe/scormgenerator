@@ -3,58 +3,52 @@
         body {
             font-family: 'Open Sans';
 
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                .sg-workspace-controls {
-                                                    .sg-controls {
-                                                        .course-objectives-color-picker {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 180px;
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    .sg-workspace-controls {
+                                        .sg-controls {
+                                            .course-objectives-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 180px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 180px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 180px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 180px;
-                                                            }
-                                                        }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 180px;
+                                                }
+                                            }
 
-                                                        .sg-control {
-                                                            .sg-control-input {
-                                                                .accordion {
-                                                                    .card {
-                                                                        .card-header {
-                                                                            .row {
-                                                                                #action-buttons-group {
-                                                                                    button {
-                                                                                        position: absolute;
-                                                                                        top: 50%;
-                                                                                        -ms-transform: translateY(-50%);
-                                                                                        transform: translateY(-50%);
-                                                                                    }
-                                                                                }
+                                            .sg-control {
+                                                .sg-control-input {
+                                                    .accordion {
+                                                        .card {
+                                                            .card-header {
+                                                                .row {
+                                                                    #action-buttons-group {
+                                                                        button {
+                                                                            position: absolute;
+                                                                            top: 50%;
+                                                                            -ms-transform: translateY(-50%);
+                                                                            transform: translateY(-50%);
+                                                                        }
+                                                                    }
 
-                                                                                #edit-action-btn-grp {
-                                                                                    button {
-                                                                                        height: 30px;
-                                                                                        width:30px
-                                                                                    }
-                                                                                }
-                                                                            }
+                                                                    #edit-action-btn-grp {
+                                                                        button {
+                                                                            height: 30px;
+                                                                            width:30px
                                                                         }
                                                                     }
                                                                 }

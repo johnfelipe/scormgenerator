@@ -3,180 +3,174 @@
         body {
             font-family: 'Open Sans';
 
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-content {
-                                        #slide-content-container {
-                                            .feature-preview-container {
-                                                .sg-column {
-                                                    .content-output {
-                                                        #drag-drop-layout {
-                                                            text-align: left !important;
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-content {
+                            #slide-content-container {
+                                .feature-preview-container {
+                                    .sg-column {
+                                        .content-output {
+                                            #drag-drop-layout {
+                                                text-align: left !important;
 
-                                                            .question-group {
-                                                                .drag-drop-question-answers {
-                                                                    // columns: 2;
-                                                                    // -webkit-columns: 2;
-                                                                    // -moz-columns: 2;
-                                                                    li {
-                                                                        div.drag-drop {
-                                                                            line-height: 25px;
-                                                                            width: 100%;
-                                                                            cursor: pointer;
+                                                .question-group {
+                                                    .drag-drop-question-answers {
+                                                        // columns: 2;
+                                                        // -webkit-columns: 2;
+                                                        // -moz-columns: 2;
+                                                        li {
+                                                            div.drag-drop {
+                                                                line-height: 25px;
+                                                                width: 100%;
+                                                                cursor: pointer;
 
-                                                                            .drag-drop-label-selected {
-                                                                                background: #5eb75e;
-                                                                            }
-
-                                                                            // .drag-drop-label {
-                                                                            //     width: 45px;
-                                                                            //     height: 45px;
-                                                                            //     background: #778395;
-                                                                            //     color: white;
-                                                                            //     font-size: 28px;
-                                                                            //     line-height: 45px;
-                                                                            //     float: left;
-
-                                                                            //     @media only screen and (max-width: 1366px) {
-                                                                            //         width: 35px;
-                                                                            //         height: 35px;
-                                                                            //         font-size: 20px;
-                                                                            //         line-height: 35px;
-                                                                            //     }
-                                                                            // }
-
-                                                                            .drag-drop-choice-text {
-                                                                                height: 50px;
-                                                                                line-height: 25px;
-                                                                                float: left;
-                                                                                // padding-left: 20px;
-
-                                                                                @media only screen and (max-width: 1366px) {
-                                                                                    font-size: 14px;
-                                                                                }
-
-                                                                                .target {
-                                                                                    display: inline-block;
-                                                                                    width: 110px;
-                                                                                    background: lightblue;
-                                                                                    margin: 0 3px;
-                                                                                    text-align:center;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
+                                                                .drag-drop-label-selected {
+                                                                    background: #5eb75e;
                                                                 }
 
-                                                                .drag-drop-answer-here {
-                                                                    position: absolute;
-                                                                    top: 50%;
-                                                                    left: 50%;
-                                                                    transform: translate(-50%, -50%);
-                                                                }
+                                                                // .drag-drop-label {
+                                                                //     width: 45px;
+                                                                //     height: 45px;
+                                                                //     background: #778395;
+                                                                //     color: white;
+                                                                //     font-size: 28px;
+                                                                //     line-height: 45px;
+                                                                //     float: left;
 
-                                                                ul.options {
-                                                                    position: relative;
-                                                                    display: inline-block;
-                                                                    vertical-align: top;
-                                                                    width: 165px;
-                                                                    list-style: none;
-                                                                    border: 1px solid #19286C;
-                                                                    text-align: center;
-                                                                    padding: 0;
-                                                                    margin: 0;
+                                                                //     @media only screen and (max-width: 1366px) {
+                                                                //         width: 35px;
+                                                                //         height: 35px;
+                                                                //         font-size: 20px;
+                                                                //         line-height: 35px;
+                                                                //     }
+                                                                // }
 
-                                                                    li {
-                                                                        border: 1px solid transparent;
-                                                                        padding: 6px 8px;
+                                                                .drag-drop-choice-text {
+                                                                    height: 50px;
+                                                                    line-height: 25px;
+                                                                    float: left;
+                                                                    // padding-left: 20px;
+
+                                                                    @media only screen and (max-width: 1366px) {
+                                                                        font-size: 14px;
                                                                     }
 
-                                                                    li.title {
-                                                                        // background: #19286C;
-                                                                        color: white;
-                                                                    }
-
-                                                                    li.option { 
-                                                                        display: block;
-                                                                        position: relative;
-                                                                        z-index: 50;
-                                                                        font-size: 13px;
+                                                                    .target {
+                                                                        display: inline-block;
+                                                                        width: 110px;
+                                                                        background: lightblue;
+                                                                        margin: 0 3px;
+                                                                        text-align:center;
                                                                     }
                                                                 }
                                                             }
+                                                        }
+                                                    }
+
+                                                    .drag-drop-answer-here {
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(-50%, -50%);
+                                                    }
+
+                                                    ul.options {
+                                                        position: relative;
+                                                        display: inline-block;
+                                                        vertical-align: top;
+                                                        width: 165px;
+                                                        list-style: none;
+                                                        border: 1px solid #19286C;
+                                                        text-align: center;
+                                                        padding: 0;
+                                                        margin: 0;
+
+                                                        li {
+                                                            border: 1px solid transparent;
+                                                            padding: 6px 8px;
+                                                        }
+
+                                                        li.title {
+                                                            // background: #19286C;
+                                                            color: white;
+                                                        }
+
+                                                        li.option { 
+                                                            display: block;
+                                                            position: relative;
+                                                            z-index: 50;
+                                                            font-size: 13px;
                                                         }
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
 
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                .sg-workspace-controls {
-                                                    .sg-controls {
-                                                        .drag-drop-color-picker-bg {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 130px;
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    .sg-workspace-controls {
+                                        .sg-controls {
+                                            .drag-drop-color-picker-bg {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 130px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 130px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 130px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 130px;
-                                                            }
-                                                        }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 130px;
+                                                }
+                                            }
 
-                                                        .drag-drop-color-picker-tc {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 175px;
+                                            .drag-drop-color-picker-tc {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 175px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 175px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 175px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 175px;
-                                                            }
-                                                        }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 175px;
+                                                }
+                                            }
 
-                                                        .sg-control {
-                                                            .sg-control-content {
-                                                                .sg-control-input-list{
-                                                                    .sg-control-input-list-item-text {
-                                                                        .sg-control-input-list-input {
-                                                                            .drag-drop-question-list {
-                                                                                .drag-drop-question-list-item {
-                                                                                    .accordion {
-                                                                                        .card {
-                                                                                            .collapse {
-                                                                                                .tab-content {
-                                                                                                    #question-answers-files-tabs-tabpane-answers {
-                                                                                                        .drag-drop-question-action-button {
-                                                                                                            .col-md-6 {
-                                                                                                                .multi-select {
-                                                                                                                    --rmsc-h: 29.4px; /* Height */
-                                                                                                                  }
-                                                                                                            }
+                                            .sg-control {
+                                                .sg-control-content {
+                                                    .sg-control-input-list{
+                                                        .sg-control-input-list-item-text {
+                                                            .sg-control-input-list-input {
+                                                                .drag-drop-question-list {
+                                                                    .drag-drop-question-list-item {
+                                                                        .accordion {
+                                                                            .card {
+                                                                                .collapse {
+                                                                                    .tab-content {
+                                                                                        #question-answers-files-tabs-tabpane-answers {
+                                                                                            .drag-drop-question-action-button {
+                                                                                                .col-md-6 {
+                                                                                                    .multi-select {
+                                                                                                        --rmsc-h: 29.4px; /* Height */
                                                                                                         }
-                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -190,128 +184,128 @@
                                                         }
                                                     }
                                                 }
+                                            }
+                                        }
+                                    }
 
-                                                ul.drag-drop-question-list {
-                                                    .drag-drop-question-list-item {
-                                                        // ul.drag-drop-question-list {
-                                                        //     columns: 2;
-                                                        //     -webkit-columns: 2;
-                                                        //     -moz-columns: 2;
-                                                        // }
-                                                        
-                                                        .drag-drop-control-input-wrapper {
-                                                            display: flex;
-                                                            align-items: flex-start;
-                                                            margin: 7px 0 0;
-                                                            
-                                                            .drag-drop-control-input-label {
-                                                                display: flex;
-                                                                flex-direction: column;
-                                                                justify-content: center;
-                                                                align-items: flex-start;
-                                                                flex: 0 0 20px;
-                                                                position: relative;
-                                                                height: 32px;
-                                                                padding: 0 5px 0 0;
-                                                                font-size: 10px;
-                                                            }
+                                    ul.drag-drop-question-list {
+                                        .drag-drop-question-list-item {
+                                            // ul.drag-drop-question-list {
+                                            //     columns: 2;
+                                            //     -webkit-columns: 2;
+                                            //     -moz-columns: 2;
+                                            // }
+                                            
+                                            .drag-drop-control-input-wrapper {
+                                                display: flex;
+                                                align-items: flex-start;
+                                                margin: 7px 0 0;
+                                                
+                                                .drag-drop-control-input-label {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: flex-start;
+                                                    flex: 0 0 20px;
+                                                    position: relative;
+                                                    height: 32px;
+                                                    padding: 0 5px 0 0;
+                                                    font-size: 10px;
+                                                }
 
-                                                            .drag-drop-control-input {
-                                                                flex: 1 1;
+                                                .drag-drop-control-input {
+                                                    flex: 1 1;
 
-                                                                input[type=text] {
-                                                                    position: relative;
-                                                                    display: block;
-                                                                    width: 100%;
-                                                                    min-width: 1px;
-                                                                    height: 32px;
-                                                                    margin: 0;
-                                                                    border: 1px solid #ddd;
-                                                                    padding: 5px 7px;
-                                                                    font-family: inherit;
-                                                                    font-size: 14px;
-                                                                    font-weight: 400;
-                                                                    line-height: 32px;
-                                                                    color: #444;
-                                                                    background-color: #fff;
-                                                                    outline: 0;
-                                                                    border-radius: 0;
-                                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
-                                                                    z-index: 5;
-                                                                }
-                                                            }
+                                                    input[type=text] {
+                                                        position: relative;
+                                                        display: block;
+                                                        width: 100%;
+                                                        min-width: 1px;
+                                                        height: 32px;
+                                                        margin: 0;
+                                                        border: 1px solid #ddd;
+                                                        padding: 5px 7px;
+                                                        font-family: inherit;
+                                                        font-size: 14px;
+                                                        font-weight: 400;
+                                                        line-height: 32px;
+                                                        color: #444;
+                                                        background-color: #fff;
+                                                        outline: 0;
+                                                        border-radius: 0;
+                                                        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+                                                        z-index: 5;
+                                                    }
+                                                }
 
-                                                            .drag-drop-control-button {
-                                                                padding-left: 5px
-                                                            }
-                                                        }
+                                                .drag-drop-control-button {
+                                                    padding-left: 5px
+                                                }
+                                            }
 
-                                                        .accordion {
-                                                            .card {
-                                                                .card-body {
-                                                                    .card-header-tabs {
-                                                                        margin-top: 10px;
+                                            .accordion {
+                                                .card {
+                                                    .card-body {
+                                                        .card-header-tabs {
+                                                            margin-top: 10px;
 
-                                                                        .nav-link {
-                                                                            width: calc(100%/3);
-                                                                        }
-                                                                    }
-
-                                                                    .tab-content {
-                                                                        padding: 10px;
-                                                                        height: 200px;
-                                                                        overflow: auto !important;
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            .drag-drop-question-files-list {
-                                                                                .drag-drop-question-files-list-item {
-                                                                                    #drag-drop-question-file-item {
-                                                                                        user-select: none;
-                                                                                        padding: 10px;
-                                                                                        margin: 0px 0px 8px 0px;
-                                                                                        background: whitesmoke;
-                                                                                        // border-radius: 5px;
-
-                                                                                        .drag-drop-question-file-item-delete {
-                                                                                            cursor: pointer;
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            ul.drag-drop-question-files-list {
-                                                                                li.drag-drop-question-files-list-item {
-                                                                                    #drag-drop-question-file-item {
-                                                                                        text-overflow: ellipsis;
-                                                                                    }
-
-                                                                                    .sg-accordion {
-                                                                                        list-style-type: none;
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
+                                                            .nav-link {
+                                                                width: calc(100%/3);
                                                             }
                                                         }
 
-                                                        #drag-drop-feature-answer-list-item {
-                                                            -webkit-user-select: none;
-                                                            user-select: none;
+                                                        .tab-content {
                                                             padding: 10px;
-                                                            margin: 0px 0px 8px 0px;
-                                                            background: whitesmoke;
+                                                            height: 200px;
+                                                            overflow: auto !important;
 
-                                                            #drag-drop-feature-answer-list-item-answer {
-                                                                text-overflow: ellipsis !important;
-                                                                overflow: hidden;
-                                                                white-space: nowrap;
+                                                            #question-answers-files-tabs-tabpane-files {
+                                                                .drag-drop-question-files-list {
+                                                                    .drag-drop-question-files-list-item {
+                                                                        #drag-drop-question-file-item {
+                                                                            user-select: none;
+                                                                            padding: 10px;
+                                                                            margin: 0px 0px 8px 0px;
+                                                                            background: whitesmoke;
+                                                                            // border-radius: 5px;
+
+                                                                            .drag-drop-question-file-item-delete {
+                                                                                cursor: pointer;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            #question-answers-files-tabs-tabpane-files {
+                                                                ul.drag-drop-question-files-list {
+                                                                    li.drag-drop-question-files-list-item {
+                                                                        #drag-drop-question-file-item {
+                                                                            text-overflow: ellipsis;
+                                                                        }
+
+                                                                        .sg-accordion {
+                                                                            list-style-type: none;
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
+                                                }
+                                            }
+
+                                            #drag-drop-feature-answer-list-item {
+                                                -webkit-user-select: none;
+                                                user-select: none;
+                                                padding: 10px;
+                                                margin: 0px 0px 8px 0px;
+                                                background: whitesmoke;
+
+                                                #drag-drop-feature-answer-list-item-answer {
+                                                    text-overflow: ellipsis !important;
+                                                    overflow: hidden;
+                                                    white-space: nowrap;
                                                 }
                                             }
                                         }

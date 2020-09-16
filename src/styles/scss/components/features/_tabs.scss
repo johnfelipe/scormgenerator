@@ -3,90 +3,84 @@
         body {
             font-family: 'Open Sans';
 
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-content {
-                                        #slide-content-container {
-                                            .feature-preview-container {
-                                                .sg-column {
-                                                    .content-output {
-                                                        #tabs-layout {
-                                                            .card-header-tabs {
-                                                                border-bottom: 1px solid #dee2e6 !important;
-                                                                margin-bottom: 0 !important;
-                                                            }
-                                                        }
-                                                    }
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-content {
+                            #slide-content-container {
+                                .feature-preview-container {
+                                    .sg-column {
+                                        .content-output {
+                                            #tabs-layout {
+                                                .card-header-tabs {
+                                                    border-bottom: 1px solid #dee2e6 !important;
+                                                    margin-bottom: 0 !important;
                                                 }
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
 
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                ul.tabs-list {
-                                                    .tabs-list-item {
-                                                        
-                                                        .tabs-control-input-wrapper {
-                                                            display: flex;
-                                                            align-items: flex-start;
-                                                            margin: 7px 0 0;
-                                                            
-                                                            .tabs-control-input-label {
-                                                                display: flex;
-                                                                flex-direction: column;
-                                                                justify-content: center;
-                                                                align-items: flex-start;
-                                                                flex: 0 0 20px;
-                                                                position: relative;
-                                                                height: 32px;
-                                                                padding: 0 5px 0 0;
-                                                                font-size: 10px;
-                                                            }
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    ul.tabs-list {
+                                        .tabs-list-item {
+                                            
+                                            .tabs-control-input-wrapper {
+                                                display: flex;
+                                                align-items: flex-start;
+                                                margin: 7px 0 0;
+                                                
+                                                .tabs-control-input-label {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: flex-start;
+                                                    flex: 0 0 20px;
+                                                    position: relative;
+                                                    height: 32px;
+                                                    padding: 0 5px 0 0;
+                                                    font-size: 10px;
+                                                }
 
-                                                            .tabs-control-input {
-                                                                flex: 1 1;
+                                                .tabs-control-input {
+                                                    flex: 1 1;
 
-                                                                input[type=text] {
-                                                                    position: relative;
-                                                                    display: block;
-                                                                    width: 100%;
-                                                                    min-width: 1px;
-                                                                    height: 32px;
-                                                                    margin: 0;
-                                                                    border: 1px solid #ddd;
-                                                                    padding: 5px 7px;
-                                                                    font-family: inherit;
-                                                                    font-size: 14px;
-                                                                    font-weight: 400;
-                                                                    line-height: 32px;
-                                                                    color: #444;
-                                                                    background-color: #fff;
-                                                                    outline: 0;
-                                                                    border-radius: 0;
-                                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
-                                                                    z-index: 5;
-                                                                }
-                                                            }
+                                                    input[type=text] {
+                                                        position: relative;
+                                                        display: block;
+                                                        width: 100%;
+                                                        min-width: 1px;
+                                                        height: 32px;
+                                                        margin: 0;
+                                                        border: 1px solid #ddd;
+                                                        padding: 5px 7px;
+                                                        font-family: inherit;
+                                                        font-size: 14px;
+                                                        font-weight: 400;
+                                                        line-height: 32px;
+                                                        color: #444;
+                                                        background-color: #fff;
+                                                        outline: 0;
+                                                        border-radius: 0;
+                                                        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+                                                        z-index: 5;
+                                                    }
+                                                }
 
-                                                            .tabs-control-button {
-                                                                padding-left: 5px
-                                                            }
-                                                        }
+                                                .tabs-control-button {
+                                                    padding-left: 5px
+                                                }
+                                            }
 
-                                                        .accordion {
-                                                            .card {
-                                                                .card-body {
-                                                                    .card-header-tabs {
-                                                                        margin-top: 10px;
-                                                                    }
-                                                                }
-                                                            }
+                                            .accordion {
+                                                .card {
+                                                    .card-body {
+                                                        .card-header-tabs {
+                                                            margin-top: 10px;
                                                         }
                                                     }
                                                 }

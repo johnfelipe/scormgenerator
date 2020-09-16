@@ -1,143 +1,132 @@
 @mixin slide-modal {
     html {
         body {
-            // div.modal {
-            //     div.modal-dialog {
-            //         div.modal-content {
-            //             div.modal-body {
-                        div#slide-handler-container {
-                            width: 100%;
-                            margin: 0 auto;
-                            padding: 20px;
-                            background: white;
-                            
-                            form {
-                                input.error {
-                                    border-color: red;
+            .sg-slide-page-container {
+                div#slide-handler-container {
+                    width: 100%;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background: white;
+                    
+                    form {
+                        input.error {
+                            border-color: red;
+                        }
+                        
+                        .input-feedback {
+                            color: rgb(235, 54, 54);
+                            font-size: 14px;
+                        }
+
+                        div.row {
+                            div#slide-sidebar {
+                                .nav-tabs {
+                                    margin-right: 0rem !important;
+                                    margin-left: 0rem !important;
+
+                                    .nav-link {
+                                        width: calc(100% / 3);
+                                        border-left: 1px solid #ddd;
+                                        border-top: 1px solid #ddd;
+                                        // border-bottom: 1px solid #ddd;
+                                        border-bottom: 1.5px solid #ddd;
+                                        border-right: 1px solid #ddd;
+                                        border-top-left-radius: 0rem !important;
+                                        border-top-right-radius: 0rem !important;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        white-space:nowrap;
+                                    }
+
+                                    .active {
+                                        background-color: rgb(112, 112, 112, 0.25);
+                                    }
                                 }
-                                
-                                .input-feedback {
-                                    color: rgb(235, 54, 54);
-                                    font-size: 14px;
-                                }
 
-                                div.row {
-                                    div#slide-sidebar {
-                                        .nav-tabs {
-                                            margin-right: 0rem !important;
-                                            margin-left: 0rem !important;
+                                .tab-content {
+                                    border-left: 1px solid #ddd;
+                                    border-right: 1px solid #ddd;
+                                    border-bottom: 1px solid #ddd;
+                                    height: 502px;
+                                    // overflow: hidden !important;
+                                    overflow: auto !important;
+                                    // overflow: auto;
+                                    // margin-top: 0.8rem !important;
+                                    padding-top: 0 !important;
 
-                                            .nav-link {
-                                                width: calc(100% / 3);
-                                                border-left: 1px solid #ddd;
-                                                border-top: 1px solid #ddd;
-                                                // border-bottom: 1px solid #ddd;
-                                                border-bottom: 1.5px solid #ddd;
-                                                border-right: 1px solid #ddd;
-                                                border-top-left-radius: 0rem !important;
-                                                border-top-right-radius: 0rem !important;
-                                                text-overflow: ellipsis;
-                                                overflow: hidden;
-                                                white-space:nowrap;
-                                            }
-
-                                            .active {
-                                                background-color: rgb(112, 112, 112, 0.25);
-                                            }
-                                        }
+                                    #slide-tabs-tabpane-features {
+                                        height: 503.21px;
 
                                         .tab-content {
-                                            border-left: 1px solid #ddd;
-                                            border-right: 1px solid #ddd;
-                                            border-bottom: 1px solid #ddd;
-                                            height: 502px;
-                                            // overflow: hidden !important;
                                             overflow: auto !important;
-                                            // overflow: auto;
-                                            // margin-top: 0.8rem !important;
-                                            padding-top: 0 !important;
+                                            height: 462px
+                                        }
+                                    }
 
-                                            #slide-tabs-tabpane-features {
-                                                height: 503.21px;
+                                    // #slide-tabs-tabpane-column, #slide-tabs-tabpane-editor {
+                                        // overflow: auto;
+                                        // margin-top: 0.8rem !important;
+                                    // }
+                                }
+                            }
 
-                                                .tab-content {
-                                                    overflow: auto !important;
-                                                    height: 462px
-                                                }
-                                            }
+                            div#slide-content {
+                                div#slide-content-container {
+                                    max-height: 545px;
+                                    overflow: auto;
 
-                                            // #slide-tabs-tabpane-column, #slide-tabs-tabpane-editor {
-                                                // overflow: auto;
-                                                // margin-top: 0.8rem !important;
+                                    .feature-preview-container {
+                                        .sg-1-2 {
+                                            width: 48%;
+                                        }
+
+                                        .sg-1-3 {
+                                            width: 30.66666%;
+                                        }
+
+                                        .sg-2-3 {
+                                            width: 65.33332%;
+                                        }
+
+                                        .sg-1-4 {
+                                            width: 22%;
+                                        }
+
+                                        .sg-1-5 {
+                                            width: 16.8%;
+                                        }
+
+                                        .sg-column {
+                                            margin-right: 4%;
+                                            // max-height: 200px;
+                                            border: 2px dashed #e2e2e2;
+                                            cursor: pointer;
+
+                                            // .content-output {
+                                            //     // span {
+                                            //         padding: 10px 15px;
+                                            //     // }
                                             // }
                                         }
-                                    }
 
-                                    div#slide-content {
-                                        div#slide-content-container {
-                                            max-height: 545px;
-                                            overflow: auto;
-
-                                            .feature-preview-container {
-                                                .sg-1-2 {
-                                                    width: 48%;
-                                                }
-
-                                                .sg-1-3 {
-                                                    width: 30.66666%;
-                                                }
-
-                                                .sg-2-3 {
-                                                    width: 65.33332%;
-                                                }
-
-                                                .sg-1-4 {
-                                                    width: 22%;
-                                                }
-
-                                                .sg-1-5 {
-                                                    width: 16.8%;
-                                                }
-
-                                                .sg-column {
-                                                    margin-right: 4%;
-                                                    // max-height: 200px;
-                                                    border: 2px dashed #e2e2e2;
-                                                    cursor: pointer;
-
-                                                    // .content-output {
-                                                    //     // span {
-                                                    //         padding: 10px 15px;
-                                                    //     // }
-                                                    // }
-                                                }
-
-                                                .sg-column:last-of-type {
-                                                    margin-right: 0 !important;
-                                                }
-                                            }
-
-                                            .active-column {
-                                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                                            }
+                                        .sg-column:last-of-type {
+                                            margin-right: 0 !important;
                                         }
                                     }
-                                }
 
-                                .check-text input {
-                                    display: none;
+                                    .active-column {
+                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                                    }
                                 }
                             }
                         }
-            //             }
-            //         }
-            //     }
 
-            //     .slide-modal-width {
-            //         max-width: none;
-            //         width: 95%;
-            //     }
-            // }
+                        .check-text input {
+                            display: none;
+                        }
+                    }
+                }
+            }
         }
     }
 }
