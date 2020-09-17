@@ -8,6 +8,14 @@
                     margin: 0 auto;
                     padding: 20px;
 
+                    .breadcrumb {
+                        .breadcrumb-item {
+                            a:hover {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
                     .row {
                         input.error, label.error {
                             border-color: red;
