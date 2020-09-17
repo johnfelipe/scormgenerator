@@ -539,18 +539,24 @@ html body #root .container-fluid {
   background-color: #70707021;
 }
 
-html body div.modal div.modal-dialog div.modal-content div.modal-body form input.error {
+html body .sg-slide-page-container div#slide-handler-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+}
+html body .sg-slide-page-container div#slide-handler-container form input.error {
   border-color: red;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form .input-feedback {
+html body .sg-slide-page-container div#slide-handler-container form .input-feedback {
   color: #eb3636;
   font-size: 14px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .card-header-tabs {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .nav-tabs {
   margin-right: 0rem !important;
   margin-left: 0rem !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .card-header-tabs .nav-link {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .nav-tabs .nav-link {
   width: calc(100% / 3);
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
@@ -562,61 +568,56 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   overflow: hidden;
   white-space: nowrap;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .card-header-tabs .active {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .nav-tabs .active {
   background-color: rgba(112, 112, 112, 0.25);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .tab-content {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: 502px;
   overflow: auto !important;
-  margin-top: 0.8rem !important;
   padding-top: 0 !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features {
   height: 503.21px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-sidebar .tab-content #slide-tabs-tabpane-features .tab-content {
   overflow: auto !important;
   height: 462px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container {
   max-height: 545px;
   overflow: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-2 {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-2 {
   width: 48%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-3 {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-3 {
   width: 30.66666%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-2-3 {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-2-3 {
   width: 65.33332%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-4 {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-4 {
   width: 22%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-5 {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-1-5 {
   width: 16.8%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column {
   margin-right: 4%;
   border: 2px dashed #e2e2e2;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column:last-of-type {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .feature-preview-container .sg-column:last-of-type {
   margin-right: 0 !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-content div#slide-content-container .active-column {
+html body .sg-slide-page-container div#slide-handler-container form div.row div#slide-content div#slide-content-container .active-column {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form .check-text input {
+html body .sg-slide-page-container div#slide-handler-container form .check-text input {
   display: none;
-}
-html body div.modal .slide-modal-width {
-  max-width: none;
-  width: 95%;
 }
 
 html body div.modal div.resources-modal div.modal-content div.modal-body form .custom-file-label {
@@ -643,32 +644,32 @@ html body div.modal div.glossary-modal div.modal-content div.modal-body form .gl
   overflow: auto;
 }
 
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .sg-workspace-content-section {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .sg-workspace-content-section {
   padding: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .section-header .column-item-remove-btn {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .section-header .column-item-remove-btn {
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body {
   border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout {
   float: left;
   width: calc(100% + (8px));
   margin: -8px -5px -3px -3px;
   padding: 0;
   list-style: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout li.sg-active > span, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout li:hover > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout li.sg-active > span, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout li:hover > span {
   background-color: #2980b9;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li {
   float: left;
   margin: 3px;
   width: calc(25% - (6px));
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span {
   background-color: #d9e6ee;
   overflow: hidden;
   position: relative;
@@ -680,27 +681,27 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-indent: -9999em;
   border-radius: 2px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-2 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-2 {
   width: calc(50% - 2px);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-3 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-3 {
   width: calc(33.333333% - 2px);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-2-3 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-2-3 {
   width: calc(66.666667% - 2px);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-4 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-4 {
   width: calc(25% - 2px);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-5 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-5 {
   width: calc(20% - 2px);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout.disabled > li {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout.disabled > li {
   pointer-events: none;
   opacity: 0.6;
   cursor: not-allowed !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column] {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column] {
   left: 0;
   right: 0;
   height: 20px;
@@ -713,7 +714,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   color: #bcbcbc;
   overflow: hidden;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column] {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column] {
   display: block;
   margin: 0;
   background-color: transparent;
@@ -722,14 +723,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column]:hover {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column [class*=sg-add-sortable-column]:hover {
   color: green;
 }
 
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features #templates-title {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features #templates-title {
   margin-top: -5.5px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -737,7 +738,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   box-shadow: inset 0 -1px 0 0 #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item {
   display: flex;
   align-items: center;
   flex: 1 1 100%;
@@ -750,7 +751,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item h4 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item h4 {
   flex: 0 1 auto;
   overflow: hidden;
   min-width: 1px;
@@ -764,47 +765,47 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   white-space: nowrap;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item .feature-icon {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-features .sg-feature-list .sg-feature-list-item .feature-icon {
   height: 30px;
   width: 30px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor {
   height: 90%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
   flex-grow: 1;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
   border-bottom: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control {
   position: relative;
   padding: 20px;
   border-bottom: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-scroll-box {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-scroll-box {
   position: relative;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .ps {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .ps {
   overflow: hidden !important;
   overflow-anchor: none;
   touch-action: auto;
   -ms-overflow-style: none;
   -ms-touch-action: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
   padding: 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions {
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   height: 70px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -818,14 +819,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
   width: 20px !important;
   height: 20px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header {
   margin: 0 0 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header > label {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header > label {
   display: block;
   margin: 0;
   font-size: 10px;
@@ -835,21 +836,21 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input {
   height: 188px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
   height: 100%;
   width: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle {
   position: relative;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > span {
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
@@ -874,26 +875,26 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   transition-timing-function: ease;
   pointer-events: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > button span:after {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > button span:after {
   content: " →";
   display: inline;
   position: relative;
   bottom: 1px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle .textarea-hover-btn {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle .textarea-hover-btn {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list {
   margin: -7px 0 0;
   padding: 0;
   list-style: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li {
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -904,14 +905,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   padding: 0 10px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-label > span {
   display: block;
   line-height: 1.3;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input {
   flex: 1;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input textarea {
   height: 100% !important;
   line-height: 1.4;
   resize: none;
@@ -937,44 +938,44 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item {
   font-size: 12px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field input.error, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field input.error {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field input.error, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field input.error {
   border-color: red;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field .input-feedback, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field .input-feedback {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .multiple-choice-question-list li.list-ul-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.drag-drop-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .drag-drop-question-list li.list-ul-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.multiple-choice-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.drag-drop-question-list-item form .question-field .input-feedback, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li > .sg-control-input-list-input .list-ul-list li.list-ul-list-item form .question-field .input-feedback {
   color: #eb3636;
   margin-top: -5px;
   font-size: 12px;
   margin-left: 19px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list-input-height-5 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list-input-height-5 {
   height: 155px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor textarea.sg-input-code {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor textarea.sg-input-code {
   font-family: monospace;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
   height: 100%;
   line-height: 1.5;
   resize: none;
   font-size: 10px;
 }
 
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor {
   height: 99.25%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle:hover > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle:hover > span {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition-delay: 0s;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle {
   position: relative;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle > span {
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
@@ -999,53 +1000,53 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   transition-timing-function: ease;
   pointer-events: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle > button span:after {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle > button span:after {
   content: " →";
   display: inline;
   position: relative;
   bottom: 1px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle .textarea-hover-btn, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle .input-hover-btn {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle .textarea-hover-btn, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-controls .sg-workspace-expander-toggle .input-hover-btn {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 6;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box {
   flex-grow: 1;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls > .sg-scroll-box .sg-control {
   border-bottom: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control {
   position: relative;
   padding: 10px;
   border-bottom: 1px solid #e2e2e2;
   overflow: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-scroll-box {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-scroll-box {
   position: relative;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .ps {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .ps {
   overflow: auto !important;
   overflow-anchor: none;
   touch-action: auto;
   -ms-overflow-style: none;
   -ms-touch-action: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-controls .sg-control.sg-inspector-actions {
   padding: 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions {
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   height: 70px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1059,14 +1060,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: #fff;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-workspace-actions .sg-workspace-action-item .fa-trash-alt {
   width: 20px !important;
   height: 20px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header {
   margin: 0 0 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header > label {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-header > label {
   display: block;
   margin: 0;
   font-size: 10px;
@@ -1076,30 +1077,30 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   text-transform: uppercase;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input {
   height: 188px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-input > .sg-expandable-rich-text {
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-expandable-rich-text, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle, html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor .sg-workspace-expander-toggle > textarea {
   height: 100%;
   width: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-content {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-text-editor > .sg-control-content {
   height: 258px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list {
   margin: -7px 0 0;
   padding: 0;
   list-style: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-label {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1110,11 +1111,11 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   padding: 0 10px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-label > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-label > span {
   display: block;
   line-height: 1.3;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1126,19 +1127,19 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   padding: 0 5px 0 5px;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix > span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .sg-control-input-list-label-suffix > span {
   display: block;
   line-height: 1.3;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input {
   flex: 1;
   overflow: auto;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input .audio-feature-value-list {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input .audio-feature-value-list {
   list-style: none;
   font-size: 11px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input textarea {
   height: 100% !important;
   line-height: 1.4;
   resize: none;
@@ -1164,7 +1165,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   z-index: 5;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=text], html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=number] {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=text], html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item > .sg-control-input-list-input input[type=number] {
   position: relative;
   display: block;
   width: 100%;
@@ -1184,29 +1185,29 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .input-group span {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list > li.sg-control-input-list-item .input-group span {
   font-size: 12px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list-input-height-5 {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor .sg-control-input-list-input-height-5 {
   height: 155px !important;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor textarea.sg-input-code {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor textarea.sg-input-code {
   font-family: monospace;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-editor [class*=sg-control-input-list-input-height] textarea {
   height: 100%;
   line-height: 1.5;
   resize: none;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .sg-workspace-content {
+html body form div.row div#slide-sidebar .tab-content .sg-workspace-content {
   display: flex;
   flex-direction: column;
   flex: 1 0 0%;
   overflow: hidden;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message {
+html body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message {
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -1219,7 +1220,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   width: 100%;
   padding: 20px;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message h3 {
+html body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message h3 {
   max-width: 23em;
   margin: 0;
   font-size: 1em;
@@ -1227,7 +1228,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   line-height: 1.3;
   text-transform: uppercase;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message p {
+html body form div.row div#slide-sidebar .tab-content .sg-workspace-content .sg-workspace-message p {
   max-width: 20em;
   margin: 0.5em auto 0;
   font-size: 1.15em;
@@ -1235,15 +1236,15 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   line-height: 1.5;
   color: rgba(68, 68, 68, 0.5);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content.sg-active {
+html body form div.row .sg-workspace-expander-content.sg-active {
   transform: translate3d(0, 0, 0);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content-vertical {
+html body form div.row .sg-workspace-expander-content-vertical {
   width: 23%;
   border-right: 1px solid #e2e2e2;
   transform: translate3d(-260%, 0, 0);
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-content {
+html body form div.row .sg-workspace-expander-content {
   position: fixed;
   z-index: 8889;
   margin-left: 15px;
@@ -1254,7 +1255,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border: 1px solid #ddd;
   height: 57.6%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head {
+html body form div.row .sg-workspace-expander-head {
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-between;
@@ -1267,17 +1268,17 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   border-bottom: 1px solid #e2e2e2;
   background-color: #f5f5f5;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions {
+html body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions {
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: stretch;
   align-items: stretch;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button.sg-active {
+html body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions button.sg-active {
   color: #444;
   background-color: #fff;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions .sg-workspace-expander-head-button {
+html body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions .sg-workspace-expander-head-button {
   position: relative;
   display: block;
   width: 40px;
@@ -1292,13 +1293,13 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: transparent;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:first-child button {
+html body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:first-child button {
   border-right: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:last-child button {
+html body form div.row .sg-workspace-expander-head .sg-workspace-expander-head-actions:last-child button {
   border-left: 1px solid #e2e2e2;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body {
+html body form div.row .sg-workspace-expander-body {
   position: absolute;
   z-index: 2;
   top: 40px;
@@ -1306,22 +1307,22 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   right: 0;
   bottom: 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor {
+html body form div.row .sg-workspace-expander-body .sg-text-editor {
   position: relative;
   z-index: 1;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-root {
+html body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-root {
   width: 100%;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU {
+html body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU {
   width: 100%;
   height: 64%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU .DraftEditor-editorContainer {
+html body form div.row .sg-workspace-expander-body .sg-text-editor .RichTextEditor__editor___1QqIU .DraftEditor-editorContainer {
   padding: 0;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor textarea.sg-text-editor-html, html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-editorContainer {
+html body form div.row .sg-workspace-expander-body .sg-text-editor textarea.sg-text-editor-html, html body form div.row .sg-workspace-expander-body .sg-text-editor .DraftEditor-editorContainer {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -1334,7 +1335,7 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   outline: 0 !important;
   resize: none;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-inline-code-editor-placeholder {
+html body form div.row .sg-workspace-expander-body .sg-inline-code-editor-placeholder {
   overflow: visible;
   position: relative;
   z-index: 5;
@@ -1351,15 +1352,15 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-body .sg-inline-code-editor .react-codemirror2 .CodeMirror .CodeMirror-scroll {
+html body form div.row .sg-workspace-expander-body .sg-inline-code-editor .react-codemirror2 .CodeMirror .CodeMirror-scroll {
   width: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper .CodeMirror.cm-s-material {
+html body form div.row .sg-code-editor-wrapper .CodeMirror.cm-s-material {
   text-shadow: none;
   background-color: #fff;
   height: 100%;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-code-editor-wrapper textarea.sg-text-editor-css {
+html body form div.row .sg-code-editor-wrapper textarea.sg-text-editor-css {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -1375,14 +1376,14 @@ html body div.modal div.modal-dialog div.modal-content div.modal-body form div.r
   background-color: rgba(0, 43, 54, 0.965);
   color: #fff;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head-label {
+html body form div.row .sg-workspace-expander-head-label {
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   margin: 0 auto 0 1em;
 }
-html body div.modal div.modal-dialog div.modal-content div.modal-body form div.row .sg-workspace-expander-head-label span {
+html body form div.row .sg-workspace-expander-head-label span {
   display: block;
   margin: 0;
   line-height: 1.4;
@@ -1550,13 +1551,13 @@ html body .gallery-modal .modal-content .modal-body .tab-content #controlled-tab
   transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }
 
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 450px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #0069d9;
   padding: 25px;
@@ -1565,7 +1566,7 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   max-width: 350px;
   word-break: break-all;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h2.course-header {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h2.course-header {
   color: #ffffff;
   font-size: 20px;
   line-height: 30px;
@@ -1573,58 +1574,58 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   border-bottom-width: medium !important;
   border-left-width: medium !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name .course-bar {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name .course-bar {
   background: #278FFF;
   display: inline-block;
   width: 75px;
   height: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h3.course-sub-header {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout #course-name h3.course-sub-header {
   color: #ffffff;
   font-size: 15px;
   line-height: 25px;
   margin: 10px 0 0 0;
   word-break: break-all;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-left {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-left {
   position: absolute;
   bottom: 50px;
   left: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-left {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-left {
   position: absolute;
   top: 50px;
   left: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-right {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-bottom-right {
   position: absolute;
   bottom: 50px;
   right: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-right {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-top-right {
   position: absolute;
   top: 50px;
   right: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-center {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #home-page-layout .course-title-center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
   z-index: 5000;
   margin: 0 40px;
   top: 100px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
     margin: 0 110px;
     top: 100px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .homepage-color-picker {
     margin: 0 40px;
     top: 100px;
   }
@@ -1633,18 +1634,18 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
   line-height: 45px;
   width: 100%;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
   background: #5eb75e;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
   width: 45px;
   height: 45px;
   background: #778395;
@@ -1654,14 +1655,14 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   float: left;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
     width: 35px;
     height: 35px;
     font-size: 20px;
     line-height: 35px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
   height: 45px;
   font-size: 20px;
   line-height: 45px;
@@ -1669,11 +1670,11 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding-left: 20px;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
     font-size: 14px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
   height: 32px;
   margin: 0;
   border: 1px solid #ddd;
@@ -1684,38 +1685,38 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   line-height: 32px;
   color: #444;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
   background: #778395;
   color: white;
   text-indent: 50px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
   z-index: 5000;
   margin: 0 40px;
   top: 380px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
     margin: 0 110px;
     top: 380px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
     margin: 0 40px;
     top: 380px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .multiple-choice-question-action-button .col-md-6 .multi-select {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .multiple-choice-question-action-button .col-md-6 .multi-select {
   --rmsc-h: 29.4px;
   /* Height */
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1726,10 +1727,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -1749,43 +1750,43 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .multiple-choice-control-input-wrapper .multiple-choice-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
   width: calc(100%/3);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content {
   padding: 10px;
   height: 200px;
   overflow: auto !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item {
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item .multiple-choice-question-file-item-delete {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item .multiple-choice-question-file-item-delete {
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.multiple-choice-question-files-list li.multiple-choice-question-files-list-item #multiple-choice-question-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.multiple-choice-question-files-list li.multiple-choice-question-files-list-item #multiple-choice-question-file-item {
   text-overflow: ellipsis;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.multiple-choice-question-files-list li.multiple-choice-question-files-list-item .sg-accordion {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.multiple-choice-question-files-list li.multiple-choice-question-files-list-item .sg-accordion {
   list-style-type: none;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item {
   -webkit-user-select: none;
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item #multiple-choice-feature-answer-list-item-answer {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item #multiple-choice-feature-answer-list-item #multiple-choice-feature-answer-list-item-answer {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
@@ -1794,30 +1795,30 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
   z-index: 5000;
   margin: 0 40px;
   top: 180px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 110px;
     top: 180px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 40px;
     top: 180px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #edit-action-btn-grp button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #edit-action-btn-grp button {
   height: 30px;
   width: 30px;
 }
@@ -1825,12 +1826,12 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1841,10 +1842,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -1864,22 +1865,22 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .list-modal-button-list-item .list-modal-control-input-wrapper .list-modal-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
   z-index: 5000;
   margin: 0 40px;
   top: 290px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
     margin: 0 110px;
     top: 290px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .list-modal-color-picker {
     margin: 0 40px;
     top: 290px;
   }
@@ -1888,41 +1889,41 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop {
   line-height: 25px;
   width: 100%;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-label-selected {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-label-selected {
   background: #5eb75e;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
   height: 50px;
   line-height: 25px;
   float: left;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
+  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text {
     font-size: 14px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text .target {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-question-answers li div.drag-drop .drag-drop-choice-text .target {
   display: inline-block;
   width: 110px;
   background: lightblue;
   margin: 0 3px;
   text-align: center;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-answer-here {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group .drag-drop-answer-here {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -1933,63 +1934,63 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0;
   margin: 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li {
   border: 1px solid transparent;
   padding: 6px 8px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.title {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.title {
   color: white;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.option {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #drag-drop-layout .question-group ul.options li.option {
   display: block;
   position: relative;
   z-index: 50;
   font-size: 13px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
   z-index: 5000;
   margin: 0 40px;
   top: 130px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
     margin: 0 110px;
     top: 130px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-bg {
     margin: 0 40px;
     top: 130px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
   z-index: 5000;
   margin: 0 40px;
   top: 175px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
     margin: 0 110px;
     top: 175px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .drag-drop-color-picker-tc {
     margin: 0 40px;
     top: 175px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .drag-drop-question-list .drag-drop-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .drag-drop-question-action-button .col-md-6 .multi-select {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .drag-drop-question-list .drag-drop-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .drag-drop-question-action-button .col-md-6 .multi-select {
   --rmsc-h: 29.4px;
   /* Height */
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2000,10 +2001,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -2023,43 +2024,43 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .drag-drop-control-input-wrapper .drag-drop-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .card-header-tabs .nav-link {
   width: calc(100%/3);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content {
   padding: 10px;
   height: 200px;
   overflow: auto !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .drag-drop-question-files-list .drag-drop-question-files-list-item #drag-drop-question-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .drag-drop-question-files-list .drag-drop-question-files-list-item #drag-drop-question-file-item {
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .drag-drop-question-files-list .drag-drop-question-files-list-item #drag-drop-question-file-item .drag-drop-question-file-item-delete {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .drag-drop-question-files-list .drag-drop-question-files-list-item #drag-drop-question-file-item .drag-drop-question-file-item-delete {
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.drag-drop-question-files-list li.drag-drop-question-files-list-item #drag-drop-question-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.drag-drop-question-files-list li.drag-drop-question-files-list-item #drag-drop-question-file-item {
   text-overflow: ellipsis;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.drag-drop-question-files-list li.drag-drop-question-files-list-item .sg-accordion {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.drag-drop-question-files-list li.drag-drop-question-files-list-item .sg-accordion {
   list-style-type: none;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item #drag-drop-feature-answer-list-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item #drag-drop-feature-answer-list-item {
   -webkit-user-select: none;
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item #drag-drop-feature-answer-list-item #drag-drop-feature-answer-list-item-answer {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.drag-drop-question-list .drag-drop-question-list-item #drag-drop-feature-answer-list-item #drag-drop-feature-answer-list-item-answer {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
@@ -2068,12 +2069,12 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2084,10 +2085,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -2107,20 +2108,20 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .list-ul-control-input-wrapper .list-ul-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .accordion .card .card-body .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry {
   -webkit-user-select: none;
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry #list-ul-list-item-sub-entry {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.list-ul-list .list-ul-list-item #list-ul-list-item-sub-entry #list-ul-list-item-sub-entry {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
@@ -2129,16 +2130,16 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #tabs-layout .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #tabs-layout .card-header-tabs {
   border-bottom: 1px solid #dee2e6 !important;
   margin-bottom: 0 !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2149,10 +2150,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -2172,51 +2173,51 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .tabs-control-input-wrapper .tabs-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .accordion .card .card-body .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.tabs-list .tabs-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
 
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout {
   text-align: left !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion {
   line-height: 25px;
   width: 100%;
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-label-selected {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-label-selected {
   background: #5eb75e;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
   height: 50px;
   line-height: 25px;
   float: left;
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
+  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text {
     font-size: 14px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text .target {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answers li div.sg-accordion .sg-accordion-choice-text .target {
   display: inline-block;
   width: 110px;
   background: lightblue;
   margin: 0 3px;
   text-align: center;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answer-here {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group .sg-accordion-answer-here {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -2227,63 +2228,63 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0;
   margin: 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li {
   border: 1px solid transparent;
   padding: 6px 8px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.title {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.title {
   color: white;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.option {
+html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #sg-accordion-layout .question-group ul.options li.option {
   display: block;
   position: relative;
   z-index: 50;
   font-size: 13px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
   z-index: 5000;
   margin: 0 40px;
   top: 175px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
     margin: 0 110px;
     top: 175px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-bg {
     margin: 0 40px;
     top: 175px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
   z-index: 5000;
   margin: 0 40px;
   top: 85px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
     margin: 0 110px;
     top: 85px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
     margin: 0 40px;
     top: 85px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .sg-accordion-list .sg-accordion-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .sg-accordion-action-button .col-md-6 .multi-select {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .sg-accordion-list .sg-accordion-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .sg-accordion-action-button .col-md-6 .multi-select {
   --rmsc-h: 29.4px;
   /* Height */
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper {
   display: flex;
   align-items: flex-start;
   margin: 7px 0 0;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input-label {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input-label {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2294,10 +2295,10 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   padding: 0 5px 0 0;
   font-size: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input {
   flex: 1 1;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input input[type=text] {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-input input[type=text] {
   position: relative;
   display: block;
   width: 100%;
@@ -2317,43 +2318,43 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
   z-index: 5;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-button {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .sg-accordion-control-input-wrapper .sg-accordion-control-button {
   padding-left: 5px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs {
   margin-top: 10px;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs .nav-link {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .card-header-tabs .nav-link {
   width: calc(100%/3);
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content {
   padding: 10px;
   height: 200px;
   overflow: auto !important;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item {
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item .sg-accordion-file-item-delete {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .sg-accordion-files-list .sg-accordion-files-list-item #sg-accordion-file-item .sg-accordion-file-item-delete {
   cursor: pointer;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item #sg-accordion-file-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item #sg-accordion-file-item {
   text-overflow: ellipsis;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item .sg-accordion {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files ul.sg-accordion-files-list li.sg-accordion-files-list-item .sg-accordion {
   list-style-type: none;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item {
   -webkit-user-select: none;
   user-select: none;
   padding: 10px;
   margin: 0px 0px 8px 0px;
   background: whitesmoke;
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item #sg-accordion-feature-answer-list-item-answer {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.sg-accordion-list .sg-accordion-list-item #sg-accordion-feature-answer-list-item #sg-accordion-feature-answer-list-item-answer {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
@@ -2362,36 +2363,36 @@ html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide
 html body {
   font-family: "Open Sans";
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
   z-index: 5000;
   margin: 0 40px;
   top: 95px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
     margin: 0 110px;
     top: 95px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-bg {
     margin: 0 40px;
     top: 95px;
   }
 }
-html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
   z-index: 5000;
   margin: 0 40px;
   top: 85px;
 }
 @media only screen and (min-width: 1920px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
     margin: 0 110px;
     top: 85px;
   }
 }
 @media only screen and (max-width: 1366px) {
-  html body div.modal div.modal-dialog .modal-content .modal-body form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-accordion-color-picker-ahc {
     margin: 0 40px;
     top: 85px;
   }

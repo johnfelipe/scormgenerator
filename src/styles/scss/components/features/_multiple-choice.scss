@@ -3,140 +3,134 @@
         body {
             font-family: 'Open Sans';
 
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-content {
-                                        #slide-content-container {
-                                            .feature-preview-container {
-                                                .sg-column {
-                                                    .content-output {
-                                                        #multiple-choice-layout {
-                                                            text-align: left !important;
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-content {
+                            #slide-content-container {
+                                .feature-preview-container {
+                                    .sg-column {
+                                        .content-output {
+                                            #multiple-choice-layout {
+                                                text-align: left !important;
 
-                                                            .question-group {
-                                                                ul.multiple-choice-question-answers {
-                                                                    // columns: 2;
-                                                                    // -webkit-columns: 2;
-                                                                    // -moz-columns: 2;
-                                                                    li {
-                                                                        div.multiple-choice {
-                                                                            line-height: 45px;
-                                                                            width: 100%;
-                                                                            cursor: pointer;
+                                                .question-group {
+                                                    ul.multiple-choice-question-answers {
+                                                        // columns: 2;
+                                                        // -webkit-columns: 2;
+                                                        // -moz-columns: 2;
+                                                        li {
+                                                            div.multiple-choice {
+                                                                line-height: 45px;
+                                                                width: 100%;
+                                                                cursor: pointer;
 
-                                                                            .multiple-choice-label-selected {
-                                                                                background: #5eb75e;
-                                                                            }
-
-                                                                            .multiple-choice-label {
-                                                                                width: 45px;
-                                                                                height: 45px;
-                                                                                background: #778395;
-                                                                                color: white;
-                                                                                font-size: 28px;
-                                                                                line-height: 45px;
-                                                                                float: left;
-
-                                                                                @media only screen and (max-width: 1366px) {
-                                                                                    width: 35px;
-                                                                                    height: 35px;
-                                                                                    font-size: 20px;
-                                                                                    line-height: 35px;
-                                                                                }
-                                                                            }
-
-                                                                            .multiple-choice-choice-text {
-                                                                                height: 45px;
-                                                                                font-size: 20px;
-                                                                                line-height: 45px;
-                                                                                float: left;
-                                                                                padding-left: 20px;
-
-                                                                                @media only screen and (max-width: 1366px) {
-                                                                                    font-size: 14px;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
+                                                                .multiple-choice-label-selected {
+                                                                    background: #5eb75e;
                                                                 }
 
-                                                                .img-add-label-wrapper, .audio-add-label-wrapper, .video-add-label-wrapper {
-                                                                    .img-add-label-input, .audio-add-label-input, .video-add-label-input {
-                                                                        #imgLabel, #audioLabel, #videoLabel {
-                                                                            height: 32px;
-                                                                            margin: 0;
-                                                                            border: 1px solid #ddd;
-                                                                            padding: 5px 7px;
-                                                                            font-family: inherit;
-                                                                            font-size: 14px;
-                                                                            font-weight: 400;
-                                                                            line-height: 32px;
-                                                                            color: #444;
-                                                                        }
-                                                                    }
-                                                                }
-
-                                                                #question-explanation {
+                                                                .multiple-choice-label {
+                                                                    width: 45px;
+                                                                    height: 45px;
                                                                     background: #778395;
                                                                     color: white;
-                                                                    text-indent: 50px;
+                                                                    font-size: 28px;
+                                                                    line-height: 45px;
+                                                                    float: left;
+
+                                                                    @media only screen and (max-width: 1366px) {
+                                                                        width: 35px;
+                                                                        height: 35px;
+                                                                        font-size: 20px;
+                                                                        line-height: 35px;
+                                                                    }
+                                                                }
+
+                                                                .multiple-choice-choice-text {
+                                                                    height: 45px;
+                                                                    font-size: 20px;
+                                                                    line-height: 45px;
+                                                                    float: left;
+                                                                    padding-left: 20px;
+
+                                                                    @media only screen and (max-width: 1366px) {
+                                                                        font-size: 14px;
+                                                                    }
                                                                 }
                                                             }
                                                         }
+                                                    }
+
+                                                    .img-add-label-wrapper, .audio-add-label-wrapper, .video-add-label-wrapper {
+                                                        .img-add-label-input, .audio-add-label-input, .video-add-label-input {
+                                                            #imgLabel, #audioLabel, #videoLabel {
+                                                                height: 32px;
+                                                                margin: 0;
+                                                                border: 1px solid #ddd;
+                                                                padding: 5px 7px;
+                                                                font-family: inherit;
+                                                                font-size: 14px;
+                                                                font-weight: 400;
+                                                                line-height: 32px;
+                                                                color: #444;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    #question-explanation {
+                                                        background: #778395;
+                                                        color: white;
+                                                        text-indent: 50px;
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
 
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                .sg-workspace-controls {
-                                                    .sg-controls {
-                                                        .multiple-choice-color-picker {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 380px;
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    .sg-workspace-controls {
+                                        .sg-controls {
+                                            .multiple-choice-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 380px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 380px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 380px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 380px;
-                                                            }
-                                                        }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 380px;
+                                                }
+                                            }
 
-                                                        .sg-control {
-                                                            .sg-control-content {
-                                                                .sg-control-input-list{
-                                                                    .sg-control-input-list-item-text {
-                                                                        .sg-control-input-list-input {
-                                                                            .multiple-choice-question-list {
-                                                                                .multiple-choice-question-list-item {
-                                                                                    .accordion {
-                                                                                        .card {
-                                                                                            .collapse {
-                                                                                                .tab-content {
-                                                                                                    #question-answers-files-tabs-tabpane-answers {
-                                                                                                        .multiple-choice-question-action-button {
-                                                                                                            .col-md-6 {
-                                                                                                                .multi-select {
-                                                                                                                    --rmsc-h: 29.4px; /* Height */
-                                                                                                                  }
-                                                                                                            }
+                                            .sg-control {
+                                                .sg-control-content {
+                                                    .sg-control-input-list{
+                                                        .sg-control-input-list-item-text {
+                                                            .sg-control-input-list-input {
+                                                                .multiple-choice-question-list {
+                                                                    .multiple-choice-question-list-item {
+                                                                        .accordion {
+                                                                            .card {
+                                                                                .collapse {
+                                                                                    .tab-content {
+                                                                                        #question-answers-files-tabs-tabpane-answers {
+                                                                                            .multiple-choice-question-action-button {
+                                                                                                .col-md-6 {
+                                                                                                    .multi-select {
+                                                                                                        --rmsc-h: 29.4px; /* Height */
                                                                                                         }
-                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -150,128 +144,128 @@
                                                         }
                                                     }
                                                 }
+                                            }
+                                        }
+                                    }
 
-                                                ul.multiple-choice-question-list {
-                                                    .multiple-choice-question-list-item {
-                                                        // ul.multiple-choice-question-list {
-                                                        //     columns: 2;
-                                                        //     -webkit-columns: 2;
-                                                        //     -moz-columns: 2;
-                                                        // }
-                                                        
-                                                        .multiple-choice-control-input-wrapper {
-                                                            display: flex;
-                                                            align-items: flex-start;
-                                                            margin: 7px 0 0;
-                                                            
-                                                            .multiple-choice-control-input-label {
-                                                                display: flex;
-                                                                flex-direction: column;
-                                                                justify-content: center;
-                                                                align-items: flex-start;
-                                                                flex: 0 0 20px;
-                                                                position: relative;
-                                                                height: 32px;
-                                                                padding: 0 5px 0 0;
-                                                                font-size: 10px;
-                                                            }
+                                    ul.multiple-choice-question-list {
+                                        .multiple-choice-question-list-item {
+                                            // ul.multiple-choice-question-list {
+                                            //     columns: 2;
+                                            //     -webkit-columns: 2;
+                                            //     -moz-columns: 2;
+                                            // }
+                                            
+                                            .multiple-choice-control-input-wrapper {
+                                                display: flex;
+                                                align-items: flex-start;
+                                                margin: 7px 0 0;
+                                                
+                                                .multiple-choice-control-input-label {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: flex-start;
+                                                    flex: 0 0 20px;
+                                                    position: relative;
+                                                    height: 32px;
+                                                    padding: 0 5px 0 0;
+                                                    font-size: 10px;
+                                                }
 
-                                                            .multiple-choice-control-input {
-                                                                flex: 1 1;
+                                                .multiple-choice-control-input {
+                                                    flex: 1 1;
 
-                                                                input[type=text] {
-                                                                    position: relative;
-                                                                    display: block;
-                                                                    width: 100%;
-                                                                    min-width: 1px;
-                                                                    height: 32px;
-                                                                    margin: 0;
-                                                                    border: 1px solid #ddd;
-                                                                    padding: 5px 7px;
-                                                                    font-family: inherit;
-                                                                    font-size: 14px;
-                                                                    font-weight: 400;
-                                                                    line-height: 32px;
-                                                                    color: #444;
-                                                                    background-color: #fff;
-                                                                    outline: 0;
-                                                                    border-radius: 0;
-                                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
-                                                                    z-index: 5;
-                                                                }
-                                                            }
+                                                    input[type=text] {
+                                                        position: relative;
+                                                        display: block;
+                                                        width: 100%;
+                                                        min-width: 1px;
+                                                        height: 32px;
+                                                        margin: 0;
+                                                        border: 1px solid #ddd;
+                                                        padding: 5px 7px;
+                                                        font-family: inherit;
+                                                        font-size: 14px;
+                                                        font-weight: 400;
+                                                        line-height: 32px;
+                                                        color: #444;
+                                                        background-color: #fff;
+                                                        outline: 0;
+                                                        border-radius: 0;
+                                                        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+                                                        z-index: 5;
+                                                    }
+                                                }
 
-                                                            .multiple-choice-control-button {
-                                                                padding-left: 5px
-                                                            }
-                                                        }
+                                                .multiple-choice-control-button {
+                                                    padding-left: 5px
+                                                }
+                                            }
 
-                                                        .accordion {
-                                                            .card {
-                                                                .card-body {
-                                                                    .card-header-tabs {
-                                                                        margin-top: 10px;
+                                            .accordion {
+                                                .card {
+                                                    .card-body {
+                                                        .card-header-tabs {
+                                                            margin-top: 10px;
 
-                                                                        .nav-link {
-                                                                            width: calc(100%/3);
-                                                                        }
-                                                                    }
-
-                                                                    .tab-content {
-                                                                        padding: 10px;
-                                                                        height: 200px;
-                                                                        overflow: auto !important;
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            .multiple-choice-question-files-list {
-                                                                                .multiple-choice-question-files-list-item {
-                                                                                    #multiple-choice-question-file-item {
-                                                                                        user-select: none;
-                                                                                        padding: 10px;
-                                                                                        margin: 0px 0px 8px 0px;
-                                                                                        background: whitesmoke;
-                                                                                        // border-radius: 5px;
-
-                                                                                        .multiple-choice-question-file-item-delete {
-                                                                                            cursor: pointer;
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-
-                                                                        #question-answers-files-tabs-tabpane-files {
-                                                                            ul.multiple-choice-question-files-list {
-                                                                                li.multiple-choice-question-files-list-item {
-                                                                                    #multiple-choice-question-file-item {
-                                                                                        text-overflow: ellipsis;
-                                                                                    }
-
-                                                                                    .sg-accordion {
-                                                                                        list-style-type: none;
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
+                                                            .nav-link {
+                                                                width: calc(100%/3);
                                                             }
                                                         }
 
-                                                        #multiple-choice-feature-answer-list-item {
-                                                            -webkit-user-select: none;
-                                                            user-select: none;
+                                                        .tab-content {
                                                             padding: 10px;
-                                                            margin: 0px 0px 8px 0px;
-                                                            background: whitesmoke;
+                                                            height: 200px;
+                                                            overflow: auto !important;
 
-                                                            #multiple-choice-feature-answer-list-item-answer {
-                                                                text-overflow: ellipsis !important;
-                                                                overflow: hidden;
-                                                                white-space: nowrap;
+                                                            #question-answers-files-tabs-tabpane-files {
+                                                                .multiple-choice-question-files-list {
+                                                                    .multiple-choice-question-files-list-item {
+                                                                        #multiple-choice-question-file-item {
+                                                                            user-select: none;
+                                                                            padding: 10px;
+                                                                            margin: 0px 0px 8px 0px;
+                                                                            background: whitesmoke;
+                                                                            // border-radius: 5px;
+
+                                                                            .multiple-choice-question-file-item-delete {
+                                                                                cursor: pointer;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            #question-answers-files-tabs-tabpane-files {
+                                                                ul.multiple-choice-question-files-list {
+                                                                    li.multiple-choice-question-files-list-item {
+                                                                        #multiple-choice-question-file-item {
+                                                                            text-overflow: ellipsis;
+                                                                        }
+
+                                                                        .sg-accordion {
+                                                                            list-style-type: none;
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
+                                                }
+                                            }
+
+                                            #multiple-choice-feature-answer-list-item {
+                                                -webkit-user-select: none;
+                                                user-select: none;
+                                                padding: 10px;
+                                                margin: 0px 0px 8px 0px;
+                                                background: whitesmoke;
+
+                                                #multiple-choice-feature-answer-list-item-answer {
+                                                    text-overflow: ellipsis !important;
+                                                    overflow: hidden;
+                                                    white-space: nowrap;
                                                 }
                                             }
                                         }

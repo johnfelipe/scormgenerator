@@ -1,10 +1,10 @@
 @mixin slide-modal-column {
     html {
         body {
-            div.modal {
-                div.modal-dialog {
-                    div.modal-content {
-                        div.modal-body {
+            // div.modal {
+            //     div.modal-dialog {
+            //         div.modal-content {
+            //             div.modal-body {
                             form {
                                 div.row {
                                     div#slide-sidebar {
@@ -121,10 +121,10 @@
                                     }
                                 }
                             }
-                        }
-                    }
-                }
-            }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }

@@ -1,7 +1,7 @@
 import { slideContants } from '../constants';
 import { slideService, } from '../services';
 import { courseActions, columnActions } from './';
-// import { history } from '../helpers';
+import { history } from '../helpers';
 
 export const slideActions = {
     getAllSlides,
@@ -12,6 +12,7 @@ export const slideActions = {
     deleteSlide,
     duplicateSlide,
     toAddSlidePage,
+    toEditSlidePage,
 };
 
 function getAllSlides() {
@@ -35,7 +36,7 @@ function getAllSlides() {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
+function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
     return dispatch => {
         dispatch(request(data));
 
@@ -63,6 +64,9 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid) {
 
                         dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     }
+
+                    history.push("/course/" + cid);
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -123,7 +127,7 @@ function getSlideColumns(id) {
     function failure(error) { return { type: slideContants.ERROR, error } }
 }
 
-function updateSlide(data, id) {
+function updateSlide(data, id, cid) {
     return dispatch => {
         dispatch(request(data));
 
@@ -132,6 +136,9 @@ function updateSlide(data, id) {
                 slide => { 
                     dispatch(success(slide));
                     // dispatch(alertActions.success('Slide updated successfully'));
+
+                    history.push("/course/" + cid);
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -196,4 +203,12 @@ function toAddSlidePage(addSlideProps) {
     };
 
     function success(addSlideProps) { return { type: slideContants.ADD_SLIDE_PROPS, addSlideProps } }
+}
+
+function toEditSlidePage(editSlideProps) {
+    return dispatch => {
+        dispatch(success(editSlideProps));
+    };
+
+    function success(editSlideProps) { return { type: slideContants.EDIT_SLIDE_PROPS, editSlideProps } }
 }

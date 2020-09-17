@@ -3,55 +3,49 @@
         body {
             font-family: 'Open Sans';
 
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                .sg-workspace-controls {
-                                                    .sg-controls {
-                                                        .content-picture-color-picker-bg {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 95px;
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    .sg-workspace-controls {
+                                        .sg-controls {
+                                            .content-picture-color-picker-bg {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 95px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 95px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 95px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 95px;
-                                                            }
-                                                        }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 95px;
+                                                }
+                                            }
 
-                                                        .sg-accordion-color-picker-ahc {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            // top: 55px;
-                                                            top: 85px;
+                                            .sg-accordion-color-picker-ahc {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 85px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                // top: 55px;
-                                                                top: 85px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 85px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                // top: 75px;
-                                                                top: 85px;
-                                                            }
-                                                        }
-                                                    }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 85px;
                                                 }
                                             }
                                         }

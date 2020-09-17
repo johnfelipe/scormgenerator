@@ -1,118 +1,112 @@
 @mixin homepage {
     html {
         body {
-            div.modal {
-                div.modal-dialog {
-                    .modal-content {
-                        .modal-body {
-                            form {
-                                .row {
-                                    #slide-content {
-                                        #slide-content-container {
-                                            .feature-preview-container {
-                                                .sg-column {
-                                                    .content-output {
-                                                        #home-page-layout {
-                                                            position: relative;
-                                                            overflow: hidden;
-                                                            width: 100%;
-                                                            height: 450px;
+            .sg-slide-page-container {
+                form {
+                    .row {
+                        #slide-content {
+                            #slide-content-container {
+                                .feature-preview-container {
+                                    .sg-column {
+                                        .content-output {
+                                            #home-page-layout {
+                                                position: relative;
+                                                overflow: hidden;
+                                                width: 100%;
+                                                height: 450px;
 
-                                                            #course-name {
-                                                                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;                                                
-                                                                background: #0069d9;
-                                                                // position: absolute;
-                                                                // bottom: 50px;
-                                                                // left: 50px;
-                                                                padding: 25px;
-                                                                text-align: left !important;
-                                                                min-width: 250px;
-                                                                max-width: 350px;
-                                                                word-break: break-all;
+                                                #course-name {
+                                                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;                                                
+                                                    background: #0069d9;
+                                                    // position: absolute;
+                                                    // bottom: 50px;
+                                                    // left: 50px;
+                                                    padding: 25px;
+                                                    text-align: left !important;
+                                                    min-width: 250px;
+                                                    max-width: 350px;
+                                                    word-break: break-all;
 
-                                                                h2.course-header {
-                                                                    color: #ffffff;
-                                                                    font-size: 20px;
-                                                                    line-height: 30px;
-                                                                    margin: 0 0 10px 0;
-                                                                    border-bottom-width: medium !important;
-                                                                    border-left-width: medium !important;
-                                                                }
-
-                                                                .course-bar {
-                                                                    background: #278FFF;
-                                                                    display: inline-block;
-                                                                    width: 75px;
-                                                                    height: 5px;
-                                                                }
-
-                                                                h3.course-sub-header {
-                                                                    color: #ffffff;
-                                                                    font-size: 15px;
-                                                                    line-height: 25px;
-                                                                    margin: 10px 0 0 0;
-                                                                    word-break: break-all;
-                                                                }
-                                                            }
-
-                                                            .course-title-bottom-left {
-                                                                position: absolute;
-                                                                bottom: 50px;
-                                                                left: 50px;
-                                                            }
-
-                                                            .course-title-top-left {
-                                                                position: absolute;
-                                                                top: 50px;
-                                                                left: 50px;
-                                                            }
-
-                                                            .course-title-bottom-right {
-                                                                position: absolute;
-                                                                bottom: 50px;
-                                                                right: 50px;
-                                                            }
-
-                                                            .course-title-top-right {
-                                                                position: absolute;
-                                                                top: 50px;
-                                                                right: 50px;
-                                                            }
-
-                                                            .course-title-center {
-                                                                position: absolute;
-                                                                top: 50%;
-                                                                left: 50%;
-                                                                transform: translate(-50%, -50%);
-                                                            }
-                                                        }
+                                                    h2.course-header {
+                                                        color: #ffffff;
+                                                        font-size: 20px;
+                                                        line-height: 30px;
+                                                        margin: 0 0 10px 0;
+                                                        border-bottom-width: medium !important;
+                                                        border-left-width: medium !important;
                                                     }
+
+                                                    .course-bar {
+                                                        background: #278FFF;
+                                                        display: inline-block;
+                                                        width: 75px;
+                                                        height: 5px;
+                                                    }
+
+                                                    h3.course-sub-header {
+                                                        color: #ffffff;
+                                                        font-size: 15px;
+                                                        line-height: 25px;
+                                                        margin: 10px 0 0 0;
+                                                        word-break: break-all;
+                                                    }
+                                                }
+
+                                                .course-title-bottom-left {
+                                                    position: absolute;
+                                                    bottom: 50px;
+                                                    left: 50px;
+                                                }
+
+                                                .course-title-top-left {
+                                                    position: absolute;
+                                                    top: 50px;
+                                                    left: 50px;
+                                                }
+
+                                                .course-title-bottom-right {
+                                                    position: absolute;
+                                                    bottom: 50px;
+                                                    right: 50px;
+                                                }
+
+                                                .course-title-top-right {
+                                                    position: absolute;
+                                                    top: 50px;
+                                                    right: 50px;
+                                                }
+
+                                                .course-title-center {
+                                                    position: absolute;
+                                                    top: 50%;
+                                                    left: 50%;
+                                                    transform: translate(-50%, -50%);
                                                 }
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
 
-                                    #slide-sidebar {
-                                        .tab-content {
-                                            #slide-tabs-tabpane-editor {
-                                                .sg-workspace-controls {
-                                                    .sg-controls {
-                                                        .homepage-color-picker {
-                                                            z-index: 5000;
-                                                            margin: 0 40px;
-                                                            top: 100px;
+                        #slide-sidebar {
+                            .tab-content {
+                                #slide-tabs-tabpane-editor {
+                                    .sg-workspace-controls {
+                                        .sg-controls {
+                                            .homepage-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                top: 100px;
 
-                                                            @media only screen and (min-width: 1920px) {
-                                                                margin: 0 110px;
-                                                                top: 100px;
-                                                            }
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    top: 100px;
+                                                }
 
-                                                            @media only screen and (max-width: 1366px) {
-                                                                margin: 0 40px;
-                                                                top: 100px;
-                                                            }
-                                                        }
-                                                    }
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    top: 100px;
                                                 }
                                             }
                                         }

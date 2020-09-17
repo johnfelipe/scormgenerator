@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
@@ -21,7 +22,7 @@ import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptHandler from '../Handlers/TranscriptHandler';
 import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
-import SlideHandler from '../Handlers/SlideHandler';
+// import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
 import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
 
@@ -65,6 +66,7 @@ function CourseEditor() {
     ];
 
     useEffect(() => {
+        sessionStorage.clear();
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
@@ -142,6 +144,81 @@ function CourseEditor() {
             const lessons = [...courseLessons];
             lessons[currentClickedLessonId].slides = slides;
         }
+    }
+
+    const redirectToAddSlidePage = (currentCourse, lessonIndex, lesson, lessonId) => {
+        const data = {
+            courseLayout: currentCourse.layout,
+            action: "add",
+            lessonIndex: lessonIndex,
+            slideItemId: 
+                lesson.slides ?
+                    lesson.slides.length > 0 ?
+                        "slide-item-" + lesson.slides.length
+                    :
+                        "slide-item-" + 0
+                :
+                    "slide-item-" + 0
+            ,
+            lessonId: lessonId,
+            cid: currentCourse.cid,
+            uid: currentCourse.uid,
+            lid: lid,
+            sid: 
+                lesson.slides ?
+                    lesson.slides.length > 0 ?
+                        lesson.slides[lesson.slides.length - 1].sid + 1
+                    :
+                        1
+                :
+                    1
+            ,
+            currentSlideIndex: 
+                lesson.slides ?
+                    lesson.slides.length > 0 ?
+                        lesson.slides.length
+                    :
+                        0
+                :
+                    0
+            ,
+            slideWeight: 
+                lesson.slides ?
+                    lesson.slides.length > 0 ?
+                        lesson.slides.length
+                    :
+                        1
+                :
+                    1
+            ,
+        }
+
+        sessionStorage.setItem("cid", currentCourse.cid)
+
+        dispatch(slideActions.toAddSlidePage(data));
+    }
+
+    const redirectToEditSlidePage = (currentCourse, slide, lessonIndex, lesson, slideIndex) => {
+        const data = {
+            courseLayout: currentCourse.layout,
+            sid: slide.sid,
+            cid: currentCourse.cid,
+            uid: currentCourse.uid,
+            lid: lesson.lid,
+            currentSlideName: slide.title,
+            currentSlideSubtitle: slide.subtitle,
+            currentColumns: slide.columns,
+            hide_title: slide.hide_title,
+            currentClickedLessonId: currentClickedLessonId,
+            action: "edit",
+            currentSlideIndex: slideIndex,
+            slideItemId: "slide-item-" + slideIndex,
+            lessonIndex: lessonIndex,
+        }
+
+        sessionStorage.setItem("cid", currentCourse.cid)
+
+        dispatch(slideActions.toAddSlidePage(data));
     }
 
     return (
@@ -442,51 +519,13 @@ function CourseEditor() {
                                                                                 </Card.Header>
                                                                                 <Accordion.Collapse eventKey="0">
                                                                                     <Card.Body>
-                                                                                        <SlideHandler
-                                                                                            courseLayout={currentCourse.layout}
-                                                                                            action="add"
-                                                                                            lessonIndex={lessonIndex}
-                                                                                            slideItemId={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        "slide-item-" + lesson.slides.length
-                                                                                                    :
-                                                                                                        "slide-item-" + 0
-                                                                                                :
-                                                                                                    "slide-item-" + 0
-                                                                                            }
-                                                                                            lessonId={lessonId}
-                                                                                            cid={currentCourse && currentCourse.cid}
-                                                                                            uid={currentCourse && currentCourse.uid}
-                                                                                            lid={lid}
-                                                                                            sid={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides[lesson.slides.length - 1].sid + 1
-                                                                                                    :
-                                                                                                        1
-                                                                                                :
-                                                                                                    1
-                                                                                            }
-                                                                                            currentSlideIndex={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides.length
-                                                                                                    :
-                                                                                                        0
-                                                                                                :
-                                                                                                    0
-                                                                                            }
-                                                                                            slideWeight={
-                                                                                                lesson.slides ?
-                                                                                                    lesson.slides.length > 0 ?
-                                                                                                        lesson.slides.length
-                                                                                                    :
-                                                                                                        1
-                                                                                                :
-                                                                                                    1
-                                                                                            }
-                                                                                        />
+                                                                                        <div id="slide-handler-add-btn" className="d-inline">
+                                                                                            <Link
+                                                                                                to={"/course/" + currentCourse.cid + "/lesson/" + lesson.lid + "/add-slide"}
+                                                                                                className="btn btn-success"
+                                                                                                onClick={() => redirectToAddSlidePage(currentCourse, lessonIndex, lesson, lessonId)}
+                                                                                            >Add Slide</Link>
+                                                                                        </div>
                                                                                         {lesson.slides && lesson.slides.length > 0 ?
                                                                                             <DragDropContext onDragEnd={onDragEndSlides}>
                                                                                                 <Droppable droppableId="slides">
@@ -509,22 +548,15 @@ function CourseEditor() {
                                                                                                                         >
                                                                                                                             <div className="col-md-10 pl-0">
                                                                                                                                 <span className="btn pr-1">{slide.title}</span>
-                                                                                                                                <SlideHandler
-                                                                                                                                    courseLayout={currentCourse.layout}
-                                                                                                                                    sid={slide.sid}
-                                                                                                                                    cid={currentCourse && currentCourse.cid}
-                                                                                                                                    uid={currentCourse && currentCourse.uid}
-                                                                                                                                    lid={lesson.lid}
-                                                                                                                                    currentSlideName={slide.title}
-                                                                                                                                    currentSlideSubtitle={slide.subtitle}
-                                                                                                                                    currentColumns={slide.columns}
-                                                                                                                                    hide_title={slide.hide_title}
-                                                                                                                                    currentClickedLessonId={currentClickedLessonId}
-                                                                                                                                    action="edit"
-                                                                                                                                    currentSlideIndex={slideIndex}
-                                                                                                                                    slideItemId={"slide-item-" + slideIndex}
-                                                                                                                                    lessonIndex={lessonIndex}
-                                                                                                                                />
+                                                                                                                                <div id="slide-handler-add-btn" className="d-inline">
+                                                                                                                                    <div id="edit-slide-btn" className="d-inline">
+                                                                                                                                        <Link
+                                                                                                                                            to={"/course/" + currentCourse.cid + "/lesson/" + lesson.lid + "/edit-slide/" + slide.sid}
+                                                                                                                                            className="btn btn-link  pl-0"
+                                                                                                                                            onClick={() => redirectToEditSlidePage(currentCourse, slide, lessonIndex, lesson, slideIndex)}
+                                                                                                                                        >| Edit</Link>
+                                                                                                                                    </div>
+                                                                                                                                </div>
                                                                                                                             </div>
                                                                                                                             <div className="col-md-2 sg-vertical-center justify-content-end">
                                                                                                                                 <OverlayTrigger
