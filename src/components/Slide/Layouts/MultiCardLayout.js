@@ -762,6 +762,12 @@ function MultiCardLayout(props) {
     return (
         <div id={id ? id : "card-layout"} className={"card " + cardClass}>
             {multiCardContent(output, output.cardCounter.length)}
+            {styles.backgroundAudio.url &&
+                <audio id="multi-card-bg-audio" controls autoPlay className="d-none">
+                    <source src={styles.backgroundAudio.url} type={styles.backgroundAudio.type}/>
+                    Your browser does not support the audio element.
+                </audio>
+            }
         </div>
     );
 }
