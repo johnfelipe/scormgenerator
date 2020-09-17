@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 // formik
 import { Formik } from "formik";
@@ -35,6 +35,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 // import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 // redux library
 import { connect } from 'react-redux';
@@ -4443,6 +4444,7 @@ class SlideHandler extends Component {
     }
 
     render() {
+        const cid = sessionStorage.getItem("cid");
         const slideModal = (
             <Formik
                 initialValues={{ 
@@ -4452,8 +4454,6 @@ class SlideHandler extends Component {
                 }}
 
                 onSubmit={values => {
-                    const cid = sessionStorage.getItem("cid");
-
                     const data = {
                         lid: this.props.slideHandlerProps.lid,
                         title: values.slideName,
@@ -9150,9 +9150,31 @@ class SlideHandler extends Component {
         }
 
         return (
-            <div className="sg-slide-page-container py-3">
-                <div id="slide-handler-container">
-                    {slideModal}
+            <div id="generator-container">
+                <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") }}>Course</Breadcrumb.Item>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") }}>Lesson</Breadcrumb.Item>
+                    {this.props.slideHandlerProps.action === "add" ?
+                        <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") + "/lesson/" + this.props.slideHandlerProps.lid }}>
+                            Add Slide
+                        </Breadcrumb.Item>
+                    :
+                        <>
+                            <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") + "/lesson/" + this.props.slideHandlerProps.lid + "/slide/" + this.props.slideHandlerProps.sid }}>
+                                Edit Slide
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") + "/lesson/" + this.props.slideHandlerProps.lid + "/slide/" + this.props.slideHandlerProps.sid }}>
+                                {this.props.slideHandlerProps.sid}
+                            </Breadcrumb.Item>
+                        </>
+                    }
+                </Breadcrumb>
+
+                <div className="sg-slide-page-container">
+                    <div id="slide-handler-container">
+                        {slideModal}
+                    </div>
                 </div>
             </div>
         )
