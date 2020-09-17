@@ -93,7 +93,7 @@ function CreateCourse() {
     return (
         <div id="generator-container">
             <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
-                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
             </Breadcrumb>
 
             <Formik
