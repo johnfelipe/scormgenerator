@@ -898,6 +898,10 @@ class SlideHandler extends Component {
                 styles: {
                     themeColor: '#0069d9',
                     imageShape: '',
+                    backgroundAudio: {
+                        name: '',
+                        url: '',
+                    },
                 },
                 css: '',
             };
@@ -1230,6 +1234,10 @@ class SlideHandler extends Component {
                                 styles: {
                                     themeColor: '#0069d9',
                                     imageShape: '',
+                                    backgroundAudio: {
+                                        name: '',
+                                        url: '',
+                                    },
                                 },
                                 css: '',
                             };
@@ -9140,7 +9148,16 @@ class SlideHandler extends Component {
                                 </div>
                             </DragDropContext>
                             <div className="row m-0">
-                                <div className="col-md-12">
+                                <div className="col-md-6 p-0">
+                                    <Link
+                                        type="button"
+                                        to={"/course/" + sessionStorage.getItem("cid")}
+                                        className="btn btn-danger mt-2"
+                                    >
+                                        Cancel
+                                    </Link>
+                                </div>
+                                <div className="col-md-6 p-0">
                                     <button type="submit" className="btn btn-success float-right mt-2" disabled={isSubmitting}>Save</button>
                                 </div>
                             </div>
