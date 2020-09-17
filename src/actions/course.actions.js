@@ -3,7 +3,7 @@ import { courseService } from '../services';
 import { lessonService } from '../services';
 import { slideService } from '../services';
 // import { alertActions } from './';
-// import { history } from '../helpers';
+import { history } from '../helpers';
 
 export const courseActions = {
     getAll,
@@ -75,6 +75,8 @@ function updateCourse(data, id) {
             .then(
                 course => { 
                     dispatch(success(course));
+                    history.push("/");
+                    window.location.reload();
                     // dispatch(alertActions.success('Course created successfully'));
                 },
                 error => {

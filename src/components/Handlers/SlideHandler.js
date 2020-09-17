@@ -4477,6 +4477,7 @@ class SlideHandler extends Component {
                         values,
                         touched,
                         errors,
+                        isSubmitting,
                         handleChange,
                         handleBlur,
                         handleSubmit,
@@ -9130,7 +9131,7 @@ class SlideHandler extends Component {
                             </DragDropContext>
                             <div className="row m-0">
                                 <div className="col-md-12">
-                                    <button type="submit" className="btn btn-success float-right mt-2">Save</button>
+                                    <button type="submit" className="btn btn-success float-right mt-2" disabled={isSubmitting}>Save</button>
                                 </div>
                             </div>
                         </form>
