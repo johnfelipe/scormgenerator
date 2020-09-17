@@ -198,7 +198,7 @@ class SlideHandler extends Component {
         // console.log(this.props.slideHandlerProps.currentColumns);
     }
 
-    componentDidUpdate(prevProps, nextProps) {
+    componentDidUpdate() {
         if(sessionStorage.getItem("selectedAnswers")) {
             this.setCorrectAnswers(JSON.parse(sessionStorage.getItem("selectedAnswers")));
             sessionStorage.removeItem("selectedAnswers");
@@ -218,10 +218,10 @@ class SlideHandler extends Component {
 
         // console.log('props.courseLayout: ');
         // console.log(this.props.slideHandlerProps.courseLayout);
-        // console.log('state.columns: ');
-        // console.log(this.state.column);
-        // console.log('props.columns: ');
-        // console.log(this.props.slideHandlerProps.currentColumns);
+        console.log('state.columns: ');
+        console.log(this.state.column);
+        console.log('props.columns: ');
+        console.log(this.props.slideHandlerProps.currentColumns);
         // console.log('state.modalShow: ');
         // console.log(this.state.modalShow);
         // console.log('this.props.slideHandlerProps.currentSlide');
@@ -952,287 +952,288 @@ class SlideHandler extends Component {
                     destination.index = parseInt(keyIndex);
                     const currentFeatures = this.state.fixedFeatures;
                     
-                    if (currentFeatures[source.index]['type'] === 'multipleChoice') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: [],
-                            class: 'question-files-left',
-                            id: '',
-                            styles: {
-                                questionLabelClass: 'rounded-circle',
-                                questionBackgroundColor: '#fff',
-                                multipleChoiceTextColor: 'text-black',
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                                height: 655
-                            },
-                            mechanics: {
-                                repeat: 0,
-                                passingRate: 80,
-                                specificType: 'knowledgeCheck',
-                                returnSlide: 0
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'homePage') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                title: 'Title',
-                                subtitle: 'Subtitle',
-                                date: '',
-                                courseId: '',
-                                backgroundImg: {
-                                    name: '',
-                                    url: ''
-                                }
-                            },
-                            class: 'course-title-bottom-left',
-                            id: '',
-                            styles: {
-                                titleBoxColor: '#0069d9',
-                                titleBoxBorder: 'border-bottom',
-                                height: 655
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                courseNav: {
-                                    name: 'Course Navigation',
-                                },
-                                courseInfo: {
-                                    name: 'Course Information',
-                                    content: '<span>No information provided yet.</span>'
-                                },
-                                courseReq: {
-                                    name: 'Course Requirements',
-                                    content: '<span>No requirements provided yet</span>.'
-                                },
-                            },
-                            class: '',
-                            id: '',
-                            styles: {
-                                courseIntroColor: '#0069d9',
-                                height: 655
-                            },
-                            introVideo: {
-                                name: 'file_example_MP4_480_1_5MG',
-                                url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
-                                type: 'video/mp4',
-                                position: 'course-objectives-video-left'
-                            },
-                            css: '',
-                        };
-                        
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                image: {
-                                    name: '',
-                                    url: '',
-                                    alt: '',
-                                },
-                                content: '<span>No content provided yet.</span>'
-                            },
-                            style: {
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                                backgroundColor: '#fff',
-                                textColor: '',
-                                imgPosition: 'left',
-                                height: 655,
-                                layout: '50-50',
-                            },
-                            class: '',
-                            id: '',
-                            css: '',
-                        };
-                        
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                chartType: 'pie',
-                                dataSets: {},
-                                chartOptions: {
-                                    shownData: [],
-                                },
-                                csvFile: {
-                                    name: '',
-                                    url: '',
-                                    headers: [],
-                                    data: [],
-                                },
-                                label: '',
-                                description: '',
-                            },
-                            class: '',
-                            id: '',
-                            style: {
-                                backgroundImg: {
-                                    name: '',
-                                    url: '',
-                                },
-                                height: 655,
-                            },
-                            css: '',
-                        };
-                        
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: [],
-                            class: '',
-                            id: '',
-                            styles: {
-                                dragDropBackgroundColor: '#fff',
-                                dragDropTextColor: 'text-black',
-                                themeColor: '#0069d9',
-                                backgroundImg: '',
-                                height: 655,
-                            },
-                            css: '',
-                        };
-
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
-                    } else if (currentFeatures[source.index]['type'] === 'multiCard') {
-                        let currentContent = {
-                            type: currentFeatures[source.index]['type'],
-                            category: 'fixed',
-                            output: {
-                                cardCounter: [],
-                                firstCard: {
-                                    img: {
+                    if (currentColumns[keyIndex].content.subColumnOne.length === 0) {
+                        if (currentFeatures[source.index]['type'] === 'multipleChoice') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: [],
+                                class: 'question-files-left',
+                                id: '',
+                                styles: {
+                                    questionLabelClass: 'rounded-circle',
+                                    questionBackgroundColor: '#fff',
+                                    multipleChoiceTextColor: 'text-black',
+                                    backgroundImg: {
                                         name: '',
                                         url: '',
-                                        type: '',
-                                        alt: '',
                                     },
-                                    title: 'Card title',
-                                    content: '<p>No content provided yet.</p>',
-                                    button: {
-                                        label: 'Click me',
-                                        url: '',
-                                    }
+                                    height: 655
                                 },
-                                secondCard: {
-                                    img: {
-                                        name: '',
-                                        url: '',
-                                        type: '',
-                                        alt: '',
-                                    },
-                                    title: 'Card title',
-                                    content: '<p>No content provided yet.</p>',
-                                    button: {
-                                        label: 'Click me',
-                                        url: '',
-                                    }
+                                mechanics: {
+                                    repeat: 0,
+                                    passingRate: 80,
+                                    specificType: 'knowledgeCheck',
+                                    returnSlide: 0
                                 },
-                                thirdCard: {
-                                    img: {
-                                        name: '',
-                                        url: '',
-                                        type: '',
-                                        alt: '',
-                                    },
-                                    title: 'Card title',
-                                    content: '<p>No content provided yet.</p>',
-                                    button: {
-                                        label: 'Click me',
-                                        url: '',
-                                    }
-                                },
-                                fourthCard: {
-                                    img: {
-                                        name: '',
-                                        url: '',
-                                        type: '',
-                                        alt: '',
-                                    },
-                                    title: 'Card title',
-                                    content: '<p>No content provided yet.</p>',
-                                    button: {
-                                        label: 'Click me',
-                                        url: '',
-                                    }
-                                },
-                            },
-                            class: '',
-                            id: '',
-                            styles: {
-                                themeColor: '#0069d9',
-                                imageShape: '',
-                            },
-                            css: '',
-                        };
+                                css: '',
+                            };
 
-                        currentColumns[keyIndex].content.subColumnOne.push(currentContent);
-                        this.setState({
-                            column: currentColumns,
-                            activeFeature: currentFeatures[source.index]['type'],
-                            activeColumnId: destination.index,
-                            activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
-                        });
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'homePage') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: {
+                                    title: 'Title',
+                                    subtitle: 'Subtitle',
+                                    date: '',
+                                    courseId: '',
+                                    backgroundImg: {
+                                        name: '',
+                                        url: ''
+                                    }
+                                },
+                                class: 'course-title-bottom-left',
+                                id: '',
+                                styles: {
+                                    titleBoxColor: '#0069d9',
+                                    titleBoxBorder: 'border-bottom',
+                                    height: 655
+                                },
+                                css: '',
+                            };
+
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'courseObjectives') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: {
+                                    courseNav: {
+                                        name: 'Course Navigation',
+                                    },
+                                    courseInfo: {
+                                        name: 'Course Information',
+                                        content: '<span>No information provided yet.</span>'
+                                    },
+                                    courseReq: {
+                                        name: 'Course Requirements',
+                                        content: '<span>No requirements provided yet</span>.'
+                                    },
+                                },
+                                class: '',
+                                id: '',
+                                styles: {
+                                    courseIntroColor: '#0069d9',
+                                    height: 655
+                                },
+                                introVideo: {
+                                    name: 'file_example_MP4_480_1_5MG',
+                                    url: 'https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4',
+                                    type: 'video/mp4',
+                                    position: 'course-objectives-video-left'
+                                },
+                                css: '',
+                            };
+                            
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'contentPicture') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: {
+                                    image: {
+                                        name: '',
+                                        url: '',
+                                        alt: '',
+                                    },
+                                    content: '<span>No content provided yet.</span>'
+                                },
+                                style: {
+                                    backgroundImg: {
+                                        name: '',
+                                        url: '',
+                                    },
+                                    backgroundColor: '#fff',
+                                    textColor: '',
+                                    imgPosition: 'left',
+                                    height: 655,
+                                    layout: '50-50',
+                                },
+                                class: '',
+                                id: '',
+                                css: '',
+                            };
+                            
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'sgCharts') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: {
+                                    chartType: 'pie',
+                                    dataSets: {},
+                                    chartOptions: {
+                                        shownData: [],
+                                    },
+                                    csvFile: {
+                                        name: '',
+                                        url: '',
+                                        headers: [],
+                                        data: [],
+                                    },
+                                    label: '',
+                                    description: '',
+                                },
+                                class: '',
+                                id: '',
+                                style: {
+                                    backgroundImg: {
+                                        name: '',
+                                        url: '',
+                                    },
+                                    height: 655,
+                                },
+                                css: '',
+                            };
+                            
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'dragDrop') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: [],
+                                class: '',
+                                id: '',
+                                styles: {
+                                    dragDropBackgroundColor: '#fff',
+                                    dragDropTextColor: 'text-black',
+                                    themeColor: '#0069d9',
+                                    backgroundImg: '',
+                                    height: 655,
+                                },
+                                css: '',
+                            };
+
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        } else if (currentFeatures[source.index]['type'] === 'multiCard') {
+                            let currentContent = {
+                                type: currentFeatures[source.index]['type'],
+                                category: 'fixed',
+                                output: {
+                                    cardCounter: [],
+                                    firstCard: {
+                                        img: {
+                                            name: '',
+                                            url: '',
+                                            type: '',
+                                            alt: '',
+                                        },
+                                        title: 'Card title',
+                                        content: '<p>No content provided yet.</p>',
+                                        button: {
+                                            label: 'Click me',
+                                            url: '',
+                                        }
+                                    },
+                                    secondCard: {
+                                        img: {
+                                            name: '',
+                                            url: '',
+                                            type: '',
+                                            alt: '',
+                                        },
+                                        title: 'Card title',
+                                        content: '<p>No content provided yet.</p>',
+                                        button: {
+                                            label: 'Click me',
+                                            url: '',
+                                        }
+                                    },
+                                    thirdCard: {
+                                        img: {
+                                            name: '',
+                                            url: '',
+                                            type: '',
+                                            alt: '',
+                                        },
+                                        title: 'Card title',
+                                        content: '<p>No content provided yet.</p>',
+                                        button: {
+                                            label: 'Click me',
+                                            url: '',
+                                        }
+                                    },
+                                    fourthCard: {
+                                        img: {
+                                            name: '',
+                                            url: '',
+                                            type: '',
+                                            alt: '',
+                                        },
+                                        title: 'Card title',
+                                        content: '<p>No content provided yet.</p>',
+                                        button: {
+                                            label: 'Click me',
+                                            url: '',
+                                        }
+                                    },
+                                },
+                                class: '',
+                                id: '',
+                                styles: {
+                                    themeColor: '#0069d9',
+                                    imageShape: '',
+                                },
+                                css: '',
+                            };
+
+                            currentColumns[keyIndex].content.subColumnOne.push(currentContent);
+                            this.setState({
+                                column: currentColumns,
+                                activeFeature: currentFeatures[source.index]['type'],
+                                activeColumnId: destination.index,
+                                activeContentIndex: (currentColumns[keyIndex].content.subColumnOne.length - 1),
+                            });
+                        }
                     }
-                    
                 }
             }
         }
@@ -4278,7 +4279,7 @@ class SlideHandler extends Component {
             column: columns,
             activeFeature: '',
             activeColumnId: -1,
-            activeTab: 'column',
+            activeTab: 'features',
             activeContentIndex: 0,
         })
     }
@@ -4682,7 +4683,12 @@ class SlideHandler extends Component {
                                                                                 ref={provided.innerRef}
                                                                                 {...provided.draggableProps}
                                                                                 {...provided.dragHandleProps}
-                                                                                className="sg-feature-list-item"
+                                                                                className={
+                                                                                    this.state.column.length === 1 && this.state.column[0].content.subColumnOne.length === 0 ?
+                                                                                        "sg-feature-list-item"
+                                                                                    :
+                                                                                        "sg-feature-list-item disabled"
+                                                                                }
                                                                             >
                                                                                 <SlideFeature
                                                                                     icon={item.icon}
