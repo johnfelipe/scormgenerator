@@ -10,7 +10,24 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faHome, faListAlt, faEye, faEyeSlash, faList, faVideo, faHandRock, faIdCardAlt, faFileImage, faListUl, faWindowRestore, faChartPie, faChevronCircleDown, faImage, faClone } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPlus,
+    faHome,
+    faListAlt,
+    faEye,
+    faEyeSlash,
+    faList,
+    faVideo,
+    faHandRock,
+    faIdCardAlt,
+    faFileImage,
+    faListUl,
+    faWindowRestore,
+    faChartPie,
+    faChevronCircleDown,
+    faImage,
+    faClone
+} from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 
 // react bootstrap
@@ -4650,69 +4667,67 @@ class SlideHandler extends Component {
                                                 </div>
                                             </Tab>
                                             <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
-                                                {/* <Tabs id="features-category-tabs" defaultActiveKey="fixed" className="text-center"> */}
-                                                    {this.props.slideHandlerProps.courseLayout === "fixed" ?
-                                                        <Droppable droppableId="fixed-features">
-                                                            {(provided) => (
-                                                                <div ref={provided.innerRef} className="sg-feature-list">
-                                                                    {this.state.fixedFeatures.map((item, featureIndex) => (
-                                                                        <Draggable
-                                                                            key={'fixed-feature-draggable-' + featureIndex}
-                                                                            draggableId={'fixed-feature-' + featureIndex}
-                                                                            index={featureIndex}
-                                                                        >
-                                                                            {(provided) => (
-                                                                                <div
-                                                                                    ref={provided.innerRef}
-                                                                                    {...provided.draggableProps}
-                                                                                    {...provided.dragHandleProps}
-                                                                                    className="sg-feature-list-item"
-                                                                                >
-                                                                                    <SlideFeature
-                                                                                        icon={item.icon}
-                                                                                        name={item.name}
-                                                                                        category={item.category}
-                                                                                    />
-                                                                                </div>
-                                                                            )}
-                                                                        </Draggable>
-                                                                    ))}
-                                                                    {provided.placeholder}
-                                                                </div>
-                                                            )}
-                                                        </Droppable>
-                                                    :
-                                                        <Droppable droppableId="fluid-features">
-                                                            {(provided) => (
-                                                                <div ref={provided.innerRef} className="sg-feature-list">
-                                                                    {this.state.fluidFeatures.map((item, featureIndex) => (
-                                                                        <Draggable
-                                                                            key={'fluid-feature-draggable-' + featureIndex}
-                                                                            draggableId={'fluid-feature-' + featureIndex}
-                                                                            index={featureIndex}
-                                                                        >
-                                                                            {(provided) => (
-                                                                                <div
-                                                                                    ref={provided.innerRef}
-                                                                                    {...provided.draggableProps}
-                                                                                    {...provided.dragHandleProps}
-                                                                                    className="sg-feature-list-item"
-                                                                                >
-                                                                                    <SlideFeature
-                                                                                        icon={item.icon}
-                                                                                        name={item.name}
-                                                                                        category={item.category}
-                                                                                    />
-                                                                                </div>
-                                                                            )}
-                                                                        </Draggable>
-                                                                    ))}
-                                                                    {provided.placeholder}
-                                                                </div>
-                                                            )}
-                                                        </Droppable>
-                                                    }
-                                                {/* </Tabs> */}
+                                                {this.props.slideHandlerProps.courseLayout === "fixed" ?
+                                                    <Droppable droppableId="fixed-features">
+                                                        {(provided) => (
+                                                            <div ref={provided.innerRef} className="sg-feature-list">
+                                                                {this.state.fixedFeatures.map((item, featureIndex) => (
+                                                                    <Draggable
+                                                                        key={'fixed-feature-draggable-' + featureIndex}
+                                                                        draggableId={'fixed-feature-' + featureIndex}
+                                                                        index={featureIndex}
+                                                                    >
+                                                                        {(provided) => (
+                                                                            <div
+                                                                                ref={provided.innerRef}
+                                                                                {...provided.draggableProps}
+                                                                                {...provided.dragHandleProps}
+                                                                                className="sg-feature-list-item"
+                                                                            >
+                                                                                <SlideFeature
+                                                                                    icon={item.icon}
+                                                                                    name={item.name}
+                                                                                    category={item.category}
+                                                                                />
+                                                                            </div>
+                                                                        )}
+                                                                    </Draggable>
+                                                                ))}
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                :
+                                                    <Droppable droppableId="fluid-features">
+                                                        {(provided) => (
+                                                            <div ref={provided.innerRef} className="sg-feature-list">
+                                                                {this.state.fluidFeatures.map((item, featureIndex) => (
+                                                                    <Draggable
+                                                                        key={'fluid-feature-draggable-' + featureIndex}
+                                                                        draggableId={'fluid-feature-' + featureIndex}
+                                                                        index={featureIndex}
+                                                                    >
+                                                                        {(provided) => (
+                                                                            <div
+                                                                                ref={provided.innerRef}
+                                                                                {...provided.draggableProps}
+                                                                                {...provided.dragHandleProps}
+                                                                                className="sg-feature-list-item"
+                                                                            >
+                                                                                <SlideFeature
+                                                                                    icon={item.icon}
+                                                                                    name={item.name}
+                                                                                    category={item.category}
+                                                                                />
+                                                                            </div>
+                                                                        )}
+                                                                    </Draggable>
+                                                                ))}
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                }
                                             </Tab>
                                             <Tab eventKey="editor" title="Editor" className="h-100">
                                                 <SlideEditor 
@@ -4752,628 +4767,627 @@ class SlideHandler extends Component {
                                                             {/* First Size */}
                                                             {(provided) => (
                                                                 <div ref={provided.innerRef} className="feature-preview-container p-0 pb-3">
-                                                                    { 
-                                                                        typeof item.content['subColumnOne'] != "undefined" ? 
-                                                                            item.content['subColumnOne'].length > 0 ?
-                                                                                <div
-                                                                                    id={item.id}
-                                                                                    className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
-                                                                                >
-                                                                                    {
-                                                                                        item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
-                                                                                            <Draggable
-                                                                                                key={'feature-' + contentFirst.type + '-' + contentFirstIndex}
-                                                                                                draggableId={contentFirst.type + '-' + contentFirstIndex + '-' + item.id}
-                                                                                                index={contentFirstIndex}
-                                                                                            >
-                                                                                                {(provided) => (
-                                                                                                    <>
-                                                                                                        {contentFirst.type === 'homePage' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                    {typeof item.content['subColumnOne'] != "undefined" ? 
+                                                                        item.content['subColumnOne'].length > 0 ?
+                                                                            <div
+                                                                                id={item.id}
+                                                                                className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
+                                                                            >
+                                                                                {
+                                                                                    item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
+                                                                                        <Draggable
+                                                                                            key={'feature-' + contentFirst.type + '-' + contentFirstIndex}
+                                                                                            draggableId={contentFirst.type + '-' + contentFirstIndex + '-' + item.id}
+                                                                                            index={contentFirstIndex}
+                                                                                        >
+                                                                                            {(provided) => (
+                                                                                                <>
+                                                                                                    {contentFirst.type === 'homePage' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                className="content-output"
-                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <HomePageLayout
-                                                                                                                    title={contentFirst.output.title}
-                                                                                                                    subtitle={contentFirst.output.subtitle}
-                                                                                                                    date={contentFirst.output.date}
-                                                                                                                    courseId={contentFirst.output.courseId}
-                                                                                                                    backgroundImg={contentFirst.output.backgroundImg}
-                                                                                                                    homePageClass={contentFirst.class}
-                                                                                                                    styles={contentFirst.styles}
-                                                                                                                    homepageId={contentFirst.id}
-                                                                                                                    homePageCss={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
-                                                                                                    
-                                                                                                        {contentFirst.type === 'multipleChoice' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
-
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                className="content-output"
-                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex,
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <MultipleChoiceLayout
-                                                                                                                    multipleChoice={contentFirst.output}
-                                                                                                                    multipleChoiceClass={contentFirst.class}
-                                                                                                                    multipleChoiceId={contentFirst.id}
-                                                                                                                    multipleChoiceStyles={contentFirst.styles}
-                                                                                                                    multipleChoiceCss={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
-
-                                                                                                        {contentFirst.type === 'courseObjectives' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
-
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            className="content-output"
+                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <CourseObjLayout
-                                                                                                                    styles={contentFirst.styles}
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    introVideo={contentFirst.introVideo}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <HomePageLayout
+                                                                                                                title={contentFirst.output.title}
+                                                                                                                subtitle={contentFirst.output.subtitle}
+                                                                                                                date={contentFirst.output.date}
+                                                                                                                courseId={contentFirst.output.courseId}
+                                                                                                                backgroundImg={contentFirst.output.backgroundImg}
+                                                                                                                homePageClass={contentFirst.class}
+                                                                                                                styles={contentFirst.styles}
+                                                                                                                homepageId={contentFirst.id}
+                                                                                                                homePageCss={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                
+                                                                                                    {contentFirst.type === 'multipleChoice' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                        {contentFirst.type === 'listModal' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            className="content-output"
+                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex,
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <MultipleChoiceLayout
+                                                                                                                multipleChoice={contentFirst.output}
+                                                                                                                multipleChoiceClass={contentFirst.class}
+                                                                                                                multipleChoiceId={contentFirst.id}
+                                                                                                                multipleChoiceStyles={contentFirst.styles}
+                                                                                                                multipleChoiceCss={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                    {contentFirst.type === 'courseObjectives' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <ListModalLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    styles={contentFirst.styles}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <CourseObjLayout
+                                                                                                                styles={contentFirst.styles}
+                                                                                                                output={contentFirst.output}
+                                                                                                                introVideo={contentFirst.introVideo}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'video' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'listModal' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <VideoLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <ListModalLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                styles={contentFirst.styles}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'dragDrop' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'video' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                className="content-output"
-                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex,
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <DragDropLayout
-                                                                                                                    dragDrop={contentFirst.output}
-                                                                                                                    dragDropClass={contentFirst.class}
-                                                                                                                    dragDropId={contentFirst.id}
-                                                                                                                    dragDropStyles={contentFirst.styles}
-                                                                                                                    dragDropCss={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
-
-                                                                                                        {contentFirst.type === 'card' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
-
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                className="content-output"
-                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex,
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <CardLayout
-                                                                                                                    cardOutput={contentFirst.output}
-                                                                                                                    cardClass={contentFirst.class}
-                                                                                                                    cardId={contentFirst.id}
-                                                                                                                    cardStyles={contentFirst.styles}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
-
-                                                                                                        {contentFirst.type === 'image' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
-
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <ImageLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <VideoLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'list' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'dragDrop' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            className="content-output"
+                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex,
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <DragDropLayout
+                                                                                                                dragDrop={contentFirst.output}
+                                                                                                                dragDropClass={contentFirst.class}
+                                                                                                                dragDropId={contentFirst.id}
+                                                                                                                dragDropStyles={contentFirst.styles}
+                                                                                                                dragDropCss={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
+
+                                                                                                    {contentFirst.type === 'card' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            className="content-output"
+                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex,
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <CardLayout
+                                                                                                                cardOutput={contentFirst.output}
+                                                                                                                cardClass={contentFirst.class}
+                                                                                                                cardId={contentFirst.id}
+                                                                                                                cardStyles={contentFirst.styles}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
+
+                                                                                                    {contentFirst.type === 'image' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <ListLayout
-                                                                                                                    list={contentFirst.output}
-                                                                                                                    listStyles={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <ImageLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'contentArea' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'list' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <ContentAreaLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <ListLayout
+                                                                                                                list={contentFirst.output}
+                                                                                                                listStyles={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'audio' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'contentArea' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <AudioLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <ContentAreaLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'tabs' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'audio' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <TabsLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <AudioLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'sgCharts' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'tabs' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <SgChartsLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <TabsLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'accordion' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'sgCharts' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <SgAccordionLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <SgChartsLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'contentPicture' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'accordion' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                id={
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
                                                                                                                     contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                    : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex
-                                                                                                                } 
-                                                                                                                className={
-                                                                                                                    contentFirst.class ? 
-                                                                                                                        contentFirst.class + " content-output"
-                                                                                                                    : 
-                                                                                                                        "content-output"
-                                                                                                                } 
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex, 
-                                                                                                                        contentFirst.id ? 
-                                                                                                                        contentFirst.id
-                                                                                                                            : 
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <ContentWithPictureLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    style={contentFirst.style}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <SgAccordionLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
 
-                                                                                                        {contentFirst.type === 'multiCard' &&
-                                                                                                            <div 
-                                                                                                                ref={provided.innerRef}
-                                                                                                                {...provided.draggableProps}
-                                                                                                                {...provided.dragHandleProps}
+                                                                                                    {contentFirst.type === 'contentPicture' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
 
-                                                                                                                key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                className="content-output"
-                                                                                                                id={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                                onClick={() => 
-                                                                                                                    this.contentPaneClick(
-                                                                                                                        index, 
-                                                                                                                        contentFirstIndex,
-                                                                                                                        item.id + '-content-output-' + contentFirstIndex,
-                                                                                                                        'subColumnOne'
-                                                                                                                    )
-                                                                                                                }
-                                                                                                            >
-                                                                                                                <MultiCardLayout
-                                                                                                                    output={contentFirst.output}
-                                                                                                                    cardClass={contentFirst.class}
-                                                                                                                    id={contentFirst.id}
-                                                                                                                    styles={contentFirst.styles}
-                                                                                                                    css={contentFirst.css}
-                                                                                                                    cssApplier={this.cssApplier}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        }
-                                                                                                    </>
-                                                                                                )}
-                                                                                            </Draggable>
-                                                                                        ))
-                                                                                    }
-                                                                                </div>
-                                                                                        
-                                                                            :
-                                                                                <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
-                                                                                    {item.name}
-                                                                                </div>
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            id={
+                                                                                                                contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex
+                                                                                                            } 
+                                                                                                            className={
+                                                                                                                contentFirst.class ? 
+                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                : 
+                                                                                                                    "content-output"
+                                                                                                            } 
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex, 
+                                                                                                                    contentFirst.id ? 
+                                                                                                                    contentFirst.id
+                                                                                                                        : 
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <ContentWithPictureLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                style={contentFirst.style}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
+
+                                                                                                    {contentFirst.type === 'multiCard' &&
+                                                                                                        <div 
+                                                                                                            ref={provided.innerRef}
+                                                                                                            {...provided.draggableProps}
+                                                                                                            {...provided.dragHandleProps}
+
+                                                                                                            key={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            className="content-output"
+                                                                                                            id={item.id + '-content-output-' + contentFirstIndex}
+                                                                                                            onClick={() => 
+                                                                                                                this.contentPaneClick(
+                                                                                                                    index, 
+                                                                                                                    contentFirstIndex,
+                                                                                                                    item.id + '-content-output-' + contentFirstIndex,
+                                                                                                                    'subColumnOne'
+                                                                                                                )
+                                                                                                            }
+                                                                                                        >
+                                                                                                            <MultiCardLayout
+                                                                                                                output={contentFirst.output}
+                                                                                                                cardClass={contentFirst.class}
+                                                                                                                id={contentFirst.id}
+                                                                                                                styles={contentFirst.styles}
+                                                                                                                css={contentFirst.css}
+                                                                                                                cssApplier={this.cssApplier}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                </>
+                                                                                            )}
+                                                                                        </Draggable>
+                                                                                    ))
+                                                                                }
+                                                                            </div>
+                                                                                    
                                                                         :
-
                                                                             <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
                                                                                 {item.name}
                                                                             </div>
+                                                                    :
+
+                                                                        <div id={item.id} className="p-5 text-center sg-column mt-2 w-100" tabIndex="0">
+                                                                            {item.name}
+                                                                        </div>
                                                                     }
                                                                     {provided.placeholder}
                                                                 </div>
@@ -5846,7 +5860,6 @@ class SlideHandler extends Component {
                                                             </div>
                                                         :
                                                             item.grid === 2 ?
-                                                                
                                                                 <div key={index} className="feature-preview-container p-0 pb-3">
                                                                     {/* Third Size */}
                                                                     <div className="row w-100 m-0">
@@ -6312,7 +6325,6 @@ class SlideHandler extends Component {
                                                                 </div>
                                                             :
                                                                 item.grid === 3 ?
-                                                                    
                                                                     <div key={index} className="feature-preview-container p-0 pb-3">
                                                                         {/* Fourth Size */}
                                                                         <div className="row w-100 m-0">
@@ -6775,11 +6787,9 @@ class SlideHandler extends Component {
                                                                                 )}
                                                                             </Droppable>
                                                                         </div>
-                                                                    </div>
-                                                                        
+                                                                    </div>    
                                                                 :
                                                                     item.grid === 4 ?
-                                                                        
                                                                         <div key={index} className="feature-preview-container p-0 pb-3">
                                                                             {/* Fifth Size */}
                                                                             <div className="row w-100 m-0">
@@ -7471,11 +7481,9 @@ class SlideHandler extends Component {
                                                                                 )}
                                                                             </Droppable>
                                                                             </div>
-                                                                        </div>
-                                                                            
+                                                                        </div>  
                                                                     :
                                                                         item.grid === 5 ?
-                                                                            
                                                                             <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                 {/* Sixth Size */}
                                                                                 <div className="row w-100 m-0">
@@ -8184,10 +8192,8 @@ class SlideHandler extends Component {
                                                                                         )}
                                                                                     </Droppable>
                                                                                 </div>
-                                                                            </div>
-                                                                                
+                                                                            </div>    
                                                                         :
-                                                                            
                                                                             <div key={index} className="feature-preview-container p-0 pb-3">
                                                                                 {/* Seventh Size */}
                                                                                 <div className="row w-100 m-0">
