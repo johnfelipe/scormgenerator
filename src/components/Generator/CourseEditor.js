@@ -139,7 +139,7 @@ function CourseEditor() {
                     weight: i
                 }
                 slides[i].weight = i;
-                dispatch(slideActions.updateSlide(data, slides[i].sid));
+                dispatch(slideActions.updateSlide(data, slides[i].sid, cid, 'rearrange'));
             }
 
             const lessons = [...courseLessons];

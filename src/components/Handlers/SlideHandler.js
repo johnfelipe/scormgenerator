@@ -4444,7 +4444,7 @@ class SlideHandler extends Component {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid, cid);
             this.props.courseUpdate({ weight: 0 }, cid);
         } else if (this.props.slideHandlerProps.action === "edit") {
-            this.props.updateSlide(slideObj, sid, cid);
+            this.props.updateSlide(slideObj, sid, cid, 'edit');
             this.props.updateSlideFromCourseLesson(slideObj, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             // creates column
@@ -9209,7 +9209,7 @@ const mapDispatchToProps = (dispatch) => {
         createSlide: (data, lessonIndex, columnArray, slideIndex, uid, cid) => dispatch(slideActions.createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid)),
         getCourseLessons: (cid) => dispatch(courseActions.getCourseLessons(cid)),
         appendSlideToCourseLesson: (slideObj, lessonIndex) => dispatch(courseActions.appendSlideToCourseLesson(slideObj, lessonIndex)),
-        updateSlide: (slideObj, lid, cid) => dispatch(slideActions.updateSlide(slideObj, lid, cid)),
+        updateSlide: (slideObj, lid, cid, action) => dispatch(slideActions.updateSlide(slideObj, lid, cid, action)),
         updateSlideFromCourseLesson: (slideObj, slideIndex, lessonIndex) => dispatch(courseActions.updateSlideFromCourseLesson(slideObj, slideIndex, lessonIndex)),
         createColumn: (columnObj) => dispatch(columnActions.createColumn(columnObj)),
         updateColumn: (columnObj, id) => dispatch(columnActions.updateColumn(columnObj, id)),
