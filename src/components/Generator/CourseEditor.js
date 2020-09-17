@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose, faArrowsAlt, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -223,6 +224,11 @@ function CourseEditor() {
 
     return (
         <div id="generator-container">
+            <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                <Breadcrumb.Item href="/" className="text-secondary">Course</Breadcrumb.Item>
+            </Breadcrumb>
+
             <Formik
                 enableReinitialize={true}
 

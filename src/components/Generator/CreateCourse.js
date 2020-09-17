@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -91,6 +92,10 @@ function CreateCourse() {
 
     return (
         <div id="generator-container">
+            <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+            </Breadcrumb>
+
             <Formik
                 initialValues={{
                     courseTitle: '',
