@@ -775,6 +775,10 @@ class SlideHandler extends Component {
                     imgPosition: 'left',
                     height: 655,
                     layout: '50-50',
+                    backgroundAudio: {
+                        name: '',
+                        url: '',
+                    },
                 },
                 class: '',
                 id: '',
@@ -1079,6 +1083,10 @@ class SlideHandler extends Component {
                                     imgPosition: 'left',
                                     height: 655,
                                     layout: '50-50',
+                                    backgroundAudio: {
+                                        name: '',
+                                        url: '',
+                                    },
                                 },
                                 class: '',
                                 id: '',

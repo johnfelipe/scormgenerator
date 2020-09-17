@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
@@ -19,6 +19,7 @@ function ContentWithLeftPicture(props) {
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
+    const [play, setPlay] = useState(true);
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
 
     const setImage = (name, url, type) => {
@@ -104,6 +105,55 @@ function ContentWithLeftPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const handleAudioChange = (e) => {
+        let files = e.target.files;
+
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+        formData.append('uid', uid);
+        formData.append('alt', files[0].name);
+
+        galleryService.uploadFiles(formData)
+        .then(
+            fileObject => {
+                console.log(fileObject);
+                setBackgroundMusic(fileObject.name, fileObject.image, fileObject.type);
+            },
+            error => console.log(error)
+        );
+    }
+
+    const setBackgroundMusic = (name, url, type) => {
+        const audioPlayer = document.getElementById("content-picture-bg-audio");
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url = url;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.name = name;
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.type = type;
+
+        props.setColumn(currentColumnObj);
+        
+        if (audioPlayer) {
+            setPlay(true);
+            audioPlayer.load();
+        }
+    }
+
+    const bgAudioControl = () => {
+        const audioPlayer = document.getElementById("content-picture-bg-audio");
+
+        if (audioPlayer) {
+            if (play) {
+                setPlay(false);
+                audioPlayer.pause();
+            } else {
+                setPlay(true);
+                audioPlayer.play();
+            }
+        }
+    }
     
     return (
         <div className="sg-controls">
@@ -174,6 +224,106 @@ function ContentWithLeftPicture(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+                <div className="sg-control-header">
+                    <label>Background Music</label>
+                </div>
+                <div className="sg-control-input sg-control-input">
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>Upload audio file for background music.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Audio</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input input-group">
+                                <label className="input-group-btn mb-0">
+                                    <span className="btn btn-primary">
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleAudioChange} accept="audio/*"/>
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Upload audio"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.name
+                                    }
+                                    readOnly
+                                />
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='tooltip-top'>
+                                        <span>This control is shown in the editor only.</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Audio Controls</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input input-group">
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url && 
+                                    play ?
+                                        <OverlayTrigger
+                                            key="top"
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id='tooltip-top'>
+                                                    <span>Pause the audio.</span>
+                                                </Tooltip>
+                                            }
+                                        >
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url !== '' ?
+                                                <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
+                                                    <FontAwesomeIcon icon={faPause}/>
+                                                </span>
+                                            :
+                                                <span type="button" className="btn btn-primary disabled">
+                                                    <FontAwesomeIcon icon={faPause}/>
+                                                </span>
+                                            }
+                                        </OverlayTrigger>
+                                    :
+                                        <OverlayTrigger
+                                            key="top"
+                                            placement="top"
+                                            overlay={
+                                                <Tooltip id='tooltip-top'>
+                                                    <span>Play the audio.</span>
+                                                </Tooltip>
+                                            }
+                                        >
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundAudio.url !== '' ?
+                                                <span type="button" className="btn btn-primary" onClick={() => bgAudioControl()}>
+                                                    <FontAwesomeIcon icon={faPlay}/>
+                                                </span>
+                                            :
+                                                <span type="button" className="btn btn-primary disabled">
+                                                    <FontAwesomeIcon icon={faPlay}/>
+                                                </span>
+                                            }
+                                        </OverlayTrigger>
+                                }
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
