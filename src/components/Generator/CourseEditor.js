@@ -245,7 +245,6 @@ function CourseEditor() {
                 }}
 
                 onSubmit={values => {
-                    console.log(values);
                     const data = {
                             title: values.courseTitle,
                             logo: values.courseLogo.url,

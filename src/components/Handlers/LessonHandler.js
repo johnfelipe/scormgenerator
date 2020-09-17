@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 // actions
-import { lessonActions } from '../../actions';
+import { courseActions, lessonActions } from '../../actions';
 
 function LessonHandler(props) {
 
@@ -19,11 +19,13 @@ function LessonHandler(props) {
         if (props.action === "add") {
             // props.addLessonNameChange(lessonObj);
             dispatch(lessonActions.createLesson(lessonObj));
+            dispatch(courseActions.courseUpdate({ weight: 0 }, lessonObj.cid));
         } else if (props.action === "edit") {
             const data = {
                 title: lessonObj.title,
             }
             dispatch(lessonActions.updateLesson(data, lid));
+            dispatch(courseActions.courseUpdate({ weight: 0 }, lessonObj.cid));
             // props.editLessonNameChange(data, lid);
         }
         

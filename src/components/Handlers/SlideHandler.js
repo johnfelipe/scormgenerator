@@ -4434,12 +4434,14 @@ class SlideHandler extends Component {
     onSave = (slideObj, sid, lessonIndex, columnArray, cid) => {
         if (this.props.slideHandlerProps.action === "add") {
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid, cid);
+            this.props.courseUpdate({ weight: 0 }, cid);
         } else if (this.props.slideHandlerProps.action === "edit") {
             this.props.updateSlide(slideObj, sid, cid);
             this.props.updateSlideFromCourseLesson(slideObj, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             // creates column
             this.stringifySlideColumns(sid, this.props.slideHandlerProps.uid, columnArray, this.props.slideHandlerProps.action);
+            this.props.courseUpdate({ weight: 0 }, cid);
         }
     }
 
@@ -9206,6 +9208,7 @@ const mapDispatchToProps = (dispatch) => {
         appendSlideColumnsFromCourseLesson: (columnArray, slideIndex, lessonIndex) => dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex)),
         getSlideColumns: (id) => dispatch(slideActions.getSlideColumns(id)),
         getLatestLessonSlide: (id) => dispatch(courseActions.getLatestLessonSlide(id)),
+        courseUpdate: (data, id) => dispatch(courseActions.courseUpdate(data, id)),
     }
 }
 
