@@ -81,6 +81,12 @@ function ContentWithLeftPictureLayout(props) {
                 <div className="content-area-container h-100 w-100 border border-light p-3 ">
                     {content()}
                     {props.cssApplier(css, 'content-picture-layout')}
+                    {style.backgroundAudio.url &&
+                        <audio id="content-picture-bg-audio" controls autoPlay className="d-none">
+                            <source src={style.backgroundAudio.url} type={style.backgroundAudio.type}/>
+                            Your browser does not support the audio element.
+                        </audio>
+                    }
                 </div>
             </div>
         </>

@@ -491,6 +491,9 @@ html body #root #generator-container {
   margin: 0 auto;
   padding: 20px;
 }
+html body #root #generator-container .breadcrumb .breadcrumb-item a:hover {
+  text-decoration: none;
+}
 html body #root #generator-container .row input.error, html body #root #generator-container .row label.error {
   border-color: red;
 }
