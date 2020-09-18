@@ -770,6 +770,10 @@ class SlideHandler extends Component {
                     content: '<span>No content provided yet.</span>'
                 },
                 style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                     backgroundColor: '#fff',
                     textColor: '',
                     imgPosition: 'left',

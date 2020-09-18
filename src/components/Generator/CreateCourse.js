@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowCircleRight, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -41,10 +43,25 @@ function CreateCourse() {
         {label: 'Fixed', value: 'fixed'},
         {label: 'Fluid', value: 'fluid'},
     ];
+    const courseMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Course updated successfully
+        </span>
+    );
+    const notify = () => toast.success(courseMsg);
 
     useEffect(() => {
         dispatch(courseActions.getAll());
     }, [dispatch, currentCourse]);
+
+    useEffect(() => {
+        const courseUpdate = sessionStorage.getItem('courseUpdate');
+        if (courseUpdate) {
+            notify();
+        }
+        sessionStorage.clear();
+    },);
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -92,6 +109,18 @@ function CreateCourse() {
 
     return (
         <div id="generator-container">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover={false}
+            />
+
             <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
                 <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
             </Breadcrumb>
