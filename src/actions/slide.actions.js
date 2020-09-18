@@ -1,5 +1,6 @@
 import { slideContants } from '../constants';
 import { slideService, } from '../services';
+import { courseService } from '../services';
 import { courseActions, columnActions } from './';
 import { history } from '../helpers';
 
@@ -64,6 +65,27 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
 
                         dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                     }
+
+                    courseService.getAll()
+                    .then(
+                        courses => { 
+                            let weight = 0;
+
+                            for (let i = 0; i < courses.length; i++) {
+                                if (courses[i].cid !== cid) {
+                                    const data = {
+                                        weight: weight++
+                                    }
+                                    
+                                    courseService.updateCourse(data, courses[i].cid);
+                                }
+                            }
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            console.log(error);
+                        }
+                    );
 
                     history.push("/course/" + cid);
                     window.location.reload();
@@ -134,6 +156,27 @@ function updateSlide(data, id, cid, action) {
         slideService.updateSlide(data, id)
             .then(
                 slide => { 
+                    courseService.getAll()
+                    .then(
+                        courses => { 
+                            let weight = 0;
+
+                            for (let i = 0; i < courses.length; i++) {
+                                if (courses[i].cid !== cid) {
+                                    const data = {
+                                        weight: weight++
+                                    }
+
+                                    courseService.updateCourse(data, courses[i].cid);
+                                }
+                            }
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            console.log(error);
+                        }
+                    );
+
                     dispatch(success(slide));
                     // dispatch(alertActions.success('Slide updated successfully'));
 
