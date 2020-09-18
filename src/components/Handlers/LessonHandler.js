@@ -18,11 +18,14 @@ function LessonHandler(props) {
     const onSave = (lessonObj, lid) => {
         if (props.action === "add") {
             dispatch(lessonActions.createLesson(lessonObj));
+            sessionStorage.setItem('lessonAction', 'create');
         } else if (props.action === "edit") {
             const data = {
                 title: lessonObj.title,
+                cid: lessonObj.cid,
             }
             dispatch(lessonActions.updateLesson(data, lid));
+            sessionStorage.setItem('lessonAction', 'update');
         }
         
         setModalShow(false)
@@ -54,7 +57,7 @@ function LessonHandler(props) {
                             uid: props.uid,
                             weight: props.lessonWeight,
                         }
-
+                        
                         onSave(data, props.lid);
                     }}
 

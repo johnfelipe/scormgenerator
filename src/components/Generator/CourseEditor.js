@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose, faArrowsAlt, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose, faArrowsAlt, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
@@ -66,8 +68,23 @@ function CourseEditor() {
         {label: 'Fluid', value: 'fluid'},
     ];
 
+    const lessonUpdateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Lesson updated successfully
+        </span>
+    );
+    const updateToast = () => toast.success(lessonUpdateMsg);
+
+    const lessonCreateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Lesson created successfully
+        </span>
+    );
+    const createToast = () => toast.success(lessonCreateMsg);
+
     useEffect(() => {
-        sessionStorage.clear();
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
         dispatch(galleryActions.getAllFiles());
@@ -76,6 +93,16 @@ function CourseEditor() {
         dispatch(coursemetaActions.getCoursemetaByRkey(cid, "glossary"));
         // setCourseId(cid);
     }, [dispatch, cid, currentLesson, lessonActionMsg, currentCoursemeta, coursemetaActionMsg]);
+
+    useEffect(() => {
+        const lessonAction = sessionStorage.getItem('lessonAction');
+        if (lessonAction === "update") {
+            updateToast();
+        } else if (lessonAction === "create") {
+            createToast();
+        }
+        sessionStorage.clear();
+    });
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -224,6 +251,19 @@ function CourseEditor() {
 
     return (
         <div id="generator-container">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover={false}
+                transition={Slide}
+            />
+
             <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
                 <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
                 <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + currentCourse.cid }} active={true}>Course</Breadcrumb.Item>

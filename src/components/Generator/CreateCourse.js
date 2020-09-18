@@ -5,7 +5,7 @@ import { faArrowsAlt, faArrowCircleRight, faCopy, faCheck } from '@fortawesome/f
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // formik and related libraries
@@ -108,8 +108,6 @@ function CreateCourse() {
                 }
                 updatedCourseList[i].weight = i;
                 dispatch(courseActions.updateCourse(data, updatedCourseList[i].cid));
-
-                // roles = roles.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
             }
 
             updatedCourseList = updatedCourseList.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
