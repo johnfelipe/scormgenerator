@@ -76,13 +76,11 @@ function updateCourse(data, id) {
             course => {
                 courseService.getAll()
                 .then(
-                    courses => { 
-                        let weight = data.weight;
-
+                    courses => {
                         for (let i = 0; i < courses.length; i++) {
                             if (courses[i].cid !== course.cid) {
                                 const data = {
-                                    weight: weight++
+                                    weight: courses[i].weight+1
                                 }
 
                                 courseService.updateCourse(data, courses[i].cid);
