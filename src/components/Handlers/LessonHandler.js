@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 // actions
-import { courseActions, lessonActions } from '../../actions';
+import { lessonActions } from '../../actions';
 
 function LessonHandler(props) {
 
