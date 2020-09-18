@@ -74,7 +74,7 @@ function CourseEditor() {
             Lesson updated successfully
         </span>
     );
-    const updateToast = () => toast.success(lessonUpdateMsg);
+    const lessonUpdateToast = () => toast.success(lessonUpdateMsg);
 
     const lessonCreateMsg = () => (
         <span className="p-2">
@@ -82,7 +82,23 @@ function CourseEditor() {
             Lesson created successfully
         </span>
     );
-    const createToast = () => toast.success(lessonCreateMsg);
+    const lessonCreateToast = () => toast.success(lessonCreateMsg);
+
+    const slideUpdateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Slide updated successfully
+        </span>
+    );
+    const slideUpdateToast = () => toast.success(slideUpdateMsg);
+
+    const slideCreateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Slide created successfully
+        </span>
+    );
+    const slideCreateToast = () => toast.success(slideCreateMsg);
 
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
@@ -96,10 +112,18 @@ function CourseEditor() {
 
     useEffect(() => {
         const lessonAction = sessionStorage.getItem('lessonAction');
+        const slideAction = sessionStorage.getItem('slideAction');
+
         if (lessonAction === "update") {
-            updateToast();
+            lessonUpdateToast();
         } else if (lessonAction === "create") {
-            createToast();
+            lessonCreateToast();
+        }
+
+        if (slideAction === "update") {
+            slideUpdateToast();
+        } else if (slideAction === "create") {
+            slideCreateToast();
         }
         sessionStorage.clear();
     });
