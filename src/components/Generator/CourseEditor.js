@@ -256,7 +256,7 @@ function CourseEditor() {
                         weight: 0,
                     }
 
-                    sessionStorage.setItem('courseUpdate', true);
+                    sessionStorage.setItem('courseAction', 'update');
 
                     dispatch(courseActions.updateCourse(data, currentCourse.cid));
                 }}

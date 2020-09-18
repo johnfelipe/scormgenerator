@@ -5,7 +5,7 @@ import { faArrowsAlt, faArrowCircleRight, faCopy, faCheck } from '@fortawesome/f
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // formik and related libraries
@@ -43,25 +43,36 @@ function CreateCourse() {
         {label: 'Fixed', value: 'fixed'},
         {label: 'Fluid', value: 'fluid'},
     ];
-    const courseMsg = () => (
+
+    const courseUpdateMsg = () => (
         <span className="p-2">
             <FontAwesomeIcon icon={faCheck}/>&nbsp;
             Course updated successfully
         </span>
     );
-    const notify = () => toast.success(courseMsg);
+    const updateToast = () => toast.success(courseUpdateMsg);
+
+    const courseCreateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Course created successfully
+        </span>
+    );
+    const createToast = () => toast.success(courseCreateMsg);
 
     useEffect(() => {
         dispatch(courseActions.getAll());
     }, [dispatch, currentCourse]);
 
     useEffect(() => {
-        const courseUpdate = sessionStorage.getItem('courseUpdate');
-        if (courseUpdate) {
-            notify();
+        const courseAction = sessionStorage.getItem('courseAction');
+        if (courseAction === "update") {
+            updateToast();
+        } else if (courseAction === "create") {
+            createToast();
         }
         sessionStorage.clear();
-    },);
+    });
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -119,6 +130,7 @@ function CreateCourse() {
                 pauseOnFocusLoss
                 draggable={false}
                 pauseOnHover={false}
+                transition={Slide}
             />
 
             <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
@@ -149,6 +161,8 @@ function CreateCourse() {
                             uid: 1,
                             weight: 0,
                         }
+
+                        sessionStorage.setItem('courseAction', 'create');
 
                         dispatch(courseActions.createCourse(data));
                         resetForm({})
