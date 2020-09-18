@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowCircleRight, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // formik and related libraries
 import { Formik } from "formik";
@@ -42,9 +44,35 @@ function CreateCourse() {
         {label: 'Fluid', value: 'fluid'},
     ];
 
+    const courseUpdateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Course updated successfully
+        </span>
+    );
+    const updateToast = () => toast.success(courseUpdateMsg);
+
+    const courseCreateMsg = () => (
+        <span className="p-2">
+            <FontAwesomeIcon icon={faCheck}/>&nbsp;
+            Course created successfully
+        </span>
+    );
+    const createToast = () => toast.success(courseCreateMsg);
+
     useEffect(() => {
         dispatch(courseActions.getAll());
     }, [dispatch, currentCourse]);
+
+    useEffect(() => {
+        const courseAction = sessionStorage.getItem('courseAction');
+        if (courseAction === "update") {
+            updateToast();
+        } else if (courseAction === "create") {
+            createToast();
+        }
+        sessionStorage.clear();
+    });
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
@@ -80,8 +108,6 @@ function CreateCourse() {
                 }
                 updatedCourseList[i].weight = i;
                 dispatch(courseActions.updateCourse(data, updatedCourseList[i].cid));
-
-                // roles = roles.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
             }
 
             updatedCourseList = updatedCourseList.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
@@ -92,6 +118,19 @@ function CreateCourse() {
 
     return (
         <div id="generator-container">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable={false}
+                pauseOnHover={false}
+                transition={Slide}
+            />
+
             <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
                 <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
             </Breadcrumb>
@@ -120,6 +159,8 @@ function CreateCourse() {
                             uid: 1,
                             weight: 0,
                         }
+
+                        sessionStorage.setItem('courseAction', 'create');
 
                         dispatch(courseActions.createCourse(data));
                         resetForm({})

@@ -40,7 +40,7 @@ export function lesson(state = initialState, action) {
         case lessonContants.UPDATE_SUCCESS:
             return {
                 ...state,
-                currentLesson: action.lesson
+                message: action.lesson + ' ' + action.lid
             };
 
         case lessonContants.DELETE:

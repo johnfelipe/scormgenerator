@@ -153,7 +153,7 @@ function updateLesson(data, id) {
                         }
                     );
 
-                    dispatch(success(lesson));
+                    dispatch(success(lesson, id));
                     // dispatch(alertActions.success('Lesson updated successfully'));
                 },
                 error => {
@@ -165,7 +165,7 @@ function updateLesson(data, id) {
     };
 
     function request(id) { return { type: lessonContants.REQUEST, id } }
-    function success(lesson) { return { type: lessonContants.UPDATE_SUCCESS, lesson } }
+    function success(lesson, lid) { return { type: lessonContants.UPDATE_SUCCESS, lesson, lid } }
     function failure(error) { return { type: lessonContants.ERROR, error } }
 }
 

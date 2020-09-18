@@ -770,6 +770,10 @@ class SlideHandler extends Component {
                     content: '<span>No content provided yet.</span>'
                 },
                 style: {
+                    backgroundImg: {
+                        name: '',
+                        url: '',
+                    },
                     backgroundColor: '#fff',
                     textColor: '',
                     imgPosition: 'left',
@@ -4449,8 +4453,10 @@ class SlideHandler extends Component {
 
     onSave = (slideObj, sid, lessonIndex, columnArray, cid) => {
         if (this.props.slideHandlerProps.action === "add") {
+            sessionStorage.setItem('slideAction', 'create');
             this.props.createSlide(slideObj, lessonIndex, columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.uid, cid);
         } else if (this.props.slideHandlerProps.action === "edit") {
+            sessionStorage.setItem('slideAction', 'update');
             this.props.updateSlide(slideObj, sid, cid, 'edit');
             this.props.updateSlideFromCourseLesson(slideObj, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
             this.props.appendSlideColumnsFromCourseLesson(columnArray, this.props.slideHandlerProps.currentSlideIndex, this.props.slideHandlerProps.lessonIndex);
