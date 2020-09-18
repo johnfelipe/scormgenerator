@@ -246,17 +246,17 @@ function CourseEditor() {
 
                 onSubmit={values => {
                     const data = {
-                            title: values.courseTitle,
-                            logo: values.courseLogo.url,
-                            navigation: values.navigationType,
-                            progressbar: values.showProgressbar ? 1 : 0,
-                            status: 1,
-                            type: values.courseType,
-                            layout: values.courseLayout,
-                            weight: 0,
-                        }
+                        title: values.courseTitle,
+                        logo: values.courseLogo.url,
+                        navigation: values.navigationType,
+                        progressbar: values.showProgressbar ? 1 : 0,
+                        status: 1,
+                        type: values.courseType,
+                        layout: values.courseLayout,
+                        weight: 0,
+                    }
 
-                        dispatch(courseActions.updateCourse(data, currentCourse.cid));
+                    dispatch(courseActions.updateCourse(data, currentCourse.cid));
                 }}
 
                 validationSchema={Yup.object().shape({
