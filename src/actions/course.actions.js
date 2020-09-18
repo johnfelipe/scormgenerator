@@ -28,15 +28,15 @@ function getAll() {
         dispatch(request());
 
         courseService.getAll()
-            .then(
-                courses => { 
-                    dispatch(success(courses));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    console.log(error);
-                }
-            );
+        .then(
+            courses => { 
+                dispatch(success(courses));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(courses) { return { type: courseContants.REQUEST, courses } }
@@ -49,17 +49,17 @@ function createCourse(data) {
         dispatch(request(data));
 
         courseService.createCourse(data)
-            .then(
-                course => { 
-                    dispatch(success(course));
-                    // dispatch(alertActions.success('Course created successfully'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
-                }
-            );
+        .then(
+            course => { 
+                dispatch(success(course));
+                // dispatch(alertActions.success('Course created successfully'));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(course) { return { type: courseContants.REQUEST, course } }
@@ -72,19 +72,38 @@ function updateCourse(data, id) {
         dispatch(request(data));
 
         courseService.updateCourse(data, id)
-            .then(
-                course => { 
-                    dispatch(success(course));
-                    history.push("/");
-                    window.location.reload();
-                    // dispatch(alertActions.success('Course created successfully'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
-                }
-            );
+        .then(
+            course => {
+                courseService.getAll()
+                .then(
+                    courses => {
+                        for (let i = 0; i < courses.length; i++) {
+                            if (courses[i].cid !== course.cid) {
+                                const data = {
+                                    weight: courses[i].weight+1
+                                }
+
+                                courseService.updateCourse(data, courses[i].cid);
+                            }
+                        }
+                    },
+                    error => {
+                        dispatch(failure(error.toString()));
+                        console.log(error);
+                    }
+                );
+                
+                dispatch(success(course));
+                history.push("/");
+                window.location.reload();
+                // dispatch(alertActions.success('Course created successfully'));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(course) { return { type: courseContants.REQUEST, course } }
@@ -97,17 +116,17 @@ function getCourse(id) {
         dispatch(request(id));
 
         courseService.getCourse(id)
-            .then(
-                course => { 
-                    dispatch(success(course));
-                    // dispatch(alertActions.success('Course fetched successfully'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
-                }
-            );
+        .then(
+            course => { 
+                dispatch(success(course));
+                // dispatch(alertActions.success('Course fetched successfully'));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(id) { return { type: courseContants.REQUEST, id } }

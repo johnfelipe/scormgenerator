@@ -1,5 +1,6 @@
 import { lessonContants } from '../constants';
 import { lessonService } from '../services';
+import { courseService } from '../services';
 // import { alertActions } from './';
 // import { history } from '../helpers';
 
@@ -40,7 +41,28 @@ function createLesson(data) {
 
         lessonService.createLesson(data)
             .then(
-                lesson => { 
+                lesson => {
+                    courseService.updateCourse({ weight: 0}, data.cid);
+                    
+                    courseService.getAll()
+                    .then(
+                        courses => {
+                            for (let i = 0; i < courses.length; i++) {
+                                if (courses[i].cid !== data.cid) {
+                                    const data = {
+                                        weight: courses[i].weight+1
+                                    }
+
+                                    courseService.updateCourse(data, courses[i].cid);
+                                }
+                            }
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            console.log(error);
+                        }
+                    );
+
                     dispatch(success(lesson));
                     // dispatch(alertActions.success('Lesson created successfully'));
                 },
@@ -109,7 +131,28 @@ function updateLesson(data, id) {
 
         lessonService.updateLesson(data, id)
             .then(
-                lesson => { 
+                lesson => {
+                    courseService.updateCourse({ weight: 0}, data.cid);
+
+                    courseService.getAll()
+                    .then(
+                        courses => {
+                            for (let i = 0; i < courses.length; i++) {
+                                if (courses[i].cid !== data.cid) {
+                                    const data = {
+                                        weight: courses[i].weight+1
+                                    }
+
+                                    courseService.updateCourse(data, courses[i].cid);
+                                }
+                            }
+                        },
+                        error => {
+                            dispatch(failure(error.toString()));
+                            console.log(error);
+                        }
+                    );
+
                     dispatch(success(lesson));
                     // dispatch(alertActions.success('Lesson updated successfully'));
                 },

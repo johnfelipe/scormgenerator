@@ -1,5 +1,6 @@
 import { slideContants } from '../constants';
 import { slideService, } from '../services';
+import { courseService } from '../services';
 import { courseActions, columnActions } from './';
 import { history } from '../helpers';
 
@@ -41,39 +42,60 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
         dispatch(request(data));
 
         slideService.createSlide(data)
-            .then(
-                slide => { 
-                    dispatch(success(slide));
-                    slide.columns = [];
-                    dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex, columnArray, slideIndex));
-                    // dispatch(alertActions.success('Slide created successfully'));
-                    if (columnArray.length > 0) {
-                        for (let index in columnArray) {
-                            let featuresJson = JSON.stringify(columnArray[index]);
-                    
-                            const data = {
-                                sid: slide.sid,
-                                uid: uid,
-                                grid: columnArray[index].grid,
-                                features: btoa(featuresJson)
-                            }
-                    
-                            console.log(data);
-                            dispatch(columnActions.createColumn(data));
+        .then(
+            slide => {
+                slide.columns = [];
+                dispatch(success(slide));
+                dispatch(courseActions.appendSlideToCourseLesson(slide, lessonIndex, columnArray, slideIndex));
+                // dispatch(alertActions.success('Slide created successfully'));
+                if (columnArray.length > 0) {
+                    for (let index in columnArray) {
+                        let featuresJson = JSON.stringify(columnArray[index]);
+                
+                        const data = {
+                            sid: slide.sid,
+                            uid: uid,
+                            grid: columnArray[index].grid,
+                            features: btoa(featuresJson)
                         }
-
-                        dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
+                
+                        console.log(data);
+                        dispatch(columnActions.createColumn(data));
                     }
 
-                    history.push("/course/" + cid);
-                    window.location.reload();
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
-                    console.log(error);
+                    dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                 }
-            );
+                
+                courseService.updateCourse({ weight: 0}, cid);
+
+                courseService.getAll()
+                .then(
+                    courses => { 
+                        for (let i = 0; i < courses.length; i++) {
+                            if (courses[i].cid !== cid) {
+                                const data = {
+                                    weight: courses[i].weight+1
+                                }
+
+                                courseService.updateCourse(data, courses[i].cid);
+                            }
+                        }
+                    },
+                    error => {
+                        dispatch(failure(error.toString()));
+                        console.log(error);
+                    }
+                );
+
+                history.push("/course/" + cid);
+                window.location.reload();
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+                console.log(error);
+            }
+        );
     };
 
     function request(slide) { return { type: slideContants.REQUEST, slide } }
@@ -132,21 +154,42 @@ function updateSlide(data, id, cid, action) {
         dispatch(request(data));
 
         slideService.updateSlide(data, id)
-            .then(
-                slide => { 
-                    dispatch(success(slide));
-                    // dispatch(alertActions.success('Slide updated successfully'));
+        .then(
+            slide => {
+                courseService.updateCourse({ weight: 0}, cid);
+                
+                courseService.getAll()
+                .then(
+                    courses => {
+                        for (let i = 0; i < courses.length; i++) {
+                            if (courses[i].cid !== cid) {
+                                const data = {
+                                    weight: courses[i].weight+1
+                                }
 
-                    if (action === "edit") {
-                        history.push("/course/" + cid);
-                        window.location.reload();
+                                courseService.updateCourse(data, courses[i].cid);
+                            }
+                        }
+                    },
+                    error => {
+                        dispatch(failure(error.toString()));
+                        console.log(error);
                     }
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    // dispatch(alertActions.error(error.toString()));
+                );
+
+                dispatch(success(slide));
+                // dispatch(alertActions.success('Slide updated successfully'));
+
+                if (action === "edit") {
+                    history.push("/course/" + cid);
+                    window.location.reload();
                 }
-            );
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                // dispatch(alertActions.error(error.toString()));
+            }
+        );
     };
 
     function request(id) { return { type: slideContants.REQUEST, id } }

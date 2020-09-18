@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 // actions
-import { courseActions, lessonActions } from '../../actions';
+import { lessonActions } from '../../actions';
 
 function LessonHandler(props) {
 
@@ -17,16 +17,12 @@ function LessonHandler(props) {
 
     const onSave = (lessonObj, lid) => {
         if (props.action === "add") {
-            // props.addLessonNameChange(lessonObj);
             dispatch(lessonActions.createLesson(lessonObj));
-            dispatch(courseActions.courseUpdate({ weight: 0 }, lessonObj.cid));
         } else if (props.action === "edit") {
             const data = {
                 title: lessonObj.title,
             }
             dispatch(lessonActions.updateLesson(data, lid));
-            dispatch(courseActions.courseUpdate({ weight: 0 }, lessonObj.cid));
-            // props.editLessonNameChange(data, lid);
         }
         
         setModalShow(false)
@@ -59,26 +55,7 @@ function LessonHandler(props) {
                             weight: props.lessonWeight,
                         }
 
-                        // onSave(data, props.id);
                         onSave(data, props.lid);
-
-                        // create lesson
-                        // uid and cid are temporary
-                        // const data = {
-                        //     cid: 1,
-                        //     title: values.lessonName,
-                        //     uid: 1,
-                        // }
-
-                        // lessonService.createLesson(data)
-                        // .then(
-                        //     lessonObj => {
-                        //         this.props.createLesson(lessonObj.cid, lessonObj.uid, lessonObj.title);
-                        //         this.props.setLessonId(lessonObj.lid);
-                        //         console.log(lessonObj);
-                        //     },
-                        //     error => console.log(error)
-                        // );
                     }}
 
                     validationSchema={Yup.object().shape({
