@@ -4466,7 +4466,7 @@ class SlideHandler extends Component {
     }
 
     render() {
-        const cid = sessionStorage.getItem("cid");
+        const cid = parseInt(sessionStorage.getItem("cid"));
         const slideModal = (
             <Formik
                 initialValues={{ 

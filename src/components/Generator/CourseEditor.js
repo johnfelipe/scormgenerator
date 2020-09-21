@@ -237,7 +237,7 @@ function CourseEditor() {
             slideWeight: 
                 lesson.slides ?
                     lesson.slides.length > 0 ?
-                        lesson.slides.length
+                        lesson.slides.length + 1
                     :
                         1
                 :
@@ -737,7 +737,7 @@ function CourseEditor() {
                                         cid={currentCourse && currentCourse.cid}
                                         uid={currentCourse && currentCourse.uid}
                                         lid={lid}
-                                        lessonWeight={courseLessons.length > 0 ? courseLessons.length : 1}
+                                        lessonWeight={courseLessons.length > 0 ? courseLessons.length + 1 : 1}
                                     />
                                 </div>
                                 <div className="col-md-6 mt-2">

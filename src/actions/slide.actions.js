@@ -41,6 +41,27 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
     return dispatch => {
         dispatch(request(data));
 
+        // update the course's weight
+        courseService.updateCourse({ weight: 0}, cid);
+        courseService.getAll()
+        .then(
+            courses => { 
+                for (let i = 0; i < courses.length; i++) {
+                    if (courses[i].cid !== cid) {
+                        const data = {
+                            weight: courses[i].weight+1
+                        }
+
+                        courseService.updateCourse(data, courses[i].cid);
+                    }
+                }
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                console.log(error);
+            }
+        );
+
         slideService.createSlide(data)
         .then(
             slide => {
@@ -65,27 +86,6 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
 
                     dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                 }
-                
-                courseService.updateCourse({ weight: 0}, cid);
-
-                courseService.getAll()
-                .then(
-                    courses => { 
-                        for (let i = 0; i < courses.length; i++) {
-                            if (courses[i].cid !== cid) {
-                                const data = {
-                                    weight: courses[i].weight+1
-                                }
-
-                                courseService.updateCourse(data, courses[i].cid);
-                            }
-                        }
-                    },
-                    error => {
-                        dispatch(failure(error.toString()));
-                        console.log(error);
-                    }
-                );
 
                 history.push("/course/" + cid);
                 window.location.reload();
@@ -153,30 +153,30 @@ function updateSlide(data, id, cid, action) {
     return dispatch => {
         dispatch(request(data));
 
+        // update the course's weight
+        courseService.updateCourse({ weight: 0}, cid);
+        courseService.getAll()
+        .then(
+            courses => { 
+                for (let i = 0; i < courses.length; i++) {
+                    if (courses[i].cid !== cid) {
+                        const data = {
+                            weight: courses[i].weight+1
+                        }
+
+                        courseService.updateCourse(data, courses[i].cid);
+                    }
+                }
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                console.log(error);
+            }
+        );
+
         slideService.updateSlide(data, id)
         .then(
             slide => {
-                courseService.updateCourse({ weight: 0}, cid);
-                
-                courseService.getAll()
-                .then(
-                    courses => {
-                        for (let i = 0; i < courses.length; i++) {
-                            if (courses[i].cid !== cid) {
-                                const data = {
-                                    weight: courses[i].weight+1
-                                }
-
-                                courseService.updateCourse(data, courses[i].cid);
-                            }
-                        }
-                    },
-                    error => {
-                        dispatch(failure(error.toString()));
-                        console.log(error);
-                    }
-                );
-
                 dispatch(success(slide));
                 // dispatch(alertActions.success('Slide updated successfully'));
 
