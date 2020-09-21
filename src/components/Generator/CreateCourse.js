@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faArrowCircleRight, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { Formik } from "formik";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-
-// formik and related libraries
-import { Formik } from "formik";
-import * as Yup from 'yup';
-
-// redux library
 import { useDispatch, useSelector } from 'react-redux';
-
-// handler components
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import * as Yup from 'yup';
 import NavigationHandler from '../Handlers/NavigationHandler';
 import CheckBoxInput from '../Handlers/CheckBoxHandler';
 import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
-
-//modal
 import WarningModal from '../AlertModal/Warning';
-
-// actions
 import { courseActions } from '../../actions';
-
-// services
 import { galleryService } from '../../services';
+import { courseNotifications } from '../../notifications';
 
 function CreateCourse() {
 
@@ -44,22 +33,6 @@ function CreateCourse() {
         {label: 'Fluid', value: 'fluid'},
     ];
 
-    const courseUpdateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Course updated successfully
-        </span>
-    );
-    const updateToast = () => toast.success(courseUpdateMsg);
-
-    const courseCreateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Course created successfully
-        </span>
-    );
-    const createToast = () => toast.success(courseCreateMsg);
-
     useEffect(() => {
         dispatch(courseActions.getAll());
     }, [dispatch, currentCourse]);
@@ -67,9 +40,9 @@ function CreateCourse() {
     useEffect(() => {
         const courseAction = sessionStorage.getItem('courseAction');
         if (courseAction === "update") {
-            updateToast();
+            courseNotifications.courseUpdateToast();
         } else if (courseAction === "create") {
-            createToast();
+            courseNotifications.courseCreateToast();
         }
         sessionStorage.clear();
     });
