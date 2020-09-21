@@ -4,27 +4,27 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faInfo } from '@fortawesome/free-solid-svg-icons';
 
-export const courseNotifications = {
-    courseCreateToast,
-    courseUpdateToast,
+export const lessonNotifications = {
+    lessonCreateToast,
+    lessonUpdateToast,
 };
 
-const courseCreateMsg = () => (
+const leesonCreateMsg = () => (
     <span className="p-2">
         <FontAwesomeIcon icon={faCheck}/>&nbsp;
-        Course created successfully
+        Lesson created successfully
     </span>
 );
-function courseCreateToast() {
-    toast.success(courseCreateMsg);
+function lessonCreateToast() {
+    toast.success(leesonCreateMsg);
 }
 
-const courseUpdateMsg = () => (
+const lessonUpdateMsg = () => (
     <span className="p-2">
         <FontAwesomeIcon icon={faInfo}/>&nbsp;
-        Course updated successfully
+        Lesson updated successfully
     </span>
 );
-function courseUpdateToast() {
-    toast.info(courseUpdateMsg);
+function lessonUpdateToast() {
+    toast.info(lessonUpdateMsg);
 }
