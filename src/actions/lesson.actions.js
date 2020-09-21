@@ -1,7 +1,6 @@
 import { lessonContants } from '../constants';
 import { lessonService } from '../services';
 import { courseService } from '../services';
-// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const lessonActions = {

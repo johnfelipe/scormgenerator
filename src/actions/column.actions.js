@@ -1,6 +1,5 @@
 import { columnContants } from '../constants';
 import { columnService } from '../services';
-// import { alertActions } from './';
 // import { history } from '../helpers';
 
 export const columnActions = {
