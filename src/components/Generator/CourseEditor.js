@@ -21,7 +21,7 @@ import GalleryHandler from '../Handlers/GalleryHandler';
 import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
 import { courseActions, lessonActions, galleryActions, slideActions, coursemetaActions } from '../../actions';
 import { galleryService } from '../../services';
-import { lessonNotifications } from '../../notifications';
+import { lessonNotifications, slideNotifications } from '../../notifications';
 
 function CourseEditor() {
     
@@ -53,22 +53,6 @@ function CourseEditor() {
         {label: 'Fluid', value: 'fluid'},
     ];
 
-    const slideUpdateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Slide updated successfully
-        </span>
-    );
-    const slideUpdateToast = () => toast.success(slideUpdateMsg);
-
-    const slideCreateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Slide created successfully
-        </span>
-    );
-    const slideCreateToast = () => toast.success(slideCreateMsg);
-
     useEffect(() => {
         dispatch(courseActions.getCourse(cid));
         dispatch(courseActions.getCourseLessons(cid));
@@ -90,9 +74,9 @@ function CourseEditor() {
         }
 
         if (slideAction === "update") {
-            slideUpdateToast();
+            slideNotifications.slideUpdateToast();
         } else if (slideAction === "create") {
-            slideCreateToast();
+            slideNotifications.slideCreateToast();
         }
         sessionStorage.clear();
     });
