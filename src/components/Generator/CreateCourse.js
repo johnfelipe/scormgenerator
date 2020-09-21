@@ -104,7 +104,7 @@ function CreateCourse() {
                 transition={Slide}
             />
 
-            <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+            <Breadcrumb bsPrefix="breadcrumb p-0">
                 <Breadcrumb.Item active={true} linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
             </Breadcrumb>
 

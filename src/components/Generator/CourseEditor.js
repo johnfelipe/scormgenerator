@@ -241,7 +241,7 @@ function CourseEditor() {
                 transition={Slide}
             />
 
-            <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+            <Breadcrumb bsPrefix="breadcrumb p-0">
                 <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
                 <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + currentCourse.cid }} active={true}>Course</Breadcrumb.Item>
             </Breadcrumb>

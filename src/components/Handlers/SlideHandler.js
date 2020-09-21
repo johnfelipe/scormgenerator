@@ -9183,7 +9183,7 @@ class SlideHandler extends Component {
 
         return (
             <div id="generator-container">
-                <Breadcrumb bsPrefix="breadcrumb bg-white p-2">
+                <Breadcrumb bsPrefix="breadcrumb p-0">
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") }}>Course</Breadcrumb.Item>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/course/" + sessionStorage.getItem("cid") }}>Lesson</Breadcrumb.Item>
