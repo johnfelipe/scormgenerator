@@ -134,7 +134,7 @@ function ContentArea(props) {
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 <textarea
-                                    className="resize-none"
+                                    className="webupps-resize-none"
                                     disabled 
                                     value={ 
                                         // typeof currentColumn != "undefined" &&
@@ -227,7 +227,7 @@ function ContentArea(props) {
                                                     <FontAwesomeIcon icon={faPause}/>
                                                 </span>
                                             :
-                                                <span type="button" className="btn btn-primary disabled">
+                                                <span type="button" className="btn btn-primary webupps-disabled">
                                                     <FontAwesomeIcon icon={faPause}/>
                                                 </span>
                                             }
@@ -247,7 +247,7 @@ function ContentArea(props) {
                                                     <FontAwesomeIcon icon={faPlay}/>
                                                 </span>
                                             :
-                                                <span type="button" className="btn btn-primary disabled">
+                                                <span type="button" className="btn btn-primary webupps-disabled">
                                                     <FontAwesomeIcon icon={faPlay}/>
                                                 </span>
                                             }

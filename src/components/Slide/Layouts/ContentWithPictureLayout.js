@@ -19,7 +19,7 @@ function ContentWithLeftPictureLayout(props) {
                                 <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
                             }
                         </div>
-                        <div className={style.textColor ? "col-md-6 text-left sg-vertical-center " + style.textColor : "col-md-6 text-left sg-vertical-center"}>
+                        <div className={style.textColor ? "col-md-6 text-left webupps-vertical-center " + style.textColor : "col-md-6 text-left webupps-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
@@ -34,7 +34,7 @@ function ContentWithLeftPictureLayout(props) {
                                 <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
                             }
                         </div>
-                        <div className={style.textColor ? "col-md-3 text-left sg-vertical-center " + style.textColor : "col-md-3 text-left sg-vertical-center"}>
+                        <div className={style.textColor ? "col-md-3 text-left webupps-vertical-center " + style.textColor : "col-md-3 text-left webupps-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
@@ -44,7 +44,7 @@ function ContentWithLeftPictureLayout(props) {
             if (style.layout === '50-50') {
                 return (
                     <div className="row m-0">
-                        <div className={style.textColor ? "col-md-6 text-left sg-vertical-center " + style.textColor : "col-md-6 text-left sg-vertical-center"}>
+                        <div className={style.textColor ? "col-md-6 text-left webupps-vertical-center " + style.textColor : "col-md-6 text-left webupps-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                         <div className="col-md-6">
@@ -59,7 +59,7 @@ function ContentWithLeftPictureLayout(props) {
             } else if (style.layout === '75-25') {
                 return (
                     <div className="row m-0">
-                        <div className={style.textColor ? "col-md-3 text-left sg-vertical-center " + style.textColor : "col-md-3 text-left sg-vertical-center"}>
+                        <div className={style.textColor ? "col-md-3 text-left webupps-vertical-center " + style.textColor : "col-md-3 text-left webupps-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                         <div className="col-md-9">

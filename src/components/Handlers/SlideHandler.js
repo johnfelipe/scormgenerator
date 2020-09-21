@@ -4690,7 +4690,7 @@ class SlideHandler extends Component {
                                                     
                                                 </div>
                                             </Tab>
-                                            <Tab eventKey="features" title="Features" className="sg-mt-1-p-1">
+                                            <Tab eventKey="features" title="Features" className="webupps-mt-1-p-1">
                                                 {this.props.slideHandlerProps.courseLayout === "fixed" ?
                                                     <Droppable droppableId="fixed-features">
                                                         {(provided) => (
@@ -4710,7 +4710,7 @@ class SlideHandler extends Component {
                                                                                     this.state.column.length === 1 && this.state.column[0].content.subColumnOne.length === 0 ?
                                                                                         "sg-feature-list-item"
                                                                                     :
-                                                                                        "sg-feature-list-item disabled"
+                                                                                        "sg-feature-list-item webupps-disabled"
                                                                                 }
                                                                             >
                                                                                 <SlideFeature

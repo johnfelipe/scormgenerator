@@ -36,7 +36,7 @@ function SgChartsLayout(props) {
                             <Pie data={data} />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
-                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                        <div id="sg-chart-description" className="webupps-text-indent-5 text-justify">
                             {ReactHtmlParser(output.description)}
                         </div>
                     </>
@@ -48,7 +48,7 @@ function SgChartsLayout(props) {
                             <Doughnut data={data} />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
-                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                        <div id="sg-chart-description" className="webupps-text-indent-5 text-justify">
                             {ReactHtmlParser(output.description)}
                         </div>
                     </>
@@ -60,7 +60,7 @@ function SgChartsLayout(props) {
                             <Bar data={data} />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
-                        <div id="sg-chart-description" className="sg-text-indent-5 text-justify">
+                        <div id="sg-chart-description" className="webupps-text-indent-5 text-justify">
                             {ReactHtmlParser(output.description)}
                         </div>
                     </>

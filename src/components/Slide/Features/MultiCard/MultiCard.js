@@ -319,7 +319,7 @@ function MultiCard(props) {
                                 <div className="col-md-9">
                                     <span>First Card</span>
                                 </div>
-                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
+                                <div className="col-md-3 webupps-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={firstCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
@@ -464,7 +464,7 @@ function MultiCard(props) {
                                 <div className="col-md-9">
                                     <span>Second Card</span>
                                 </div>
-                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
+                                <div className="col-md-3 webupps-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={secondCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
@@ -609,7 +609,7 @@ function MultiCard(props) {
                                 <div className="col-md-9">
                                     <span>Third Card</span>
                                 </div>
-                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
+                                <div className="col-md-3 webupps-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={thirdCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>
@@ -754,7 +754,7 @@ function MultiCard(props) {
                                 <div className="col-md-9">
                                     <span>Fourth Card</span>
                                 </div>
-                                <div className="col-md-3 sg-vertical-center justify-content-between pl-0">
+                                <div className="col-md-3 webupps-vertical-center justify-content-between pl-0">
                                     <span>
                                         <FontAwesomeIcon icon={fourthCardCollapse === true ? faCaretUp : faCaretDown}/>
                                     </span>

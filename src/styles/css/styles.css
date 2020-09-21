@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.sg-w-100-div-2 {
+.webupps-w-100-div-2 {
   width: calc(100%/2) !important;
 }
 
@@ -282,20 +282,20 @@
   padding-right: 7.5rem !important;
 }
 
-.power-center {
+.webupps-power-center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.text-ellipsis {
+.webupps-text-ellipsis {
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.course-logo {
+.webupps-course-logo {
   position: absolute;
   top: 0;
   right: 0;
@@ -313,7 +313,7 @@
   overflow: hidden;
 }
 
-.course-logo::after {
+.webupps-course-logo::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -330,7 +330,7 @@
   border-radius: 0 0.25rem 0.25rem 0;
 }
 
-.sg-mt-1-p-1 {
+.webupps-mt-1-p-1 {
   margin-top: 0.1rem !important;
 }
 
@@ -357,19 +357,19 @@
   }
 }
 
-.resize-none {
+.webupps-resize-none {
   resize: none !important;
 }
 
-.overflow-unset {
+.webupps-overflow-unset {
   overflow: unset !important;
 }
 
-.sg-charts-multiselect .dropdown-container .dropdown-content {
+.webupps-charts-multiselect .dropdown-container .dropdown-content {
   z-index: 5000 !important;
 }
 
-.code {
+.webupps-code {
   background: lightgrey;
   padding: 8px;
   height: 100%;
@@ -377,13 +377,13 @@
   overflow: auto;
 }
 
-.sg-vertical-center {
+.webupps-vertical-center {
   display: flex !important;
   align-items: center !important;
   flex: 1 1 100% !important;
 }
 
-.sg-vertical-center-v2 {
+.webupps-vertical-center-v2 {
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -391,17 +391,17 @@
   height: 100%;
 }
 
-.sg-video-code-sharing, .sg-audio-code-sharing {
+.webupps-video-code-sharing, .webupps-audio-code-sharing {
   height: 100px;
   border: none;
   text-align: left;
 }
 
-.monospace {
+.webupps-monospace {
   font-family: "Lucida Console", Courier, monospace;
 }
 
-.sg-avatar {
+.webupps-avatar {
   /* make a square container */
   width: 150px !important;
   height: 150px !important;
@@ -413,37 +413,37 @@
   border-radius: 50% !important;
 }
 
-.sg-text-indent-1 {
+.webupps-text-indent-1 {
   text-indent: 0.25rem !important;
 }
 
-.sg-text-indent-2 {
+.webupps-text-indent-2 {
   text-indent: 0.5rem !important;
 }
 
-.sg-text-indent-3 {
+.webupps-text-indent-3 {
   text-indent: 1rem !important;
 }
 
-.sg-text-indent-4 {
+.webupps-text-indent-4 {
   text-indent: 1.5rem !important;
 }
 
-.sg-text-indent-5 {
+.webupps-text-indent-5 {
   text-indent: 3rem !important;
 }
 
-.disabled {
+.webupps-disabled {
   pointer-events: none;
   opacity: 0.6;
   cursor: not-allowed !important;
 }
 
-.fixed-layout-text-color {
+.webupps-fixed-layout-text-color {
   color: #007BFF !important;
 }
 
-.fluid-layout-text-color {
+.webupps-fluid-layout-text-color {
   color: #FF8400 !important;
 }
 
@@ -699,7 +699,7 @@ html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-col
 html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout > li span.sg-1-5 {
   width: calc(20% - 2px);
 }
-html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout.disabled > li {
+html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout.webupps-disabled > li {
   pointer-events: none;
   opacity: 0.6;
   cursor: not-allowed !important;

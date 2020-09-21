@@ -340,7 +340,7 @@ function CourseEditor() {
                                         onBlur={handleBlur}
                                         accept="image/*"
                                     />
-                                    <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                    <label htmlFor="courseLogo" className="webupps-course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                 </div>
                             </div>
                             <div className="row">
@@ -496,7 +496,7 @@ function CourseEditor() {
                                                                                             lid={lesson.lid}
                                                                                         />
                                                                                     </div>
-                                                                                    <div className="col-md-2 sg-vertical-center justify-content-end">
+                                                                                    <div className="col-md-2 webupps-vertical-center justify-content-end">
                                                                                         <OverlayTrigger
                                                                                             key="draggable-top"
                                                                                             placement="top"
@@ -594,7 +594,7 @@ function CourseEditor() {
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </div>
-                                                                                                                            <div className="col-md-2 sg-vertical-center justify-content-end">
+                                                                                                                            <div className="col-md-2 webupps-vertical-center justify-content-end">
                                                                                                                                 <OverlayTrigger
                                                                                                                                     key="draggable-slide-top"
                                                                                                                                     placement="top"

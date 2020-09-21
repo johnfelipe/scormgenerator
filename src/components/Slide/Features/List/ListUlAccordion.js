@@ -103,7 +103,7 @@ function ListUlAccordion(props) {
                         id="list-ul-list-item"
                         className="row m-0"
                     >
-                        <div id="list-ul-list-item-answer" className="text-ellipsis p-0 col-md-8" title={item.entry}>
+                        <div id="list-ul-list-item-answer" className="webupps-text-ellipsis p-0 col-md-8" title={item.entry}>
                             {item.entry}
                         </div>
                         <div className="col-md-4 p-0 list-ul-list-item-action-buttons text-right">

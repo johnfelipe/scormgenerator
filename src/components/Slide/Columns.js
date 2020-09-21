@@ -72,7 +72,7 @@ function Columns (props) {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0" className="collapsible-body pb-3">
                     <Card.Body className="section-body">
-                        <ul className={courseLayout === "fixed" ? "sg-column-layout disabled" : "sg-column-layout"}>
+                        <ul className={courseLayout === "fixed" ? "sg-column-layout webupps-disabled" : "sg-column-layout"}>
                             {props.columnSizes.map((item, sizeIndex) => (
                                 props.column[columnIndex].active === sizeIndex ?
                                     <li key={sizeIndex} className={"sg-active grid-size-item-" + sizeIndex}>
@@ -86,7 +86,7 @@ function Columns (props) {
                                     courseLayout === "fixed" ?
                                         <li
                                             key={sizeIndex}
-                                            className={"disabled grid-size-item-" + sizeIndex}
+                                            className={"webupps-disabled grid-size-item-" + sizeIndex}
                                         >
                                             {props.columnSizes[sizeIndex].items.map((item, index) => (
                                                 <span key={index} className={item.class}>

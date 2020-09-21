@@ -203,7 +203,7 @@ function ContentWithLeftPicture(props) {
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 <textarea
-                                    className="resize-none"
+                                    className="webupps-resize-none"
                                     disabled 
                                     value={ 
                                         // typeof currentColumn != "undefined" &&

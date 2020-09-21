@@ -25,7 +25,7 @@ function ChartDataAlert(props) {
                     <br/>
                     <span>Example #1:&nbsp;</span>
                     <a href="/assets/sample-csv/temperature-precipitation-data.csv" download>Temperature and Precipitation data through the months</a>
-                    <p className="code">
+                    <p className="webupps-code">
                         <code>
                             month,temperature,precipitation<br/>
                             January,7,8<br/>
@@ -42,7 +42,7 @@ function ChartDataAlert(props) {
                     </p>
                     <span>Example #2:&nbsp;</span>
                     <a href="/assets/sample-csv/tennis-players.csv" download>Which tennis player was No.1 the longest?</a>
-                    <p className="code">
+                    <p className="webupps-code">
                         <code>
                             Name,Weeks,Gender<br/>
                             Steffi Graf,377,Female<br/>

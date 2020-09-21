@@ -104,7 +104,7 @@ function MediaLoader (props) {
                                         setMediaType(fileData.type);
                                     }}
                                 >
-                                    <div className="thumbnail sg-vertical-center-v2">
+                                    <div className="thumbnail webupps-vertical-center-v2">
                                         <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                         <div className="audio">
                                             <div>{fileData.name}</div>
@@ -129,7 +129,7 @@ function MediaLoader (props) {
                                         setMediaVtt(fileData.vtt);
                                     }}
                                 >
-                                    <div className="thumbnail sg-vertical-center-v2">
+                                    <div className="thumbnail webupps-vertical-center-v2">
                                         <FontAwesomeIcon icon={faFileVideo} className="w-100 h-40"/>
                                         <div className="video">
                                             <div>{fileData.name}</div>
@@ -187,7 +187,7 @@ function MediaLoader (props) {
                                     setMediaType(fileData.type);
                                 }}
                             >
-                                <div className="thumbnail sg-vertical-center-v2">
+                                <div className="thumbnail webupps-vertical-center-v2">
                                     <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="audio">
                                         <div>{fileData.name}</div>
@@ -217,7 +217,7 @@ function MediaLoader (props) {
                                     setMediaVtt(fileData.vtt);
                                 }}
                             >
-                                <div className="thumbnail sg-vertical-center-v2">
+                                <div className="thumbnail webupps-vertical-center-v2">
                                     <FontAwesomeIcon icon={faFileAudio} className="w-100 h-40"/>
                                     <div className="video">
                                         <div>{fileData.name}</div>
@@ -325,7 +325,7 @@ function MediaLoader (props) {
                                     value={
                                         '<audio controls><source src="' + mediaUrl + '" type="' + mediaType + '">Your browser does not support the audio tag.</audio>'
                                     }
-                                    className="resize-none w-100 sg-audio-code-sharing code monospace"
+                                    className="webupps-resize-none w-100 webupps-audio-code-sharing code webupps-monospace"
                                     style={{ height: '100px' }}
                                     readOnly
                                 />
@@ -361,7 +361,7 @@ function MediaLoader (props) {
                                         <label className="form-check-label text-success mr-2 mb-2">Url copied to clipboard!</label>
                                     }
                                     <div className="row m-0 mb-2 mt-2">
-                                        <div className="col-md-1 sg-vertical-center justify-content-center">
+                                        <div className="col-md-1 webupps-vertical-center justify-content-center">
                                             <span>VTT:</span>
                                         </div>
                                         <div className="col-md-1 p-0">
@@ -382,7 +382,7 @@ function MediaLoader (props) {
                                             :
                                                 '<video id="sample_video" width="800" height="600" controls><source src="' + mediaUrl + '" type="' + mediaType + '"></video>'
                                         }
-                                        className="resize-none w-100 sg-video-code-sharing code monospace"
+                                        className="webupps-resize-none w-100 webupps-video-code-sharing code webupps-monospace"
                                         style={{ height: '100px' }}
                                         readOnly
                                     />

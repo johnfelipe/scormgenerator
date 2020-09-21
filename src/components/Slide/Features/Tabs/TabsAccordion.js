@@ -38,7 +38,7 @@ function TabsAccordion(props) {
                         id="tabs-list-item"
                         className="row m-0"
                     >
-                        <div id="tabs-list-item-answer" className="text-ellipsis p-0 col-md-8" title={item.entry}>
+                        <div id="tabs-list-item-answer" className="webupps-text-ellipsis p-0 col-md-8" title={item.entry}>
                             {item.tabHeader}
                         </div>
                         <div className="col-md-4 p-0 tabs-list-item-action-buttons text-right">

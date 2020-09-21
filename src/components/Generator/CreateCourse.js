@@ -221,14 +221,14 @@ function CreateCourse() {
                                                 onBlur={handleBlur}
                                                 accept="image/*"
                                             />
-                                            <label htmlFor="courseLogo" className="course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
+                                            <label htmlFor="courseLogo" className="webupps-course-logo mr-3" id="custom-form-label"> { values.courseLogo ? values.courseLogo.name : <span>Choose file</span> }</label>
                                         </div>
                                     :
                                         <div className="col-md-3">
                                             <WarningModal 
                                                 fieldType="label"
                                                 htmlFor="courseLogo"
-                                                labelClasses="course-logo mr-3"
+                                                labelClasses="webupps-course-logo mr-3"
                                                 labelId="custom-form-label"
                                                 label="Choose file"
                                                 modalMessage="Please enter a course name first"
@@ -312,15 +312,15 @@ function CreateCourse() {
                                                                                 <span
                                                                                     className={
                                                                                         course.layout === "fixed" ?
-                                                                                            "fixed-layout-text-color font-weight-bold"
+                                                                                            "webupps-fixed-layout-text-color font-weight-bold"
                                                                                         : 
-                                                                                            "fluid-layout-text-color font-weight-bold"
+                                                                                            "webupps-fluid-layout-text-color font-weight-bold"
                                                                                     }
                                                                                 >
                                                                                     {course.title}
                                                                                 </span>
                                                                             </div>
-                                                                            <div className="col-md-2 sg-vertical-center justify-content-end">
+                                                                            <div className="col-md-2 webupps-vertical-center justify-content-end">
                                                                                 <OverlayTrigger
                                                                                     key="draggable-top"
                                                                                     placement="top"

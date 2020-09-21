@@ -167,7 +167,7 @@ function SgCharts(props) {
                     </button>
                 </div>
             </div>
-            <div className="sg-control sg-control-group overflow-unset">
+            <div className="sg-control sg-control-group webupps-overflow-unset">
                 <div className="sg-control-header">
                     <label>Chart Setup</label>
                 </div>
@@ -258,13 +258,13 @@ function SgCharts(props) {
                                     <span>Show data</span>
                                 </div>
                             </OverlayTrigger>
-                            <div className="sg-control-input-list-input overflow-unset">
+                            <div className="sg-control-input-list-input webupps-overflow-unset">
                                 <span>
                                     <MultiSelect
                                         options={properties}
                                         labelledBy={"Select"}
                                         disableSearch={true}
-                                        className="sg-charts-multiselect"
+                                        className="webupps-charts-multiselect"
                                         value={
                                             currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData &&
                                             currentColumn.content[currentColumnContentIndex][contentIndex].output.chartOptions.shownData
@@ -307,7 +307,7 @@ function SgCharts(props) {
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
                                 <textarea
-                                    className="resize-none"
+                                    className="webupps-resize-none"
                                     disabled 
                                     value={ 
                                         currentColumn.content[currentColumnContentIndex][contentIndex].output.description !== '' ?
