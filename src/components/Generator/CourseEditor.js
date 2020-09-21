@@ -374,6 +374,7 @@ function CourseEditor() {
                                             selectId="courseLayout"
                                             selectHtmlFor="courseLayout"
                                             selectOptions={courseLayoutOptions}
+                                            disabled={true}
                                         />
                                     </div>
                                 </div>
