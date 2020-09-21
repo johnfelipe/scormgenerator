@@ -92,7 +92,7 @@ function updateCourse(data, id) {
                     }
                 );
                 
-                dispatch(success(course));
+                dispatch(success(course, id, data.title));
                 history.push("/");
                 window.location.reload();
                 // dispatch(alertActions.success('Course created successfully'));
@@ -106,7 +106,7 @@ function updateCourse(data, id) {
     };
 
     function request(course) { return { type: courseContants.REQUEST, course } }
-    function success(course) { return { type: courseContants.UPDATE_SUCCESS, course } }
+    function success(course, id, title) { return { type: courseContants.UPDATE_SUCCESS, course, id, title } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
 

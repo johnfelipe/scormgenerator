@@ -25,7 +25,7 @@ export function course(state = initialState, action) {
         case courseContants.UPDATE_SUCCESS:
             return {
                 ...state,
-                message: action.course,
+                message: 'Message: ' + action.lesson + ' LessonId: ' + action.lid +  + ' LessonTitle: ' + action.title
             };
 
         case courseContants.GETALL_COURSE_SUCCESS:
