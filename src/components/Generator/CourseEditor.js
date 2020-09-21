@@ -4,39 +4,24 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose, faArrowsAlt, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
-
-// react bootstrap library
 import { Accordion, Card, Button } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-
-// formik and related libraries
 import { Formik } from "formik";
 import * as Yup from 'yup';
-
-// redux library
 import { useDispatch, useSelector } from 'react-redux';
-
-// components
 import NavigationHandler from '../Handlers/NavigationHandler';
 import CheckBoxInput from '../Handlers/CheckBoxHandler';
 import ResourcesHandler from '../Handlers/ResourcesHandler';
 import TranscriptHandler from '../Handlers/TranscriptHandler';
 import GlossaryHandler from '../Handlers/GlossaryHandler';
 import LessonHandler from '../Handlers/LessonHandler';
-// import SlideHandler from '../Handlers/SlideHandler';
 import GalleryHandler from '../Handlers/GalleryHandler';
 import SgDropdownSelect from '../WebuppsComponents/SgDropdownSelect';
-
-//modal
-// import WarningModal from '../AlertModal/Warning';
-
-// actions
 import { courseActions, lessonActions, galleryActions, slideActions, coursemetaActions } from '../../actions';
-
-// services
 import { galleryService } from '../../services';
+import { lessonNotifications } from '../../notifications';
 
 function CourseEditor() {
     
@@ -67,22 +52,6 @@ function CourseEditor() {
         {label: 'Fixed', value: 'fixed'},
         {label: 'Fluid', value: 'fluid'},
     ];
-
-    const lessonUpdateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Lesson updated successfully
-        </span>
-    );
-    const lessonUpdateToast = () => toast.success(lessonUpdateMsg);
-
-    const lessonCreateMsg = () => (
-        <span className="p-2">
-            <FontAwesomeIcon icon={faCheck}/>&nbsp;
-            Lesson created successfully
-        </span>
-    );
-    const lessonCreateToast = () => toast.success(lessonCreateMsg);
 
     const slideUpdateMsg = () => (
         <span className="p-2">
@@ -115,9 +84,9 @@ function CourseEditor() {
         const slideAction = sessionStorage.getItem('slideAction');
 
         if (lessonAction === "update") {
-            lessonUpdateToast();
+            lessonNotifications.lessonUpdateToast();
         } else if (lessonAction === "create") {
-            lessonCreateToast();
+            lessonNotifications.lessonCreateToast();
         }
 
         if (slideAction === "update") {
