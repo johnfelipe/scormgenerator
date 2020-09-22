@@ -4,12 +4,9 @@ import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faPlus } from '@
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
-
-// components
 import ColorPickerBg from '../../../Common/ColorPicker';
-
-// modal
 import AltTagForm from '../../../AlertModal/AltTagForm';
+import ContentWithPictureAccordion from './ContentWithPictureAccordion';
 
 function ContentWithLeftPicture(props) {
     
@@ -259,7 +256,15 @@ function ContentWithLeftPicture(props) {
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            
+                            {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
+                                <ContentWithPictureAccordion
+                                    contentIndex={contentIndex}
+                                    currentColumnContentIndex={currentColumnContentIndex}
+                                    currentColumn={currentColumn}
+                                    modalItem={modalItem}
+                                    modalIndex={modalIndex}
+                                />
+                            ))}
                         </li>
                     </ul>
                 </div>
