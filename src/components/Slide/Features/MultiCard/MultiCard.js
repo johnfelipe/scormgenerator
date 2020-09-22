@@ -304,11 +304,11 @@ function MultiCard(props) {
     const addCardSetup = (cardNumber) => {
         if (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber) && cardNumber <= 4) {
             setCardCounter(cardNumber);
-        } else if (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber) || !currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(2) && cardNumber <= 4) {
+        } else if ((!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber)) || (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(2) && cardNumber <= 4)) {
             setCardCounter(2);
-        } else if (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber) || !currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(3) && cardNumber <= 4) {
+        } else if ((!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber)) || (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(3) && cardNumber <= 4)) {
             setCardCounter(3);
-        } else if (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber) || !currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(4) && cardNumber <= 4) {
+        } else if ((!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(cardNumber)) || (!currentColumn.content[currentColumnContentIndex][contentIndex].output.cardCounter.includes(4) && cardNumber <= 4)) {
             setCardCounter(4);
         }
     }
@@ -388,121 +388,123 @@ function MultiCard(props) {
                                     </div>
                                 </div>
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="0" className="p-2">
-                                <div className="sg-control-input">
-                                    <ul className="sg-control-input-list">
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Image</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input input-group">
-                                                <label className="input-group-btn">
-                                                    <span className="btn btn-primary">
-                                                        <FontAwesomeIcon icon={faUpload}/>
-                                                        <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 1)}} accept="image/*"/>
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Choose image"
-                                                    className="form-control w-50"
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name
-                                                    }
-                                                    readOnly
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Alt</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setImgAlt(e.target.value, 1)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Title</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setTitle(e, 1)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Content</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <div className="sg-expandable-code-editor">
-                                                    <div className="sg-workspace-expander">
-                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                            <button
-                                                                type="button"
-                                                                className="input-hover-btn btn btn-light border border-secondary p-1"
-                                                                onClick={() => {
-                                                                    props.setShowEditor(true, contentIndex, 'multiCardFirst');
-                                                                }}
-                                                            >
-                                                                <span>Edit</span>
-                                                            </button>
-                                                            <input type="text" value="" disabled className="rounded"/>
+                            <Accordion.Collapse eventKey="0">
+                                <Card.Body className="p-2">
+                                    <div className="sg-control-input">
+                                        <ul className="sg-control-input-list">
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Image</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input input-group">
+                                                    <label className="input-group-btn">
+                                                        <span className="btn btn-primary">
+                                                            <FontAwesomeIcon icon={faUpload}/>
+                                                            <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 1)}} accept="image/*"/>
+                                                        </span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Choose image"
+                                                        className="form-control w-50"
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.name
+                                                        }
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Alt</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setImgAlt(e.target.value, 1)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.img.alt
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Title</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setTitle(e, 1)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.title
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Content</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <div className="sg-expandable-code-editor">
+                                                        <div className="sg-workspace-expander">
+                                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                                <button
+                                                                    type="button"
+                                                                    className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                    onClick={() => {
+                                                                        props.setShowEditor(true, contentIndex, 'multiCardFirst');
+                                                                    }}
+                                                                >
+                                                                    <span>Edit</span>
+                                                                </button>
+                                                                <input type="text" value="" disabled className="rounded"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Label</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonLabel(e, 1)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>URL</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonUrl(e, 1)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Label</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonLabel(e, 1)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.label
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>URL</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonUrl(e, 1)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.firstCard.button.url
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
@@ -535,121 +537,123 @@ function MultiCard(props) {
                                     </div>
                                 </div>
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="1" className="p-2">
-                                <div className="sg-control-input">
-                                    <ul className="sg-control-input-list">
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Image</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input input-group">
-                                                <label className="input-group-btn">
-                                                    <span className="btn btn-primary">
-                                                        <FontAwesomeIcon icon={faUpload}/>
-                                                        <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 2)}} accept="image/*"/>
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Choose image"
-                                                    className="form-control w-50"
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name
-                                                    }
-                                                    readOnly
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Alt</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setImgAlt(e.target.value, 2)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Title</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setTitle(e, 2)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Content</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <div className="sg-expandable-code-editor">
-                                                    <div className="sg-workspace-expander">
-                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                            <button
-                                                                type="button"
-                                                                className="input-hover-btn btn btn-light border border-secondary p-1"
-                                                                onClick={() => {
-                                                                    props.setShowEditor(true, contentIndex, 'multiCardSecond');
-                                                                }}
-                                                            >
-                                                                <span>Edit</span>
-                                                            </button>
-                                                            <input type="text" value="" disabled className="rounded"/>
+                            <Accordion.Collapse eventKey="1">
+                                <Card.Body className="p-2">
+                                    <div className="sg-control-input">
+                                        <ul className="sg-control-input-list">
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Image</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input input-group">
+                                                    <label className="input-group-btn">
+                                                        <span className="btn btn-primary">
+                                                            <FontAwesomeIcon icon={faUpload}/>
+                                                            <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 2)}} accept="image/*"/>
+                                                        </span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Choose image"
+                                                        className="form-control w-50"
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.name
+                                                        }
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Alt</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setImgAlt(e.target.value, 2)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.img.alt
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Title</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setTitle(e, 2)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.title
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Content</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <div className="sg-expandable-code-editor">
+                                                        <div className="sg-workspace-expander">
+                                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                                <button
+                                                                    type="button"
+                                                                    className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                    onClick={() => {
+                                                                        props.setShowEditor(true, contentIndex, 'multiCardSecond');
+                                                                    }}
+                                                                >
+                                                                    <span>Edit</span>
+                                                                </button>
+                                                                <input type="text" value="" disabled className="rounded"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Label</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonLabel(e, 2)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>URL</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonUrl(e, 2)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Label</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonLabel(e, 2)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.label
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>URL</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonUrl(e, 2)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.secondCard.button.url
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
@@ -682,121 +686,123 @@ function MultiCard(props) {
                                     </div>
                                 </div>
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="2" className="p-2">
-                                <div className="sg-control-input">
-                                    <ul className="sg-control-input-list">
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Image</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input input-group">
-                                                <label className="input-group-btn">
-                                                    <span className="btn btn-primary">
-                                                        <FontAwesomeIcon icon={faUpload}/>
-                                                        <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 3)}} accept="image/*"/>
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Choose image"
-                                                    className="form-control w-50"
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name
-                                                    }
-                                                    readOnly
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Alt</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setImgAlt(e.target.value, 3)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Title</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setTitle(e, 3)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Content</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <div className="sg-expandable-code-editor">
-                                                    <div className="sg-workspace-expander">
-                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                            <button
-                                                                type="button"
-                                                                className="input-hover-btn btn btn-light border border-secondary p-1"
-                                                                onClick={() => {
-                                                                    props.setShowEditor(true, contentIndex, 'multiCardThird');
-                                                                }}
-                                                            >
-                                                                <span>Edit</span>
-                                                            </button>
-                                                            <input type="text" value="" disabled className="rounded"/>
+                            <Accordion.Collapse eventKey="2">
+                                <Card.Body className="p-2">
+                                    <div className="sg-control-input">
+                                        <ul className="sg-control-input-list">
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Image</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input input-group">
+                                                    <label className="input-group-btn">
+                                                        <span className="btn btn-primary">
+                                                            <FontAwesomeIcon icon={faUpload}/>
+                                                            <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 3)}} accept="image/*"/>
+                                                        </span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Choose image"
+                                                        className="form-control w-50"
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.name
+                                                        }
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Alt</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setImgAlt(e.target.value, 3)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.img.alt
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Title</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setTitle(e, 3)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.title
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Content</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <div className="sg-expandable-code-editor">
+                                                        <div className="sg-workspace-expander">
+                                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                                <button
+                                                                    type="button"
+                                                                    className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                    onClick={() => {
+                                                                        props.setShowEditor(true, contentIndex, 'multiCardThird');
+                                                                    }}
+                                                                >
+                                                                    <span>Edit</span>
+                                                                </button>
+                                                                <input type="text" value="" disabled className="rounded"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Label</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonLabel(e, 3)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>URL</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonUrl(e, 3)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Label</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonLabel(e, 3)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.label
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>URL</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonUrl(e, 3)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.button.url
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
@@ -829,121 +835,123 @@ function MultiCard(props) {
                                     </div>
                                 </div>
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="3" className="p-2">
-                                <div className="sg-control-input">
-                                    <ul className="sg-control-input-list">
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Image</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input input-group">
-                                                <label className="input-group-btn">
-                                                    <span className="btn btn-primary">
-                                                        <FontAwesomeIcon icon={faUpload}/>
-                                                        <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 4)}} accept="image/*"/>
-                                                    </span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Choose image"
-                                                    className="form-control w-50"
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name
-                                                    }
-                                                    readOnly
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Alt</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setImgAlt(e.target.value, 4)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Title</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setTitle(e, 4)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Content</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <div className="sg-expandable-code-editor">
-                                                    <div className="sg-workspace-expander">
-                                                        <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                                            <button
-                                                                type="button"
-                                                                className="input-hover-btn btn btn-light border border-secondary p-1"
-                                                                onClick={() => {
-                                                                    props.setShowEditor(true, contentIndex, 'multiCardFourth');
-                                                                }}
-                                                            >
-                                                                <span>Edit</span>
-                                                            </button>
-                                                            <input type="text" value="" disabled className="rounded"/>
+                            <Accordion.Collapse eventKey="3">
+                                <Card.Body className="p-2">
+                                    <div className="sg-control-input">
+                                        <ul className="sg-control-input-list">
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Image</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input input-group">
+                                                    <label className="input-group-btn">
+                                                        <span className="btn btn-primary">
+                                                            <FontAwesomeIcon icon={faUpload}/>
+                                                            <input type="file" style={{ display: "none"}} onChange={(e) => {handleImageChange(e, 4)}} accept="image/*"/>
+                                                        </span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Choose image"
+                                                        className="form-control w-50"
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.name
+                                                        }
+                                                        readOnly
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Alt</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setImgAlt(e.target.value, 4)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.img.alt
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Title</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setTitle(e, 4)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.title
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Content</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <div className="sg-expandable-code-editor">
+                                                        <div className="sg-workspace-expander">
+                                                            <div tabIndex="-1" className="sg-workspace-expander-toggle ">
+                                                                <button
+                                                                    type="button"
+                                                                    className="input-hover-btn btn btn-light border border-secondary p-1"
+                                                                    onClick={() => {
+                                                                        props.setShowEditor(true, contentIndex, 'multiCardFourth');
+                                                                    }}
+                                                                >
+                                                                    <span>Edit</span>
+                                                                </button>
+                                                                <input type="text" value="" disabled className="rounded"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>Label</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonLabel(e, 4)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                            <div className="sg-control-input-list-label">
-                                                <span>URL</span>
-                                            </div>
-                                            <div className="sg-control-input-list-input">
-                                                <input
-                                                    type="text"
-                                                    placeholder=""
-                                                    onChange={(e) => setButtonUrl(e, 4)}
-                                                    value={
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url &&
-                                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url
-                                                    }
-                                                />
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>Label</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonLabel(e, 4)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.label
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                            <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                                                <div className="sg-control-input-list-label">
+                                                    <span>URL</span>
+                                                </div>
+                                                <div className="sg-control-input-list-input">
+                                                    <input
+                                                        type="text"
+                                                        placeholder=""
+                                                        onChange={(e) => setButtonUrl(e, 4)}
+                                                        value={
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url &&
+                                                            currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.button.url
+                                                        }
+                                                    />
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
