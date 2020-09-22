@@ -45,7 +45,7 @@ function ContentWithPictureAccordion(props) {
                                 placement="top"
                                 overlay={
                                     <Tooltip id='first-card-tooltip-top'>
-                                        <span>Reset</span>
+                                        <span>Delete modal</span>
                                     </Tooltip>
                                 }
                             >
