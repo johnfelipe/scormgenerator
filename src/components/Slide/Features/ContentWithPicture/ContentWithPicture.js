@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
@@ -154,6 +154,19 @@ function ContentWithLeftPicture(props) {
             }
         }
     }
+
+    const addModal = () => {
+        const currentColumnObj = currentColumn;
+
+        const modal = {
+            title: 'Modal ' + currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.length + 1,
+            content: '',
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.push(modal);
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -224,6 +237,31 @@ function ContentWithLeftPicture(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+            <div className="sg-control-header d-flex justify-content-between">
+                    <label>Modal/s Setup</label>
+                    <OverlayTrigger
+                        key="add-modal-top"
+                        placement="top"
+                        overlay={
+                            <Tooltip id='add-modal-tooltip-top'>
+                                <span>Add modal</span>
+                            </Tooltip>
+                        }
+                    >
+                        <button type="button" className="btn btn-primary btn-sm" onClick={() => addModal()}>
+                            <FontAwesomeIcon icon={faPlus}/>
+                        </button>
+                    </OverlayTrigger>
+                </div>
+                <div className="sg-control-input sg-control-input">
+                    <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
