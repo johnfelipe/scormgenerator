@@ -156,7 +156,7 @@ function ContentWithLeftPicture(props) {
         const currentColumnObj = currentColumn;
 
         const modal = {
-            title: 'Modal ' + currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.length + 1,
+            title: 'Modal ' + parseInt(currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.length + 1),
             content: '',
         }
 
@@ -255,17 +255,19 @@ function ContentWithLeftPicture(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
-                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                            {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
+                        {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
+                            <li className="sg-control-input-list-item sg-control-input-list-item-modal">
                                 <ContentWithPictureAccordion
                                     contentIndex={contentIndex}
                                     currentColumnContentIndex={currentColumnContentIndex}
                                     currentColumn={currentColumn}
                                     modalItem={modalItem}
                                     modalIndex={modalIndex}
+                                    setShowEditor={props.setShowEditor}
+                                    setColumn={props.setColumn}
                                 />
-                            ))}
-                        </li>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
