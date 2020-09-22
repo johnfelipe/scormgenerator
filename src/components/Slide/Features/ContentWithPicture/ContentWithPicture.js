@@ -164,6 +164,14 @@ function ContentWithLeftPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setModalPosition = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -268,6 +276,35 @@ function ContentWithLeftPicture(props) {
                                 />
                             </li>
                         ))}
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <OverlayTrigger
+                                key="content-with-picture-modal-position-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='content-with-picture-modal-position-tooltip-top'>
+                                        <span>
+                                            Choose position for the modal
+                                        </span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalPosition}
+                                    onChange={(event) => setModalPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="top-right">&nbsp;Top-right</option>
+                                    <option value="bottom-right">&nbsp;Bottom-right</option>
+                                    <option value="top-left">&nbsp;Top-left</option>
+                                    <option value="bottom-left">&nbsp;Bottom-left</option>
+                                </select>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
