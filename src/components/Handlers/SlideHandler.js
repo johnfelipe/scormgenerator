@@ -767,7 +767,8 @@ class SlideHandler extends Component {
                         url: '',
                         alt: '',
                     },
-                    content: '<span>No content provided yet.</span>'
+                    content: '<span>No content provided yet.</span>',
+                    modal: [],
                 },
                 style: {
                     backgroundImg: {
@@ -1079,7 +1080,8 @@ class SlideHandler extends Component {
                                         url: '',
                                         alt: '',
                                     },
-                                    content: '<span>No content provided yet.</span>'
+                                    content: '<span>No content provided yet.</span>',
+                                    modal: [],
                                 },
                                 style: {
                                     backgroundImg: {
