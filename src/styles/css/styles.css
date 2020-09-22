@@ -653,9 +653,6 @@ html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-col
 html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .section-header .column-item-remove-btn {
   cursor: pointer;
 }
-html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.125) !important;
-}
 html body form div.row div#slide-sidebar .tab-content div#slide-tabs-tabpane-column .collapsible-body ul.sg-column-layout {
   float: left;
   width: calc(100% + (8px));
