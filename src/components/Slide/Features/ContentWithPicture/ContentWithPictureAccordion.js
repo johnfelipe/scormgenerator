@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretUp, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function ContentWithPictureAccordion(props) {
 
@@ -33,18 +33,39 @@ function ContentWithPictureAccordion(props) {
             <Card>
                 <Accordion.Toggle as={Card.Header} eventKey="0" className="p-2" onClick={() => collapseListener(collapseId)}>
                     <div className="row m-0">
-                        <div className="col-md-9 webupps-vertical-center">
+                        <div className="col-md-7 pr-0 webupps-vertical-center">
                             <span>{modalItem.title}</span>
                         </div>
-                        <div className="col-md-3 webupps-vertical-center justify-content-between pl-0">
+                        <div className="col-md-5 pl-0 webupps-vertical-center justify-content-end">
                             <span>
                                 <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
                             </span>
                             <OverlayTrigger
-                                key="first-card-top"
+                                key="edit-btn-top"
                                 placement="top"
                                 overlay={
-                                    <Tooltip id='first-card-tooltip-top'>
+                                    <Tooltip id='edit-btn-tooltip-top'>
+                                        <span>Edit title of modal</span>
+                                    </Tooltip>
+                                }
+                            >
+                                <button
+                                    type="button"
+                                    className="btn btn-primary btn-sm ml-2"
+                                    onClick={() => {
+                                        props.setModalTitle(true);
+                                        props.setUpdateTitle(modalItem.title);
+                                        props.setUpdateModalCompareIndex(modalIndex);
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faEdit}/>
+                                </button>
+                            </OverlayTrigger>
+                            <OverlayTrigger
+                                key="delete-btn-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='delete-btn-tooltip-top'>
                                         <span>Delete modal</span>
                                     </Tooltip>
                                 }
