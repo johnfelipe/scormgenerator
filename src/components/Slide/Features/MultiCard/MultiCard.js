@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpload, faTrashAlt, faUndo, faCaretUp, faCaretDown, faPause, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faTrashAlt, faUndo, faCaretUp, faCaretDown, faPause, faPlay, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Accordion, Card } from 'react-bootstrap';
@@ -377,12 +377,12 @@ function MultiCard(props) {
                                             placement="top"
                                             overlay={
                                                 <Tooltip id='first-card-tooltip-top'>
-                                                    <span>Reset</span>
+                                                    <span>Delete</span>
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(1)}}>
-                                                <FontAwesomeIcon icon={faUndo}/>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2" onClick={() => {resetCard(1)}}>
+                                                <FontAwesomeIcon icon={faTrash}/>
                                             </button>
                                         </OverlayTrigger>
                                     </div>
@@ -526,12 +526,12 @@ function MultiCard(props) {
                                             placement="top"
                                             overlay={
                                                 <Tooltip id='second-card-tooltip-top'>
-                                                    <span>Reset</span>
+                                                    <span>Delete</span>
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(2)}}>
-                                                <FontAwesomeIcon icon={faUndo}/>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2" onClick={() => {resetCard(2)}}>
+                                                <FontAwesomeIcon icon={faTrash}/>
                                             </button>
                                         </OverlayTrigger>
                                     </div>
@@ -675,12 +675,12 @@ function MultiCard(props) {
                                             placement="top"
                                             overlay={
                                                 <Tooltip id='third-card-tooltip-top'>
-                                                    <span>Reset</span>
+                                                    <span>Delete</span>
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(3)}}>
-                                                <FontAwesomeIcon icon={faUndo}/>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2" onClick={() => {resetCard(3)}}>
+                                                <FontAwesomeIcon icon={faTrash}/>
                                             </button>
                                         </OverlayTrigger>
                                     </div>
@@ -824,12 +824,12 @@ function MultiCard(props) {
                                             placement="top"
                                             overlay={
                                                 <Tooltip id='fourth-card-tooltip-top'>
-                                                    <span>Reset</span>
+                                                    <span>Delete</span>
                                                 </Tooltip>
                                             }
                                         >
-                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => {resetCard(4)}}>
-                                                <FontAwesomeIcon icon={faUndo}/>
+                                            <button type="button" className="btn btn-danger btn-sm ml-2" onClick={() => {resetCard(4)}}>
+                                                <FontAwesomeIcon icon={faTrash}/>
                                             </button>
                                         </OverlayTrigger>
                                     </div>
