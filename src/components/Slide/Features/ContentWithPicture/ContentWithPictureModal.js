@@ -29,7 +29,7 @@ function ContentWithPictureModal(props) {
         <>
             <button
                 type="button"
-                className={itemIndex === 0 ? "btn btn-secondary mb-2" : "btn btn-secondary mb-2 ml-2"}
+                className={itemIndex === 0 ? "btn btn-primary mb-2" : "btn btn-primary mb-2 ml-2"}
                 onClick={() => {
                     setModalShow(true);
                 }}
