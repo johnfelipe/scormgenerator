@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
@@ -8,7 +8,7 @@ import ColorPickerBg from '../../../Common/ColorPicker';
 import AltTagForm from '../../../AlertModal/AltTagForm';
 import ContentWithPictureAccordion from './ContentWithPictureAccordion';
 
-function ContentWithLeftPicture(props) {
+function ContentWithPicture(props) {
     
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [showPickerBg, setShowPickerBg] = useState(false);
@@ -17,6 +17,10 @@ function ContentWithLeftPicture(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [play, setPlay] = useState(true);
+    const [modalTitle, setModalTitle] = useState('');
+    const [updateModalCompareIndex, setUpdateModalCompareIndex] = useState('');
+    const [isEditModalTitle, setIsEditModalTitle] = useState(false);
+    const [updateTitle, setUpdateTitle] = useState('');
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
 
     const setImage = (name, url, type) => {
@@ -152,11 +156,11 @@ function ContentWithLeftPicture(props) {
         }
     }
 
-    const addModal = () => {
+    const addContentModal = (value) => {
         const currentColumnObj = currentColumn;
 
         const modal = {
-            title: 'Modal ' + parseInt(currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.length + 1),
+            title: value,
             content: '',
         }
 
@@ -169,6 +173,14 @@ function ContentWithLeftPicture(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editModaTitle = (value, index) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal[index].title = value;
 
         props.setColumn(currentColumnObj);
     }
@@ -245,37 +257,134 @@ function ContentWithLeftPicture(props) {
                 </div>
             </div>
             <div className="sg-control sg-control-group">
-            <div className="sg-control-header d-flex justify-content-between">
+                <div className="sg-control-header">
                     <label>Modal/s Setup</label>
-                    <OverlayTrigger
-                        key="add-modal-top"
-                        placement="top"
-                        overlay={
-                            <Tooltip id='add-modal-tooltip-top'>
-                                <span>Add modal</span>
-                            </Tooltip>
-                        }
-                    >
-                        <button type="button" className="btn btn-primary btn-sm" onClick={() => addModal()}>
-                            <FontAwesomeIcon icon={faPlus}/>
-                        </button>
-                    </OverlayTrigger>
                 </div>
-                <div className="sg-control-input sg-control-input">
-                    <ul className="sg-control-input-list">
-                        {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
-                            <li className="sg-control-input-list-item sg-control-input-list-item-modal">
-                                <ContentWithPictureAccordion
-                                    contentIndex={contentIndex}
-                                    currentColumnContentIndex={currentColumnContentIndex}
-                                    currentColumn={currentColumn}
-                                    modalItem={modalItem}
-                                    modalIndex={modalIndex}
-                                    setShowEditor={props.setShowEditor}
-                                    setColumn={props.setColumn}
-                                />
-                            </li>
-                        ))}
+                <div className="sg-control-input sg-control-input content-picture-modal-setup">
+                    <ul className="sg-control-input-list content-picture-modal-list">
+                        {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 ? 
+                            <>
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
+                                    <li key={'content-picture-modal-' + modalIndex} className="content-picture-modal-list-item mb-2">
+                                        {isEditModalTitle && updateModalCompareIndex === modalIndex ?
+                                            <div className="content-picture-modal-input-wrapper">
+                                                <div className="content-picture-modal-input-label">
+                                                    <span>{modalIndex+1}.</span>
+                                                </div>
+                                                <div className="content-picture-modal-input">
+                                                    <input
+                                                        id="title"
+                                                        name="title"
+                                                        type="text"
+                                                        placeholder="Type title here. . ."
+                                                        onChange={(event) => setUpdateTitle(event.target.value)}
+                                                        value={updateTitle}
+                                                    />
+                                                </div>
+                                                <div className="content-picture-modal-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("title");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                editModaTitle(updateTitle, modalIndex);
+                                                                setUpdateTitle('');
+                                                                setIsEditModalTitle(false);
+                                                                setUpdateModalCompareIndex('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        :
+                                            <ContentWithPictureAccordion
+                                                contentIndex={contentIndex}
+                                                currentColumnContentIndex={currentColumnContentIndex}
+                                                currentColumn={currentColumn}
+                                                modalItem={modalItem}
+                                                modalIndex={modalIndex}
+                                                setShowEditor={props.setShowEditor}
+                                                setColumn={props.setColumn}
+                                                setModalTitle={setModalTitle}
+                                                setUpdateTitle={setUpdateTitle}
+                                                setUpdateModalCompareIndex={setUpdateModalCompareIndex}
+                                            />
+                                        }
+                                    </li>
+                                ))}
+                                <li className="content-picture-modal-list-item">
+                                    <div className="content-picture-modal-input-wrapper">
+                                        <div className="content-picture-modal-input-label">
+                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length+1}.</span>
+                                        </div>
+                                        <div className="content-picture-modal-input">
+                                            <input
+                                                id="title"
+                                                name="title"
+                                                type="text"
+                                                placeholder="Type title here. . ."
+                                                onChange={(event) => setModalTitle(event.target.value)}
+                                                value={modalTitle}
+                                            />
+                                        </div>
+                                        <div className="content-picture-modal-button">
+                                            <button
+                                                type="button"
+                                                className="btn btn-primary btn-sm"
+                                                onClick={() => {
+                                                    const isEmpty = document.getElementById("title");
+                                                    
+                                                    if (isEmpty.value !== "") {
+                                                        setModalTitle('');
+                                                        addContentModal(modalTitle);
+                                                    }
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </>
+                        :
+                            <li className="content-picture-modal-list-item">
+                                <div className="content-picture-modal-input-wrapper">
+                                    <div className="content-picture-modal-input-label">
+                                        <span>1.</span>
+                                    </div>
+                                    <div className="content-picture-modal-input">
+                                        <input
+                                            id="question"
+                                            name="question"
+                                            type="text"
+                                            placeholder="Type question here. . ."
+                                            onChange={(event) => setModalTitle(event.target.value)}
+                                            value={modalTitle}
+                                        />
+                                    </div>
+                                    <div className="content-picture-modal-button">
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary btn-sm"
+                                            onClick={() => {
+                                                const isEmpty = document.getElementById("question");
+                                                
+                                                if (isEmpty.value !== "") {
+                                                    setModalTitle('');
+                                                    addContentModal(modalTitle);
+                                                }
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>             
+                        }
                         {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 &&
                             <li className="sg-control-input-list-item sg-control-input-list-item-modal">
                                 <OverlayTrigger
@@ -566,4 +675,4 @@ function ContentWithLeftPicture(props) {
     );
 }
 
-export default ContentWithLeftPicture;
+export default ContentWithPicture;
