@@ -358,10 +358,10 @@ function ContentWithPicture(props) {
                                     </div>
                                     <div className="content-picture-modal-input">
                                         <input
-                                            id="question"
-                                            name="question"
+                                            id="title"
+                                            name="title"
                                             type="text"
-                                            placeholder="Type question here. . ."
+                                            placeholder="Type title here. . ."
                                             onChange={(event) => setModalTitle(event.target.value)}
                                             value={modalTitle}
                                         />
@@ -371,7 +371,7 @@ function ContentWithPicture(props) {
                                             type="button"
                                             className="btn btn-primary btn-sm"
                                             onClick={() => {
-                                                const isEmpty = document.getElementById("question");
+                                                const isEmpty = document.getElementById("title");
                                                 
                                                 if (isEmpty.value !== "") {
                                                     setModalTitle('');
