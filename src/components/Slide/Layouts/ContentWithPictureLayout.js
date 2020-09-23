@@ -81,18 +81,50 @@ function ContentWithPictureLayout(props) {
             <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
                 <div className="content-area-container h-100 w-100 border border-light p-3 ">
                     <div className="row m-0">
-                        <div className="col-md-12 p-0 text-right">
-                            {style.modalPosition === 'top-right' &&
-                                output.modal.map((item, itemIndex) => (
+                        {style.modalPosition === 'top-right' &&
+                            <div className="col-md-12 p-0 text-right">
+                                {output.modal.map((item, itemIndex) => (
                                     <ContentPictureModal
                                         item={item}
                                         itemIndex={itemIndex}
                                     />
-                                ))
-                            }
-                        </div>
+                                ))}
+                            </div>
+                        }
+                        {style.modalPosition === 'top-left' &&
+                            <div className="col-md-12 p-0 text-left">
+                                {output.modal.map((item, itemIndex) => (
+                                    <ContentPictureModal
+                                        item={item}
+                                        itemIndex={itemIndex}
+                                    />
+                                ))}
+                            </div>
+                        }
                     </div>
                     {content()}
+                    <div className="row m-0">
+                        {style.modalPosition === 'bottom-right' &&
+                            <div className="col-md-12 p-0 text-right">
+                                {output.modal.map((item, itemIndex) => (
+                                    <ContentPictureModal
+                                        item={item}
+                                        itemIndex={itemIndex}
+                                    />
+                                ))}
+                            </div>
+                        }
+                        {style.modalPosition === 'bottom-left' &&
+                            <div className="col-md-12 p-0 text-left">
+                                {output.modal.map((item, itemIndex) => (
+                                    <ContentPictureModal
+                                        item={item}
+                                        itemIndex={itemIndex}
+                                    />
+                                ))}
+                            </div>
+                        }
+                    </div>
                     {props.cssApplier(css, 'content-picture-layout')}
                     {style.backgroundAudio.url &&
                         <audio id="content-picture-bg-audio" controls autoPlay className="d-none">
