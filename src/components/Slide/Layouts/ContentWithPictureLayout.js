@@ -2,8 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import ReactHtmlParser from 'react-html-parser';
+import ContentPictureModal from '../Features/ContentWithPicture/ContentWithPictureModal';
 
-function ContentWithLeftPictureLayout(props) {
+function ContentWithPictureLayout(props) {
 
     const { output, style, css } = props;
 
@@ -79,6 +80,18 @@ function ContentWithLeftPictureLayout(props) {
         <>
             <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
                 <div className="content-area-container h-100 w-100 border border-light p-3 ">
+                    <div className="row m-0">
+                        <div className="col-md-12 p-0 text-right">
+                            {style.modalPosition === 'top-right' &&
+                                output.modal.map((item, itemIndex) => (
+                                    <ContentPictureModal
+                                        item={item}
+                                        itemIndex={itemIndex}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </div>
                     {content()}
                     {props.cssApplier(css, 'content-picture-layout')}
                     {style.backgroundAudio.url &&
@@ -93,4 +106,4 @@ function ContentWithLeftPictureLayout(props) {
     );
 }
 
-export default ContentWithLeftPictureLayout;
+export default ContentWithPictureLayout;
