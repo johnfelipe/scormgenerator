@@ -53,7 +53,7 @@ function ContentWithPictureAccordion(props) {
                                     type="button"
                                     className="btn btn-primary btn-sm ml-2"
                                     onClick={() => {
-                                        props.setModalTitle(true);
+                                        props.setIsEditModalTitle(true);
                                         props.setUpdateTitle(modalItem.title);
                                         props.setUpdateModalCompareIndex(modalIndex);
                                     }}

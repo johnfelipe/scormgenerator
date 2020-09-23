@@ -309,7 +309,7 @@ function ContentWithPicture(props) {
                                                 modalIndex={modalIndex}
                                                 setShowEditor={props.setShowEditor}
                                                 setColumn={props.setColumn}
-                                                setModalTitle={setModalTitle}
+                                                setIsEditModalTitle={setIsEditModalTitle}
                                                 setUpdateTitle={setUpdateTitle}
                                                 setUpdateModalCompareIndex={setUpdateModalCompareIndex}
                                             />
