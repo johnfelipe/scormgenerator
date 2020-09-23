@@ -2397,5 +2397,8 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
     top: 85px;
   }
 }
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-modal-setup {
+  max-height: 200px !important;
+}
 
 /*# sourceMappingURL=styles.css.map */
