@@ -33,7 +33,7 @@ function ContentWithPictureModal(props) {
                 onClick={() => {
                     setModalShow(true);
                 }}
-                style={{ background: style.modalBtnColor }}
+                style={{ background: style.modalBtnColor, borderColor: style.modalBtnColor }}
                 key={'content-modal-btn-' + itemIndex}
             >
                 {item.title}
