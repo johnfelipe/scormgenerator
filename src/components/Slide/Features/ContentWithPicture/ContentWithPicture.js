@@ -316,39 +316,42 @@ function ContentWithPicture(props) {
                                         }
                                     </li>
                                 ))}
-                                <li className="content-picture-modal-list-item">
-                                    <div className="content-picture-modal-input-wrapper">
-                                        <div className="content-picture-modal-input-label">
-                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length+1}.</span>
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length < 4 &&
+                                    <li className="content-picture-modal-list-item">
+                                        <div className="content-picture-modal-input-wrapper">
+                                            <div className="content-picture-modal-input-label">
+                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length+1}.</span>
+                                            </div>
+                                            <div className="content-picture-modal-input">
+                                                <input
+                                                    id="title"
+                                                    name="title"
+                                                    type="text"
+                                                    placeholder="Type title here. . ."
+                                                    onChange={(event) => setModalTitle(event.target.value)}
+                                                    value={modalTitle}
+                                                />
+                                            </div>
+                                            <div className="content-picture-modal-button">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-primary btn-sm"
+                                                    onClick={() => {
+                                                        const isEmpty = document.getElementById("title");
+                                                        
+                                                        if (isEmpty.value !== "") {
+                                                            setModalTitle('');
+                                                            addContentModal(modalTitle);
+                                                        }
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="content-picture-modal-input">
-                                            <input
-                                                id="title"
-                                                name="title"
-                                                type="text"
-                                                placeholder="Type title here. . ."
-                                                onChange={(event) => setModalTitle(event.target.value)}
-                                                value={modalTitle}
-                                            />
-                                        </div>
-                                        <div className="content-picture-modal-button">
-                                            <button
-                                                type="button"
-                                                className="btn btn-primary btn-sm"
-                                                onClick={() => {
-                                                    const isEmpty = document.getElementById("title");
-                                                    
-                                                    if (isEmpty.value !== "") {
-                                                        setModalTitle('');
-                                                        addContentModal(modalTitle);
-                                                    }
-                                                }}
-                                            >
-                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
+
                             </>
                         :
                             <li className="content-picture-modal-list-item">
@@ -386,7 +389,7 @@ function ContentWithPicture(props) {
                             </li>             
                         }
                         {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 &&
-                            <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <li className="sg-control-input-list-item sg-control-input-list-item-modal mb-3">
                                 <OverlayTrigger
                                     key="content-with-picture-modal-position-top"
                                     placement="top"
