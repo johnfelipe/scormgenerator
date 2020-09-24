@@ -379,87 +379,14 @@ function MultipleChoice(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group multiple-choice-question-list">
-                                    {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
-                                                <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="multiple-choice-question-list-item mb-2">
-                                                            {
-                                                                isEditQuestion && updateQuestionCompareIndex === index ?
-                                                                    <div className="multiple-choice-control-input-wrapper">
-                                                                        <div className="multiple-choice-control-input-label">
-                                                                            <span>{index+1}.</span>
-                                                                        </div>
-                                                                        <div className="multiple-choice-control-input">
-                                                                            <input
-                                                                                id="question"
-                                                                                name="question"
-                                                                                type="text"
-                                                                                placeholder="Type question here. . ."
-                                                                                onChange={(event) => setUpdateQuestion(event.target.value)}
-                                                                                value={updateQuestion}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="multiple-choice-control-button">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-success btn-sm"
-                                                                                onClick={() => {
-                                                                                    const isEmpty = document.getElementById("question");
-                                                                                    
-                                                                                    if (isEmpty.value !== "") {
-                                                                                        editQuestion(updateQuestion, index);
-                                                                                        setUpdateQuestion('');
-                                                                                        setIsEditQuestion(false);
-                                                                                        setUpdateQuestionCompareIndex('');
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                :
-                                                                    <MultipleChoiceAccordion
-                                                                        index={index}
-                                                                        item={item}
-                                                                        deleteQuestion={deleteQuestion}
-                                                                        setIsEditQuestion={setIsEditQuestion}
-                                                                        setUpdateQuestion={setUpdateQuestion}
-                                                                        setAnswer={setAnswer}
-                                                                        editAnswer={editAnswer}
-                                                                        deleteAnswer={deleteAnswer}
-                                                                        addAnswer={addAnswer}
-                                                                        setIsAddAnswer={setIsAddAnswer}
-                                                                        setCorrectAnswer={setCorrectAnswer}
-                                                                        IsAddAnswer={IsAddAnswer}
-                                                                        answer={answer}
-                                                                        addImageQuestion={addImageQuestion}
-                                                                        addAudioQuestion={addAudioQuestion}
-                                                                        addVideoQuestion={addVideoQuestion}
-                                                                        addVideoQuestionCaption={addVideoQuestionCaption}
-                                                                        deleteQuestionFile={deleteQuestionFile}
-                                                                        deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
-                                                                        setFilesExist={setFilesExist}
-                                                                        setQuestionFiles={setQuestionFiles}
-                                                                        addFileLabel={addFileLabel}
-                                                                        editFileLabel={editFileLabel}
-                                                                        deleteFileLabel={deleteFileLabel}
-                                                                        contentIndex={contentIndex}
-                                                                        setShowTextEditor={props.setShowTextEditor}
-                                                                        setMChoiceIndex={props.setMChoiceIndex}
-                                                                        setExplanationVisibility={setExplanationVisibility}
-                                                                        setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
-                                                                        setQuestionAnswers={setQuestionAnswers}
-                                                                        correctAnswers={correctAnswers}
-                                                                    />
-                                                            }
-                                                        </li>
-                                                    ))}
-                                                    <li className="multiple-choice-question-list-item">
+                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                        <>
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                <li key={'number-' + index} className="multiple-choice-question-list-item mb-2">
+                                                    {isEditQuestion && updateQuestionCompareIndex === index ?
                                                         <div className="multiple-choice-control-input-wrapper">
                                                             <div className="multiple-choice-control-input-label">
-                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                                <span>{index+1}.</span>
                                                             </div>
                                                             <div className="multiple-choice-control-input">
                                                                 <input
@@ -467,8 +394,8 @@ function MultipleChoice(props) {
                                                                     name="question"
                                                                     type="text"
                                                                     placeholder="Type question here. . ."
-                                                                    onChange={(event) => setQuestion(event.target.value)}
-                                                                    value={question}
+                                                                    onChange={(event) => setUpdateQuestion(event.target.value)}
+                                                                    value={updateQuestion}
                                                                 />
                                                             </div>
                                                             <div className="multiple-choice-control-button">
@@ -479,8 +406,10 @@ function MultipleChoice(props) {
                                                                         const isEmpty = document.getElementById("question");
                                                                         
                                                                         if (isEmpty.value !== "") {
-                                                                            addQuestion(question);
-                                                                            setQuestion('');
+                                                                            editQuestion(updateQuestion, index);
+                                                                            setUpdateQuestion('');
+                                                                            setIsEditQuestion(false);
+                                                                            setUpdateQuestionCompareIndex('');
                                                                         }
                                                                     }}
                                                                 >
@@ -488,13 +417,47 @@ function MultipleChoice(props) {
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </>
-                                        :
+                                                    :
+                                                        <MultipleChoiceAccordion
+                                                            index={index}
+                                                            item={item}
+                                                            deleteQuestion={deleteQuestion}
+                                                            setIsEditQuestion={setIsEditQuestion}
+                                                            setUpdateQuestion={setUpdateQuestion}
+                                                            setAnswer={setAnswer}
+                                                            editAnswer={editAnswer}
+                                                            deleteAnswer={deleteAnswer}
+                                                            addAnswer={addAnswer}
+                                                            setIsAddAnswer={setIsAddAnswer}
+                                                            setCorrectAnswer={setCorrectAnswer}
+                                                            IsAddAnswer={IsAddAnswer}
+                                                            answer={answer}
+                                                            addImageQuestion={addImageQuestion}
+                                                            addAudioQuestion={addAudioQuestion}
+                                                            addVideoQuestion={addVideoQuestion}
+                                                            addVideoQuestionCaption={addVideoQuestionCaption}
+                                                            deleteQuestionFile={deleteQuestionFile}
+                                                            deleteQuestionVideoVttFile={deleteQuestionVideoVttFile}
+                                                            setFilesExist={setFilesExist}
+                                                            setQuestionFiles={setQuestionFiles}
+                                                            addFileLabel={addFileLabel}
+                                                            editFileLabel={editFileLabel}
+                                                            deleteFileLabel={deleteFileLabel}
+                                                            contentIndex={contentIndex}
+                                                            setShowTextEditor={props.setShowTextEditor}
+                                                            setMChoiceIndex={props.setMChoiceIndex}
+                                                            setExplanationVisibility={setExplanationVisibility}
+                                                            setUpdateQuestionCompareIndex={setUpdateQuestionCompareIndex}
+                                                            setQuestionAnswers={setQuestionAnswers}
+                                                            correctAnswers={correctAnswers}
+                                                        />
+                                                    }
+                                                </li>
+                                            ))}
                                             <li className="multiple-choice-question-list-item">
                                                 <div className="multiple-choice-control-input-wrapper">
                                                     <div className="multiple-choice-control-input-label">
-                                                        <span>1.</span>
+                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                     </div>
                                                     <div className="multiple-choice-control-input">
                                                         <input
@@ -523,7 +486,42 @@ function MultipleChoice(props) {
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </li>             
+                                            </li>
+                                        </>
+                                    :
+                                        <li className="multiple-choice-question-list-item">
+                                            <div className="multiple-choice-control-input-wrapper">
+                                                <div className="multiple-choice-control-input-label">
+                                                    <span>1.</span>
+                                                </div>
+                                                <div className="multiple-choice-control-input">
+                                                    <input
+                                                        id="question"
+                                                        name="question"
+                                                        type="text"
+                                                        placeholder="Type question here. . ."
+                                                        onChange={(event) => setQuestion(event.target.value)}
+                                                        value={question}
+                                                    />
+                                                </div>
+                                                <div className="multiple-choice-control-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-success btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("question");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                addQuestion(question);
+                                                                setQuestion('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>             
                                     }
                                 </ul>
                             </div>

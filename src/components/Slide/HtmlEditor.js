@@ -46,6 +46,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         } else if (contentFor === 'multiCardFourth') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = value.toString("html", {blockStyleFn: getTextAlignStyles});
+        } else if (contentFor === 'contenPictureModal') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal[activeOutputIndex].content = value.toString("html", {blockStyleFn: getTextAlignStyles});
         }
 
         props.setColumn(currentColumnObj);
@@ -89,6 +91,8 @@ function HtmlEditor(props) {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.thirdCard.content = source;
         } else if (contentFor === 'multiCardFourth') {
             currentColumnObj.content[currentColumnContentIndex][contentIndex].output.fourthCard.content = source;
+        } else if (contentFor === 'contenPictureModal') {
+            currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal[activeOutputIndex].content = source;
         }
 
         props.setColumn(currentColumnObj);
@@ -125,6 +129,8 @@ function HtmlEditor(props) {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.thirdCard.content, 'html'));
         } else if (contentFor === 'multiCardFourth') {
             setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.fourthCard.content, 'html'));
+        } else if (contentFor === 'contenPictureModal') {
+            setEditorValue(createValueFromString(currentColumn.content[currentColumnContentIndex][contentIndex].output.modal[activeOutputIndex].content, 'html'));
         }
     }, [contentFor, currentColumnContentIndex, contentIndex, activeOutputIndex, currentColumn]);
 

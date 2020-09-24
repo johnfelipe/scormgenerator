@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
-
-// components
 import ColorPickerBg from '../../../Common/ColorPicker';
-
-// modal
+import ColorPickerModalBtn from '../../../Common/ColorPicker';
 import AltTagForm from '../../../AlertModal/AltTagForm';
+import ContentWithPictureAccordion from './ContentWithPictureAccordion';
 
-function ContentWithLeftPicture(props) {
+function ContentWithPicture(props) {
     
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [showPickerBg, setShowPickerBg] = useState(false);
+    const [showPickerModalBtn, setShowPickerModalBtn] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [play, setPlay] = useState(true);
+    const [modalTitle, setModalTitle] = useState('');
+    const [updateModalCompareIndex, setUpdateModalCompareIndex] = useState('');
+    const [isEditModalTitle, setIsEditModalTitle] = useState(false);
+    const [updateTitle, setUpdateTitle] = useState('');
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
+    const currentModalBtnColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.modalBtnColor;
 
-    const setImage = (name, url, type) => {
+    const setImage = (name, url) => {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.image.name = name;
@@ -154,12 +158,57 @@ function ContentWithLeftPicture(props) {
             }
         }
     }
+
+    const addContentModal = (value) => {
+        const currentColumnObj = currentColumn;
+
+        const modal = {
+            title: value,
+            content: '',
+        }
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal.push(modal);
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setModalPosition = (value) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalPosition = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const editModaTitle = (value, index) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].output.modal[index].title = value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setModalBtnColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalBtnColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setModalBtnTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalBtnTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
             <div className="sg-control sg-inspector-actions">
                 <div className="sg-workspace-actions border-top border-gray">
-                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'courseObjectives')}>
+                    <button type="button" className="sg-workspace-action-item btn btn-link border-right rounded-0" onClick={() => props.resetFeature(contentIndex, 'contentPicture')}>
                         <FontAwesomeIcon icon={faUndo}/>
                         <span>Reset</span>
                     </button>
@@ -224,6 +273,198 @@ function ContentWithLeftPicture(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="sg-control sg-control-group">
+                <div className="sg-control-header">
+                    <label>Modal/s Setup</label>
+                </div>
+                <div className="sg-control-input sg-control-input content-picture-modal-setup">
+                    <ul className="sg-control-input-list content-picture-modal-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <OverlayTrigger
+                                key="content-with-picture-modal-position-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='content-with-picture-modal-position-tooltip-top'>
+                                        <span>
+                                            Choose position for the modal
+                                        </span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalPosition}
+                                    onChange={(event) => setModalPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="top-right">&nbsp;Top-right</option>
+                                    <option value="bottom-right">&nbsp;Bottom-right</option>
+                                    <option value="top-left">&nbsp;Top-left</option>
+                                    <option value="bottom-left">&nbsp;Bottom-left</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <div className="sg-control-input-list-label content-picture-background-color-label">
+                                <span>Background Color</span>
+                            </div>{console.log('currentModalBtnColor: ' + currentModalBtnColor)}
+                            <div className="sg-control-input-list-input content-picture-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
+                                    {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
+                                        <span className="text-white h-100 w-100">{currentModalBtnColor}</span>
+                                    :
+                                        <span className="text-black h-100 w-100">TRANSPARENT</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal mb-3">
+                            <div className="sg-control-input-list-label">
+                                <span>Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalBtnTextColor}
+                                    onChange={(event) => setModalBtnTextColor(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="text-black">&nbsp;Black</option>
+                                    <option value="text-white">&nbsp;White</option>
+                                </select>
+                            </div>
+                        </li>
+                        {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 ? 
+                            <>
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
+                                    <li key={'content-picture-modal-' + modalIndex} className="content-picture-modal-list-item mb-2">
+                                        {isEditModalTitle && updateModalCompareIndex === modalIndex ?
+                                            <div className="content-picture-modal-input-wrapper">
+                                                <div className="content-picture-modal-input-label">
+                                                    <span>{modalIndex+1}.</span>
+                                                </div>
+                                                <div className="content-picture-modal-input">
+                                                    <input
+                                                        id="title"
+                                                        name="title"
+                                                        type="text"
+                                                        placeholder="Type title here. . ."
+                                                        onChange={(event) => setUpdateTitle(event.target.value)}
+                                                        value={updateTitle}
+                                                    />
+                                                </div>
+                                                <div className="content-picture-modal-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("title");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                editModaTitle(updateTitle, modalIndex);
+                                                                setUpdateTitle('');
+                                                                setIsEditModalTitle(false);
+                                                                setUpdateModalCompareIndex('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        :
+                                            <ContentWithPictureAccordion
+                                                contentIndex={contentIndex}
+                                                currentColumnContentIndex={currentColumnContentIndex}
+                                                currentColumn={currentColumn}
+                                                modalItem={modalItem}
+                                                modalIndex={modalIndex}
+                                                setShowEditor={props.setShowEditor}
+                                                setColumn={props.setColumn}
+                                                setIsEditModalTitle={setIsEditModalTitle}
+                                                setUpdateTitle={setUpdateTitle}
+                                                setUpdateModalCompareIndex={setUpdateModalCompareIndex}
+                                            />
+                                        }
+                                    </li>
+                                ))}
+                                {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length < 4 &&
+                                    <li className="content-picture-modal-list-item">
+                                        <div className="content-picture-modal-input-wrapper">
+                                            <div className="content-picture-modal-input-label">
+                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length+1}.</span>
+                                            </div>
+                                            <div className="content-picture-modal-input">
+                                                <input
+                                                    id="title"
+                                                    name="title"
+                                                    type="text"
+                                                    placeholder="Type title here. . ."
+                                                    onChange={(event) => setModalTitle(event.target.value)}
+                                                    value={modalTitle}
+                                                />
+                                            </div>
+                                            <div className="content-picture-modal-button">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-primary btn-sm"
+                                                    onClick={() => {
+                                                        const isEmpty = document.getElementById("title");
+                                                        
+                                                        if (isEmpty.value !== "") {
+                                                            setModalTitle('');
+                                                            addContentModal(modalTitle);
+                                                        }
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </>
+                        :
+                            <li className="content-picture-modal-list-item">
+                                <div className="content-picture-modal-input-wrapper">
+                                    <div className="content-picture-modal-input-label">
+                                        <span>1.</span>
+                                    </div>
+                                    <div className="content-picture-modal-input">
+                                        <input
+                                            id="title"
+                                            name="title"
+                                            type="text"
+                                            placeholder="Type title here. . ."
+                                            onChange={(event) => setModalTitle(event.target.value)}
+                                            value={modalTitle}
+                                        />
+                                    </div>
+                                    <div className="content-picture-modal-button">
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary btn-sm"
+                                            onClick={() => {
+                                                const isEmpty = document.getElementById("title");
+                                                
+                                                if (isEmpty.value !== "") {
+                                                    setModalTitle('');
+                                                    addContentModal(modalTitle);
+                                                }
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>             
+                        }
+                    </ul>
                 </div>
             </div>
             <div className="sg-control sg-control-group">
@@ -468,6 +709,12 @@ function ContentWithLeftPicture(props) {
                 setBackgroundColor={setBackgroundColor}
                 defaultColor={currentBackgroundColor}
             />
+            <ColorPickerModalBtn
+                classNames="position-absolute content-picture-color-picker-modal-btn"
+                showPicker={showPickerModalBtn}
+                setBackgroundColor={setModalBtnColor}
+                defaultColor={currentModalBtnColor}
+            />
             <AltTagForm
                 imgUrlPreview={imgUrlPreview}
                 file={file}
@@ -482,4 +729,4 @@ function ContentWithLeftPicture(props) {
     );
 }
 
-export default ContentWithLeftPicture;
+export default ContentWithPicture;

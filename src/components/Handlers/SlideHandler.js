@@ -767,7 +767,8 @@ class SlideHandler extends Component {
                         url: '',
                         alt: '',
                     },
-                    content: '<span>No content provided yet.</span>'
+                    content: '<span>No content provided yet.</span>',
+                    modal: [],
                 },
                 style: {
                     backgroundImg: {
@@ -783,6 +784,9 @@ class SlideHandler extends Component {
                         name: '',
                         url: '',
                     },
+                    modalPosition: 'top-right',
+                    modalBtnColor: '#007bff',
+                    modalBtnTextColor: 'text-white',
                 },
                 class: '',
                 id: '',
@@ -1079,7 +1083,8 @@ class SlideHandler extends Component {
                                         url: '',
                                         alt: '',
                                     },
-                                    content: '<span>No content provided yet.</span>'
+                                    content: '<span>No content provided yet.</span>',
+                                    modal: [],
                                 },
                                 style: {
                                     backgroundImg: {
@@ -1095,6 +1100,9 @@ class SlideHandler extends Component {
                                         name: '',
                                         url: '',
                                     },
+                                    modalPosition: 'top-right',
+                                    modalBtnColor: '#007bff',
+                                    modalBtnTextColor: 'text-white',
                                 },
                                 class: '',
                                 id: '',
