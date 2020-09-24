@@ -85,6 +85,7 @@ function ContentWithPictureLayout(props) {
                             <div className="col-md-12 p-0 text-right">
                                 {output.modal.map((item, itemIndex) => (
                                     <ContentPictureModal
+                                        key={'modal-btn-top-right-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
                                     />
@@ -95,6 +96,7 @@ function ContentWithPictureLayout(props) {
                             <div className="col-md-12 p-0 text-left">
                                 {output.modal.map((item, itemIndex) => (
                                     <ContentPictureModal
+                                        key={'modal-btn-top-left-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
                                     />
@@ -108,6 +110,7 @@ function ContentWithPictureLayout(props) {
                             <div className="col-md-12 p-0 text-right">
                                 {output.modal.map((item, itemIndex) => (
                                     <ContentPictureModal
+                                        key={'modal-btn-bottom-right-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
                                     />
@@ -118,6 +121,7 @@ function ContentWithPictureLayout(props) {
                             <div className="col-md-12 p-0 text-left">
                                 {output.modal.map((item, itemIndex) => (
                                     <ContentPictureModal
+                                        key={'modal-btn-bottom-left-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
                                     />
