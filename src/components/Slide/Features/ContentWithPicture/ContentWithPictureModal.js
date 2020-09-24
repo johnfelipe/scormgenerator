@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 
 function ContentWithPictureModal(props) {
-    const { item, itemIndex } = props;
+    const { item, itemIndex, style } = props;
     const [modalShow, setModalShow] = useState(false);
 
     const contentModal = (
@@ -29,10 +29,11 @@ function ContentWithPictureModal(props) {
         <>
             <button
                 type="button"
-                className={itemIndex === 0 ? "btn btn-primary mb-2" : "btn btn-primary mb-2 ml-2"}
+                className={itemIndex === 0 ? "btn mb-2" : "btn mb-2 ml-2"}
                 onClick={() => {
                     setModalShow(true);
                 }}
+                style={{ background: style.modalBtnColor }}
                 key={'content-modal-btn-' + itemIndex}
             >
                 {item.title}
