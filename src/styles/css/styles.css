@@ -2380,6 +2380,23 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
     top: 460px;
   }
 }
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-modal-btn {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 265px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-modal-btn {
+    margin: 0 110px;
+    top: 265px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-color-picker-modal-btn {
+    margin: 0 40px;
+    top: 265px;
+  }
+}
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .content-picture-modal-setup {
   height: 200px !important;
 }
