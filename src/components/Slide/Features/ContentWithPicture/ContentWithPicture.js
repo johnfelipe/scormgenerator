@@ -195,6 +195,14 @@ function ContentWithPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setModalBtnTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.modalBtnTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -273,6 +281,64 @@ function ContentWithPicture(props) {
                 </div>
                 <div className="sg-control-input sg-control-input content-picture-modal-setup">
                     <ul className="sg-control-input-list content-picture-modal-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <OverlayTrigger
+                                key="content-with-picture-modal-position-top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id='content-with-picture-modal-position-tooltip-top'>
+                                        <span>
+                                            Choose position for the modal
+                                        </span>
+                                    </Tooltip>
+                                }
+                            >
+                                <div className="sg-control-input-list-label">
+                                    <span>Position</span>
+                                </div>
+                            </OverlayTrigger>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalPosition}
+                                    onChange={(event) => setModalPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="top-right">&nbsp;Top-right</option>
+                                    <option value="bottom-right">&nbsp;Bottom-right</option>
+                                    <option value="top-left">&nbsp;Top-left</option>
+                                    <option value="bottom-left">&nbsp;Bottom-left</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal">
+                            <div className="sg-control-input-list-label content-picture-background-color-label">
+                                <span>Background Color</span>
+                            </div>{console.log('currentModalBtnColor: ' + currentModalBtnColor)}
+                            <div className="sg-control-input-list-input content-picture-background-color-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
+                                    {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
+                                        <span className="text-white h-100 w-100">{currentModalBtnColor}</span>
+                                    :
+                                        <span className="text-black h-100 w-100">TRANSPARENT</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-modal mb-3">
+                            <div className="sg-control-input-list-label">
+                                <span>Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalBtnTextColor}
+                                    onChange={(event) => setModalBtnTextColor(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="text-black">&nbsp;Black</option>
+                                    <option value="text-white">&nbsp;White</option>
+                                </select>
+                            </div>
+                        </li>
                         {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 ? 
                             <>
                                 {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.map((modalItem, modalIndex) => (
@@ -397,53 +463,6 @@ function ContentWithPicture(props) {
                                     </div>
                                 </div>
                             </li>             
-                        }
-                        {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length > 0 &&
-                            <>
-                                <li className="sg-control-input-list-item sg-control-input-list-item-modal mb-3">
-                                    <OverlayTrigger
-                                        key="content-with-picture-modal-position-top"
-                                        placement="top"
-                                        overlay={
-                                            <Tooltip id='content-with-picture-modal-position-tooltip-top'>
-                                                <span>
-                                                    Choose position for the modal
-                                                </span>
-                                            </Tooltip>
-                                        }
-                                    >
-                                        <div className="sg-control-input-list-label">
-                                            <span>Position</span>
-                                        </div>
-                                    </OverlayTrigger>
-                                    <div className="sg-control-input-list-input">
-                                        <select
-                                            value={currentColumn.content[currentColumnContentIndex][contentIndex].style.modalPosition}
-                                            onChange={(event) => setModalPosition(event.target.value)}
-                                            className="form-control-plaintext border border-secondary rounded"
-                                        >
-                                            <option value="top-right">&nbsp;Top-right</option>
-                                            <option value="bottom-right">&nbsp;Bottom-right</option>
-                                            <option value="top-left">&nbsp;Top-left</option>
-                                            <option value="bottom-left">&nbsp;Bottom-left</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                    <div className="sg-control-input-list-label content-picture-background-color-label">
-                                        <span>Background Color</span>
-                                    </div>{console.log('currentModalBtnColor: ' + currentModalBtnColor)}
-                                    <div className="sg-control-input-list-input content-picture-background-color-selector">
-                                        <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
-                                            {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
-                                                <span className="text-white h-100 w-100">{currentModalBtnColor}</span>
-                                            :
-                                                <span className="text-black h-100 w-100">TRANSPARENT</span>
-                                            }
-                                        </div>
-                                    </div>
-                                </li>
-                            </>
                         }
                     </ul>
                 </div>
