@@ -88,6 +88,7 @@ function ContentWithPictureLayout(props) {
                                         key={'modal-btn-top-right-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
+                                        style={style}
                                     />
                                 ))}
                             </div>
@@ -99,6 +100,7 @@ function ContentWithPictureLayout(props) {
                                         key={'modal-btn-top-left-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
+                                        style={style}
                                     />
                                 ))}
                             </div>
@@ -113,6 +115,7 @@ function ContentWithPictureLayout(props) {
                                         key={'modal-btn-bottom-right-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
+                                        style={style}
                                     />
                                 ))}
                             </div>
@@ -124,6 +127,7 @@ function ContentWithPictureLayout(props) {
                                         key={'modal-btn-bottom-left-' + itemIndex}
                                         item={item}
                                         itemIndex={itemIndex}
+                                        style={style}
                                     />
                                 ))}
                             </div>
