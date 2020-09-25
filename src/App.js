@@ -8,6 +8,8 @@ import Header from './components/Navigation/NavigationHeader';
 // styling
 import './styles/css/styles.css';
 import './App.css';
+// import './assets/bootstrap/css/bootstrap.min.css';
+// import './assets/video-react/video-react.css';
 
 // helpers
 import { history } from './helpers';
