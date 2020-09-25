@@ -1,7 +1,7 @@
 {
   "name": "scorm-generator",
   "version": "0.1.0",
-  "homepage": "./",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "codemirror": "^5.54.0",
+    "express": "^4.17.1",
     "formik": "^2.1.4",
     "jquery": "^3.5.1",
     "randomcolor": "^0.6.2",
