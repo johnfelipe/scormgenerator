@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from "react-router-dom";
-
-// formik
 import { Formik } from "formik";
 import * as Yup from 'yup';
-
-// react beautiful dnd
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-// font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus,
@@ -29,15 +23,10 @@ import {
     faClone
 } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faFileAudio, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
-
-// react bootstrap
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-// import { Modal, Tab, Tabs } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-bootstrap';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
-
-// redux library
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { connect } from 'react-redux';
 
 // components

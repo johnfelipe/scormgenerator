@@ -1,8 +1,11 @@
 {
+  "productName": "Webupps Scorm Generator",
   "name": "scorm-generator",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "./",
   "private": true,
+  "author": "Jeff Zeejay Belamide",
+  "description": "Webupps LLC own this product.",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
@@ -49,11 +52,16 @@
     "video-react": "^0.14.1",
     "yup": "^0.28.5"
   },
+  "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "start-electron-prod": "nodemon --exec electron .",
+    "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron/main.js --publish never",
+    "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -69,5 +77,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^10.1.3",
+    "electron-builder": "^22.8.1",
+    "nodemon": "^2.0.0"
   }
 }

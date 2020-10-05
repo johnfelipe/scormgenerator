@@ -26,8 +26,8 @@ import { lessonNotifications, slideNotifications } from '../../notifications';
 function CourseEditor() {
     
     const dispatch = useDispatch();
-    const url = window.location.pathname;
-    const cid = url.split('/')[2];
+    const url = window.location.hash;
+    const cid = url.split('/')[url.split('/').length - 1];
     const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
     const currentLesson = useSelector(state => state.lesson.currentLesson ? state.lesson.currentLesson : {});
     const courseLessons = useSelector(state => state.course.courseLessons ? state.course.courseLessons : {});

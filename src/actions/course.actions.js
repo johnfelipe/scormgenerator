@@ -93,7 +93,9 @@ function updateCourse(data, id) {
                 );
                 
                 dispatch(success(course, id, data.title));
-                history.push("/");
+                history.push({
+                    hash: "#/"
+                });
                 window.location.reload();
                 // dispatch(alertActions.success('Course created successfully'));
             },

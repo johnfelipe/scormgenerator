@@ -87,7 +87,9 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
                     dispatch(courseActions.appendSlideColumnsFromCourseLesson(columnArray, slideIndex, lessonIndex));
                 }
 
-                history.push("/course/" + cid);
+                history.push({
+                    hash: "#/course/" + cid
+                });
                 window.location.reload();
             },
             error => {
@@ -181,7 +183,9 @@ function updateSlide(data, id, cid, action) {
                 // dispatch(alertActions.success('Slide updated successfully'));
 
                 if (action === "edit") {
-                    history.push("/course/" + cid);
+                    history.push({
+                        hash: "#/course/" + cid
+                    });
                     window.location.reload();
                 }
             },
