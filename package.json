@@ -71,7 +71,15 @@
             "node_modules/**/*"
         ],
         "win": {
-            "target": "zip"
+            "target": [
+                {
+                    "target": "nsis",
+                        "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ]
         },
         "publish": {
             "provider": "github",
