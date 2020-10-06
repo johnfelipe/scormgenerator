@@ -60,8 +60,8 @@
         "eject": "react-scripts eject",
         "start-electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "start-electron-prod": "nodemon --exec electron .",
-        "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron/main.js --publish never",
-        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never"
+        "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
+        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never"
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
@@ -71,7 +71,7 @@
             "node_modules/**/*"
         ],
         "win": {
-            
+            "target": "zip"
         },
         "publish": {
             "provider": "github",
