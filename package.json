@@ -1,5 +1,5 @@
 {
-    "productName": "Webupps Scorm Generator",
+    "productName": "Scorm Generator",
     "name": "scorm-generator",
     "version": "0.1.0",
     "homepage": "./",
@@ -61,7 +61,8 @@
         "start-electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "start-electron-prod": "nodemon --exec electron .",
         "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
-        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never"
+        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never",
+        "win-cert": "electron-builder create-self-signed-cert -p webupps"
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
@@ -79,7 +80,10 @@
                         "ia32"
                     ]
                 }
-            ]
+            ],
+            "publisherName": "webupps",
+            "certificateFile": "private/webupps.pfx",
+            "certificatePassword": ""
         },
         "nsis": {
             "oneClick" : false,
