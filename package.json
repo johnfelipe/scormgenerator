@@ -20,6 +20,7 @@
         "axios": "^0.19.2",
         "chart.js": "^2.9.3",
         "codemirror": "^5.54.0",
+        "electron-updater": "^4.3.5",
         "express": "^4.17.1",
         "formik": "^2.1.4",
         "jquery": "^3.5.1",
@@ -63,7 +64,8 @@
         "start-electron-prod": "nodemon --exec electron .",
         "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
         "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never",
-        "win-cert": "electron-builder create-self-signed-cert -p webupps"
+        "win-cert": "electron-builder create-self-signed-cert -p webupps",
+        "release": "electron-builder -w -p onTagOrDraft"
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
@@ -87,7 +89,7 @@
             "certificatePassword": ""
         },
         "nsis": {
-            "oneClick" : false,
+            "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true
         },
