@@ -1763,6 +1763,7 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
   padding: 10px;
   height: 200px;
   overflow: auto !important;
+  margin-top: 0.5rem !important;
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item {
   user-select: none;
