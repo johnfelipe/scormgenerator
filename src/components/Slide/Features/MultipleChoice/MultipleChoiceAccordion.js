@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Accordion, Card, Tabs, Tab } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faEye, faEyeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -304,7 +304,7 @@ function MultipleChoiceAccordion(props) {
                                                         }
                                                     }}
                                                 >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    <FontAwesomeIcon icon={faPlus}/>
                                                 </button>
                                                 <button
                                                     type="button"
@@ -383,101 +383,100 @@ function MultipleChoiceAccordion(props) {
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
                                                                         >
-                                                                            {
-                                                                                isEditAnswer && editAnswerCompareIndex === answerIndex ?
-                                                                                    <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
-                                                                                        <div className="multiple-choice-control-input-label">
-                                                                                            <span>Edit:&nbsp;</span>
-                                                                                        </div>
-                                                                                        <div className="multiple-choice-control-input">
-                                                                                            <input
-                                                                                                id="answer"
-                                                                                                name="answer"
-                                                                                                type="text"
-                                                                                                placeholder="Type answer here. . ."
-                                                                                                onChange={(event) => setEditAnswer(event.target.value)}
-                                                                                                value={editAnswer}
-                                                                                            />
-                                                                                        </div>
-                                                                                        <div className="multiple-choice-control-button">
-                                                                                            <button
-                                                                                                type="button"
-                                                                                                className="btn btn-success btn-sm mr-1"
-                                                                                                onClick={() => {
-                                                                                                    const isEmpty = document.getElementById("answer");
-                                                                                                    
-                                                                                                    if (isEmpty.value !== "") {
-                                                                                                        props.editAnswer(editAnswer, index, answerIndex);
-                                                                                                        setEditAnswer('');
-                                                                                                        setIsEditAnswer(false);
-                                                                                                        setEditAnswerCompareIndex('');
-                                                                                                    }
-                                                                                                }}
-                                                                                            >
-                                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                                            </button>
-                                                                                            {/* <button
-                                                                                                type="button"
-                                                                                                className="btn btn-danger btn-sm"
-                                                                                                onClick={() => {
-                                                                                                    const isEmpty = document.getElementById("answer");
-                                                                                                    
-                                                                                                    if (isEmpty.value !== "") {
-                                                                                                        setEditAnswer('');
-                                                                                                        setIsEditAnswer(false);
-                                                                                                        setEditAnswerCompareIndex('');
-                                                                                                    }
-                                                                                                }}
-                                                                                            >
-                                                                                                <FontAwesomeIcon icon={faTimes}/>
-                                                                                            </button> */}
-                                                                                        </div>
+                                                                            {isEditAnswer && editAnswerCompareIndex === answerIndex ?
+                                                                                <div className="multiple-choice-control-input-wrapper mb-1 mt-3 mb-3">
+                                                                                    <div className="multiple-choice-control-input-label">
+                                                                                        <span>Edit:&nbsp;</span>
                                                                                     </div>
-                                                                                :
-                                                                                    <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
-                                                                                        <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.answer}>
-                                                                                            {item.answer}
-                                                                                        </div>
-                                                                                        <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
-                                                                                            {/* {
-                                                                                                item.correct === '' ?
-                                                                                                    <button
-                                                                                                        title="Mark as answer"
-                                                                                                        className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                                        type="button"
-                                                                                                        onClick={() => {
-                                                                                                            props.setCorrectAnswer(true, index, answerIndex);
-                                                                                                            setIsCorrectAnswerSet(true);
-                                                                                                        }}
-                                                                                                    >
-                                                                                                        <FontAwesomeIcon icon={faCheck}/>
-                                                                                                    </button>
-                                                                                                :
-                                                                                                    item.correct &&
-                                                                                                    <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
-                                                                                            } */}
-                                                                                            <button
-                                                                                                className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                                type="button"
-                                                                                                onClick={() => {
-                                                                                                    setEditAnswer(item.answer);
-                                                                                                    setIsEditAnswer(true);
-                                                                                                    setEditAnswerCompareIndex(answerIndex);
-                                                                                                }}
-                                                                                            >
-                                                                                                <FontAwesomeIcon icon={faEdit}/>
-                                                                                            </button>
-                                                                                            <button
-                                                                                                className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                                                                                type="button"
-                                                                                                onClick={() => {
-                                                                                                    props.deleteAnswer(index, answerIndex);
-                                                                                                }}
-                                                                                            >
-                                                                                                <FontAwesomeIcon icon={faTrash}/>
-                                                                                            </button>
-                                                                                        </div>
+                                                                                    <div className="multiple-choice-control-input">
+                                                                                        <input
+                                                                                            id="answer"
+                                                                                            name="answer"
+                                                                                            type="text"
+                                                                                            placeholder="Type answer here. . ."
+                                                                                            onChange={(event) => setEditAnswer(event.target.value)}
+                                                                                            value={editAnswer}
+                                                                                        />
                                                                                     </div>
+                                                                                    <div className="multiple-choice-control-button">
+                                                                                        <button
+                                                                                            type="button"
+                                                                                            className="btn btn-success btn-sm mr-1"
+                                                                                            onClick={() => {
+                                                                                                const isEmpty = document.getElementById("answer");
+                                                                                                
+                                                                                                if (isEmpty.value !== "") {
+                                                                                                    props.editAnswer(editAnswer, index, answerIndex);
+                                                                                                    setEditAnswer('');
+                                                                                                    setIsEditAnswer(false);
+                                                                                                    setEditAnswerCompareIndex('');
+                                                                                                }
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faPlus}/>
+                                                                                        </button>
+                                                                                        {/* <button
+                                                                                            type="button"
+                                                                                            className="btn btn-danger btn-sm"
+                                                                                            onClick={() => {
+                                                                                                const isEmpty = document.getElementById("answer");
+                                                                                                
+                                                                                                if (isEmpty.value !== "") {
+                                                                                                    setEditAnswer('');
+                                                                                                    setIsEditAnswer(false);
+                                                                                                    setEditAnswerCompareIndex('');
+                                                                                                }
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faTimes}/>
+                                                                                        </button> */}
+                                                                                    </div>
+                                                                                </div>
+                                                                            :
+                                                                                <div id="multiple-choice-feature-answer-list-item" className="row mb-0 border rounded">
+                                                                                    <div id="multiple-choice-feature-answer-list-item-answer" className="p-0 col-md-7" title={item.answer}>
+                                                                                        {item.answer}
+                                                                                    </div>
+                                                                                    <div className="col-md-5 p-0 multiple-choice-feature-answer-list-item-action-buttons text-right">
+                                                                                        {/* {
+                                                                                            item.correct === '' ?
+                                                                                                <button
+                                                                                                    title="Mark as answer"
+                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                    type="button"
+                                                                                                    onClick={() => {
+                                                                                                        props.setCorrectAnswer(true, index, answerIndex);
+                                                                                                        setIsCorrectAnswerSet(true);
+                                                                                                    }}
+                                                                                                >
+                                                                                                    <FontAwesomeIcon icon={faCheck}/>
+                                                                                                </button>
+                                                                                            :
+                                                                                                item.correct &&
+                                                                                                <span title="Marked correct answer"><FontAwesomeIcon icon={faCheck}/></span>
+                                                                                        } */}
+                                                                                        <button
+                                                                                            className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                            type="button"
+                                                                                            onClick={() => {
+                                                                                                setEditAnswer(item.answer);
+                                                                                                setIsEditAnswer(true);
+                                                                                                setEditAnswerCompareIndex(answerIndex);
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faEdit}/>
+                                                                                        </button>
+                                                                                        <button
+                                                                                            className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                            type="button"
+                                                                                            onClick={() => {
+                                                                                                props.deleteAnswer(index, answerIndex);
+                                                                                            }}
+                                                                                        >
+                                                                                            <FontAwesomeIcon icon={faTrash}/>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
                                                                             }
                                                                         </li>
                                                                     )}
@@ -629,7 +628,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                             setImgLabel('');
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                        <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
@@ -675,7 +674,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                         setAudioLabel('');
                                                                                                     }}
                                                                                                 >
-                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                    <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                 </button>
                                                                                                 <button
                                                                                                     type="button"
@@ -721,7 +720,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                         setVideoLabel('');
                                                                                                     }}
                                                                                                 >
-                                                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                    <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                 </button>
                                                                                                 <button
                                                                                                     type="button"
@@ -772,7 +771,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                             setImgLabel('');
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                        <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
@@ -817,7 +816,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                             setAudioLabel('');
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                        <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
@@ -862,7 +861,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                             setVideoLabel('');
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight} className="fa-w-12"/>
+                                                                                                        <FontAwesomeIcon icon={faPlus} className="fa-w-12"/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
