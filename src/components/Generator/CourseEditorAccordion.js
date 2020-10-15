@@ -82,6 +82,9 @@ function CourseEditorAccordion(props) {
                         >
                             <span>{lesson.title}</span>
                         </Accordion.Toggle>
+                        <span className="mx-1">
+                            <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
+                        </span>
                         <LessonHandler
                             action="edit"
                             currentLessonName={lesson.title}
@@ -90,6 +93,7 @@ function CourseEditorAccordion(props) {
                             uid={lesson.uid}
                             lid={lesson.lid}
                         />
+                        
                     </div>
                     <div className="col-md-2 webupps-vertical-center justify-content-end">
                         <OverlayTrigger
@@ -107,9 +111,6 @@ function CourseEditorAccordion(props) {
                                 <FontAwesomeIcon icon={faArrowsAlt}/>
                             </span>
                         </OverlayTrigger>
-                        <span className="float-right ml-3">
-                            <FontAwesomeIcon icon={collapseId === true ? faCaretUp : faCaretDown}/>
-                        </span>
                         <OverlayTrigger
                             key="duplicate-top"
                             placement="top"
