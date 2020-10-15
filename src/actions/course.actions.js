@@ -20,6 +20,7 @@ export const courseActions = {
     updateCourseList,
     duplicateCourse,
     duplicateSlide,
+    checkApi
 };
 
 function getAll() {
@@ -93,6 +94,7 @@ function updateCourse(data, id) {
                 );
                 
                 dispatch(success(course, id, data.title));
+                // history.push("/");
                 history.push({
                     hash: "#/"
                 });
@@ -344,5 +346,26 @@ function duplicateSlide(lessonIndex, lessonLid, sid) {
 
     function request(id) { return { type: courseContants.REQUEST, id } }
     function success(duplicateSlideObj, duplicateLessonIndex) { return { type: courseContants.DUPLICATE_SLIDE, duplicateSlideObj, duplicateLessonIndex } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function checkApi() {
+    return dispatch => {
+        dispatch(request());
+
+        courseService.checkApi()
+        .then(
+            courses => { 
+                dispatch(success(courses));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                console.log(error);
+            }
+        );
+    };
+
+    function request(courses) { return { type: courseContants.REQUEST, courses } }
+    function success(courses) { return { type: courseContants.CHECK_API, courses } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }

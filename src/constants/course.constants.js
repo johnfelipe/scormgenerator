@@ -48,4 +48,6 @@ export const courseContants = {
 
     // DUPLICATE SLIDE
     DUPLICATE_SLIDE: 'DUPLICATE_SLIDE_SUCCESS',
+
+    CHECK_API: 'CHECK_API_SUCCESS',
 };

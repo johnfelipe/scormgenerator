@@ -12,17 +12,18 @@ import { courseActions } from './actions';
 function App() {
 
     const dispatch = useDispatch();
-    const courses = useSelector(state => state.course.courses ? state.course.courses : []);
+    const apiResponse = useSelector(state => state.course.apiResponse ? state.course.apiResponse : []);
+    const checkApi = useSelector(state => state.course.checkApi ? state.course.checkApi : 0);
 
     useEffect(() => {
-        if (courses.length === 0) {
-            dispatch(courseActions.getAll());
+        if (apiResponse.length === 0 && (checkApi === 404 || checkApi === 0)) {
+            dispatch(courseActions.checkApi());
         }
     });
 
     return (
         <Router history={history}>
-            {courses.length === 0 ?
+            {apiResponse.length === 0 && (checkApi === 404 || checkApi === 0) ?
                     <Spinners />
                 :
                     <>
