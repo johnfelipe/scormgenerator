@@ -3,10 +3,9 @@
     "name": "scorm-generator",
     "version": "1.0.0",
     "homepage": "./",
-    "private": true,
     "author": "Jeff Zeejay Belamide",
     "description": "Webupps LLC own this product.",
-    "repository": "https://github.com/webupps/scormgenerator",
+    "repository": "https://github.com/zeejay09/scorm-generator",
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-regular-svg-icons": "^5.13.0",
@@ -58,7 +57,7 @@
         "video-react": "^0.14.1",
         "yup": "^0.28.5"
     },
-    "main": "public/electron/main.js",
+    "main": "public/electron.js",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
@@ -66,13 +65,14 @@
         "eject": "react-scripts eject",
         "start-electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "start-electron-prod": "nodemon --exec electron .",
-        "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
-        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never",
+        "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js",
+        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js",
         "win-cert": "electron-builder create-self-signed-cert -p webupps",
-        "release": "electron-builder -w -p onTagOrDraft"
+        "publish": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p onTagOrDraft"
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
+        "productName": "Webupps Scorm Generator",
         "copyright": "Copyright WebUpps LLC",
         "files": [
             "build/**/*",
@@ -85,6 +85,9 @@
             }
         ],
         "win": {
+            "publish": [
+                "github"
+            ],
             "target": [
                 {
                     "target": "nsis",
@@ -105,7 +108,7 @@
         "publish": {
             "provider": "github",
             "repo": "scorm-generator",
-            "owner": "Webupps LLC"
+            "owner": "webupps"
         }
     },
     "eslintConfig": {

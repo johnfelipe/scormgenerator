@@ -1,7 +1,8 @@
-const { app, BrowserWindow, Menu, MenuItem } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const url = require('url');
 const kill  = require('tree-kill');
+const updater = require('./electron/updater');
 
 /* Path of the Jar when debugging packaged app */
 // const jarPath = process.env.ELECTRON_START_URL ? app.getAppPath() + '/public/embedded/server.jar' : app.getAppPath() + '/build/embedded/server.jar';
@@ -10,19 +11,18 @@ const kill  = require('tree-kill');
 /* End of Path of the Jar when debugging packaged app */
 
 /* Path of the Jar when creating an installer */
-// const jarFullPath = app.getPath('exe');
-// const tempPathArr = jarFullPath.split('\\');
-// tempPathArr.pop();
-// const jarPath = tempPathArr.join('\\') + '\\server.jar';
-// let exec = require('child_process').exec, child;
+const jarFullPath = app.getPath('exe');
+const tempPathArr = jarFullPath.split('\\');
+tempPathArr.pop();
+const jarPath = tempPathArr.join('\\') + '\\server.jar';
+let exec = require('child_process').exec, child;
 /* End of Path of the Jar when creating an installer */
 
-// child = exec('java -jar "' + jarPath + '"');
+child = exec('java -jar "' + jarPath + '"');
 
-// const updater = require('./updater')
 const log = require('electron-log');
 let mainWindow;
-let mainMenu = Menu.buildFromTemplate( require('./mainMenu') );
+let mainMenu = Menu.buildFromTemplate( require('./electron/mainMenu') );
 
 function createWindow () {
     const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -38,6 +38,8 @@ function createWindow () {
     
     // console.log(child.pid);
     // console.log(jarPath);
+
+    setTimeout(updater, 3000);
 
     mainWindow = new BrowserWindow({
         width: 800,
