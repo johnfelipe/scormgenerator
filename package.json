@@ -19,6 +19,7 @@
         "ace-builds": "^1.4.12",
         "axios": "^0.19.2",
         "chart.js": "^2.9.3",
+        "child_process": "^1.0.2",
         "codemirror": "^5.54.0",
         "electron-log": "^4.2.4",
         "electron-updater": "^4.3.5",
@@ -52,11 +53,12 @@
         "redux": "^4.0.5",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.3.0",
+        "tree-kill": "^1.2.2",
         "typescript": "^3.8.3",
         "video-react": "^0.14.1",
         "yup": "^0.28.5"
     },
-    "main": "public/electron.js",
+    "main": "public/electron/main.js",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
@@ -76,6 +78,12 @@
             "build/**/*",
             "node_modules/**/*"
         ],
+        "extraFiles": [
+            {
+                "from": "build/embedded/server.jar",
+                "to": ""
+            }
+        ],
         "win": {
             "target": [
                 {
@@ -86,9 +94,8 @@
                     ]
                 }
             ],
-            "publisherName": "webupps",
-            "certificateFile": "private/webupps.pfx",
-            "certificatePassword": ""
+            "requestedExecutionLevel": "highestAvailable",
+            "publisherName": "webupps"
         },
         "nsis": {
             "oneClick": false,
