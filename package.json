@@ -1,11 +1,11 @@
 {
     "productName": "Scorm Generator",
     "name": "scorm-generator",
-    "version": "1.0.0",
+    "version": "2.3.0",
     "homepage": "./",
-    "author": "Jeff Zeejay Belamide",
+    "author": "Webupps LLC",
     "description": "Webupps LLC own this product.",
-    "repository": "https://github.com/zeejay09/scorm-generator",
+    "repository": "https://github.com/webupps/scormgenerator",
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
         "@fortawesome/free-regular-svg-icons": "^5.13.0",
@@ -72,7 +72,7 @@
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
-        "productName": "Webupps Scorm Generator",
+        "productName": "Scorm Generator",
         "copyright": "Copyright WebUpps LLC",
         "files": [
             "build/**/*",
@@ -97,17 +97,21 @@
                     ]
                 }
             ],
+            "certificateFile": "private/webupps.pfx",
+            "certificatePassword": "",
+            "verifyUpdateCodeSignature": false,
             "requestedExecutionLevel": "highestAvailable",
             "publisherName": "webupps"
         },
         "nsis": {
+            "artifactName": "Setup_${version}.${ext}",
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true
         },
         "publish": {
             "provider": "github",
-            "repo": "scorm-generator",
+            "repo": "scormgenerator",
             "owner": "webupps"
         }
     },
