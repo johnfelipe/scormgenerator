@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faArrowCircleRight, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowCircleRight, faCopy, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { Formik } from "formik";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -43,6 +43,8 @@ function CreateCourse() {
             courseNotifications.courseUpdateToast();
         } else if (courseAction === "create") {
             courseNotifications.courseCreateToast();
+        } else if (courseAction === "export") {
+            courseNotifications.courseExportToast();
         }
         sessionStorage.clear();
     });
@@ -335,6 +337,26 @@ function CreateCourse() {
                                                                                     >
                                                                                         <FontAwesomeIcon icon={faArrowsAlt}/>
                                                                                     </span>
+                                                                                </OverlayTrigger>
+                                                                                <OverlayTrigger
+                                                                                    key="export-top"
+                                                                                    placement="top"
+                                                                                    overlay={
+                                                                                        <Tooltip id='export-tooltip-top'>
+                                                                                            <span>Export course</span>
+                                                                                        </Tooltip>
+                                                                                    }
+                                                                                >
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="btn btn-primary ml-3"
+                                                                                        onClick={() => {
+                                                                                            dispatch(courseActions.exportCourse(course.cid));
+                                                                                            sessionStorage.setItem('courseAction', 'export');
+                                                                                        }}
+                                                                                    >
+                                                                                        <FontAwesomeIcon icon={faFileExport}/>
+                                                                                    </button>
                                                                                 </OverlayTrigger>
                                                                                 <OverlayTrigger
                                                                                     key="duplicate-top"

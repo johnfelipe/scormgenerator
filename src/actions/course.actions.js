@@ -20,6 +20,7 @@ export const courseActions = {
     updateCourseList,
     duplicateCourse,
     duplicateSlide,
+    exportCourse,
     checkApi
 };
 
@@ -346,6 +347,29 @@ function duplicateSlide(lessonIndex, lessonLid, sid) {
 
     function request(id) { return { type: courseContants.REQUEST, id } }
     function success(duplicateSlideObj, duplicateLessonIndex) { return { type: courseContants.DUPLICATE_SLIDE, duplicateSlideObj, duplicateLessonIndex } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function exportCourse(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        courseService.exportCourse(id)
+            .then(
+                course => { 
+                    dispatch(success(id));
+                    // dispatch(alertActions.success('Course created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(course) { return { type: courseContants.REQUEST, course } }
+    function success(course) { return { type: courseContants.EXPORT_COURSE, course } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }
 

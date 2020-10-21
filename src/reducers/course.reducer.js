@@ -6,6 +6,7 @@ const initialState = {
     currentSlide: {},
     checkApi: 0,
     apiResponse: [],
+    message: '',
 }
 
 export function course(state = initialState, action) {
@@ -197,7 +198,11 @@ export function course(state = initialState, action) {
                     apiResponse: action.courses,
                 };
             }
-    
+
+        case courseContants.EXPORT_COURSE:
+            return { 
+                message: 'Course ' + action.id + ' exported successfully!'
+            };
         case courseContants.ERROR:
             return { 
                 error: action.error

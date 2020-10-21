@@ -7,6 +7,7 @@ import { faCheck, faInfo } from '@fortawesome/free-solid-svg-icons';
 export const courseNotifications = {
     courseCreateToast,
     courseUpdateToast,
+    courseExportToast,
 };
 
 const courseCreateMsg = () => (
@@ -15,6 +16,7 @@ const courseCreateMsg = () => (
         Course created successfully
     </span>
 );
+
 function courseCreateToast() {
     toast.success(courseCreateMsg);
 }
@@ -25,6 +27,18 @@ const courseUpdateMsg = () => (
         Course updated successfully
     </span>
 );
+
 function courseUpdateToast() {
     toast.info(courseUpdateMsg);
+}
+
+const courseExportMsg = () => (
+    <span className="p-2">
+        <FontAwesomeIcon icon={faCheck}/>&nbsp;
+        Course exported successfully
+    </span>
+);
+
+function courseExportToast() {
+    toast.success(courseExportMsg);
 }
