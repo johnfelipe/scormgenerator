@@ -1,7 +1,7 @@
 {
     "productName": "Scorm Generator",
     "name": "scorm-generator",
-    "version": "2.3.0",
+    "version": "1.0.0",
     "homepage": "./",
     "author": "Webupps LLC",
     "description": "Webupps LLC own this product.",
@@ -16,10 +16,12 @@
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
         "ace-builds": "^1.4.12",
+        "aws-sdk": "^2.776.0",
         "axios": "^0.19.2",
         "chart.js": "^2.9.3",
         "child_process": "^1.0.2",
         "codemirror": "^5.54.0",
+        "dotenv": "^8.2.0",
         "electron-log": "^4.2.4",
         "electron-updater": "^4.3.5",
         "express": "^4.17.1",
@@ -46,7 +48,7 @@
         "react-router": "^5.2.0",
         "react-router-dom": "^5.1.2",
         "react-rte": "^0.16.3",
-        "react-scripts": "^3.4.3",
+        "react-scripts": "^3.4.4",
         "react-toastify": "^6.0.8",
         "react-widgets": "^4.5.0",
         "redux": "^4.0.5",
@@ -54,6 +56,7 @@
         "redux-thunk": "^2.3.0",
         "tree-kill": "^1.2.2",
         "typescript": "^3.8.3",
+        "uuid": "^8.3.1",
         "video-react": "^0.14.1",
         "yup": "^0.28.5"
     },
@@ -68,7 +71,8 @@
         "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js",
         "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js",
         "win-cert": "electron-builder create-self-signed-cert -p webupps",
-        "publish": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p onTagOrDraft"
+        "publish-github": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p onTagOrDraft",
+        "publish-s3": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p always"
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
@@ -85,9 +89,6 @@
             }
         ],
         "win": {
-            "publish": [
-                "github"
-            ],
             "target": [
                 {
                     "target": "nsis",
@@ -97,9 +98,6 @@
                     ]
                 }
             ],
-            "certificateFile": "private/webupps.pfx",
-            "certificatePassword": "",
-            "verifyUpdateCodeSignature": false,
             "requestedExecutionLevel": "highestAvailable",
             "publisherName": "webupps"
         },
@@ -110,9 +108,10 @@
             "allowToChangeInstallationDirectory": true
         },
         "publish": {
-            "provider": "github",
-            "repo": "scormgenerator",
-            "owner": "webupps"
+            "provider": "s3",
+            "bucket": "scorm-generator-dev",
+            "region": "ap-southeast-1",
+            "path": "/release"
         }
     },
     "eslintConfig": {

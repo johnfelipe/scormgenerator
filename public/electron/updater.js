@@ -4,11 +4,13 @@ const { autoUpdater } = require("electron-updater");
 
 autoUpdater.logger = require("electron-log");
 autoUpdater.logger.transports.file.level = "info";
-autoUpdater.setFeedURL({
-    provider: 'github',
-    repo: 'scormgenerator',
-    owner: 'webupps',
-});
+// autoUpdater.setFeedURL({
+//     provider: 'github',
+//     repo: 'electron-scorm-generator',
+//     owner: 'zeejay09',
+//     // token: process.env.GH_TOKEN,
+//     // private: true,
+// });
 
 autoUpdater.autoDownload = false;
 

@@ -32,6 +32,7 @@ function createWindow () {
     });
 
     // setTimeout( updater, 3000 )
+    log.info('Version: ' + app.getVersion());
     // log.info(child.pid);
     // log.info(jarPath);
     // log.info('java -jar "' + jarPath + '"');
@@ -64,7 +65,7 @@ app.on('ready', createWindow);
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit();
-        // kill(child.pid);
+        kill(child.pid);
     }
 });
 
