@@ -8,6 +8,11 @@
 # testing
 /coverage
 
+#electron-sg-app
+/dist
+/private
+/public/embedded
+
 # production
 /build
 
