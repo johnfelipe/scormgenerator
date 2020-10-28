@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faUndo, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faUpload, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { objectHelpers } from '../../../../helpers';
 
 // components
@@ -413,7 +413,7 @@ function MultipleChoice(props) {
                                                                         }
                                                                     }}
                                                                 >
-                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                    <FontAwesomeIcon icon={faPlus}/>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -482,7 +482,7 @@ function MultipleChoice(props) {
                                                                 }
                                                             }}
                                                         >
-                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                            <FontAwesomeIcon icon={faPlus}/>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -517,7 +517,7 @@ function MultipleChoice(props) {
                                                             }
                                                         }}
                                                     >
-                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                        <FontAwesomeIcon icon={faPlus}/>
                                                     </button>
                                                 </div>
                                             </div>
