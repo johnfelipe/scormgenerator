@@ -68,7 +68,8 @@ function HomePage(props) {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex], 'home-page.jpg');
+            // formData.append('file', file[fileIndex], 'home-page.jpg');
+            formData.append('file', file[fileIndex]);
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
