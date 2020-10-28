@@ -470,4 +470,9 @@
     .webupps-fluid-layout-text-color {
         color:#FF8400 !important;
     }
+
+    .btn:focus {
+        outline: none;
+        box-shadow: none;
+    }
 }
