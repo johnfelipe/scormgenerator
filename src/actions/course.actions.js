@@ -20,6 +20,8 @@ export const courseActions = {
     updateCourseList,
     duplicateCourse,
     duplicateSlide,
+    exportCourse,
+    checkApi
 };
 
 function getAll() {
@@ -93,7 +95,10 @@ function updateCourse(data, id) {
                 );
                 
                 dispatch(success(course, id, data.title));
-                history.push("/");
+                // history.push("/");
+                history.push({
+                    hash: "#/"
+                });
                 window.location.reload();
                 // dispatch(alertActions.success('Course created successfully'));
             },
@@ -342,5 +347,49 @@ function duplicateSlide(lessonIndex, lessonLid, sid) {
 
     function request(id) { return { type: courseContants.REQUEST, id } }
     function success(duplicateSlideObj, duplicateLessonIndex) { return { type: courseContants.DUPLICATE_SLIDE, duplicateSlideObj, duplicateLessonIndex } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function exportCourse(id) {
+    return dispatch => {
+        dispatch(request(id));
+
+        courseService.exportCourse(id)
+            .then(
+                course => { 
+                    dispatch(success(id));
+                    // dispatch(alertActions.success('Course created successfully'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    // dispatch(alertActions.error(error.toString()));
+                    console.log(error);
+                }
+            );
+    };
+
+    function request(course) { return { type: courseContants.REQUEST, course } }
+    function success(course) { return { type: courseContants.EXPORT_COURSE, course } }
+    function failure(error) { return { type: courseContants.ERROR, error } }
+}
+
+function checkApi() {
+    return dispatch => {
+        dispatch(request());
+
+        courseService.checkApi()
+        .then(
+            courses => { 
+                dispatch(success(courses));
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                console.log(error);
+            }
+        );
+    };
+
+    function request(courses) { return { type: courseContants.REQUEST, courses } }
+    function success(courses) { return { type: courseContants.CHECK_API, courses } }
     function failure(error) { return { type: courseContants.ERROR, error } }
 }

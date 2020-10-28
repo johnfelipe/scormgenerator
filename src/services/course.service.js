@@ -7,6 +7,8 @@ export const courseService = {
     getCourseLessons,
     updateCourse,
     duplicateCourse,
+    exportCourse,
+    checkApi,
 };
 
 async function getAll() {
@@ -99,6 +101,36 @@ async function duplicateCourse(id) {
     return handleResponse(response);
 }
 
+async function exportCourse(id) {
+    let response;
+    try {
+        response = await API.get('/generate/courses/' + id,);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleResponse(response);
+}
+
+async function checkApi() {
+    let response;
+    try {
+        response = await API.get('/courses',);
+    } catch (error) {
+        response = {
+            data: [],
+            status: 404,
+            message: 'Not found',
+            error: error,
+        };
+    }
+    return handleApiResponseChecker(response);
+}
+
 function handleResponse(response) {
     let data = response.data;
     
@@ -109,6 +141,20 @@ function handleResponse(response) {
         const error = response;
         console.log(error.message);
         console.log(error.error);
+        // return Promise.reject(error.message);
+    }
+
+    return data;
+}
+
+function handleApiResponseChecker(response) {
+    let data = response.data;
+    
+    if (response.status === 500) {
+        const error = response;
+        return Promise.reject(error.message);
+    } else if (response.status === 404) {
+        return response
         // return Promise.reject(error.message);
     }
 

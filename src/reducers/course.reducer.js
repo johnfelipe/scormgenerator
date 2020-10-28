@@ -4,6 +4,9 @@ const initialState = {
     courses: [],
     courseLessons: [],
     currentSlide: {},
+    checkApi: 0,
+    apiResponse: [],
+    message: '',
 }
 
 export function course(state = initialState, action) {
@@ -63,7 +66,7 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: lessons
-            }
+            };
 
         case courseContants.UPDATE_SLIDE_FROM_COURSE_LESSON:
             const updateFromLessonObj = {
@@ -80,7 +83,7 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: lessons,
-            }
+            };
         
         case courseContants.APPEND:
             const { slideObj, lessonIndex } = action;
@@ -117,7 +120,7 @@ export function course(state = initialState, action) {
             return {
                 ...state,
                 courseLessons: lessons,
-            }
+            };
 
         case courseContants.DELETE_SLIDE_COLUMN_FROM_COURSE_LESSON:
             const deleteColumnFromLessonObj = {
@@ -180,7 +183,26 @@ export function course(state = initialState, action) {
                 ...state,
                 currentSlide: action.slideObj
             };
-    
+
+        case courseContants.CHECK_API:
+            if (action.courses.status && action.courses.data) {
+                return {
+                    ...state,
+                    checkApi: action.courses.status,
+                    apiResponse: action.courses.data,
+                };
+            } else {
+                return {
+                    ...state,
+                    checkApi: 1,
+                    apiResponse: action.courses,
+                };
+            }
+
+        case courseContants.EXPORT_COURSE:
+            return { 
+                message: 'Course ' + action.id + ' exported successfully!'
+            };
         case courseContants.ERROR:
             return { 
                 error: action.error

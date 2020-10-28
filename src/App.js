@@ -1,30 +1,39 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Routes from "./Routes";
 import { BrowserRouter as Router } from 'react-router-dom';
-
-//components
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Navigation/NavigationHeader';
-
-// styling
 import './styles/css/styles.css';
 import './App.css';
-// import './assets/bootstrap/css/bootstrap.min.css';
-// import './assets/video-react/video-react.css';
-
-// helpers
 import { history } from './helpers';
+import Spinners from './components/Common/Spinners';
+import { courseActions } from './actions';
 
-class App extends Component {
+function App() {
 
-    render() {  
-        return (
-            <Router history={history}>
-                <Header />
+    const dispatch = useDispatch();
+    const apiResponse = useSelector(state => state.course.apiResponse ? state.course.apiResponse : []);
+    const checkApi = useSelector(state => state.course.checkApi ? state.course.checkApi : 0);
 
-                <Routes />
-            </Router>
-        );
-    }
+    useEffect(() => {
+        if (apiResponse.length === 0 && (checkApi === 404 || checkApi === 0)) {
+            dispatch(courseActions.checkApi());
+        }
+    });
+
+    return (
+        <Router history={history}>
+            {apiResponse.length === 0 && (checkApi === 404 || checkApi === 0) ?
+                    <Spinners />
+                :
+                    <>
+                        <Header />
+
+                        <Routes />
+                    </>
+            }
+        </Router>
+    );
 }
 
 export default App;

@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 
 // Custom components
 import { store } from './helpers';
-// import { persistor } from './helpers';
 
 ReactDOM.render(
     // <React.StrictMode>
