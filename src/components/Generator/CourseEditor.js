@@ -23,8 +23,8 @@ import CourseEditorAccordion from './CourseEditorAccordion';
 function CourseEditor() {
     
     const dispatch = useDispatch();
-    // const url = window.location.pathname;
-    const url = window.location.hash;
+    const url = window.location.pathname;
+    // const url = window.location.hash;
     const cid = url.split('/')[url.split('/').length - 1];
     console.log(cid);
     const currentCourse = useSelector(state => state.course.currentCourse ? state.course.currentCourse : {});
