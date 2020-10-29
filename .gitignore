@@ -27,4 +27,3 @@ dist/
 private/
 database/
 derby.log
-public/embedded/
