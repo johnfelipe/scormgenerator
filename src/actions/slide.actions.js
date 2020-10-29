@@ -77,7 +77,7 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
                             sid: slide.sid,
                             uid: uid,
                             grid: columnArray[index].grid,
-                            features: btoa(featuresJson)
+                            features: btoa(unescape(encodeURIComponent(featuresJson)))
                         }
                 
                         console.log(data);
