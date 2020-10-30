@@ -68,7 +68,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "start-electron-dev": "cross-env NODE_ENV=development ELECTRON_START_URL=http://localhost:3000 && electron .",
-        "start-electron-prod": "cross-env NODE_ENV=production nodemon --exec electron .",
+        "start-electron-prod": "react-scripts build && cross-env NODE_ENV=production nodemon --exec electron .",
         "package-win": "react-scripts build && electron-builder build --win -c.extraMetadata.main=build/electron.js",
         "package-mac": "react-scripts build && electron-builder build --mac -c.extraMetadata.main=build/electron.js",
         "win-cert": "electron-builder create-self-signed-cert -p webupps",
