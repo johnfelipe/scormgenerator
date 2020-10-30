@@ -102,6 +102,9 @@
                     ]
                 }
             ],
+            "certificateFile": "private/webupps.pfx",
+            "certificatePassword": "",
+            "verifyUpdateCodeSignature": false,
             "requestedExecutionLevel": "highestAvailable",
             "publisherName": "webupps"
         },
