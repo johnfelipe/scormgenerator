@@ -88,6 +88,10 @@
                 "to": ""
             }
         ],
+        "mac" : {
+            "category": "public.app-category.productivity",
+            "target": "dmg"
+        },
         "win": {
             "target": [
                 {
@@ -106,6 +110,9 @@
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true
+        },
+        "linux": {
+            "category": "Utility"
         },
         "publish": {
             "provider": "s3",
