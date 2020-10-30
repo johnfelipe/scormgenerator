@@ -33,6 +33,13 @@ function createWindow () {
 
     // setTimeout( updater, 3000 )
     log.info('Version: ' + app.getVersion());
+    log.info('AppPath: ' + app.getAppPath());
+    log.info('InstallationPathWindows: ' + app.getPath('exe'));
+    try {
+        log.info('InstallationPathMac (Possibly): ' + app.getPath('dmg'));
+    } catch {
+        log.info('InstallationPathMac (Possibly): error');
+    }
     // log.info(child.pid);
     // log.info(jarPath);
     // log.info('java -jar "' + jarPath + '"');
