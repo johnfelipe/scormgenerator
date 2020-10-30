@@ -27,3 +27,4 @@ dist/
 private/
 database/
 derby.log
+dev-app-update.yml
