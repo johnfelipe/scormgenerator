@@ -15,18 +15,21 @@ var currentPlatform = process.platform;
 
 /* Path of the Jar when creating an installer */
 let jarPath;
-let exec;
+let exec, child;
 
 if (currentPlatform === "win32") {
     const jarFullPath = app.getPath('exe');
     const tempPathArr = jarFullPath.split('\\');
     tempPathArr.pop();
     jarPath = tempPathArr.join('\\') + '\\server.jar';
-    exec = require('child_process').exec, child;
+    exec = require('child_process').exec;
 } else if (currentPlatform === "darwin") {
     const jarFullPath = app.getAppPath();
-    jarPath = jarFullPath + '\\server.jar';
-    exec = require('child_process').exec, child;
+    const tempPathArr = jarFullPath.split('\\');
+    tempPathArr.pop();
+    tempPathArr.pop();
+    jarPath = tempPathArr.join('\\') + '\\server.jar';
+    exec = require('child_process').exec;
 }
 
 /* End of Path of the Jar when creating an installer */
@@ -45,6 +48,7 @@ function createWindow () {
     });
 
     // setTimeout( updater, 3000 )
+    log.info('SPlit AppPath: ' + app.getAppPath().split('\\'));
     log.info('Version: ' + app.getVersion());
     log.info('AppPath: ' + app.getAppPath());
     log.info('InstallationPathWindows: ' + app.getPath('exe'));
@@ -53,8 +57,8 @@ function createWindow () {
     } catch {
         log.info('InstallationPathMac (Possibly): error');
     }
+    log.info("Jar Path: " + jarPath);
     // log.info(child.pid);
-    // log.info(jarPath);
     // log.info('java -jar "' + jarPath + '"');
     
     // console.log(child.pid);
