@@ -4,6 +4,9 @@ const url = require('url');
 const kill  = require('tree-kill');
 const updater = require('./electron/updater');
 
+/* Determine Platform*/
+var currentPlatform = process.platform;
+
 /* Path of the Jar when debugging packaged app */
 // const jarPath = process.env.ELECTRON_START_URL ? app.getAppPath() + '/public/embedded/server.jar' : app.getAppPath() + '/build/embedded/server.jar';
 // let exec = require('child_process').exec, child;
@@ -11,11 +14,21 @@ const updater = require('./electron/updater');
 /* End of Path of the Jar when debugging packaged app */
 
 /* Path of the Jar when creating an installer */
-const jarFullPath = app.getPath('exe');
-const tempPathArr = jarFullPath.split('\\');
-tempPathArr.pop();
-const jarPath = tempPathArr.join('\\') + '\\server.jar';
-let exec = require('child_process').exec, child;
+let jarPath;
+let exec;
+
+if (currentPlatform === "win32") {
+    const jarFullPath = app.getPath('exe');
+    const tempPathArr = jarFullPath.split('\\');
+    tempPathArr.pop();
+    jarPath = tempPathArr.join('\\') + '\\server.jar';
+    exec = require('child_process').exec, child;
+} else if (currentPlatform === "darwin") {
+    const jarFullPath = app.getAppPath();
+    jarPath = jarFullPath + '\\server.jar';
+    exec = require('child_process').exec, child;
+}
+
 /* End of Path of the Jar when creating an installer */
 
 child = exec('java -jar "' + jarPath + '"');

@@ -15,7 +15,6 @@ autoUpdater.logger.transports.file.level = "info";
 autoUpdater.autoDownload = false;
 
 module.exports = () => {
-    // console.log('Checking for updates.');
     autoUpdater.checkForUpdates();
     // autoUpdater.checkForUpdatesAndNotify();
 
