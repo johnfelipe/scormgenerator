@@ -21,6 +21,7 @@
         "chart.js": "^2.9.3",
         "child_process": "^1.0.2",
         "codemirror": "^5.54.0",
+        "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
         "electron-log": "^4.2.4",
         "electron-updater": "^4.3.5",
@@ -66,10 +67,10 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "start-electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-        "start-electron-prod": "nodemon --exec electron .",
-        "package-win": "electron-builder build --win -c.extraMetadata.main=build/electron.js",
-        "package-mac": "electron-builder build --mac -c.extraMetadata.main=build/electron.js",
+        "start-electron-dev": "cross-env NODE_ENV=development ELECTRON_START_URL=http://localhost:3000 && electron .",
+        "start-electron-prod": "cross-env NODE_ENV=production nodemon --exec electron .",
+        "package-win": "react-scripts build && electron-builder build --win -c.extraMetadata.main=build/electron.js",
+        "package-mac": "react-scripts build && electron-builder build --mac -c.extraMetadata.main=build/electron.js",
         "win-cert": "electron-builder create-self-signed-cert -p webupps",
         "publish-github": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p onTagOrDraft",
         "publish-s3": "electron-builder build --win -c.extraMetadata.main=build/electron.js -p always"
@@ -88,7 +89,7 @@
                 "to": ""
             }
         ],
-        "mac" : {
+        "mac": {
             "category": "public.app-category.productivity",
             "target": "dmg"
         },
