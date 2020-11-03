@@ -77,7 +77,7 @@
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
-        "productName": "Scorm Generator",
+        "productName": "Scormgenerator",
         "copyright": "Copyright WebUpps LLC",
         "files": [
             "build/**/*",
