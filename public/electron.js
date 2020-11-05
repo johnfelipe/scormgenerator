@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, dialog, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const url = require('url');
 const kill  = require('tree-kill');
@@ -7,34 +7,19 @@ const updater = require('./electron/updater');
 /* Determine Platform*/
 var currentPlatform = process.platform;
 
-/* Path of the Jar when debugging packaged app */
-// const jarPath = process.env.ELECTRON_START_URL ? app.getAppPath() + '/public/embedded/server.jar' : app.getAppPath() + '/build/embedded/server.jar';
-// let exec = require('child_process').exec, child;
-// child = exec('java -jar ' + jarPath)
-/* End of Path of the Jar when debugging packaged app */
-
-/* Path of the Jar when creating an installer */
+/* Execution of Jar based on the platform */
 let jarPath;
 let exec, child;
 
 if (currentPlatform === "win32") {
-    const jarFullPath = app.getPath('exe');
-    const tempPathArr = jarFullPath.split('\\');
-    tempPathArr.pop();
-    jarPath = tempPathArr.join('\\') + '\\server.jar';
     exec = require('child_process').exec;
+    child = exec('java -jar windows.jar');
 } else if (currentPlatform === "darwin") {
-    const jarFullPath = app.getAppPath();
-    const tempPathArr = jarFullPath.split('\\');
-    tempPathArr.pop();
-    tempPathArr.pop();
-    jarPath = tempPathArr.join('\\') + '\\server.jar';
     exec = require('child_process').exec;
+    child = exec('java -jar mac.jar');
 }
+/* End of Execution of Jar based on the platform */
 
-/* End of Path of the Jar when creating an installer */
-
-child = exec('java -jar "' + jarPath + '"');
 
 const log = require('electron-log');
 let mainWindow;
@@ -48,7 +33,7 @@ function createWindow () {
     });
 
     // setTimeout( updater, 3000 )
-    log.info('SPlit AppPath: ' + app.getAppPath().split('\\'));
+    log.info('Split AppPath: ' + app.getAppPath().split('\\'));
     log.info('Version: ' + app.getVersion());
     log.info('AppPath: ' + app.getAppPath());
     log.info('InstallationPathWindows: ' + app.getPath('exe'));
@@ -83,9 +68,49 @@ function createWindow () {
     });
 }
 
+function javaVersionChecker(callback) {
+    var spawn = require('child_process').spawn('java', ['-version']);
+    spawn.on('error', function(err){
+        return callback(err, null);
+    })
+    spawn.stderr.on('data', function(data) {
+        data = data.toString().split('\n')[0];
+        var javaVersion = new RegExp('java version').test(data) ? data.split(' ')[2].replace(/"/g, '') : false;
+        if (javaVersion != false) {
+            // TODO: We have Java installed
+            return callback(null, javaVersion);
+        } else {
+            // TODO: No Java installed
 
+        }
+    });
+}
 
-app.on('ready', createWindow);
+app.on('ready',  function () {
+    createWindow();
+
+    javaVersionChecker(function(err, version) {
+        if (err !== null && version === null) {
+            log.info(err);
+            dialog.showMessageBox({
+                type: 'warning',
+                title: 'Java is Missing',
+                message: 'Java is not installed on the computer. Click ok to proceed on Java download web page and quit the app.',
+                buttons: ['Ok', 'Cancel']
+            }).then( result => {
+                let buttonIndex = result.response;
+    
+                if (buttonIndex === 0) {
+                    require('electron').shell.openExternal("https://www.oracle.com/java/technologies/javase-jre8-downloads.html");
+                    app.quit();
+                }
+            })
+        } else if (err === null && version !== null) {
+            log.info("Java version: " + version);
+        }
+    })
+});
+
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit();
