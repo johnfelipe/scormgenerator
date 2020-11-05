@@ -42,14 +42,10 @@ function createWindow () {
     } catch {
         log.info('InstallationPathMac (Possibly): error');
     }
-    log.info("Jar Path: " + jarPath);
-    // log.info(child.pid);
-    // log.info('java -jar "' + jarPath + '"');
-    
-    // console.log(child.pid);
-    // console.log(jarPath);
+    log.info('Jar Path: ' + jarPath);
+    log.info('PID: ' + child.pid);
 
-    setTimeout(updater, 3000);
+    // setTimeout(updater, 3000);
 
     mainWindow = new BrowserWindow({
         width: 800,
