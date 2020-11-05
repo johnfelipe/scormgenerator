@@ -77,21 +77,21 @@
     },
     "build": {
         "appId": "com.webupps.scormgenerator",
-        "productName": "Scormgenerator",
+        "productName": "ScormGenerator",
         "copyright": "Copyright WebUpps LLC",
         "files": [
             "build/**/*",
             "node_modules/**/*"
         ],
-        "extraFiles": [
-            {
-                "from": "build/embedded/server.jar",
-                "to": ""
-            }
-        ],
         "mac": {
             "category": "public.app-category.productivity",
-            "target": "dmg"
+            "target": "dmg",
+            "extraFiles": [
+                {
+                    "from": "build/embedded/mac.jar",
+                    "to": ""
+                }
+            ]
         },
         "win": {
             "target": [
@@ -107,16 +107,26 @@
             "certificatePassword": "",
             "verifyUpdateCodeSignature": false,
             "requestedExecutionLevel": "highestAvailable",
-            "publisherName": "webupps"
+            "publisherName": "webupps",
+            "extraFiles": [
+                {
+                    "from": "build/embedded/windows.jar",
+                    "to": ""
+                }
+            ]
+        },
+        "linux": {
+            "category": "Utility"
+        },
+        "dmg": {
+            "artifactName": "Setup_${version}.${ext}"
         },
         "nsis": {
+            "shortcutName": "Scorm Generator",
             "artifactName": "Setup_${version}.${ext}",
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true
-        },
-        "linux": {
-            "category": "Utility"
         },
         "publish": {
             "provider": "s3",
