@@ -12,6 +12,7 @@
 /dist
 /private
 /public/embedded
+dev-app-update.yml
 
 # production
 /build
