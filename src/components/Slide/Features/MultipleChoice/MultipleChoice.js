@@ -401,7 +401,7 @@ function MultipleChoice(props) {
                                                             <div className="multiple-choice-control-button">
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-success btn-sm"
+                                                                    className="btn btn-primary btn-sm"
                                                                     onClick={() => {
                                                                         const isEmpty = document.getElementById("question");
                                                                         
@@ -472,7 +472,7 @@ function MultipleChoice(props) {
                                                     <div className="multiple-choice-control-button">
                                                         <button
                                                             type="button"
-                                                            className="btn btn-success btn-sm"
+                                                            className="btn btn-primary btn-sm"
                                                             onClick={() => {
                                                                 const isEmpty = document.getElementById("question");
                                                                 
@@ -507,7 +507,7 @@ function MultipleChoice(props) {
                                                 <div className="multiple-choice-control-button">
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success btn-sm"
+                                                        className="btn btn-primary btn-sm"
                                                         onClick={() => {
                                                             const isEmpty = document.getElementById("question");
                                                             
