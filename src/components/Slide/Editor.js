@@ -219,6 +219,7 @@ class Editor extends Component {
                     slideItemId={this.props.slideItemId}
                     setShowTextEditor={this.props.setShowTextEditor}
                     uid={this.props.uid}
+                    courseLayout={this.props.courseLayout}
                 />
             );
         } else if (this.props.feature === "card") {

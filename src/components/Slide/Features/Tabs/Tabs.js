@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt, faUndo, faArrowAltCircleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faPlus } from '@fortawesome/free-solid-svg-icons';
 // import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 

@@ -371,7 +371,7 @@ function MultipleChoice(props) {
                 <div className="sg-control-header">
                     <label>Question/s Setup</label>
                 </div>
-                <div className="sg-control-content">
+                <div className={courseLayout !== "fixed" ? "sg-control-content" : "sg-control-content-override"}>
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
