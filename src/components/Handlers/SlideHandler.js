@@ -4791,6 +4791,7 @@ class SlideHandler extends Component {
                                                     setMediaFilesObject={this.props.setMediaFilesObject}
                                                     setActiveOutputIndex={this.setActiveOutputIndex}
                                                     uid={this.props.slideHandlerProps.uid}
+                                                    courseLayout={this.props.slideHandlerProps.courseLayout}
                                                 />
                                             </Tab>
                                         </Tabs>

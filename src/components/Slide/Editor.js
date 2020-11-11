@@ -134,6 +134,7 @@ class Editor extends Component {
                     setMChoiceIndex={this.props.setMChoiceIndex}
                     correctAnswers={this.props.correctAnswers}
                     uid={this.props.uid}
+                    courseLayout={this.props.courseLayout}
                 />
             );
         } else if (this.props.feature === "homePage") {
