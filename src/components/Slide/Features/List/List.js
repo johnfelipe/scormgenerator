@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faUpload, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 
 // modal
