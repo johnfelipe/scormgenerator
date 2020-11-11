@@ -28,7 +28,7 @@ function MultipleChoiceAccordion(props) {
     return (
         <Accordion className="w-100">
             <Card>
-                <Card.Header>
+                <Accordion.Toggle as={Card.Header} eventKey="0" className="p-2" onClick={() => collapseListener(cNavCollapseId, 'cNav')} style={{ cursor: 'pointer' }}>
                     {isEditButtonName && isEditButtonNameCompareIndex === index ?
                         <div className="row m-0">
                             <div className="col-md-8 p-0">
@@ -42,7 +42,7 @@ function MultipleChoiceAccordion(props) {
                             <div id="edit-action-btn-grp" className="col-md-4 pr-0 text-right">
                                 <button
                                     type="button"
-                                    className="btn btn-success btn-sm mt-1" 
+                                    className="btn btn-primary btn-sm mt-1" 
                                     onClick={() => {
                                         setIsEditButtonName(false);
                                         props.updateButtonName(updatedButtonName, index);
@@ -63,40 +63,41 @@ function MultipleChoiceAccordion(props) {
                             </div>
                         </div>
                     :
-                        <div className="row m-0">
-                            <div className="col-md-7 pl-0">
-                                <Accordion.Toggle as={Button} variant="link" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
+                                    
+                        <Accordion.Toggle as={Button} variant="default" className="p-0" eventKey="0" onClick={() => collapseListener(cNavCollapseId, 'cNav')}>
+                            <div className="row m-0">
+                                <div className="webupps-text-ellipsis col-md-7 p-0" title={item.name}>
                                     {item.name}
-                                </Accordion.Toggle>
+                                </div>
+                                <div id="action-buttons-group" className="col-md-5 p-0 text-right">
+                                    <span className="mr-2 ml-2">
+                                        <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
+                                    </span>
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                        onClick={() => {
+                                            setUpdatedButtonName(item.name);
+                                            setIsEditButtonName(true);
+                                            setIsEditButtonNameCompareIndex(index);
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faEdit}/>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                        onClick={() => {
+                                            props.deleteQuestion(index);
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faTrashAlt}/>
+                                    </button>
+                                </div>
                             </div>
-                            <div id="action-buttons-group" className="col-md-5 p-0 text-right">
-                                <span className="mr-2 ml-2">
-                                    <FontAwesomeIcon icon={cNavCollapseId === true ? faCaretUp : faCaretDown}/>
-                                </span>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                    onClick={() => {
-                                        setUpdatedButtonName(item.name);
-                                        setIsEditButtonName(true);
-                                        setIsEditButtonNameCompareIndex(index);
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faEdit}/>
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-danger btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
-                                    onClick={() => {
-                                        props.deleteQuestion(index);
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faTrashAlt}/>
-                                </button>
-                            </div>
-                        </div>
+                        </Accordion.Toggle>
                     }
-                </Card.Header>
+                </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
                         <ul className="sg-control-input-list">
