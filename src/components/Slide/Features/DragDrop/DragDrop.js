@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import DragDropAccordion from './DragDropAccordion';
@@ -219,7 +219,7 @@ function DragDrop(props) {
                                                                         <div className="drag-drop-control-button">
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn btn-success btn-sm"
+                                                                                className="btn btn-primary btn-sm"
                                                                                 onClick={() => {
                                                                                     const isEmpty = document.getElementById("instruction");
                                                                                     
@@ -231,7 +231,7 @@ function DragDrop(props) {
                                                                                     }
                                                                                 }}
                                                                             >
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                <FontAwesomeIcon icon={faPlus}/>
                                                                             </button>
                                                                         </div>
                                                                     </div>
@@ -277,7 +277,7 @@ function DragDrop(props) {
                                                             <div className="drag-drop-control-button">
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-success btn-sm"
+                                                                    className="btn btn-primary btn-sm"
                                                                     onClick={() => {
                                                                         const isEmpty = document.getElementById("instruction");
                                                                         
@@ -287,7 +287,7 @@ function DragDrop(props) {
                                                                         }
                                                                     }}
                                                                 >
-                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                    <FontAwesomeIcon icon={faPlus}/>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -312,7 +312,7 @@ function DragDrop(props) {
                                                     <div className="drag-drop-control-button">
                                                         <button
                                                             type="button"
-                                                            className="btn btn-success btn-sm"
+                                                            className="btn btn-primary btn-sm"
                                                             onClick={() => {
                                                                 const isEmpty = document.getElementById("instruction");
                                                                 
@@ -322,7 +322,7 @@ function DragDrop(props) {
                                                                 }
                                                             }}
                                                         >
-                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                            <FontAwesomeIcon icon={faPlus}/>
                                                         </button>
                                                     </div>
                                                 </div>
