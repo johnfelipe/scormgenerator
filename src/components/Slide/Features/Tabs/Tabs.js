@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt, faUndo, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faArrowAltCircleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
 // import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
@@ -138,100 +138,64 @@ function Tabs(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group tabs-list">
-                                    {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
-                                                <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="tabs-list-item mb-2">
-                                                            {
-                                                                isEditTabHeader && updateTabHeaderCompareIndex === index ?
-                                                                    <div className="tabs-control-input-wrapper mb-2">
-                                                                        <div className="tabs-control-input-label">
-                                                                            <span>{index+1}.</span>
-                                                                        </div>
-                                                                        <div className="tabs-control-input">
-                                                                            <input
-                                                                                id="tabHeader"
-                                                                                name="tabHeader"
-                                                                                type="text"
-                                                                                placeholder="Type header name here. . ."
-                                                                                onChange={(event) => setUpdateTabHeader(event.target.value)}
-                                                                                value={updateTabHeader}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="tabs-control-button">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-success btn-sm"
-                                                                                onClick={() => {
-                                                                                    const isEmpty = document.getElementById("tabHeader");
-                                                                                    
-                                                                                    if (isEmpty.value !== "") {
-                                                                                        editTabHeader(updateTabHeader, index);
-                                                                                        setUpdateTabHeader('');
-                                                                                        setIsEditTabHeader(false);
-                                                                                        setUpdateTabHeaderCompareIndex('');
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                :
-                                                                    <TabsAccordion
-                                                                        index={index}
-                                                                        item={item}
-                                                                        deleteTabHeader={deleteTabHeader}
-                                                                        setIsEditTabHeader={setIsEditTabHeader}
-                                                                        setUpdateTabHeader={setUpdateTabHeader}
-                                                                        contentIndex={contentIndex}
-                                                                        setShowEditor={props.setShowEditor}
-                                                                        setUpdateTabHeaderCompareIndex={setUpdateTabHeaderCompareIndex}
-                                                                        setActiveOutputIndex={props.setActiveOutputIndex}
+                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                        <>
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                <li key={'number-' + index} className="tabs-list-item mb-2">
+                                                    {
+                                                        isEditTabHeader && updateTabHeaderCompareIndex === index ?
+                                                            <div className="tabs-control-input-wrapper mb-2">
+                                                                <div className="tabs-control-input-label">
+                                                                    <span>{index+1}.</span>
+                                                                </div>
+                                                                <div className="tabs-control-input">
+                                                                    <input
+                                                                        id="tabHeader"
+                                                                        name="tabHeader"
+                                                                        type="text"
+                                                                        placeholder="Type header name here. . ."
+                                                                        onChange={(event) => setUpdateTabHeader(event.target.value)}
+                                                                        value={updateTabHeader}
                                                                     />
-                                                            }
-                                                        </li>
-                                                    ))}
-                                                    <li className="tabs-list-item">
-                                                        <div className="tabs-control-input-wrapper mb-2">
-                                                            <div className="tabs-control-input-label">
-                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                                </div>
+                                                                <div className="tabs-control-button">
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-primary btn-sm"
+                                                                        onClick={() => {
+                                                                            const isEmpty = document.getElementById("tabHeader");
+                                                                            
+                                                                            if (isEmpty.value !== "") {
+                                                                                editTabHeader(updateTabHeader, index);
+                                                                                setUpdateTabHeader('');
+                                                                                setIsEditTabHeader(false);
+                                                                                setUpdateTabHeaderCompareIndex('');
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        <FontAwesomeIcon icon={faPlus}/>
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                            <div className="tabs-control-input">
-                                                                <input
-                                                                    id="tabHeader"
-                                                                    name="tabHeader"
-                                                                    type="text"
-                                                                    placeholder="Type header name here. . ."
-                                                                    onChange={(event) => setTabHeader(event.target.value)}
-                                                                    value={tabHeader}
-                                                                />
-                                                            </div>
-                                                            <div className="tabs-control-button">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-success btn-sm"
-                                                                    onClick={() => {
-                                                                        const isEmpty = document.getElementById("tabHeader");
-                                                                        
-                                                                        if (isEmpty.value !== "") {
-                                                                            addTabHeader(tabHeader);
-                                                                            setTabHeader('');
-                                                                        }
-                                                                    }}
-                                                                >
-                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </>
-                                        :
+                                                        :
+                                                            <TabsAccordion
+                                                                index={index}
+                                                                item={item}
+                                                                deleteTabHeader={deleteTabHeader}
+                                                                setIsEditTabHeader={setIsEditTabHeader}
+                                                                setUpdateTabHeader={setUpdateTabHeader}
+                                                                contentIndex={contentIndex}
+                                                                setShowEditor={props.setShowEditor}
+                                                                setUpdateTabHeaderCompareIndex={setUpdateTabHeaderCompareIndex}
+                                                                setActiveOutputIndex={props.setActiveOutputIndex}
+                                                            />
+                                                    }
+                                                </li>
+                                            ))}
                                             <li className="tabs-list-item">
                                                 <div className="tabs-control-input-wrapper mb-2">
                                                     <div className="tabs-control-input-label">
-                                                        <span>1.</span>
+                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
                                                     </div>
                                                     <div className="tabs-control-input">
                                                         <input
@@ -246,7 +210,7 @@ function Tabs(props) {
                                                     <div className="tabs-control-button">
                                                         <button
                                                             type="button"
-                                                            className="btn btn-success btn-sm"
+                                                            className="btn btn-primary btn-sm"
                                                             onClick={() => {
                                                                 const isEmpty = document.getElementById("tabHeader");
                                                                 
@@ -256,11 +220,46 @@ function Tabs(props) {
                                                                 }
                                                             }}
                                                         >
-                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                            <FontAwesomeIcon icon={faPlus}/>
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </li>             
+                                            </li>
+                                        </>
+                                    :
+                                        <li className="tabs-list-item">
+                                            <div className="tabs-control-input-wrapper mb-2">
+                                                <div className="tabs-control-input-label">
+                                                    <span>1.</span>
+                                                </div>
+                                                <div className="tabs-control-input">
+                                                    <input
+                                                        id="tabHeader"
+                                                        name="tabHeader"
+                                                        type="text"
+                                                        placeholder="Type header name here. . ."
+                                                        onChange={(event) => setTabHeader(event.target.value)}
+                                                        value={tabHeader}
+                                                    />
+                                                </div>
+                                                <div className="tabs-control-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("tabHeader");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                addTabHeader(tabHeader);
+                                                                setTabHeader('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faPlus}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>             
                                     }
                                 </ul>
                             </div>
