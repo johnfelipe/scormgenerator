@@ -452,14 +452,10 @@
   box-shadow: none;
 }
 
-.feature-preview-container {
+.course-layout-fixed {
   width: 1192px;
   height: 627px;
   margin: auto;
-}
-
-.sg-column-fixed {
-  width: 1192px;
 }
 
 html body #root .App .App-header p {
