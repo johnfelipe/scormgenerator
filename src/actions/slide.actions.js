@@ -88,6 +88,9 @@ function createSlide(data, lessonIndex, columnArray, slideIndex, uid, cid) {
                 }
 
                 history.push("/course/" + cid);
+                // history.push({
+                //     hash: "#/course/" + cid
+                // });
                 window.location.reload();
             },
             error => {
@@ -182,6 +185,9 @@ function updateSlide(data, id, cid, action) {
 
                 if (action === "edit") {
                     history.push("/course/" + cid);
+                    // history.push({
+                    //     hash: "#/course/" + cid
+                    // });
                     window.location.reload();
                 }
             },
