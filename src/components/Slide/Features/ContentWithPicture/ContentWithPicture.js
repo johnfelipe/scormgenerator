@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
@@ -51,10 +51,10 @@ function ContentWithPicture(props) {
     }
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
-        if (modalShow ) { 
+        if (modalShow) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
@@ -234,7 +234,16 @@ function ContentWithPicture(props) {
                                         <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name} readOnly/>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name
+                                    }
+                                    readOnly
+                                />
                             </div>
                         </li>
                     </ul>
@@ -313,7 +322,7 @@ function ContentWithPicture(props) {
                         <li className="sg-control-input-list-item sg-control-input-list-item-modal">
                             <div className="sg-control-input-list-label content-picture-background-color-label">
                                 <span>Background Color</span>
-                            </div>{console.log('currentModalBtnColor: ' + currentModalBtnColor)}
+                            </div>
                             <div className="sg-control-input-list-input content-picture-background-color-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
                                     {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
@@ -373,7 +382,7 @@ function ContentWithPicture(props) {
                                                             }
                                                         }}
                                                     >
-                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                        <FontAwesomeIcon icon={faPlus}/>
                                                     </button>
                                                 </div>
                                             </div>
@@ -422,7 +431,7 @@ function ContentWithPicture(props) {
                                                         }
                                                     }}
                                                 >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    <FontAwesomeIcon icon={faPlus}/>
                                                 </button>
                                             </div>
                                         </div>
@@ -458,7 +467,7 @@ function ContentWithPicture(props) {
                                                 }
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                            <FontAwesomeIcon icon={faPlus}/>
                                         </button>
                                     </div>
                                 </div>

@@ -34,7 +34,7 @@ function Audio(props) {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
