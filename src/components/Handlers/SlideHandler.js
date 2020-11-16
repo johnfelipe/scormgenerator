@@ -4804,12 +4804,12 @@ class SlideHandler extends Component {
                                                         <Droppable key={index} droppableId={item.id}>
                                                             {/* First Size */}
                                                             {(provided) => (
-                                                                <div ref={provided.innerRef} className="feature-preview-container p-0 pb-3">
+                                                                <div ref={provided.innerRef} className={this.props.slideHandlerProps.courseLayout === "fixed" ? "feature-preview-container course-layout-fixed p-0 pb-3" : "feature-preview-container p-0 pb-3"}>
                                                                     {typeof item.content['subColumnOne'] != "undefined" ? 
                                                                         item.content['subColumnOne'].length > 0 ?
                                                                             <div
                                                                                 id={item.id}
-                                                                                className={this.props.slideHandlerProps.courseLayout === 'fixed-layout' ? "p-3 text-center sg-column mt-2 sg-column-fixed" : "p-3 text-center sg-column mt-2 w-100"}
+                                                                                className="p-3 text-center sg-column mt-2 w-100"
                                                                                 tabIndex="0"
                                                                             >
                                                                                 {
@@ -4828,7 +4828,7 @@ class SlideHandler extends Component {
                                                                                                             {...provided.dragHandleProps}
 
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                            className="content-output"
+                                                                                                            className="content-output border border-light"
                                                                                                             id={item.id + '-content-output-' + contentFirstIndex}
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(

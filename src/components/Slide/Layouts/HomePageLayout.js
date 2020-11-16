@@ -15,7 +15,7 @@ function HomePageLayout(props) {
 
     return (
         <div className="home-page-layout">
-            <div className="home-page-container h-100 w-100 border border-light" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
+            <div className="home-page-container h-100 w-100" style={{ backgroundImage: 'url("' + backgroundImg + '")', backgroundSize: 'cover' }}>
                 <div className="slide">
                     <div id="course-name" className={homePageClass} style={{ background: styles.titleBoxColor}}>
                         <h2
