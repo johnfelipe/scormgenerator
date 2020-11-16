@@ -4901,9 +4901,9 @@ class SlideHandler extends Component {
                                                                                                             } 
                                                                                                             className={
                                                                                                                 contentFirst.class ? 
-                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                    contentFirst.class + " content-output border border-light"
                                                                                                                 : 
-                                                                                                                    "content-output"
+                                                                                                                    "content-output border border-light"
                                                                                                             } 
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(
@@ -4923,6 +4923,8 @@ class SlideHandler extends Component {
                                                                                                                 introVideo={contentFirst.introVideo}
                                                                                                                 css={contentFirst.css}
                                                                                                                 cssApplier={this.cssApplier}
+                                                                                                                slideName={values.slideName}
+                                                                                                                slideSubtitle={values.slideSubtitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }
