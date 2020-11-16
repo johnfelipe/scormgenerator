@@ -475,4 +475,15 @@
         outline: none;
         box-shadow: none;
     }
+
+    // default css for fixed layout
+    .feature-preview-container {
+        width: 1192px;
+        height: 627px;
+        margin: auto;
+    }
+
+    .sg-column-fixed {
+        width: 1192px;
+    }
 }
