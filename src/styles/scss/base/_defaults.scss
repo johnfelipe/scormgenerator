@@ -471,9 +471,8 @@
         color:#FF8400 !important;
     }
 
-    .btn:focus {
-        outline: none;
-        box-shadow: none;
+    *,*:focus,*:hover{
+        outline:none;
     }
 
     // default css for fixed layout
@@ -481,5 +480,30 @@
         width: 1192px;
         height: 627px;
         margin: auto;
+    }
+
+    .slide-header {
+        border-color: #de6d00;
+        border-left: 3px solid;
+        padding: 0 0 0 10px;
+        margin: 5px 0 35px 0;
+    }
+
+    .slide-subtitle {
+        margin: 0;
+        font-size: 20px;
+        padding: 5px 0;
+    }
+
+    .slide-title {
+        font-size: 34px!important;
+        margin: 0;
+        padding: 0 0 5px 0;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .pad-30 {
+        padding: 30px;
     }
 }
