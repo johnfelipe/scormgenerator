@@ -100,6 +100,14 @@ function CourseObj(props) {
         );
     }
 
+    const setTitleBorder = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
     const setIntroVideoPosition = (value) => {
         const currentColumnObj = currentColumn;
         
@@ -389,20 +397,35 @@ function CourseObj(props) {
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
-                                <div className="sg-control-input-list-label">
-                                    <span>Video Position</span>
-                                </div>
-                                <div className="sg-control-input-list-input">
-                                    <select
-                                        value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.position}
-                                        onChange={(event) => setIntroVideoPosition(event.target.value)}
-                                        className="form-control-plaintext border border-secondary rounded"
-                                    >
-                                        <option value="course-objectives-video-left">&nbsp;Left</option>
-                                        <option value="course-objectives-video-right">&nbsp;Right</option>
-                                    </select>
-                                </div>
-                            </li>
+                            <div className="sg-control-input-list-label">
+                                <span>Title Border Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder}
+                                    onChange={(event) => setTitleBorder(event, contentIndex)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="border-left">Border-left</option>
+                                    <option value="border-top">Border-bottom</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Video Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].introVideo.position}
+                                    onChange={(event) => setIntroVideoPosition(event.target.value)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="course-objectives-video-left">&nbsp;Left</option>
+                                    <option value="course-objectives-video-right">&nbsp;Right</option>
+                                </select>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
                                 <span>ID</span>
