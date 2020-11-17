@@ -92,12 +92,19 @@ function CourseObjLayout(props) {
         if (courseObjectiveClass === 'course-objectives-video-left') {
             return (
                 <>
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            <div class="slide-header text-left">
-                                <h3 class="slide-subtitle">{slideName}</h3>
-                                <h2 class="slide-title">{slideSubtitle}</h2>
-                            </div>
+                    <div className="row">
+                        <div className="col-12">
+                            {styles.titleBoxBorder === 'border-left' ?
+                                <div className={"slide-header text-left " + styles.titleBoxBorder}>
+                                    <h3 className="slide-subtitle">{slideName}</h3>
+                                    <h2 class="slide-title">{slideSubtitle}</h2>
+                                </div>
+                            :
+                                <div className="slide-header text-left">
+                                    <h3 className="slide-subtitle">{slideName}</h3>
+                                    <h2 className="slide-title"><span className={styles.titleBoxBorder}>{slideSubtitle}</span></h2>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="row">
