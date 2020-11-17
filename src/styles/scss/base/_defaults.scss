@@ -475,7 +475,69 @@
         outline:none;
     }
 
-    // default css for fixed layout
+    // custom input
+    .webupps-custom-disabled-textarea {
+        text-rendering: auto;
+        color: -internal-light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: textarea;
+        background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+        -webkit-rtl-ordering: logical;
+        flex-direction: column;
+        resize: auto;
+        cursor: text;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        margin: 0em;
+        font: 400 13.3333px Arial;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(118, 118, 118, 0.3);
+        border-image: initial;
+        padding: 2px;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+        cursor: default;
+    }
+
+    .webupps-custom-textarea {
+        text-rendering: auto;
+        color: -internal-light-dark(black, white);
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: textarea;
+        background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+        -webkit-rtl-ordering: logical;
+        flex-direction: column;
+        resize: auto;
+        cursor: text;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        margin: 0em;
+        font: 400 13.3333px Arial;
+        border-width: 1px;
+        border-style: solid;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-image: initial;
+        padding: 2px;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+    }
+
+    // default css for fixed layout headers
     .course-layout-fixed {
         width: 1192px;
         height: 627px;
