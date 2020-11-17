@@ -260,7 +260,7 @@ function ContentWithPicture(props) {
                     <div className="sg-expandable-rich-text">
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                <textarea
+                                {/* <textarea
                                     className="webupps-resize-none"
                                     disabled 
                                     value={ 
@@ -278,7 +278,13 @@ function ContentWithPicture(props) {
                                         :
                                             'No information provided yet.'
                                     }
-                                />
+                                /> */}
+                                <div className="webupps-custom-disabled-textarea webupps-resize-none">
+                                    {currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    currentColumnContentIndex in currentColumn.content &&
+                                    currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.content)}
+                                </div>
                             </div>
                         </div>
                     </div>
