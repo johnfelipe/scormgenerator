@@ -484,23 +484,30 @@
 
     .slide-header {
         border-color: #de6d00;
-        border-left: 3px solid;
+        // border-left: 3px solid;
+        border-left-width: 3px !important;
         padding: 0 0 0 10px;
-        margin: 5px 0 35px 0;
+        // margin: 5px 0 35px 0;
+        margin: 5px 0 25px 0;
     }
 
     .slide-subtitle {
         margin: 0;
         font-size: 20px;
         padding: 5px 0;
+        border-bottom-width: 3px !important;
     }
 
     .slide-title {
         font-size: 34px!important;
-        margin: 0;
-        padding: 0 0 5px 0;
+        margin-top: 5px;
+        // padding: 0 0 5px 0;
         text-transform: uppercase;
         font-weight: bold;
+
+        span {
+            border-top-width: 3px !important;
+        }
     }
 
     .pad-30 {
