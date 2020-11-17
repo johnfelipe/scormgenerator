@@ -1837,18 +1837,35 @@ html body {
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
   z-index: 5000;
   margin: 0 40px;
-  top: 180px;
+  top: 270px;
 }
 @media only screen and (min-width: 1920px) {
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 110px;
-    top: 180px;
+    top: 270px;
   }
 }
 @media only screen and (max-width: 1366px) {
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 40px;
-    top: 180px;
+    top: 270px;
+  }
+}
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-border-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 105px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-border-color-picker {
+    margin: 0 110px;
+    top: 105px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-border-color-picker {
+    margin: 0 40px;
+    top: 105px;
   }
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
