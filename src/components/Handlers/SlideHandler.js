@@ -4929,6 +4929,7 @@ class SlideHandler extends Component {
                                                                                                                 cssApplier={this.cssApplier}
                                                                                                                 slideName={values.slideName}
                                                                                                                 slideSubtitle={values.slideSubtitle}
+                                                                                                                showTitle={values.showTitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }

@@ -21,6 +21,7 @@ function CourseObjLayout(props) {
     const courseReqContent = props.output.courseReq.content;
     const slideName = props.slideName;
     const slideSubtitle = props.slideSubtitle;
+    const showTitle = props.showTitle;
 
     const courseNavModal = (
         <Modal
@@ -92,7 +93,7 @@ function CourseObjLayout(props) {
         if (courseObjectiveClass === 'course-objectives-video-left') {
             return (
                 <>
-                    <div className="row">
+                    <div className={showTitle ? "row" : "row d-none"}>
                         <div className="col-12">
                             {styles.titleBoxBorder === 'border-left' ?
                                 <div
