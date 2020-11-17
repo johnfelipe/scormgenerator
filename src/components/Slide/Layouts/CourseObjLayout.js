@@ -95,14 +95,32 @@ function CourseObjLayout(props) {
                     <div className="row">
                         <div className="col-12">
                             {styles.titleBoxBorder === 'border-left' ?
-                                <div className={"slide-header text-left " + styles.titleBoxBorder}>
+                                <div
+                                    className={"slide-header text-left " + styles.titleBoxBorder}
+                                    ref={(el) => {
+                                        if (el) {
+                                            el.style.setProperty('border-left-color', styles.titleBoxColor, 'important');
+                                        }
+                                    }}
+                                >
                                     <h3 className="slide-subtitle">{slideName}</h3>
                                     <h2 class="slide-title">{slideSubtitle}</h2>
                                 </div>
                             :
                                 <div className="slide-header text-left">
                                     <h3 className="slide-subtitle">{slideName}</h3>
-                                    <h2 className="slide-title"><span className={styles.titleBoxBorder}>{slideSubtitle}</span></h2>
+                                    <h2 className="slide-title">
+                                        <span
+                                            className={styles.titleBoxBorder}
+                                            ref={(el) => {
+                                                if (el) {
+                                                    el.style.setProperty('border-top-color', styles.titleBoxColor, 'important');
+                                                }
+                                            }}
+                                        >
+                                            {slideSubtitle}
+                                        </span>
+                                    </h2>
                                 </div>
                             }
                         </div>
