@@ -564,6 +564,7 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 styles: {
+                    titleTextColor: '#3D4652',
                     titleBoxColor: '#0069d9',
                     titleBoxBorder: 'border-left',
                     courseIntroColor: '#0069d9',
@@ -1056,6 +1057,7 @@ class SlideHandler extends Component {
                                 class: '',
                                 id: '',
                                 styles: {
+                                    titleTextColor: '#3D4652',
                                     titleBoxColor: '#0069d9',
                                     titleBoxBorder: 'border-left',
                                     courseIntroColor: '#0069d9',
