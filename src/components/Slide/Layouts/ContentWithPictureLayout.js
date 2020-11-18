@@ -6,7 +6,7 @@ import ContentPictureModal from '../Features/ContentWithPicture/ContentWithPictu
 
 function ContentWithPictureLayout(props) {
 
-    const { output, style, css } = props;
+    const { output, style, css, slideName, slideSubtitle, showTitle } = props;
 
     const content = () => {
         if (style.imgPosition === 'left') {
@@ -79,7 +79,41 @@ function ContentWithPictureLayout(props) {
     return (
         <>
             <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
-                <div className="content-area-container h-100 w-100 border border-light p-3 ">
+                <div className="content-area-container h-100 w-100 p-3 ">
+                    <div className={showTitle ? "row" : "row d-none"}>
+                        <div className="col-12">
+                            {style.titleBoxBorder === 'border-left' ?
+                                <div
+                                    className={"slide-header text-left " + style.titleBoxBorder}
+                                    ref={(el) => {
+                                        if (el) {
+                                            el.style.setProperty('border-left-color', style.titleBoxColor, 'important');
+                                            el.style.setProperty('color', style.titleTextColor, 'important');
+                                        }
+                                    }}
+                                >
+                                    <h3 className="slide-subtitle">{slideName}</h3>
+                                    <h2 class="slide-title">{slideSubtitle}</h2>
+                                </div>
+                            :
+                                <div className="slide-header text-left">
+                                    <h3 className="slide-subtitle">{slideName}</h3>
+                                    <h2 className="slide-title">
+                                        <span
+                                            className={style.titleBoxBorder}
+                                            ref={(el) => {
+                                                if (el) {
+                                                    el.style.setProperty('border-top-color', style.titleBoxColor, 'important');
+                                                }
+                                            }}
+                                        >
+                                            {slideSubtitle}
+                                        </span>
+                                    </h2>
+                                </div>
+                            }
+                        </div>
+                    </div>
                     <div className="row m-0">
                         {style.modalPosition === 'top-right' &&
                             <div className="col-md-12 p-0 text-right">

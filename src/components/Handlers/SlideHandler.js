@@ -564,6 +564,9 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 styles: {
+                    titleTextColor: '#3D4652',
+                    titleBoxColor: '#0069d9',
+                    titleBoxBorder: 'border-left',
                     courseIntroColor: '#0069d9',
                     height: 655,
                 },
@@ -771,6 +774,9 @@ class SlideHandler extends Component {
                     modal: [],
                 },
                 style: {
+                    titleTextColor: '#3D4652',
+                    titleBoxColor: '#0069d9',
+                    titleBoxBorder: 'border-left',
                     backgroundImg: {
                         name: '',
                         url: '',
@@ -1054,6 +1060,9 @@ class SlideHandler extends Component {
                                 class: '',
                                 id: '',
                                 styles: {
+                                    titleTextColor: '#3D4652',
+                                    titleBoxColor: '#0069d9',
+                                    titleBoxBorder: 'border-left',
                                     courseIntroColor: '#0069d9',
                                     height: 655
                                 },
@@ -1087,6 +1096,9 @@ class SlideHandler extends Component {
                                     modal: [],
                                 },
                                 style: {
+                                    titleTextColor: '#3D4652',
+                                    titleBoxColor: '#0069d9',
+                                    titleBoxBorder: 'border-left',
                                     backgroundImg: {
                                         name: '',
                                         url: '',
@@ -4791,6 +4803,7 @@ class SlideHandler extends Component {
                                                     setMediaFilesObject={this.props.setMediaFilesObject}
                                                     setActiveOutputIndex={this.setActiveOutputIndex}
                                                     uid={this.props.slideHandlerProps.uid}
+                                                    courseLayout={this.props.slideHandlerProps.courseLayout}
                                                 />
                                             </Tab>
                                         </Tabs>
@@ -4803,12 +4816,13 @@ class SlideHandler extends Component {
                                                         <Droppable key={index} droppableId={item.id}>
                                                             {/* First Size */}
                                                             {(provided) => (
-                                                                <div ref={provided.innerRef} className="feature-preview-container p-0 pb-3">
+                                                                <div ref={provided.innerRef} className={this.props.slideHandlerProps.courseLayout === "fixed" ? "feature-preview-container course-layout-fixed p-0 pb-3" : "feature-preview-container p-0 pb-3"}>
                                                                     {typeof item.content['subColumnOne'] != "undefined" ? 
                                                                         item.content['subColumnOne'].length > 0 ?
                                                                             <div
                                                                                 id={item.id}
-                                                                                className="p-3 text-center sg-column mt-2 w-100" tabIndex="0"
+                                                                                className="p-3 text-center sg-column mt-2 w-100"
+                                                                                tabIndex="0"
                                                                             >
                                                                                 {
                                                                                     item.content['subColumnOne'].map((contentFirst, contentFirstIndex) => (
@@ -4826,7 +4840,7 @@ class SlideHandler extends Component {
                                                                                                             {...provided.dragHandleProps}
 
                                                                                                             key={item.id + '-content-output-' + contentFirstIndex}
-                                                                                                            className="content-output"
+                                                                                                            className="content-output border border-light"
                                                                                                             id={item.id + '-content-output-' + contentFirstIndex}
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(
@@ -4899,9 +4913,9 @@ class SlideHandler extends Component {
                                                                                                             } 
                                                                                                             className={
                                                                                                                 contentFirst.class ? 
-                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                    contentFirst.class + " content-output border border-light"
                                                                                                                 : 
-                                                                                                                    "content-output"
+                                                                                                                    "content-output border border-light"
                                                                                                             } 
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(
@@ -4921,6 +4935,9 @@ class SlideHandler extends Component {
                                                                                                                 introVideo={contentFirst.introVideo}
                                                                                                                 css={contentFirst.css}
                                                                                                                 cssApplier={this.cssApplier}
+                                                                                                                slideName={values.slideName}
+                                                                                                                slideSubtitle={values.slideSubtitle}
+                                                                                                                showTitle={values.showTitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }
@@ -5356,9 +5373,9 @@ class SlideHandler extends Component {
                                                                                                             } 
                                                                                                             className={
                                                                                                                 contentFirst.class ? 
-                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                    contentFirst.class + " content-output border border-light"
                                                                                                                 : 
-                                                                                                                    "content-output"
+                                                                                                                    "content-output border border-light"
                                                                                                             } 
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(
@@ -5377,6 +5394,9 @@ class SlideHandler extends Component {
                                                                                                                 style={contentFirst.style}
                                                                                                                 css={contentFirst.css}
                                                                                                                 cssApplier={this.cssApplier}
+                                                                                                                slideName={values.slideName}
+                                                                                                                slideSubtitle={values.slideSubtitle}
+                                                                                                                showTitle={values.showTitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }

@@ -471,8 +471,108 @@
         color:#FF8400 !important;
     }
 
-    .btn:focus {
-        outline: none;
-        box-shadow: none;
+    *,*:focus,*:hover{
+        outline:none;
+    }
+
+    // custom input
+    .webupps-custom-disabled-textarea {
+        text-rendering: auto;
+        color: -internal-light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: textarea;
+        background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+        -webkit-rtl-ordering: logical;
+        flex-direction: column;
+        resize: auto;
+        cursor: text;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        margin: 0em;
+        font: 400 13.3333px Arial;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(118, 118, 118, 0.3);
+        border-image: initial;
+        padding: 2px;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+        cursor: default;
+    }
+
+    .webupps-custom-textarea {
+        text-rendering: auto;
+        color: -internal-light-dark(black, white);
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        appearance: textarea;
+        background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+        -webkit-rtl-ordering: logical;
+        flex-direction: column;
+        resize: auto;
+        cursor: text;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        margin: 0em;
+        font: 400 13.3333px Arial;
+        border-width: 1px;
+        border-style: solid;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-image: initial;
+        padding: 2px;
+        overflow: auto;
+        height: 100%;
+        width: 100%;
+    }
+
+    // default css for fixed layout headers
+    .course-layout-fixed {
+        width: 1192px;
+        height: 627px;
+        margin: auto;
+    }
+
+    .slide-header {
+        border-color: #de6d00;
+        // border-left: 3px solid;
+        border-left-width: 3px !important;
+        padding: 0 0 0 10px;
+        // margin: 5px 0 35px 0;
+        margin: 5px 0 25px 0;
+    }
+
+    .slide-subtitle {
+        margin: 0;
+        font-size: 20px;
+        padding: 5px 0;
+        border-bottom-width: 3px !important;
+    }
+
+    .slide-title {
+        font-size: 34px!important;
+        margin-top: 5px;
+        // padding: 0 0 5px 0;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        span {
+            border-top-width: 3px !important;
+        }
+    }
+
+    .pad-30 {
+        padding: 30px;
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import DragDropAccordion from './DragDropAccordion';
@@ -21,6 +21,7 @@ function DragDrop(props) {
     const currentColumn = props.currentColumn;
     const contentIndex = props.contentIndex;
     const currentColumnContentIndex = props.currentColumnContentIndex;
+    const courseLayout = props.courseLayout;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.dragDropBackgroundColor;
     const currentThemeColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.themeColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.themeColor;
 
@@ -187,7 +188,7 @@ function DragDrop(props) {
                 <div className="sg-control-header">
                     <label>Content Setup</label>
                 </div>
-                <div className="sg-control-content">
+                <div className={courseLayout !== "fixed" ? "sg-control-content" : "sg-control-content-override"}>
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
@@ -195,74 +196,14 @@ function DragDrop(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group drag-drop-question-list">
-                                    {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
-                                                <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="drag-drop-question-list-item mb-2">
-                                                            {
-                                                                isEditInstruction && updateInstructionCompareIndex === index ?
-                                                                    <div className="drag-drop-control-input-wrapper">
-                                                                        <div className="drag-drop-control-input-label">
-                                                                            <span>{index+1}.</span>
-                                                                        </div>
-                                                                        <div className="drag-drop-control-input">
-                                                                            <input
-                                                                                id="instruction"
-                                                                                name="instruction"
-                                                                                type="text"
-                                                                                placeholder="Type instruction here. . ."
-                                                                                onChange={(event) => setUpdateInstruction(event.target.value)}
-                                                                                value={updateInstruction}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="drag-drop-control-button">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-success btn-sm"
-                                                                                onClick={() => {
-                                                                                    const isEmpty = document.getElementById("instruction");
-                                                                                    
-                                                                                    if (isEmpty.value !== "") {
-                                                                                        editInstruction(updateInstruction, index);
-                                                                                        setUpdateInstruction('');
-                                                                                        setIsEditInstruction(false);
-                                                                                        setUpdateInstructionCompareIndex('');
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                :
-                                                                    <DragDropAccordion
-                                                                        index={index}
-                                                                        item={item}
-                                                                        deleteInstruction={deleteInstruction}
-                                                                        setIsEditInstruction={setIsEditInstruction}
-                                                                        setUpdateInstruction={setUpdateInstruction}
-                                                                        setQuestion={setQuestion}
-                                                                        editQuestion={editQuestion}
-                                                                        deleteQuestion={deleteQuestion}
-                                                                        addQuestion={addQuestion}
-                                                                        setIsAddQuestion={setIsAddQuestion}
-                                                                        isAddQuestion={isAddQuestion}
-                                                                        question={question}
-                                                                        setShowTextEditor={props.setShowTextEditor}
-                                                                        setMChoiceIndex={props.setMChoiceIndex}
-                                                                        setUpdateInstructionCompareIndex={setUpdateInstructionCompareIndex}
-                                                                        setQuestionAnswers={setQuestionAnswers}
-                                                                        addAnswer={addAnswer}
-                                                                        editAnswer={editAnswer}
-                                                                    />
-                                                            }
-                                                        </li>
-                                                    ))}
-                                                    <li className="drag-drop-question-list-item mb-2">
+                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                        <>
+                                            {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                <li key={'number-' + index} className="drag-drop-question-list-item mb-2">
+                                                    {isEditInstruction && updateInstructionCompareIndex === index ?
                                                         <div className="drag-drop-control-input-wrapper">
                                                             <div className="drag-drop-control-input-label">
-                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                                <span>{index+1}.</span>
                                                             </div>
                                                             <div className="drag-drop-control-input">
                                                                 <input
@@ -270,63 +211,123 @@ function DragDrop(props) {
                                                                     name="instruction"
                                                                     type="text"
                                                                     placeholder="Type instruction here. . ."
-                                                                    onChange={(event) => setInstruction(event.target.value)}
-                                                                    value={instruction}
+                                                                    onChange={(event) => setUpdateInstruction(event.target.value)}
+                                                                    value={updateInstruction}
                                                                 />
                                                             </div>
                                                             <div className="drag-drop-control-button">
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-success btn-sm"
+                                                                    className="btn btn-primary btn-sm"
                                                                     onClick={() => {
                                                                         const isEmpty = document.getElementById("instruction");
                                                                         
                                                                         if (isEmpty.value !== "") {
-                                                                            addInstruction(instruction);
-                                                                            setInstruction('');
+                                                                            editInstruction(updateInstruction, index);
+                                                                            setUpdateInstruction('');
+                                                                            setIsEditInstruction(false);
+                                                                            setUpdateInstructionCompareIndex('');
                                                                         }
                                                                     }}
                                                                 >
-                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                    <FontAwesomeIcon icon={faPlus}/>
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </>
-                                        :
-                                            <li className="drag-drop-question-list-item mb-2">
-                                                <div className="drag-drop-control-input-wrapper">
-                                                    <div className="drag-drop-control-input-label">
-                                                        <span>1.</span>
-                                                    </div>
-                                                    <div className="drag-drop-control-input">
-                                                        <input
-                                                            id="instruction"
-                                                            name="instruction"
-                                                            type="text"
-                                                            placeholder="Type instruction here. . ."
-                                                            onChange={(event) => setInstruction(event.target.value)}
-                                                            value={instruction}
+                                                    :
+                                                        <DragDropAccordion
+                                                            index={index}
+                                                            item={item}
+                                                            deleteInstruction={deleteInstruction}
+                                                            setIsEditInstruction={setIsEditInstruction}
+                                                            setUpdateInstruction={setUpdateInstruction}
+                                                            setQuestion={setQuestion}
+                                                            editQuestion={editQuestion}
+                                                            deleteQuestion={deleteQuestion}
+                                                            addQuestion={addQuestion}
+                                                            setIsAddQuestion={setIsAddQuestion}
+                                                            isAddQuestion={isAddQuestion}
+                                                            question={question}
+                                                            setShowTextEditor={props.setShowTextEditor}
+                                                            setMChoiceIndex={props.setMChoiceIndex}
+                                                            setUpdateInstructionCompareIndex={setUpdateInstructionCompareIndex}
+                                                            setQuestionAnswers={setQuestionAnswers}
+                                                            addAnswer={addAnswer}
+                                                            editAnswer={editAnswer}
                                                         />
+                                                    }
+                                                </li>
+                                            ))}
+                                            {courseLayout !== "fixed" &&
+                                                <li className="drag-drop-question-list-item mb-2">
+                                                    <div className="drag-drop-control-input-wrapper">
+                                                        <div className="drag-drop-control-input-label">
+                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                        </div>
+                                                        <div className="drag-drop-control-input">
+                                                            <input
+                                                                id="instruction"
+                                                                name="instruction"
+                                                                type="text"
+                                                                placeholder="Type instruction here. . ."
+                                                                onChange={(event) => setInstruction(event.target.value)}
+                                                                value={instruction}
+                                                            />
+                                                        </div>
+                                                        <div className="drag-drop-control-button">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-primary btn-sm"
+                                                                onClick={() => {
+                                                                    const isEmpty = document.getElementById("instruction");
+                                                                    
+                                                                    if (isEmpty.value !== "") {
+                                                                        addInstruction(instruction);
+                                                                        setInstruction('');
+                                                                    }
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon icon={faPlus}/>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className="drag-drop-control-button">
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-success btn-sm"
-                                                            onClick={() => {
-                                                                const isEmpty = document.getElementById("instruction");
-                                                                
-                                                                if (isEmpty.value !== "") {
-                                                                    addInstruction(instruction);
-                                                                    setInstruction('');
-                                                                }
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                        </button>
-                                                    </div>
+                                                </li>
+                                            }
+                                        </>
+                                    :
+                                        <li className="drag-drop-question-list-item mb-2">
+                                            <div className="drag-drop-control-input-wrapper">
+                                                <div className="drag-drop-control-input-label">
+                                                    <span>1.</span>
                                                 </div>
-                                            </li>             
+                                                <div className="drag-drop-control-input">
+                                                    <input
+                                                        id="instruction"
+                                                        name="instruction"
+                                                        type="text"
+                                                        placeholder="Type instruction here. . ."
+                                                        onChange={(event) => setInstruction(event.target.value)}
+                                                        value={instruction}
+                                                    />
+                                                </div>
+                                                <div className="drag-drop-control-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("instruction");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                addInstruction(instruction);
+                                                                setInstruction('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faPlus}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>             
                                     }
                                 </ul>
                             </div>

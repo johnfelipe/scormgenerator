@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Routes from "./Routes";
+// import { BrowserRouter as Router } from 'react-router-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Navigation/NavigationHeader';

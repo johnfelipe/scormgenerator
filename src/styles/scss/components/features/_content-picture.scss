@@ -14,16 +14,16 @@
                                             .content-picture-color-picker-bg {
                                                 z-index: 5000;
                                                 margin: 0 40px;
-                                                top: 460px;
+                                                top: 595px;
 
                                                 @media only screen and (min-width: 1920px) {
                                                     margin: 0 110px;
-                                                    top: 460px;
+                                                    top: 595px;
                                                 }
 
                                                 @media only screen and (max-width: 1366px) {
                                                     margin: 0 40px;
-                                                    top: 460px;
+                                                    top: 595px;
                                                 }
                                             }
 
@@ -40,6 +40,38 @@
                                                 @media only screen and (max-width: 1366px) {
                                                     margin: 0 40px;
                                                     top: 155px;
+                                                }
+                                            }
+
+                                            .content-picture-border-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                top: 505px;
+
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    top: 505px;
+                                                }
+
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    top: 505px;
+                                                }
+                                            }
+
+                                            .content-picture-text-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                top: 550px;
+
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    top: 550px;
+                                                }
+
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    top: 550px;
                                                 }
                                             }
 

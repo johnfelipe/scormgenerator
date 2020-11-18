@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight, faEdit, faTrash, faCaretUp, faCaretDown, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faCaretUp, faCaretDown, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function DragDropAccordion(props) {
@@ -129,7 +129,7 @@ function DragDropAccordion(props) {
                                     <div className="drag-drop-control-button">
                                         <button
                                             type="button"
-                                            className="btn btn-success btn-sm mr-1"
+                                            className="btn btn-primary btn-sm mr-1"
                                             onClick={() => {
                                                 const isEmpty = document.getElementById("question");
                                                 
@@ -140,7 +140,7 @@ function DragDropAccordion(props) {
                                                 }
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                            <FontAwesomeIcon icon={faPlus}/>
                                         </button>
                                         <button
                                             type="button"
@@ -158,7 +158,7 @@ function DragDropAccordion(props) {
                                 <div className="drag-drop-question-action-button m-0 mt-2 mb-2">
                                     <button
                                         type="button"
-                                        className="btn btn-success btn-sm"
+                                        className="btn btn-primary btn-sm"
                                         onClick={() => {
                                             props.setIsAddQuestion(true);
                                         }}
@@ -209,7 +209,7 @@ function DragDropAccordion(props) {
                                                                                 <div className="drag-drop-control-button">
                                                                                     <button
                                                                                         type="button"
-                                                                                        className="btn btn-success btn-sm mr-1"
+                                                                                        className="btn btn-primary btn-sm mr-1"
                                                                                         onClick={() => {
                                                                                             const isEmpty = document.getElementById("question");
                                                                                             
@@ -221,7 +221,7 @@ function DragDropAccordion(props) {
                                                                                             }
                                                                                         }}
                                                                                     >
-                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                        <FontAwesomeIcon icon={faPlus}/>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -295,7 +295,7 @@ function DragDropAccordion(props) {
                                                                                                 <div className="drag-drop-control-button">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm mr-1"
+                                                                                                        className="btn btn-primary btn-sm mr-1"
                                                                                                         onClick={() => {
                                                                                                             const isEmpty = document.getElementById("answer");
                                                                                                             
@@ -306,7 +306,7 @@ function DragDropAccordion(props) {
                                                                                                             }
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                                        <FontAwesomeIcon icon={faPlus}/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
@@ -367,7 +367,7 @@ function DragDropAccordion(props) {
                                                                                                 <div className="drag-drop-control-button">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm mr-1"
+                                                                                                        className="btn btn-primary btn-sm mr-1"
                                                                                                         onClick={() => {
                                                                                                             const isEmpty = document.getElementById("answer");
                                                                                                             
@@ -378,7 +378,7 @@ function DragDropAccordion(props) {
                                                                                                             }
                                                                                                         }}
                                                                                                     >
-                                                                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                                                                        <FontAwesomeIcon icon={faPlus}/>
                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="button"
@@ -396,7 +396,7 @@ function DragDropAccordion(props) {
                                                                                             <div className="drag-drop-answer-add-button mt-2 mb-2">
                                                                                                 <button
                                                                                                     type="button"
-                                                                                                    className="btn btn-success btn-sm"
+                                                                                                    className="btn btn-primary btn-sm"
                                                                                                     onClick={() => {
                                                                                                         setAddAnswer(true);
                                                                                                     }}

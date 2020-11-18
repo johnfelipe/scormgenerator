@@ -156,7 +156,7 @@ function HtmlEditor(props) {
                     >
                         <button
                             type="button"
-                            className={editorOnly === "false" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={editorOnly === "false" ? 'btn btn-primary' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
                                 if (editorOnly !== "false") {
                                     setEditorOnly("false");
@@ -177,7 +177,7 @@ function HtmlEditor(props) {
                     >
                         <button
                             type="button"
-                            className={editorOnly === "true" ? 'btn btn-success' : 'sg-close sg-workspace-expander-head-button'}
+                            className={editorOnly === "true" ? 'btn btn-primary' : 'sg-close sg-workspace-expander-head-button'}
                             onClick={() => {
                                 if (editorOnly !== "true") {
                                     setEditorOnly("true");

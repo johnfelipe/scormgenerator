@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+#electron-sg-app
+/dist
+/private
+/public/embedded
+dev-app-update.yml
+
 # production
 /build
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faUndo, faUpload, faPause, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { galleryService } from '../../../../services';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
+import ColorPicker from '../../../Common/ColorPicker';
 import ColorPickerBg from '../../../Common/ColorPicker';
 import ColorPickerModalBtn from '../../../Common/ColorPicker';
 import AltTagForm from '../../../AlertModal/AltTagForm';
@@ -25,6 +26,10 @@ function ContentWithPicture(props) {
     const [updateTitle, setUpdateTitle] = useState('');
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.backgroundColor;
     const currentModalBtnColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.modalBtnColor;
+    const titleTextColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.titleTextColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.titleTextColor;
+    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxColor;
+    const [showBorderColorPicker, setShowBorderColorPicker] = useState(false);
+    const [showTextColorPicker, setShowTextColorPicker] = useState(false);
 
     const setImage = (name, url) => {
         const currentColumnObj = currentColumn;
@@ -51,10 +56,10 @@ function ContentWithPicture(props) {
     }
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
-        if (modalShow ) { 
+        if (modalShow) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
@@ -203,6 +208,30 @@ function ContentWithPicture(props) {
 
         props.setColumn(currentColumnObj);
     }
+
+    const setTitleBorder = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleBoxColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleBoxColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
     
     return (
         <div className="sg-controls">
@@ -234,7 +263,16 @@ function ContentWithPicture(props) {
                                         <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
                                     </span>
                                 </label>
-                                <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name} readOnly/>
+                                <input
+                                    type="text"
+                                    placeholder="Choose image"
+                                    className="form-control w-50"
+                                    value={
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name &&
+                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.image.name
+                                    }
+                                    readOnly
+                                />
                             </div>
                         </li>
                     </ul>
@@ -251,7 +289,7 @@ function ContentWithPicture(props) {
                     <div className="sg-expandable-rich-text">
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                <textarea
+                                {/* <textarea
                                     className="webupps-resize-none"
                                     disabled 
                                     value={ 
@@ -269,7 +307,13 @@ function ContentWithPicture(props) {
                                         :
                                             'No information provided yet.'
                                     }
-                                />
+                                /> */}
+                                <div className="webupps-custom-disabled-textarea webupps-resize-none">
+                                    {currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    currentColumnContentIndex in currentColumn.content &&
+                                    currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.content)}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -313,7 +357,7 @@ function ContentWithPicture(props) {
                         <li className="sg-control-input-list-item sg-control-input-list-item-modal">
                             <div className="sg-control-input-list-label content-picture-background-color-label">
                                 <span>Background Color</span>
-                            </div>{console.log('currentModalBtnColor: ' + currentModalBtnColor)}
+                            </div>
                             <div className="sg-control-input-list-input content-picture-background-color-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
                                     {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
@@ -373,7 +417,7 @@ function ContentWithPicture(props) {
                                                             }
                                                         }}
                                                     >
-                                                        <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                        <FontAwesomeIcon icon={faPlus}/>
                                                     </button>
                                                 </div>
                                             </div>
@@ -394,7 +438,7 @@ function ContentWithPicture(props) {
                                     </li>
                                 ))}
                                 {currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length < 4 &&
-                                    <li className="content-picture-modal-list-item">
+                                    <li className="content-picture-modal-list-item mb-2">
                                         <div className="content-picture-modal-input-wrapper">
                                             <div className="content-picture-modal-input-label">
                                                 <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.modal.length+1}.</span>
@@ -422,7 +466,7 @@ function ContentWithPicture(props) {
                                                         }
                                                     }}
                                                 >
-                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                    <FontAwesomeIcon icon={faPlus}/>
                                                 </button>
                                             </div>
                                         </div>
@@ -430,7 +474,7 @@ function ContentWithPicture(props) {
                                 }
                             </>
                         :
-                            <li className="content-picture-modal-list-item">
+                            <li className="content-picture-modal-list-item mb-2">
                                 <div className="content-picture-modal-input-wrapper">
                                     <div className="content-picture-modal-input-label">
                                         <span>1.</span>
@@ -458,7 +502,7 @@ function ContentWithPicture(props) {
                                                 }
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                            <FontAwesomeIcon icon={faPlus}/>
                                         </button>
                                     </div>
                                 </div>
@@ -573,6 +617,49 @@ function ContentWithPicture(props) {
                 </div>
                 <div className="sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title Border Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxBorder}
+                                    onChange={(event) => setTitleBorder(event, contentIndex)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="border-left">Border-left</option>
+                                    <option value="border-top">Border-bottom</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Border Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showBorderColorPicker ? setShowBorderColorPicker(false) : setShowBorderColorPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showTextColorPicker ? setShowTextColorPicker(false) : setShowTextColorPicker(true)} style={{ background: titleTextColor, cursor: 'pointer' }}>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleTextColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label content-picture-background-color-label">
                                 <span>Background Color</span>
@@ -714,6 +801,18 @@ function ContentWithPicture(props) {
                 showPicker={showPickerModalBtn}
                 setBackgroundColor={setModalBtnColor}
                 defaultColor={currentModalBtnColor}
+            />
+            <ColorPicker
+                classNames="position-absolute content-picture-border-color-picker"
+                showPicker={showBorderColorPicker}
+                setBackgroundColor={setTitleBoxColor}
+                defaultColor={titleBoxColor}
+            />
+            <ColorPicker
+                classNames="position-absolute content-picture-text-color-picker"
+                showPicker={showTextColorPicker}
+                setBackgroundColor={setTitleTextColor}
+                defaultColor={titleTextColor}
             />
             <AltTagForm
                 imgUrlPreview={imgUrlPreview}

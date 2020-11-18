@@ -289,7 +289,7 @@ function MultipleChoiceAccordion(props) {
                                             <div className="multiple-choice-control-button">
                                                 <button
                                                     type="button"
-                                                    className="btn btn-success btn-sm mr-1"
+                                                    className="btn btn-primary btn-sm mr-1"
                                                     onClick={() => {
                                                         const isEmpty = document.getElementById("answer");
                                                         
@@ -323,7 +323,7 @@ function MultipleChoiceAccordion(props) {
                                             <div className="col-md-6 p-0">
                                                 <button
                                                     type="button"
-                                                    className="btn btn-success btn-sm"
+                                                    className="btn btn-primary btn-sm"
                                                     onClick={() => {
                                                         props.setIsAddAnswer(true);
                                                     }}
@@ -401,7 +401,7 @@ function MultipleChoiceAccordion(props) {
                                                                                     <div className="multiple-choice-control-button">
                                                                                         <button
                                                                                             type="button"
-                                                                                            className="btn btn-success btn-sm mr-1"
+                                                                                            className="btn btn-primary btn-sm mr-1"
                                                                                             onClick={() => {
                                                                                                 const isEmpty = document.getElementById("answer");
                                                                                                 
@@ -442,7 +442,7 @@ function MultipleChoiceAccordion(props) {
                                                                                             item.correct === '' ?
                                                                                                 <button
                                                                                                     title="Mark as answer"
-                                                                                                    className="btn btn-success btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
+                                                                                                    className="btn btn-primary btn-sm p-0 pl-1 pr-1 ml-2 mb-1"
                                                                                                     type="button"
                                                                                                     onClick={() => {
                                                                                                         props.setCorrectAnswer(true, index, answerIndex);
@@ -499,7 +499,7 @@ function MultipleChoiceAccordion(props) {
                                             <div id="explanation-action-buttons" className="mb-2">
                                                 <button
                                                     type="button"
-                                                    className="btn btn-success btn-sm"
+                                                    className="btn btn-primary btn-sm"
                                                     onClick={() => {
                                                         props.setShowTextEditor(true, contentIndex, 'mChoiceExplanation');
                                                         props.setMChoiceIndex(index);
@@ -538,7 +538,7 @@ function MultipleChoiceAccordion(props) {
                                         <div className="multiple-choice-explanation-action-button mt-2 mb-2">
                                             <button
                                                 type="button"
-                                                className="btn btn-success btn-sm mb-2"
+                                                className="btn btn-primary btn-sm mb-2"
                                                 onClick={() => {
                                                     props.setShowTextEditor(true, contentIndex, 'mChoiceExplanation');
                                                     props.setMChoiceIndex(index);
@@ -621,7 +621,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                 <div className="img-add-label-button d-inline ml-2">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                        className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                         onClick={() => {
                                                                                                             props.addFileLabel(imgLabel, index, fileIndex);
                                                                                                             setImgAddLabel(false);
@@ -645,7 +645,7 @@ function MultipleChoiceAccordion(props) {
                                                                                         </div>
                                                                                     :
                                                                                         file.label === "" && file.img &&<div className={imgCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1" : "d-none multiple-choice-question-action-button border py-2 px-1"}>
-                                                                                            <button type="button" className="btn btn-success btn-sm ml-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                                                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                         </div>
                                                                                     }
                                                                                     {audioAddLabel && file.audio ?
@@ -667,7 +667,7 @@ function MultipleChoiceAccordion(props) {
                                                                                             <div className="img-add-label-button d-inline ml-2">
                                                                                                 <button
                                                                                                     type="button"
-                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                    className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                     onClick={() => {
                                                                                                         props.addFileLabel(audioLabel, index, fileIndex);
                                                                                                         setAudioAddLabel(false);
@@ -691,7 +691,7 @@ function MultipleChoiceAccordion(props) {
                                                                                         </div>
                                                                                     :
                                                                                         file.label === "" && file.audio &&<div className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1" : "d-none multiple-choice-question-action-button border py-2 px-1"}>
-                                                                                            <button type="button" className="btn btn-success btn-sm ml-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                                                                                            <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                         </div>
                                                                                     }
                                                                                     {videoAddLabel && file.video ?
@@ -713,7 +713,7 @@ function MultipleChoiceAccordion(props) {
                                                                                             <div className="img-add-label-button d-inline ml-2">
                                                                                                 <button
                                                                                                     type="button"
-                                                                                                    className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                    className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                     onClick={() => {
                                                                                                         props.addFileLabel(videoLabel, index, fileIndex);
                                                                                                         setVideoAddLabel(false);
@@ -738,7 +738,7 @@ function MultipleChoiceAccordion(props) {
                                                                                     :
                                                                                         file.label === "" && file.video &&
                                                                                         <div className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1" : "d-none multiple-choice-question-action-button border py-2 px-1"}>
-                                                                                            <button type="button" className="btn btn-success btn-sm ml-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                                                                                            <button type="button" className="btn btn-primary btn-sm ml-1" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                         </div>
                                                                                     }
                                                                                 </>
@@ -764,7 +764,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                 <div className="img-add-label-button d-inline ml-2">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                        className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                         onClick={() => {
                                                                                                             props.editFileLabel(imgLabel, index, fileIndex);
                                                                                                             setImgAddLabel(false);
@@ -788,7 +788,7 @@ function MultipleChoiceAccordion(props) {
                                                                                         </div>
                                                                                     :
                                                                                         file.label === "" && file.img && 
-                                                                                        <button type="button" className="btn btn-success btn-sm ml-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
+                                                                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => setImgAddLabel(true)}>Add Label</button>
                                                                                     }
                                                                                     {audioAddLabel && file.audio ?
                                                                                         <div className={audioCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1" : "d-none multiple-choice-question-action-button border py-2 px-1"}>
@@ -809,7 +809,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                 <div className="img-add-label-button d-inline ml-2">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                        className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                         onClick={() => {
                                                                                                             props.addFileLabel(audioLabel, index, fileIndex);
                                                                                                             setAudioAddLabel(false);
@@ -833,7 +833,7 @@ function MultipleChoiceAccordion(props) {
                                                                                         </div>
                                                                                     :
                                                                                         file.label === "" && file.audio && 
-                                                                                        <button type="button" className="btn btn-success btn-sm ml-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
+                                                                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => setAudioAddLabel(true)}>Add Label</button>
                                                                                     }
                                                                                     {videoAddLabel && file.video ?
                                                                                         <div className={videoCollapse ? "sg-accordion multiple-choice-question-action-button border border-top-0 py-2 px-1" : "d-none multiple-choice-question-action-button border py-2 px-1"}>
@@ -854,7 +854,7 @@ function MultipleChoiceAccordion(props) {
                                                                                                 <div className="img-add-label-button d-inline ml-2">
                                                                                                     <button
                                                                                                         type="button"
-                                                                                                        className="btn btn-success btn-sm pl-1 pr-1"
+                                                                                                        className="btn btn-primary btn-sm pl-1 pr-1"
                                                                                                         onClick={() => {
                                                                                                             props.addFileLabel(videoLabel, index, fileIndex);
                                                                                                             setVideoAddLabel(false);
@@ -878,7 +878,7 @@ function MultipleChoiceAccordion(props) {
                                                                                         </div>
                                                                                     :
                                                                                         file.label === "" && file.video && 
-                                                                                        <button type="button" className="btn btn-success btn-sm ml-2" onClick={() => setVideoAddLabel(true)}>Add Label</button>
+                                                                                        <button type="button" className="btn btn-primary btn-sm ml-2" onClick={() => setVideoAddLabel(true)}>Add Label</button>
                                                                                     }
                                                                                 </>
                                                                             }

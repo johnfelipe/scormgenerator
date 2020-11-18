@@ -65,10 +65,11 @@ function HomePage(props) {
     }
 
     const handleImageUpload = (mediaAlt, file, fileIndex) => {
-        if (modalShow ) { 
+        if (modalShow) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            // formData.append('file', file[fileIndex], 'home-page.jpg');
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
@@ -195,7 +196,7 @@ function HomePage(props) {
                             <div className="sg-control-input-list-input input-group">
                                 <label className="input-group-btn mb-0">
                                     <span className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/*"/>
+                                        <FontAwesomeIcon icon={faUpload}/><input type="file" style={{ display: "none"}} onChange={handleImageChange} accept="image/jpg"/>
                                     </span>
                                 </label>
                                 <input type="text" placeholder="Choose image" className="form-control w-50" value={currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name && currentColumn.content[currentColumnContentIndex][contentIndex].output.backgroundImg.name} readOnly/>

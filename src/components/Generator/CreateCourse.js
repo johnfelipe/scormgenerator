@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsAlt, faArrowCircleRight, faCopy, faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faCopy, faDownload, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Formik } from "formik";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -355,7 +355,7 @@ function CreateCourse() {
                                                                                             sessionStorage.setItem('courseAction', 'export');
                                                                                         }}
                                                                                     >
-                                                                                        <FontAwesomeIcon icon={faFileExport}/>
+                                                                                        <FontAwesomeIcon icon={faDownload}/>
                                                                                     </button>
                                                                                 </OverlayTrigger>
                                                                                 <OverlayTrigger
@@ -382,7 +382,7 @@ function CreateCourse() {
                                                                                     placement="top"
                                                                                     overlay={
                                                                                         <Tooltip id='goto-tooltip-top'>
-                                                                                            <span>Go to course</span>
+                                                                                            <span>Edit course</span>
                                                                                         </Tooltip>
                                                                                     }
                                                                                 >
@@ -390,7 +390,7 @@ function CreateCourse() {
                                                                                         to={"/course/" + course.cid}
                                                                                         className="btn btn-primary ml-3"
                                                                                     >
-                                                                                        <FontAwesomeIcon icon={faArrowCircleRight}/>
+                                                                                        <FontAwesomeIcon icon={faEdit}/>
                                                                                     </Link>
                                                                                 </OverlayTrigger>
                                                                             </div>

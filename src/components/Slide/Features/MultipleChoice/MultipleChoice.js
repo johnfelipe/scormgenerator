@@ -29,7 +29,7 @@ function MultipleChoice(props) {
     const [isFinalQuiz, setIsFinalQuiz] = useState(sessionStorage.getItem('isFinalQuizSet') ? sessionStorage.getItem('isFinalQuizSet') : false);
     const slideItemIdWithFinalQuiz = sessionStorage.getItem('slideItemId') ? sessionStorage.getItem('slideItemId') : '';
 
-    const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
+    const { contentIndex, currentColumnContentIndex, currentColumn, uid, courseLayout } = props;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
     const correctAnswers = props.correctAnswers;
 
@@ -322,7 +322,7 @@ function MultipleChoice(props) {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
@@ -371,7 +371,7 @@ function MultipleChoice(props) {
                 <div className="sg-control-header">
                     <label>Question/s Setup</label>
                 </div>
-                <div className="sg-control-content">
+                <div className={courseLayout !== "fixed" ? "sg-control-content" : "sg-control-content-override"}>
                     <ul className="sg-control-input-list">
                         <li className="sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label">
@@ -401,7 +401,7 @@ function MultipleChoice(props) {
                                                             <div className="multiple-choice-control-button">
                                                                 <button
                                                                     type="button"
-                                                                    className="btn btn-success btn-sm"
+                                                                    className="btn btn-primary btn-sm"
                                                                     onClick={() => {
                                                                         const isEmpty = document.getElementById("question");
                                                                         
@@ -454,39 +454,41 @@ function MultipleChoice(props) {
                                                     }
                                                 </li>
                                             ))}
-                                            <li className="multiple-choice-question-list-item">
-                                                <div className="multiple-choice-control-input-wrapper">
-                                                    <div className="multiple-choice-control-input-label">
-                                                        <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                            {courseLayout !== "fixed" &&
+                                                <li className="multiple-choice-question-list-item">
+                                                    <div className="multiple-choice-control-input-wrapper">
+                                                        <div className="multiple-choice-control-input-label">
+                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                        </div>
+                                                        <div className="multiple-choice-control-input">
+                                                            <input
+                                                                id="question"
+                                                                name="question"
+                                                                type="text"
+                                                                placeholder="Type question here. . ."
+                                                                onChange={(event) => setQuestion(event.target.value)}
+                                                                value={question}
+                                                            />
+                                                        </div>
+                                                        <div className="multiple-choice-control-button">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-primary btn-sm"
+                                                                onClick={() => {
+                                                                    const isEmpty = document.getElementById("question");
+                                                                    
+                                                                    if (isEmpty.value !== "") {
+                                                                        addQuestion(question);
+                                                                        setQuestion('');
+                                                                    }
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon icon={faPlus}/>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className="multiple-choice-control-input">
-                                                        <input
-                                                            id="question"
-                                                            name="question"
-                                                            type="text"
-                                                            placeholder="Type question here. . ."
-                                                            onChange={(event) => setQuestion(event.target.value)}
-                                                            value={question}
-                                                        />
-                                                    </div>
-                                                    <div className="multiple-choice-control-button">
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-success btn-sm"
-                                                            onClick={() => {
-                                                                const isEmpty = document.getElementById("question");
-                                                                
-                                                                if (isEmpty.value !== "") {
-                                                                    addQuestion(question);
-                                                                    setQuestion('');
-                                                                }
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon icon={faPlus}/>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            }
                                         </>
                                     :
                                         <li className="multiple-choice-question-list-item">
@@ -507,7 +509,7 @@ function MultipleChoice(props) {
                                                 <div className="multiple-choice-control-button">
                                                     <button
                                                         type="button"
-                                                        className="btn btn-success btn-sm"
+                                                        className="btn btn-primary btn-sm"
                                                         onClick={() => {
                                                             const isEmpty = document.getElementById("question");
                                                             

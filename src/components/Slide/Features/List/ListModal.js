@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo, faArrowAltCircleRight, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faUpload, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { galleryService } from '../../../../services';
@@ -144,7 +144,7 @@ function ListModal(props) {
         if (modalShow ) { 
             const formData = new FormData();
 
-            formData.append('file', file[fileIndex]);
+            formData.append('file', file[fileIndex], file[fileIndex].name.replace(/\s/g,''));
             formData.append('uid', uid);
             formData.append('alt', mediaAlt);
 
@@ -255,7 +255,7 @@ function ListModal(props) {
                                         <div className="list-modal-control-button">
                                             <button
                                                 type="button"
-                                                className="btn btn-success btn-sm"
+                                                className="btn btn-primary btn-sm"
                                                 onClick={() => {
                                                     const isEmpty = document.getElementById("buttonName");
                                                     
@@ -265,7 +265,7 @@ function ListModal(props) {
                                                     }
                                                 }}
                                             >
-                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                                                <FontAwesomeIcon icon={faPlus}/>
                                             </button>
                                         </div>
                                     </div>

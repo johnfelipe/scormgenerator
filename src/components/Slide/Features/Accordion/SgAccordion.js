@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faArrowAltCircleRight, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUndo, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // components
 import SgSubAccordion from './SgSubAccordion';
@@ -116,134 +116,133 @@ function SgAccordion(props) {
                             </div>
                             <div className="sg-control-input-list-input">
                                 <ul style={{ listStyle: 'none' }} className="list-group sg-accordion-list">
-                                    {
-                                        currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
-                                                <>
-                                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
-                                                        <li key={'number-' + index} className="sg-accordion-list-item mb-2">
-                                                            {
-                                                                isEditSgAccordion && updateSgAccordionCompareIndex === index ?
-                                                                    <div className="sg-accordion-control-input-wrapper">
-                                                                        <div className="sg-accordion-control-input-label">
-                                                                            <span>{index+1}.</span>
-                                                                        </div>
-                                                                        <div className="sg-accordion-control-input">
-                                                                            <input
-                                                                                id="sgAccordion"
-                                                                                name="sgAccordion"
-                                                                                type="text"
-                                                                                placeholder="Type title here. . ."
-                                                                                onChange={(event) => setUpdateSgAccordion(event.target.value)}
-                                                                                value={updateSgAccordion}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="sg-accordion-control-button">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-success btn-sm"
-                                                                                onClick={() => {
-                                                                                    const isEmpty = document.getElementById("sgAccordion");
-                                                                                    
-                                                                                    if (isEmpty.value !== "") {
-                                                                                        editSgAccordion(updateSgAccordion, index);
-                                                                                        setUpdateSgAccordion('');
-                                                                                        setIsEditSgAccordion(false);
-                                                                                        setUpdateSgAccordionCompareIndex('');
-                                                                                    }
-                                                                                }}
-                                                                            >
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                            </button>
-                                                                        </div>
+                                    {currentColumn.content[currentColumnContentIndex][contentIndex].output.length > 0 ? 
+                                            <>
+                                                {currentColumn.content[currentColumnContentIndex][contentIndex].output.map((item, index) => (
+                                                    <li key={'number-' + index} className="sg-accordion-list-item mb-2">
+                                                        {
+                                                            isEditSgAccordion && updateSgAccordionCompareIndex === index ?
+                                                                <div className="sg-accordion-control-input-wrapper">
+                                                                    <div className="sg-accordion-control-input-label">
+                                                                        <span>{index+1}.</span>
                                                                     </div>
-                                                                :
-                                                                    <SgSubAccordion
-                                                                        index={index}
-                                                                        item={item}
-                                                                        contentIndex={contentIndex}
-                                                                        deleteSgAccordion={deleteSgAccordion}
-                                                                        setIsEditSgAccordion={setIsEditSgAccordion}
-                                                                        setUpdateSgAccordion={setUpdateSgAccordion}
-                                                                        setSgAccordionContent={setSgAccordionContent}
-                                                                        editSgAccordionContent={editSgAccordionContent}
-                                                                        addSgAccordionContent={addSgAccordionContent}
-                                                                        setIsAddSgAccordionContent={setIsAddSgAccordionContent}
-                                                                        isAddSgAccordionContent={isAddSgAccordionContent}
-                                                                        sgAccordionContent={sgAccordionContent}
-                                                                        setShowEditor={props.setShowEditor}
-                                                                        setUpdateSgAccordionCompareIndex={setUpdateSgAccordionCompareIndex}
-                                                                    />
-                                                            }
-                                                        </li>
-                                                    ))}
-                                                    <li className="sg-accordion-list-item mb-2">
-                                                        <div className="sg-accordion-control-input-wrapper">
-                                                            <div className="sg-accordion-control-input-label">
-                                                                <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
-                                                            </div>
-                                                            <div className="sg-accordion-control-input">
-                                                                <input
-                                                                    id="sgAccordion"
-                                                                    name="sgAccordion"
-                                                                    type="text"
-                                                                    placeholder="Type title here. . ."
-                                                                    onChange={(event) => setSgAccordion(event.target.value)}
-                                                                    value={sgAccordion}
+                                                                    <div className="sg-accordion-control-input">
+                                                                        <input
+                                                                            id="sgAccordion"
+                                                                            name="sgAccordion"
+                                                                            type="text"
+                                                                            placeholder="Type title here. . ."
+                                                                            onChange={(event) => setUpdateSgAccordion(event.target.value)}
+                                                                            value={updateSgAccordion}
+                                                                        />
+                                                                    </div>
+                                                                    <div className="sg-accordion-control-button">
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-primary btn-sm"
+                                                                            onClick={() => {
+                                                                                const isEmpty = document.getElementById("sgAccordion");
+                                                                                
+                                                                                if (isEmpty.value !== "") {
+                                                                                    editSgAccordion(updateSgAccordion, index);
+                                                                                    setUpdateSgAccordion('');
+                                                                                    setIsEditSgAccordion(false);
+                                                                                    setUpdateSgAccordionCompareIndex('');
+                                                                                }
+                                                                            }}
+                                                                        >
+                                                                            <FontAwesomeIcon icon={faPlus}/>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            :
+                                                                <SgSubAccordion
+                                                                    index={index}
+                                                                    item={item}
+                                                                    contentIndex={contentIndex}
+                                                                    deleteSgAccordion={deleteSgAccordion}
+                                                                    setIsEditSgAccordion={setIsEditSgAccordion}
+                                                                    setUpdateSgAccordion={setUpdateSgAccordion}
+                                                                    setSgAccordionContent={setSgAccordionContent}
+                                                                    editSgAccordionContent={editSgAccordionContent}
+                                                                    addSgAccordionContent={addSgAccordionContent}
+                                                                    setIsAddSgAccordionContent={setIsAddSgAccordionContent}
+                                                                    isAddSgAccordionContent={isAddSgAccordionContent}
+                                                                    sgAccordionContent={sgAccordionContent}
+                                                                    setShowEditor={props.setShowEditor}
+                                                                    setUpdateSgAccordionCompareIndex={setUpdateSgAccordionCompareIndex}
                                                                 />
-                                                            </div>
-                                                            <div className="sg-accordion-control-button">
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-success btn-sm"
-                                                                    onClick={() => {
-                                                                        const isEmpty = document.getElementById("sgAccordion");
-                                                                        
-                                                                        if (isEmpty.value !== "") {
-                                                                            addSgAccordion(sgAccordion);
-                                                                            setSgAccordion('');
-                                                                        }
-                                                                    }}
-                                                                >
-                                                                    <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                        }
                                                     </li>
-                                                </>
-                                        :
-                                            <li className="sg-accordion-list-item mb-2">
-                                                <div className="sg-accordion-control-input-wrapper">
-                                                    <div className="sg-accordion-control-input-label">
-                                                        <span>1.</span>
+                                                ))}
+                                                <li className="sg-accordion-list-item mb-2">
+                                                    <div className="sg-accordion-control-input-wrapper">
+                                                        <div className="sg-accordion-control-input-label">
+                                                            <span>{currentColumn.content[currentColumnContentIndex][contentIndex].output.length+1}.</span>
+                                                        </div>
+                                                        <div className="sg-accordion-control-input">
+                                                            <input
+                                                                id="sgAccordion"
+                                                                name="sgAccordion"
+                                                                type="text"
+                                                                placeholder="Type title here. . ."
+                                                                onChange={(event) => setSgAccordion(event.target.value)}
+                                                                value={sgAccordion}
+                                                            />
+                                                        </div>
+                                                        <div className="sg-accordion-control-button">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-primary btn-sm"
+                                                                onClick={() => {
+                                                                    const isEmpty = document.getElementById("sgAccordion");
+                                                                    
+                                                                    if (isEmpty.value !== "") {
+                                                                        addSgAccordion(sgAccordion);
+                                                                        setSgAccordion('');
+                                                                    }
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon icon={faPlus}/>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className="sg-accordion-control-input">
-                                                        <input
-                                                            id="sgAccordion"
-                                                            name="sgAccordion"
-                                                            type="text"
-                                                            placeholder="Type title here. . ."
-                                                            onChange={(event) => setSgAccordion(event.target.value)}
-                                                            value={sgAccordion}
-                                                        />
-                                                    </div>
-                                                    <div className="sg-accordion-control-button">
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-success btn-sm"
-                                                            onClick={() => {
-                                                                const isEmpty = document.getElementById("sgAccordion");
-                                                                
-                                                                if (isEmpty.value !== "") {
-                                                                    addSgAccordion(sgAccordion);
-                                                                    setSgAccordion('');
-                                                                }
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
-                                                        </button>
-                                                    </div>
+                                                </li>
+                                            </>
+                                    :
+                                        <li className="sg-accordion-list-item mb-2">
+                                            <div className="sg-accordion-control-input-wrapper">
+                                                <div className="sg-accordion-control-input-label">
+                                                    <span>1.</span>
                                                 </div>
-                                            </li>             
+                                                <div className="sg-accordion-control-input">
+                                                    <input
+                                                        id="sgAccordion"
+                                                        name="sgAccordion"
+                                                        type="text"
+                                                        placeholder="Type title here. . ."
+                                                        onChange={(event) => setSgAccordion(event.target.value)}
+                                                        value={sgAccordion}
+                                                    />
+                                                </div>
+                                                <div className="sg-accordion-control-button">
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => {
+                                                            const isEmpty = document.getElementById("sgAccordion");
+                                                            
+                                                            if (isEmpty.value !== "") {
+                                                                addSgAccordion(sgAccordion);
+                                                                setSgAccordion('');
+                                                            }
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faPlus}/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>             
                                     }
                                 </ul>
                             </div>
