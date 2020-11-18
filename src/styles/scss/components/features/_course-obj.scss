@@ -15,18 +15,18 @@
                                                 z-index: 5000;
                                                 margin: 0 40px;
                                                 // top: 55px;
-                                                top: 270px;
+                                                top: 315px;
 
                                                 @media only screen and (min-width: 1920px) {
                                                     margin: 0 110px;
                                                     // top: 55px;
-                                                    top: 270px;
+                                                    top: 315px;
                                                 }
 
                                                 @media only screen and (max-width: 1366px) {
                                                     margin: 0 40px;
                                                     // top: 75px;
-                                                    top: 270px;
+                                                    top: 315px;
                                                 }
                                             }
 
@@ -46,6 +46,25 @@
                                                     margin: 0 40px;
                                                     // top: 75px;
                                                     top: 105px;
+                                                }
+                                            }
+
+                                            .course-objectives-text-color-picker {
+                                                z-index: 5000;
+                                                margin: 0 40px;
+                                                // top: 55px;
+                                                top: 150px;
+
+                                                @media only screen and (min-width: 1920px) {
+                                                    margin: 0 110px;
+                                                    // top: 55px;
+                                                    top: 150px;
+                                                }
+
+                                                @media only screen and (max-width: 1366px) {
+                                                    margin: 0 40px;
+                                                    // top: 75px;
+                                                    top: 150px;
                                                 }
                                             }
 

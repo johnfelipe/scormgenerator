@@ -1898,18 +1898,18 @@ html body {
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
   z-index: 5000;
   margin: 0 40px;
-  top: 270px;
+  top: 315px;
 }
 @media only screen and (min-width: 1920px) {
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 110px;
-    top: 270px;
+    top: 315px;
   }
 }
 @media only screen and (max-width: 1366px) {
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-color-picker {
     margin: 0 40px;
-    top: 270px;
+    top: 315px;
   }
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-border-color-picker {
@@ -1927,6 +1927,23 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-border-color-picker {
     margin: 0 40px;
     top: 105px;
+  }
+}
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-text-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 150px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-text-color-picker {
+    margin: 0 110px;
+    top: 150px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .course-objectives-text-color-picker {
+    margin: 0 40px;
+    top: 150px;
   }
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-input .accordion .card .card-header .row #action-buttons-group button {
