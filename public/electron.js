@@ -62,13 +62,18 @@ function createWindow () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
+    // console.log
+    mainWindow.webContents.on('did-finish-load', () => {
+        mainWindow.webContents.send('appPath', 'AppPath: ' + app.getAppPath());
+    })
 }
 
 function javaVersionChecker(callback) {
     var spawn = require('child_process').spawn('java', ['-version']);
     spawn.on('error', function(err){
         return callback(err, null);
-    })
+    });
     spawn.stderr.on('data', function(data) {
         data = data.toString().split('\n')[0];
         var javaVersion = new RegExp('java version').test(data) ? data.split(' ')[2].replace(/"/g, '') : false;
