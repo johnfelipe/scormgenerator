@@ -101,6 +101,7 @@ function CourseObjLayout(props) {
                                     ref={(el) => {
                                         if (el) {
                                             el.style.setProperty('border-left-color', styles.titleBoxColor, 'important');
+                                            el.style.setProperty('color', styles.titleTextColor, 'important');
                                         }
                                     }}
                                 >

@@ -13,6 +13,7 @@ function CourseObj(props) {
     const courseNav = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseNav;
     const courseInfo = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseInfo;
     const courseReq = currentColumn.content[currentColumnContentIndex][contentIndex].output.courseReq;
+    const titleTextColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleTextColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleTextColor;
     const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.courseIntroColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.courseIntroColor;
     const [editCourseNavName, setEditCourseNavName] = useState(false);
@@ -26,6 +27,7 @@ function CourseObj(props) {
     const [cReqCollapseId, setCReqCollapseId] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
     const [showBorderColorPicker, setShowBorderColorPicker] = useState(false);
+    const [showTextColorPicker, setShowTextColorPicker] = useState(false);
 
     const updateCourseNavName = (value) => {
         const currentColumnObj = currentColumn;
@@ -106,6 +108,14 @@ function CourseObj(props) {
         const currentColumnObj = currentColumn;
 
         currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleTextColor = color;
 
         props.setColumn(currentColumnObj);
     }
@@ -423,7 +433,7 @@ function CourseObj(props) {
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <div className="sg-control-input-list-label homepage-color-scheme-label">
-                                <span>Color Scheme</span>
+                                <span>Title Border Color</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
                                 <div className="btn border border-secondary rounded text-center w-100" onClick={() => showBorderColorPicker ? setShowBorderColorPicker(false) : setShowBorderColorPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
@@ -431,6 +441,20 @@ function CourseObj(props) {
                                         <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
                                     :
                                         <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showTextColorPicker ? setShowTextColorPicker(false) : setShowTextColorPicker(true)} style={{ background: titleTextColor, cursor: 'pointer' }}>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleTextColor}</span>
                                     }
                                 </div>
                             </div>
@@ -527,6 +551,12 @@ function CourseObj(props) {
                 showPicker={showBorderColorPicker}
                 setBackgroundColor={setTitleBoxColor}
                 defaultColor={titleBoxColor}
+            />
+            <ColorPicker
+                classNames="position-absolute course-objectives-text-color-picker"
+                showPicker={showTextColorPicker}
+                setBackgroundColor={setTitleTextColor}
+                defaultColor={titleTextColor}
             />
         </div>
     );
