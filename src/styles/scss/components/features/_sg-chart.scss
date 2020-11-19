@@ -1,0 +1,12 @@
+@mixin sg-chart {
+    html {
+        body {
+            font-family: 'Open Sans';
+
+            .sg-charts-layout {
+                width: 1156px;
+                height: 575px;
+            }
+        }
+    }
+}

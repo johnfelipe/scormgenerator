@@ -22,6 +22,7 @@
 @import "components/features/tabs";
 @import "components/features/sg-accordion";
 @import "components/features/content-picture";
+@import "components/features/sg-chart";
 
 @include defaults;
 @include header;
@@ -47,3 +48,4 @@
 @include tabs;
 @include sg-accordion;
 @include content-picture;
+@include sg-chart;
