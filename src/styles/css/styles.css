@@ -2618,5 +2618,17 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.content-picture-modal-list .content-picture-modal-list-item .content-picture-modal-input-wrapper .content-picture-modal-button {
   padding-left: 5px;
 }
+html body .content-picture-layout {
+  width: 1156px;
+  height: 575px;
+}
+
+html body {
+  font-family: "Open Sans";
+}
+html body .sg-charts-layout {
+  width: 1156px;
+  height: 575px;
+}
 
 /*# sourceMappingURL=styles.css.map */
