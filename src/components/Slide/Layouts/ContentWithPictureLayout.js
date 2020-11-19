@@ -13,14 +13,14 @@ function ContentWithPictureLayout(props) {
             if (style.layout === '50-50') {
                 return (
                     <div className="row m-0">
-                        <div className="col-md-6">
+                        <div className="col-md-6 pl-0">
                             {output.image.url ?
                                 <img src={output.image.url} alt={output.image.alt} className="h-auto" />
                             :
                                 <FontAwesomeIcon icon={faImage} className="w-25 h-100"/>
                             }
                         </div>
-                        <div className={style.textColor ? "col-md-6 text-left webupps-vertical-center " + style.textColor : "col-md-6 text-left webupps-vertical-center"}>
+                        <div className={style.textColor ? "col-md-6 pr-0 text-left webupps-vertical-center " + style.textColor : "col-md-6 pr-0 text-left webupps-vertical-center"}>
                             {ReactHtmlParser(output.content)}
                         </div>
                     </div>
@@ -79,7 +79,7 @@ function ContentWithPictureLayout(props) {
     return (
         <>
             <div id="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
-                <div className="content-area-container h-100 w-100 p-3 ">
+                <div className="content-area-container h-100 w-100 p-4 ">
                     <div className={showTitle ? "row" : "row d-none"}>
                         <div className="col-12">
                             {style.titleBoxBorder === 'border-left' ?
