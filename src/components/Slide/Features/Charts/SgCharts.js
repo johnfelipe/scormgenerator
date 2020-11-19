@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CSVReader from "react-csv-reader";
 import MultiSelect from "react-multi-select-component";
 import ReactHtmlParser from 'react-html-parser';
+import ColorPicker from '../../../Common/ColorPicker';
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,6 +30,10 @@ function SgCharts(props) {
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
     const [properties, setProperties] = useState(currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.headers.length > 0 ? currentColumn.content[currentColumnContentIndex][contentIndex].output.csvFile.headers : []);
+    const titleTextColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.titleTextColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.titleTextColor;
+    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxColor;
+    const [showBorderColorPicker, setShowBorderColorPicker] = useState(false);
+    const [showTextColorPicker, setShowTextColorPicker] = useState(false);
 
     const parseOptions = {
         header: true,
@@ -150,6 +155,30 @@ function SgCharts(props) {
     const setChartLabel = (value) => {
         const currentColumnObj = currentColumn;
         currentColumnObj.content[currentColumnContentIndex][contentIndex].output.label = value;
+        props.setColumn(currentColumnObj);
+    }
+    
+    const setTitleBorder = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleBoxColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].style.titleBoxColor = color;
+
         props.setColumn(currentColumnObj);
     }
 
@@ -342,6 +371,49 @@ function SgCharts(props) {
                 </div>
                 <div className="sg-control-input sg-control-input">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title Border Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].style.titleBoxBorder}
+                                    onChange={(event) => setTitleBorder(event, contentIndex)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="border-left">Border-left</option>
+                                    <option value="border-top">Border-bottom</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Border Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showBorderColorPicker ? setShowBorderColorPicker(false) : setShowBorderColorPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showTextColorPicker ? setShowTextColorPicker(false) : setShowTextColorPicker(true)} style={{ background: titleTextColor, cursor: 'pointer' }}>
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleTextColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Background</span>
@@ -435,6 +507,18 @@ function SgCharts(props) {
             <ChartDataAlert
                 modalShow={modalShowChartDataAlert}
                 setModalShow={setModalShowChartDataAlert}
+            />
+            <ColorPicker
+                classNames="position-absolute sg-charts-border-color-picker"
+                showPicker={showBorderColorPicker}
+                setBackgroundColor={setTitleBoxColor}
+                defaultColor={titleBoxColor}
+            />
+            <ColorPicker
+                classNames="position-absolute sg-charts-text-color-picker"
+                showPicker={showTextColorPicker}
+                setBackgroundColor={setTitleTextColor}
+                defaultColor={titleTextColor}
             />
         </div>
     )
