@@ -1,7 +1,5 @@
 import React from 'react';
 import './CourseNav.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faAngleRight, faAngleLeft, faShareSquare, faBook } from '@fortawesome/free-solid-svg-icons';
 
 function CourseNav(props) {
 
@@ -13,7 +11,7 @@ function CourseNav(props) {
                         <div className="border border-secondary rounded item-card card-block p-3 h-100" style={{ background: props.backgroundColor}}>
                             <div className="w-100 text-center">
                                 <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0">
-                                    <FontAwesomeIcon icon={faBars}/>&nbsp;Menu
+                                    <i class="fas fa-bars"></i>&nbsp;Menu
                                 </button>
                             </div>
                             <p className="card-text text-center mt-3 text-white">Select to view course slides.</p> 
@@ -23,10 +21,10 @@ function CourseNav(props) {
                         <div className="border border-secondary rounded item-card card-block p-3 h-100" style={{ background: props.backgroundColor}}>
                             <div className="w-100 text-center">
                                 <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0">
-                                    <FontAwesomeIcon icon={faAngleLeft}/>&nbsp;Previous
+                                    <i class="fas fa-angle-left"></i>&nbsp;Previous
                                 </button>
                                 <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0 mt-2">
-                                    <FontAwesomeIcon icon={faAngleRight}/>&nbsp;Next
+                                    <i class="fas fa-angle-right"></i>&nbsp;Next
                                 </button>
                             </div>
                             <p className="card-text text-center mt-3 text-white">Use these buttons to navigate through the slides.</p> 
@@ -36,7 +34,7 @@ function CourseNav(props) {
                         <div className="border border-secondary rounded item-card card-block p-3 h-100" style={{ background: props.backgroundColor}}>
                             <div className="w-100 text-center">
                                 <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0">
-                                    <FontAwesomeIcon icon={faShareSquare}/>&nbsp;Resources
+                                    <i class="fas fa-share-square"></i>&nbsp;Resources
                                 </button>
                             </div>
                             <p className="card-text text-center mt-3 text-white">Select to access course source materials.</p> 
@@ -46,7 +44,7 @@ function CourseNav(props) {
                         <div className="border border-secondary rounded item-card card-block p-3 h-100" style={{ background: props.backgroundColor}}>
                             <div className="w-100 text-center">
                                 <button type="button" className="menu-btn btn btn-light border border-secondary rounded-0">
-                                    <FontAwesomeIcon icon={faBook}/>&nbsp;Glossary
+                                    <i class="fas fa-book"></i>&nbsp;Glossary
                                 </button>
                             </div>
                             <p className="card-text text-center mt-3 text-white">Use the glossary for definitions, acronyms, and abbreviations.</p> 
