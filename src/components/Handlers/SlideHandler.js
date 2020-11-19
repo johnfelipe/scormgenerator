@@ -731,6 +731,9 @@ class SlideHandler extends Component {
                 class: '',
                 id: '',
                 style: {
+                    titleTextColor: '#3D4652',
+                    titleBoxColor: '#0069d9',
+                    titleBoxBorder: 'border-left',
                     backgroundImg: {
                         name: '',
                         url: '',
@@ -1150,6 +1153,9 @@ class SlideHandler extends Component {
                                 class: '',
                                 id: '',
                                 style: {
+                                    titleTextColor: '#3D4652',
+                                    titleBoxColor: '#0069d9',
+                                    titleBoxBorder: 'border-left',
                                     backgroundImg: {
                                         name: '',
                                         url: '',
@@ -5293,9 +5299,9 @@ class SlideHandler extends Component {
                                                                                                             } 
                                                                                                             className={
                                                                                                                 contentFirst.class ? 
-                                                                                                                    contentFirst.class + " content-output"
+                                                                                                                    contentFirst.class + " content-output border border-light"
                                                                                                                 : 
-                                                                                                                    "content-output"
+                                                                                                                    "content-output border border-light"
                                                                                                             } 
                                                                                                             onClick={() => 
                                                                                                                 this.contentPaneClick(
@@ -5314,6 +5320,9 @@ class SlideHandler extends Component {
                                                                                                                 style={contentFirst.style}
                                                                                                                 css={contentFirst.css}
                                                                                                                 cssApplier={this.cssApplier}
+                                                                                                                slideName={values.slideName}
+                                                                                                                slideSubtitle={values.slideSubtitle}
+                                                                                                                showTitle={values.showTitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }

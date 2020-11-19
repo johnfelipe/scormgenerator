@@ -244,6 +244,12 @@ function SgCharts(props) {
                                 />
                             </div>
                         </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-upload">
+                            <div className="sg-control-input-list-label"></div>
+                            <div className="sg-control-input-list-input input-group">
+                                <i class="fas fa-info-circle" type="button"></i>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
                             <OverlayTrigger
                                 key="top"
@@ -306,7 +312,7 @@ function SgCharts(props) {
                     <div className="sg-expandable-rich-text">
                         <div className="sg-workspace-expander">
                             <div tabIndex="-1" className="sg-workspace-expander-toggle ">
-                                <textarea
+                                {/* <textarea
                                     className="webupps-resize-none"
                                     disabled 
                                     value={ 
@@ -318,7 +324,13 @@ function SgCharts(props) {
                                         :
                                             'No information provided yet.'
                                     }
-                                />
+                                /> */}
+                                <div className="webupps-custom-disabled-textarea webupps-resize-none">
+                                    {currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    currentColumnContentIndex in currentColumn.content &&
+                                    currentColumn.content[currentColumnContentIndex].length > 0 &&
+                                    ReactHtmlParser(currentColumn.content[currentColumnContentIndex][contentIndex].output.description)}
+                                </div>
                             </div>
                         </div>
                     </div>
