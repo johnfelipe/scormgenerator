@@ -2630,5 +2630,39 @@ html body .sg-charts-layout {
   width: 1156px;
   height: 575px;
 }
+html body .sg-charts-border-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 315px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-charts-border-color-picker {
+    margin: 0 110px;
+    top: 315px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-charts-border-color-picker {
+    margin: 0 40px;
+    top: 315px;
+  }
+}
+html body .sg-charts-text-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 360px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-charts-text-color-picker {
+    margin: 0 110px;
+    top: 360px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-charts-text-color-picker {
+    margin: 0 40px;
+    top: 360px;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

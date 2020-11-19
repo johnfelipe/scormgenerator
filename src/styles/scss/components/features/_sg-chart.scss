@@ -7,6 +7,38 @@
                 width: 1156px;
                 height: 575px;
             }
+
+            .sg-charts-border-color-picker {
+                z-index: 5000;
+                margin: 0 40px;
+                top: 315px;
+
+                @media only screen and (min-width: 1920px) {
+                    margin: 0 110px;
+                    top: 315px;
+                }
+
+                @media only screen and (max-width: 1366px) {
+                    margin: 0 40px;
+                    top: 315px;
+                }
+            }
+
+            .sg-charts-text-color-picker {
+                z-index: 5000;
+                margin: 0 40px;
+                top: 360px;
+
+                @media only screen and (min-width: 1920px) {
+                    margin: 0 110px;
+                    top: 360px;
+                }
+
+                @media only screen and (max-width: 1366px) {
+                    margin: 0 40px;
+                    top: 360px;
+                }
+            }
         }
     }
 }
