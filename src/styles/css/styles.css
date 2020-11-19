@@ -546,6 +546,10 @@
   padding: 30px;
 }
 
+.content-output {
+  width: 1160px;
+}
+
 html body #root .App .App-header p {
   color: red;
 }
