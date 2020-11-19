@@ -46,5 +46,9 @@
         require('electron').ipcRenderer.on('appPath', (event, message) => {
           console.log(message) // Prints 'whoooooooh!'
         });
+
+        require('electron').ipcRenderer.on('child', (event, message) => {
+          console.log(message) // Prints 'whoooooooh!'
+        });
     </script>
 </html>

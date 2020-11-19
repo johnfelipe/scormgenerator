@@ -66,6 +66,7 @@ function createWindow () {
     // console.log
     mainWindow.webContents.on('did-finish-load', () => {
         mainWindow.webContents.send('appPath', 'AppPath: ' + app.getAppPath());
+        mainWindow.webContents.send('child', 'child: ' + child);
     })
 }
 
