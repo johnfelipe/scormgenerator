@@ -32,12 +32,13 @@ function SgChartsLayout(props) {
             if (output.chartType === "pie") {
                 return (
                     <>
-                        <div id="sg-pie-chart">
+                        <div id="sg-pie-chart-container">
                             <Pie
                                 data={data}
                                 width={100}
                                 height={225}
                                 options={{ maintainAspectRatio: false }}
+                                id="sg-pie-chart"
                             />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
@@ -49,12 +50,13 @@ function SgChartsLayout(props) {
             } else if (output.chartType === "doughnut") {
                 return (
                     <>
-                        <div id="sg-doughnut-chart">
+                        <div id="sg-doughnut-chart-container">
                             <Doughnut
                                 data={data}
                                 width={100}
                                 height={225}
                                 options={{ maintainAspectRatio: false }}
+                                id="sg-doughnut-chart"
                             />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
@@ -66,12 +68,13 @@ function SgChartsLayout(props) {
             } else if (output.chartType === "bar") {
                 return (
                     <>
-                        <div id="sg-bar-chart">
+                        <div id="sg-bar-chart-container">
                             <Bar
                                 data={data}
                                 width={100}
                                 height={225}
                                 options={{ maintainAspectRatio: false }}
+                                id="sg-bar-chart"
                             />
                             <label className="mt-1"><strong>{output.label}</strong></label>
                         </div>
