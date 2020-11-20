@@ -79,7 +79,7 @@ function ContentWithPictureLayout(props) {
     return (
         <>
             <div className="content-picture-layout" style={{ backgroundImage: 'url("' + style.backgroundImg.url + '")', backgroundSize: 'cover', background: style.backgroundColor }}>
-                <div className="content-area-container h-100 w-100 p-4 ">
+                <div className="slide content-area-container h-100 w-100 p-4 ">
                     <div className={showTitle ? "row" : "row d-none"}>
                         <div className="col-12">
                             {style.titleBoxBorder === 'border-left' ?

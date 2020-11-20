@@ -249,7 +249,7 @@ function CourseObjLayout(props) {
 
     return (
         <div className="course-objective-layout">
-            <div className="course-objective-container h-100 w-100 p-4 bg-white">
+            <div className="slide course-objective-container h-100 w-100 p-4">
                 {content(introVideo.position)}
             </div>
             {courseNavModal}

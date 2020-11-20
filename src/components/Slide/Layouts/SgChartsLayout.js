@@ -90,7 +90,7 @@ function SgChartsLayout(props) {
 
     return (
         <div className="sg-charts-layout">
-            <div className="w-100 h-100 p-4">
+            <div className="slide w-100 h-100 p-4">
                 <div className={showTitle ? "row" : "row d-none"}>
                     <div className="col-12">
                         {style.titleBoxBorder === 'border-left' ?
