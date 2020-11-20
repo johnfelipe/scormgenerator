@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 
 function ChartDataAlert(props) {
 
-    const { modalShow } = props;
+    const { modalShow, title } = props;
 
     const chartDataAlertModal = (
         <Modal
@@ -16,7 +16,7 @@ function ChartDataAlert(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title>
-                    Alert
+                    {title}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
