@@ -319,7 +319,7 @@ function MultipleChoiceAccordion(props) {
                                             </div>
                                         </div>
                                     :
-                                        <div className="multiple-choice-question-action-button m-0 mt-2 mb-2 row">
+                                        <div className="multiple-choice-question-action-button m-0 mt-3 mb-3 row">
                                             <div className="col-md-6 p-0">
                                                 <button
                                                     type="button"

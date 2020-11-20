@@ -505,6 +505,9 @@ class SlideHandler extends Component {
                 class: 'question-files-left',
                 id: '',
                 styles: {
+                    titleTextColor: '#3D4652',
+                    titleBoxColor: '#0069d9',
+                    titleBoxBorder: 'border-left',
                     questionLabelClass: 'rounded-circle',
                     questionBackgroundColor: '#fff',
                     multipleChoiceTextColor: 'text-black',
@@ -987,6 +990,9 @@ class SlideHandler extends Component {
                                 class: 'question-files-left',
                                 id: '',
                                 styles: {
+                                    titleTextColor: '#3D4652',
+                                    titleBoxColor: '#0069d9',
+                                    titleBoxBorder: 'border-left',
                                     questionLabelClass: 'rounded-circle',
                                     questionBackgroundColor: '#fff',
                                     multipleChoiceTextColor: 'text-black',
@@ -4900,6 +4906,9 @@ class SlideHandler extends Component {
                                                                                                                 multipleChoiceStyles={contentFirst.styles}
                                                                                                                 multipleChoiceCss={contentFirst.css}
                                                                                                                 cssApplier={this.cssApplier}
+                                                                                                                slideName={values.slideName}
+                                                                                                                slideSubtitle={values.slideSubtitle}
+                                                                                                                showTitle={values.showTitle}
                                                                                                             />
                                                                                                         </div>
                                                                                                     }

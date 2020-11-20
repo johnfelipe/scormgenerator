@@ -32,6 +32,11 @@ function MultipleChoice(props) {
     const { contentIndex, currentColumnContentIndex, currentColumn, uid, courseLayout } = props;
     const currentBackgroundColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor;
     const correctAnswers = props.correctAnswers;
+    
+    const titleTextColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleTextColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleTextColor;
+    const titleBoxColor = currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor && currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor;
+    const [showBorderColorPicker, setShowBorderColorPicker] = useState(false);
+    const [showTextColorPicker, setShowTextColorPicker] = useState(false);
 
     const addQuestion = (value) => {
         const currentColumnObj = currentColumn;
@@ -345,6 +350,30 @@ function MultipleChoice(props) {
 
         props.setColumn(currentColumnObj);
     }
+    
+    const setTitleBorder = (e) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder = e.target.value;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleTextColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleTextColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
+
+    const setTitleBoxColor = (color) => {
+        const currentColumnObj = currentColumn;
+
+        currentColumnObj.content[currentColumnContentIndex][contentIndex].styles.titleBoxColor = color;
+
+        props.setColumn(currentColumnObj);
+    }
 
     useEffect(() => {
         if (isFinalQuiz && props.slideItemId === slideItemIdWithFinalQuiz) {
@@ -634,6 +663,73 @@ function MultipleChoice(props) {
                 </div>
                 <div className="sg-control-input sg-control-input mt-3">
                     <ul className="sg-control-input-list">
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label">
+                                <span>Title Border Position</span>
+                            </div>
+                            <div className="sg-control-input-list-input">
+                                <select
+                                    value={currentColumn.content[currentColumnContentIndex][contentIndex].styles.titleBoxBorder}
+                                    onChange={(event) => setTitleBorder(event, contentIndex)}
+                                    className="form-control-plaintext border border-secondary rounded"
+                                >
+                                    <option value="border-left">Border-left</option>
+                                    <option value="border-top">Border-bottom</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Border Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showBorderColorPicker) {
+                                            setShowBorderColorPicker(false)
+                                        } else {
+                                            setShowBorderColorPicker(true)
+                                            setShowTextColorPicker(false)
+                                            setShowPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: titleBoxColor, cursor: 'pointer' }}
+                                >
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleBoxColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                        <li className="sg-control-input-list-item sg-control-input-list-item-text">
+                            <div className="sg-control-input-list-label homepage-color-scheme-label">
+                                <span>Title Text Color</span>
+                            </div>
+                            <div className="sg-control-input-list-input homepage-color-scheme-selector">
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showTextColorPicker) {
+                                            setShowTextColorPicker(false)
+                                        } else {
+                                            setShowTextColorPicker(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: titleTextColor, cursor: 'pointer' }}
+                                >
+                                    {titleBoxColor === 'transparent' ?
+                                        <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
+                                    :
+                                        <span className="h-100 w-100 text-white">{titleTextColor}</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label">
                                 <span>Background</span>
@@ -692,7 +788,19 @@ function MultipleChoice(props) {
                                 <span>Background Color</span>
                             </div>
                             <div className="sg-control-input-list-input multiple-choice-background-color-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showPicker) {
+                                            setShowPicker(false)
+                                        } else {
+                                            setShowPicker(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowTextColorPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: currentBackgroundColor, cursor: 'pointer' }}
+                                >
                                     <span className="text-white h-100 w-100">{currentColumn.content[currentColumnContentIndex][contentIndex].styles.questionBackgroundColor}</span>
                                 </div>
                             </div>
@@ -714,8 +822,7 @@ function MultipleChoice(props) {
                                 </div>
                             </div>
                         </li>
-                        {
-                            filesExist &&
+                        {filesExist &&
                             <li className="sg-control-input-list-item sg-control-input-list-item-text">
                                 <div className="sg-control-input-list-label">
                                     <span>Files Position</span>
@@ -740,6 +847,18 @@ function MultipleChoice(props) {
                 showPicker={showPicker}
                 setBackgroundColor={setQuestionBackgroundColor}
                 defaultColor={currentBackgroundColor}
+            />
+            <ColorPicker
+                classNames="position-absolute multiple-choice-border-color-picker"
+                showPicker={showBorderColorPicker}
+                setBackgroundColor={setTitleBoxColor}
+                defaultColor={titleBoxColor}
+            />
+            <ColorPicker
+                classNames="position-absolute multiple-choice-text-color-picker"
+                showPicker={showTextColorPicker}
+                setBackgroundColor={setTitleTextColor}
+                defaultColor={titleTextColor}
             />
             <FeatureTypeWarning
                 modalShow={modalShow}

@@ -5,6 +5,7 @@ import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
 
 function MultipleChoiceLayout(props) {
     
+    const { slideName, slideSubtitle, showTitle } = props;
     const multipleChoice = props.multipleChoice;
     const multipleChoiceClass = props.multipleChoiceClass;
     const alpbahet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -437,35 +438,71 @@ function MultipleChoiceLayout(props) {
     }
     
     return (
-        <div id="multiple-choice-layout" className={"w-100 h-100 p-3 " + multipleChoiceStyles.multipleChoiceTextColor} style={{ background: multipleChoiceStyles.questionBackgroundColor, backgroundImage: 'url("' + multipleChoiceStyles.backgroundImg.url + '")', backgroundSize: 'cover' }}>
-            {
-                multipleChoice.length > 0 ?
-                    multipleChoice.map((item, itemIndex) => (
-                        <div key={"multiple-choice-question-" + itemIndex} className={"question-group row mb-4 " + multipleChoiceClass}>
-                            <div className="col-md-12">
-                                <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
+        <div className="multiple-choice-layout">
+            <div className={"slide w-100 h-100 p-4 " + multipleChoiceStyles.multipleChoiceTextColor} style={{ background: multipleChoiceStyles.questionBackgroundColor, backgroundImage: 'url("' + multipleChoiceStyles.backgroundImg.url + '")', backgroundSize: 'cover' }}>
+                <div className={showTitle ? "row" : "row d-none"}>
+                    <div className="col-12">
+                        {multipleChoiceStyles.titleBoxBorder === 'border-left' ?
+                            <div
+                                className={"slide-header text-left " + multipleChoiceStyles.titleBoxBorder}
+                                ref={(el) => {
+                                    if (el) {
+                                        el.style.setProperty('border-left-color', multipleChoiceStyles.titleBoxColor, 'important');
+                                        el.style.setProperty('color', multipleChoiceStyles.titleTextColor, 'important');
+                                    }
+                                }}
+                            >
+                                <h3 className="slide-subtitle">{slideName}</h3>
+                                <h2 class="slide-title">{slideSubtitle}</h2>
                             </div>
-                            {content(item, multipleChoiceClass)}
-                            {props.cssApplier(multipleChoiceCss, 'multiple-choice-layout')}
-                            {
-                                item.explanation.visibility === 'show' && item.explanation.content &&
-                                <>
-                                    <div className="col-md-2"></div>
-                                    <div className="col-md-8 mt-3">
-                                        <p id="question-explanation" className="p-3 rounded">
-                                            {item.explanation.content}
-                                        </p>
-                                    </div>
-                                    <div className="col-md-2"></div>
-                                </>
-                            }
-                        </div>
-                    ))
-                :
-                    <div>
-                        <span>No questions added.</span>
+                        :
+                            <div className="slide-header text-left">
+                                <h3 className="slide-subtitle">{slideName}</h3>
+                                <h2 className="slide-title">
+                                    <span
+                                        className={multipleChoiceStyles.titleBoxBorder}
+                                        ref={(el) => {
+                                            if (el) {
+                                                el.style.setProperty('border-top-color', multipleChoiceStyles.titleBoxColor, 'important');
+                                            }
+                                        }}
+                                    >
+                                        {slideSubtitle}
+                                    </span>
+                                </h2>
+                            </div>
+                        }
                     </div>
-            }
+                </div>
+                {
+                    multipleChoice.length > 0 ?
+                        multipleChoice.map((item, itemIndex) => (
+                            <div key={"multiple-choice-question-" + itemIndex} className={"question-group row mb-4 " + multipleChoiceClass}>
+                                <div className="col-md-12">
+                                    <p className="font-20"><span>{(itemIndex+1) + '. ' + item.question}</span></p>
+                                </div>
+                                {content(item, multipleChoiceClass)}
+                                {props.cssApplier(multipleChoiceCss, 'multiple-choice-layout')}
+                                {
+                                    item.explanation.visibility === 'show' && item.explanation.content &&
+                                    <>
+                                        <div className="col-md-2"></div>
+                                        <div className="col-md-8 mt-3">
+                                            <p id="question-explanation" className="p-3 rounded">
+                                                {item.explanation.content}
+                                            </p>
+                                        </div>
+                                        <div className="col-md-2"></div>
+                                    </>
+                                }
+                            </div>
+                        ))
+                    :
+                        <div>
+                            <span>No questions added.</span>
+                        </div>
+                }
+            </div>
         </div>
     );
 }
