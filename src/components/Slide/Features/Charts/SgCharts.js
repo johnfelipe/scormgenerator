@@ -26,6 +26,7 @@ function SgCharts(props) {
     const { contentIndex, currentColumnContentIndex, currentColumn, uid } = props;
     const [modalShowAltTagForm, setModalShowAltTagForm] = useState(false);
     const [modalShowChartDataAlert, setModalShowChartDataAlert] = useState(false);
+    const [modalTitle, setModalTitle] = useState(false);
     const [imgUrlPreview, setImgUrlPreview] = useState('');
     const [file, setFile] = useState('');
     const [fileIndex, setFileIndex] = useState('');
@@ -119,6 +120,7 @@ function SgCharts(props) {
             props.setColumn(currentColumnObj);
         } else {
             setModalShowChartDataAlert(true);
+            setModalTitle('Alert')
         }
     }
 
@@ -276,7 +278,7 @@ function SgCharts(props) {
                         <li className="sg-control-input-list-item sg-control-input-list-item-upload">
                             <div className="sg-control-input-list-label"></div>
                             <div className="sg-control-input-list-input input-group">
-                                <i class="fas fa-info-circle" type="button"></i>
+                                <i className="fas fa-info-circle" type="button" onClick={() => { setModalTitle('Information'); setModalShowChartDataAlert(true); }}></i>
                             </div>
                         </li>
                         <li className="sg-control-input-list-item sg-control-input-list-item-text">
@@ -527,6 +529,7 @@ function SgCharts(props) {
                 setModalShow={setModalShowAltTagForm}
             />
             <ChartDataAlert
+                title={modalTitle}
                 modalShow={modalShowChartDataAlert}
                 setModalShow={setModalShowChartDataAlert}
             />
