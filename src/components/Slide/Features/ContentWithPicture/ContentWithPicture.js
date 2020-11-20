@@ -359,7 +359,19 @@ function ContentWithPicture(props) {
                                 <span>Background Color</span>
                             </div>
                             <div className="sg-control-input-list-input content-picture-background-color-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPickerModalBtn ? setShowPickerModalBtn(false) : setShowPickerModalBtn(true)} style={{ background: currentModalBtnColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showPickerModalBtn) {
+                                            setShowPickerModalBtn(false)
+                                        } else {
+                                            setShowPickerModalBtn(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowTextColorPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: currentModalBtnColor, cursor: 'pointer' }}
+                                >
                                     {currentModalBtnColor !== 'transparent' && currentModalBtnColor !== '' ?
                                         <span className="text-white h-100 w-100">{currentModalBtnColor}</span>
                                     :
@@ -637,7 +649,19 @@ function ContentWithPicture(props) {
                                 <span>Title Border Color</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showBorderColorPicker ? setShowBorderColorPicker(false) : setShowBorderColorPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showBorderColorPicker) {
+                                            setShowBorderColorPicker(false)
+                                        } else {
+                                            setShowBorderColorPicker(true)
+                                            setShowTextColorPicker(false)
+                                            setShowPickerModalBtn(false)
+                                        }
+                                    }}
+                                    style={{ background: titleBoxColor, cursor: 'pointer' }}
+                                >
                                     {titleBoxColor === 'transparent' ?
                                         <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
                                     :
@@ -651,7 +675,19 @@ function ContentWithPicture(props) {
                                 <span>Title Text Color</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showTextColorPicker ? setShowTextColorPicker(false) : setShowTextColorPicker(true)} style={{ background: titleTextColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showTextColorPicker) {
+                                            setShowTextColorPicker(false)
+                                        } else {
+                                            setShowTextColorPicker(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowPickerModalBtn(false)
+                                        }
+                                    }}
+                                    style={{ background: titleTextColor, cursor: 'pointer' }}
+                                >
                                     {titleBoxColor === 'transparent' ?
                                         <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
                                     :

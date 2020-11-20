@@ -436,7 +436,19 @@ function CourseObj(props) {
                                 <span>Title Border Color</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showBorderColorPicker ? setShowBorderColorPicker(false) : setShowBorderColorPicker(true)} style={{ background: titleBoxColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showBorderColorPicker) {
+                                            setShowBorderColorPicker(false)
+                                        } else {
+                                            setShowBorderColorPicker(true)
+                                            setShowTextColorPicker(false)
+                                            setShowPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: titleBoxColor, cursor: 'pointer' }}
+                                >
                                     {titleBoxColor === 'transparent' ?
                                         <span className="h-100 w-100 text-black text-uppercase">{titleBoxColor}</span>
                                     :
@@ -450,7 +462,19 @@ function CourseObj(props) {
                                 <span>Title Text Color</span>
                             </div>
                             <div className="sg-control-input-list-input homepage-color-scheme-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showTextColorPicker ? setShowTextColorPicker(false) : setShowTextColorPicker(true)} style={{ background: titleTextColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showTextColorPicker) {
+                                            setShowTextColorPicker(false)
+                                        } else {
+                                            setShowTextColorPicker(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: titleTextColor, cursor: 'pointer' }}
+                                >
                                     {titleBoxColor === 'transparent' ?
                                         <span className="h-100 w-100 text-black text-uppercase">{titleTextColor}</span>
                                     :
@@ -515,7 +539,19 @@ function CourseObj(props) {
                                 <span>Background Color</span>
                             </div>
                             <div className="sg-control-input-list-input multiple-choice-background-color-selector">
-                                <div className="btn border border-secondary rounded text-center w-100" onClick={() => showPicker ? setShowPicker(false) : setShowPicker(true)} style={{ background: currentBackgroundColor, cursor: 'pointer' }}>
+                                <div
+                                    className="btn border border-secondary rounded text-center w-100"
+                                    onClick={() => {
+                                        if (showPicker) {
+                                            setShowPicker(false)
+                                        } else {
+                                            setShowPicker(true)
+                                            setShowBorderColorPicker(false)
+                                            setShowTextColorPicker(false)
+                                        }
+                                    }}
+                                    style={{ background: currentBackgroundColor, cursor: 'pointer' }}
+                                >
                                     <span className="text-white h-100 w-100">{currentBackgroundColor}</span>
                                 </div>
                             </div>
