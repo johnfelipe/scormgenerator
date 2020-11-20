@@ -1739,62 +1739,6 @@ html body .home-page-layout .course-title-center {
 html body {
   font-family: "Open Sans";
 }
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout {
-  text-align: left !important;
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
-  line-height: 45px;
-  width: 100%;
-  cursor: pointer;
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
-  background: #5eb75e;
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
-  width: 45px;
-  height: 45px;
-  background: #778395;
-  color: white;
-  font-size: 28px;
-  line-height: 45px;
-  float: left;
-}
-@media only screen and (max-width: 1366px) {
-  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
-    width: 35px;
-    height: 35px;
-    font-size: 20px;
-    line-height: 35px;
-  }
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
-  height: 45px;
-  font-size: 20px;
-  line-height: 45px;
-  float: left;
-  padding-left: 20px;
-}
-@media only screen and (max-width: 1366px) {
-  html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
-    font-size: 14px;
-  }
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
-  height: 32px;
-  margin: 0;
-  border: 1px solid #ddd;
-  padding: 5px 7px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 32px;
-  color: #444;
-}
-html body .sg-slide-page-container form .row #slide-content #slide-content-container .feature-preview-container .sg-column .content-output #multiple-choice-layout .question-group #question-explanation {
-  background: #778395;
-  color: white;
-  text-indent: 50px;
-}
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
   z-index: 5000;
   margin: 0 40px;
@@ -1810,6 +1754,40 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
   html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-color-picker {
     margin: 0 40px;
     top: 380px;
+  }
+}
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-border-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 160px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-border-color-picker {
+    margin: 0 110px;
+    top: 160px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-border-color-picker {
+    margin: 0 40px;
+    top: 160px;
+  }
+}
+html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-text-color-picker {
+  z-index: 5000;
+  margin: 0 40px;
+  top: 205px;
+}
+@media only screen and (min-width: 1920px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-text-color-picker {
+    margin: 0 110px;
+    top: 205px;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .multiple-choice-text-color-picker {
+    margin: 0 40px;
+    top: 205px;
   }
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor .sg-workspace-controls .sg-controls .sg-control .sg-control-content .sg-control-input-list .sg-control-input-list-item-text .sg-control-input-list-input .multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .collapse .tab-content #question-answers-files-tabs-tabpane-answers .multiple-choice-question-action-button .col-md-6 .multi-select {
@@ -1868,7 +1846,7 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
   padding: 10px;
   height: 200px;
   overflow: auto !important;
-  margin-top: 0.5rem !important;
+  margin-top: 0.8rem !important;
 }
 html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-tabs-tabpane-editor ul.multiple-choice-question-list .multiple-choice-question-list-item .accordion .card .card-body .tab-content #question-answers-files-tabs-tabpane-files .multiple-choice-question-files-list .multiple-choice-question-files-list-item #multiple-choice-question-file-item {
   user-select: none;
@@ -1896,6 +1874,66 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
   text-overflow: ellipsis !important;
   overflow: hidden;
   white-space: nowrap;
+}
+html body .multiple-choice-layout {
+  text-align: left !important;
+  width: 1156px;
+  height: 575px;
+  position: relative;
+  overflow: hidden;
+}
+html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice {
+  line-height: 45px;
+  width: 100%;
+  cursor: pointer;
+}
+html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label-selected {
+  background: #5eb75e;
+}
+html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+  width: 45px;
+  height: 45px;
+  background: #778395;
+  color: white;
+  font-size: 28px;
+  line-height: 45px;
+  float: left;
+}
+@media only screen and (max-width: 1366px) {
+  html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-label {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+  }
+}
+html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+  height: 45px;
+  font-size: 20px;
+  line-height: 45px;
+  float: left;
+  padding-left: 20px;
+}
+@media only screen and (max-width: 1366px) {
+  html body .multiple-choice-layout .question-group ul.multiple-choice-question-answers li div.multiple-choice .multiple-choice-choice-text {
+    font-size: 14px;
+  }
+}
+html body .multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .img-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .audio-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .img-add-label-wrapper .video-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .img-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .audio-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .audio-add-label-wrapper .video-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .img-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .audio-add-label-input #videoLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #imgLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #audioLabel, html body .multiple-choice-layout .question-group .video-add-label-wrapper .video-add-label-input #videoLabel {
+  height: 32px;
+  margin: 0;
+  border: 1px solid #ddd;
+  padding: 5px 7px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #444;
+}
+html body .multiple-choice-layout .question-group #question-explanation {
+  background: #778395;
+  color: white;
+  text-indent: 50px;
 }
 
 html body {
