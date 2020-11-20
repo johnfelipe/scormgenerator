@@ -6,6 +6,8 @@
             .sg-charts-layout {
                 width: 1156px;
                 height: 575px;
+                position: relative;
+                overflow: hidden;
             }
 
             .sg-charts-border-color-picker {

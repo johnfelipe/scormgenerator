@@ -475,7 +475,7 @@
   border-style: solid;
   border-color: rgba(118, 118, 118, 0.3);
   border-image: initial;
-  padding: 2px;
+  padding: 5px;
   overflow: auto;
   height: 100%;
   width: 100%;
@@ -513,8 +513,8 @@
 }
 
 .course-layout-fixed {
-  width: 1192px;
-  height: 627px;
+  width: 1195px;
+  height: 630px;
   margin: auto;
 }
 
@@ -1676,6 +1676,8 @@ html body .home-page-layout {
   overflow: hidden;
   width: 1156px;
   height: 575px;
+  position: relative;
+  overflow: hidden;
 }
 html body .home-page-layout #course-name {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1963,6 +1965,8 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
 html body .course-objective-layout {
   width: 1156px;
   height: 575px;
+  position: relative;
+  overflow: hidden;
 }
 
 html body {
@@ -2621,6 +2625,8 @@ html body .sg-slide-page-container form .row #slide-sidebar .tab-content #slide-
 html body .content-picture-layout {
   width: 1156px;
   height: 575px;
+  position: relative;
+  overflow: hidden;
 }
 
 html body {
@@ -2629,6 +2635,8 @@ html body {
 html body .sg-charts-layout {
   width: 1156px;
   height: 575px;
+  position: relative;
+  overflow: hidden;
 }
 html body .sg-charts-border-color-picker {
   z-index: 5000;
