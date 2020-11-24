@@ -9,14 +9,15 @@ var currentPlatform = process.platform;
 
 /* Execution of Jar based on the platform */
 let jarPath;
-let exec, child;
+let exec, child, spawn;
 
 if (currentPlatform === "win32") {
     exec = require('child_process').exec;
     child = exec('java -jar windows.jar');
 } else if (currentPlatform === "darwin") {
-    exec = require('child_process').exec;
-    child = exec('java -jar mac.jar');
+    // exec = require('child_process').exec;
+    spawn = require('child_process').spawn;
+    child = spawn('java', ['-jar', 'mac.jar']);
 }
 /* End of Execution of Jar based on the platform */
 
