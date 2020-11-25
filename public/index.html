@@ -50,5 +50,18 @@
         require('electron').ipcRenderer.on('child', (event, message) => {
           console.log(message) // Prints 'whoooooooh!'
         });
+
+        var exec, child;
+        exec = require('child_process').exec;
+        //spawn = require('child_process').spawn;
+        //child = spawn('java', ['-jar', 'mac']);
+        child = exec('java -jar /Applications/ScormGenerator.app/Contents/mac.jar',
+        function (error, stdout, stderr){
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if(error !== null){
+            console.log('exec error: ' + error);
+            }
+        });
     </script>
 </html>
